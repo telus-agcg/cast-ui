@@ -1,0 +1,51 @@
+{
+  "name": "tkxs-ui",
+  "version": "1.0.0",
+  "description": "React component library for the TKXS design system",
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "storybook": "start-storybook -p 6006 -c .storybook"
+  },
+  "author": "Ben Dalton",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.5",
+    "@storybook/addon-info": "^4.0.4",
+    "@storybook/addon-knobs": "^4.0.4",
+    "@storybook/addons": "^4.0.4",
+    "@storybook/react": "^4.0.4",
+    "@types/lodash": "^4.14.118",
+    "@types/react": "^16.7.3",
+    "@types/react-dom": "^16.0.9",
+    "@types/storybook-addon-jsx": "^5.4.0",
+    "@types/storybook__addon-info": "^3.4.2",
+    "@types/storybook__addon-knobs": "^3.4.1",
+    "@types/storybook__react": "^4.0.0",
+    "@types/styled-components": "^4.0.3",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^0.1.19",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.6.1",
+    "react-docgen-typescript-webpack-plugin": "^1.1.0",
+    "react-dom": "^16.6.1",
+    "storybook-addon-jsx": "^5.4.0",
+    "styled-components": "^4.1.0",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "tsutils": "^3.5.0",
+    "typescript": "^3.1.6",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4"
+  }
+}
