@@ -3,7 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { wInfo } from './utils';
 
-storiesOf('Welcome', module).addWithJSX(
+storiesOf('Welcome', module).add(
   'to your new Storybook🎊',
   wInfo(`
     ### Notes

@@ -1,10 +1,11 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
 export interface Props {
   /** this dictates the content of the panel  */
   children?: React.ReactNode;
   /** this dictates the title of the panel  */
-  title: string;
+  title?: string;
   /** this dictates the background color of the title
    *  @default '#fff'
    */
@@ -18,13 +19,26 @@ export interface Props {
    */
   borderColor?: string;
 }
+const PanelWrapper = styled.div`
+  border: 1px solid ${(props: Props) => props.borderColor || '#eee'};
+`;
+const PanelHeader = styled.div`
+  background: ${(props: Props) => props.titleBg};
+  padding: 5px 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 20px;
+`;
+const PanelBody = styled.div`
+  background: ${(props: Props) => props.bodyBg};
+  padding: 5px 8px;
+  font-size: 16px;
+`;
 
-export const Panel = (props: Props) => (
-  <div style={{ border: `1px solid ${props.borderColor || '#eee'}` }}>
-    <div style={{ background: props.titleBg }}>{props.title}</div>
-  </div>
-);
-
-// export const Panel = (props: Props) => styled(basePanel)`
-//   background: "pink";
-// `;
+export const Panel = (props: Props) => {
+  return (
+    <PanelWrapper>
+      <PanelHeader titleBg={props.titleBg}>{props.title}</PanelHeader>
+      <PanelBody bodyBg={props.bodyBg}>{props.children}</PanelBody>
+    </PanelWrapper>
+  );
+};

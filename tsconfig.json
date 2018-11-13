@@ -7,7 +7,7 @@
     "sourceMap": true,
     "allowJs": false,
     "jsx": "react",
-    // "moduleResolution": "node",
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "rootDirs": ["src"],
     "baseUrl": "src",

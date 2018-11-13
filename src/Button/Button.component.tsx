@@ -16,11 +16,11 @@ export const Button = (props: Props) => {
   const { label, onClick, disabled = false } = props;
   const disabledclass = disabled ? 'Button_disabled' : '';
   return (
-    <div
+    <button
       className={`Button ${disabledclass}`}
       onClick={!disabled ? onClick : noop}
     >
       <span>{label}</span>
-    </div>
+    </button>
   );
 };
