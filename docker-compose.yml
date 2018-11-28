@@ -1,0 +1,19 @@
+version: "2.3"
+
+services:
+  web:
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    ports:
+      - '8080:8080'
+      - '6006:6006'
+    environment:
+      HOST: 0.0.0.0
+
+volumes:
+  node_modules:
+    driver: local
