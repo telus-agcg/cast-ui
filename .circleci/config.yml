@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: technekes/circleci:latest
+
+    working_directory: /usr/src/app
+
+    steps:
+      - checkout
+      - setup_remote_docker
+
+      - run:
+          name: Build the image(s)
+          command: |
+            docker-compose build ci
+
+      - run:
+          name: Test and lint
+          command: |
+            docker-compose run ci npm test
