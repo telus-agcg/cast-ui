@@ -12,11 +12,11 @@ const wInfoStyle = {
     },
     h2: {
       display: 'inline',
-      color: '#999',
+      color: '#888',
     },
   },
   infoBody: {
-    backgroundColor: '#eee',
+    backgroundColor: '#fff',
     padding: '0px 5px',
     lineHeight: '2',
   },

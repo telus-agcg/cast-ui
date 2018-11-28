@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { text, boolean } from '@storybook/addon-knobs/react';
+import { boolean, select } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
 import { Button } from './Button.component';
@@ -23,9 +23,16 @@ storiesOf('Button', module).add(
   />
   ~~~`)(() => (
     <Button
-      label={text('label', 'Enroll')}
+      btnStyle={select(
+        'btnStyle',
+        ['success', 'default', 'primary', 'danger', 'warning'],
+        'success',
+      )}
+      btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
       disabled={boolean('disabled', false)}
       onClick={action('Clicked!')}
-    />
+    >
+      Submit
+    </Button>
   )),
 );

@@ -14,7 +14,8 @@
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
@@ -33,6 +34,7 @@
     "@types/storybook__addon-knobs": "^3.4.1",
     "@types/storybook__react": "^4.0.0",
     "@types/styled-components": "^4.0.3",
+    "@types/tinycolor2": "^1.4.1",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.4",
     "clean-webpack-plugin": "^0.1.19",

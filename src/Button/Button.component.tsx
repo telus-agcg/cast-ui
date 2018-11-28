@@ -1,26 +1,72 @@
 import * as React from 'react';
-export interface Props {
-  /** this dictates what the button will say  */
-  label: string;
+import styled from 'styled-components';
+
+type Props = {
   /** this dictates what the button will do  */
-  onClick: () => void;
+  onClick(e: React.MouseEvent<HTMLElement>): void;
+  /**
+   * Select Button Style
+   *
+   * @default 'default'
+   **/
+  btnStyle: string;
+  /**
+   * Select Button Size
+   *
+   * @default 'md'
+   **/
+  btnSize: string;
   /**
    * Disables onclick
    *
    * @default false
    **/
   disabled?: boolean;
-}
-const noop = () => {}; // tslint:disable-line
-export const Button = (props: Props) => {
-  const { label, onClick, disabled = false } = props;
-  const disabledclass = disabled ? 'Button_disabled' : '';
-  return (
-    <button
-      className={`Button ${disabledclass}`}
-      onClick={!disabled ? onClick : noop}
-    >
-      <span>{label}</span>
-    </button>
-  );
+  /**
+   * From theme provider
+   *
+   * @default defaultTheme
+   **/
+  theme?: any;
 };
+
+const noop = () => {}; // tslint:disable-line
+const SButton = styled.button`
+  background: ${(props: Props) => props.theme.styles[props.btnStyle].flood}
+  border: 1px solid ${(props: Props) =>
+    props.theme.styles[props.btnStyle].borderColor};
+  padding: ${(props: Props) => props.theme.button[props.btnSize].padding}
+  font-size: ${(props: Props) => props.theme.button[props.btnSize].fontSize}
+  font-weight: bold;
+  color: ${(props: Props) => props.theme.styles[props.btnStyle].reverseText};
+  &:hover {
+    background: ${props => props.theme.styles[props.btnStyle].hoverFlood};
+    border: 1px solid ${(props: Props) =>
+      props.theme.styles[props.btnStyle].hoverFlood};
+    cursor: pointer;
+  }
+  &:disabled {
+    background: ${props => props.theme.styles[props.btnStyle].hoverFlood}
+    border: 1px solid ${props => props.theme.styles[props.btnStyle].hoverFlood}
+    cursor: not-allowed;
+  }
+`;
+
+export const Button: React.FunctionComponent<Props> = ({
+  onClick,
+  disabled,
+  children,
+  btnStyle = 'default',
+  btnSize = 'md',
+  theme,
+}) => (
+  <SButton
+    btnSize={btnSize}
+    btnStyle={btnStyle}
+    theme={theme}
+    disabled={disabled}
+    onClick={!disabled ? onClick : noop}
+  >
+    {children}
+  </SButton>
+);

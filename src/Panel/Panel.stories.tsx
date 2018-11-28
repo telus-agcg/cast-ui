@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { text, color } from '@storybook/addon-knobs/react';
+import { text, color, boolean } from '@storybook/addon-knobs/react';
 import { wInfo } from '../storybook-utils';
 
 import { Panel } from './Panel.component';
+import { defaultTheme } from '../themes/';
 
 storiesOf('Panel', module).add(
   'Panel with Title',
@@ -18,8 +19,10 @@ storiesOf('Panel', module).add(
   ~~~`)(() => (
     <Panel
       title={text('Title', 'Catchy title')}
-      titleBg={color('titleBg', 'red')}
-      bodyBg={color('bodyBg', '#fff')}
+      titleBg={color('titleBg', defaultTheme.styles.default.flood)}
+      bodyBg={color('bodyBg', defaultTheme.styles.default.flood)}
+      titleColor={color('titleColor', defaultTheme.styles.default.text)}
+      collapse={boolean('Collapse', false)}
     >
       This is my body...
     </Panel>
