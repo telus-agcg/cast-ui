@@ -1,7 +1,7 @@
 version: "2.3"
 
 services:
-  web:
+  web: &default
     build:
       context: .
       target: development
@@ -13,6 +13,13 @@ services:
       - '6006:6006'
     environment:
       HOST: 0.0.0.0
+
+  ci:
+    <<: *default
+    build:
+      context: .
+      target: test
+    volumes: []
 
 volumes:
   node_modules:
