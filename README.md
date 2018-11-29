@@ -21,6 +21,5 @@ Visit [http://localhost:6006/](http://localhost:6006/) to view the app.
 Ideally you have lint integration setup in you editor (Vim, VSCode etc). If not or for mass lint checks run.
 
 ```sh
-# TODO
-nib run web npm lint
+nib run web npm run lint
 ```
