@@ -18,7 +18,9 @@ CMD npm run storybook
 # test layer, all dependencies
 FROM base AS test
 
-RUN npm install
+RUN \
+  apk add --no-cache git openssh && \
+    npm install
 
 COPY . /usr/src/app
 
