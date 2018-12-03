@@ -3,6 +3,6 @@
 set -e
 set -x
 
-# [ $CI_BRANCH != "master" ] && exit 0
+[ "$CI_BRANCH" != "master" ] && exit 0
 
 npm run deploy-storybook
