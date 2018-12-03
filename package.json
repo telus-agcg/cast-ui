@@ -7,7 +7,8 @@
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "storybook": "start-storybook -p 6006 --ci -c .storybook",
-    "lint": "./node_modules/tslint/bin/tslint ./src/**/*"
+    "lint": "./node_modules/tslint/bin/tslint ./src/**/*",
+    "deploy-storybook": "storybook-to-ghpages --ci"
   },
   "author": "Ben Dalton",
   "license": "ISC",
@@ -26,6 +27,7 @@
     "@storybook/addon-viewport": "^4.0.6",
     "@storybook/addons": "^4.0.4",
     "@storybook/react": "^4.0.4",
+    "@storybook/storybook-deployer": "^2.7.0",
     "@types/lodash": "^4.14.118",
     "@types/react": "^16.7.3",
     "@types/react-dom": "^16.0.9",
