@@ -19,3 +19,11 @@ jobs:
           name: Test and lint
           command: |
             docker-compose run ci npm run lint
+
+      - run:
+          name: Deploy
+          command: |
+            docker-compose run \
+              -e CI_BRANCH=$CIRCLE_BRANCH \
+              -e GH_TOKEN \
+              ci bin/release
