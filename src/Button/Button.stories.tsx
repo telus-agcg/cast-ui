@@ -7,7 +7,7 @@ import { Button } from './Button.component';
 import { wInfo } from '../storybook-utils';
 
 storiesOf('Button', module).add(
-  'basic Button',
+  'Button',
   wInfo(`
 
   ### Notes

@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { text, color, boolean } from '@storybook/addon-knobs/react';
+import { text, boolean, select } from '@storybook/addon-knobs/react';
 import { wInfo } from '../storybook-utils';
 
 import { Panel } from './Panel.component';
-import { defaultTheme } from '../themes/';
 
 storiesOf('Panel', module).add(
   'Panel with Title',
@@ -19,12 +18,21 @@ storiesOf('Panel', module).add(
   ~~~`)(() => (
     <Panel
       title={text('Title', 'Catchy title')}
-      titleBg={color('titleBg', defaultTheme.styles.default.flood)}
-      bodyBg={color('bodyBg', defaultTheme.styles.default.flood)}
-      titleColor={color('titleColor', defaultTheme.styles.default.text)}
-      collapse={boolean('Collapse', false)}
+      isCollapsed={boolean('isCollapsed', false)}
+      collapsible={boolean('Collapsible', true)}
+      panelStyle={select(
+        'panelStyle',
+        ['success', 'default', 'primary', 'danger', 'warning'],
+        'default',
+      )}
     >
-      This is my body...
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas beatae
+      nostrum quo fuga iste reprehenderit ab fugit, soluta ea! Culpa,
+      dignissimos dolores! Delectus fugiat numquam doloremque consequuntur
+      tempora ipsam excepturi. Lorem ipsum dolor sit amet consectetur
+      adipisicing elit. Saepe, reiciendis culpa incidunt corporis dolorem eum
+      ullam totam cum iusto voluptate, maxime modi porro aperiam eveniet tempore
+      ea? Quidem, at harum!
     </Panel>
   )),
 );

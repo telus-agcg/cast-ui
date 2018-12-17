@@ -22,4 +22,4 @@ const wInfoStyle = {
   },
 };
 export const wInfo = (text: string) =>
-  withInfo({ inline: true, source: true, styles: wInfoStyle, text });
+  withInfo({ text, inline: true, source: true, styles: wInfoStyle });
