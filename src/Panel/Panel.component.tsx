@@ -53,9 +53,9 @@ const PanelBody = styled.div`
   background: white;
   overflow: hidden;
   height: auto;
-  padding: ${(props: Props) => '5px 8px'};
+  padding: ${(props: Props) => (props.isCollapsed ? '0 8px' : '5px 8px')};
   font-size: 16px;
-  opacity: ${(props: Props) => 1};
+  opacity: ${(props: Props) => (props.isCollapsed ? 0 : 1)};
   transition: all 300ms ease-in-out;
 `;
 
@@ -68,7 +68,6 @@ export class Panel extends React.Component<Props, State> {
   static Header: React.Component;
   static Body: React.Component;
   private bodyRef: React.RefObject<HTMLDivElement>;
-
   constructor(props: Props) {
     super(props);
     this.bodyRef = React.createRef();
