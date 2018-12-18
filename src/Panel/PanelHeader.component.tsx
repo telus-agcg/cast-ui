@@ -1,5 +1,5 @@
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from "react";
+import styled from "styled-components";
 
 type Props = {
   /** the content of the panel  */
@@ -14,16 +14,13 @@ type Props = {
    *  @default 'false'
    */
   collapsible?: boolean;
-  /** whether the panel is collapsed or not
-   *  @default 'false'
-   */
-  isCollapsed?: boolean;
   /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
+  onClick?: any;
 };
 const PanelHeader = styled.div`
   background: ${(props: Props) =>
@@ -37,8 +34,8 @@ const PanelHeader = styled.div`
     background: ${(props: Props) =>
       props.collapsible
         ? props.theme.styles[props.panelStyle].hoverLightFlood
-        : 'auto'};
-    cursor: ${(props: Props) => (props.collapsible ? 'pointer' : 'auto')};
+        : "auto"};
+    cursor: ${(props: Props) => (props.collapsible ? "pointer" : "auto")};
   }
 `;
 
@@ -46,8 +43,9 @@ export class Header extends React.Component<Props> {
   render() {
     return (
       <PanelHeader
-        panelStyle={this.props.panelStyle || 'default'}
+        panelStyle={this.props.panelStyle || "default"}
         collapsible={this.props.collapsible}
+        onClick={this.props.onClick}
       >
         {this.props.children}
       </PanelHeader>
