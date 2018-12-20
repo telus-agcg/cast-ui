@@ -36,6 +36,7 @@ const SButton = styled.button`
   border: 1px solid ${(props: Props) =>
     props.theme.styles[props.btnStyle].borderColor};
   padding: ${(props: Props) => props.theme.button[props.btnSize].padding}
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.button[props.btnSize].fontSize}
   font-weight: bold;
   color: ${(props: Props) => props.theme.styles[props.btnStyle].reverseText};

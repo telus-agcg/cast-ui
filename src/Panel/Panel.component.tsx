@@ -1,93 +1,123 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { defaultTheme } from '../themes';
 
 type Props = {
-  /** this dictates the content of the panel  */
+  /** the content of the panel  */
   children?: React.ReactNode;
-  /** this dictates the title of the panel  */
+  /** the title of the panel  */
   title?: string;
-  /** this dictates the text color of the title
-   *  @default '#333'
+  /** 'default', 'primary', 'success', 'warning', 'danger'
+   *  @default 'default'
    */
-  titleBg?: string;
-  /** this dictates the background color of the title
-   *  @default '#f3f3f3'
-   */
-  titleColor?: string;
-  /** this dictates the text color of the title
-   *  @default '#333'
-   */
-  bodyBg?: string;
-  /** this dictates the background color of the body
-   *  @default '#fff'
-   */
-  borderColor?: string;
-  /** this dictates the border color of the panel
-   *  @default '#eee'
-   */
-  collapse?: boolean;
-  /** this dictates whether the panel is collapsed or not
+  panelStyle: string;
+  /** whether the panel can be collapsed
    *  @default 'false'
    */
+  collapsible?: boolean;
+  /** whether the panel is collapsed or not
+   *  @default 'false'
+   */
+  isCollapsed?: boolean;
+  /**
+   * From theme provider
+   *
+   * @default defaultTheme
+   **/
+  theme?: any;
 };
 const PanelWrapper = styled.div`
-  border: 1px solid ${(props: Props) => props.borderColor || '#eee'};
-  font-family: '"Open Sans", arial, sans-serif';
+  border: ${(props: Props) =>
+    `${props.theme.borders.width} solid ${props.theme.styles[props.panelStyle]
+      .borderColor || '#eee'}`};
+  overflow: hidden;
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  border-radius: ${(props: Props) => props.theme.borders.radius};
 `;
 const PanelHeader = styled.div`
-  background: ${(props: Props) => props.titleBg};
+  background: ${(props: Props) =>
+    props.theme.styles[props.panelStyle].lightFlood};
   padding: 5px 8px;
-  border-bottom: 1px solid ${(props: Props) => props.borderColor};
+  border-bottom: 1px solid
+    ${(props: Props) => props.theme.styles[props.panelStyle].borderColor};
   font-size: 20px;
-  color: ${(props: Props) => props.titleColor};
+  color: ${(props: Props) => props.theme.styles[props.panelStyle].text};
+  &:hover {
+    background: ${(props: Props) =>
+      props.collapsible
+        ? props.theme.styles[props.panelStyle].hoverLightFlood
+        : 'auto'};
+    cursor: ${(props: Props) => (props.collapsible ? 'pointer' : 'auto')};
+  }
 `;
 const PanelBody = styled.div`
-  background: ${(props: Props) => props.bodyBg};
-  padding: 5px 8px;
+  background: white;
+  overflow: hidden;
+  height: auto;
+  padding: ${(props: Props) => '5px 8px'};
   font-size: 16px;
-  opacity: ${(props: Props) => (props.collapse ? 0 : 1)};
+  opacity: ${(props: Props) => 1};
   transition: all 300ms ease-in-out;
-  transform: ${(props: Props) => (props.collapse ? 'scaleY(0)' : 'scaleY(1)')};
 `;
 
-const initialState = { collapse: false };
+const initialState = {
+  isCollapsed: false,
+};
 type State = Readonly<typeof initialState>;
 
 export class Panel extends React.Component<Props, State> {
+  static Header: React.Component;
+  static Body: React.Component;
+  private bodyRef: React.RefObject<HTMLDivElement>;
+
   constructor(props: Props) {
     super(props);
+    this.bodyRef = React.createRef();
     this.handleToggleCollapse.bind(this);
   }
-  state: State = { ...initialState, collapse: this.props.collapse || false };
+
+  readonly state: State = initialState;
+  localIsCollapsed: boolean = false;
+
+  componentWillReceiveProps(nextProps: Props) {
+    if (this.props.isCollapsed !== nextProps.isCollapsed) {
+      this.localIsCollapsed = !!nextProps.isCollapsed;
+      this.handleToggleCollapse();
+    }
+  }
 
   handleToggleCollapse() {
-    const el: React.RefObject<HTMLDivElement> = React.createRef();
-    if (el.current) {
-      debugger;
-      this.props.collapse
-        ? expandSection(el.current)
-        : collapseSection(el.current);
-      this.setState({ collapse: !this.state.collapse });
+    if (this.bodyRef.current) {
+      this.localIsCollapsed
+        ? collapseSection(this.bodyRef.current)
+        : expandSection(this.bodyRef.current);
     }
+
+    this.setState({
+      isCollapsed: this.localIsCollapsed,
+    });
+  }
+
+  toggleItem() {
+    this.localIsCollapsed = !this.localIsCollapsed;
+    this.handleToggleCollapse();
   }
 
   render() {
     return (
-      <PanelWrapper>
+      <PanelWrapper panelStyle={this.props.panelStyle}>
         <PanelHeader
-          titleBg={this.props.titleBg || defaultTheme.styles.default.flood}
-          titleColor={this.props.titleColor || defaultTheme.styles.default.text}
-          borderColor={
-            this.props.borderColor || defaultTheme.styles.default.borderColor
-          }
-          onClick={e => this.handleToggleCollapse()}
+          panelStyle={this.props.panelStyle || 'default'}
+          collapsible={this.props.collapsible}
+          onClick={() => {
+            this.toggleItem();
+          }}
         >
-          {this.props.title}
+          {this.props.title} {this.props.isCollapsed}
         </PanelHeader>
         <PanelBody
-          collapse={this.state.collapse}
-          bodyBg={this.props.bodyBg || defaultTheme.styles.default.flood}
+          panelStyle={this.props.panelStyle || 'default'}
+          isCollapsed={this.localIsCollapsed}
+          ref={this.bodyRef}
         >
           {this.props.children}
         </PanelBody>
@@ -96,42 +126,26 @@ export class Panel extends React.Component<Props, State> {
   }
 }
 
-function collapseSection(element: HTMLElement) {
-  // get the height of the element's inner content, regardless of its actual size
-  const sectionHeight = element.scrollHeight;
-
-  // temporarily disable all css transitions
-  const elementTransition = element.style.transition;
-  element.style.transition = '';
-
-  // on the next frame (as soon as the previous style change has taken effect),
-  // explicitly set the element's height to its current pixel height, so we
-  // aren't transitioning out of 'auto'
-  requestAnimationFrame(() => {
-    element.style.height = `${sectionHeight}px`;
-    element.style.transition = elementTransition;
-
-    // on the next frame (as soon as the previous style change has taken effect),
-    // have the element transition to height: 0
+const collapseSection = (element: HTMLElement | null) => {
+  if (element !== null) {
+    const sectionHeight = element.scrollHeight;
+    const elementTransition = element.style.transition;
+    element.style.transition = '';
     requestAnimationFrame(() => {
-      element.style.height = '0px';
+      element.style.height = `${sectionHeight}px`;
+      element.style.transition = elementTransition;
+      requestAnimationFrame(() => {
+        element.style.height = '0px';
+        element.style.padding = '0 8px';
+        element.style.opacity = '0';
+      });
     });
-  });
-}
+  }
+};
 
-function expandSection(element: HTMLElement) {
-  // get the height of the element's inner content, regardless of its actual size
+const expandSection = (element: HTMLElement) => {
   const sectionHeight = element.scrollHeight;
-
-  // have the element transition to the height of its inner content
   element.style.height = `${sectionHeight}px`;
-
-  // when the next css transition finishes (which should be the one we just triggered)
-  element.addEventListener('transitionend', function (e) {
-    // remove this event listener so it only gets triggered once
-    element.removeEventListener('transitionend', arguments.callee());
-
-    // remove "height" from the element's inline styles, so it can return to its initial value
-    element.style.height = null;
-  });
-}
+  element.style.padding = '5px 8px';
+  element.style.opacity = '1';
+};

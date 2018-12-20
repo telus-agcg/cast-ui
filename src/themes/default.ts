@@ -1,4 +1,4 @@
-import * as color from 'tinycolor2';
+import { lighten, darken } from '../utils/colorUtils';
 
 export const defaultColors = {
   blue: '#0985E3',
@@ -13,51 +13,62 @@ export const defaultColors = {
 };
 
 export const defaultTheme = {
+  colors: defaultColors,
+  borders: {
+    radius: '.25rem',
+    radiusSm: '.2rem',
+    radiusLg: '.3rem',
+    width: '1px',
+  },
   styles: {
     primary: {
       borderColor: defaultColors.blue,
       flood: defaultColors.blue,
+      lightFlood: lighten(defaultColors.blue, 50),
+      hoverlightFlood: lighten(defaultColors.blue, 80),
       text: defaultColors.blue,
       reverseText: defaultColors.white,
-      hoverFlood: color(defaultColors.blue)
-        .darken(5)
-        .toString(),
+      hoverFlood: darken(defaultColors.blue, 5),
     },
     danger: {
       borderColor: defaultColors.red,
       flood: defaultColors.red,
+      lightFlood: lighten(defaultColors.red, 50),
+      hoverlightFlood: lighten(defaultColors.red, 80),
       text: defaultColors.red,
       reverseText: defaultColors.white,
-      hoverFlood: color(defaultColors.red)
-        .darken(5)
-        .toString(),
+      hoverFlood: darken(defaultColors.red, 5),
     },
     warning: {
       borderColor: defaultColors.yellow,
       flood: defaultColors.yellow,
+      lightFlood: lighten(defaultColors.yellow, 50),
+      hoverlightFlood: lighten(defaultColors.yellow, 80),
       text: defaultColors.yellow,
       reverseText: defaultColors.white,
-      hoverFlood: color(defaultColors.yellow)
-        .darken(5)
-        .toString(),
+      hoverFlood: darken(defaultColors.yellow, 5),
     },
     success: {
       borderColor: defaultColors.green,
       flood: defaultColors.green,
+      lightFlood: lighten(defaultColors.green, 50),
+      hoverlightFlood: lighten(defaultColors.green, 80),
       text: defaultColors.green,
       reverseText: defaultColors.white,
-      hoverFlood: color(defaultColors.green)
-        .darken(5)
-        .toString(),
+      hoverFlood: darken(defaultColors.green, 5),
     },
     default: {
       borderColor: defaultColors.gray,
       flood: defaultColors.white,
+      lightFlood: defaultColors.white,
+      hoverlightFlood: defaultColors.white,
       text: defaultColors.black,
-      hoverFlood: color(defaultColors.white)
-        .darken(5)
-        .toString(),
+      reverseText: defaultColors.black,
+      hoverFlood: darken(defaultColors.white, 5),
     },
+  },
+  typography: {
+    fontFamily: '"Open Sans", arial, sans-serif',
   },
   button: {
     sm: {
