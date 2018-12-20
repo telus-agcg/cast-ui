@@ -79,8 +79,10 @@ export class Panel extends React.Component<Props, State> {
   localIsCollapsed: boolean = false;
 
   componentWillReceiveProps(nextProps: Props) {
-    this.localIsCollapsed = !!nextProps.isCollapsed;
-    this.handleToggleCollapse();
+    if (this.props.isCollapsed !== nextProps.isCollapsed) {
+      this.localIsCollapsed = !!nextProps.isCollapsed;
+      this.handleToggleCollapse();
+    }
   }
 
   handleToggleCollapse() {
