@@ -1,24 +1,24 @@
-import { lighten, darken } from '../utils/colorUtils';
+import { lighten, darken } from "../utils/colorUtils";
 
 export const defaultColors = {
-  blue: '#0985E3',
-  green: '#00B52D',
-  red: '#FE4A49',
-  yellow: '#FEC934',
-  white: 'white',
-  gray: '#DEE9E0',
-  lightGray: '#E7EFE8',
-  darkGray: '#515C61',
-  black: '#0A1521',
+  blue: "#0985E3",
+  green: "#00B52D",
+  red: "#FE4A49",
+  yellow: "#FEC934",
+  white: "white",
+  gray: "#DEE9E0",
+  lightGray: "#E7EFE8",
+  darkGray: "#515C61",
+  black: "#0A1521"
 };
 
 export const defaultTheme = {
   colors: defaultColors,
   borders: {
-    radius: '.25rem',
-    radiusSm: '.2rem',
-    radiusLg: '.3rem',
-    width: '1px',
+    radius: ".25rem",
+    radiusSm: ".2rem",
+    radiusLg: ".3rem",
+    width: "1px"
   },
   styles: {
     primary: {
@@ -28,7 +28,7 @@ export const defaultTheme = {
       hoverlightFlood: lighten(defaultColors.blue, 80),
       text: defaultColors.blue,
       reverseText: defaultColors.white,
-      hoverFlood: darken(defaultColors.blue, 5),
+      hoverFlood: darken(defaultColors.blue, 5)
     },
     danger: {
       borderColor: defaultColors.red,
@@ -37,7 +37,7 @@ export const defaultTheme = {
       hoverlightFlood: lighten(defaultColors.red, 80),
       text: defaultColors.red,
       reverseText: defaultColors.white,
-      hoverFlood: darken(defaultColors.red, 5),
+      hoverFlood: darken(defaultColors.red, 5)
     },
     warning: {
       borderColor: defaultColors.yellow,
@@ -46,7 +46,7 @@ export const defaultTheme = {
       hoverlightFlood: lighten(defaultColors.yellow, 80),
       text: defaultColors.yellow,
       reverseText: defaultColors.white,
-      hoverFlood: darken(defaultColors.yellow, 5),
+      hoverFlood: darken(defaultColors.yellow, 5)
     },
     success: {
       borderColor: defaultColors.green,
@@ -55,7 +55,7 @@ export const defaultTheme = {
       hoverlightFlood: lighten(defaultColors.green, 80),
       text: defaultColors.green,
       reverseText: defaultColors.white,
-      hoverFlood: darken(defaultColors.green, 5),
+      hoverFlood: darken(defaultColors.green, 5)
     },
     default: {
       borderColor: defaultColors.gray,
@@ -64,24 +64,53 @@ export const defaultTheme = {
       hoverlightFlood: defaultColors.white,
       text: defaultColors.black,
       reverseText: defaultColors.black,
-      hoverFlood: darken(defaultColors.white, 5),
-    },
+      hoverFlood: darken(defaultColors.white, 5)
+    }
   },
   typography: {
-    fontFamily: '"Open Sans", arial, sans-serif',
+    fontFamily: '"Open Sans", arial, sans-serif'
   },
   button: {
     sm: {
-      fontSize: '10px',
-      padding: '5px',
+      fontSize: "10px",
+      padding: "5px"
     },
     md: {
-      fontSize: '12px',
-      padding: '8px',
+      fontSize: "12px",
+      padding: "8px"
     },
     lg: {
-      fontSize: '14px',
-      padding: '10px',
-    },
+      fontSize: "14px",
+      padding: "10px"
+    }
   },
+  input: {
+    background: defaultColors.white,
+    backgroundDisabled: defaultColors.lightGray,
+    borderColor: defaultColors.gray,
+    color: defaultColors.darkGray,
+    padding: ".375rem .75rem",
+    sm: {
+      fontSize: "10px",
+      padding: "5px"
+    },
+    md: {
+      borderRadius: "4px",
+      fontSize: "12px",
+      padding: "8px"
+    },
+    lg: {
+      fontSize: "14px",
+      padding: "10px"
+    }
+  },
+  inputGroup: {
+    root: {
+      display: "flex",
+      flexWrap: "wrap"
+    }
+  },
+  label: {
+    padding: "6px 8px"
+  }
 };
