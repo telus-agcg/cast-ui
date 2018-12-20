@@ -60,7 +60,7 @@ const PanelBody = styled.div`
 `;
 
 const initialState = {
-  isCollapsed: false
+  isCollapsed: false,
 };
 type State = Readonly<typeof initialState>;
 
@@ -91,7 +91,7 @@ export class Panel extends React.Component<Props, State> {
     }
 
     this.setState({
-      isCollapsed: this.localIsCollapsed
+      isCollapsed: this.localIsCollapsed,
     });
   }
 
