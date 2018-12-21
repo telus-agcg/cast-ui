@@ -27,5 +27,5 @@ storiesOf('InputGroup', module).add(
         maxLength={1000}
       />
     </InputGroup>
-  ))
+  )),
 );

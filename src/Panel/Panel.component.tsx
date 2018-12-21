@@ -60,7 +60,7 @@ const PanelBody = styled.div`
 `;
 
 const initialState = {
-  isCollapsed: false
+  isCollapsed: false,
 };
 type State = Readonly<typeof initialState>;
 

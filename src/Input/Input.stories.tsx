@@ -32,5 +32,5 @@ storiesOf('Input', module).add(
       autoComplete={select('autoComplete', ['on', 'off'], 'on')}
       maxLength={number('maxLength', 1000)}
     />
-  ))
+  )),
 );
