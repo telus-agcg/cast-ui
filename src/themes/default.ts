@@ -68,7 +68,7 @@ export const defaultTheme = {
     },
   },
   typography: {
-    fontFamily: '"Open San", arial, sans-serif',
+    fontFamily: '"Open Sans", arial, sans-serif',
   },
   button: {
     sm: {
