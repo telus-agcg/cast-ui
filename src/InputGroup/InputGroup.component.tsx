@@ -1,5 +1,5 @@
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 
 type Props = {
   /** the content of the input group  */
@@ -29,7 +29,7 @@ const SLabel = styled.label`
 `;
 
 const initialState = {
-  isCollapsed: false
+  isCollapsed: false,
 };
 type State = Readonly<typeof initialState>;
 

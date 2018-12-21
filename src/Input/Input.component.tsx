@@ -1,5 +1,5 @@
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 
 type Props = {
   /**
@@ -68,8 +68,8 @@ export const Input: React.FunctionComponent<Props> = ({
   autoComplete,
   maxLength,
   children,
-  inputSize = "md",
-  theme
+  inputSize = 'md',
+  theme,
 }) => (
   <SInput
     inputSize={inputSize}

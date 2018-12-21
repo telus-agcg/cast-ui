@@ -1,12 +1,12 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import { number, boolean, select } from "@storybook/addon-knobs/react";
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import { number, boolean, select } from '@storybook/addon-knobs/react';
 
-import { Input } from "./Input.component";
-import { wInfo } from "../storybook-utils";
+import { Input } from './Input.component';
+import { wInfo } from '../storybook-utils';
 
-storiesOf("Input", module).add(
-  "Input",
+storiesOf('Input', module).add(
+  'Input',
   wInfo(`
 
   ### Notes
@@ -16,21 +16,21 @@ storiesOf("Input", module).add(
   ### Usage
   ~~~js
   <Input
-    inputSize="md"
+    inputSize='md'
     disabled={false}
-    type="text"
-    required="false"
-    autoComplete="on"
-    maxLength="1000"}
+    type='text'
+    required='false'
+    autoComplete='on'
+    maxLength='1000'}
   />
   ~~~`)(() => (
     <Input
-      inputSize={select("inputSize", ["sm", "md", "lg"], "md")}
-      type={select("type", ["text", "number", "email", "password"], "text")}
-      disabled={boolean("disabled", false)}
-      required={boolean("required", false)}
-      autoComplete={select("autoComplete", ["on", "off"], "on")}
-      maxLength={number("maxLength", 1000)}
+      inputSize={select('inputSize', ['sm', 'md', 'lg'], 'md')}
+      type={select('type', ['text', 'number', 'email', 'password'], 'text')}
+      disabled={boolean('disabled', false)}
+      required={boolean('required', false)}
+      autoComplete={select('autoComplete', ['on', 'off'], 'on')}
+      maxLength={number('maxLength', 1000)}
     />
   ))
 );
