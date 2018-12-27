@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { number, boolean, select } from '@storybook/addon-knobs/react';
+import { number, boolean, select, text } from '@storybook/addon-knobs/react';
 
 import { Textarea } from './Textarea.component';
 import { wInfo } from '../storybook-utils';
@@ -18,19 +18,22 @@ storiesOf('Textarea', module).add(
   <Textarea
     TextareaSize='md'
     disabled={false}
-    type='text'
     required='false'
-    autoComplete='on'
-    maxLength='1000'}
+    rows='8'
+    cols='60'
+    maxLength='1000'
+    placeholder='This is a placeholder'
+  }
   />
   ~~~`)(() => (
     <Textarea
       TextareaSize={select('TextareaSize', ['sm', 'md', 'lg'], 'md')}
-      type={select('type', ['text', 'number', 'email', 'password'], 'text')}
       disabled={boolean('disabled', false)}
       required={boolean('required', false)}
-      autoComplete={select('autoComplete', ['on', 'off'], 'on')}
+      rows={number('rows', 8)}
+      cols={number('cols', 60)}
       maxLength={number('maxLength', 1000)}
+      placeholder={text('placeholder', 'This is placeholder')}
     />
   )),
 );

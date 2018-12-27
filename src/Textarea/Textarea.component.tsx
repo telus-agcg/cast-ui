@@ -15,29 +15,35 @@ type Props = {
    **/
   disabled?: boolean;
   /**
-   * Type of Textarea (text, number, email, etc)
-   *
-   * @default 'text'
-   **/
-  type: string;
-  /**
    * Is the field required?
    *
    * @default false
    **/
   required?: boolean;
   /**
-   * Autocomplete settings for this field
-   *
-   * @default 'on'
-   **/
-  autoComplete?: string;
-  /**
    * What is the maximum length of the text in the field?
    *
    * @default null
    **/
   maxLength?: number;
+    /**
+   * What is the maximum length of the text in the field?
+   *
+   * @default null
+   **/
+  rows?: number;
+  /**
+   * What is the maximum length of the text in the field?
+   *
+   * @default null
+   **/
+  cols?: number;
+  /**
+   * Placeholder text
+   *
+   * @default null
+   **/
+  placeholder?: any;
   /**
    * From theme provider
    *
@@ -63,21 +69,23 @@ const STextarea = styled.textarea`
 
 export const Textarea: React.FunctionComponent<Props> = ({
   disabled,
-  type,
   required,
-  autoComplete,
+  rows,
+  cols,
   maxLength,
   children,
   TextareaSize = 'md',
+  placeholder,
   theme,
 }) => (
   <STextarea
     TextareaSize={TextareaSize}
     theme={theme}
     disabled={disabled}
-    type={type}
     required={required}
-    autoComplete={autoComplete}
+    rows={rows}
+    cols={cols}
+    placeholder={placeholder}
     maxLength={maxLength}
   >
     {children}
