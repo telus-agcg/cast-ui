@@ -7,7 +7,7 @@ type Props = {
    *
    * @default 'md'
    **/
-  TextareaSize: string;
+  textareaSize: string;
   /**
    * Disables modification
    *
@@ -56,10 +56,10 @@ const STextarea = styled.textarea`
   background: ${(props: Props) => props.theme.Textarea.background}
   border: 1px solid ${(props: Props) => props.theme.Textarea.borderColor};
   border-radius: ${(props: Props) =>
-    props.theme.Textarea[props.TextareaSize].borderRadius};
-  padding: ${(props: Props) => props.theme.Textarea[props.TextareaSize].padding}
+    props.theme.Textarea[props.textareaSize].borderRadius};
+  padding: ${(props: Props) => props.theme.Textarea[props.textareaSize].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.Textarea[props.TextareaSize].fontSize}
+  font-size: ${(props: Props) => props.theme.Textarea[props.textareaSize].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
     background: ${props => props.theme.Textarea.backgroundDisabled};
@@ -74,12 +74,12 @@ export const Textarea: React.FunctionComponent<Props> = ({
   cols,
   maxLength,
   children,
-  TextareaSize = 'md',
+  textareaSize = 'md',
   placeholder,
   theme,
 }) => (
   <STextarea
-    TextareaSize={TextareaSize}
+    textareaSize={textareaSize}
     theme={theme}
     disabled={disabled}
     required={required}

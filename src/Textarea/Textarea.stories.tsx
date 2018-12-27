@@ -16,7 +16,7 @@ storiesOf('Textarea', module).add(
   ### Usage
   ~~~js
   <Textarea
-    TextareaSize='md'
+    textareaSize='md'
     disabled={false}
     required='false'
     rows='8'
@@ -27,7 +27,7 @@ storiesOf('Textarea', module).add(
   />
   ~~~`)(() => (
     <Textarea
-      TextareaSize={select('TextareaSize', ['sm', 'md', 'lg'], 'md')}
+      textareaSize={select('textareaSize', ['sm', 'md', 'lg'], 'md')}
       disabled={boolean('disabled', false)}
       required={boolean('required', false)}
       rows={number('rows', 8)}
