@@ -50,10 +50,10 @@ const SInput = styled.input`
   background: ${(props: Props) => props.theme.input.background}
   border: 1px solid ${(props: Props) => props.theme.input.borderColor};
   border-radius: ${(props: Props) =>
-    props.theme.input[props.inputSize].borderRadius};
-  padding: ${(props: Props) => props.theme.input[props.inputSize].padding}
+    props.theme.common[props.inputSize].borderRadius};
+  padding: ${(props: Props) => props.theme.common[props.inputSize].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.input[props.inputSize].fontSize}
+  font-size: ${(props: Props) => props.theme.common[props.inputSize].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
     background: ${props => props.theme.input.backgroundDisabled};
