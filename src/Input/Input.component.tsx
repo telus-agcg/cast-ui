@@ -1,19 +1,22 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-type Props = {
-  /**
-   * Select Input Size
+type PropsThemeOnly = {
+    /**
+   * From theme provider
    *
-   * @default 'md'
+   * @default defaultTheme
    **/
-  inputSize: string;
+  theme?: any;
+};
+
+type Props = PropsThemeOnly & {
   /**
-   * Disables modification
+   * The ID of the control
    *
-   * @default false
+   * @default null
    **/
-  disabled?: boolean;
+  id: string;
   /**
    * Type of input (text, number, email, etc)
    *
@@ -21,17 +24,33 @@ type Props = {
    **/
   type: string;
   /**
-   * Is the field required?
-   *
-   * @default false
-   **/
-  required?: boolean;
-  /**
    * Autocomplete settings for this field
    *
    * @default 'on'
    **/
   autoComplete?: string;
+  /**
+   * Disables modification
+   *
+   * @default false
+   **/
+  disabled?: boolean;
+  /**
+   * Select Input Size
+   *
+   * @default 'md'
+   **/
+  inputSize: string;
+  /**
+   * Specify whether the control is currently invalid
+   *
+   * @default false
+   **/
+  invalid?: boolean;
+  /**
+   * Provide the text that is displayed when the control is in an invalid state
+   */
+  invalidText?: string;
   /**
    * What is the maximum length of the text in the field?
    *
@@ -39,11 +58,17 @@ type Props = {
    **/
   maxLength?: number;
   /**
-   * From theme provider
+   * Specify the placeholder attribute for the <input>
    *
-   * @default defaultTheme
+   * @default null
+   */
+  placeholder?: string;
+  /**
+   * Is the field required?
+   *
+   * @default false
    **/
-  theme?: any;
+  required?: boolean;
 };
 
 const SInput = styled.input`
@@ -59,27 +84,77 @@ const SInput = styled.input`
     background: ${props => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
   }
+  &[data-invalid] {
+    border-color: ${(props: Props) => props.theme.validation.errorColor};
+  }
+`;
+
+const SErrorDiv = styled.div`
+  color: ${(props: PropsThemeOnly) => props.theme.validation.errorColor};
+  font-family: ${(props: PropsThemeOnly) => props.theme.typography.fontFamily};
+  font-size: ${(props: PropsThemeOnly) => props.theme.validation.fontSize};
+  padding: ${(props: PropsThemeOnly) => props.theme.validation.padding};
 `;
 
 export const Input: React.FunctionComponent<Props> = ({
-  disabled,
+  id,
   type,
-  required,
   autoComplete,
-  maxLength,
   children,
+  disabled,
   inputSize = 'md',
+  invalid = false,
+  invalidText,
+  maxLength,
+  placeholder,
+  required,
   theme,
-}) => (
-  <SInput
-    inputSize={inputSize}
-    theme={theme}
-    disabled={disabled}
-    type={type}
-    required={required}
-    autoComplete={autoComplete}
-    maxLength={maxLength}
-  >
-    {children}
-  </SInput>
-);
+}) => {
+  const errorId = `${id}-error-msg`;
+
+  const error = invalid ? (
+    <SErrorDiv id={errorId} theme={theme}>
+      {invalidText}
+    </SErrorDiv>
+  ) : null;
+
+  return invalid ? (
+    <>
+    <SInput
+      id={id}
+      inputSize={inputSize}
+      theme={theme}
+      disabled={disabled}
+      type={type}
+      required={required}
+      placeholder={placeholder}
+      autoComplete={autoComplete}
+      maxLength={maxLength}
+      invalid={invalid}
+      data-invalid
+      aria-invalid
+      aria-describedby={errorId}
+    >
+      {children}
+    </SInput>
+    {error}
+    </>
+  ) : (
+    <>
+    <SInput
+      id={id}
+      inputSize={inputSize}
+      theme={theme}
+      disabled={disabled}
+      type={type}
+      required={required}
+      placeholder={placeholder}
+      autoComplete={autoComplete}
+      maxLength={maxLength}
+      invalid={invalid}
+    >
+      {children}
+    </SInput>
+    </>
+  );
+};
