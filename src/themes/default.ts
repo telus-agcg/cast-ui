@@ -113,4 +113,24 @@ export const defaultTheme = {
   label: {
     padding: '6px 8px',
   },
+  Textarea: {
+    background: defaultColors.white,
+    backgroundDisabled: defaultColors.lightGray,
+    borderColor: defaultColors.gray,
+    color: defaultColors.darkGray,
+    padding: '.375rem .75rem',
+    sm: {
+      fontSize: '10px',
+      padding: '5px',
+    },
+    md: {
+      borderRadius: '4px',
+      fontSize: '12px',
+      padding: '8px',
+    },
+    lg: {
+      fontSize: '14px',
+      padding: '10px',
+    },
+  },
 };
