@@ -16,7 +16,9 @@
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "dependencies": {
+    "@types/react-tabs": "^2.3.0",
     "lodash": "^4.17.11",
+    "react-tabs": "^2.3.0",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
