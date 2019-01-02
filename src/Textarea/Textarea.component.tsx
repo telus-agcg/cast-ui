@@ -56,10 +56,10 @@ const STextarea = styled.textarea`
   background: ${(props: Props) => props.theme.Textarea.background}
   border: 1px solid ${(props: Props) => props.theme.Textarea.borderColor};
   border-radius: ${(props: Props) =>
-    props.theme.Textarea[props.textareaSize].borderRadius};
-  padding: ${(props: Props) => props.theme.Textarea[props.textareaSize].padding}
+    props.theme.common[props.textareaSize].borderRadius};
+  padding: ${(props: Props) => props.theme.common[props.textareaSize].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.Textarea[props.textareaSize].fontSize}
+  font-size: ${(props: Props) => props.theme.common[props.textareaSize].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
     background: ${props => props.theme.Textarea.backgroundDisabled};
