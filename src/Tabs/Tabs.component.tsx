@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Tabs as ReactTabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
-type Props = {
+type PropsThemeOnly = {
   /**
    * From theme provider
    *
@@ -13,8 +13,17 @@ type Props = {
   theme?: any;
 };
 
+type Props = PropsThemeOnly & {
+  /**
+   * Function to fire when a tab page is selected
+   *
+   * @default null
+   **/
+  onSelect?: any;
+};
+
 const STabWrapperDiv = styled.div`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-family: ${(props: PropsThemeOnly) => props.theme.typography.fontFamily};
 `;
 
 export class Tabs extends React.Component<Props> {
@@ -27,7 +36,7 @@ export class Tabs extends React.Component<Props> {
   render() {
     return (
       <STabWrapperDiv>
-        <ReactTabs {...this.props}>
+        <ReactTabs {...this.props} onSelect={this.props.onSelect}>
           {this.props.children}
         </ReactTabs>
       </STabWrapperDiv>

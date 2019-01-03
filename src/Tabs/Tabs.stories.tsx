@@ -18,7 +18,7 @@ storiesOf('Tabs', module).add(
 
   ### Usage
   ~~~js
-  <Tabs>
+  <Tabs onSelect={() => alert('Tab page selected!')}>
     <TabList>
       <Tab title='Tab Page 01'></Tab>
       <Tab title='Tab Page 02' disabled={true}></Tab>
@@ -36,7 +36,7 @@ storiesOf('Tabs', module).add(
     </TabPanel>
   </Tabs>
   ~~~`)(() => (
-  <Tabs>
+  <Tabs onSelect={() => alert('Tab page selected!')}>
     <TabList>
       <Tab title={text('title (tab 1)', 'Tab Page 01')}></Tab>
       <Tab title={text('title (tab 2)', 'Tab Page 02')}
