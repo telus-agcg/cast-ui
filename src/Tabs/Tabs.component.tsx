@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-// tslint:disable-next-line:max-line-length
 import { Tabs as ReactTabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
@@ -15,10 +14,17 @@ type PropsThemeOnly = {
 
 type Props = PropsThemeOnly & {
   /**
-   * Function to fire when a tab page is selected
-   *
-   * @default null
-   **/
+  * Specify the tab that should be open on initial render.
+  * This is a zero-based index, so first tab is 0, second tab is 1, ...
+  *
+  * @default null
+  **/
+  defaultIndex?: number;
+  /**
+  * Function to fire when a tab page is selected
+  *
+  * @default 0
+  **/
   onSelect?: any;
 };
 
