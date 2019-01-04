@@ -110,4 +110,9 @@ export const defaultTheme = {
       padding: '10px',
     },
   },
+  validation: {
+    errorColor: 'red',
+    fontSize: '11px',
+    padding: '4px',
+  },
 };

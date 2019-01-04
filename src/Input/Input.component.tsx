@@ -1,19 +1,29 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-type Props = {
-  /**
-   * Select Input Size
+// TODO: we should be able to use an interface to inherit the base properties of an
+// HTMLInputElement. However, when I do this, CPU usage goes nuts, and the base
+// properties still don't inherit correctly. We need to research this further.
+// interface WrapperProps extends React.HTMLAttributes<HTMLInputElement> {
+// ...
+// }
+
+type PropsThemeOnly = {
+    /**
+   * From theme provider
    *
-   * @default 'md'
+   * @default defaultTheme
    **/
-  inputSize: string;
+  theme?: any;
+};
+
+type Props = PropsThemeOnly & {
   /**
-   * Disables modification
+   * The ID of the control
    *
-   * @default false
+   * @default null
    **/
-  disabled?: boolean;
+  id: string;
   /**
    * Type of input (text, number, email, etc)
    *
@@ -21,17 +31,33 @@ type Props = {
    **/
   type: string;
   /**
-   * Is the field required?
-   *
-   * @default false
-   **/
-  required?: boolean;
-  /**
    * Autocomplete settings for this field
    *
    * @default 'on'
    **/
   autoComplete?: string;
+  /**
+   * Disables modification
+   *
+   * @default false
+   **/
+  disabled?: boolean;
+  /**
+   * Select Input Size
+   *
+   * @default 'md'
+   **/
+  inputSize: string;
+  /**
+   * Specify whether the control is currently invalid
+   *
+   * @default false
+   **/
+  invalid?: boolean;
+  /**
+   * Provide the text that is displayed when the control is in an invalid state
+   */
+  invalidText?: string;
   /**
    * What is the maximum length of the text in the field?
    *
@@ -39,11 +65,17 @@ type Props = {
    **/
   maxLength?: number;
   /**
-   * From theme provider
+   * Specify the placeholder attribute for the <input>
    *
-   * @default defaultTheme
+   * @default null
+   */
+  placeholder?: string;
+  /**
+   * Is the field required?
+   *
+   * @default false
    **/
-  theme?: any;
+  required?: boolean;
 };
 
 const SInput = styled.input`
@@ -59,27 +91,38 @@ const SInput = styled.input`
     background: ${props => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
   }
+  &[data-invalid] {
+    border-color: ${(props: Props) => props.theme.validation.errorColor};
+  }
 `;
 
-export const Input: React.FunctionComponent<Props> = ({
-  disabled,
-  type,
-  required,
-  autoComplete,
-  maxLength,
-  children,
-  inputSize = 'md',
-  theme,
-}) => (
-  <SInput
-    inputSize={inputSize}
-    theme={theme}
-    disabled={disabled}
-    type={type}
-    required={required}
-    autoComplete={autoComplete}
-    maxLength={maxLength}
-  >
-    {children}
-  </SInput>
-);
+const SErrorDiv = styled.div`
+  color: ${(props: PropsThemeOnly) => props.theme.validation.errorColor};
+  font-family: ${(props: PropsThemeOnly) => props.theme.typography.fontFamily};
+  font-size: ${(props: PropsThemeOnly) => props.theme.validation.fontSize};
+  padding: ${(props: PropsThemeOnly) => props.theme.validation.padding};
+`;
+
+export const Input: React.FunctionComponent<Props> = (inputProps) => {
+  const errorId = inputProps.invalid ? (`${inputProps.id}-error-msg`) : (undefined);
+
+  const error = inputProps.invalid ? (
+    <SErrorDiv id={errorId} theme={inputProps.theme}>
+      {inputProps.invalidText}
+    </SErrorDiv>
+  ) : null;
+
+  return (
+    <>
+      <SInput
+        {...inputProps}
+        data-invalid={inputProps.invalid ? '' : undefined}
+        aria-invalid={inputProps.invalid ? true : undefined}
+        aria-describedby={errorId}
+      >
+        {inputProps.children}
+      </SInput>
+      {error}
+    </>
+  );
+};
