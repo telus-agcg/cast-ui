@@ -42,14 +42,18 @@ export class Select extends React.Component<Props> {
   render() {
     // 1/3/19: the on event handlers need to be there, or an error is thrown
     // but in this state, they cause the menu not to appear.
+    // .
+    // onMenuOpen omitted --> causes TypeError
+    // onMenuOpen={undefined} --> causes TypeError
+    // onMenuOpen={() => true)} --> nothing happens
     return (
       <ReactSelect
         isDisabled={this.props.disabled}
         value={this.props.selectedOption}
         options={this.props.options}
-        onMenuOpen={() => console.log('menu open')}
-        onMenuClose={() => true}
-        onInputChange={() => true}
+        onMenuOpen={() => console.log('onMenuOpen')}
+        onMenuClose={undefined}
+        onInputChange={undefined}
       />
     );
   }
