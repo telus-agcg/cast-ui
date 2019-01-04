@@ -1,6 +1,13 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+// TODO: we should be able to use an interface to inherit the base properties of an
+// HTMLInputElement. However, when I do this, CPU usage goes nuts, and the base
+// properties still don't inherit correctly. We need to research this further.
+// interface WrapperProps extends React.HTMLAttributes<HTMLInputElement> {
+// ...
+// }
+
 type PropsThemeOnly = {
     /**
    * From theme provider
@@ -96,65 +103,26 @@ const SErrorDiv = styled.div`
   padding: ${(props: PropsThemeOnly) => props.theme.validation.padding};
 `;
 
-export const Input: React.FunctionComponent<Props> = ({
-  id,
-  type,
-  autoComplete,
-  children,
-  disabled,
-  inputSize = 'md',
-  invalid = false,
-  invalidText,
-  maxLength,
-  placeholder,
-  required,
-  theme,
-}) => {
-  const errorId = `${id}-error-msg`;
+export const Input: React.FunctionComponent<Props> = (inputProps) => {
+  const errorId = inputProps.invalid ? (`${inputProps.id}-error-msg`) : (undefined);
 
-  const error = invalid ? (
-    <SErrorDiv id={errorId} theme={theme}>
-      {invalidText}
+  const error = inputProps.invalid ? (
+    <SErrorDiv id={errorId} theme={inputProps.theme}>
+      {inputProps.invalidText}
     </SErrorDiv>
   ) : null;
 
-  return invalid ? (
+  return (
     <>
-    <SInput
-      id={id}
-      inputSize={inputSize}
-      theme={theme}
-      disabled={disabled}
-      type={type}
-      required={required}
-      placeholder={placeholder}
-      autoComplete={autoComplete}
-      maxLength={maxLength}
-      invalid={invalid}
-      data-invalid
-      aria-invalid
-      aria-describedby={errorId}
-    >
-      {children}
-    </SInput>
-    {error}
-    </>
-  ) : (
-    <>
-    <SInput
-      id={id}
-      inputSize={inputSize}
-      theme={theme}
-      disabled={disabled}
-      type={type}
-      required={required}
-      placeholder={placeholder}
-      autoComplete={autoComplete}
-      maxLength={maxLength}
-      invalid={invalid}
-    >
-      {children}
-    </SInput>
+      <SInput
+        {...inputProps}
+        data-invalid={inputProps.invalid ? '' : undefined}
+        aria-invalid={inputProps.invalid ? true : undefined}
+        aria-describedby={errorId}
+      >
+        {inputProps.children}
+      </SInput>
+      {error}
     </>
   );
 };
