@@ -2,8 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 type Props = {
-  /** this dictates what the button will do  */
-  onClick(e: React.MouseEvent<HTMLElement>): void;
   /**
    * Select Spinner Style
    *
@@ -17,11 +15,17 @@ type Props = {
    **/
   btnSize: string;
   /**
-   * Disables onclick
+   * Adjust spinner size in pixels
    *
-   * @default false
+   * @default 40px
    **/
-  disabled?: boolean;
+  size: number;
+  /**
+   * Adjust animation speed in seconds
+   *
+   * @default 2s
+   **/
+  animationSpeed: number;
   /**
    * From theme provider
    *
@@ -30,8 +34,7 @@ type Props = {
   theme?: any;
 };
 
-const noop = () => {}; // tslint:disable-line
-const SSpinner = styled.button`
+const SSpinner1 = styled.button`
   background: ${(props: Props) => props.theme.styles[props.btnStyle].flood}
   border: 1px solid ${(props: Props) =>
     props.theme.styles[props.btnStyle].borderColor};
@@ -52,21 +55,65 @@ const SSpinner = styled.button`
     cursor: not-allowed;
   }
 `;
+const SSpinner = styled.div`
+  width: ${(props: Props) => `${props.size}px`}
+  height: ${(props: Props) => `${props.size}px`};
+  position: relative;
+  margin: 100px auto;
+
+  .double-bounce1,
+  .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #333;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    -webkit-animation: ${(props: Props) =>
+      `sk-bounce ${props.animationSpeed}s infinite ease-in-out`};
+    animation: ${(props: Props) =>
+      `sk-bounce ${props.animationSpeed}s infinite ease-in-out`};
+  }
+
+  .double-bounce2 {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+  }
+
+  @-webkit-keyframes sk-bounce {
+    0%,
+    100% {
+      -webkit-transform: scale(0);
+    }
+    50% {
+      -webkit-transform: scale(1);
+    }
+  }
+
+  @keyframes sk-bounce {
+    0%,
+    100% {
+      transform: scale(0);
+      -webkit-transform: scale(0);
+    }
+    50% {
+      transform: scale(1);
+      -webkit-transform: scale(1);
+    }
+  }
+`;
 
 export const Spinner: React.FunctionComponent<Props> = ({
-  onClick,
-  disabled,
   children,
-  btnStyle = 'default',
-  btnSize = 'md',
+  size = 40,
+  animationSpeed = 2,
   theme,
 }) => (
-  <SSpinner
-    btnSize={btnSize}
-    btnStyle={btnStyle}
-    theme={theme}
-    disabled={disabled}
-    onClick={!disabled ? onClick : noop}>
-    {children}
+  <SSpinner size={size} animationSpeed={animationSpeed} theme={theme}>
+    <div className="double-bounce1" />
+    <div className="double-bounce2" />
   </SSpinner>
 );
