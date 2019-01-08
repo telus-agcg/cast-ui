@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SelectBase as ReactSelect } from 'react-select';
+import Select from 'react-select';
 
 type Props = {
   /**
@@ -34,7 +34,7 @@ type Props = {
   theme?: any;
 };
 
-export class Select extends React.Component<Props> {
+class CustomSelect extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
@@ -47,14 +47,14 @@ export class Select extends React.Component<Props> {
     // onMenuOpen={undefined} --> causes TypeError
     // onMenuOpen={() => true)} --> nothing happens
     return (
-      <ReactSelect
+      <Select
         isDisabled={this.props.disabled}
         value={this.props.selectedOption}
         options={this.props.options}
-        onMenuOpen={() => console.log('onMenuOpen')}
-        onMenuClose={undefined}
-        onInputChange={undefined}
+        {...this.props}
       />
     );
   }
 }
+
+export default CustomSelect;

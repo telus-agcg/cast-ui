@@ -33,6 +33,7 @@
     "@types/lodash": "^4.14.118",
     "@types/react": "^16.7.3",
     "@types/react-dom": "^16.0.9",
+    "@types/react-select": "^2.0.11",
     "@types/storybook-addon-jsx": "^5.4.0",
     "@types/storybook__addon-actions": "^3.4.1",
     "@types/storybook__addon-info": "^3.4.2",
