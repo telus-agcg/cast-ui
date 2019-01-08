@@ -9,6 +9,9 @@ type PropsThemeOnly = {
    * @default defaultTheme
    **/
   theme?: any;
+};
+
+type PropsThemeAndInputSize = PropsThemeOnly & {
   /**
    * Select Input Size
    *
@@ -17,13 +20,29 @@ type PropsThemeOnly = {
   inputSize: string;
 };
 
-type Props = PropsThemeOnly & {
+type Props = PropsThemeAndInputSize & {
   /**
-   * Specify the control's selected option
+   * The ID of the control
    *
    * @default null
    **/
-  selectedOption?: string;
+  id: string;
+  /**
+   * Specify if the tab is disabled
+   *
+   * @default false
+   **/
+  disabled?: boolean;
+  /**
+   * Specify whether the control is currently invalid
+   *
+   * @default false
+   **/
+  invalid?: boolean;
+  /**
+   * Provide the text that is displayed when the control is in an invalid state
+   */
+  invalidText?: string;
   /**
    * The list of options available
    *
@@ -31,11 +50,11 @@ type Props = PropsThemeOnly & {
    **/
   options?: any;
   /**
-   * Specify if the tab is disabled
+   * Specify the control's selected option
    *
-   * @default false
+   * @default null
    **/
-  disabled?: boolean;
+  selectedOption?: string;
   /**
    * Any props that should be passed directly to the third-
    * party react-select control.
@@ -46,18 +65,25 @@ type Props = PropsThemeOnly & {
 };
 
 const SDiv = styled.div`
-  background: ${(props: PropsThemeOnly) => props.theme.input.background}
-  border: 1px solid ${(props: PropsThemeOnly) => props.theme.input.borderColor};
-  border-radius: ${(props: PropsThemeOnly) =>
+  background: ${(props: PropsThemeAndInputSize) => props.theme.input.background}
+  border: 1px solid ${(props: PropsThemeAndInputSize) => props.theme.input.borderColor};
+  border-radius: ${(props: PropsThemeAndInputSize) =>
     props.theme.common[props.inputSize].borderRadius};
-  padding: ${(props: PropsThemeOnly) => props.theme.common[props.inputSize].padding}
-  font-family: ${(props: PropsThemeOnly) => props.theme.typography.fontFamily};
-  font-size: ${(props: PropsThemeOnly) => props.theme.common[props.inputSize].fontSize}
-  color: ${(props: PropsThemeOnly) => props.theme.reverseText};
+  padding: ${(props: PropsThemeAndInputSize) => props.theme.common[props.inputSize].padding}
+  font-family: ${(props: PropsThemeAndInputSize) => props.theme.typography.fontFamily};
+  font-size: ${(props: PropsThemeAndInputSize) => props.theme.common[props.inputSize].fontSize}
+  color: ${(props: PropsThemeAndInputSize) => props.theme.reverseText};
   &:disabled {
-    background: ${(props: PropsThemeOnly) => props.theme.input.backgroundDisabled};
+    background: ${(props: PropsThemeAndInputSize) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
   }
+`;
+
+const SErrorDiv = styled.div`
+  color: ${(props: PropsThemeOnly) => props.theme.validation.errorColor};
+  font-family: ${(props: PropsThemeOnly) => props.theme.typography.fontFamily};
+  font-size: ${(props: PropsThemeOnly) => props.theme.validation.fontSize};
+  padding: ${(props: PropsThemeOnly) => props.theme.validation.padding};
 `;
 
 class CustomSelect extends React.Component<Props> {
@@ -66,14 +92,27 @@ class CustomSelect extends React.Component<Props> {
   }
 
   render() {
+    const errorId = this.props.invalid ? (`${this.props.id}-error-msg`) : (undefined);
+
+    const error = this.props.invalid ? (
+      <SErrorDiv id={errorId} theme={this.props.theme}>
+        {this.props.invalidText}
+      </SErrorDiv>
+    ) : null;
+
     return (
-      <SDiv inputSize={this.props.inputSize}>
+      <SDiv inputSize={this.props.inputSize}
+        data-invalid={this.props.invalid ? '' : undefined}
+        aria-invalid={this.props.invalid ? true : undefined}
+        aria-describedby={errorId}
+      >
         <Select
           isDisabled={this.props.disabled}
           value={this.props.selectedOption}
           options={this.props.options}
           {...this.props.controlSpecificProps}
         />
+        {error}
       </SDiv>
     );
   }
