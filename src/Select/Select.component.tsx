@@ -1,7 +1,23 @@
 import * as React from 'react';
 import Select from 'react-select';
+import styled from 'styled-components';
 
-type Props = {
+type PropsThemeOnly = {
+  /**
+   * From theme provider
+   *
+   * @default defaultTheme
+   **/
+  theme?: any;
+  /**
+   * Select Input Size
+   *
+   * @default 'md'
+   **/
+  inputSize: string;
+};
+
+type Props = PropsThemeOnly & {
   /**
    * Specify the control's selected option
    *
@@ -14,12 +30,6 @@ type Props = {
    * @default null
    **/
   options?: any;
-  // /**
-  //  * The function attached to the onChange event
-  //  *
-  //  * @default null
-  //  **/
-  // handleChange?: any;
   /**
    * Specify if the tab is disabled
    *
@@ -27,12 +37,28 @@ type Props = {
    **/
   disabled?: boolean;
   /**
-   * From theme provider
+   * Any props that should be passed directly to the third-
+   * party react-select control.
    *
-   * @default defaultTheme
+   * @default null
    **/
-  theme?: any;
+  controlSpecificProps?: any;
 };
+
+const SDiv = styled.div`
+  background: ${(props: PropsThemeOnly) => props.theme.input.background}
+  border: 1px solid ${(props: PropsThemeOnly) => props.theme.input.borderColor};
+  border-radius: ${(props: PropsThemeOnly) =>
+    props.theme.common[props.inputSize].borderRadius};
+  padding: ${(props: PropsThemeOnly) => props.theme.common[props.inputSize].padding}
+  font-family: ${(props: PropsThemeOnly) => props.theme.typography.fontFamily};
+  font-size: ${(props: PropsThemeOnly) => props.theme.common[props.inputSize].fontSize}
+  color: ${(props: PropsThemeOnly) => props.theme.reverseText};
+  &:disabled {
+    background: ${(props: PropsThemeOnly) => props.theme.input.backgroundDisabled};
+    cursor: not-allowed;
+  }
+`;
 
 class CustomSelect extends React.Component<Props> {
   constructor(props: Props) {
@@ -40,19 +66,15 @@ class CustomSelect extends React.Component<Props> {
   }
 
   render() {
-    // 1/3/19: the on event handlers need to be there, or an error is thrown
-    // but in this state, they cause the menu not to appear.
-    // .
-    // onMenuOpen omitted --> causes TypeError
-    // onMenuOpen={undefined} --> causes TypeError
-    // onMenuOpen={() => true)} --> nothing happens
     return (
-      <Select
-        isDisabled={this.props.disabled}
-        value={this.props.selectedOption}
-        options={this.props.options}
-        {...this.props}
-      />
+      <SDiv inputSize={this.props.inputSize}>
+        <Select
+          isDisabled={this.props.disabled}
+          value={this.props.selectedOption}
+          options={this.props.options}
+          {...this.props.controlSpecificProps}
+        />
+      </SDiv>
     );
   }
 }
