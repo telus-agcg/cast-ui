@@ -1,3 +1,11 @@
+/**
+ * Themes
+ */
+export * from './themes';
+
+/**
+ * Components
+ */
 export * from './Button/Button.component';
 export * from './Input/Input.component';
 export * from './InputGroup/InputGroup.component';
