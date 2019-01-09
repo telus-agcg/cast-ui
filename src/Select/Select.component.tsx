@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
+import './Select.css';
 
 type PropsThemeOnly = {
   /**
@@ -101,7 +102,9 @@ class CustomSelect extends React.Component<Props> {
     ) : null;
 
     return (
-      <SDiv inputSize={this.props.inputSize}
+      <SDiv
+        className="select-wrapper"
+        inputSize={this.props.inputSize}
         data-invalid={this.props.invalid ? '' : undefined}
         aria-invalid={this.props.invalid ? true : undefined}
         aria-describedby={errorId}
@@ -110,7 +113,10 @@ class CustomSelect extends React.Component<Props> {
           isDisabled={this.props.disabled}
           value={this.props.selectedOption}
           options={this.props.options}
-          {...this.props.controlSpecificProps}
+          data-invalid={this.props.invalid ? '' : undefined}
+          aria-invalid={this.props.invalid ? true : undefined}
+          aria-describedby={errorId}
+            {...this.props.controlSpecificProps}
         />
         {error}
       </SDiv>
