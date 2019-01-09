@@ -3,17 +3,11 @@ import styled from 'styled-components';
 
 type Props = {
   /**
-   * Select Spinner Style
+   * Select Spinner color. Must be a color defined in theme colors
    *
-   * @default 'default'
+   * @default 'lightGray'
    **/
-  btnStyle: string;
-  /**
-   * Select Spinner Size
-   *
-   * @default 'md'
-   **/
-  btnSize: string;
+  color: string;
   /**
    * Adjust spinner size in pixels
    *
@@ -27,6 +21,12 @@ type Props = {
    **/
   animationSpeed: number;
   /**
+   * Select transition type
+   *
+   * @default 'ease-in-out'
+   **/
+  transitionType: string;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -34,27 +34,6 @@ type Props = {
   theme?: any;
 };
 
-const SSpinner1 = styled.button`
-  background: ${(props: Props) => props.theme.styles[props.btnStyle].flood}
-  border: 1px solid ${(props: Props) =>
-    props.theme.styles[props.btnStyle].borderColor};
-  padding: ${(props: Props) => props.theme.common[props.btnSize].padding}
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.btnSize].fontSize}
-  font-weight: bold;
-  color: ${(props: Props) => props.theme.styles[props.btnStyle].reverseText};
-  &:hover {
-    background: ${props => props.theme.styles[props.btnStyle].hoverFlood};
-    border: 1px solid ${(props: Props) =>
-      props.theme.styles[props.btnStyle].hoverFlood};
-    cursor: pointer;
-  }
-  &:disabled {
-    background: ${props => props.theme.styles[props.btnStyle].hoverFlood}
-    border: 1px solid ${props => props.theme.styles[props.btnStyle].hoverFlood}
-    cursor: not-allowed;
-  }
-`;
 const SSpinner = styled.div`
   width: ${(props: Props) => `${props.size}px`}
   height: ${(props: Props) => `${props.size}px`};
@@ -66,21 +45,22 @@ const SSpinner = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: #333;
+    background-color: ${props => props.theme.colors[props.color]};
     opacity: 0.6;
     position: absolute;
     top: 0;
     left: 0;
 
     -webkit-animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ease-in-out`};
+      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
     animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ease-in-out`};
+      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
   }
 
   .double-bounce2 {
-    -webkit-animation-delay: -1s;
-    animation-delay: -1s;
+    -webkit-animation-delay: ${(props: Props) =>
+      `-${props.animationSpeed / 2}s`};
+    animation-delay: ${(props: Props) => `-${props.animationSpeed / 2}s`};
   }
 
   @-webkit-keyframes sk-bounce {
@@ -107,12 +87,18 @@ const SSpinner = styled.div`
 `;
 
 export const Spinner: React.FunctionComponent<Props> = ({
-  children,
+  color = 'lightGray',
   size = 40,
   animationSpeed = 2,
+  transitionType = 'ease-in-out',
   theme,
 }) => (
-  <SSpinner size={size} animationSpeed={animationSpeed} theme={theme}>
+  <SSpinner
+    color={color}
+    size={size}
+    animationSpeed={animationSpeed}
+    transitionType={transitionType}
+    theme={theme}>
     <div className="double-bounce1" />
     <div className="double-bounce2" />
   </SSpinner>
