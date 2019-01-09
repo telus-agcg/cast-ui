@@ -12,7 +12,14 @@ storiesOf('ButtonGroup', module).add(
   This is a ButtonGroup
   ### Usage
   ~~~js
-  <ButtonGroup />
+  <ButtonGroup>
+    <Button btnStyle="primary" btnSize="md" onClick={onClick}>
+      OK
+    </Button>
+    <Button btnStyle="default" btnSize="md" onClick={onClick}>
+      Cancel
+    </Button>
+  </ButtonGroup>
   ~~~`)(() => (
     <ButtonGroup>
         <Button
