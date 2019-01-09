@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, select } from '@storybook/addon-knobs/react';
-import { action } from '@storybook/addon-actions';
+import { select } from '@storybook/addon-knobs/react';
 
 import { Spinner } from './Spinner.component';
 import { wInfo } from '../storybook-utils';
@@ -16,22 +15,25 @@ storiesOf('Spinner', module).add(
 
   ### Usage
   ~~~js
-  <Spinner
-    label={'Enroll'}
-    disabled={false}
-    onClick={() => alert('hello there')}
-  />
+    <Spinner
+      color="lightGray"
+      size={40}
+      animationSpeed={2}
+    />
   ~~~`)(() => (
     <Spinner
-      btnStyle={select(
-        'btnStyle',
-        ['success', 'default', 'primary', 'danger', 'warning'],
-        'success',
+      color={select(
+        'color',
+        ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
+        'lightGray',
       )}
-      btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
-      disabled={boolean('disabled', false)}
-      onClick={action('Clicked!')}>
-      Submit
-    </Spinner>
+      size={select('size', [20, 30, 40, 50, 60], 40)}
+      animationSpeed={select('animationSpeed', [1, 2, 3, 4, 5], 2)}
+      transitionType={select(
+        'transitionType',
+        ['ease-in-out', 'ease-in', 'ease-out', 'linear', 'ease'],
+        'ease-in-out',
+      )}
+    />
   )),
 );
