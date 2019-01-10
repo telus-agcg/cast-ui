@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "build-dev": "tsc",
     "storybook": "start-storybook -p 6006 --ci -c .storybook",
     "lint": "./node_modules/tslint/bin/tslint ./src/**/*",
     "deploy-storybook": "storybook-to-ghpages --ci"
