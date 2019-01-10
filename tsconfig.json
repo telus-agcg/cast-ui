@@ -20,8 +20,9 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "declaration": true
+    "declaration": true,
+    "watch": true
   },
-  "include": ["./src/**/*"],
-  "exclude": ["node_modules", "dist", "scripts"]
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "exclude": ["node_modules", "dist", "scripts", "**/*.css"]
 }

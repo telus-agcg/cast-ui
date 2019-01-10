@@ -1,5 +1,10 @@
 {
   "extends": ["tslint-config-airbnb"],
+  "linterOptions": {
+    "exclude": [
+        "*.css"
+    ]
+  },
   "rules": {
     "import-name": [false],
     "variable-name": false
