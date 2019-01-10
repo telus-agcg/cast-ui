@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
-import './Select.css';
 
 type PropsThemeOnly = {
   /**
@@ -67,16 +66,24 @@ type Props = PropsThemeAndInputSize & {
 
 const SDiv = styled.div`
   background: ${(props: PropsThemeAndInputSize) => props.theme.input.background}
-  border: 1px solid ${(props: PropsThemeAndInputSize) => props.theme.input.borderColor};
+  border: 1px solid ${(props: PropsThemeAndInputSize) =>
+    props.theme.input.borderColor};
   border-radius: ${(props: PropsThemeAndInputSize) =>
     props.theme.common[props.inputSize].borderRadius};
-  padding: ${(props: PropsThemeAndInputSize) => props.theme.common[props.inputSize].padding}
-  font-family: ${(props: PropsThemeAndInputSize) => props.theme.typography.fontFamily};
-  font-size: ${(props: PropsThemeAndInputSize) => props.theme.common[props.inputSize].fontSize}
+  padding: ${(props: PropsThemeAndInputSize) =>
+    props.theme.common[props.inputSize].padding}
+  font-family: ${(props: PropsThemeAndInputSize) =>
+    props.theme.typography.fontFamily};
+  font-size: ${(props: PropsThemeAndInputSize) =>
+    props.theme.common[props.inputSize].fontSize}
   color: ${(props: PropsThemeAndInputSize) => props.theme.reverseText};
   &:disabled {
-    background: ${(props: PropsThemeAndInputSize) => props.theme.input.backgroundDisabled};
+    background: ${(props: PropsThemeAndInputSize) =>
+      props.theme.input.backgroundDisabled};
     cursor: not-allowed;
+  }
+  .react-select-component > div {
+    border-color: ${(props: any) => props.invalid && 'red'};
   }
 `;
 
@@ -93,7 +100,9 @@ class CustomSelect extends React.Component<Props> {
   }
 
   render() {
-    const errorId = this.props.invalid ? (`${this.props.id}-error-msg`) : (undefined);
+    const errorId = this.props.invalid
+      ? `${this.props.id}-error-msg`
+      : undefined;
 
     const error = this.props.invalid ? (
       <SErrorDiv id={errorId} theme={this.props.theme}>
@@ -108,15 +117,17 @@ class CustomSelect extends React.Component<Props> {
         data-invalid={this.props.invalid ? '' : undefined}
         aria-invalid={this.props.invalid ? true : undefined}
         aria-describedby={errorId}
+        invalid={this.props.invalid}
       >
         <Select
+          className="react-select-component"
           isDisabled={this.props.disabled}
           value={this.props.selectedOption}
           options={this.props.options}
           data-invalid={this.props.invalid ? '' : undefined}
           aria-invalid={this.props.invalid ? true : undefined}
           aria-describedby={errorId}
-            {...this.props.controlSpecificProps}
+          {...this.props.controlSpecificProps}
         />
         {error}
       </SDiv>
