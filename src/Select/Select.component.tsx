@@ -2,25 +2,19 @@ import * as React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
 
-type PropsThemeOnly = {
+type Props = {
   /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
-};
-
-type PropsThemeAndInputSize = PropsThemeOnly & {
   /**
    * Select Input Size
    *
    * @default 'md'
    **/
   inputSize: string;
-};
-
-type Props = PropsThemeAndInputSize & {
   /**
    * The ID of the control
    *
@@ -65,20 +59,20 @@ type Props = PropsThemeAndInputSize & {
 };
 
 const SDiv = styled.div`
-  background: ${(props: PropsThemeAndInputSize) => props.theme.input.background}
-  border: 1px solid ${(props: PropsThemeAndInputSize) =>
+  background: ${(props: Props) => props.theme.input.background}
+  border: 1px solid ${(props: Props) =>
     props.theme.input.borderColor};
-  border-radius: ${(props: PropsThemeAndInputSize) =>
+  border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize].borderRadius};
-  padding: ${(props: PropsThemeAndInputSize) =>
+  padding: ${(props: Props) =>
     props.theme.common[props.inputSize].padding}
-  font-family: ${(props: PropsThemeAndInputSize) =>
+  font-family: ${(props: Props) =>
     props.theme.typography.fontFamily};
-  font-size: ${(props: PropsThemeAndInputSize) =>
+  font-size: ${(props: Props) =>
     props.theme.common[props.inputSize].fontSize}
-  color: ${(props: PropsThemeAndInputSize) => props.theme.reverseText};
+  color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
-    background: ${(props: PropsThemeAndInputSize) =>
+    background: ${(props: Props) =>
       props.theme.input.backgroundDisabled};
     cursor: not-allowed;
   }
@@ -88,10 +82,10 @@ const SDiv = styled.div`
 `;
 
 const SErrorDiv = styled.div`
-  color: ${(props: PropsThemeOnly) => props.theme.validation.errorColor};
-  font-family: ${(props: PropsThemeOnly) => props.theme.typography.fontFamily};
-  font-size: ${(props: PropsThemeOnly) => props.theme.validation.fontSize};
-  padding: ${(props: PropsThemeOnly) => props.theme.validation.padding};
+  color: ${(props: any) => props.theme.validation.errorColor};
+  font-family: ${(props: any) => props.theme.typography.fontFamily};
+  font-size: ${(props: any) => props.theme.validation.fontSize};
+  padding: ${(props: any) => props.theme.validation.padding};
 `;
 
 class CustomSelect extends React.Component<Props> {
@@ -114,7 +108,7 @@ class CustomSelect extends React.Component<Props> {
       <SDiv
         className="select-wrapper"
         inputSize={this.props.inputSize}
-        data-invalid={this.props.invalid ? '' : undefined}
+        {...this.props.invalid}
         aria-invalid={this.props.invalid ? true : undefined}
         aria-describedby={errorId}
         invalid={this.props.invalid}
@@ -124,7 +118,7 @@ class CustomSelect extends React.Component<Props> {
           isDisabled={this.props.disabled}
           value={this.props.selectedOption}
           options={this.props.options}
-          data-invalid={this.props.invalid ? '' : undefined}
+          {...this.props.invalid}
           aria-invalid={this.props.invalid ? true : undefined}
           aria-describedby={errorId}
           {...this.props.controlSpecificProps}
