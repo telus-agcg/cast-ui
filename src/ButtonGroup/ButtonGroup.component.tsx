@@ -27,12 +27,29 @@ font-family: ${(props: Props) => props.theme.typography.fontFamily};
 // }
 `;
 
+const initialState = {
+  selectedKey: null,
+};
+type State = typeof initialState;
+
 export class ButtonGroup extends React.Component<Props> {
   static Header: React.Component;
   static Body: React.Component;
 
   constructor(props: Props) {
     super(props);
+
+    this.state = {
+      modalIsOpen: false,
+    };
+  }
+
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
   }
 
   render() {
