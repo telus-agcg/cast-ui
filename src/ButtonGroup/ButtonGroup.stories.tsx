@@ -21,20 +21,27 @@ storiesOf('ButtonGroup', module).add(
     </Button>
   </ButtonGroup>
   ~~~`)(() => (
-    <ButtonGroup>
+    <ButtonGroup role="group">
         <Button
-        btnStyle="primary"
+        btnStyle="default"
         btnSize="md"
-        onClick={() => alert('OK')}
+        onClick={() => false}
         >
-            OK
+            1
         </Button>
         <Button
         btnStyle="default"
         btnSize="md"
-        onClick={() => alert('Cancel')}
+        onClick={() => false}
         >
-            Cancel
+            2
+        </Button>
+        <Button
+        btnStyle="default"
+        btnSize="md"
+        onClick={() => false}
+        >
+            3
         </Button>
     </ButtonGroup>
   )),

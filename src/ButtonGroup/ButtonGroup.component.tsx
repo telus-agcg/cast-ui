@@ -2,7 +2,15 @@ import * as React from 'react';
 import styled from 'styled-components';
 import SButton from '../Button/SButton';
 
+type ButtonGroupRole = 'group' | 'toolbar';
+
 type Props = {
+  /**
+   * Specify role (group or toolbar)
+   *
+   * @default defaultTheme
+   **/
+  role: ButtonGroupRole;
   /**
    * From theme provider
    *
@@ -12,11 +20,11 @@ type Props = {
 };
 
 const ButtonGroupWrapper = styled.div`
-  overflow: hidden;
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-    ${SButton} + ${SButton} {
-      margin-left: 10px;
-    }
+overflow: hidden;
+font-family: ${(props: Props) => props.theme.typography.fontFamily};
+// ${SButton} + ${SButton} {
+//   margin-left: 10px;
+// }
 `;
 
 export class ButtonGroup extends React.Component<Props> {
