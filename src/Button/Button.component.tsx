@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import SButton from './SButton';
 
 type Props = {
   /** this dictates what the button will do  */
@@ -17,11 +17,23 @@ type Props = {
    **/
   btnSize: string;
   /**
-   * Disables onclick
+   * Specify if the button is disabled
    *
    * @default false
    **/
   disabled?: boolean;
+  /**
+   * Specify if the button is selected
+   *
+   * @default false
+   **/
+  selected?: boolean;
+  /**
+   * The value of the button
+   *
+   * @default null
+   **/
+  value?: any;
   /**
    * From theme provider
    *
@@ -31,31 +43,11 @@ type Props = {
 };
 
 const noop = () => {}; // tslint:disable-line
-const SButton = styled.button`
-  background: ${(props: Props) => props.theme.styles[props.btnStyle].flood}
-  border: 1px solid ${(props: Props) =>
-    props.theme.styles[props.btnStyle].borderColor};
-  padding: ${(props: Props) => props.theme.common[props.btnSize].padding}
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.btnSize].fontSize}
-  font-weight: bold;
-  color: ${(props: Props) => props.theme.styles[props.btnStyle].reverseText};
-  &:hover {
-    background: ${props => props.theme.styles[props.btnStyle].hoverFlood};
-    border: 1px solid ${(props: Props) =>
-      props.theme.styles[props.btnStyle].hoverFlood};
-    cursor: pointer;
-  }
-  &:disabled {
-    background: ${props => props.theme.styles[props.btnStyle].hoverFlood}
-    border: 1px solid ${props => props.theme.styles[props.btnStyle].hoverFlood}
-    cursor: not-allowed;
-  }
-`;
 
 export const Button: React.FunctionComponent<Props> = ({
   onClick,
   disabled,
+  selected,
   children,
   btnStyle = 'default',
   btnSize = 'md',
@@ -66,7 +58,9 @@ export const Button: React.FunctionComponent<Props> = ({
     btnStyle={btnStyle}
     theme={theme}
     disabled={disabled}
-    onClick={!disabled ? onClick : noop}>
+    selected={selected}
+    onClick={!disabled ? onClick : noop}
+  >
     {children}
   </SButton>
 );
