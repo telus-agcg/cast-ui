@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import SButton from '../Button/SButton';
 
 type ButtonGroupRole = 'group' | 'toolbar';
 type ButtonGroupMode = 'radio' | 'checkbox';
@@ -29,9 +28,6 @@ type Props = {
 const ButtonGroupWrapper = styled.div`
 overflow: hidden;
 font-family: ${(props: Props) => props.theme.typography.fontFamily};
-// ${SButton} + ${SButton} {
-//   margin-left: 10px;
-// }
 `;
 
 type State = {
@@ -53,17 +49,18 @@ class ButtonGroup extends React.Component<Props> {
 
   onBtnClick(key: any, fn: any) {
     if (this.props.mode === 'radio') {
-      this.state.SelectedValues.length = 0;
-      this.state.SelectedValues.push(key);
+      const newArray = [key];
+      this.setState({ SelectedValues: newArray });
     } else {
-      const index = this.state.SelectedValues.indexOf(key);
+      const myClonedArray  = Object.assign([], this.state.SelectedValues);
+      const index = myClonedArray.indexOf(key);
       if (index < 0) {
-        this.state.SelectedValues.push(key);
+        myClonedArray.push(key);
       } else {
-        this.state.SelectedValues.splice(index, 1);
+        myClonedArray.splice(index, 1);
       }
+      this.setState({ SelectedValues: [...myClonedArray] });
     }
-    this.setState({ SelectedValues: [...this.state.SelectedValues] });
 
     if (fn !== null) {
       fn();
