@@ -29,8 +29,6 @@
   },
   "dependencies": {
     "react-modal": "^3.8.1",
-    "lodash": "^4.17.11",
-    "react-popover": "^0.5.10",
     "react-select": "^2.2.0",
     "react-slick": "^0.23.2",
     "react-tabs": "^2.3.0",
