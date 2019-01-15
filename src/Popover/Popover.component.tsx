@@ -1,128 +1,65 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Button } from '../Button/Button.component';
+import * as ReactPopover from 'react-popover';
 
-type Props = Partial<{
-  visible: boolean;
-  btnToggle: boolean;
-  children: any;
-  theme: any;
-  onToggle: any;
-}>;
+type Props = ReactPopover.PopoverProps &
+  Partial<{
+    children: any;
+    theme: any;
+  }>;
 
-type RenderChildren = (props: Props) => JSX.Element;
-
-const PopoverContext = React.createContext<Props | null>(null);
-
-const SPopover = styled.div`
-  position: relative;
-  border-radius: ${(props: Props) => props.theme.borders.radius}
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  .popover-toggle {
-    padding: 8px 5px;
-    width: 100%;
-    border: ${(props: Props) =>
-      `${props.theme.borders.width} solid ${props.theme.popover.borderColor}`}
-    $:hover {
-      cursor: pointer;
-    }
+const SPopover = styled(ReactPopover)`
+  .Popover-body {
+    padding: 4rem;
+    display: inline-flex;
+    flex-direction: column;
+    background: hsl(0, 0%, 27%);
+    color: white;
+    border-radius: 0.3rem;
   }
-  .popover-content {
-    position: absolute;
-    width: 100%;
-    padding: 8px 5px;
-    background: ${(props: Props) => props.theme.popover.background}
-    border: ${(props: Props) =>
-      `${props.theme.borders.width} solid ${props.theme.popover.borderColor}`}
+  .Popover-tipShape {
+    fill: hsl(0, 0%, 27%);
+  }
+  .Target {
+    -webkit-user-select: none;
+    position: relative;
+    display: inline-block;
+    color: hsla(0, 0%, 0%, 0.45);
+    color: white;
+    white-space: pre-wrap;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 0.2rem;
+    overflow: hidden;
+  }
+  .Target-Move {
+    padding: 1rem;
+    cursor: move;
+    border-bottom: 1px solid white;
+    background: hsl(173, 69%, 48%);
+  }
+  .Target-Toggle {
+    display: block;
+    padding: 1rem;
+    cursor: pointer;
+    background: hsl(346, 62%, 55%);
+  }
+  .Target.is-open .Target-Toggle {
+    background: hsl(346, 80%, 50%);
   }
 `;
 
-const PopoverConsumer = (props: Props) => {
-  return (
-    <PopoverContext.Consumer>
-      {(context: Props) => {
-        if (!context) {
-          throw new Error(
-            'Popover compound components must be rendered within the Popover component.',
-          );
-        }
-        return props.children(context);
-      }}
-    </PopoverContext.Consumer>
-  );
-};
-
 class Popover extends React.Component<Props> {
-  isControlled() {
-    return this.props.onToggle !== undefined;
-  }
-
-  togglePopover = (e: any) => {
-    e.preventDefault();
-    if (this.isControlled()) {
-      this.props.onToggle(this.state.visible);
-    } else {
-      this.setState({
-        visible: !this.state.visible,
-      });
-    }
-  }
-
-  state = {
-    visible: this.props.visible,
-    btnToggle: this.props.btnToggle || false,
-    onToggle: this.togglePopover,
-  };
-
-  static Toggle: RenderChildren = ({ children }) => (
-    <PopoverConsumer>
-      {(contextValue: Props) =>
-        contextValue.btnToggle ? (
-          <Button
-            onClick={e => contextValue.onToggle(e)}
-            btnStyle="primary"
-            btnSize="md"
-          >
-            {children}, I'm a button
-          </Button>
-        ) : (
-          <div
-            onClick={(e: any) => {
-              contextValue.onToggle(e);
-            }}
-            className="popover-toggle"
-          >
-            {children}
-          </div>
-        )
-      }
-    </PopoverConsumer>
-  )
-  static Content: RenderChildren = ({ children }) => (
-    <PopoverConsumer>
-      {(contextValue: Props) =>
-        contextValue && contextValue.visible ? (
-          <div className="popover-content">{children}</div>
-        ) : null
-      }
-    </PopoverConsumer>
-  )
-
   public render() {
     return (
-      <PopoverContext.Provider
-        value={{
-          visible: this.props.visible,
-          btnToggle: this.props.btnToggle,
-          onToggle: this.isControlled()
-            ? this.props.onToggle
-            : this.state.onToggle,
-        }}
+      <SPopover
+        isOpen={true}
+        body={this.props.body}
+        className="popover"
+        {...this.props}
       >
-        <SPopover className="popover" {...this.props}>
-          {this.props.children}
-        </SPopover>
-      </PopoverContext.Provider>
+        {this.props.children}
+      </SPopover>
     );
   }
 }

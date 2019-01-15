@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean } from '@storybook/addon-knobs/react';
 
 import Popover from './Popover.component';
 import { wInfo } from '../storybook-utils';
+import { boolean, select, text } from '@storybook/addon-knobs';
 
 storiesOf('Popover', module).add(
   'Popover',
@@ -11,51 +11,32 @@ storiesOf('Popover', module).add(
 
   ### Notes
 
-  This is a Select, based on the react-select component
+  This is a Popover, based on the
+  [react-popover](https://github.com/littlebits/react-popover) component.
 
   ### Usage
   ~~~js
   <Popover
-    visible={false}
-  />~~~`)(() => (
-    <div style={{ width: '50%' }}>
-      <Popover visible={boolean('visible', false)}>
-        <Popover.Toggle>Click me</Popover.Toggle>
-        <Popover.Content>
-          Pop
-          <br />
-          Pop
-        </Popover.Content>
-      </Popover>
-    </div>
-  )),
+    visible={false} />~~~`)(() => <PopoverStory />),
 );
-storiesOf('Popover', module).add(
-  'Popover on Button',
-  wInfo(`
 
-  ### Notes
-
-  This is a Select, based on the react-select component
-
-  ### Usage
-  ~~~js
-  <Popover
-    visible={false}
-  />~~~`)(() => (
-    <div style={{ width: '50%' }}>
-      <Popover
-        btnToggle
-        onToggle={(v: boolean) => alert(v)}
-        visible={boolean('visible', false)}
-      >
-        <Popover.Toggle>Click me</Popover.Toggle>
-        <Popover.Content>
-          Pop
-          <br />
-          Pop
-        </Popover.Content>
-      </Popover>
-    </div>
-  )),
-);
+class PopoverStory extends React.Component {
+  render() {
+    return (
+      <div style={{ width: '50%' }}>
+        <Popover
+          body={text('body', 'this can be a string or a component')}
+          isOpen={boolean('isOpen', false)}
+          preferPlace={select(
+            'preferPlace',
+            ['above', 'below', 'right', 'left'],
+            'below',
+          )}
+          place={select('place', ['above', 'below', 'right', 'left'], 'below')}
+        >
+          <button>This button has a popover</button>
+        </Popover>
+      </div>
+    );
+  }
+}
