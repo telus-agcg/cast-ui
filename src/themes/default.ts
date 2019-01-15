@@ -148,6 +148,10 @@ export const defaultTheme = {
       padding: '4px 10px',
     },
   },
+  popover: {
+    borderColor: defaultColors.lightGray,
+    background: defaultColors.white,
+  },
   common: {
     sm: {
       borderRadius: '1px',
