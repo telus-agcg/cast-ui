@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SButton } from '../Button/SButton';
+import SButton from './SButton';
 
 type Props = {
   /** this dictates what the button will do  */
@@ -17,11 +17,23 @@ type Props = {
    **/
   btnSize: string;
   /**
-   * Disables onclick
+   * Specify if the button is disabled
    *
    * @default false
    **/
   disabled?: boolean;
+  /**
+   * Specify if the button is selected
+   *
+   * @default false
+   **/
+  selected?: boolean;
+  /**
+   * The value of the button
+   *
+   * @default null
+   **/
+  value?: any;
   /**
    * From theme provider
    *
@@ -35,6 +47,7 @@ const noop = () => {}; // tslint:disable-line
 export const Button: React.FunctionComponent<Props> = ({
   onClick,
   disabled,
+  selected,
   children,
   btnStyle = 'default',
   btnSize = 'md',
@@ -45,6 +58,7 @@ export const Button: React.FunctionComponent<Props> = ({
     btnStyle={btnStyle}
     theme={theme}
     disabled={disabled}
+    selected={selected}
     onClick={!disabled ? onClick : noop}
   >
     {children}

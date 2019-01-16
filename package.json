@@ -1,13 +1,14 @@
 {
-  "name": "tkxs-ui",
+  "name": "@tkxs/tkxs-ui",
   "version": "1.0.0",
   "description": "React component library for the TKXS design system",
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "build-dev": "tsc",
     "storybook": "start-storybook -p 6006 --ci -c .storybook",
-    "lint": "./node_modules/tslint/bin/tslint ./src/**/*",
+    "lint": "tslint --project tsconfig.json",
     "deploy-storybook": "storybook-to-ghpages --ci"
   },
   "author": "Ben Dalton",
@@ -20,6 +21,7 @@
     "@types/react-tabs": "^2.3.0",
     "lodash": "^4.17.11",
     "react-modal": "^3.8.1",
+    "react-select": "^2.2.0",
     "react-tabs": "^2.3.0",
     "tinycolor2": "^1.4.1"
   },
@@ -35,6 +37,7 @@
     "@types/lodash": "^4.14.118",
     "@types/react": "^16.7.3",
     "@types/react-dom": "^16.0.9",
+    "@types/react-select": "^2.0.11",
     "@types/storybook-addon-jsx": "^5.4.0",
     "@types/storybook__addon-actions": "^3.4.1",
     "@types/storybook__addon-info": "^3.4.2",
@@ -55,10 +58,10 @@
     "tslint-config-airbnb": "^5.11.0",
     "tslint-config-prettier": "^1.17.0",
     "tsutils": "^3.5.0",
-    "typescript": "^3.1.6",
+    "typescript": "^3.2.2",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
+    "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.1.4"
   }
 }

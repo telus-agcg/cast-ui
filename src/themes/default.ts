@@ -29,6 +29,7 @@ export const defaultTheme = {
       text: defaultColors.blue,
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.blue, 5),
+      selectedFlood: darken(defaultColors.blue, 25),
     },
     danger: {
       borderColor: defaultColors.red,
@@ -38,6 +39,7 @@ export const defaultTheme = {
       text: defaultColors.red,
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.red, 5),
+      selectedFlood: darken(defaultColors.blue, 25),
     },
     warning: {
       borderColor: defaultColors.yellow,
@@ -47,6 +49,7 @@ export const defaultTheme = {
       text: defaultColors.yellow,
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.yellow, 5),
+      selectedFlood: darken(defaultColors.blue, 25),
     },
     success: {
       borderColor: defaultColors.green,
@@ -56,6 +59,7 @@ export const defaultTheme = {
       text: defaultColors.green,
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.green, 5),
+      selectedFlood: darken(defaultColors.blue, 25),
     },
     default: {
       borderColor: defaultColors.gray,
@@ -65,6 +69,7 @@ export const defaultTheme = {
       text: defaultColors.black,
       reverseText: defaultColors.black,
       hoverFlood: darken(defaultColors.white, 5),
+      selectedFlood: darken(defaultColors.blue, 25),
     },
   },
   typography: {

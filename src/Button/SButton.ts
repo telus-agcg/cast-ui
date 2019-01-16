@@ -16,11 +16,17 @@ type Props = {
    **/
   btnSize: string;
   /**
-   * Disables onclick
+   * Specify if the button is disabled
    *
    * @default false
    **/
   disabled?: boolean;
+  /**
+   * Specify if the button is selected
+   *
+   * @default false
+   **/
+  selected?: boolean;
   /**
    * From theme provider
    *
@@ -29,8 +35,9 @@ type Props = {
   theme?: any;
 };
 
-export const SButton = styled.button`
-  background: ${(props: Props) => props.theme.styles[props.btnStyle].flood}
+const SButton = styled.button`
+  background: ${(props: Props) => props.selected ?
+    props.theme.styles[props.btnStyle].selectedFlood : props.theme.styles[props.btnStyle].flood}
   border: 1px solid ${(props: Props) =>
     props.theme.styles[props.btnStyle].borderColor};
   padding: ${(props: Props) => props.theme.common[props.btnSize].padding}
@@ -50,3 +57,5 @@ export const SButton = styled.button`
     cursor: not-allowed;
   }
 `;
+
+export default SButton;
