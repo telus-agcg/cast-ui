@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactModal from 'react-modal';
 import styled from 'styled-components';
 import { Button } from '../Button/Button.component';
-import { SButton } from '../Button/SButton';
+import SButton from '../Button/SButton';
 
 type Props = {
   /**
