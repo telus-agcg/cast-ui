@@ -93,7 +93,7 @@ const ModalFooterDiv = styled.div`
   }
 `;
 
-// tslint:disable-next-line:max-line-length
+/* tslint:disable:max-line-length */
 const CloseButton = styled.div`
   position: absolute;
   top: 28px;
