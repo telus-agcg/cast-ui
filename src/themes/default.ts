@@ -6,10 +6,13 @@ export const defaultColors = {
   red: '#FE4A49',
   yellow: '#FEC934',
   white: 'white',
-  gray: '#DEE9E0',
+  gray: '#8D9599',
   lightGray: '#E7EFE8',
   darkGray: '#515C61',
   black: '#0A1521',
+  placeholderGray: '#727A80',
+  disabledBackground: '#ECEFF2',
+  disabledBorder: '#A3AAAD',
 };
 
 export const defaultTheme = {
@@ -77,10 +80,14 @@ export const defaultTheme = {
   },
   input: {
     background: defaultColors.white,
-    backgroundDisabled: defaultColors.lightGray,
     borderColor: defaultColors.gray,
     color: defaultColors.darkGray,
     padding: '.375rem .75rem',
+    placeholderColor: defaultColors.placeholderGray,
+    disabled: {
+      background: defaultColors.disabledBackground,
+      borderColor: defaultColors.disabledBorder,
+    },
   },
   inputGroup: {
     root: {
@@ -89,7 +96,7 @@ export const defaultTheme = {
     },
   },
   label: {
-    padding: '6px 8px',
+    padding: '9px 8px',
   },
   Textarea: {
     background: defaultColors.white,
@@ -100,23 +107,24 @@ export const defaultTheme = {
   },
   common: {
     sm: {
-      borderRadius: '4px',
+      borderRadius: '1px',
       fontSize: '10px',
       padding: '5px',
     },
     md: {
-      borderRadius: '4px',
-      fontSize: '12px',
+      borderRadius: '1px',
+      fontSize: '14px',
       padding: '8px',
     },
     lg: {
-      borderRadius: '6px',
+      borderRadius: '1px',
       fontSize: '14px',
       padding: '10px',
     },
   },
   validation: {
-    errorColor: 'red',
+    borderColor: 'red',
+    errorTextColor: defaultColors.placeholderGray,
     fontSize: '11px',
     padding: '4px',
   },

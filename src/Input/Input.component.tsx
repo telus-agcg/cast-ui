@@ -88,19 +88,24 @@ const SInput = styled.input`
   font-size: ${(props: Props) => props.theme.common[props.inputSize].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
-    background: ${props => props.theme.input.backgroundDisabled};
+    border-color: ${props => props.theme.input.disabled.borderColor};
+    background: ${props => props.theme.input.disabled.background};
     cursor: not-allowed;
   }
   &[data-invalid] {
-    border-color: ${(props: Props) => props.theme.validation.errorColor};
+    border-color: ${(props: Props) => props.theme.validation.borderColor};
+  }
+  ::placeholder {
+    color: ${props => props.theme.input.placeholderColor};
   }
 `;
 
 const SErrorDiv = styled.div`
-  color: ${(props: PropsThemeOnly) => props.theme.validation.errorColor};
+  color: ${(props: PropsThemeOnly) => props.theme.validation.errorTextColor};
   font-family: ${(props: PropsThemeOnly) => props.theme.typography.fontFamily};
   font-size: ${(props: PropsThemeOnly) => props.theme.validation.fontSize};
   padding: ${(props: PropsThemeOnly) => props.theme.validation.padding};
+  font-style: italic;
 `;
 
 export const Input: React.FunctionComponent<Props> = (inputProps) => {
