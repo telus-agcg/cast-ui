@@ -65,6 +65,9 @@ const STextarea = styled.textarea`
     background: ${props => props.theme.Textarea.backgroundDisabled};
     cursor: not-allowed;
   }
+  ::placeholder {
+    color: ${props => props.theme.input.placeholderColor};
+  }
 `;
 
 export const Textarea: React.FunctionComponent<Props> = ({

@@ -33,7 +33,7 @@ storiesOf('Textarea', module).add(
       rows={number('rows', 8)}
       cols={number('cols', 60)}
       maxLength={number('maxLength', 1000)}
-      placeholder={text('placeholder', 'This is placeholder')}
+      placeholder={text('placeholder', 'Placeholder Text')}
     />
   )),
 );
