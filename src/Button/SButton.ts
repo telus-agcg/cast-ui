@@ -46,14 +46,14 @@ const SButton = styled.button`
   font-weight: bold;
   color: ${(props: Props) => props.theme.styles[props.btnStyle].reverseText};
   &:hover {
-    background: ${props => props.theme.styles[props.btnStyle].hoverFlood};
+    background: ${(props: Props) => props.theme.styles[props.btnStyle].hoverFlood};
     border: 1px solid ${(props: Props) =>
       props.theme.styles[props.btnStyle].hoverFlood};
     cursor: pointer;
   }
   &:disabled {
-    background: ${props => props.theme.styles[props.btnStyle].hoverFlood}
-    border: 1px solid ${props => props.theme.styles[props.btnStyle].hoverFlood}
+    background: ${(props: Props) => props.theme.styles[props.btnStyle].hoverFlood}
+    border: 1px solid ${(props: Props) => props.theme.styles[props.btnStyle].hoverFlood}
     cursor: not-allowed;
   }
 `;
