@@ -23,14 +23,14 @@ type Props = {
 };
 
 const SBadge = styled.div`
-  background: ${(props: Props) => props.theme.styles[props.badgeStyle].flood};
+  background: ${(props: Props) => props.theme.styles[props.badgeStyle].badgeBackground};
   border-radius: ${(props: Props) => props.theme.badge[props.badgeSize].borderRadius};
-  padding: ${(props: Props) => props.theme.badge[props.badgeSize].padding};
+  color: ${(props: Props) => props.theme.styles[props.badgeStyle].badgeColor};
+  display: inline-block;
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.badge[props.badgeSize].fontSize};
   font-weight: bold;
-  color: ${(props: Props) => props.theme.styles[props.badgeStyle].reverseText};
-  display: inline-block;
+  padding: ${(props: Props) => props.theme.badge[props.badgeSize].padding};
 `;
 
 export const Badge: React.FunctionComponent<Props> = ({

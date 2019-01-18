@@ -11,15 +11,16 @@ storiesOf('Badge', module).add(
 
   ### Notes
 
-  This is a button
+  This is a badge
 
   ### Usage
   ~~~js
   <Badge
-    label={'Enroll'}
-    disabled={false}
-    onClick={() => alert('hello there')}
-  />
+    badgeSize='md'
+    badgeStyle='success'
+  >
+    123
+  </Badge>
   ~~~`)(() => (
     <Badge
       badgeSize={select(
