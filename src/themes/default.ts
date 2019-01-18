@@ -98,13 +98,17 @@ export const defaultTheme = {
   label: {
     padding: '9px 8px',
   },
-  Textarea: {
+  textarea: {
     background: defaultColors.white,
     backgroundDisabled: defaultColors.lightGray,
     borderColor: defaultColors.gray,
     color: defaultColors.darkGray,
     padding: '.375rem .75rem',
     placeholderColor: defaultColors.placeholderGray,
+    disabled: {
+      background: defaultColors.disabledBackground,
+      borderColor: defaultColors.disabledBorder,
+    },
   },
   common: {
     sm: {
