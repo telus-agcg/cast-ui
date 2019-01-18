@@ -17,7 +17,8 @@ storiesOf('InputGroup', module).add(
     label={'This is my label'}
   />
   ~~~`)(() => (
-    <InputGroup label={text('label', 'This is my label')}>
+    <InputGroup label={text('label', 'This is my label')}
+    inputSize="md">
       <Input
         id="myInput"
         inputSize="md"
