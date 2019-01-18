@@ -120,6 +120,26 @@ export const defaultTheme = {
       buttonSpacing: '10px',
     },
   },
+  badge: {
+    borderRadius: '10px',
+    fontSize: '10px',
+    padding: '4px 10px',
+    sm: {
+      borderRadius: '4px',
+      fontSize: '10px',
+      padding: '4px 10px',
+    },
+    md: {
+      borderRadius: '4px',
+      fontSize: '12px',
+      padding: '4px 10px',
+    },
+    lg: {
+      borderRadius: '4px',
+      fontSize: '14px',
+      padding: '4px 10px',
+    },
+  },
   common: {
     sm: {
       borderRadius: '4px',
