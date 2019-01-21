@@ -98,33 +98,16 @@ export const defaultTheme = {
   label: {
     padding: '9px 8px',
   },
-  Textarea: {
+  textarea: {
     background: defaultColors.white,
     backgroundDisabled: defaultColors.lightGray,
     borderColor: defaultColors.gray,
     color: defaultColors.darkGray,
     padding: '.375rem .75rem',
-  },
-  modal: {
-    overlay: {
-      backgroundColor: 'rgba(255, 255, 255, 0.75)',
-    },
-    header: {
-      minHeight: '32px',
-      backgroundColor: defaultColors.white,
-      borderBottom: '1px solid #ccc',
-      padding: '8px 24px 8px 24px',
-    },
-    body: {
-      padding: '16px 24px',
-    },
-    footer: {
-      padding: '12px 24px',
-      minHeight: '32px',
-      marginTop: '0',
-      textAlign: 'right',
-      backgroundColor: darken(defaultColors.white, 5),
-      buttonSpacing: '10px',
+    placeholderColor: defaultColors.placeholderGray,
+    disabled: {
+      background: defaultColors.disabledBackground,
+      borderColor: defaultColors.disabledBorder,
     },
   },
   common: {
