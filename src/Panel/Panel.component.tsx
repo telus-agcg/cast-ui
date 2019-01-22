@@ -25,6 +25,7 @@ type Props = {
    **/
   theme?: any;
 };
+
 const PanelWrapper = styled.div`
   border: ${(props: Props) =>
     `${props.theme.borders.width} solid ${props.theme.styles[props.panelStyle]
@@ -33,6 +34,7 @@ const PanelWrapper = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   border-radius: ${(props: Props) => props.theme.borders.radius};
 `;
+
 const PanelHeader = styled.div`
   background: ${(props: Props) =>
     props.theme.styles[props.panelStyle].lightFlood};
@@ -41,6 +43,7 @@ const PanelHeader = styled.div`
     ${(props: Props) => props.theme.styles[props.panelStyle].borderColor};
   font-size: 20px;
   color: ${(props: Props) => props.theme.styles[props.panelStyle].text};
+  line-height: 32px;
   &:hover {
     background: ${(props: Props) =>
       props.collapsible
@@ -50,13 +53,49 @@ const PanelHeader = styled.div`
   }
 `;
 const PanelBody = styled.div`
-  background: white;
+  background: ${(props: Props) => props.theme.panel.body.background};
   overflow: hidden;
   height: auto;
   padding: ${(props: Props) => '5px 8px'};
   font-size: 16px;
   opacity: ${(props: Props) => 1};
   transition: all 300ms ease-in-out;
+`;
+
+/* tslint:disable:max-line-length */
+const ExpandIcon = styled.div`
+  float: right;
+  padding: 0;
+  margin: 0;
+  line-height: 32px;
+  // tslint:disable-next-line:max-line-length
+  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
+  border: 0;
+  -webkit-appearance: none;
+  text-shadow: none;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  outline: none;
+  width: 32px;
+  height: 32px;
+  `;
+
+const CollapseIcon = styled.div`
+  float: right;
+  padding: 0;
+  margin: 0;
+  line-height: 32px;
+  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
+  border: 0;
+  -webkit-appearance: none;
+  text-shadow: none;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  outline: none;
+  width: 32px;
+  height: 32px;
 `;
 
 const initialState = {
@@ -103,6 +142,13 @@ export class Panel extends React.Component<Props, State> {
   }
 
   render() {
+
+    const ChevronImage = this.localIsCollapsed ? (
+      <ExpandIcon />
+    ) : (
+      <CollapseIcon />
+    );
+
     return (
       <PanelWrapper panelStyle={this.props.panelStyle}>
         <PanelHeader
@@ -113,6 +159,7 @@ export class Panel extends React.Component<Props, State> {
           }}
         >
           {this.props.title} {this.props.isCollapsed}
+          {ChevronImage}
         </PanelHeader>
         <PanelBody
           panelStyle={this.props.panelStyle || 'default'}

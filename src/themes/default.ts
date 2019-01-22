@@ -13,12 +13,13 @@ export const defaultColors = {
   placeholderGray: '#727A80',
   disabledBackground: '#ECEFF2',
   disabledBorder: '#A3AAAD',
+  panelBackground: '#F5F7F8',
 };
 
 export const defaultTheme = {
   colors: defaultColors,
   borders: {
-    radius: '.25rem',
+    radius: '1px',
     radiusSm: '.2rem',
     radiusLg: '.3rem',
     width: '1px',
@@ -108,6 +109,11 @@ export const defaultTheme = {
     disabled: {
       background: defaultColors.disabledBackground,
       borderColor: defaultColors.disabledBorder,
+    },
+  },
+  panel: {
+    body: {
+      background: defaultColors.panelBackground,
     },
   },
   common: {
