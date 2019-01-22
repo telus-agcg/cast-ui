@@ -4,17 +4,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: { app: './src/index.ts' },
+  entry: { index: './src/index.ts' },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'awesome-typescript-loader',
-        exclude: '/node_modules',
+        loader: 'awesome-typescript-loader',
+        exclude: /node_modules/,
+        query: {
+          declaration: false,
+        },
       },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader"
+        loader: 'style-loader!css-loader',
       },
     ],
   },
@@ -22,7 +25,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['_bundles']),
     new HtmlWebpackPlugin({
       title: 'TKXS-UI',
     }),
@@ -30,7 +33,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     library: 'tkxsUI',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'lib'),
   },
   optimization: {
     runtimeChunk: 'single',
