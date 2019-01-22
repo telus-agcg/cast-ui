@@ -18,11 +18,14 @@
   "sideEffects": false,
   "dependencies": {
     "@types/react-modal": "^3.8.0",
+    "@types/react-slick": "^0.23.2",
     "@types/react-tabs": "^2.3.0",
     "lodash": "^4.17.11",
     "react-modal": "^3.8.1",
     "react-select": "^2.2.0",
+    "react-slick": "^0.23.2",
     "react-tabs": "^2.3.0",
+    "slick-carousel": "^1.8.1",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
