@@ -7,6 +7,7 @@ import 'tippy.js/dist/tippy.css';
 type Props = TippyProps &
   Partial<{
     children: any;
+    usePointer: boolean;
     theme: any;
   }>;
 
@@ -53,7 +54,7 @@ type Props = TippyProps &
 //   }
 // `;
 
-class Popover extends React.Component<Props> {
+class Tooltip extends React.Component<Props> {
   contentIsString = () => {
     return typeof this.props.content === 'string';
   }
@@ -66,4 +67,4 @@ class Popover extends React.Component<Props> {
   }
 }
 
-export default Popover;
+export default Tooltip;
