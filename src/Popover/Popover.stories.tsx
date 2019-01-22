@@ -27,6 +27,7 @@ class PopoverStory extends React.Component {
         <Popover
           body={text('body', 'this can be a string or a component')}
           isOpen={boolean('isOpen', false)}
+          usePointer={boolean('usePointer', false)}
           preferPlace={select(
             'preferPlace',
             ['above', 'below', 'right', 'left'],
