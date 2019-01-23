@@ -14,7 +14,7 @@ addDecorator(story => (
 // automatically import all files ending in *.stories.tsx
 const req = require.context('../src', true, /.stories.tsx$/);
 function loadStories() {
-  require('./codeNameSkull');
+  require('./castUI');
   req.keys().forEach(filename => req(filename));
 }
 
