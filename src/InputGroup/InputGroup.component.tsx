@@ -7,6 +7,12 @@ type Props = {
   /** the label of the input group  */
   label: string;
   /**
+   * Select Input Size
+   *
+   * @default 'md'
+   **/
+  inputSize: string;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -26,6 +32,7 @@ const SLabel = styled.label`
   overflow: hidden;
   height: auto;
   padding: ${(props: Props) => props.theme.label.padding};
+  font-size: ${(props: Props) => props.theme.common[props.inputSize].fontSize};
 `;
 
 const initialState = {

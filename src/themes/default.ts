@@ -6,10 +6,13 @@ export const defaultColors = {
   red: '#FE4A49',
   yellow: '#FEC934',
   white: 'white',
-  gray: '#DEE9E0',
+  gray: '#8D9599',
   lightGray: '#E7EFE8',
   darkGray: '#515C61',
   black: '#0A1521',
+  placeholderGray: '#727A80',
+  disabledBackground: '#ECEFF2',
+  disabledBorder: '#A3AAAD',
 };
 
 export const defaultTheme = {
@@ -87,10 +90,14 @@ export const defaultTheme = {
   },
   input: {
     background: defaultColors.white,
-    backgroundDisabled: defaultColors.lightGray,
     borderColor: defaultColors.gray,
     color: defaultColors.darkGray,
     padding: '.375rem .75rem',
+    placeholderColor: defaultColors.placeholderGray,
+    disabled: {
+      background: defaultColors.disabledBackground,
+      borderColor: defaultColors.disabledBorder,
+    },
   },
   inputGroup: {
     root: {
@@ -99,35 +106,18 @@ export const defaultTheme = {
     },
   },
   label: {
-    padding: '6px 8px',
+    padding: '9px 8px',
   },
-  Textarea: {
+  textarea: {
     background: defaultColors.white,
     backgroundDisabled: defaultColors.lightGray,
     borderColor: defaultColors.gray,
     color: defaultColors.darkGray,
     padding: '.375rem .75rem',
-  },
-  modal: {
-    overlay: {
-      backgroundColor: 'rgba(255, 255, 255, 0.75)',
-    },
-    header: {
-      minHeight: '32px',
-      backgroundColor: defaultColors.white,
-      borderBottom: '1px solid #ccc',
-      padding: '8px 24px 8px 24px',
-    },
-    body: {
-      padding: '16px 24px',
-    },
-    footer: {
-      padding: '12px 24px',
-      minHeight: '32px',
-      marginTop: '0',
-      textAlign: 'right',
-      backgroundColor: darken(defaultColors.white, 5),
-      buttonSpacing: '10px',
+    placeholderColor: defaultColors.placeholderGray,
+    disabled: {
+      background: defaultColors.disabledBackground,
+      borderColor: defaultColors.disabledBorder,
     },
   },
   badge: {
@@ -152,23 +142,24 @@ export const defaultTheme = {
   },
   common: {
     sm: {
-      borderRadius: '4px',
+      borderRadius: '1px',
       fontSize: '10px',
       padding: '5px',
     },
     md: {
-      borderRadius: '4px',
-      fontSize: '12px',
+      borderRadius: '1px',
+      fontSize: '14px',
       padding: '8px',
     },
     lg: {
-      borderRadius: '6px',
+      borderRadius: '1px',
       fontSize: '14px',
       padding: '10px',
     },
   },
   validation: {
-    errorColor: 'red',
+    borderColor: 'red',
+    errorTextColor: defaultColors.placeholderGray,
     fontSize: '11px',
     padding: '4px',
   },
