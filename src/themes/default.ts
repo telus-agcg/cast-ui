@@ -34,6 +34,8 @@ export const defaultTheme = {
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.blue, 5),
       selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.blue,
+      badgeColor: defaultColors.white,
     },
     danger: {
       borderColor: defaultColors.red,
@@ -44,6 +46,8 @@ export const defaultTheme = {
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.red, 5),
       selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.red,
+      badgeColor: defaultColors.white,
     },
     warning: {
       borderColor: defaultColors.yellow,
@@ -54,6 +58,8 @@ export const defaultTheme = {
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.yellow, 5),
       selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.yellow,
+      badgeColor: defaultColors.white,
     },
     success: {
       borderColor: defaultColors.green,
@@ -64,6 +70,8 @@ export const defaultTheme = {
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.green, 5),
       selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.green,
+      badgeColor: defaultColors.white,
     },
     default: {
       borderColor: defaultColors.gray,
@@ -74,6 +82,8 @@ export const defaultTheme = {
       reverseText: defaultColors.black,
       hoverFlood: darken(defaultColors.white, 5),
       selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.gray,
+      badgeColor: defaultColors.black,
     },
   },
   typography: {
@@ -114,6 +124,26 @@ export const defaultTheme = {
   panel: {
     body: {
       background: defaultColors.panelBackground,
+    },
+  },
+  badge: {
+    borderRadius: '10px',
+    fontSize: '10px',
+    padding: '4px 10px',
+    sm: {
+      borderRadius: '10px',
+      fontSize: '10px',
+      padding: '4px 10px',
+    },
+    md: {
+      borderRadius: '12px',
+      fontSize: '12px',
+      padding: '4px 10px',
+    },
+    lg: {
+      borderRadius: '14px',
+      fontSize: '14px',
+      padding: '4px 10px',
     },
   },
   common: {
