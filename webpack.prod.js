@@ -10,7 +10,7 @@ module.exports = merge(common, {
   },
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, '_bundles'),
+    path: path.resolve(__dirname, 'lib-umd'),
     filename: '[name].js',
     libraryTarget: 'umd',
     library: 'cast-ui',

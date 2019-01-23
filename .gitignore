@@ -2,5 +2,5 @@ node_modules
 dist
 lib
 lib-esm
-_bundles
+lib-umd
 .cache

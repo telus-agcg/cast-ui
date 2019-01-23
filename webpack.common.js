@@ -25,14 +25,14 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new CleanWebpackPlugin(['_bundles']),
+    new CleanWebpackPlugin(['lib-umd']),
     new HtmlWebpackPlugin({
-      title: 'TKXS-UI',
+      title: 'cast-ui',
     }),
   ],
   output: {
     filename: '[name].js',
-    library: 'tkxsUI',
+    library: 'castUI',
     path: path.resolve(__dirname, 'lib'),
   },
   optimization: {
