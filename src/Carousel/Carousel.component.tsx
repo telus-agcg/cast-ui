@@ -65,17 +65,28 @@ class Carousel extends React.Component<Props> {
     super(props);
   }
 
+  static defaultProps = {
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: true,
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   render() {
     return (
         <Slider
-          autoplay={(this.props.autoplay === undefined) ? true : this.props.autoplay}
-          autoplaySpeed={(this.props.autoplaySpeed === undefined) ? 5000 : this.props.autoplaySpeed}
-          arrows={(this.props.arrows === undefined) ? true : this.props.arrows}
-          dots={(this.props.dots === undefined) ? true : this.props.dots}
-          infinite={(this.props.infinite === undefined) ? true : this.props.infinite}
-          speed={(this.props.transitionSpeed === undefined) ? 500 : this.props.transitionSpeed}
-          slidesToShow={(this.props.slidesToShow === undefined) ? 1 : this.props.slidesToShow}
-          slidesToScroll={(this.props.slidesToScroll === undefined) ? 1 : this.props.slidesToScroll}
+          autoplay={this.props.autoplay}
+          autoplaySpeed={this.props.autoplaySpeed}
+          arrows={this.props.arrows}
+          dots={this.props.dots}
+          infinite={this.props.infinite}
+          speed={this.props.transitionSpeed}
+          slidesToShow={this.props.slidesToShow}
+          slidesToScroll={this.props.slidesToScroll}
           className="tkxs-carousel"
           >
           {this.props.children}
