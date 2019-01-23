@@ -6,16 +6,16 @@
 
 ### Installation
 
-The library has one required dependency on [styled-components](https://www.styled-components.com/). To install:
+The library depends on [styled-components](https://www.styled-components.com/) as well as React. To install with all peer dependencies:
 
 ```
-npm install @tkxs/cast-ui styled-components --save
+npm install @tkxs/cast-ui styled-components react react-dom --save
 ```
 
 or
 
 ```
-yarn add @tkxs/cast-ui styled-components
+yarn add @tkxs/cast-ui styled-components react react-dom
 ```
 
 The package includes UMD, CommonJS, and ES5 modules. Type definitions are included with CommonJS and ES5 modules.
@@ -36,7 +36,7 @@ class App extends React.Component {
 }
 ```
 
-Import the desired component. Some components have dependencies on third party packages and serve to apply the theme to those components. Check the [documentation](https://technekes.github.io/component-library/) for any required dependencies.
+Import and use the desired component.
 
 ```
 import { Button } from '@tkxs/cast-ui';
