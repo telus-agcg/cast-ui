@@ -1,10 +1,59 @@
 # TKXS Component Library
 
+[Component Documentation](https://technekes.github.io/component-library/)
+
+## Usage
+
+### Installation
+
+The library has one required dependency on [styled-components](https://www.styled-components.com/). To install:
+
+```
+npm install @tkxs/cast-ui styled-components --save
+```
+
+or
+
+```
+yarn add @tkxs/cast-ui styled-components
+```
+
+The package includes UMD, CommonJS, and ES5 modules. Type definitions are included with CommonJS and ES5 modules.
+
+### Components
+
+Components in this library must receive a theme object as [documented](https://technekes.github.io/component-library/). To achieve this, use the `ThemeProvider`, which is passed on from [styled-components](https://www.styled-components.com/docs/advanced#theming). If no theme is provided, components will fall back to a default theme.
+
+```
+class App extends React.Component {
+  render() {
+    return (
+      <ThemeProvider theme={CustomTheme}>
+        <App />
+      </ThemeProvider>
+    )
+  }
+}
+```
+
+Import the desired component. Some components have dependencies on third party packages and serve to apply the theme to those components. Check the [documentation](https://technekes.github.io/component-library/) for any required dependencies.
+
+```
+import { Button } from '@tkxs/cast-ui';
+...
+
+const AwesomeButton = () => {
+  return (
+    <Button btnStyle="success">Click for Awesomeness</Button>
+  )
+}
+```
+
 ## Development
 
 This project is configured to run in Docker containers facilitated by `docker-compose`. [nib](https://github.com/technekes/nib) is our tool of choice for interacting with `docker-compose` in development.
 
-### Running the app
+### Running Storybook
 
 Use [nib](https://github.com/technekes/nib) to build and start up the node server. To optimize `npm install` this project is using a volume for `node_modules`. To initialize `node_modules`, run `nib setup web`.
 
