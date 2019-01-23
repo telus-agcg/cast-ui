@@ -13,12 +13,13 @@ export const defaultColors = {
   placeholderGray: '#727A80',
   disabledBackground: '#ECEFF2',
   disabledBorder: '#A3AAAD',
+  panelBackground: '#F5F7F8',
 };
 
 export const defaultTheme = {
   colors: defaultColors,
   borders: {
-    radius: '.25rem',
+    radius: '1px',
     radiusSm: '.2rem',
     radiusLg: '.3rem',
     width: '1px',
@@ -33,6 +34,8 @@ export const defaultTheme = {
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.blue, 5),
       selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.blue,
+      badgeColor: defaultColors.white,
     },
     danger: {
       borderColor: defaultColors.red,
@@ -43,6 +46,8 @@ export const defaultTheme = {
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.red, 5),
       selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.red,
+      badgeColor: defaultColors.white,
     },
     warning: {
       borderColor: defaultColors.yellow,
@@ -53,6 +58,8 @@ export const defaultTheme = {
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.yellow, 5),
       selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.yellow,
+      badgeColor: defaultColors.white,
     },
     success: {
       borderColor: defaultColors.green,
@@ -63,6 +70,8 @@ export const defaultTheme = {
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.green, 5),
       selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.green,
+      badgeColor: defaultColors.white,
     },
     default: {
       borderColor: defaultColors.gray,
@@ -73,6 +82,8 @@ export const defaultTheme = {
       reverseText: defaultColors.black,
       hoverFlood: darken(defaultColors.white, 5),
       selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.gray,
+      badgeColor: defaultColors.black,
     },
   },
   typography: {
@@ -98,33 +109,41 @@ export const defaultTheme = {
   label: {
     padding: '9px 8px',
   },
-  Textarea: {
+  textarea: {
     background: defaultColors.white,
     backgroundDisabled: defaultColors.lightGray,
     borderColor: defaultColors.gray,
     color: defaultColors.darkGray,
     padding: '.375rem .75rem',
+    placeholderColor: defaultColors.placeholderGray,
+    disabled: {
+      background: defaultColors.disabledBackground,
+      borderColor: defaultColors.disabledBorder,
+    },
   },
-  modal: {
-    overlay: {
-      backgroundColor: 'rgba(255, 255, 255, 0.75)',
-    },
-    header: {
-      minHeight: '32px',
-      backgroundColor: defaultColors.white,
-      borderBottom: '1px solid #ccc',
-      padding: '8px 24px 8px 24px',
-    },
+  panel: {
     body: {
-      padding: '16px 24px',
+      background: defaultColors.panelBackground,
     },
-    footer: {
-      padding: '12px 24px',
-      minHeight: '32px',
-      marginTop: '0',
-      textAlign: 'right',
-      backgroundColor: darken(defaultColors.white, 5),
-      buttonSpacing: '10px',
+  },
+  badge: {
+    borderRadius: '10px',
+    fontSize: '10px',
+    padding: '4px 10px',
+    sm: {
+      borderRadius: '10px',
+      fontSize: '10px',
+      padding: '4px 10px',
+    },
+    md: {
+      borderRadius: '12px',
+      fontSize: '12px',
+      padding: '4px 10px',
+    },
+    lg: {
+      borderRadius: '14px',
+      fontSize: '14px',
+      padding: '4px 10px',
     },
   },
   common: {
