@@ -27,11 +27,16 @@ module.exports = merge(common, {
       commonjs2: 'react',
       commonjs: 'react',
     },
-    lodash: 'lodash',
-    'react-modal': 'react-modal',
-    'react-select': 'react-select',
-    'react-tabs': 'react-tabs',
-    'styled-components': 'styled-components',
-    tinycolor2: 'tinycolor2',
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom',
+    },
+    'styled-components': {
+      commonjs: 'styled-components',
+      commonjs2: 'styled-components',
+      amd: 'styled-components',
+    },
   },
 });
