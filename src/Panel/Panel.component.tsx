@@ -141,8 +141,7 @@ export class Panel extends React.Component<Props, State> {
     this.handleToggleCollapse();
   }
 
-  render() {
-
+  renderHeader() {
     const ChevronImage = this.localIsCollapsed ? (
       <ExpandIcon />
     ) : (
@@ -150,17 +149,23 @@ export class Panel extends React.Component<Props, State> {
     );
 
     return (
+      <PanelHeader
+        panelStyle={this.props.panelStyle || 'default'}
+        collapsible={this.props.collapsible}
+        onClick={() => {
+          this.toggleItem();
+        }}
+      >
+        {this.props.title} {this.props.isCollapsed}
+        {ChevronImage}
+      </PanelHeader>
+    );
+  }
+
+  render() {
+    return (
       <PanelWrapper panelStyle={this.props.panelStyle}>
-        <PanelHeader
-          panelStyle={this.props.panelStyle || 'default'}
-          collapsible={this.props.collapsible}
-          onClick={() => {
-            this.toggleItem();
-          }}
-        >
-          {this.props.title} {this.props.isCollapsed}
-          {ChevronImage}
-        </PanelHeader>
+        {this.renderHeader()}
         <PanelBody
           panelStyle={this.props.panelStyle || 'default'}
           isCollapsed={this.localIsCollapsed}
