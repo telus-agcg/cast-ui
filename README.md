@@ -1,12 +1,71 @@
 # TKXS Component Library
 
+[Component Documentation](https://technekes.github.io/component-library/)
+
+## Usage
+
+### Installation
+
+The library depends on [styled-components](https://www.styled-components.com/)
+as well as React. To install with all peer dependencies:
+
+```
+npm install @tkxs/cast-ui styled-components react react-dom --save
+```
+
+or
+
+```
+yarn add @tkxs/cast-ui styled-components react react-dom
+```
+
+The package includes UMD, CommonJS, and ES5 modules. Type definitions are
+included with CommonJS and ES5 modules.
+
+### Components
+
+Components in this library must receive a theme object as
+[documented](https://technekes.github.io/component-library/). To achieve this,
+use the `ThemeProvider`, which is passed on from
+[styled-components](https://www.styled-components.com/docs/advanced#theming).
+If no theme is provided, components will fall back to a default theme.
+
+```
+class App extends React.Component {
+  render() {
+    return (
+      <ThemeProvider theme={CustomTheme}>
+        <App />
+      </ThemeProvider>
+    )
+  }
+}
+```
+
+Import and use the desired component.
+
+```
+import { Button } from '@tkxs/cast-ui';
+...
+
+const AwesomeButton = () => {
+  return (
+    <Button btnStyle="success">Click for Awesomeness</Button>
+  )
+}
+```
+
 ## Development
 
-This project is configured to run in Docker containers facilitated by `docker-compose`. [nib](https://github.com/technekes/nib) is our tool of choice for interacting with `docker-compose` in development.
+This project is configured to run in Docker containers facilitated by
+`docker-compose`. [nib](https://github.com/technekes/nib) is our tool of
+choice for interacting with `docker-compose` in development.
 
-### Running the app
+### Running Storybook
 
-Use [nib](https://github.com/technekes/nib) to build and start up the node server. To optimize `npm install` this project is using a volume for `node_modules`. To initialize `node_modules`, run `nib setup web`.
+Use [nib](https://github.com/technekes/nib) to build and start up the node
+server. To optimize `npm install` this project is using a volume for
+`node_modules`. To initialize `node_modules`, run `nib setup web`.
 
 ```sh
 nib build --pull
@@ -18,7 +77,8 @@ Visit [http://localhost:6006/](http://localhost:6006/) to view the app.
 
 ### Linting
 
-Ideally you have lint integration setup in you editor (Vim, VSCode etc). If not or for mass lint checks run.
+Ideally you have lint integration setup in you editor (Vim, VSCode etc).
+If not or for mass lint checks run.
 
 ```sh
 nib run web npm run lint
