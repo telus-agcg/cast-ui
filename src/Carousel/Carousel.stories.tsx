@@ -38,26 +38,34 @@ storiesOf('Carousel', module).add(
       <h3>003</h3>
     </div>
   </Carousel>
-  ~~~`)(() => (
-    <Carousel
-      autoplay={boolean('autoplay', true)}
-      autoplaySpeed={number('autoplaySpeed', 5000)}
-      arrows={boolean('arrows', true)}
-      dots={boolean('dots', true)}
-      infinite={boolean('infinite', true)}
-      transitionSpeed={number('transitionSpeed', 500)}
-      slidesToShow={number('slidesToShow', 1)}
-      slidesToScroll={number('slidesToScroll', 1)}
-    >
-      <div>
-        <h3 style={ { backgroundColor: '#ddd', padding: '20px', textAlign: 'center' } }>001</h3>
-      </div>
-      <div>
-        <h3 style={ { backgroundColor: '#ddd', padding: '20px', textAlign: 'center' } }>002</h3>
-      </div>
-      <div>
-        <h3 style={ { backgroundColor: '#ddd', padding: '20px', textAlign: 'center' } }>003</h3>
-      </div>
-    </Carousel>
-  )),
-);
+  ~~~`)(() => {
+
+    const slideStyle: React.CSSProperties = {
+      backgroundColor: '#ddd',
+      padding: '20px',
+      textAlign: 'center' };
+
+    return (
+      <Carousel
+        autoplay={boolean('autoplay', true)}
+        autoplaySpeed={number('autoplaySpeed', 5000)}
+        arrows={boolean('arrows', true)}
+        dots={boolean('dots', true)}
+        infinite={boolean('infinite', true)}
+        transitionSpeed={number('transitionSpeed', 500)}
+        slidesToShow={number('slidesToShow', 1)}
+        slidesToScroll={number('slidesToScroll', 1)}
+      >
+        <div>
+          <h3 style={slideStyle}>001</h3>
+        </div>
+        <div>
+          <h3 style={slideStyle}>002</h3>
+        </div>
+        <div>
+          <h3 style={slideStyle}>003</h3>
+        </div>
+      </Carousel>
+    );
+  },
+));
