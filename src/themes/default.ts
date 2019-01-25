@@ -153,14 +153,6 @@ export const defaultTheme = {
     borderColor: defaultColors.lightGray,
     background: defaultColors.white,
   },
-  popover: {
-    borderColor: defaultColors.lightGray,
-    background: defaultColors.white,
-  },
-  popover: {
-    borderColor: defaultColors.lightGray,
-    background: defaultColors.white,
-  },
   common: {
     sm: {
       borderRadius: '1px',

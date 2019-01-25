@@ -5,7 +5,6 @@ import Popover from './Popover.component';
 import { wInfo } from '../storybook-utils';
 import { boolean } from '@storybook/addon-knobs';
 
-
 storiesOf('Popover', module).add(
   'ControlledPopover',
   wInfo(`
