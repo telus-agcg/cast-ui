@@ -24,6 +24,12 @@
     "watch": true,
     "resolveJsonModule": true
   },
+  "linterOptions": {
+    "exclude": [
+      "*.json",
+      "**/*.json"
+    ]
+  },
   "include": ["./src/**/*.ts", "./src/**/*.tsx"],
-  "exclude": ["node_modules", "dist", "scripts", "**/*.css", "**/*.json"]
+  "exclude": ["node_modules", "dist", "scripts", "**/*.css", "*.json", "**/*.json"]
 }

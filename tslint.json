@@ -2,12 +2,14 @@
   "extends": ["tslint-config-airbnb"],
   "linterOptions": {
     "exclude": [
-        "*.css"
+        "*.css",
+        "*.json",
+        "**/*.json"
     ]
   },
   "rules": {
     "import-name": [false],
     "variable-name": false,
-    "quote-props": false
+    "quote-props": [false]
   }
 }
