@@ -14,6 +14,7 @@ export const defaultColors = {
   placeholderGray: '#727A80',
   disabledBackground: '#ECEFF2',
   disabledBorder: '#A3AAAD',
+  disabledText: '#A3AAAD',
   panelBackground: '#F5F7F8',
 };
 
@@ -82,6 +83,18 @@ export const defaultTheme = {
       text: defaultColors.black,
       reverseText: defaultColors.black,
       hoverFlood: darken(defaultColors.white, 5),
+      selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.gray,
+      badgeColor: defaultColors.black,
+    },
+    pagination: {
+      borderColor: defaultColors.white,
+      flood: defaultColors.white,
+      lightFlood: defaultColors.white,
+      hoverlightFlood: defaultColors.white,
+      text: defaultColors.black,
+      reverseText: defaultColors.black,
+      hoverFlood: defaultColors.white,
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.gray,
       badgeColor: defaultColors.black,
@@ -182,6 +195,22 @@ export const defaultTheme = {
     row: {
       borderBottomColor: defaultColors.mediumGray,
       hoverColor: defaultColors.mediumGray,
+    },
+    pagination: {
+      padding: '4px 0',
+      button: {
+        disabledText: defaultColors.disabledText,
+        fontWeight: 'normal',
+        fontWeightSelected: 'bold',
+        padding: {
+          sm: '3px 6px',
+          md: '4px 8px',
+          lg: '5px 10px',
+        },
+        nextPrevious: {
+          fontWeight: 'bold',
+        },
+      },
     },
   },
 };

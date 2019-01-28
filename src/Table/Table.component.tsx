@@ -194,6 +194,8 @@ class Table extends React.Component<Props> {
               multiSort={this.props.multiSort}
               resizable={this.props.resizable}
               filterable={this.props.filterable}
+              nextText="Next >"
+              previousText="< Previous"
             />
         </SWrapperDiv>
     );

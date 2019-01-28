@@ -1,14 +1,30 @@
-// import React, { Component } from 'react';
 import * as React from 'react';
+import styled from 'styled-components';
+import SPaginationButton from './SPaginationButton';
+import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
 
 type Props = {
+  /* Props from react-table component */
   pages: number;
   page: number;
   PageButtonComponent: any;
+  PageButtonNextPrevComponent: any;
   onPageChange: any;
   previousText: string;
   nextText: string;
   children?: any;
+  /**
+   * From theme provider
+   *
+   * @default defaultTheme
+   **/
+  theme?: any;
+  /**
+   * Select Button Size
+   *
+   * @default 'md'
+   **/
+  btnSize: string;
 };
 
 const initialState = {
@@ -18,12 +34,17 @@ type State = {
   visiblePages: number[];
 };
 
-const defaultButton = (props: Props) => <button {...props}>{props.children}</button>;
+const SDivPaginationWrapper = styled.div`
+  padding: ${(props: any) => props.theme.table.pagination.padding};
+`;
+
+const SDivPaginationSectionWrapper = styled.div`
+  display: inline-block;
+`;
 
 class TablePagination extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-    console.log('constructor');
 
     this.changePage = this.changePage.bind(this);
 
@@ -78,17 +99,18 @@ class TablePagination extends React.Component<Props> {
   }
 
   render() {
-    const { PageButtonComponent = defaultButton } = this.props;
+    const { PageButtonComponent = SPaginationButton } = this.props;
+    const {
+      PageButtonNextPrevComponent = SPaginationButtonNextPrev,
+    } = this.props;
     const { visiblePages } = this.state;
-    // console.log('this.state');
-    // console.log(this.state);
     const activePage = this.props.page + 1;
 
     return (
-      <div className="Table__pagination">
-        <div className="Table__prevPageWrapper">
-          <PageButtonComponent
-            className="Table__pageButton"
+      <SDivPaginationWrapper>
+        <SDivPaginationSectionWrapper>
+          <PageButtonNextPrevComponent
+            btnSize="md"
             onClick={() => {
               if (activePage === 1) return;
               this.changePage(activePage - 1);
@@ -96,28 +118,25 @@ class TablePagination extends React.Component<Props> {
             disabled={activePage === 1}
           >
             {this.props.previousText}
-          </PageButtonComponent>
-        </div>
-        <div className="Table__visiblePagesWrapper">
+          </PageButtonNextPrevComponent>
+        </SDivPaginationSectionWrapper>
+        <SDivPaginationSectionWrapper>
           {visiblePages.map((page: number, index: number, array: number[]) => {
             return (
               <PageButtonComponent
+                btnSize="md"
                 key={page}
-                className={
-                  activePage === page
-                    ? 'Table__pageButton Table__pageButton--active'
-                    : 'Table__pageButton'
-                }
+                data-selected={activePage === page ? '' : undefined}
                 onClick={this.changePage.bind(null, page)}
               >
                 {array[index - 1] + 2 < page ? `...${page}` : page}
               </PageButtonComponent>
             );
           })}
-        </div>
-        <div className="Table__nextPageWrapper">
-          <PageButtonComponent
-            className="Table__pageButton"
+        </SDivPaginationSectionWrapper>
+        <SDivPaginationSectionWrapper>
+          <PageButtonNextPrevComponent
+            btnSize="md"
             onClick={() => {
               if (activePage === this.props.pages) return;
               this.changePage(activePage + 1);
@@ -125,9 +144,9 @@ class TablePagination extends React.Component<Props> {
             disabled={activePage === this.props.pages}
           >
             {this.props.nextText}
-          </PageButtonComponent>
-        </div>
-      </div>
+          </PageButtonNextPrevComponent>
+        </SDivPaginationSectionWrapper>
+      </SDivPaginationWrapper>
     );
   }
 }
