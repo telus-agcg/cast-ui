@@ -1,0 +1,9 @@
+.*
+**/tsconfig.*
+**/tslint.*
+**/webpack.*.js
+node_modules
+src
+bin
+Dockerfile
+docker-compose.*

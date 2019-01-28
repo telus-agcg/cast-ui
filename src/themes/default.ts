@@ -1,5 +1,7 @@
 import { lighten, darken } from '../utils/colorUtils';
 
+export { ThemeProvider } from 'styled-components';
+
 export const defaultColors = {
   blue: '#0985E3',
   green: '#00B52D',
