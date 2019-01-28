@@ -8,6 +8,6 @@
   "rules": {
     "import-name": [false],
     "variable-name": false,
-    "quote-props": false,
+    "quote-props": false
   }
 }
