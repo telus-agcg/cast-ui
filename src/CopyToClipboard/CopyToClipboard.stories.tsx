@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs/react';
+import { select, text, boolean } from '@storybook/addon-knobs/react';
 
 import { CopyToClipboard } from './CopyToClipboard.component';
 import { wInfo } from '../storybook-utils';
@@ -16,15 +16,22 @@ storiesOf('CopyToClipboard', module).add(
   ### Usage
   ~~~js
     <CopyToClipboard
-      background="disabledBackground"
+      copyText='Some text that is usually copied to clipboard.'
+      background='disabledBackground'
+      includeButton={true}
     />
   ~~~`)(() => (
     <CopyToClipboard
+      copyText={text(
+        'Copy text',
+        'Some text that is usually copied to clipboard.',
+      )}
       background={select(
         'background',
         ['disabledBackground', 'gray', 'blue', 'white', 'red', 'yellow'],
         'lightGray',
       )}
+      includeButton={boolean('Include Copy Button', true)}
     />
   )),
 );

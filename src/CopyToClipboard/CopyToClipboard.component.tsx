@@ -4,11 +4,23 @@ import styled from 'styled-components';
 
 type Props = {
   /**
+   * Text to be copied
+   *
+   * @default ''
+   **/
+  copyText: string;
+  /**
    * Select container background color. Must be a color defined in theme colors
    *
    * @default 'disabledBackground'
    **/
   background: string;
+  /**
+   * Include the copy-text button
+   *
+   * @default false
+   **/
+  includeButton?: boolean;
   /**
    * From theme provider
    *
@@ -57,18 +69,31 @@ export class CopyToClipboard extends React.Component<Props> {
   }
 
   render() {
-    const { background = 'disabledBackground', theme } = this.props;
+    const {
+      copyText = '',
+      background = 'disabledBackground',
+      includeButton = false,
+      theme,
+    } = this.props;
     return (
-      <SCopyToClipboard background={background} theme={theme}>
-        <div ref="copyContainer" className="copy-container">
-          Sample Text for the copyContainer
-        </div>
-        <button
+      <SCopyToClipboard
+        background={background}
+        copyText={copyText}
+        theme={theme}>
+        <div
+          ref="copyContainer"
           onClick={this.copyToClipboard}
-          type="button"
-          className="copy-button">
-          Click Button
-        </button>
+          className="copy-container">
+          {copyText}
+        </div>
+        {includeButton && (
+          <button
+            onClick={this.copyToClipboard}
+            type="button"
+            className="copy-button">
+            Click Button
+          </button>
+        )}
       </SCopyToClipboard>
     );
   }
