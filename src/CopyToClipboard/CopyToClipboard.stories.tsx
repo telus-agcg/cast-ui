@@ -16,23 +16,14 @@ storiesOf('CopyToClipboard', module).add(
   ### Usage
   ~~~js
     <CopyToClipboard
-      color="lightGray"
-      size={40}
-      animationSpeed={2}
+      background="disabledBackground"
     />
   ~~~`)(() => (
     <CopyToClipboard
-      color={select(
-        'color',
-        ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
+      background={select(
+        'background',
+        ['disabledBackground', 'gray', 'blue', 'white', 'red', 'yellow'],
         'lightGray',
-      )}
-      size={select('size', [20, 30, 40, 50, 60], 40)}
-      animationSpeed={select('animationSpeed', [1, 2, 3, 4, 5], 2)}
-      transitionType={select(
-        'transitionType',
-        ['ease-in-out', 'ease-in', 'ease-out', 'linear', 'ease'],
-        'ease-in-out',
       )}
     />
   )),

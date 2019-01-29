@@ -1,31 +1,14 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 type Props = {
   /**
-   * Select Spinner color. Must be a color defined in theme colors
+   * Select container background color. Must be a color defined in theme colors
    *
-   * @default 'lightGray'
+   * @default 'disabledBackground'
    **/
-  color: string;
-  /**
-   * Adjust spinner size in pixels
-   *
-   * @default 40px
-   **/
-  size: number;
-  /**
-   * Adjust animation speed in seconds
-   *
-   * @default 2s
-   **/
-  animationSpeed: number;
-  /**
-   * Select transition type
-   *
-   * @default 'ease-in-out'
-   **/
-  transitionType: string;
+  background: string;
   /**
    * From theme provider
    *
@@ -35,71 +18,58 @@ type Props = {
 };
 
 const SCopyToClipboard = styled.div`
-  width: ${(props: Props) => `${props.size}px`}
-  height: ${(props: Props) => `${props.size}px`};
+  width: auto;
+  height: auto;
   position: relative;
-  margin: 100px auto;
+  display: flex;
+  padding: 16px;
+  background-color: ${(props: Props) => props.theme.colors[props.background]};
 
-  .double-bounce1,
-  .double-bounce2 {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: ${props => props.theme.colors[props.color]};
-    opacity: 0.6;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    -webkit-animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
-    animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
+  .copy-container {
+    flex-grow: 1;
   }
-
-  .double-bounce2 {
-    -webkit-animation-delay: ${(props: Props) =>
-      `-${props.animationSpeed / 2}s`};
-    animation-delay: ${(props: Props) => `-${props.animationSpeed / 2}s`};
-  }
-
-  @-webkit-keyframes sk-bounce {
-    0%,
-    100% {
-      -webkit-transform: scale(0);
-    }
-    50% {
-      -webkit-transform: scale(1);
-    }
-  }
-
-  @keyframes sk-bounce {
-    0%,
-    100% {
-      transform: scale(0);
-      -webkit-transform: scale(0);
-    }
-    50% {
-      transform: scale(1);
-      -webkit-transform: scale(1);
-    }
+  .copy-button {
+    flex-grow: 0;
+    cursor: pointer;
   }
 `;
 
-export const CopyToClipboard: React.FunctionComponent<Props> = ({
-  color = 'lightGray',
-  size = 40,
-  animationSpeed = 2,
-  transitionType = 'ease-in-out',
-  theme,
-}) => (
-  <SCopyToClipboard
-    color={color}
-    size={size}
-    animationSpeed={animationSpeed}
-    transitionType={transitionType}
-    theme={theme}>
-    <div className="double-bounce1" />
-    <div className="double-bounce2" />
-  </SCopyToClipboard>
-);
+export class CopyToClipboard extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+
+    this.copyToClipboard = this.copyToClipboard.bind(this);
+  }
+  public refs: {
+    copyContainer: HTMLDivElement;
+  };
+
+  copyToClipboard(e: any) {
+    const copyContainerNode: any = ReactDOM.findDOMNode(
+      this.refs.copyContainer,
+    );
+    const textField = document.createElement('textarea');
+    textField.innerText = copyContainerNode.innerText;
+    document.body.appendChild(textField);
+    textField.select();
+    document.execCommand('copy');
+    textField.remove();
+  }
+
+  render() {
+    const { background = 'disabledBackground', theme } = this.props;
+    return (
+      <SCopyToClipboard background={background} theme={theme}>
+        <div ref="copyContainer" className="copy-container">
+          Sample Text for the copyContainer
+        </div>
+        <button
+          onClick={this.copyToClipboard}
+          type="button"
+          className="copy-button">
+          Click Button
+        </button>
+      </SCopyToClipboard>
+    );
+  }
+}
