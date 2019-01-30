@@ -61,6 +61,7 @@ const SCopyToClipboard = styled.div`
   .copy-button {
     flex-grow: 0;
     cursor: pointer;
+    height: 25px;
   }
 `;
 
