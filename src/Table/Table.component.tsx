@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import TablePagination from './TablePagination.component';
+import TablePagination from '../TablePagination/TablePagination.component';
 
 type Props = {
   data: any;

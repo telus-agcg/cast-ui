@@ -1,17 +1,44 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import SPaginationButton from './SPaginationButton';
-import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
+import SPaginationButton from '../Table/SPaginationButton';
+import SPaginationButtonNextPrev from '../Table/SPaginationButtonNextPrev';
 
 type Props = {
-  /* Props from react-table component */
-  pages: number;
-  page: number;
-  PageButtonComponent: any;
-  PageButtonNextPrevComponent: any;
-  onPageChange: any;
-  previousText: string;
+  /**
+   * Specify the size of the buttons to use
+   **/
+  btnSize: string;
+  /**
+   * Specify the text of the next button
+   **/
   nextText: string;
+  /**
+   * Specify the function to fire when a page is changed
+   **/
+  onPageChange: any;
+  /**
+   * Specify the total number of pages
+   **/
+  pages: number;
+  /**
+   * Specify the currently selected page (zero-based)
+   **/
+  page: number;
+  /**
+   * Specify the button definition to use for the individual page buttons
+   **/
+  PageButtonComponent: any;
+  /**
+   * Specify the button definition to use for the previous and next buttons
+   **/
+  PageButtonNextPrevComponent: any;
+  /**
+   * Specify the text of the previous button
+   **/
+  previousText: string;
+  /**
+   * Specify any child objects (if applicable)
+   **/
   children?: any;
   /**
    * From theme provider
@@ -19,12 +46,6 @@ type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-  /**
-   * Select Button Size
-   *
-   * @default 'md'
-   **/
-  btnSize: string;
 };
 
 const initialState = {
