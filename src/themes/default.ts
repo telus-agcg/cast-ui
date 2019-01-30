@@ -15,6 +15,7 @@ export const defaultColors = {
   placeholderGray: '#727A80',
   disabledBackground: '#ECEFF2',
   disabledBorder: '#A3AAAD',
+  disabledText: '#A3AAAD',
   panelBackground: '#F5F7F8',
 };
 
@@ -106,6 +107,22 @@ export const defaultTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
+    },
+  },
+  checkbox: {
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: defaultColors.gray,
+    disabledText: defaultColors.disabledText,
+    unselectedColor: defaultColors.white,
+    sm: {
+      size: '6px',
+    },
+    md: {
+      size: '10px',
+    },
+    lg: {
+      size: '14px',
     },
   },
   label: {
