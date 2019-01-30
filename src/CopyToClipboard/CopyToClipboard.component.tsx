@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 type Props = {
@@ -71,11 +70,10 @@ export class CopyToClipboard extends React.Component<Props> {
 
     this.copyToClipboard = this.copyToClipboard.bind(this);
   }
+  private copyContainerRef = React.createRef<HTMLDivElement>();
 
   public copyToClipboard(e: any) {
-    const copyContainerNode: any = ReactDOM.findDOMNode(
-      this.refs.copyContainer,
-    );
+    const copyContainerNode: any = this.copyContainerRef.current;
     const textField = document.createElement('textarea');
     textField.innerText = copyContainerNode.innerText;
     document.body.appendChild(textField);
@@ -104,7 +102,7 @@ export class CopyToClipboard extends React.Component<Props> {
         copyButtonClass={copyButtonClass}
         theme={theme}>
         <div
-          ref="copyContainer"
+          ref={this.copyContainerRef}
           onClick={this.copyToClipboard}
           className={`copy-container ${copyContainerClass}`}>
           {copyText}
