@@ -13,18 +13,18 @@ type Props = {
    *
    * @default null
    **/
-  name: string;
+  name?: string;
   /**
    * Specify if the radio button is checked
    *
    * @default false
    **/
-  checked: boolean
+  checked?: boolean;
   /**
    * Specify if the radio button should be disabled
    *
    * @default false
-   **/;
+   **/
   disabled: boolean;
   /**
    * Specify the size of the radio button (sm | md | lg)
@@ -34,16 +34,18 @@ type Props = {
   rbSize: 'sm' | 'md' | 'lg';
   /**
    * Specify the style of the button (primary, default, success, etc.)
-   *
-   * @default 'default'
    **/
   rbStyle: string;
   /**
    * Specify the value of the radio button group when the current button is selected
-   *
-   * @default 'default'
    **/
   value: string;
+  /**
+   * Specify the function to fire when the radiobutton is checked or unchecked
+   *
+   * @default null
+   **/
+  onChange?: any;
   /**
    * From theme provider
    *
@@ -93,22 +95,29 @@ const SInput = styled.input`
   }
 `;
 
-export const RadioButton: React.FunctionComponent<Props> = (inputProps) => {
-  return (
-    <SDiv data-radiobutton="">
-      <SInput
-        type="radio"
-        name={inputProps.name}
-        rbStyle={inputProps.rbStyle}
-        rbSize={inputProps.rbSize}
-        disabled={inputProps.disabled}
-        id={inputProps.id}
-        value={inputProps.value}
-        checked={inputProps.checked}
-      />
-      <SLabel htmlFor={inputProps.id} rbSize={inputProps.rbSize}>
-        {inputProps.children}
-      </SLabel>
-    </SDiv>
-  );
-};
+export default class RadioButton extends React.Component<Props> {
+  handleChange = (evt: any) => {
+    this.props.onChange(this.props.value, this.props.name, evt);
+  }
+
+  render() {
+    return (
+      <SDiv data-radiobutton="">
+        <SInput
+          type="radio"
+          name={this.props.name}
+          rbStyle={this.props.rbStyle}
+          rbSize={this.props.rbSize}
+          disabled={this.props.disabled}
+          id={this.props.id}
+          value={this.props.value}
+          checked={this.props.checked}
+          onChange={this.handleChange}
+        />
+        <SLabel htmlFor={this.props.id} rbSize={this.props.rbSize}>
+          {this.props.children}
+        </SLabel>
+      </SDiv>
+    );
+  }
+}
