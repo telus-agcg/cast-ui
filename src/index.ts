@@ -14,4 +14,4 @@ export * from './Panel/Panel.component';
 export * from './Select/Select.component';
 export * from './Textarea/Textarea.component';
 export * from './Spinner/Spinner.component';
-export * from './CopyToClipboard';
+export * from './CopyToClipboard/CopyToClipboard.component';

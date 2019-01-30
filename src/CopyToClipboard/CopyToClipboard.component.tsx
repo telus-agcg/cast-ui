@@ -71,11 +71,8 @@ export class CopyToClipboard extends React.Component<Props> {
 
     this.copyToClipboard = this.copyToClipboard.bind(this);
   }
-  public refs: {
-    copyContainer: HTMLDivElement;
-  };
 
-  copyToClipboard(e: any) {
+  public copyToClipboard(e: any) {
     const copyContainerNode: any = ReactDOM.findDOMNode(
       this.refs.copyContainer,
     );
