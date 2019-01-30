@@ -14,7 +14,7 @@ type Props = {
    *
    * @default 'copy-container'
    **/
-  copyContainerClass: string;
+  copyContainerClass?: string;
   /**
    * Select container background color. Must be a color defined in theme colors
    *
@@ -26,19 +26,19 @@ type Props = {
    *
    * @default true
    **/
-  includeCopyButton: boolean;
+  includeCopyButton?: boolean;
   /**
    * Label to be used on the button
    *
    * @default 'copy'
    **/
-  copyButtonText: string;
+  copyButtonText?: string;
   /**
    * Assign class to the copy button
    *
    * @default 'copy-button'
    **/
-  copyButtonClass: string;
+  copyButtonClass?: string;
   /**
    * From theme provider
    *
