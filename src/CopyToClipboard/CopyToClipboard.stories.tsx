@@ -17,21 +17,27 @@ storiesOf('CopyToClipboard', module).add(
   ~~~js
     <CopyToClipboard
       copyText='Some text that is usually copied to clipboard.'
+      copyContainerClass='copy-container'
       background='disabledBackground'
-      includeButton={true}
+      includeCopyButton={true}
+      copyButtonText='copy'
+      copyButtonClass='copy-button'
     />
   ~~~`)(() => (
     <CopyToClipboard
       copyText={text(
-        'Copy text',
+        'Copy Text',
         'Some text that is usually copied to clipboard.',
       )}
+      copyContainerClass={text('Copy Container Class', 'copy-container')}
       background={select(
-        'background',
+        'Background',
         ['disabledBackground', 'gray', 'blue', 'white', 'red', 'yellow'],
         'lightGray',
       )}
-      includeButton={boolean('Include Copy Button', true)}
+      includeCopyButton={boolean('Include Copy Button', true)}
+      copyButtonText={text('Copy Button Text', 'copy')}
+      copyButtonClass={text('Copy Button Class', 'copy-button')}
     />
   )),
 );

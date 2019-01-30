@@ -10,6 +10,12 @@ type Props = {
    **/
   copyText: string;
   /**
+   * Assign class to the container enclosing the text to be copied
+   *
+   * @default 'copy-container'
+   **/
+  copyContainerClass: string;
+  /**
    * Select container background color. Must be a color defined in theme colors
    *
    * @default 'disabledBackground'
@@ -18,9 +24,21 @@ type Props = {
   /**
    * Include the copy-text button
    *
-   * @default false
+   * @default true
    **/
-  includeButton?: boolean;
+  includeCopyButton: boolean;
+  /**
+   * Label to be used on the button
+   *
+   * @default 'copy'
+   **/
+  copyButtonText: string;
+  /**
+   * Assign class to the copy button
+   *
+   * @default 'copy-button'
+   **/
+  copyButtonClass: string;
   /**
    * From theme provider
    *
@@ -71,27 +89,34 @@ export class CopyToClipboard extends React.Component<Props> {
   render() {
     const {
       copyText = '',
+      copyContainerClass = '',
       background = 'disabledBackground',
-      includeButton = false,
+      includeCopyButton = true,
+      copyButtonText = 'copy',
+      copyButtonClass = '',
       theme,
     } = this.props;
     return (
       <SCopyToClipboard
-        background={background}
         copyText={copyText}
+        copyContainerClass={copyContainerClass}
+        background={background}
+        includeCopyButton={includeCopyButton}
+        copyButtonText={copyButtonText}
+        copyButtonClass={copyButtonClass}
         theme={theme}>
         <div
           ref="copyContainer"
           onClick={this.copyToClipboard}
-          className="copy-container">
+          className={`copy-container ${copyContainerClass}`}>
           {copyText}
         </div>
-        {includeButton && (
+        {includeCopyButton && (
           <button
             onClick={this.copyToClipboard}
             type="button"
-            className="copy-button">
-            Click Button
+            className={`copy-button ${copyButtonClass}`}>
+            {copyButtonText}
           </button>
         )}
       </SCopyToClipboard>
