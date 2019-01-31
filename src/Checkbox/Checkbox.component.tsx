@@ -3,37 +3,49 @@ import styled from 'styled-components';
 
 type Props = {
   /**
-   * Specify the ID of the individual radio button
+   * Specify the ID of the individual checkbox
    *
    * @default null
    **/
   id: string;
   /**
-   * Specify if the radio button is checked
-   *
-   * @default false
-   **/
-  checked: boolean;
-  /**
-   * Specify if the radio button should be disabled
-   *
-   * @default false
-   **/
-  disabled: boolean;
-  /**
-   * Specify the size of the radio button (sm | md | lg)
+   * Specify the size of the checkbox (sm | md | lg)
    *
    * @default 'md'
    **/
   cbSize: 'sm' | 'md' | 'lg';
   /**
-   * Specify the style of the button (primary, default, success, etc.)
+   * Specify the style of the checkbox (primary, default, success, etc.)
    *
    * @default 'default'
    **/
   cbStyle: string;
   /**
-   * Specify the value of the radio button group when the current button is selected
+   * Specify if the checkbox is checked
+   *
+   * @default false
+   **/
+  checked?: boolean;
+  /**
+   * Specify if the default state of the checkbox is checked
+   *
+   * @default false
+   **/
+  defaultChecked?: boolean;
+  /**
+   * Specify if the checkbox should be disabled
+   *
+   * @default false
+   **/
+  disabled: boolean;
+  /**
+   * Specify the function to fire when the checkbox is changed
+   *
+   * @default 'default'
+   **/
+  onChange?: any;
+  /**
+   * Specify the value of the checkbox group when the current button is selected
    *
    * @default 'default'
    **/
@@ -89,30 +101,52 @@ const SInput = styled.input`
       position: absolute;
       height: 5px;
       border-style: solid;
-      border-color: ${(props: Props) => props.theme.styles[props.cbStyle].flood};
+      border-color: ${(props: Props) =>
+        props.theme.styles[props.cbStyle].borderColor};
       border-width: 0 3px 3px 0;
       transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       margin-left: 6px;
-  }
+
+    }
+    &:checked&:disabled + label:after {
+      border-color: ${(props: Props) => props.theme.checkbox.disabledText};
+    }
 `;
 
-export const Checkbox: React.FunctionComponent<Props> = (inputProps) => {
-  return (
-    <SDiv data-radiobutton="">
-      <SInput
-        type="checkbox"
-        cbStyle={inputProps.cbStyle}
-        cbSize={inputProps.cbSize}
-        disabled={inputProps.disabled}
-        id={inputProps.id}
-        value={inputProps.value}
-        checked={inputProps.checked}
-      />
-      <SLabel htmlFor={inputProps.id} cbSize={inputProps.cbSize}>
-        {inputProps.children}
-      </SLabel>
-    </SDiv>
-  );
-};
+class Checkbox extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+  }
+
+  input: any;
+
+  render() {
+    return (
+      <SDiv data-radiobutton="">
+        <SInput
+          type="checkbox"
+          onChange={(evt: any) => {
+            this.props.onChange(this.input.checked, this.props.id, evt);
+          }}
+          cbStyle={this.props.cbStyle}
+          cbSize={this.props.cbSize}
+          disabled={this.props.disabled}
+          id={this.props.id}
+          value={this.props.value}
+          checked={this.props.checked}
+          defaultChecked={this.props.defaultChecked}
+          ref={(el: any) => {
+            this.input = el;
+          }}
+        />
+        <SLabel htmlFor={this.props.id} cbSize={this.props.cbSize}>
+          {this.props.children}
+        </SLabel>
+      </SDiv>
+    );
+  }
+}
+
+export default Checkbox;
