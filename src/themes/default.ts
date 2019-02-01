@@ -122,6 +122,38 @@ export const defaultTheme = {
       flexWrap: 'wrap',
     },
   },
+  radioButton: {
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: defaultColors.gray,
+    disabledText: defaultColors.disabledText,
+    unselectedColor: defaultColors.white,
+    sm: {
+      size: '6px',
+    },
+    md: {
+      size: '10px',
+    },
+    lg: {
+      size: '14px',
+    },
+  },
+  checkbox: {
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: defaultColors.gray,
+    disabledText: defaultColors.disabledText,
+    unselectedColor: defaultColors.white,
+    sm: {
+      size: '6px',
+    },
+    md: {
+      size: '10px',
+    },
+    lg: {
+      size: '14px',
+    },
+  },
   label: {
     padding: '9px 8px',
   },
