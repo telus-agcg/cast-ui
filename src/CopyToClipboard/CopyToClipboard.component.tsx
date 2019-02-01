@@ -112,7 +112,7 @@ export class CopyToClipboard extends React.Component<Props> {
         {includeCopyButton && (
           <button
             onClick={() =>
-              CopyToClipboard.copyToClipboard(this.copyContainerRef.current)
+              CopyToClipboard.copyToClipboard(' ans sosanbgdkhfkwhfekwhdgkb')
             }
             type="button"
             className={`copy-button ${copyButtonClass}`}>
