@@ -29,6 +29,10 @@ storiesOf('CopyToClipboard', module).add(
 
     <button type="button" onClick={CopyToClipboard.copyToClipboard}>Copy Me</button>
 
+    <button type="button" onClick={CopyToClipboard.copyToClipboard('Some Custom Text')}>Navigate</button>
+
+    <a href="https://www.npmjs.com/package/@tkxs/cast-ui" onClick={CopyToClipboard.copyToClipboard('https://www.npmjs.com/package/@tkxs/cast-ui')}>Copy Me</a>
+
   ~~~`)(() => (
     <CopyToClipboard
       copyText={text(
