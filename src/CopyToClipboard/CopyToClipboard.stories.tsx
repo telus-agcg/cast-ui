@@ -27,11 +27,27 @@ storiesOf('CopyToClipboard', module).add(
     // Alternatively, the CopyToClipboard function can be used
     // on some external element to copy enclosed text as follows:
 
-    <button type="button" onClick={CopyToClipboard.copyToClipboard}>Copy Me</button>
+    <button type="button" onClick={CopyToClipboard.copyToClipboard}>
+      Copy Me
+    </button>
 
-    <button type="button" onClick={() => CopyToClipboard.copyToClipboard('Some Custom Text')}>Navigate</button>
+    <button
+      type="button"
+      onClick={() =>
+        CopyToClipboard.copyToClipboard('Some Custom Text')
+      }>
+      Navigate
+    </button>
 
-    <a href="#" onClick={() => CopyToClipboard.copyToClipboard('https://www.npmjs.com/package/@tkxs/cast-ui')}>Copy Me</a>
+    <a
+      href="#"
+      onClick={() =>
+        CopyToClipboard.copyToClipboard(
+          'https://www.npmjs.com/package/@tkxs/cast-ui',
+        )
+      }>
+      Copy Me
+    </a>
 
   ~~~`)(() => (
     <CopyToClipboard
