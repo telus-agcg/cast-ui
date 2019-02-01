@@ -11,7 +11,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm && webpack --config webpack.prod.js",
-    "build-dev": "tsc -w",
+    "build-dev": "npm run clean && tsc -w -m es6 --outDir lib-esm",
     "storybook": "start-storybook -p 6006 --ci -c .storybook",
     "lint": "tslint --project tsconfig.json",
     "clean": "shx rm -rf lib lib-esm lib-umd",
