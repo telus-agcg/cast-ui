@@ -20,8 +20,16 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "declaration": true
+    "declaration": true,
+    "watch": true,
+    "resolveJsonModule": true
+  },
+  "linterOptions": {
+    "exclude": [
+      "*.json",
+      "**/*.json"
+    ]
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx"],
-  "exclude": ["node_modules", "lib", "scripts", "**/*.css"]
+  "exclude": ["node_modules", "dist", "scripts", "**/*.css", "*.json", "**/*.json"]
 }

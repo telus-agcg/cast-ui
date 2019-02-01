@@ -10,6 +10,7 @@ export const defaultColors = {
   white: 'white',
   gray: '#8D9599',
   lightGray: '#E7EFE8',
+  mediumGray: '#C9CDCE',
   darkGray: '#515C61',
   black: '#0A1521',
   placeholderGray: '#727A80',
@@ -84,6 +85,18 @@ export const defaultTheme = {
       text: defaultColors.black,
       reverseText: defaultColors.black,
       hoverFlood: darken(defaultColors.white, 5),
+      selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.gray,
+      badgeColor: defaultColors.black,
+    },
+    pagination: {
+      borderColor: defaultColors.white,
+      flood: defaultColors.white,
+      lightFlood: defaultColors.white,
+      hoverlightFlood: defaultColors.white,
+      text: defaultColors.black,
+      reverseText: defaultColors.black,
+      hoverFlood: defaultColors.white,
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.gray,
       badgeColor: defaultColors.black,
@@ -186,16 +199,19 @@ export const defaultTheme = {
       borderRadius: '1px',
       fontSize: '10px',
       padding: '5px',
+      tableCellPadding: '7px',
     },
     md: {
       borderRadius: '1px',
-      fontSize: '14px',
+      fontSize: '12px',
       padding: '8px',
+      tableCellPadding: '9px',
     },
     lg: {
       borderRadius: '1px',
       fontSize: '14px',
       padding: '10px',
+      tableCellPadding: '11px',
     },
   },
   validation: {
@@ -203,5 +219,32 @@ export const defaultTheme = {
     errorTextColor: defaultColors.placeholderGray,
     fontSize: '11px',
     padding: '4px',
+  },
+  table: {
+    header: {
+      borderBottomColor: defaultColors.darkGray,
+      color: defaultColors.blue,
+      fontWeight: 'bold',
+    },
+    row: {
+      borderBottomColor: defaultColors.mediumGray,
+      hoverColor: defaultColors.mediumGray,
+    },
+    pagination: {
+      padding: '4px 0',
+      button: {
+        disabledText: defaultColors.disabledText,
+        fontWeight: 'normal',
+        fontWeightSelected: 'bold',
+        padding: {
+          sm: '3px 6px',
+          md: '4px 8px',
+          lg: '5px 10px',
+        },
+        nextPrevious: {
+          fontWeight: 'bold',
+        },
+      },
+    },
   },
 };
