@@ -1,3 +1,3 @@
-import { CopyToClipboard, clickToCopy } from './CopyToClipboard.component';
+import { CopyToClipboard } from './CopyToClipboard.component';
 
-export default { CopyToClipboard, clickToCopy };
+export default CopyToClipboard;

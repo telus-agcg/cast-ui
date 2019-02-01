@@ -71,7 +71,6 @@ export class CopyToClipboard extends React.Component<Props> {
   private copyContainerRef = React.createRef<HTMLDivElement>();
 
   static copyToClipboard(e: any) {
-    console.log('we clicked again here by me ', e, e.innerText);
     const textField = document.createElement('textarea');
     textField.innerText = e.innerText;
     document.body.appendChild(textField);
