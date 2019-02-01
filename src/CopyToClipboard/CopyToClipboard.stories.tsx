@@ -23,6 +23,12 @@ storiesOf('CopyToClipboard', module).add(
       copyButtonText='copy'
       copyButtonClass='copy-button'
     />
+
+    // Alternatively, the CopyToClipboard function can be used
+    // on some external element to copy enclosed text as follows:
+
+    <button type="button" onClick={CopyToClipboard.copyToClipboard}>Copy Me</button>
+
   ~~~`)(() => (
     <CopyToClipboard
       copyText={text(
