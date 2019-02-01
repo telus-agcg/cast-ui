@@ -67,15 +67,13 @@ const SCopyToClipboard = styled.div`
 export class CopyToClipboard extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-
-    this.copyToClipboard = this.copyToClipboard.bind(this);
   }
   private copyContainerRef = React.createRef<HTMLDivElement>();
 
-  public copyToClipboard(e: any) {
-    const copyContainerNode: any = this.copyContainerRef.current;
+  static copyToClipboard(e: any) {
+    console.log('we clicked again here by me ', e, e.innerText);
     const textField = document.createElement('textarea');
-    textField.innerText = copyContainerNode.innerText;
+    textField.innerText = e.innerText;
     document.body.appendChild(textField);
     textField.select();
     document.execCommand('copy');
@@ -103,13 +101,17 @@ export class CopyToClipboard extends React.Component<Props> {
         theme={theme}>
         <div
           ref={this.copyContainerRef}
-          onClick={this.copyToClipboard}
+          onClick={() =>
+            CopyToClipboard.copyToClipboard(this.copyContainerRef.current)
+          }
           className={`copy-container ${copyContainerClass}`}>
           {copyText}
         </div>
         {includeCopyButton && (
           <button
-            onClick={this.copyToClipboard}
+            onClick={() =>
+              CopyToClipboard.copyToClipboard(this.copyContainerRef.current)
+            }
             type="button"
             className={`copy-button ${copyButtonClass}`}>
             {copyButtonText}
@@ -118,15 +120,4 @@ export class CopyToClipboard extends React.Component<Props> {
       </SCopyToClipboard>
     );
   }
-}
-
-export const copyToClipboard = (e: any) => {
-  console.log()
-  // const copyContainerNode: any = this.copyContainerRef.current;
-  // const textField = document.createElement('textarea');
-  // textField.innerText = copyContainerNode.innerText;
-  // document.body.appendChild(textField);
-  // textField.select();
-  // document.execCommand('copy');
-  // textField.remove();
 }
