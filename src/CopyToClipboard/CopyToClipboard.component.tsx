@@ -119,3 +119,14 @@ export class CopyToClipboard extends React.Component<Props> {
     );
   }
 }
+
+export const copyToClipboard = (e: any) => {
+  console.log()
+  // const copyContainerNode: any = this.copyContainerRef.current;
+  // const textField = document.createElement('textarea');
+  // textField.innerText = copyContainerNode.innerText;
+  // document.body.appendChild(textField);
+  // textField.select();
+  // document.execCommand('copy');
+  // textField.remove();
+}
