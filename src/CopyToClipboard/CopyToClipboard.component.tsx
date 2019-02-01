@@ -71,9 +71,9 @@ export class CopyToClipboard extends React.Component<Props> {
   private copyContainerRef = React.createRef<HTMLDivElement>();
 
   static copyToClipboard(e: any) {
-    const newCopyText: string = e.innerText
-      ? e.innerText || e.target.innerText
-      : e;
+    const newCopyText: string = e.target
+      ? e.target.innerText
+      : e.innerText || e;
     const textField = document.createElement('textarea');
     textField.innerText = newCopyText;
     document.body.appendChild(textField);
@@ -111,7 +111,9 @@ export class CopyToClipboard extends React.Component<Props> {
         </div>
         {includeCopyButton && (
           <button
-            onClick={() => CopyToClipboard.copyToClipboard('Custom copy text')}
+            onClick={() =>
+              CopyToClipboard.copyToClipboard(this.copyContainerRef.current)
+            }
             type="button"
             className={`copy-button ${copyButtonClass}`}>
             {copyButtonText}
