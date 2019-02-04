@@ -46,7 +46,8 @@ const SButton = styled.button`
   padding: ${(props: Props) => props.theme.common[props.btnSize].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.btnSize].fontSize}
-  font-weight: bold;
+  font-weight: ${(props: Props) =>
+    props.theme.common[props.btnSize].fontWeight};
   color: ${(props: Props) => props.theme.styles[props.btnStyle].reverseText};
   &:hover {
     background: ${(props: Props) =>

@@ -219,18 +219,21 @@ export const defaultTheme = {
     sm: {
       borderRadius: '1px',
       fontSize: '11px',
+      fontWeight: '400',
       padding: '5px',
       tableCellPadding: '7px',
     },
     md: {
       borderRadius: '1px',
       fontSize: '14px',
+      fontWeight: '500',
       padding: '8px',
       tableCellPadding: '9px',
     },
     lg: {
       borderRadius: '1px',
       fontSize: '16px',
+      fontWeight: '700',
       padding: '10px',
       tableCellPadding: '11px',
     },
