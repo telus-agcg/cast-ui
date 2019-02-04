@@ -26,8 +26,6 @@ const PanelHeader = styled.div`
   background: ${(props: Props) =>
     props.theme.styles[props.panelStyle].lightFlood};
   padding: 5px 8px;
-  border-bottom: 1px solid
-    ${(props: Props) => props.theme.styles[props.panelStyle].borderColor};
   font-size: 20px;
   color: ${(props: Props) => props.theme.styles[props.panelStyle].text};
   &:hover {
