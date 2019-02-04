@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
 type Props = {
+  /**
+   * Specify if the button is outline
+   *
+   * @default false
+   **/
+  outline?: boolean;
   /** this dictates what the button will do  */
   onClick(e: React.MouseEvent<HTMLElement>): void;
   /**
