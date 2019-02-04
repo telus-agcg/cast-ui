@@ -158,6 +158,26 @@ export const defaultTheme = {
   label: {
     padding: '9px 8px',
   },
+  modal: {
+    header: {
+      minHeight: '0',
+      backgroundColor: defaultColors.white,
+      borderBottom: defaultColors.lightGray,
+      padding: '8px 15px',
+    },
+    body: {
+      minHeight: '0',
+      backgroundColor: defaultColors.white,
+      borderBottom: defaultColors.lightGray,
+      padding: '8px 15px',
+    },
+    footer: {
+      minHeight: '0',
+      backgroundColor: defaultColors.white,
+      borderBottom: defaultColors.lightGray,
+      padding: '8px 15px',
+    },
+  },
   textarea: {
     background: defaultColors.white,
     backgroundDisabled: defaultColors.lightGray,
