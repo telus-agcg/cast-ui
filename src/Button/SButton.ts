@@ -36,8 +36,11 @@ type Props = {
 };
 
 const SButton = styled.button`
-  background: ${(props: Props) => props.selected ?
-    props.theme.styles[props.btnStyle].selectedFlood : props.theme.styles[props.btnStyle].flood}
+  min-width: 75px;
+  background: ${(props: Props) =>
+    props.selected
+      ? props.theme.styles[props.btnStyle].selectedFlood
+      : props.theme.styles[props.btnStyle].flood}
   border: 1px solid ${(props: Props) =>
     props.theme.styles[props.btnStyle].borderColor};
   padding: ${(props: Props) => props.theme.common[props.btnSize].padding}
@@ -46,14 +49,17 @@ const SButton = styled.button`
   font-weight: bold;
   color: ${(props: Props) => props.theme.styles[props.btnStyle].reverseText};
   &:hover {
-    background: ${(props: Props) => props.theme.styles[props.btnStyle].hoverFlood};
+    background: ${(props: Props) =>
+      props.theme.styles[props.btnStyle].hoverFlood};
     border: 1px solid ${(props: Props) =>
       props.theme.styles[props.btnStyle].hoverFlood};
     cursor: pointer;
   }
   &:disabled {
-    background: ${(props: Props) => props.theme.styles[props.btnStyle].hoverFlood}
-    border: 1px solid ${(props: Props) => props.theme.styles[props.btnStyle].hoverFlood}
+    background: ${(props: Props) =>
+      props.theme.styles[props.btnStyle].hoverFlood}
+    border: 1px solid ${(props: Props) =>
+      props.theme.styles[props.btnStyle].hoverFlood}
     cursor: not-allowed;
   }
 `;
