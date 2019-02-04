@@ -31,7 +31,7 @@ storiesOf('Button', module).add(
       btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
       disabled={boolean('disabled', false)}
       onClick={action('Clicked!')}>
-      Submit
+      Submit Button
     </Button>
   )),
 );

@@ -43,11 +43,12 @@ const SButton = styled.button`
       : props.theme.styles[props.btnStyle].flood}
   border: 1px solid ${(props: Props) =>
     props.theme.styles[props.btnStyle].borderColor};
+  border-radius: ${(props: Props) =>
+    props.theme.styles[props.btnStyle].borderRadius};
   padding: ${(props: Props) => props.theme.common[props.btnSize].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.btnSize].fontSize}
-  font-weight: ${(props: Props) =>
-    props.theme.common[props.btnSize].fontWeight};
+  font-weight: 600;
   color: ${(props: Props) => props.theme.styles[props.btnStyle].reverseText};
   &:hover {
     background: ${(props: Props) =>
