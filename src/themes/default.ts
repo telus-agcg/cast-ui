@@ -12,6 +12,7 @@ export const defaultColors = {
   lightGray: '#E7EFE8',
   mediumGray: '#C9CDCE',
   darkGray: '#515C61',
+  primary: '#303E47',
   black: '#0A1521',
   placeholderGray: '#727A80',
   disabledBackground: '#ECEFF2',
@@ -82,7 +83,7 @@ export const defaultTheme = {
       flood: defaultColors.white,
       lightFlood: defaultColors.white,
       hoverlightFlood: defaultColors.white,
-      text: defaultColors.black,
+      text: defaultColors.primary,
       reverseText: defaultColors.black,
       hoverFlood: darken(defaultColors.white, 5),
       selectedFlood: darken(defaultColors.blue, 25),
@@ -156,6 +157,26 @@ export const defaultTheme = {
   },
   label: {
     padding: '9px 8px',
+  },
+  modal: {
+    header: {
+      minHeight: '0',
+      backgroundColor: defaultColors.white,
+      borderBottom: defaultColors.lightGray,
+      padding: '8px 15px',
+    },
+    body: {
+      minHeight: '0',
+      backgroundColor: defaultColors.white,
+      borderBottom: defaultColors.lightGray,
+      padding: '8px 15px',
+    },
+    footer: {
+      minHeight: '0',
+      backgroundColor: defaultColors.white,
+      borderBottom: defaultColors.lightGray,
+      padding: '8px 15px',
+    },
   },
   textarea: {
     background: defaultColors.white,

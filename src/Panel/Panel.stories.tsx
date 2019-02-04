@@ -17,6 +17,7 @@ storiesOf('Panel', module).add(
   />
   ~~~`)(() => (
     <Panel
+      name={text('Panel Name', 'Catchy Name')}
       title={text('Title', 'Catchy title')}
       isCollapsed={boolean('isCollapsed', false)}
       collapsible={boolean('Collapsible', true)}
@@ -24,8 +25,7 @@ storiesOf('Panel', module).add(
         'panelStyle',
         ['success', 'default', 'primary', 'danger', 'warning'],
         'default',
-      )}
-    >
+      )}>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas beatae
       nostrum quo fuga iste reprehenderit ab fugit, soluta ea! Culpa,
       dignissimos dolores! Delectus fugiat numquam doloremque consequuntur
