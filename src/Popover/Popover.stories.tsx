@@ -13,11 +13,7 @@ storiesOf('Popover', module).add(
 
   This is a Popover, based on the
   [react-popover](https://github.com/littlebits/react-popover) component.
-
-  ### Usage
-  ~~~js
-  <Popover
-    isVisible={false} />~~~`)(() => <PopoverStory />),
+  `)(() => <PopoverStory />),
 );
 
 const MyComponent = (props: any) => (
@@ -31,6 +27,8 @@ class PopoverStory extends React.Component {
         <Popover
           content={<MyComponent />}
           isVisible={boolean('isOpen', false)}
+          arrow={true}
+          placement="bottom"
           trigger="manual"
         >
           <button>This button has a controlled popover</button>

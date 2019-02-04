@@ -1,6 +1,5 @@
 import * as React from 'react';
-// import styled from 'styled-components';
-// import * as ReactPopover from 'react-popover';
+import { createGlobalStyle } from 'styled-components';
 import Tippy, { TippyProps } from '@tippy.js/react';
 import 'tippy.js/dist/tippy.css';
 
@@ -10,58 +9,86 @@ type Props = TippyProps &
     theme: any;
   }>;
 
-// const SPopover = styled(ReactPopover)`
-//   .Popover-body {
-//     padding: 4rem;
-//     display: inline-flex;
-//     flex-direction: column;
-//     background: ${(props: Props) => props.theme.popover.background};
-//     font-family: ${(props: Props) => props.theme.typography.fontFamily};
-//     color: ${(props: Props) => props.theme.typography.color};
-//     border: 1px solid #ccc;
-//     box-shadow: 0px 2px 15px #ddd;
-//   }
-//   .Popover-tipShape {
-//     fill: ${(props: Props) => props.theme.popover.background};
-//     stroke: #ccc;
-//     stroke-width: 1px;
-//   }
-//   .Target {
-//     -webkit-user-select: none;
-//     position: relative;
-//     display: inline-block;
-//     white-space: pre-wrap;
-//     text-align: center;
-//     text-transform: uppercase;
-//     border-radius: 0.2rem;
-//     overflow: hidden;
-//   }
-//   .Target-Move {
-//     padding: 1rem;
-//     cursor: move;
-//     border-bottom: 1px solid white;
-//     background: hsl(173, 69%, 48%);
-//   }
-//   .Target-Toggle {
-//     display: block;
-//     padding: 1rem;
-//     cursor: pointer;
-//     background: hsl(346, 62%, 55%);
-//   }
-//   .Target.is-open .Target-Toggle {
-//     background: hsl(346, 80%, 50%);
-//   }
-// `;
+const CastTheme = createGlobalStyle`
+  .tippy-tooltip.cast-theme {
+    background: ${(props: Props) => props.theme.popover.background};
+    font-family: ${(props: Props) => props.theme.typography.fontFamily};
+    color: ${(props: Props) => props.theme.typography.color};
+    border-radius: 1px
+    border: 1px solid ${(props: Props) => props.theme.popover.borderColor};
+  }
+  .tippy-tooltip.cast-theme[data-animatefill] {
+    background-color: transparent;
+  }
+  .tippy-tooltip.cast-theme .tippy-backdrop {
+    background: ${(props: Props) => props.theme.popover.background};
+  }
+  .tippy-popper[x-placement^='top'] .tippy-tooltip.cast-theme .tippy-arrow {
+    border-top-color: ${(props: Props) => props.theme.popover.borderColor};
+  }
+  .tippy-popper[x-placement^='bottom'] .tippy-tooltip.cast-theme .tippy-arrow {
+    border-bottom-color: ${(props: Props) => props.theme.popover.borderColor};
+  }
+  .tippy-popper[x-placement^='left'] .tippy-tooltip.cast-theme .tippy-arrow {
+    border-left-color: ${(props: Props) => props.theme.popover.borderColor};
+  }
+  .tippy-popper[x-placement^='right'] .tippy-tooltip.cast-theme .tippy-arrow {
+    border-right-color: ${(props: Props) => props.theme.popover.borderColor};
+  }
+  .tippy-tooltip.cast-theme .tippy-roundarrow {
+    fill: ${(props: Props) => props.theme.popover.background};
+  }
+  .tippy-tooltip.cast-theme {
+    background: white;
+    border: 1px solid rgba(0, 8, 16, 0.15);
+    color: #333;
+    box-shadow: 0 3px 14px -0.5px rgba(0, 8, 16, 0.1);
+    .tippy-arrow {
+      transform-style: preserve-3d;
+      &::after {
+        content: '';
+        position: absolute;
+        left: -8px;
+        transform: translateZ(-1px);
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+      }
+    }
+  }
+  .tippy-popper[x-placement^='top']
+    .tippy-tooltip.cast-theme
+    .tippy-arrow {
+    border-top-color: #fff;
+    &::after {
+      top: -7px;
+      border-top: 8px solid rgba(0, 8, 16, 0.15);
+    }
+  }
+  .tippy-popper[x-placement^='bottom']
+    .tippy-tooltip.cast-theme
+    .tippy-arrow {
+    border-bottom-color: #fff;
+    &::after {
+      bottom: -7px;
+      border-bottom: 8px solid rgba(0, 8, 16, 0.15);
+    }
+  }
+`;
 
 class Popover extends React.Component<Props> {
-  contentIsString = () => {
-    return typeof this.props.content === 'string';
-  }
   public render() {
     return (
-      <Tippy isVisible={true} content={this.props.content} {...this.props}>
-        {this.props.children}
-      </Tippy>
+      <React.Fragment>
+        <CastTheme {...this.props} />
+        <Tippy
+          theme="cast"
+          isVisible={true}
+          content={this.props.content}
+          {...this.props}
+        >
+          {this.props.children}
+        </Tippy>
+      </React.Fragment>
     );
   }
 }
