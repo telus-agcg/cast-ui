@@ -40,8 +40,8 @@ type Props = {
 const SPanelHeader = styled.div`
   background: ${(props: Props) =>
     props.theme.styles[props.panelStyle].lightFlood};
-  padding: 5px 8px;
-  font-size: 18px;
+  padding: 8px 16px;
+  font-size: 16px;
   color: ${(props: Props) => props.theme.styles[props.panelStyle].text};
   line-height: 32px;
   &:hover {
@@ -57,8 +57,7 @@ const SPanelHeader = styled.div`
 const SExpandIcon = styled.div`
   float: right;
   padding: 0;
-  margin: 0;
-  line-height: 32px;
+  margin: 4px 0 0;
   // tslint:disable-next-line
   background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
   border: 0;
@@ -68,15 +67,16 @@ const SExpandIcon = styled.div`
   -ms-filter: none;
   filter: none;
   outline: none;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 
 const SCollapseIcon = styled.div`
   float: right;
   padding: 0;
-  margin: 0;
-  line-height: 32px;
+  margin: 4px 0 0;
   background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
   border: 0;
   -webkit-appearance: none;
@@ -85,8 +85,10 @@ const SCollapseIcon = styled.div`
   -ms-filter: none;
   filter: none;
   outline: none;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 
 export class PanelHeader extends React.Component<Props> {

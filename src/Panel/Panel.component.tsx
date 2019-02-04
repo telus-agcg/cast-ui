@@ -39,11 +39,12 @@ const PanelWrapper = styled.div`
 `;
 
 const PanelBody = styled.div`
+  color: ${(props: Props) => props.theme.styles[props.panelStyle].text};
   background: ${(props: Props) => props.theme.panel.body.background};
   overflow: hidden;
   height: auto;
-  padding: ${(props: Props) => '5px 8px'};
-  font-size: 16px;
+  padding: ${(props: Props) => '20px 28px'};
+  font-size: 14px;
   opacity: ${(props: Props) => 1};
   transition: all 300ms ease-in-out;
 `;
@@ -125,7 +126,7 @@ const collapseSection = (element: HTMLElement | null) => {
       element.style.transition = elementTransition;
       requestAnimationFrame(() => {
         element.style.height = '0px';
-        element.style.padding = '0 8px';
+        element.style.padding = '0 28px';
         element.style.opacity = '0';
       });
     });
@@ -135,6 +136,6 @@ const collapseSection = (element: HTMLElement | null) => {
 const expandSection = (element: HTMLElement) => {
   const sectionHeight = element.scrollHeight;
   element.style.height = `${sectionHeight}px`;
-  element.style.padding = '5px 8px';
+  element.style.padding = '20px 28px';
   element.style.opacity = '1';
 };
