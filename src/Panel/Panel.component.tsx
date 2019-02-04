@@ -75,14 +75,14 @@ export class Panel extends React.Component<Props, State> {
   }
 
   handleToggleCollapse() {
-    if (this.bodyRef.current) {
+    if (this.bodyRef.current && (this.props.collapsible || false)) {
       this.localIsCollapsed
         ? collapseSection(this.bodyRef.current)
         : expandSection(this.bodyRef.current);
     }
 
     this.setState({
-      isCollapsed: this.localIsCollapsed,
+      isCollapsed: this.localIsCollapsed && (this.props.collapsible || false),
     });
   }
 
@@ -102,6 +102,7 @@ export class Panel extends React.Component<Props, State> {
           }}
           name={this.props.name}
           title={this.props.title}
+          localIsCollapsed={this.localIsCollapsed}
         />
         <PanelBody
           panelStyle={this.props.panelStyle || 'default'}

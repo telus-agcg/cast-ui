@@ -20,6 +20,10 @@ type Props = {
    *  @default 'false'
    */
   localIsCollapsed?: boolean;
+  /** whether the panel is collapsed or not
+   *  @default 'false'
+   */
+  isCollapsed?: boolean;
   /** toggle panel body
    *  @default 'void'
    */
@@ -55,9 +59,8 @@ const SExpandIcon = styled.div`
   padding: 0;
   margin: 0;
   line-height: 32px;
-  // tslint:disable-next-line:max-line-length
-  background: transparent
-    url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
+  // tslint:disable-next-line
+  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
   border: 0;
   -webkit-appearance: none;
   text-shadow: none;
@@ -74,8 +77,7 @@ const SCollapseIcon = styled.div`
   padding: 0;
   margin: 0;
   line-height: 32px;
-  background: transparent
-    url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
+  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
   border: 0;
   -webkit-appearance: none;
   text-shadow: none;
@@ -102,7 +104,7 @@ export class PanelHeader extends React.Component<Props> {
         collapsible={this.props.collapsible}
         onClick={toggleItem}>
         {this.props.name && <b>{this.props.name}:</b>} {this.props.title}{' '}
-        {ChevronImage}
+        {this.props.collapsible && ChevronImage}
       </SPanelHeader>
     );
   }
