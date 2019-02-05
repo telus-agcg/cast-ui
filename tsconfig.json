@@ -21,15 +21,19 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "declaration": true,
-    "watch": true,
+    "watch": false,
     "resolveJsonModule": true
   },
   "linterOptions": {
-    "exclude": [
-      "*.json",
-      "**/*.json"
-    ]
+    "exclude": ["*.json", "**/*.json"]
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx"],
-  "exclude": ["node_modules", "dist", "scripts", "**/*.css", "*.json", "**/*.json"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "scripts",
+    "**/*.css",
+    "*.json",
+    "**/*.json"
+  ]
 }
