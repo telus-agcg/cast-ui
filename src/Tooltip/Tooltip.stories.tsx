@@ -11,13 +11,8 @@ storiesOf('Tooltip', module).add(
 
   ### Notes
 
-  This is a Tooltip, based on the
-  [react-popover](https://github.com/littlebits/react-popover) component.
-
-  ### Usage
-  ~~~js
-  <Popover
-    isVisible={false} />~~~`)(() => <TooltipStory />),
+  This is a Tooltip, based on [tippy.js](https://atomiks.github.io/tippyjs/).
+ `)(() => <TooltipStory />),
 );
 
 const MyComponent = (props: any) => (
@@ -33,7 +28,7 @@ class TooltipStory extends React.Component {
           isVisible={boolean('isOpen', false)}
           trigger="manual"
         >
-          <button>This button has a controlled popover</button>
+          <button>This button has a controlled tooltip</button>
         </Tooltip>
       </div>
     );
