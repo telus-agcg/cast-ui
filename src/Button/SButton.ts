@@ -48,16 +48,6 @@ const computeColor: Function = (
   btnStyle: string,
   theme: any,
 ) => {
-  console.log(
-    'Here props ',
-    btnState,
-    selected,
-    outline,
-    btnStyle,
-    theme.styles[btnStyle].flood,
-    theme.styles[btnStyle].reverseText,
-    theme.styles[btnStyle].borderColor,
-  );
   switch (true) {
     case selected === true:
       switch (btnState) {
@@ -84,7 +74,7 @@ const computeColor: Function = (
       switch (btnState) {
         case 'hover':
           return {
-            background: theme.styles[btnStyle].lightFlood,
+            background: theme.styles[btnStyle].reverseText,
             color: theme.styles[btnStyle].hoverFlood,
             borderColor: theme.styles[btnStyle].hoverFlood,
           };

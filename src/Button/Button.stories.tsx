@@ -27,7 +27,7 @@ storiesOf('Button', module).add(
       btnStyle={select(
         'btnStyle',
         ['success', 'default', 'primary', 'danger', 'warning'],
-        'success',
+        'default',
       )}
       btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
       disabled={boolean('disabled', false)}
