@@ -34,7 +34,7 @@ export const BreadcrumbsItem = createAdvAgent(
   breadcrumbsBearingKey,
 );
 
-function prepareProps(props, rename, duplicate, remove) {
+function prepareProps(props: any, rename: any, duplicate: any, remove: any) {
   const p = Object.assign({}, props);
   Object.keys(duplicate).forEach(k => {
     p[duplicate[k]] = p[k];
@@ -49,10 +49,10 @@ function prepareProps(props, rename, duplicate, remove) {
   return p;
 }
 
-const defaultCompare = (a, b) =>
+const defaultCompare = (a: any, b: any) =>
   a[breadcrumbsBearingKey].length - b[breadcrumbsBearingKey].length;
 
-const Breadcrumbs_ = (props: Props) => {
+const Breadcrumbs_ = (props: any) => {
   const {
     container: Container = 'span',
     containerProps,
