@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { lighten } from '../utils/colorUtils';
 
 type Props = {
   /**
@@ -89,14 +90,18 @@ const SInput = styled.input`
     color: ${(props: Props) => props.theme.radioButton.disabledText};
     cursor: not-allowed;
   }
+  &:disabled + label:before {
+    background-color: ${(props: Props) =>
+    props.theme.input.disabled.background};
+    border-color: ${(props: Props) => props.theme.input.disabled.borderColor};
+  }
   &:checked + label:before {
     background-color: ${(props: Props) =>
       props.theme.styles[props.rbStyle].flood};
   }
-  &:disabled + label:before {
-    background-color: ${(props: Props) =>
-      props.theme.input.disabled.background};
-    border-color: ${(props: Props) => props.theme.input.disabled.borderColor};
+  &:disabled:checked + label:before {
+    background-color:  ${(props: Props) =>
+    lighten(props.theme.styles[props.rbStyle].flood, 15)};
   }
 `;
 
