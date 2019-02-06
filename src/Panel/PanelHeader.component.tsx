@@ -47,8 +47,8 @@ const SPanelHeader = styled.div`
   &:hover {
     background: ${(props: Props) =>
       props.collapsible
-        ? props.theme.styles[props.panelStyle].hoverLightFlood
-        : 'auto'};
+        ? props.theme.styles[props.panelStyle].hoverlightFlood
+        : props.theme.styles[props.panelStyle].lightFlood};
     cursor: ${(props: Props) => (props.collapsible ? 'pointer' : 'auto')};
   }
 `;
