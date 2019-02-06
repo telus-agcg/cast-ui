@@ -2,6 +2,12 @@ import * as React from 'react';
 import SButton from './SButton';
 
 type Props = {
+  /**
+   * Specify if the button is outline
+   *
+   * @default false
+   **/
+  outline?: boolean;
   /** this dictates what the button will do  */
   onClick(e: React.MouseEvent<HTMLElement>): void;
   /**
@@ -45,6 +51,7 @@ type Props = {
 const noop = () => {}; // tslint:disable-line
 
 export const Button: React.FunctionComponent<Props> = ({
+  outline,
   onClick,
   disabled,
   selected,
@@ -54,13 +61,13 @@ export const Button: React.FunctionComponent<Props> = ({
   theme,
 }) => (
   <SButton
+    outline={outline}
     btnSize={btnSize}
     btnStyle={btnStyle}
     theme={theme}
     disabled={disabled}
     selected={selected}
-    onClick={!disabled ? onClick : noop}
-  >
+    onClick={!disabled ? onClick : noop}>
     {children}
   </SButton>
 );

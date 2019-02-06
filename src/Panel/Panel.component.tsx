@@ -1,9 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { PanelHeader } from './PanelHeader.component';
 
 type Props = {
   /** the content of the panel  */
   children?: React.ReactNode;
+  /** the name of the panel  */
+  name?: string;
   /** the title of the panel  */
   title?: string;
   /** 'default', 'primary', 'success', 'warning', 'danger'
@@ -35,67 +38,15 @@ const PanelWrapper = styled.div`
   border-radius: ${(props: Props) => props.theme.borders.radius};
 `;
 
-const PanelHeader = styled.div`
-  background: ${(props: Props) =>
-    props.theme.styles[props.panelStyle].lightFlood};
-  padding: 5px 8px;
-  border-bottom: 1px solid
-    ${(props: Props) => props.theme.styles[props.panelStyle].borderColor};
-  font-size: 20px;
-  color: ${(props: Props) => props.theme.styles[props.panelStyle].text};
-  line-height: 32px;
-  &:hover {
-    background: ${(props: Props) =>
-      props.collapsible
-        ? props.theme.styles[props.panelStyle].hoverLightFlood
-        : 'auto'};
-    cursor: ${(props: Props) => (props.collapsible ? 'pointer' : 'auto')};
-  }
-`;
 const PanelBody = styled.div`
+  color: ${(props: Props) => props.theme.styles[props.panelStyle].text};
   background: ${(props: Props) => props.theme.panel.body.background};
   overflow: hidden;
   height: auto;
-  padding: ${(props: Props) => '5px 8px'};
-  font-size: 16px;
+  padding: ${(props: Props) => '20px 28px'};
+  font-size: 14px;
   opacity: ${(props: Props) => 1};
   transition: all 300ms ease-in-out;
-`;
-
-/* tslint:disable:max-line-length */
-const ExpandIcon = styled.div`
-  float: right;
-  padding: 0;
-  margin: 0;
-  line-height: 32px;
-  // tslint:disable-next-line:max-line-length
-  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
-  border: 0;
-  -webkit-appearance: none;
-  text-shadow: none;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
-  outline: none;
-  width: 32px;
-  height: 32px;
-  `;
-
-const CollapseIcon = styled.div`
-  float: right;
-  padding: 0;
-  margin: 0;
-  line-height: 32px;
-  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
-  border: 0;
-  -webkit-appearance: none;
-  text-shadow: none;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
-  outline: none;
-  width: 32px;
-  height: 32px;
 `;
 
 const initialState = {
@@ -125,14 +76,14 @@ export class Panel extends React.Component<Props, State> {
   }
 
   handleToggleCollapse() {
-    if (this.bodyRef.current) {
+    if (this.bodyRef.current && (this.props.collapsible || false)) {
       this.localIsCollapsed
         ? collapseSection(this.bodyRef.current)
         : expandSection(this.bodyRef.current);
     }
 
     this.setState({
-      isCollapsed: this.localIsCollapsed,
+      isCollapsed: this.localIsCollapsed && (this.props.collapsible || false),
     });
   }
 
@@ -141,36 +92,23 @@ export class Panel extends React.Component<Props, State> {
     this.handleToggleCollapse();
   }
 
-  renderHeader() {
-    const ChevronImage = this.localIsCollapsed ? (
-      <ExpandIcon />
-    ) : (
-      <CollapseIcon />
-    );
-
-    return (
-      <PanelHeader
-        panelStyle={this.props.panelStyle || 'default'}
-        collapsible={this.props.collapsible}
-        onClick={() => {
-          this.toggleItem();
-        }}
-      >
-        {this.props.title} {this.props.isCollapsed}
-        {ChevronImage}
-      </PanelHeader>
-    );
-  }
-
   render() {
     return (
       <PanelWrapper panelStyle={this.props.panelStyle}>
-        {this.renderHeader()}
+        <PanelHeader
+          panelStyle={this.props.panelStyle || 'default'}
+          collapsible={this.props.collapsible}
+          toggleItem={() => {
+            this.toggleItem();
+          }}
+          name={this.props.name}
+          title={this.props.title}
+          localIsCollapsed={this.localIsCollapsed}
+        />
         <PanelBody
           panelStyle={this.props.panelStyle || 'default'}
           isCollapsed={this.localIsCollapsed}
-          ref={this.bodyRef}
-        >
+          ref={this.bodyRef}>
           {this.props.children}
         </PanelBody>
       </PanelWrapper>
@@ -188,7 +126,7 @@ const collapseSection = (element: HTMLElement | null) => {
       element.style.transition = elementTransition;
       requestAnimationFrame(() => {
         element.style.height = '0px';
-        element.style.padding = '0 8px';
+        element.style.padding = '0 28px';
         element.style.opacity = '0';
       });
     });
@@ -198,6 +136,6 @@ const collapseSection = (element: HTMLElement | null) => {
 const expandSection = (element: HTMLElement) => {
   const sectionHeight = element.scrollHeight;
   element.style.height = `${sectionHeight}px`;
-  element.style.padding = '5px 8px';
+  element.style.padding = '20px 28px';
   element.style.opacity = '1';
 };

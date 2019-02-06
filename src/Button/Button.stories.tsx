@@ -23,16 +23,16 @@ storiesOf('Button', module).add(
   />
   ~~~`)(() => (
     <Button
+      outline={boolean('Outline', false)}
       btnStyle={select(
         'btnStyle',
         ['success', 'default', 'primary', 'danger', 'warning'],
-        'success',
+        'default',
       )}
       btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
       disabled={boolean('disabled', false)}
-      onClick={action('Clicked!')}
-    >
-      Submit
+      onClick={action('Clicked!')}>
+      Submit Button
     </Button>
   )),
 );

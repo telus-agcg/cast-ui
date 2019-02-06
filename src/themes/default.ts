@@ -10,11 +10,14 @@ export const defaultColors = {
   white: 'white',
   gray: '#8D9599',
   lightGray: '#BCC0C3',
+  mediumGray: '#C9CDCE',
   darkGray: '#515C61',
+  primary: '#303E47',
   black: '#0A1521',
   placeholderGray: '#727A80',
   disabledBackground: '#ECEFF2',
   disabledBorder: '#A3AAAD',
+  disabledText: '#A3AAAD',
   panelBackground: '#F5F7F8',
 };
 
@@ -77,12 +80,24 @@ export const defaultTheme = {
     },
     default: {
       borderColor: defaultColors.gray,
+      flood: defaultColors.gray,
+      lightFlood: lighten(defaultColors.gray, 50),
+      hoverlightFlood: lighten(defaultColors.gray, 80),
+      text: defaultColors.primary,
+      reverseText: defaultColors.white,
+      hoverFlood: darken(defaultColors.gray, 5),
+      selectedFlood: darken(defaultColors.blue, 25),
+      badgeBackground: defaultColors.gray,
+      badgeColor: defaultColors.black,
+    },
+    pagination: {
+      borderColor: defaultColors.white,
       flood: defaultColors.white,
       lightFlood: defaultColors.white,
       hoverlightFlood: defaultColors.white,
       text: defaultColors.black,
       reverseText: defaultColors.black,
-      hoverFlood: darken(defaultColors.white, 5),
+      hoverFlood: defaultColors.white,
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.gray,
       badgeColor: defaultColors.black,
@@ -109,8 +124,60 @@ export const defaultTheme = {
       flexWrap: 'wrap',
     },
   },
+  radioButton: {
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: defaultColors.gray,
+    disabledText: defaultColors.disabledText,
+    unselectedColor: defaultColors.white,
+    sm: {
+      size: '6px',
+    },
+    md: {
+      size: '10px',
+    },
+    lg: {
+      size: '14px',
+    },
+  },
+  checkbox: {
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: defaultColors.gray,
+    disabledText: defaultColors.disabledText,
+    unselectedColor: defaultColors.white,
+    sm: {
+      size: '6px',
+    },
+    md: {
+      size: '10px',
+    },
+    lg: {
+      size: '14px',
+    },
+  },
   label: {
     padding: '9px 8px',
+  },
+  modal: {
+    header: {
+      minHeight: '0',
+      backgroundColor: defaultColors.white,
+      borderBottom: defaultColors.lightGray,
+      padding: '8px 15px',
+    },
+    body: {
+      minHeight: '0',
+      backgroundColor: defaultColors.white,
+      borderBottom: defaultColors.lightGray,
+      padding: '8px 15px',
+    },
+    footer: {
+      minHeight: '0',
+      backgroundColor: defaultColors.white,
+      borderBottom: defaultColors.lightGray,
+      padding: '8px 15px',
+    },
   },
   textarea: {
     background: defaultColors.white,
@@ -158,18 +225,21 @@ export const defaultTheme = {
   common: {
     sm: {
       borderRadius: '1px',
-      fontSize: '10px',
-      padding: '5px',
+      fontSize: '11px',
+      padding: '4px 8px',
+      tableCellPadding: '7px',
     },
     md: {
       borderRadius: '1px',
       fontSize: '14px',
-      padding: '8px',
+      padding: '8px 14px',
+      tableCellPadding: '9px',
     },
     lg: {
       borderRadius: '1px',
-      fontSize: '14px',
-      padding: '10px',
+      fontSize: '16px',
+      padding: '10px 16px',
+      tableCellPadding: '11px',
     },
   },
   validation: {
@@ -177,5 +247,32 @@ export const defaultTheme = {
     errorTextColor: defaultColors.placeholderGray,
     fontSize: '11px',
     padding: '4px',
+  },
+  table: {
+    header: {
+      borderBottomColor: defaultColors.darkGray,
+      color: defaultColors.blue,
+      fontWeight: 'bold',
+    },
+    row: {
+      borderBottomColor: defaultColors.mediumGray,
+      hoverColor: defaultColors.mediumGray,
+    },
+    pagination: {
+      padding: '4px 0',
+      button: {
+        disabledText: defaultColors.disabledText,
+        fontWeight: 'normal',
+        fontWeightSelected: 'bold',
+        padding: {
+          sm: '3px 6px',
+          md: '4px 8px',
+          lg: '5px 10px',
+        },
+        nextPrevious: {
+          fontWeight: 'bold',
+        },
+      },
+    },
   },
 };
