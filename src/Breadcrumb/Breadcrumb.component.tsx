@@ -1,105 +1,106 @@
 import * as React from 'react';
-import styled from 'styled-components';
 
-type Props = {
-  /**
-   * Select Breadcrumb color. Must be a color defined in theme colors
-   *
-   * @default 'lightGray'
-   **/
-  color: string;
-  /**
-   * Adjust spinner size in pixels
-   *
-   * @default 40px
-   **/
-  size: number;
-  /**
-   * Adjust animation speed in seconds
-   *
-   * @default 2s
-   **/
-  animationSpeed: number;
-  /**
-   * Select transition type
-   *
-   * @default 'ease-in-out'
-   **/
-  transitionType: string;
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
+import {
+  ThroughProvider,
+  throughContainer,
+  throughAgent,
+  createAdvAgent,
+  throughInterface,
+} from 'react-through';
+
+export const breadcrumbsThroughArea = 'breadcrumbs';
+
+export const breadcrumbsBearingKey = 'to';
+
+export const withBreadcrumbs = throughInterface(breadcrumbsThroughArea);
+
+export const withBreadcrumbsItem = throughAgent(
+  breadcrumbsThroughArea,
+  breadcrumbsBearingKey,
+);
+
+export const withBreadcrumbsContainer = throughContainer(
+  breadcrumbsThroughArea,
+);
+
+export const Dummy = () => null;
+
+export const Item = () => null;
+
+export const BreadcrumbsProvider = ThroughProvider;
+
+export const BreadcrumbsItem = createAdvAgent(
+  breadcrumbsThroughArea,
+  breadcrumbsBearingKey,
+);
+
+function prepareProps(props, rename, duplicate, remove) {
+  const p = Object.assign({}, props);
+  Object.keys(duplicate).forEach(k => {
+    p[duplicate[k]] = p[k];
+  });
+  Object.keys(rename).forEach(k => {
+    p[rename[k]] = p[k];
+    delete p[k];
+  });
+  Object.keys(remove).forEach(k => {
+    delete p[k];
+  });
+  return p;
+}
+
+const defaultCompare = (a, b) =>
+  a[breadcrumbsBearingKey].length - b[breadcrumbsBearingKey].length;
+
+const Breadcrumbs_ = (props: Props) => {
+  const {
+    container: Container = 'span',
+    containerProps,
+    hideIfEmpty = false,
+    item: Item = 'a',
+    finalItem: FinalItem = Item,
+    finalProps = {},
+    separator,
+    duplicateProps: duplicate = {},
+    removeProps: remove = {},
+    renameProps: rename = Item === 'a' ? { to: 'href' } : {},
+    compare,
+  } = props;
+  const data = props[breadcrumbsThroughArea];
+  const itemsValue = Object.keys(data)
+    .map(k => data[k])
+    .sort(compare || defaultCompare);
+  const count = itemsValue.length;
+
+  if (hideIfEmpty && count === 0) {
+    return null;
+  }
+
+  return (
+    <Container {...containerProps}>
+      {itemsValue.map((itemValue, i) => {
+        return i + 1 < count ? (
+          separator ? (
+            <span key={i}>
+              <Item {...prepareProps(itemValue, rename, duplicate, remove)} />
+              {separator}
+            </span>
+          ) : (
+            <Item
+              key={i}
+              {...prepareProps(itemValue, rename, duplicate, remove)}
+            />
+          )
+        ) : (
+          <FinalItem
+            key={i}
+            {...prepareProps(itemValue, rename, duplicate, remove)}
+            {...finalProps}
+          />
+        );
+      })}
+    </Container>
+  );
 };
 
-const SBreadcrumb = styled.div`
-  width: ${(props: Props) => `${props.size}px`}
-  height: ${(props: Props) => `${props.size}px`};
-  position: relative;
-  margin: 100px auto;
-
-  .double-bounce1,
-  .double-bounce2 {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: ${props => props.theme.colors[props.color]};
-    opacity: 0.6;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    -webkit-animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
-    animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
-  }
-
-  .double-bounce2 {
-    -webkit-animation-delay: ${(props: Props) =>
-      `-${props.animationSpeed / 2}s`};
-    animation-delay: ${(props: Props) => `-${props.animationSpeed / 2}s`};
-  }
-
-  @-webkit-keyframes sk-bounce {
-    0%,
-    100% {
-      -webkit-transform: scale(0);
-    }
-    50% {
-      -webkit-transform: scale(1);
-    }
-  }
-
-  @keyframes sk-bounce {
-    0%,
-    100% {
-      transform: scale(0);
-      -webkit-transform: scale(0);
-    }
-    50% {
-      transform: scale(1);
-      -webkit-transform: scale(1);
-    }
-  }
-`;
-
-export const Breadcrumb: React.FunctionComponent<Props> = ({
-  color = 'lightGray',
-  size = 40,
-  animationSpeed = 2,
-  transitionType = 'ease-in-out',
-  theme,
-}) => (
-  <SBreadcrumb
-    color={color}
-    size={size}
-    animationSpeed={animationSpeed}
-    transitionType={transitionType}
-    theme={theme}>
-    <div className="double-bounce1" />
-    <div className="double-bounce2" />
-  </SBreadcrumb>
-);
+export const Breadcrumbs = withBreadcrumbsContainer(Breadcrumbs_);

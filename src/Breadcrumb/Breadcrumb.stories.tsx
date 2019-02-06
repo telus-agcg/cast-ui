@@ -11,7 +11,7 @@ storiesOf('Breadcrumb', module).add(
 
   ### Notes
 
-  This is a spinner
+  This is the breadcrumb navigation menu
 
   ### Usage
   ~~~js

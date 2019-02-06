@@ -22,13 +22,15 @@
     "emitDecoratorMetadata": true,
     "declaration": true,
     "watch": false,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": ["./types", "./node_modules/@types"]
   },
   "linterOptions": {
     "exclude": ["*.json", "**/*.json"]
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx"],
   "exclude": [
+    "types",
     "node_modules",
     "dist",
     "scripts",
