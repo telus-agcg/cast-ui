@@ -9,7 +9,7 @@ export const defaultColors = {
   yellow: '#FEC934',
   white: 'white',
   gray: '#8D9599',
-  lightGray: '#E7EFE8',
+  lightGray: '#BCC0C3',
   darkGray: '#515C61',
   black: '#0A1521',
   placeholderGray: '#727A80',
@@ -152,6 +152,8 @@ export const defaultTheme = {
   popover: {
     borderColor: defaultColors.lightGray,
     background: defaultColors.white,
+    withArrowDistance: 10,
+    withoutArrowDistance: 3,
   },
   common: {
     sm: {

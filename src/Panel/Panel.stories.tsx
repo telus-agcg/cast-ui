@@ -10,12 +10,7 @@ storiesOf('Panel', module).add(
   wInfo(`
   ### Notes
   This is a panel
-  ### Usage
-  ~~~js
-  <Panel
-    title={'Enroll'}
-  />
-  ~~~`)(() => (
+ `)(() => (
     <Panel
       title={text('Title', 'Catchy title')}
       isCollapsed={boolean('isCollapsed', false)}
