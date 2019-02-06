@@ -93,6 +93,11 @@ const SInput = styled.input`
     background-color: ${(props: Props) =>
       props.theme.styles[props.rbStyle].flood};
   }
+  &:disabled + label:before {
+    background-color: ${(props: Props) =>
+      props.theme.input.disabled.background};
+    border-color: ${(props: Props) => props.theme.input.disabled.borderColor};
+  }
 `;
 
 export default class RadioButton extends React.Component<Props> {
