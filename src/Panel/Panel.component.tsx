@@ -4,7 +4,7 @@ import { PanelHeader } from './PanelHeader.component';
 
 type Props = {
   /** the content of the panel  */
-  children?: React.ReactNode;
+  children?: any;
   /** the name of the panel  */
   name?: string;
   /** the title of the panel  */
@@ -108,7 +108,8 @@ export class Panel extends React.Component<Props, State> {
         <PanelBody
           panelStyle={this.props.panelStyle || 'default'}
           isCollapsed={this.localIsCollapsed}
-          ref={this.bodyRef}>
+          ref={this.bodyRef}
+        >
           {this.props.children}
         </PanelBody>
       </PanelWrapper>
