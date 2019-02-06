@@ -80,7 +80,7 @@ export const defaultTheme = {
     },
     default: {
       borderColor: defaultColors.gray,
-      flood: defaultColors.white,
+      flood: defaultColors.gray,
       lightFlood: defaultColors.white,
       hoverlightFlood: defaultColors.white,
       text: defaultColors.primary,

@@ -48,6 +48,16 @@ const computeColor: Function = (
   btnStyle: string,
   theme: any,
 ) => {
+  console.log(
+    'Here props ',
+    btnState,
+    selected,
+    outline,
+    btnStyle,
+    theme.styles[btnStyle].flood,
+    theme.styles[btnStyle].reverseText,
+    theme.styles[btnStyle].borderColor,
+  );
   switch (true) {
     case selected === true:
       switch (btnState) {
@@ -67,14 +77,14 @@ const computeColor: Function = (
           return {
             background: theme.styles[btnStyle].selectedFlood,
             color: theme.styles[btnStyle].reverseText,
-            borderColor: theme.styles[btnStyle].borderRadius,
+            borderColor: theme.styles[btnStyle].borderColor,
           };
       }
     case outline === true:
       switch (btnState) {
         case 'hover':
           return {
-            background: theme.styles[btnStyle].reverseText,
+            background: theme.styles[btnStyle].lightFlood,
             color: theme.styles[btnStyle].hoverFlood,
             borderColor: theme.styles[btnStyle].hoverFlood,
           };
@@ -88,7 +98,7 @@ const computeColor: Function = (
           return {
             background: theme.styles[btnStyle].reverseText,
             color: theme.styles[btnStyle].flood,
-            borderColor: theme.styles[btnStyle].borderRadius,
+            borderColor: theme.styles[btnStyle].borderColor,
           };
       }
     default:
@@ -109,7 +119,7 @@ const computeColor: Function = (
           return {
             background: theme.styles[btnStyle].flood,
             color: theme.styles[btnStyle].reverseText,
-            borderColor: theme.styles[btnStyle].borderRadius,
+            borderColor: theme.styles[btnStyle].borderColor,
           };
       }
   }
