@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Router } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
-import { Switch, NavLink } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 
 import { storiesOf } from '@storybook/react';
 // import { select } from '@storybook/addon-knobs/react';
 import { wInfo } from '../storybook-utils';
-import { Breadcrumbs, CrumbRoute } from './';
+import { Breadcrumbs, Breadcrumb, CrumbRoute } from './';
 
 const newHistory = createBrowserHistory();
 const Event = (props: any) => (
@@ -121,10 +121,17 @@ storiesOf('Breadcrumb', module).add(
     <div>
       <Router history={newHistory}>
         <Switch>
-          <CrumbRoute
-            title="Breadcrumb Button"
-            path={`/buttons/outline-buttons`}
-            component={() => <Event name="Breadcrumb Button" />}
+          <Route
+            render={routeProps => (
+              <Breadcrumb
+                data={{
+                  title: 'Home',
+                  pathname: '/breadcrumb',
+                  search: null,
+                }}>
+                <Event name="Breadcrumb" {...routeProps} />
+              </Breadcrumb>
+            )}
           />
         </Switch>
       </Router>
