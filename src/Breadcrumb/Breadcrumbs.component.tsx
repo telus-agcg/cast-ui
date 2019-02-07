@@ -1,8 +1,7 @@
 // Import External Dependencies
 import * as React from 'react';
-
-// TODO: Use imitation and allow it to be passed as a prop
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 // Import Utilities
 import Store from './store';
@@ -17,21 +16,28 @@ type Props = {
    **/
   hidden?: boolean;
   /**
-   * HTML element tag e.g 'div' or React Element for breadcrumbs container
+   * HTML element tag e.g 'div' or React Element|Component for breadcrumbs container
    *
    * @default 'nav'
    * @default '(props: Props) => <nav {...props}>{props.children}</nav>'
    **/
   BreadcrumbsContainer?: React.ReactType;
   /**
-   * HTML element tag e.g 'span' or React Element for individual breadcrumb container
+   * HTML element tag e.g 'span' or React Element|Component for individual breadcrumb container
    *
    * @default 'span'
    * @default '(props: Props) => <span {...props}>{props.children}</span>'
    **/
   BreadcrumbItemContainer?: React.ReactType;
   /**
-   * HTML content tag e.g '>' or React Element for individual breadcrumb seperator
+   * HTML element tag e.g 'a' or React Element|Component for individual breadcrumb item
+   *
+   * @default 'NavLink from `react-router-dom`''
+   * @default '(props: Props) => <NavLink {...props}>{props.children}</NavLink>'
+   **/
+  BreadcrumbItem?: React.ReactType;
+  /**
+   * HTML content tag e.g '>' or React Element|Component for individual breadcrumb item seperator
    *
    * @default '>'
    * @default '(props: Props) => <span {...props}> > </span>'
@@ -64,8 +70,9 @@ export class Breadcrumbs extends React.Component<Props> {
     const {
       hidden,
       setCrumbs,
-      BreadcrumbsContainer: BCWrapper,
-      BreadcrumbItemContainer: BCIWrapper,
+      BreadcrumbsContainer: BCCWrapper,
+      BreadcrumbItemContainer: BCICWrapper,
+      BreadcrumbItem: BCIWrapper,
       separator: Separator,
     } = this.props;
     let crumbs = Store.getState();
@@ -75,30 +82,40 @@ export class Breadcrumbs extends React.Component<Props> {
     });
     if (setCrumbs) crumbs = setCrumbs(crumbs);
 
-    const CrumbsWrapper = BCWrapper
-      ? (props: Props) => <BCWrapper {...props}>{props.children}</BCWrapper>
-      : (props: Props) => <nav {...props}>{props.children}</nav>;
-    const CrumbItemWrapper = BCIWrapper
-      ? (props: Props) => <BCIWrapper {...props}>{props.children}</BCIWrapper>
-      : (props: Props) => <span {...props}>{props.children}</span>;
+    console.log(' these are the crumbs ', crumbs);
+
+    const CrumbsWrapper = BCCWrapper
+      ? (props: any) => <BCCWrapper {...props}>{props.children}</BCCWrapper>
+      : (props: any) => <nav {...props}>{props.children}</nav>;
+    const CrumbItemWrapper = BCICWrapper
+      ? (props: any) => <BCICWrapper {...props}>{props.children}</BCICWrapper>
+      : (props: any) => <span {...props}>{props.children}</span>;
+    const CrumbItem = BCIWrapper
+      ? (props: any) => <BCIWrapper {...props}>{props.children}</BCIWrapper>
+      : (props: any) => <NavLink {...props}>{props.children}</NavLink>;
     const SeparatorWrapper = Separator
-      ? (props: Props) => <Separator {...props}>></Separator>
-      : (props: Props) => <span {...props}>></span>;
+      ? (props: any) => <Separator {...props}>></Separator>
+      : (props: any) => <span {...props}>></span>;
+
+    const SCrumbItem = styled(CrumbItem)`
+      font-size: 14px;
+      font-weight: 700;
+    `;
 
     return (
       <CrumbsWrapper hidden={hidden}>
         {crumbs.map((crumb: any, i: any) => (
           <CrumbItemWrapper key={crumb.id}>
-            <NavLink
+            <SCrumbItem
               exact
-              activeClassName={`crumb--active`}
+              activeClassName="crumb-item--active"
               to={{
                 pathname: crumb.pathname,
                 search: crumb.search,
                 state: crumb.state,
               }}>
               {crumb.title}
-            </NavLink>
+            </SCrumbItem>
 
             {i < crumbs.length - 1 ? <SeparatorWrapper /> : null}
           </CrumbItemWrapper>

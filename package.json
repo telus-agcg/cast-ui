@@ -33,7 +33,6 @@
     "react-select": "^2.2.0",
     "react-table": "^6.8.6",
     "react-tabs": "^2.3.0",
-    "react-through": "^1.1.1",
     "tinycolor2": "^1.4.1",
     "uuid": "^3.3.2"
   },

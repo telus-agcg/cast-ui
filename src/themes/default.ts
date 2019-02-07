@@ -218,20 +218,20 @@ export const defaultTheme = {
   common: {
     sm: {
       borderRadius: '1px',
-      fontSize: '10px',
-      padding: '5px',
+      fontSize: '11px',
+      padding: '4px 8px',
       tableCellPadding: '7px',
     },
     md: {
       borderRadius: '1px',
-      fontSize: '12px',
-      padding: '8px',
+      fontSize: '14px',
+      padding: '8px 14px',
       tableCellPadding: '9px',
     },
     lg: {
       borderRadius: '1px',
-      fontSize: '14px',
-      padding: '10px',
+      fontSize: '16px',
+      padding: '10px 16px',
       tableCellPadding: '11px',
     },
   },
