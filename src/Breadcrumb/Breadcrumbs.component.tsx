@@ -21,7 +21,7 @@ type Props = {
    *
    * @default '<nav></nav>'
    **/
-  wrapper?: React.ReactNode;
+  wrapper?: React.ReactType;
   /**
    * Classname for the breadcrumbs container
    *
@@ -64,9 +64,9 @@ export class Breadcrumbs extends React.Component<Props> {
   _unsubscribe: Function = () => true;
 
   render() {
-    let { className, hidden, wrapper: Wrapper, setCrumbs } = this.props,
-      hiddenMod = hidden ? `${block}--hidden` : '',
-      crumbs = Store.getState();
+    let { className, hidden, wrapper: Wrapper, setCrumbs } = this.props;
+    let hiddenMod = hidden ? `${block}--hidden` : '';
+    let crumbs = Store.getState();
 
     crumbs = crumbs.sort((a: any, b: any) => {
       return a.pathname.length - b.pathname.length;
