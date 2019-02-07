@@ -29,7 +29,7 @@ type Props = {
    *
    * @default 'null'
    **/
-  render: Function;
+  render?: Function;
   /**
    * From theme provider
    *
