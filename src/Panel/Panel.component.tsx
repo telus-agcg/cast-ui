@@ -94,7 +94,7 @@ export class Panel extends React.Component<Props, State> {
 
   render() {
     return (
-      <PanelWrapper panelStyle={this.props.panelStyle}>
+      <PanelWrapper panelStyle={this.props.panelStyle} theme={this.props.theme}>
         <PanelHeader
           panelStyle={this.props.panelStyle || 'default'}
           collapsible={this.props.collapsible}
@@ -104,11 +104,13 @@ export class Panel extends React.Component<Props, State> {
           name={this.props.name}
           title={this.props.title}
           localIsCollapsed={this.localIsCollapsed}
+          theme={this.props.theme}
         />
         <PanelBody
           panelStyle={this.props.panelStyle || 'default'}
           isCollapsed={this.localIsCollapsed}
-          ref={this.bodyRef}>
+          ref={this.bodyRef}
+          theme={this.props.theme}>
           {this.props.children}
         </PanelBody>
       </PanelWrapper>
