@@ -26,13 +26,13 @@ type Props = {
    *
    * @default ''
    **/
-  className: string;
+  className?: string;
   /**
    * Seperator between breadcrumb links
    *
    * @default '>'
    **/
-  separator: React.ReactNode;
+  separator?: React.ReactNode;
   /**
    * Set/Update the crumbs list
    *
