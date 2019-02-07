@@ -17,11 +17,12 @@ type Props = {
    **/
   hidden?: boolean;
   /**
-   * Wrapper for the breadcrumbs container
+   * HTML element tag e.g 'div' or React Element for breadcrumbs container
    *
-   * @default '<nav></nav>'
+   * @default 'nav'
+   * @default '(props: Props) => <nav {...props}>{props.children}</nav>'
    **/
-  wrapper?: React.ReactType;
+  BreadcrumbsContainer?: React.ReactType;
   /**
    * Classname for the breadcrumbs container
    *
@@ -29,11 +30,18 @@ type Props = {
    **/
   className: string;
   /**
-   * Seperator between breadcrumb links
+   * HTML element tag e.g 'span' or React Element for individual breadcrumb container
+   *
+   * @default 'span'
+   * @default '(props: Props) => <span {...props}>{props.children}</span>'
+   **/
+  BreadcrumbItemContainer?: React.ReactType;
+  /**
+   * Text or React Element for breadcrumbs container
    *
    * @default '>'
    **/
-  separator: React.ReactNode;
+  separator?: React.ReactType;
   /**
    * Set/Update the crumbs list
    *
@@ -49,7 +57,7 @@ type Props = {
 };
 
 // Specify BEM block name
-const block = 'breadcrumbs';
+const block = 'cast-breadcrumbs';
 
 // Create and export the component
 export class Breadcrumbs extends React.Component<Props> {
@@ -58,52 +66,57 @@ export class Breadcrumbs extends React.Component<Props> {
     hidden: false,
     separator: '>',
     setCrumbs: undefined,
-    wrapper: (props: Props) => <nav {...props}>{props.children}</nav>,
   };
 
   _unsubscribe: Function = () => true;
 
   render() {
-    const { className, hidden, setCrumbs } = this.props;
+    const {
+      hidden,
+      setCrumbs,
+      BreadcrumbsContainer: BCWrapper,
+      BreadcrumbItemContainer: BCIWrapper,
+      separator,
+    } = this.props;
     const hiddenMod = hidden ? `${block}--hidden` : '';
     let crumbs = Store.getState();
 
     crumbs = crumbs.sort((a: any, b: any) => {
       return a.pathname.length - b.pathname.length;
     });
-
     if (setCrumbs) crumbs = setCrumbs(crumbs);
 
+    const CrumbsWrapper = BCWrapper
+      ? (props: Props) => <BCWrapper {...props}>{props.children}</BCWrapper>
+      : (props: Props) => <nav {...props}>{props.children}</nav>;
+    const CrumbItemWrapper = BCIWrapper
+      ? (props: Props) => <BCIWrapper {...props}>{props.children}</BCIWrapper>
+      : (props: Props) => <span {...props}>{props.children}</span>;
+
     return (
-      <div className={className}>
-        <nav className={`${block} ${hiddenMod}`}>
-          <div className={`${block}__inner`}>
-            {crumbs.map((crumb: any, i: any) => (
-              <span key={crumb.id} className={`${block}__section`}>
-                <NavLink
-                  exact
-                  className={`${block}__crumb`}
-                  activeClassName={`${block}__crumb--active`}
-                  to={{
-                    pathname: crumb.pathname,
-                    search: crumb.search,
-                    state: crumb.state,
-                  }}>
-                  {crumb.title}
-                </NavLink>
+      <CrumbsWrapper className={`${block} ${hiddenMod}`}>
+        <div className={`${block}__inner`}>
+          {crumbs.map((crumb: any, i: any) => (
+            <CrumbItemWrapper key={crumb.id} className={`${block}__section`}>
+              <NavLink
+                exact
+                className={`${block}__crumb`}
+                activeClassName={`${block}__crumb--active`}
+                to={{
+                  pathname: crumb.pathname,
+                  search: crumb.search,
+                  state: crumb.state,
+                }}>
+                {crumb.title}
+              </NavLink>
 
-                {i < crumbs.length - 1 ? (
-                  <span className={`${block}__separator`}>
-                    {this.props.separator}
-                  </span>
-                ) : null}
-              </span>
-            ))}
-          </div>
-        </nav>
-
-        {this.props.children}
-      </div>
+              {i < crumbs.length - 1 ? (
+                <span className={`${block}__separator`}>{separator}</span>
+              ) : null}
+            </CrumbItemWrapper>
+          ))}
+        </div>
+      </CrumbsWrapper>
     );
   }
 

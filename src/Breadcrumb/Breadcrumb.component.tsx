@@ -7,7 +7,11 @@ import _ from 'lodash';
 import { Dispatch } from './store';
 
 type Props = {
-  /** the content of the panel  */
+  /**
+   * The children elements
+   *
+   * @default null
+   */
   children?: React.ReactNode;
   /**
    * Show or hide breadcrumbs

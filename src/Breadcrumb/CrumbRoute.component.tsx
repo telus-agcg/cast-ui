@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Route } from 'react-router-dom';
 
 // Import Components
-import { Breadcrumb } from '../../src/index.js';
+import { Breadcrumb } from './';
 
 type Props = {
   /**
@@ -17,7 +17,7 @@ type Props = {
    *
    * @default null
    **/
-  component?: React.ReactInstance;
+  component?: React.ReactType;
   /**
    * Include route search params
    *
@@ -29,7 +29,7 @@ type Props = {
    *
    * @default 'null'
    **/
-  render?: Function;
+  render: Function;
   /**
    * From theme provider
    *
@@ -55,11 +55,7 @@ export const CrumbRoute: React.FunctionComponent<Props> = ({
           pathname: routeProps.match.url,
           search: includeSearch ? routeProps.location.search : null,
         }}>
-        {Component
-          ? (Component: new () => React.Component<any, any>) => (
-              <Component {...routeProps} />
-            )
-          : render(routeProps)}
+        {Component ? <Component {...routeProps} /> : render(routeProps)}
       </Breadcrumb>
     )}
   />
