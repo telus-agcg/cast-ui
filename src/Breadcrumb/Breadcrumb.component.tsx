@@ -1,7 +1,5 @@
 // Import External Dependencies
 import * as React from 'react';
-import UUID from 'uuid';
-import _ from 'lodash';
 
 // Import Utilities
 import { Dispatch } from './store';
@@ -59,7 +57,7 @@ export class Breadcrumb extends React.Component<Props> {
   };
 
   state = {
-    id: UUID.v4(),
+    id: new Date(),
   };
 
   render() {
@@ -76,7 +74,7 @@ export class Breadcrumb extends React.Component<Props> {
     const { data, hidden } = nextProps;
 
     // Update the crumb if its data has changed
-    if (!_.isEqual(data, this.props.data)) {
+    if (!(JSON.stringify(data) === JSON.stringify(this.props.data))) {
       this.dispatchCrumb('UPDATE_CRUMB', data);
     }
 
