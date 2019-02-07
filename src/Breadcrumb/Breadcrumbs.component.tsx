@@ -126,6 +126,9 @@ export class Breadcrumbs extends React.Component<Props> {
         props.theme.styles[props.breadcrumbStyle].flood};
       padding: ${(props: Props) =>
         props.theme.common[props.breadcrumbSize].padding};
+      &.crumb-item--active {
+        color: ${(props: Props) => props.theme.styles.primary.flood};
+      }
     `;
 
     return (
