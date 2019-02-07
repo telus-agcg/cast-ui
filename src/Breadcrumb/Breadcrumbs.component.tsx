@@ -24,12 +24,6 @@ type Props = {
    **/
   BreadcrumbsContainer?: React.ReactType;
   /**
-   * Classname for the breadcrumbs container
-   *
-   * @default ''
-   **/
-  className: string;
-  /**
    * HTML element tag e.g 'span' or React Element for individual breadcrumb container
    *
    * @default 'span'
@@ -37,9 +31,10 @@ type Props = {
    **/
   BreadcrumbItemContainer?: React.ReactType;
   /**
-   * Text or React Element for breadcrumbs container
+   * HTML content tag e.g '>' or React Element for individual breadcrumb seperator
    *
    * @default '>'
+   * @default '(props: Props) => <span {...props}> > </span>'
    **/
   separator?: React.ReactType;
   /**
@@ -56,15 +51,10 @@ type Props = {
   theme?: any;
 };
 
-// Specify BEM block name
-const block = 'cast-breadcrumbs';
-
 // Create and export the component
 export class Breadcrumbs extends React.Component<Props> {
   static defaultProps = {
-    className: '',
     hidden: false,
-    separator: '>',
     setCrumbs: undefined,
   };
 
@@ -76,9 +66,8 @@ export class Breadcrumbs extends React.Component<Props> {
       setCrumbs,
       BreadcrumbsContainer: BCWrapper,
       BreadcrumbItemContainer: BCIWrapper,
-      separator,
+      separator: Separator,
     } = this.props;
-    const hiddenMod = hidden ? `${block}--hidden` : '';
     let crumbs = Store.getState();
 
     crumbs = crumbs.sort((a: any, b: any) => {
@@ -92,30 +81,28 @@ export class Breadcrumbs extends React.Component<Props> {
     const CrumbItemWrapper = BCIWrapper
       ? (props: Props) => <BCIWrapper {...props}>{props.children}</BCIWrapper>
       : (props: Props) => <span {...props}>{props.children}</span>;
+    const SeparatorWrapper = Separator
+      ? (props: Props) => <Separator {...props}>></Separator>
+      : (props: Props) => <span {...props}>></span>;
 
     return (
-      <CrumbsWrapper className={`${block} ${hiddenMod}`}>
-        <div className={`${block}__inner`}>
-          {crumbs.map((crumb: any, i: any) => (
-            <CrumbItemWrapper key={crumb.id} className={`${block}__section`}>
-              <NavLink
-                exact
-                className={`${block}__crumb`}
-                activeClassName={`${block}__crumb--active`}
-                to={{
-                  pathname: crumb.pathname,
-                  search: crumb.search,
-                  state: crumb.state,
-                }}>
-                {crumb.title}
-              </NavLink>
+      <CrumbsWrapper hidden={hidden}>
+        {crumbs.map((crumb: any, i: any) => (
+          <CrumbItemWrapper key={crumb.id}>
+            <NavLink
+              exact
+              activeClassName={`crumb--active`}
+              to={{
+                pathname: crumb.pathname,
+                search: crumb.search,
+                state: crumb.state,
+              }}>
+              {crumb.title}
+            </NavLink>
 
-              {i < crumbs.length - 1 ? (
-                <span className={`${block}__separator`}>{separator}</span>
-              ) : null}
-            </CrumbItemWrapper>
-          ))}
-        </div>
+            {i < crumbs.length - 1 ? <SeparatorWrapper /> : null}
+          </CrumbItemWrapper>
+        ))}
       </CrumbsWrapper>
     );
   }
