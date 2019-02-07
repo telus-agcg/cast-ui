@@ -4,7 +4,7 @@ import { PanelHeader } from './PanelHeader.component';
 
 type Props = {
   /** the content of the panel  */
-  children?: React.ReactNode;
+  children?: any;
   /** the name of the panel  */
   name?: string;
   /** the title of the panel  */
