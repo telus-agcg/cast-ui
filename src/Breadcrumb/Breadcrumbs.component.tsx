@@ -50,6 +50,18 @@ type Props = {
    **/
   setCrumbs?: Function;
   /**
+   * Select Breadcrumbs Style
+   *
+   * @default 'default'
+   **/
+  breadcrumbStyle: string;
+  /**
+   * Select Breadcrumbs Size
+   *
+   * @default 'md'
+   **/
+  breadcrumbSize: string;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -62,6 +74,8 @@ export class Breadcrumbs extends React.Component<Props> {
   static defaultProps = {
     hidden: false,
     setCrumbs: undefined,
+    breadcrumbStyle: 'default',
+    breadcrumbSize: 'md',
   };
 
   _unsubscribe: Function = () => true;
@@ -74,6 +88,9 @@ export class Breadcrumbs extends React.Component<Props> {
       BreadcrumbItemContainer: BCICWrapper,
       BreadcrumbItem: BCIWrapper,
       separator: Separator,
+      breadcrumbSize,
+      breadcrumbStyle,
+      theme,
     } = this.props;
     let crumbs = Store.getState();
 
@@ -81,8 +98,6 @@ export class Breadcrumbs extends React.Component<Props> {
       return a.pathname.length - b.pathname.length;
     });
     if (setCrumbs) crumbs = setCrumbs(crumbs);
-
-    console.log(' these are the crumbs ', crumbs);
 
     const CrumbsWrapper = BCCWrapper
       ? (props: any) => <BCCWrapper {...props}>{props.children}</BCCWrapper>
@@ -97,15 +112,30 @@ export class Breadcrumbs extends React.Component<Props> {
       ? (props: any) => <Separator {...props}>></Separator>
       : (props: any) => <span {...props}>></span>;
 
-    const SCrumbItem = styled(CrumbItem)`
-      font-size: 14px;
+    const SCrumbItemWrapper = styled(CrumbItemWrapper)`
       font-weight: 700;
+      font-family: ${(props: Props) => props.theme.typography.fontFamily};
+      font-size: ${(props: Props) =>
+        props.theme.common[props.breadcrumbSize].fontSize};
+      color: ${(props: Props) =>
+        props.theme.styles[props.breadcrumbStyle].flood};
+    `;
+    const SCrumbItem = styled(CrumbItem)`
+      text-decoration: none;
+      color: ${(props: Props) =>
+        props.theme.styles[props.breadcrumbStyle].flood};
+      padding: ${(props: Props) =>
+        props.theme.common[props.breadcrumbSize].padding};
     `;
 
     return (
       <CrumbsWrapper hidden={hidden}>
         {crumbs.map((crumb: any, i: any) => (
-          <CrumbItemWrapper key={crumb.id}>
+          <SCrumbItemWrapper
+            key={crumb.id}
+            breadcrumbSize={breadcrumbSize}
+            breadcrumbStyle={breadcrumbStyle}
+            theme={theme}>
             <SCrumbItem
               exact
               activeClassName="crumb-item--active"
@@ -113,12 +143,15 @@ export class Breadcrumbs extends React.Component<Props> {
                 pathname: crumb.pathname,
                 search: crumb.search,
                 state: crumb.state,
-              }}>
+              }}
+              breadcrumbSize={breadcrumbSize}
+              breadcrumbStyle={breadcrumbStyle}
+              theme={theme}>
               {crumb.title}
             </SCrumbItem>
 
             {i < crumbs.length - 1 ? <SeparatorWrapper /> : null}
-          </CrumbItemWrapper>
+          </SCrumbItemWrapper>
         ))}
       </CrumbsWrapper>
     );
