@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs/react';
 
-import { Breadcrumb } from './Breadcrumb.component';
+import { BreadcrumbsItem } from './Breadcrumb.component';
 import { wInfo } from '../storybook-utils';
 
 storiesOf('Breadcrumb', module).add(
@@ -15,13 +15,13 @@ storiesOf('Breadcrumb', module).add(
 
   ### Usage
   ~~~js
-    <Breadcrumb
+    <BreadcrumbsItem
       color="lightGray"
       size={40}
       animationSpeed={2}
     />
   ~~~`)(() => (
-    <Breadcrumb
+    <BreadcrumbsItem
       color={select(
         'color',
         ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
