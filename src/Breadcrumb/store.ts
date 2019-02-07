@@ -2,7 +2,7 @@
 import { createStore } from 'redux';
 
 // Create the reducer
-let crumbs = (state: any = [], action: any) => {
+const crumbs = (state: any = [], action: any) => {
   switch (action.type) {
     case 'ADD_CRUMB':
       return [...state, action.payload];
@@ -23,8 +23,8 @@ let crumbs = (state: any = [], action: any) => {
 };
 
 // Create the store
-let store = createStore(crumbs);
+const store = createStore(crumbs);
 
 // Export store and Dispatch method
 export default store;
-export var Dispatch = store.dispatch;
+export const Dispatch = store.dispatch;

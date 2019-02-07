@@ -63,29 +63,29 @@ export class Breadcrumb extends React.Component<Props> {
   }
 
   componentDidMount() {
-    let { data, hidden } = this.props;
+    const { data, hidden } = this.props;
 
-    if (!hidden) this._dispatch('ADD_CRUMB', data);
+    if (!hidden) this.dispatchCrumb('ADD_CRUMB', data);
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    let { data, hidden } = nextProps;
+    const { data, hidden } = nextProps;
 
     // Update the crumb if its data has changed
     if (!_.isEqual(data, this.props.data)) {
-      this._dispatch('UPDATE_CRUMB', data);
+      this.dispatchCrumb('UPDATE_CRUMB', data);
     }
 
     // Remove/add crumb based on `hidden` prop
     if (hidden && !this.props.hidden) {
-      this._dispatch('REMOVE_CRUMB', data);
+      this.dispatchCrumb('REMOVE_CRUMB', data);
     } else if (!hidden && this.props.hidden) {
-      this._dispatch('ADD_CRUMB', data);
+      this.dispatchCrumb('ADD_CRUMB', data);
     }
   }
 
   componentWillUnmount() {
-    this._dispatch('REMOVE_CRUMB', this.props.data);
+    this.dispatchCrumb('REMOVE_CRUMB', this.props.data);
   }
 
   /**
@@ -94,8 +94,8 @@ export class Breadcrumb extends React.Component<Props> {
    * @param  {string} action - A valid action name accepted by the store
    * @param  {object} data   - The breadcrumb data to pass
    */
-  _dispatch(action: any, data: any) {
-    let { id } = this.state;
+  dispatchCrumb(action: any, data: any) {
+    const { id } = this.state;
 
     Dispatch({
       type: action,

@@ -51,7 +51,7 @@ export const CrumbRoute: React.FunctionComponent<Props> = ({
     render={routeProps => (
       <Breadcrumb
         data={{
-          title: title,
+          title,
           pathname: routeProps.match.url,
           search: includeSearch ? routeProps.location.search : null,
         }}>

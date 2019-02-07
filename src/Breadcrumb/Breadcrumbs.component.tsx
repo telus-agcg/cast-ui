@@ -64,8 +64,8 @@ export class Breadcrumbs extends React.Component<Props> {
   _unsubscribe: Function = () => true;
 
   render() {
-    let { className, hidden, setCrumbs } = this.props;
-    let hiddenMod = hidden ? `${block}--hidden` : '';
+    const { className, hidden, setCrumbs } = this.props;
+    const hiddenMod = hidden ? `${block}--hidden` : '';
     let crumbs = Store.getState();
 
     crumbs = crumbs.sort((a: any, b: any) => {
