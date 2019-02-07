@@ -1,9 +1,39 @@
 import * as React from 'react';
+// import ReactDOM from 'react-dom';
+// import { BrowserRouter, Route } from 'react-router-dom';
+// import { Router } from 'react-router';
+// import createBrowserHistory from 'history/createBrowserHistory';
+
 import { storiesOf } from '@storybook/react';
 // import { select } from '@storybook/addon-knobs/react';
-
-// import { BreadcrumbsItem } from './Breadcrumb.component';
 import { wInfo } from '../storybook-utils';
+// import { Breadcrumb, CrumbRoute } from './';
+import { Breadcrumbs } from './';
+
+// const newHistory = createBrowserHistory();
+// const render = (Root: any) => {
+//   ReactDOM.render(
+//     <BrowserRouter>
+//       <Router history={newHistory}>
+//         <CrumbRoute title="Index" path="/" component={Root} />
+//         <Route
+//           render={routeProps => (
+//             <Breadcrumb
+//               data={{
+//                 title: 'Home',
+//                 pathname: routeProps.match.url,
+//                 search: routeProps.location.search,
+//               }}>
+//               <div {...routeProps}> My Home Component </div>
+//             </Breadcrumb>
+//           )}
+//         />
+//       </Router>
+//     </BrowserRouter>,
+//     document.getElementById('root'),
+//   );
+// };
+// render(<div>My original Component</div>);
 
 storiesOf('Breadcrumb', module).add(
   'Breadcrumb',
@@ -11,30 +41,71 @@ storiesOf('Breadcrumb', module).add(
 
   ### Notes
 
-  This is the breadcrumb navigation menu
+  This is the Breadcrumb component.
+
+  Manually creates a route to be mapped in the breadcrumbs menu.
 
   ### Usage
   ~~~js
-    <BreadcrumbsItem
-      color="lightGray"
-      size={40}
-      animationSpeed={2}
+    <Route
+      {...props}
+      render={routeProps => (
+        <Breadcrumb
+          data={{
+            title: 'Home',
+            pathname: routeProps.match.url,
+            search: includeSearch ? routeProps.location.search : null,
+          }}>
+          <MyComponent {...routeProps} />
+        </Breadcrumb>
+      )}
+    />
+  ~~~`)(() => <div>My Component</div>),
+);
+
+storiesOf('Breadcrumb', module).add(
+  'CrumbRoute',
+  wInfo(`
+
+  ### Notes
+
+  This is the Breadcrumb route mapping component.
+
+  Automatically maps a routes to be mapped in the breadcrumbs menu.
+
+  ### Usage
+  ~~~js
+    <CrumbRoute
+      title="Home"
+      path="/home"
+      component={MyComponent}
+    />
+  ~~~`)(() => <span />),
+);
+
+storiesOf('Breadcrumb', module).add(
+  'Breadcrumbs',
+  wInfo(`
+
+  ### Notes
+
+  This is the visual element showing the styled list of breadcrumbs
+  as recorded from all mapped routes
+
+  Automatically maps a routes to be mapped in the breadcrumbs menu.
+
+  ### Usage
+  ~~~js
+    <Breadcrumbs
+      BreadcrumbsContainer="nav"
+      BreadcrumbItemContainer="span"
+      separator="span"
     />
   ~~~`)(() => (
-    <span>Comming</span>
-    // <BreadcrumbsItem
-    //   color={select(
-    //     'color',
-    //     ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
-    //     'lightGray',
-    //   )}
-    //   size={select('size', [20, 30, 40, 50, 60], 40)}
-    //   animationSpeed={select('animationSpeed', [1, 2, 3, 4, 5], 2)}
-    //   transitionType={select(
-    //     'transitionType',
-    //     ['ease-in-out', 'ease-in', 'ease-out', 'linear', 'ease'],
-    //     'ease-in-out',
-    //   )}
-    // />
+    <Breadcrumbs
+      BreadcrumbsContainer="nav"
+      BreadcrumbItemContainer="span"
+      separator="span"
+    />
   )),
 );

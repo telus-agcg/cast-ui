@@ -25,11 +25,17 @@ type Props = {
    **/
   includeSearch?: boolean;
   /**
+   * Path
+   *
+   * @default defaultTheme
+   **/
+  path?: any;
+  /**
    * The render function
    *
    * @default 'null'
    **/
-  render: Function;
+  render?: Function;
   /**
    * From theme provider
    *
@@ -43,7 +49,7 @@ export const CrumbRoute: React.FunctionComponent<Props> = ({
   title = '',
   component: Component,
   includeSearch = false,
-  render,
+  render = () => true,
   ...props
 }) => (
   <Route
