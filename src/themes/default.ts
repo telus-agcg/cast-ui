@@ -9,7 +9,7 @@ export const defaultColors = {
   yellow: '#FEC934',
   white: 'white',
   gray: '#8D9599',
-  lightGray: '#E7EFE8',
+  lightGray: '#BCC0C3',
   mediumGray: '#C9CDCE',
   darkGray: '#515C61',
   primary: '#303E47',
@@ -105,6 +105,7 @@ export const defaultTheme = {
   },
   typography: {
     fontFamily: '"Open Sans", arial, sans-serif',
+    color: defaultColors.black,
   },
   input: {
     background: defaultColors.white,
@@ -214,6 +215,12 @@ export const defaultTheme = {
       fontSize: '14px',
       padding: '4px 10px',
     },
+  },
+  popover: {
+    borderColor: defaultColors.lightGray,
+    background: defaultColors.white,
+    withArrowDistance: 10,
+    withoutArrowDistance: 3,
   },
   common: {
     sm: {
