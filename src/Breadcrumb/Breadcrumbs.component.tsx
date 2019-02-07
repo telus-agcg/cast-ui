@@ -64,7 +64,7 @@ export class Breadcrumbs extends React.Component<Props> {
   _unsubscribe: Function = () => true;
 
   render() {
-    let { className, hidden, wrapper: Wrapper, setCrumbs } = this.props;
+    let { className, hidden, setCrumbs } = this.props;
     let hiddenMod = hidden ? `${block}--hidden` : '';
     let crumbs = Store.getState();
 
@@ -76,7 +76,7 @@ export class Breadcrumbs extends React.Component<Props> {
 
     return (
       <div className={className}>
-        <Wrapper className={`${block} ${hiddenMod}`}>
+        <nav className={`${block} ${hiddenMod}`}>
           <div className={`${block}__inner`}>
             {crumbs.map((crumb: any, i: any) => (
               <span key={crumb.id} className={`${block}__section`}>
@@ -100,7 +100,7 @@ export class Breadcrumbs extends React.Component<Props> {
               </span>
             ))}
           </div>
-        </Wrapper>
+        </nav>
 
         {this.props.children}
       </div>

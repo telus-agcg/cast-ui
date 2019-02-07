@@ -1,6 +1,3 @@
-import {
-  BreadcrumbsProvider,
-  Breadcrumbs,
-  BreadcrumbsItem,
-} from './Breadcrumb.component';
-export { BreadcrumbsProvider, Breadcrumbs, BreadcrumbsItem };
+import { Breadcrumb } from './Breadcrumb.component';
+import { Breadcrumbs } from './Breadcrumbs.component';
+export { Breadcrumb, Breadcrumbs };

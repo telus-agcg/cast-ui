@@ -34,7 +34,8 @@
     "react-table": "^6.8.6",
     "react-tabs": "^2.3.0",
     "react-through": "^1.1.1",
-    "tinycolor2": "^1.4.1"
+    "tinycolor2": "^1.4.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
@@ -61,6 +62,7 @@
     "@types/storybook__react": "^4.0.0",
     "@types/styled-components": "^4.0.3",
     "@types/tinycolor2": "^1.4.1",
+    "@types/uuid": "^3.4.4",
     "awesome-typescript-loader": "^5.2.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.4",
