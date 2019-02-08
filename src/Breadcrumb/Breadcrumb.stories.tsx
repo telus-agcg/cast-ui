@@ -4,9 +4,9 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import { Switch, NavLink } from 'react-router-dom';
 
 import { storiesOf } from '@storybook/react';
-// import { select } from '@storybook/addon-knobs/react';
+import { select } from '@storybook/addon-knobs/react';
 import { wInfo } from '../storybook-utils';
-import { Breadcrumbs, CrumbRoute } from './';
+import { Breadcrumbs, CrumbRoute, Panel } from '../';
 
 const newHistory = createBrowserHistory();
 const Event = (props: any) => (
@@ -18,7 +18,6 @@ const Event = (props: any) => (
 
 const CastUiButtons = (props: any) => (
   <div className="event">
-    <h3>{props.name}</h3>
     <p>More information about the {props.name}!</p>
     <ul className="demo__links">
       <li>
@@ -60,6 +59,9 @@ storiesOf('Breadcrumb', module).add(
             BreadcrumbsContainer="nav"
             BreadcrumbItemContainer="span"
             separator="span"
+            breadcrumbDefaultStyle="default"
+            breadcrumbActiveStyle="primary"
+            breadcrumbSize="md"
           />
           <ul className="demo__links">
             <li>
@@ -80,23 +82,35 @@ storiesOf('Breadcrumb', module).add(
     <div>
       <Router history={newHistory}>
         <div>
-          <Breadcrumbs
-            BreadcrumbsContainer="nav"
-            BreadcrumbItemContainer="span"
-            separator="span"
-          />
-          <ul className="demo__links">
-            <li>
-              <NavLink to="/buttons">Cast UI Buttons</NavLink>
-            </li>
-          </ul>
-          <Switch>
-            <CrumbRoute
-              title="Cast UI Buttons"
-              path="/buttons"
-              render={() => <CastUiButtons name="Cast UI Buttons" />}
+          <Panel title="Cast UI Buttons" panelStyle="default">
+            <Breadcrumbs
+              BreadcrumbsContainer="nav"
+              BreadcrumbItemContainer="span"
+              separator="span"
+              breadcrumbDefaultStyle={select(
+                'breadcrumbDefaultStyle',
+                ['success', 'default', 'primary', 'danger', 'warning'],
+                'default',
+              )}
+              breadcrumbActiveStyle={select(
+                'breadcrumActivebStyle',
+                ['success', 'default', 'primary', 'danger', 'warning'],
+                'primary',
+              )}
+              breadcrumbSize={select(
+                'breadcrumbSize',
+                ['sm', 'md', 'lg'],
+                'md',
+              )}
             />
-          </Switch>
+            <Switch>
+              <CrumbRoute
+                title="Cast UI Buttons"
+                path="/"
+                render={() => <CastUiButtons name="Cast UI Buttons" />}
+              />
+            </Switch>
+          </Panel>
         </div>
       </Router>
     </div>
