@@ -82,7 +82,7 @@ storiesOf('Breadcrumb', module).add(
     <div>
       <Router history={newHistory}>
         <div>
-          <Panel title="Cast UI Buttons" panelStyle="default">
+          <Panel title="Click on links to view behaviour of breadcrumbs" panelStyle="default">
             <Breadcrumbs
               BreadcrumbsContainer="nav"
               BreadcrumbItemContainer="span"
