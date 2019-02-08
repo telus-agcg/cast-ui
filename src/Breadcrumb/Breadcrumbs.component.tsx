@@ -120,6 +120,9 @@ export class Breadcrumbs extends React.Component<Props> {
       ? (props: any) => <Separator {...props}>></Separator>
       : (props: any) => <span {...props}>></span>;
 
+    const SCrumbsWrapper = styled(CrumbsWrapper)`
+      display: ${(props: Props) => (props.hidden ? 'none' : 'block')};
+    `;
     const SCrumbItemWrapper = styled(CrumbItemWrapper)`
       font-weight: 700;
       font-family: ${(props: Props) => props.theme.typography.fontFamily};
@@ -141,7 +144,7 @@ export class Breadcrumbs extends React.Component<Props> {
     `;
 
     return (
-      <CrumbsWrapper hidden={hidden}>
+      <SCrumbsWrapper hidden={hidden}>
         {crumbs.map((crumb: any, i: any) => (
           <SCrumbItemWrapper
             key={crumb.id}
@@ -165,7 +168,7 @@ export class Breadcrumbs extends React.Component<Props> {
             {i < crumbs.length - 1 ? <SeparatorWrapper /> : null}
           </SCrumbItemWrapper>
         ))}
-      </CrumbsWrapper>
+      </SCrumbsWrapper>
     );
   }
 

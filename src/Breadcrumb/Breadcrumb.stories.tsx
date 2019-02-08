@@ -4,7 +4,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import { Switch, NavLink } from 'react-router-dom';
 
 import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs/react';
+import { select, boolean } from '@storybook/addon-knobs/react';
 import { wInfo } from '../storybook-utils';
 import { Breadcrumbs, CrumbRoute, Panel } from '../';
 
@@ -87,6 +87,7 @@ storiesOf('Breadcrumb', module).add(
               BreadcrumbsContainer="nav"
               BreadcrumbItemContainer="span"
               separator="span"
+              hidden={boolean('hidden', false)}
               breadcrumbDefaultStyle={select(
                 'breadcrumbDefaultStyle',
                 ['success', 'default', 'primary', 'danger', 'warning'],
