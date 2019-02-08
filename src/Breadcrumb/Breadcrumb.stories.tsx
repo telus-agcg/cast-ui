@@ -49,23 +49,33 @@ storiesOf('Breadcrumb', module).add(
 
   ### Notes
 
-  Illustrates collective usage of the breadcrumb components
+  Illustrates collective usage of the Breadcrumb components
 
   ### Usage
   ~~~js
-    <Route
-      {...props}
-      render={routeProps => (
-        <Breadcrumb
-          data={{
-            title: 'Home',
-            pathname: routeProps.match.url,
-            search: includeSearch ? routeProps.location.search : null,
-          }}>
-          <MyComponent {...routeProps} />
-        </Breadcrumb>
-      )}
-    />
+    <div>
+      <Router history={newHistory}>
+        <div>
+          <Breadcrumbs
+            BreadcrumbsContainer="nav"
+            BreadcrumbItemContainer="span"
+            separator="span"
+          />
+          <ul className="demo__links">
+            <li>
+              <NavLink to="/buttons">Cast UI Buttons</NavLink>
+            </li>
+          </ul>
+          <Switch>
+            <CrumbRoute
+              title="Cast UI Buttons"
+              path="/buttons"
+              render={() => <CastUiButtons name="Cast UI Buttons" />}
+            />
+          </Switch>
+        </div>
+      </Router>
+    </div>
   ~~~`)(() => (
     <div>
       <Router history={newHistory}>
@@ -77,13 +87,13 @@ storiesOf('Breadcrumb', module).add(
           />
           <ul className="demo__links">
             <li>
-              <NavLink to={`/buttons`}>Cast UI Buttons</NavLink>
+              <NavLink to="/buttons">Cast UI Buttons</NavLink>
             </li>
           </ul>
           <Switch>
             <CrumbRoute
               title="Cast UI Buttons"
-              path={`/buttons`}
+              path="/buttons"
               render={() => <CastUiButtons name="Cast UI Buttons" />}
             />
           </Switch>
