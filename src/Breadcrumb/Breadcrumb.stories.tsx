@@ -59,9 +59,9 @@ storiesOf('Breadcrumb', module).add(
             BreadcrumbsContainer="nav"
             BreadcrumbItemContainer="span"
             separator="span"
-            breadcrumbDefaultStyle="default"
-            breadcrumbActiveStyle="primary"
-            breadcrumbSize="md"
+            breadcrumbdefaultstyle="default"
+            breadcrumbactivestyle="primary"
+            breadcrumbsize="md"
           />
           <ul className="demo__links">
             <li>
@@ -88,18 +88,18 @@ storiesOf('Breadcrumb', module).add(
               BreadcrumbItemContainer="span"
               separator="span"
               hidden={boolean('hidden', false)}
-              breadcrumbDefaultStyle={select(
-                'breadcrumbDefaultStyle',
+              breadcrumbdefaultstyle={select(
+                'breadcrumbdefaultstyle',
                 ['success', 'default', 'primary', 'danger', 'warning'],
                 'default',
               )}
-              breadcrumbActiveStyle={select(
-                'breadcrumActivebStyle',
+              breadcrumbactivestyle={select(
+                'breadcrumbactivestyle',
                 ['success', 'default', 'primary', 'danger', 'warning'],
                 'primary',
               )}
-              breadcrumbSize={select(
-                'breadcrumbSize',
+              breadcrumbsize={select(
+                'breadcrumbsize',
                 ['sm', 'md', 'lg'],
                 'md',
               )}
