@@ -104,7 +104,8 @@ export class PanelHeader extends React.Component<Props> {
       <SPanelHeader
         panelStyle={this.props.panelStyle || 'default'}
         collapsible={this.props.collapsible}
-        onClick={toggleItem}>
+        onClick={toggleItem}
+        theme={this.props.theme}>
         {this.props.name && <b>{this.props.name}:</b>} {this.props.title}{' '}
         {this.props.collapsible && ChevronImage}
       </SPanelHeader>
