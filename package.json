@@ -28,8 +28,8 @@
     "styled-components": "^4.1.0"
   },
   "dependencies": {
-    "lodash": "^4.17.11",
     "react-modal": "^3.8.1",
+    "react-paginate": "^6.2.1",
     "react-select": "^2.2.0",
     "react-table": "^6.8.6",
     "react-tabs": "^2.3.0",
@@ -73,10 +73,8 @@
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "react-dom": "^16.6.1",
     "react-router-dom": "^4.3.1",
-    "react-slick": "^0.23.2",
     "redux": "^4.0.1",
     "shx": "^0.3.2",
-    "slick-carousel": "^1.8.1",
     "storybook-addon-jsx": "^5.4.0",
     "styled-components": "^4.1.0",
     "tslint": "^5.11.0",
