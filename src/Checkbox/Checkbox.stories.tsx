@@ -28,7 +28,7 @@ storiesOf('Checkbox', module).add(
     One
   </Checkbox>
   ~~~`)(() => (
-    <>
+    <div>
       <Checkbox
         id="myInput1"
         cbSize={select('cbSize', ['sm', 'md', 'lg'], 'md')}
@@ -59,6 +59,6 @@ storiesOf('Checkbox', module).add(
       >
         Two
       </Checkbox>
-    </>
+    </div>
   )),
 );
