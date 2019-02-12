@@ -4,8 +4,8 @@ import { number, select, text } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 import TablePagination from './TablePagination.component';
 import { wInfo } from '../storybook-utils';
-import SPaginationButton from '../Table/SPaginationButton';
-import SPaginationButtonNextPrev from '../Table/SPaginationButtonNextPrev';
+import SPaginationButton from './SPaginationButton';
+import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
 
 storiesOf('Table', module).add(
   'TablePagination',

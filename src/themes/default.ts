@@ -3,7 +3,7 @@ import { lighten, darken } from '../utils/colorUtils';
 export { ThemeProvider } from 'styled-components';
 
 export const defaultColors = {
-  blue: '#0985E3',
+  blue: '#167BE0',
   green: '#00B52D',
   red: '#FE4A49',
   yellow: '#FEC934',
@@ -90,17 +90,34 @@ export const defaultTheme = {
       badgeBackground: defaultColors.gray,
       badgeColor: defaultColors.black,
     },
-    pagination: {
-      borderColor: defaultColors.white,
-      flood: defaultColors.white,
-      lightFlood: defaultColors.white,
-      hoverlightFlood: defaultColors.white,
-      text: defaultColors.black,
-      reverseText: defaultColors.black,
-      hoverFlood: defaultColors.white,
-      selectedFlood: darken(defaultColors.blue, 25),
-      badgeBackground: defaultColors.gray,
-      badgeColor: defaultColors.black,
+  },
+  pagination: {
+    text: defaultColors.black,
+    fontWeight: 'normal',
+    background: defaultColors.white,
+    borderColor: defaultColors.white,
+    activeText: defaultColors.blue,
+    activeFontWeight: 'bold',
+    activeBackground: defaultColors.white,
+    activeBorderColor: defaultColors.blue,
+    disabledText: defaultColors.gray,
+    disabledBackground: defaultColors.white,
+    disabledBorderColor: defaultColors.white,
+    hoverBackground: defaultColors.white,
+    hoverBorderColor: defaultColors.white,
+    borderRadius: '1px',
+    button: {
+      disabledText: defaultColors.disabledText,
+      fontWeight: 'normal',
+      fontWeightSelected: 'bold',
+      padding: {
+        sm: '3px 6px',
+        md: '4px 8px',
+        lg: '5px 10px',
+      },
+      nextPrevious: {
+        fontWeight: 'bold',
+      },
     },
   },
   typography: {
