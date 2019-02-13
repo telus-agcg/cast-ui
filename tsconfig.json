@@ -10,6 +10,7 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "rootDirs": ["src"],
+    "typeRoots": ["../node_modules/@types", "../@types"],
     "baseUrl": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,

@@ -35,34 +35,39 @@ type Props = {
   theme?: any;
 };
 
-const SPaginationButtonNextPrev = styled.button`
+const SPaginationButton = styled.button`
   background: ${(props: Props) =>
     props.selected
-      ? props.theme.styles.pagination.selectedFlood
-      : props.theme.styles.pagination.flood}
-  border: 1px solid ${(props: Props) =>
-    props.theme.styles.pagination.borderColor};
+      ? props.theme.pagination.selectedBackground
+      : props.theme.pagination.background}
+  border: 1px solid ${(props: Props) => props.theme.pagination.borderColor};
   padding: ${(props: Props) =>
     props.theme.table.pagination.button.padding[props.btnSize]}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.btnSize].fontSize}
   font-weight: ${(props: Props) =>
-    props.theme.table.pagination.button.nextPrevious.fontWeight};
-  color: ${(props: Props) => props.theme.styles.pagination.reverseText};
+    props.theme.table.pagination.button.fontWeight};
+  color: ${(props: Props) => props.theme.pagination.text};
   outline: none;
   &:hover {
-    background: ${(props: Props) => props.theme.styles.pagination.hoverFlood};
+    background: ${(props: Props) => props.theme.pagination.hoverBackground};
     border: 1px solid ${(props: Props) =>
-      props.theme.styles.pagination.hoverFlood};
+      props.theme.pagination.hoverBorderColor};
     cursor: pointer;
   }
   &:disabled {
-    background: ${(props: Props) => props.theme.styles.pagination.hoverFlood};
+    background: ${(props: Props) => props.theme.pagination.disabledBackground}
     border: 1px solid ${(props: Props) =>
-      props.theme.styles.pagination.hoverFlood};
-    color: ${(props: Props) => props.theme.table.pagination.button.disabledText};
+      props.theme.pagination.disabledBorderColor}
     cursor: not-allowed;
+  }
+  &[data-selected] {
+    border: 1px solid ${(props: Props) =>
+      props.theme.styles['primary'].borderColor};
+    color: ${(props: Props) => props.theme.styles['primary'].text};
+    font-weight: ${(props: Props) =>
+      props.theme.table.pagination.button.fontWeightSelected};
   }
 `;
 
-export default SPaginationButtonNextPrev;
+export default SPaginationButton;
