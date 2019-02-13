@@ -1,6 +1,10 @@
 # Contributing to cast-ui
 
-cast-ui is the work of [several contributors](https://github.com/technekes/cast-ui/graphs/contributors). You're encouraged to submit [pull requests](https://github.com/technekes/cast-ui/pulls), [propose features and discuss issues](https://github.com/technekes/cast-ui/issues).
+cast-ui is the work of
+[several contributors](https://github.com/technekes/cast-ui/graphs/contributors).
+You're encouraged to submit
+[pull requests](https://github.com/technekes/cast-ui/pulls),
+[propose features and discuss issues](https://github.com/technekes/cast-ui/issues).
 
 #### Fork the Project
 
