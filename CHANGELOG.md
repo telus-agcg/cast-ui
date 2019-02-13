@@ -3,7 +3,7 @@
 - Your contribution here.
 - [#35](https://github.com/technekes/cast-ui/pull/35): Adds pagination component - [@ben-dalton](https://github.com/ben-dalton).
 
-# 0.1.8 (02/07/2019)
+# 0.1.8 (2019-02-07)
 
 ### Features
 

@@ -82,6 +82,9 @@ Document any external behavior in component storybook stories as well as the
 Add a line to [CHANGELOG](CHANGELOG.md) under _Next Release_. Make it look
 like every other line, including your name and link to your Github account.
 
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
 #### Commit Changes
 
 Make sure git knows your name and email address:
