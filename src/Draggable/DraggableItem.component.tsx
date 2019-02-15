@@ -77,7 +77,7 @@ const SItemRightContent = styled.div`
     ${(props: Props) => props.theme.colors[props.bordercolor]};
 `;
 
-export const DraggableItem: React.FunctionComponent<Props> = (props) => (
+export const DraggableItem: React.FunctionComponent<Props> = props => (
   <SDraggableItem {...props}>
     <SItemLeftContent {...props}>
       <DraggableHandle size={props.itemhandlesize} className="itemHandle" />

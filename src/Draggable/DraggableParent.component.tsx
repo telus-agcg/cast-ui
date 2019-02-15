@@ -66,7 +66,9 @@ const SDraggableParent = styled.div`
   }
 `;
 
-export const DraggableParent: React.FunctionComponent<Props> = (props) => {
+export const DraggableParent: React.FunctionComponent<Props> = ({
+  ...props
+}) => {
   const [parentActive, setParentActive] = React.useState(false);
   return (
     <SDraggableParent parentActive={parentActive} {...props}>
