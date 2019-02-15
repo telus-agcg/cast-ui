@@ -89,7 +89,7 @@ export const DraggableItem: React.FunctionComponent<Props> = props => (
       <DraggableHandle size={props.itemhandlesize} className="itemHandle" />
     </SItemLeftContent>
     <SItemMainContent {...props}>
-      This is the main item content
+      Qualification: Geography - AK: Aleutian East - AZ, NC, WA
     </SItemMainContent>
     <SItemRightContent {...props}>Right Button</SItemRightContent>
   </SDraggableItem>
