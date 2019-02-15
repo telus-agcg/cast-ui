@@ -58,7 +58,8 @@ const SDraggableParent = styled.div`
     cursor: pointer;
     color: ${(props: Props) => props.theme.colors[props.bordercolor]};
     padding: ${(props: Props) => props.theme.common[props.size].padding};
-    margin-left: -${(props: Props) => props.theme.common[props.size].padding.toString().split(' ')[1]};
+    margin-left: ${(props: Props) =>
+      `-${props.theme.common[props.size].padding.toString().split(' ')[1]}`};
     &:hover {
       color: ${(props: Props) => props.theme.colors.blue};
     }
