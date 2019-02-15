@@ -66,12 +66,8 @@ const SDraggableParent = styled.div`
   }
 `;
 
-// const SDraggableHandle = styled(DraggableHandle)`
-//   color: ${(props: Props) => props.theme.colors[props.bordercolor]};
-// `;
-
-export const DraggableParent: React.FunctionComponent<Props> = props => {
-  let [parentActive, setParentActive] = React.useState(false);
+export const DraggableParent: React.FunctionComponent<Props> = (props) => {
+  const [parentActive, setParentActive] = React.useState(false);
   return (
     <SDraggableParent parentActive={parentActive} {...props}>
       <DraggableHandle
