@@ -1,5 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import Icon from 'react-icons-kit';
+import { info } from 'react-icons-kit/fa/info';
 
 type Props = {
   /**
@@ -15,6 +17,12 @@ type Props = {
    **/
   color?: string;
   /**
+   * Set Icon size
+   *
+   * @default '14'
+   **/
+  iconsize?: number;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -28,9 +36,11 @@ const SDraggableInfo = styled.div`
 
 export const DraggableInfo: React.FunctionComponent<Props> = props => (
   <SDraggableInfo {...props}>
-    <div>This is the infor section</div>
+    <Icon icon={info} size={props.iconsize} />
+    <span>To create a new group, drag one qualification on top of another</span>
   </SDraggableInfo>
 );
 DraggableInfo.defaultProps = {
   color: 'lightGray',
+  iconsize: 14,
 };

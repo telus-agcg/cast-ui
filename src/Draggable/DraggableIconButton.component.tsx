@@ -20,6 +20,12 @@ type Props = {
    **/
   color?: string;
   /**
+   * Set button size in pixels
+   *
+   * @default '38'
+   **/
+  pixelbuttonsize?: number;
+  /**
    * Select Button Size
    *
    * @default 'sm'
@@ -49,8 +55,8 @@ const SDraggableIconButton = styled(Button)`
   position: relative;
   border-radius: 50%;
   min-width: 20px;
-  width: 36px;
-  height: 36px;
+  width: ${(props: any) => props.pixelbuttonsize}px;
+  height: ${(props: any) => props.pixelbuttonsize}px;
   padding: 0;
 `;
 
@@ -61,7 +67,8 @@ export const DraggableIconButton: React.FunctionComponent<Props> = props => (
 );
 DraggableIconButton.defaultProps = {
   color: 'lightGray',
+  pixelbuttonsize: 32,
   btnSize: 'sm',
   btnStyle: 'primary',
-  iconsize: 28,
+  iconsize: 24,
 };
