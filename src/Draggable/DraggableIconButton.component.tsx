@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Icon from 'react-icons-kit';
-import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
 import { Button } from '../';
 
 type Props = {
@@ -19,6 +18,12 @@ type Props = {
    * @default 'lightGray'
    **/
   color?: string;
+  /**
+   * Set button icon
+   *
+   * @default null
+   **/
+  icon: React.ComponentType<any>;
   /**
    * Set button size in pixels
    *
@@ -54,7 +59,7 @@ type Props = {
 const SDraggableIconButton = styled(Button)`
   position: relative;
   border-radius: 50%;
-  min-width: 20px;
+  min-width: 10px;
   width: ${(props: any) => props.pixelbuttonsize}px;
   height: ${(props: any) => props.pixelbuttonsize}px;
   padding: 0;
@@ -62,7 +67,7 @@ const SDraggableIconButton = styled(Button)`
 
 export const DraggableIconButton: React.FunctionComponent<Props> = props => (
   <SDraggableIconButton {...props}>
-    <Icon icon={icAdd} size={props.iconsize} />
+    <Icon icon={props.icon} size={props.iconsize} />
   </SDraggableIconButton>
 );
 DraggableIconButton.defaultProps = {

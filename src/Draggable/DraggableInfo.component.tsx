@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Icon from 'react-icons-kit';
 import { info } from 'react-icons-kit/fa/info';
+import { DraggableIconButton } from './';
 
 type Props = {
   /**
@@ -16,6 +16,12 @@ type Props = {
    * @default 'lightGray'
    **/
   color?: string;
+  /**
+   * Select Draggable Gutters Size
+   *
+   * @default 'md'
+   **/
+  guttersize: string;
   /**
    * Set Icon size
    *
@@ -32,15 +38,31 @@ type Props = {
 
 const SDraggableInfo = styled.div`
   position: relative;
+  color: ${(props: any) => props.theme.colors.disabledText};
+  font-size: 12px;
+  font-style: italic;
+  padding: ${(props: Props) =>
+    `${
+      props.theme.common[props.guttersize].padding.toString().split(' ')[0]
+    } 0`};
 `;
 
 export const DraggableInfo: React.FunctionComponent<Props> = props => (
   <SDraggableInfo {...props}>
-    <Icon icon={info} size={props.iconsize} />
+    <DraggableIconButton
+      icon={info}
+      iconsize={10}
+      pixelbuttonsize={18}
+      btnSize="sm"
+      btnStyle="success"
+      onClick={() => {}}
+    />
     <span>To create a new group, drag one qualification on top of another</span>
+    {props.children}
   </SDraggableInfo>
 );
 DraggableInfo.defaultProps = {
   color: 'lightGray',
+  guttersize: 'md',
   iconsize: 14,
 };

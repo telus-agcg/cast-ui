@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
 import { DraggableHandle, DraggableIconButton } from './';
 
 type Props = {
@@ -94,6 +95,7 @@ export const DraggableParent: React.FunctionComponent<Props> = ({
       {props.children}
       <SParentRightAction {...props}>
         <DraggableIconButton
+          icon={icAdd}
           btnSize="sm"
           btnStyle="primary"
           onClick={() => {}}
