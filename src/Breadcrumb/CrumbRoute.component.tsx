@@ -17,7 +17,7 @@ type Props = {
    *
    * @default null
    **/
-  component?: React.ReactType;
+  component?: React.ComponentType;
   /**
    * Include route search params
    *
