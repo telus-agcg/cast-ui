@@ -9,6 +9,12 @@ import {
 
 type Props = {
   /**
+   * Set a className option
+   *
+   * @default ''
+   **/
+  className?: string;
+  /**
    * Select Draggable color. Must be a color defined in theme colors
    *
    * @default 'lightGray'

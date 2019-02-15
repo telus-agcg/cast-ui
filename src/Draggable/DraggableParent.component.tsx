@@ -4,6 +4,12 @@ import { DraggableHandle, DraggableIconButton } from './';
 
 type Props = {
   /**
+   * Set a className option
+   *
+   * @default ''
+   **/
+  className?: string;
+  /**
    * Select DraggableParent color. Must be a color defined in theme colors
    *
    * @default 'lightGray'

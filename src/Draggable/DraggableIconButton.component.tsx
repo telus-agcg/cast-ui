@@ -5,6 +5,12 @@ import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
 import { Button } from '../';
 
 type Props = {
+  /**
+   * Set a className option
+   *
+   * @default ''
+   **/
+  className?: string;
   /** Handle Button click events  */
   onClick(e: React.MouseEvent<HTMLElement>): void;
   /**
