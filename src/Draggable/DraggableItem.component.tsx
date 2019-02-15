@@ -51,6 +51,9 @@ const SDraggableItem = styled.div`
   border: 1px solid ${(props: Props) => props.theme.colors[props.bordercolor]};
   border-radius: ${(props: Props) =>
     props.theme.common[props.guttersize].borderRadius};
+  > * {
+    margin: auto;
+  }
 `;
 
 const SItemLeftContent = styled.div`
