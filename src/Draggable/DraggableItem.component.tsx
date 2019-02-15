@@ -39,7 +39,7 @@ const SDraggableItem = styled.div`
   position: relative;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: start;
   background: ${(props: Props) => props.theme.colors.white};
   border: 1px solid ${(props: Props) => props.theme.colors[props.bordercolor]};
