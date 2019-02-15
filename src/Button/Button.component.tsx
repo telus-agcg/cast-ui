@@ -11,6 +11,12 @@ type Props = {
   /** this dictates what the button will do  */
   onClick(e: React.MouseEvent<HTMLElement>): void;
   /**
+   * Set a className for the button
+   *
+   * @default ''
+   **/
+  className?: string;
+  /**
    * Select Button Style
    *
    * @default 'default'
@@ -58,12 +64,14 @@ export const Button: React.FunctionComponent<Props> = ({
   children,
   btnStyle = 'default',
   btnSize = 'md',
+  className,
   theme,
 }) => (
   <SButton
     outline={outline}
     btnSize={btnSize}
     btnStyle={btnStyle}
+    className={className}
     theme={theme}
     disabled={disabled}
     selected={selected}

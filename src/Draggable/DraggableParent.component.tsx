@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { DraggableHandle } from './';
+import { DraggableHandle, DraggableIconButton } from './';
 
 type Props = {
   /**
@@ -79,7 +79,7 @@ export const DraggableParent: React.FunctionComponent<Props> = ({
         onMouseLeave={() => setParentActive(false)}
       />
       {props.children}
-      <div>right button</div>
+      <DraggableIconButton btnSize="sm" btnStyle="primary" onClick={() => {}} />
     </SDraggableParent>
   );
 };

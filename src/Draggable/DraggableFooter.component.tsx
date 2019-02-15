@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { DraggableIconButton } from './';
 
 type Props = {
   /**
@@ -22,7 +23,7 @@ const SDraggableFooter = styled.div`
 
 export const DraggableFooter: React.FunctionComponent<Props> = props => (
   <SDraggableFooter {...props}>
-    <div>Footer Button</div>
+    <DraggableIconButton btnSize="sm" btnStyle="primary" onClick={() => {}} />
   </SDraggableFooter>
 );
 DraggableFooter.defaultProps = {
