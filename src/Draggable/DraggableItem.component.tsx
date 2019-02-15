@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableHandle } from './';
 import Icon from 'react-icons-kit';
-import { ic_keyboard_arrow_down as icKeyboardArrowDown } from 'react-icons-kit/md/ic_keyboard_arrow_down';
+import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 
 type Props = {
   /**
@@ -116,7 +116,7 @@ export const DraggableItem: React.FunctionComponent<Props> = props => (
       Qualification: Geography - AK: Aleutian East - AZ, NC, WA
     </SItemMainContent>
     <SItemRightContent {...props}>
-      <Icon icon={icKeyboardArrowDown} size={24} />
+      <Icon icon={IKAD} size={24} />
     </SItemRightContent>
   </SDraggableItem>
 );
