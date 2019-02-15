@@ -20,26 +20,26 @@ type Props = {
    *
    * @default '(props: Props) => <nav {...props}>{props.children}</nav>'
    **/
-  BreadcrumbsContainer?: React.ComponentType;
+  BreadcrumbsContainer?: React.ComponentType<any>;
   /**
    * React Element|Component for individual breadcrumb container
    *
    * @default '(props: Props) => <span {...props}>{props.children}</span>'
    **/
-  BreadcrumbItemContainer?: React.ComponentType;
+  BreadcrumbItemContainer?: React.ComponentType<any>;
   /**
    * React Element|Component for individual breadcrumb item
    *
    * @default 'NavLink from `react-router-dom`''
    * @default '(props: Props) => <NavLink {...props}>{props.children}</NavLink>'
    **/
-  BreadcrumbItem?: React.ComponentType;
+  BreadcrumbItem?: React.ComponentType<any>;
   /**
    * React Element|Component for individual breadcrumb item seperator
    *
    * @default '(props: Props) => <span {...props}> > </span>'
    **/
-  separator?: React.ComponentType;
+  separator?: React.ComponentType<any>;
   /**
    * Set/Update the crumbs list
    *

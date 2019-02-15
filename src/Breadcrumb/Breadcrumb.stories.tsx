@@ -56,9 +56,6 @@ storiesOf('Breadcrumb', module).add(
       <Router history={newHistory}>
         <div>
           <Breadcrumbs
-            BreadcrumbsContainer="nav"
-            BreadcrumbItemContainer="span"
-            separator="span"
             breadcrumbdefaultstyle="default"
             breadcrumbactivestyle="primary"
             breadcrumbsize="md"
@@ -82,11 +79,10 @@ storiesOf('Breadcrumb', module).add(
     <div>
       <Router history={newHistory}>
         <div>
-          <Panel title="Click on links to view behaviour of breadcrumbs" panelStyle="default">
+          <Panel
+            title="Click on links to view behaviour of breadcrumbs"
+            panelStyle="default">
             <Breadcrumbs
-              BreadcrumbsContainer="nav"
-              BreadcrumbItemContainer="span"
-              separator="span"
               hidden={boolean('hidden', false)}
               breadcrumbdefaultstyle={select(
                 'breadcrumbdefaultstyle',
