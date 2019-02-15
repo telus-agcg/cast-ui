@@ -29,7 +29,7 @@ const CastUiButtons = (props: any) => (
     </ul>
     <Switch>
       <CrumbRoute
-        title="Cast UI Buttons"
+        title="Standard Buttons"
         path="/buttons/standard-buttons"
         render={() => <Event name="Standard Buttons" />}
       />
