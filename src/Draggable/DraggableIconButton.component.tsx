@@ -51,6 +51,7 @@ const SDraggableIconButton = styled(Button)`
   min-width: 20px;
   width: 36px;
   height: 36px;
+  padding: 0;
 `;
 
 export const DraggableIconButton: React.FunctionComponent<Props> = props => (
