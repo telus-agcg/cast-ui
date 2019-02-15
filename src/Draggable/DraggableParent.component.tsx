@@ -22,11 +22,11 @@ type Props = {
    **/
   bordercolor: string;
   /**
-   * Select Draggable Size
+   * Select Draggable Gutters Size
    *
    * @default 'md'
    **/
-  size: string;
+  guttersize: string;
   /**
    * Size of the handle in the draggable parent container
    *
@@ -52,10 +52,10 @@ const SDraggableParent = styled.div`
   display: flex;
   align-items: center;
   justify-content: start;
-  padding: ${(props: Props) => props.theme.common[props.size].padding};
+  padding: ${(props: Props) => props.theme.common[props.guttersize].padding};
   border: 1px dashed ${(props: Props) => props.theme.colors[props.bordercolor]};
   border-radius: ${(props: Props) =>
-    props.theme.common[props.size].borderRadius};
+    props.theme.common[props.guttersize].borderRadius};
   background-color: ${(props: Props) =>
     props.parentActive
       ? props.theme.colors.panelBackground
@@ -63,13 +63,20 @@ const SDraggableParent = styled.div`
   .parentHandle {
     cursor: pointer;
     color: ${(props: Props) => props.theme.colors[props.bordercolor]};
-    padding: ${(props: Props) => props.theme.common[props.size].padding};
+    padding: ${(props: Props) => props.theme.common[props.guttersize].padding};
     margin-left: ${(props: Props) =>
-      `-${props.theme.common[props.size].padding.toString().split(' ')[1]}`};
+      `-${
+        props.theme.common[props.guttersize].padding.toString().split(' ')[1]
+      }`};
     &:hover {
       color: ${(props: Props) => props.theme.colors.blue};
     }
   }
+`;
+
+const SParentRightAction = styled.div`
+  margin: ${(props: any) => props.theme.common[props.guttersize].padding};
+  margin-right: 0;
 `;
 
 export const DraggableParent: React.FunctionComponent<Props> = ({
@@ -85,13 +92,19 @@ export const DraggableParent: React.FunctionComponent<Props> = ({
         onMouseLeave={() => setParentActive(false)}
       />
       {props.children}
-      <DraggableIconButton btnSize="sm" btnStyle="primary" onClick={() => {}} />
+      <SParentRightAction {...props}>
+        <DraggableIconButton
+          btnSize="sm"
+          btnStyle="primary"
+          onClick={() => {}}
+        />
+      </SParentRightAction>
     </SDraggableParent>
   );
 };
 DraggableParent.defaultProps = {
   color: 'lightGray',
   bordercolor: 'lightGray',
-  size: 'md' as 'md' | 'lg' | 'sm',
+  guttersize: 'md' as 'md' | 'lg' | 'sm',
   parenthandlesize: 30,
 };

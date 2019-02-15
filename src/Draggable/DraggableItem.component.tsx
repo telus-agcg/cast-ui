@@ -22,11 +22,11 @@ type Props = {
    **/
   bordercolor: string;
   /**
-   * Select Draggable Size
+   * Select Draggable Gutters Size
    *
    * @default 'md'
    **/
-  size: string;
+  guttersize: string;
   /**
    * Size of the handle in the draggable item
    *
@@ -50,7 +50,7 @@ const SDraggableItem = styled.div`
   background: ${(props: Props) => props.theme.colors.white};
   border: 1px solid ${(props: Props) => props.theme.colors[props.bordercolor]};
   border-radius: ${(props: Props) =>
-    props.theme.common[props.size].borderRadius};
+    props.theme.common[props.guttersize].borderRadius};
 `;
 
 const SItemLeftContent = styled.div`
@@ -74,7 +74,7 @@ const SItemLeftContent = styled.div`
 const SItemMainContent = styled.div`
   position: relative;
   width: 100%;
-  padding: ${(props: Props) => props.theme.common[props.size].padding};
+  padding: ${(props: Props) => props.theme.common[props.guttersize].padding};
 `;
 
 const SItemRightContent = styled.div`
@@ -97,6 +97,6 @@ export const DraggableItem: React.FunctionComponent<Props> = props => (
 DraggableItem.defaultProps = {
   color: 'lightGray',
   bordercolor: 'lightGray',
-  size: 'md' as 'md' | 'lg' | 'sm',
+  guttersize: 'md' as 'md' | 'lg' | 'sm',
   itemhandlesize: 30,
 };

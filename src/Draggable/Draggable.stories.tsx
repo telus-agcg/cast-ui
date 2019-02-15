@@ -17,8 +17,10 @@ storiesOf('Draggable', module).add(
   ~~~js
     <Draggable
       color="lightGray"
-      size={40}
-      animationSpeed={2}
+      bordercolor="lightGray"
+      guttersize="md"
+      parenthandlesize={30}
+      itemhandlesize={30}
     />
   ~~~`)(() => (
     <Draggable
@@ -32,7 +34,7 @@ storiesOf('Draggable', module).add(
         ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
         'lightGray',
       )}
-      size={select('size', ['sm', 'md', 'lg'], 'md')}
+      guttersize={select('guttersize', ['sm', 'md', 'lg'], 'md')}
       parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
       itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}
     />

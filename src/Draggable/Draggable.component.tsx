@@ -27,11 +27,11 @@ type Props = {
    **/
   bordercolor: string;
   /**
-   * Select Draggable Size
+   * Select Draggable Gutters Size
    *
    * @default 'md'
    **/
-  size: string;
+  guttersize: string;
   /**
    * Size of the handle in the draggable parent
    *
@@ -54,7 +54,7 @@ type Props = {
 
 const SDraggable = styled.div`
   position: relative;
-  padding: ${(props: Props) => props.theme.common[props.size].padding};
+  padding: ${(props: Props) => props.theme.common[props.guttersize].padding};
 `;
 
 export const Draggable: React.FunctionComponent<Props> = props => (
@@ -69,5 +69,5 @@ export const Draggable: React.FunctionComponent<Props> = props => (
 Draggable.defaultProps = {
   color: 'lightGray',
   bordercolor: 'lightGray',
-  size: 'md' as 'md' | 'lg' | 'sm',
+  guttersize: 'md' as 'md' | 'lg' | 'sm',
 };
