@@ -11,6 +11,12 @@ type Props = {
    **/
   className?: string;
   /**
+   * Select Draggable style
+   *
+   * @default 'primary'
+   **/
+  draggablestyle: string;
+  /**
    * Select Draggable Gutters Size
    *
    * @default 'md'
@@ -43,7 +49,7 @@ export const DraggableFooter: React.FunctionComponent<Props> = props => (
     <DraggableIconButton
       icon={icAdd}
       btnSize="sm"
-      btnStyle="primary"
+      btnStyle={props.draggablestyle}
       onClick={() => {}}
     />
     {props.children}
@@ -52,4 +58,5 @@ export const DraggableFooter: React.FunctionComponent<Props> = props => (
 DraggableFooter.defaultProps = {
   color: 'lightGray',
   guttersize: 'md',
+  draggablestyle: 'primary',
 };

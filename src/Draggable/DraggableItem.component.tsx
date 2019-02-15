@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableHandle } from './';
+import Icon from 'react-icons-kit';
+import { ic_keyboard_arrow_down as icKeyboardArrowDown } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 
 type Props = {
   /**
@@ -9,6 +11,12 @@ type Props = {
    * @default ''
    **/
   className?: string;
+  /**
+   * Select Draggable style
+   *
+   * @default 'primary'
+   **/
+  draggablestyle: string;
   /**
    * Select DraggableItem color. Must be a color defined in theme colors
    *
@@ -52,7 +60,8 @@ const SDraggableItem = styled.div`
   border-radius: ${(props: Props) =>
     props.theme.common[props.guttersize].borderRadius};
   > * {
-    margin: auto;
+    display: flex;
+    align-items: center;
   }
 `;
 
@@ -63,7 +72,10 @@ const SItemLeftContent = styled.div`
   .itemHandle {
     cursor: pointer;
     color: ${(props: Props) => props.theme.colors[props.bordercolor]};
-    padding: ${(props: Props) => props.theme.common.sm.padding};
+    padding: ${(props: Props) =>
+      `calc(${
+        props.theme.common[props.guttersize].padding.toString().split(' ')[0]
+      } / 2)`};
   }
   &:hover {
     cursor: pointer;
@@ -84,6 +96,15 @@ const SItemRightContent = styled.div`
   position: relative;
   border-left: 1px solid
     ${(props: Props) => props.theme.colors[props.bordercolor]};
+  color: ${(props: Props) =>
+    props.theme.styles[props.draggablestyle].reverseText};
+  background-color: ${(props: Props) =>
+    props.theme.styles[props.draggablestyle].flood};
+  cursor: pointer;
+  padding: ${(props: Props) =>
+    `calc(${
+      props.theme.common[props.guttersize].padding.toString().split(' ')[0]
+    } / 2)`};
 `;
 
 export const DraggableItem: React.FunctionComponent<Props> = props => (
@@ -94,11 +115,14 @@ export const DraggableItem: React.FunctionComponent<Props> = props => (
     <SItemMainContent {...props}>
       Qualification: Geography - AK: Aleutian East - AZ, NC, WA
     </SItemMainContent>
-    <SItemRightContent {...props}>Right Button</SItemRightContent>
+    <SItemRightContent {...props}>
+      <Icon icon={icKeyboardArrowDown} size={24} />
+    </SItemRightContent>
   </SDraggableItem>
 );
 DraggableItem.defaultProps = {
   color: 'lightGray',
+  draggablestyle: 'primary',
   bordercolor: 'lightGray',
   guttersize: 'md' as 'md' | 'lg' | 'sm',
   itemhandlesize: 30,

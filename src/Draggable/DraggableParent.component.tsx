@@ -11,6 +11,12 @@ type Props = {
    **/
   className?: string;
   /**
+   * Select Draggable style
+   *
+   * @default 'primary'
+   **/
+  draggablestyle: string;
+  /**
    * Select DraggableParent color. Must be a color defined in theme colors
    *
    * @default 'lightGray'
@@ -97,7 +103,7 @@ export const DraggableParent: React.FunctionComponent<Props> = ({
         <DraggableIconButton
           icon={icAdd}
           btnSize="sm"
-          btnStyle="primary"
+          btnStyle={props.draggablestyle}
           onClick={() => {}}
         />
       </SParentRightAction>
@@ -106,6 +112,7 @@ export const DraggableParent: React.FunctionComponent<Props> = ({
 };
 DraggableParent.defaultProps = {
   color: 'lightGray',
+  draggablestyle: 'primary',
   bordercolor: 'lightGray',
   guttersize: 'md' as 'md' | 'lg' | 'sm',
   parenthandlesize: 30,

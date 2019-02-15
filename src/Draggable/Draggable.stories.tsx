@@ -24,10 +24,10 @@ storiesOf('Draggable', module).add(
     />
   ~~~`)(() => (
     <Draggable
-      color={select(
-        'color',
-        ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
-        'lightGray',
+      draggablestyle={select(
+        'draggablestyle',
+        ['success', 'default', 'primary', 'danger', 'warning'],
+        'primary',
       )}
       bordercolor={select(
         'bordercolor',
