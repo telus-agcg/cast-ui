@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { useParentProps } from './store';
 
 type Props = {
   /**
@@ -60,6 +61,7 @@ const SDraggable = styled.div`
 `;
 
 export const Draggable: React.FunctionComponent<Props> = props => {
+  useParentProps(props);
   return <SDraggable {...props}>{props.children}</SDraggable>;
 };
 Draggable.defaultProps = {

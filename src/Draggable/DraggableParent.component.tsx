@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableHandle } from '../';
+import { useParentProps } from './store';
 
 type Props = {
   /**
@@ -90,61 +91,83 @@ const SParentRightContent = styled.div`
 `;
 
 const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
+  const parentProps = useParentProps(null);
+  const [newProps, setNewProps] = React.useState(props);
+  const propsToMerge = [
+    { key: 'guttersize', defaultVal: 'md' },
+    { key: 'bordercolor', defaultVal: 'lightGray' },
+  ];
+  propsToMerge.map((p: any) => {
+    newProps[p.key] = props[p.key] || p.defaultVal;
+  });
+
+  function mergeProps() {
+    const mergedProps = { ...parentProps, ...props };
+    propsToMerge.map((p: any) => {
+      mergedProps[p.key] = props[p.key] || p.defaultVal;
+    });
+    return mergedProps;
+  }
+  React.useEffect(() => {
+    if (
+      parentProps !== null &&
+      JSON.stringify(props) !== JSON.stringify(parentProps)
+    ) {
+      const mergedProps = mergeProps();
+      if (JSON.stringify(newProps) !== JSON.stringify(mergedProps)) {
+        setTimeout(() => {
+          console.log(
+            'new props in child comparison ',
+            mergedProps,
+            newProps,
+            JSON.stringify(newProps) === JSON.stringify(mergedProps),
+          );
+        }, 2000);
+        setNewProps(mergedProps);
+      }
+    }
+    setTimeout(() => {
+      console.log(
+        ' we have new we get the effects',
+        props,
+        mergeProps(),
+        newProps,
+        parentProps,
+      );
+    }, 2000);
+  }, [props, parentProps]);
   return (
-    <SParentRightContent {...props} key="rightContent">
+    <SParentRightContent {...newProps} key={props.color}>
       {props.children}
     </SParentRightContent>
   );
 };
-RightContent.defaultProps = {
+
+const Parent: React.FunctionComponent<Props> = ({ ...props }) => {
+  const [parentActive, setParentActive] = React.useState(false);
+  const parentProps = useParentProps(null);
+  return (
+    <SDraggableParent
+      parentActive={parentActive}
+      {...parentProps}
+      {...props}
+      key={props.color}>
+      <DraggableHandle
+        size={props.parenthandlesize}
+        className="parentHandle"
+        onMouseEnter={() => setParentActive(true)}
+        onMouseLeave={() => setParentActive(false)}
+      />
+      {props.children}
+    </SDraggableParent>
+  );
+};
+Parent.defaultProps = {
   color: 'lightGray',
   draggablestyle: 'primary',
   bordercolor: 'lightGray',
   guttersize: 'md' as 'md' | 'lg' | 'sm',
   parenthandlesize: 30,
 };
-
-class Parent extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      parentActive: false,
-    };
-    this.setParentActive = this.setParentActive.bind(this);
-  }
-  static defaultProps = {
-    color: 'lightGray',
-    draggablestyle: 'primary',
-    bordercolor: 'lightGray',
-    guttersize: 'md' as 'md' | 'lg' | 'sm',
-    parenthandlesize: 30,
-  };
-  setParentActive(parentActive: boolean) {
-    this.setState({ parentActive });
-  }
-
-  RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
-    return (
-      <SParentRightContent key="rightContent">
-        {props.children}
-      </SParentRightContent>
-    );
-  };
-  render() {
-    const { parentActive }: any = this.state;
-    const { ...props } = this.props;
-    return (
-      <SDraggableParent parentActive={parentActive} {...props} key="parent">
-        <DraggableHandle
-          size={props.parenthandlesize}
-          className="parentHandle"
-          onMouseEnter={() => this.setParentActive(true)}
-          onMouseLeave={() => this.setParentActive(false)}
-        />
-        {props.children}
-      </SDraggableParent>
-    );
-  }
-}
 
 export const DraggableParent = { Parent, RightContent };
