@@ -1,11 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import {
-  DraggableInfo,
-  DraggableParent,
-  DraggableItem,
-  DraggableFooter,
-} from './';
 
 type Props = {
   /**
@@ -66,13 +60,7 @@ const SDraggable = styled.div`
 `;
 
 export const Draggable: React.FunctionComponent<Props> = props => (
-  <SDraggable {...props}>
-    <DraggableInfo {...props} />
-    <DraggableParent {...props}>
-      <DraggableItem />
-    </DraggableParent>
-    <DraggableFooter {...props} />
-  </SDraggable>
+  <SDraggable {...props}>{props.children}</SDraggable>
 );
 Draggable.defaultProps = {
   color: 'lightGray',

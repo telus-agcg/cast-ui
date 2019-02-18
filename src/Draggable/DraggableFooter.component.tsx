@@ -40,7 +40,7 @@ const SDraggableFooter = styled.div`
   position: relative;
   padding: ${(props: Props) =>
     `${
-      props.theme.common[props.guttersize!].padding.toString().split(' ')[1]
+      props.theme.common[props.guttersize!].padding.toString().split(' ')[0]
     } 0`};
 `;
 

@@ -42,9 +42,9 @@ const SDraggableInfo = styled.div`
   font-size: 12px;
   font-style: italic;
   padding: ${(props: Props) =>
-    `${
+    `calc(${
       props.theme.common[props.guttersize!].padding.toString().split(' ')[0]
-    } 0`};
+    } / 4) 0`};
 `;
 
 export const DraggableInfo: React.FunctionComponent<Props> = props => (
@@ -57,7 +57,6 @@ export const DraggableInfo: React.FunctionComponent<Props> = props => (
       btnStyle="success"
       onClick={() => {}}
     />
-    <span>To create a new group, drag one qualification on top of another</span>
     {props.children}
   </SDraggableInfo>
 );

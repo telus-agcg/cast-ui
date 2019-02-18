@@ -60,6 +60,10 @@ const SDraggableParent = styled.div`
   align-items: center;
   justify-content: start;
   padding: ${(props: Props) => props.theme.common[props.guttersize!].padding};
+  margin: ${(props: Props) =>
+    `${
+      props.theme.common[props.guttersize!].padding.toString().split(' ')[0]
+    } 0`};
   border: 1px dashed ${(props: Props) => props.theme.colors[props.bordercolor!]};
   border-radius: ${(props: Props) =>
     props.theme.common[props.guttersize!].borderRadius};
