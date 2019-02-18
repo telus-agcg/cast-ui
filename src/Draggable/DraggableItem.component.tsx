@@ -1,7 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Icon from 'react-icons-kit';
-import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 import { DraggableHandle } from './';
 import DraggableContext, { useMergeWithParentProps } from './DraggableContext';
 
@@ -114,7 +112,42 @@ const SItemRightContent = styled.div`
     } / 2)`};
 `;
 
-export const DraggableItem: React.FunctionComponent<Props> = props => {
+const MainContent: React.FunctionComponent<Props> = ({ ...props }) => {
+  const parentProps = React.useContext(DraggableContext).parentProps;
+  const propsToMerge = [{ key: 'guttersize', defaultVal: 'md' }];
+  const newProps: any = useMergeWithParentProps(props, {
+    propsToMerge,
+    parentProps,
+  });
+
+  return (
+    <SItemMainContent {...newProps} key={props.color}>
+      {props.children}
+    </SItemMainContent>
+  );
+};
+
+const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
+  const parentProps = React.useContext(DraggableContext).parentProps;
+  const propsToMerge = [
+    { key: 'guttersize', defaultVal: 'md' },
+    { key: 'draggablestyle', defaultVal: 'primary' },
+    { key: 'color', defaultVal: 'lightGray' },
+    { key: 'bordercolor', defaultVal: 'lightGray' },
+  ];
+  const newProps: any = useMergeWithParentProps(props, {
+    propsToMerge,
+    parentProps,
+  });
+
+  return (
+    <SItemRightContent {...newProps} key={props.color}>
+      {props.children}
+    </SItemRightContent>
+  );
+};
+
+const Parent: React.FunctionComponent<Props> = props => {
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
     { key: 'guttersize', defaultVal: 'md' },
@@ -133,10 +166,9 @@ export const DraggableItem: React.FunctionComponent<Props> = props => {
           <DraggableHandle size={props.itemhandlesize} className="itemHandle" />
         </SItemLeftContent>
       )}
-      <SItemMainContent {...newProps}>{props.children}</SItemMainContent>
-      <SItemRightContent {...newProps}>
-        <Icon icon={IKAD} size={24} />
-      </SItemRightContent>
+      {props.children}
     </SDraggableItem>
   );
 };
+
+export const DraggableItem = { Parent, MainContent, RightContent };

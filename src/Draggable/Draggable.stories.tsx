@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select, boolean } from '@storybook/addon-knobs/react';
+import Icon from 'react-icons-kit';
+import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
 import { info } from 'react-icons-kit/fa/info';
 
@@ -57,13 +59,19 @@ storiesOf('Draggable', module).add(
         To create a new group, drag one qualification on top of another
       </DraggableInfo>
       <DraggableParent.Parent
+        parentActive={boolean('parentActive', false)}
         parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
         showparenthandle={boolean('showparenthandle', true)}>
-        <DraggableItem
+        <DraggableItem.Parent
           showitemhandle={boolean('showitemhandle', true)}
           itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
-          Qualification: Geography - AK: Aleutian East - AZ, NC, WA
-        </DraggableItem>
+          <DraggableItem.MainContent>
+            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+          </DraggableItem.MainContent>
+          <DraggableItem.RightContent>
+            <Icon icon={IKAD} size={24} />
+          </DraggableItem.RightContent>
+        </DraggableItem.Parent>
         <DraggableParent.RightContent>
           <IconButton
             rounded
