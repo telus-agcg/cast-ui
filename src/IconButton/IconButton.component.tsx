@@ -35,13 +35,13 @@ type Props = {
    *
    * @default 'sm'
    **/
-  btnSize: string;
+  btnSize?: string;
   /**
    * Select Button Size
    *
    * @default 'primary'
    **/
-  btnStyle: string;
+  btnStyle?: string;
   /**
    * Set Icon size
    *

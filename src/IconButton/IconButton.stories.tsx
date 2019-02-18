@@ -7,13 +7,13 @@ import { info } from 'react-icons-kit/fa/info';
 import { IconButton } from './';
 import { wInfo } from '../storybook-utils';
 
-storiesOf('Draggable', module).add(
-  'Draggable',
+storiesOf('IconButton', module).add(
+  'IconButton',
   wInfo(`
 
   ### Notes
 
-  This is a Draggable
+  This is a IconButton
 
   ### Usage
   ~~~js

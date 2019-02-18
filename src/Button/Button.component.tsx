@@ -21,13 +21,13 @@ type Props = {
    *
    * @default 'default'
    **/
-  btnStyle: string;
+  btnStyle?: string;
   /**
    * Select Button Size
    *
    * @default 'md'
    **/
-  btnSize: string;
+  btnSize?: string;
   /**
    * Specify if the button is disabled
    *
