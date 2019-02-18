@@ -6,10 +6,9 @@ export const DraggableContext = React.createContext({
 
 export const useMergeWithParentProps: React.FunctionComponent<any> = (
   localProps,
-  propsToMerge,
+  { propsToMerge, parentProps },
 ) => {
-  const parentProps = React.useContext(DraggableContext).parentProps;
-  const [newProps, setNewProps] = React.useState(localProps);
+  let newProps = { ...localProps };
   propsToMerge.map((p: any) => {
     newProps[p.key] = localProps[p.key] || parentProps[p.key] || p.defaultVal;
   });
@@ -26,11 +25,12 @@ export const useMergeWithParentProps: React.FunctionComponent<any> = (
   React.useEffect(() => {
     if (
       parentProps !== null &&
+      localProps !== undefined &&
       JSON.stringify(localProps) !== JSON.stringify(parentProps)
     ) {
       const mergedProps = mergeProps();
       if (JSON.stringify(newProps) !== JSON.stringify(mergedProps)) {
-        setNewProps(mergedProps);
+        newProps = { ...mergedProps };
       }
     }
   }, [localProps, parentProps]);

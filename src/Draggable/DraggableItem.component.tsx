@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { DraggableHandle } from './';
 import Icon from 'react-icons-kit';
 import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
+import { DraggableHandle } from './';
+import DraggableContext, { useMergeWithParentProps } from './DraggableContext';
 
 type Props = {
   /**
@@ -107,21 +108,31 @@ const SItemRightContent = styled.div`
     } / 2)`};
 `;
 
-export const DraggableItem: React.FunctionComponent<Props> = props => (
-  <SDraggableItem {...props}>
-    <SItemLeftContent {...props}>
-      <DraggableHandle size={props.itemhandlesize} className="itemHandle" />
-    </SItemLeftContent>
-    <SItemMainContent {...props}>{props.children}</SItemMainContent>
-    <SItemRightContent {...props}>
-      <Icon icon={IKAD} size={24} />
-    </SItemRightContent>
-  </SDraggableItem>
-);
-DraggableItem.defaultProps = {
-  color: 'lightGray',
-  draggablestyle: 'primary',
-  bordercolor: 'lightGray',
-  guttersize: 'md' as 'md' | 'lg' | 'sm',
-  itemhandlesize: 30,
+export const DraggableItem: React.FunctionComponent<Props> = props => {
+  const parentProps = React.useContext(DraggableContext).parentProps;
+  const propsToMerge = [
+    { key: 'guttersize', defaultVal: 'md' },
+    { key: 'draggablestyle', defaultVal: 'primary' },
+    { key: 'color', defaultVal: 'lightGray' },
+    { key: 'bordercolor', defaultVal: 'lightGray' },
+    { key: 'itemhandlesize', defaultVal: 30 },
+  ];
+  const newProps: any = useMergeWithParentProps(props, {
+    propsToMerge,
+    parentProps,
+  });
+  return (
+    <SDraggableItem {...newProps} key="draggableItem">
+      <SItemLeftContent {...newProps}>
+        <DraggableHandle
+          size={newProps.itemhandlesize}
+          className="itemHandle"
+        />
+      </SItemLeftContent>
+      <SItemMainContent {...newProps}>{props.children}</SItemMainContent>
+      <SItemRightContent {...newProps}>
+        <Icon icon={IKAD} size={24} />
+      </SItemRightContent>
+    </SDraggableItem>
+  );
 };

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableHandle } from '../';
-import { useMergeWithParentProps } from './DraggableContext';
+import DraggableContext, { useMergeWithParentProps } from './DraggableContext';
 
 type Props = {
   /**
@@ -91,11 +91,15 @@ const SParentRightContent = styled.div`
 `;
 
 const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
+  const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
     { key: 'guttersize', defaultVal: 'md' },
     { key: 'bordercolor', defaultVal: 'lightGray' },
   ];
-  const newProps = useMergeWithParentProps(props, propsToMerge);
+  const newProps: any = useMergeWithParentProps(props, {
+    propsToMerge,
+    parentProps,
+  });
 
   return (
     <SParentRightContent {...newProps} key={props.color}>
@@ -106,16 +110,19 @@ const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
 
 const Parent: React.FunctionComponent<Props> = ({ ...props }) => {
   const [parentActive, setParentActive] = React.useState(false);
+  const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
     { key: 'guttersize', defaultVal: 'md' },
     { key: 'draggablestyle', defaultVal: 'primary' },
-    { key: 'guttersize', defaultVal: 'md' },
     { key: 'color', defaultVal: 'lightGray' },
     { key: 'bordercolor', defaultVal: 'lightGray' },
     { key: 'parenthandlesize', defaultVal: 30 },
     { key: 'parentActive', defaultVal: parentActive },
   ];
-  const newProps: any = useMergeWithParentProps(props, propsToMerge);
+  const newProps: any = useMergeWithParentProps(props, {
+    propsToMerge,
+    parentProps,
+  });
   return (
     <SDraggableParent {...newProps} key={props.color}>
       <DraggableHandle
