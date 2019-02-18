@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { info } from 'react-icons-kit/fa/info';
-import { DraggableIconButton } from './';
+import { IconButton } from '../';
 
 type Props = {
   /**
@@ -49,7 +49,7 @@ const SDraggableInfo = styled.div`
 
 export const DraggableInfo: React.FunctionComponent<Props> = props => (
   <SDraggableInfo {...props}>
-    <DraggableIconButton
+    <IconButton
       icon={info}
       iconsize={10}
       pixelbuttonsize={18}
@@ -63,5 +63,5 @@ export const DraggableInfo: React.FunctionComponent<Props> = props => (
 DraggableInfo.defaultProps = {
   color: 'lightGray',
   guttersize: 'md',
-  iconsize: 14,
+  iconsize: 10,
 };

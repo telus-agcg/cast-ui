@@ -56,7 +56,7 @@ type Props = {
   theme?: any;
 };
 
-const SDraggableIconButton = styled(Button)`
+const SIconButton = styled(Button)`
   position: relative;
   border-radius: 50%;
   min-width: 10px;
@@ -65,12 +65,12 @@ const SDraggableIconButton = styled(Button)`
   padding: 0;
 `;
 
-export const DraggableIconButton: React.FunctionComponent<Props> = props => (
-  <SDraggableIconButton {...props}>
+export const IconButton: React.FunctionComponent<Props> = props => (
+  <SIconButton {...props}>
     <Icon icon={props.icon} size={props.iconsize} />
-  </SDraggableIconButton>
+  </SIconButton>
 );
-DraggableIconButton.defaultProps = {
+IconButton.defaultProps = {
   color: 'lightGray',
   pixelbuttonsize: 32,
   btnSize: 'sm',

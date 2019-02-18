@@ -4,7 +4,6 @@ import { DraggableParent } from './DraggableParent.component';
 import { DraggableItem } from './DraggableItem.component';
 import { DraggableFooter } from './DraggableFooter.component';
 import { DraggableHandle } from './DraggableHandle.component';
-import { DraggableIconButton } from './DraggableIconButton.component';
 
 export * from './Draggable.component';
 export * from './DraggableInfo.component';
@@ -12,7 +11,6 @@ export * from './DraggableParent.component';
 export * from './DraggableItem.component';
 export * from './DraggableFooter.component';
 export * from './DraggableHandle.component';
-export * from './DraggableIconButton.component';
 
 export default {
   Draggable,
@@ -21,5 +19,4 @@ export default {
   DraggableItem,
   DraggableFooter,
   DraggableHandle,
-  DraggableIconButton,
 };

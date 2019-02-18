@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
-import { DraggableIconButton } from './';
+import { IconButton } from '../';
 
 type Props = {
   /**
@@ -46,7 +46,7 @@ const SDraggableFooter = styled.div`
 
 export const DraggableFooter: React.FunctionComponent<Props> = props => (
   <SDraggableFooter {...props}>
-    <DraggableIconButton
+    <IconButton
       icon={icAdd}
       btnSize="sm"
       btnStyle={props.draggablestyle!}

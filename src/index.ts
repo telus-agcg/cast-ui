@@ -17,3 +17,5 @@ export * from './Textarea/Textarea.component';
 export * from './Spinner/Spinner.component';
 export * from './CopyToClipboard/CopyToClipboard.component';
 export * from './Breadcrumb';
+export * from './Draggable';
+export * from './IconButton';
