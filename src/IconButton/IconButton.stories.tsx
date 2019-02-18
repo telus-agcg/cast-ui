@@ -18,7 +18,7 @@ storiesOf('IconButton', module).add(
   ### Usage
   ~~~js
     <IconButton
-      rounded={true}
+      rounded
       icon={icAdd}
       iconsize={20}
       pixelbuttonsize={40}

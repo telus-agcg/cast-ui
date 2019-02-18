@@ -1,7 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
-import { IconButton } from '../';
 
 type Props = {
   /**
@@ -45,15 +43,7 @@ const SDraggableFooter = styled.div`
 `;
 
 export const DraggableFooter: React.FunctionComponent<Props> = props => (
-  <SDraggableFooter {...props}>
-    <IconButton
-      icon={icAdd}
-      btnSize="sm"
-      btnStyle={props.draggablestyle!}
-      onClick={() => {}}
-    />
-    {props.children}
-  </SDraggableFooter>
+  <SDraggableFooter {...props}>{props.children}</SDraggableFooter>
 );
 DraggableFooter.defaultProps = {
   color: 'lightGray',

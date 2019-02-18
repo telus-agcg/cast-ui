@@ -59,9 +59,9 @@ const SDraggable = styled.div`
   font-size: ${(props: Props) => props.theme.common.md.fontSize};
 `;
 
-export const Draggable: React.FunctionComponent<Props> = props => (
-  <SDraggable {...props}>{props.children}</SDraggable>
-);
+export const Draggable: React.FunctionComponent<Props> = props => {
+  return <SDraggable {...props}>{props.children}</SDraggable>;
+};
 Draggable.defaultProps = {
   color: 'lightGray',
   draggablestyle: 'primary',

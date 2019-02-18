@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
-import { DraggableHandle, IconButton } from '../';
+import { DraggableHandle } from '../';
 
 type Props = {
   /**
@@ -85,39 +84,52 @@ const SDraggableParent = styled.div`
   }
 `;
 
-const SParentRightAction = styled.div`
+const SParentRightContent = styled.div`
   margin: ${(props: any) => props.theme.common[props.guttersize].padding};
   margin-right: 0;
 `;
 
-export const DraggableParent: React.FunctionComponent<Props> = ({
-  ...props
-}) => {
-  const [parentActive, setParentActive] = React.useState(false);
+const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
   return (
-    <SDraggableParent parentActive={parentActive} {...props}>
-      <DraggableHandle
-        size={props.parenthandlesize}
-        className="parentHandle"
-        onMouseEnter={() => setParentActive(true)}
-        onMouseLeave={() => setParentActive(false)}
-      />
+    <SParentRightContent {...props} key="rightContent">
       {props.children}
-      <SParentRightAction {...props}>
-        <IconButton
-          icon={icAdd}
-          btnSize="sm"
-          btnStyle={props.draggablestyle!}
-          onClick={() => {}}
-        />
-      </SParentRightAction>
-    </SDraggableParent>
+    </SParentRightContent>
   );
 };
-DraggableParent.defaultProps = {
-  color: 'lightGray',
-  draggablestyle: 'primary',
-  bordercolor: 'lightGray',
-  guttersize: 'md' as 'md' | 'lg' | 'sm',
-  parenthandlesize: 30,
-};
+
+class Parent extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      parentActive: false,
+    };
+    this.setParentActive = this.setParentActive.bind(this);
+  }
+  static defaultProps = {
+    color: 'lightGray',
+    draggablestyle: 'primary',
+    bordercolor: 'lightGray',
+    guttersize: 'md' as 'md' | 'lg' | 'sm',
+    parenthandlesize: 30,
+  };
+  setParentActive(parentActive: boolean) {
+    this.setState({ parentActive });
+  }
+  render() {
+    const { parentActive }: any = this.state;
+    const { ...props } = this.props;
+    return (
+      <SDraggableParent parentActive={parentActive} {...props} key="parent">
+        <DraggableHandle
+          size={props.parenthandlesize}
+          className="parentHandle"
+          onMouseEnter={() => this.setParentActive(true)}
+          onMouseLeave={() => this.setParentActive(false)}
+        />
+        {props.children}
+      </SDraggableParent>
+    );
+  }
+}
+
+export const DraggableParent = { Parent, RightContent };
