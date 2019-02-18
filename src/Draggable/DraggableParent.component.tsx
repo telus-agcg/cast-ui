@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableHandle } from '../';
-import { useParentProps } from './store';
+import { useMergeWithParentProps } from './DraggableContext';
 
 type Props = {
   /**
@@ -86,56 +86,22 @@ const SDraggableParent = styled.div`
 `;
 
 const SParentRightContent = styled.div`
-  margin: ${(props: any) => props.theme.common[props.guttersize].padding};
+  margin: ${(props: any) =>
+    props.theme.common[props.guttersize || 'md'].padding};
   margin-right: 0;
 `;
 
 const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
-  const parentProps = useParentProps(null);
-  const [newProps, setNewProps] = React.useState(props);
   const propsToMerge = [
     { key: 'guttersize', defaultVal: 'md' },
     { key: 'bordercolor', defaultVal: 'lightGray' },
   ];
-  propsToMerge.map((p: any) => {
-    newProps[p.key] = props[p.key] || p.defaultVal;
-  });
+  const newProps = useMergeWithParentProps(props, propsToMerge);
 
-  function mergeProps() {
-    const mergedProps = { ...parentProps, ...props };
-    propsToMerge.map((p: any) => {
-      mergedProps[p.key] = props[p.key] || p.defaultVal;
-    });
-    return mergedProps;
-  }
-  React.useEffect(() => {
-    if (
-      parentProps !== null &&
-      JSON.stringify(props) !== JSON.stringify(parentProps)
-    ) {
-      const mergedProps = mergeProps();
-      if (JSON.stringify(newProps) !== JSON.stringify(mergedProps)) {
-        setTimeout(() => {
-          console.log(
-            'new props in child comparison ',
-            mergedProps,
-            newProps,
-            JSON.stringify(newProps) === JSON.stringify(mergedProps),
-          );
-        }, 2000);
-        setNewProps(mergedProps);
-      }
-    }
-    setTimeout(() => {
-      console.log(
-        ' we have new we get the effects',
-        props,
-        mergeProps(),
-        newProps,
-        parentProps,
-      );
-    }, 2000);
-  }, [props, parentProps]);
+  // React.useEffect(() => {
+  //   console.log('We have a new context ', draggableContext);
+  // }, [draggableContext]);
+
   return (
     <SParentRightContent {...newProps} key={props.color}>
       {props.children}
@@ -145,13 +111,8 @@ const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
 
 const Parent: React.FunctionComponent<Props> = ({ ...props }) => {
   const [parentActive, setParentActive] = React.useState(false);
-  const parentProps = useParentProps(null);
   return (
-    <SDraggableParent
-      parentActive={parentActive}
-      {...parentProps}
-      {...props}
-      key={props.color}>
+    <SDraggableParent parentActive={parentActive} {...props} key={props.color}>
       <DraggableHandle
         size={props.parenthandlesize}
         className="parentHandle"
