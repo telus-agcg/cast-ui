@@ -96,6 +96,13 @@ const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
     </SParentRightContent>
   );
 };
+RightContent.defaultProps = {
+  color: 'lightGray',
+  draggablestyle: 'primary',
+  bordercolor: 'lightGray',
+  guttersize: 'md' as 'md' | 'lg' | 'sm',
+  parenthandlesize: 30,
+};
 
 class Parent extends React.Component<Props> {
   constructor(props: Props) {
@@ -115,6 +122,14 @@ class Parent extends React.Component<Props> {
   setParentActive(parentActive: boolean) {
     this.setState({ parentActive });
   }
+
+  RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
+    return (
+      <SParentRightContent key="rightContent">
+        {props.children}
+      </SParentRightContent>
+    );
+  };
   render() {
     const { parentActive }: any = this.state;
     const { ...props } = this.props;
