@@ -21,7 +21,7 @@ type Props = {
    *
    * @default 'md'
    **/
-  guttersize: string;
+  guttersize?: string;
   /**
    * Set Icon size
    *
@@ -43,7 +43,7 @@ const SDraggableInfo = styled.div`
   font-style: italic;
   padding: ${(props: Props) =>
     `${
-      props.theme.common[props.guttersize].padding.toString().split(' ')[0]
+      props.theme.common[props.guttersize!].padding.toString().split(' ')[0]
     } 0`};
 `;
 

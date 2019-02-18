@@ -16,7 +16,7 @@ type Props = {
    *
    * @default 'primary'
    **/
-  draggablestyle: string;
+  draggablestyle?: string;
   /**
    * Select DraggableItem color. Must be a color defined in theme colors
    *
@@ -28,13 +28,13 @@ type Props = {
    *
    * @default 'lightGray'
    **/
-  bordercolor: string;
+  bordercolor?: string;
   /**
    * Select Draggable Gutters Size
    *
    * @default 'md'
    **/
-  guttersize: string;
+  guttersize?: string;
   /**
    * Size of the handle in the draggable item
    *
@@ -56,9 +56,9 @@ const SDraggableItem = styled.div`
   align-items: stretch;
   justify-content: start;
   background: ${(props: Props) => props.theme.colors.white};
-  border: 1px solid ${(props: Props) => props.theme.colors[props.bordercolor]};
+  border: 1px solid ${(props: Props) => props.theme.colors[props.bordercolor!]};
   border-radius: ${(props: Props) =>
-    props.theme.common[props.guttersize].borderRadius};
+    props.theme.common[props.guttersize!].borderRadius};
   > * {
     display: flex;
     align-items: center;
@@ -68,13 +68,13 @@ const SDraggableItem = styled.div`
 const SItemLeftContent = styled.div`
   position: relative;
   border-right: 1px solid
-    ${(props: Props) => props.theme.colors[props.bordercolor]};
+    ${(props: Props) => props.theme.colors[props.bordercolor!]};
   .itemHandle {
     cursor: pointer;
-    color: ${(props: Props) => props.theme.colors[props.bordercolor]};
+    color: ${(props: Props) => props.theme.colors[props.bordercolor!]};
     padding: ${(props: Props) =>
       `calc(${
-        props.theme.common[props.guttersize].padding.toString().split(' ')[0]
+        props.theme.common[props.guttersize!].padding.toString().split(' ')[0]
       } / 2)`};
   }
   &:hover {
@@ -89,21 +89,21 @@ const SItemLeftContent = styled.div`
 const SItemMainContent = styled.div`
   position: relative;
   width: 100%;
-  padding: ${(props: Props) => props.theme.common[props.guttersize].padding};
+  padding: ${(props: Props) => props.theme.common[props.guttersize!].padding};
 `;
 
 const SItemRightContent = styled.div`
   position: relative;
   border-left: 1px solid
-    ${(props: Props) => props.theme.colors[props.bordercolor]};
+    ${(props: Props) => props.theme.colors[props.bordercolor!]};
   color: ${(props: Props) =>
-    props.theme.styles[props.draggablestyle].reverseText};
+    props.theme.styles[props.draggablestyle!].reverseText};
   background-color: ${(props: Props) =>
-    props.theme.styles[props.draggablestyle].flood};
+    props.theme.styles[props.draggablestyle!].flood};
   cursor: pointer;
   padding: ${(props: Props) =>
     `calc(${
-      props.theme.common[props.guttersize].padding.toString().split(' ')[0]
+      props.theme.common[props.guttersize!].padding.toString().split(' ')[0]
     } / 2)`};
 `;
 
@@ -112,9 +112,7 @@ export const DraggableItem: React.FunctionComponent<Props> = props => (
     <SItemLeftContent {...props}>
       <DraggableHandle size={props.itemhandlesize} className="itemHandle" />
     </SItemLeftContent>
-    <SItemMainContent {...props}>
-      Qualification: Geography - AK: Aleutian East - AZ, NC, WA
-    </SItemMainContent>
+    <SItemMainContent {...props}>{props.children}</SItemMainContent>
     <SItemRightContent {...props}>
       <Icon icon={IKAD} size={24} />
     </SItemRightContent>

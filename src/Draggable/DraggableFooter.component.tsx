@@ -15,13 +15,13 @@ type Props = {
    *
    * @default 'primary'
    **/
-  draggablestyle: string;
+  draggablestyle?: string;
   /**
    * Select Draggable Gutters Size
    *
    * @default 'md'
    **/
-  guttersize: string;
+  guttersize?: string;
   /**
    * Select DraggableFooter color. Must be a color defined in theme colors
    *
@@ -40,7 +40,7 @@ const SDraggableFooter = styled.div`
   position: relative;
   padding: ${(props: Props) =>
     `${
-      props.theme.common[props.guttersize].padding.toString().split(' ')[1]
+      props.theme.common[props.guttersize!].padding.toString().split(' ')[1]
     } 0`};
 `;
 
@@ -49,7 +49,7 @@ export const DraggableFooter: React.FunctionComponent<Props> = props => (
     <DraggableIconButton
       icon={icAdd}
       btnSize="sm"
-      btnStyle={props.draggablestyle}
+      btnStyle={props.draggablestyle!}
       onClick={() => {}}
     />
     {props.children}

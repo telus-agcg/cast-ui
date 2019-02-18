@@ -25,19 +25,19 @@ type Props = {
    *
    * @default 'primary'
    **/
-  draggablestyle: string;
+  draggablestyle?: string;
   /**
    * Select Draggable borders' color. Must be a color defined in theme colors
    *
    * @default 'lightGray'
    **/
-  bordercolor: string;
+  bordercolor?: string;
   /**
    * Select Draggable Gutters Size
    *
    * @default 'md'
    **/
-  guttersize: string;
+  guttersize?: string;
   /**
    * Size of the handle in the draggable parent
    *
@@ -60,7 +60,7 @@ type Props = {
 
 const SDraggable = styled.div`
   position: relative;
-  padding: ${(props: Props) => props.theme.common[props.guttersize].padding};
+  padding: ${(props: Props) => props.theme.common[props.guttersize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common.md.fontSize};
 `;
@@ -69,7 +69,7 @@ export const Draggable: React.FunctionComponent<Props> = props => (
   <SDraggable {...props}>
     <DraggableInfo {...props} />
     <DraggableParent {...props}>
-      <DraggableItem {...props} />
+      <DraggableItem />
     </DraggableParent>
     <DraggableFooter {...props} />
   </SDraggable>
