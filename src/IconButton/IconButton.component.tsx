@@ -56,14 +56,19 @@ type Props = Partial<ButtonProps> &
 
 const SIconButton = styled(Button)`
   position: relative;
-  border-radius: ${(props: any) => (props.rounded ? '50%' : '1px')};
+  border-radius: ${(props: any) =>
+    props.rounded ? '50%' : props.theme.common[props.btnSize].borderRadius};
   min-width: ${(props: any) => (props.rounded ? '10px' : '75px')};
   width: ${(props: any) =>
     props.rounded ? `${props.pixelbuttonsize}px` : 'auto'};
   height: ${(props: any) =>
     props.rounded ? `${props.pixelbuttonsize}px` : 'auto'};
-  padding: ${(props: any) => (props.rounded ? '0' : 'inherit')};
+  padding: ${(props: any) =>
+    props.rounded ? '0' : props.theme.common[props.btnSize].padding};
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const IconButton: React.FunctionComponent<Props> = props => (

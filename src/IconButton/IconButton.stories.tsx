@@ -18,15 +18,10 @@ storiesOf('IconButton', module).add(
   ### Usage
   ~~~js
     <IconButton
-      icon={info}
-      iconsize={10}
-      pixelbuttonsize={18}
-      btnSize="sm"
-      btnStyle="success"
-      onClick={() => {}}
-    />
-    <IconButton
+      rounded={true}
       icon={icAdd}
+      iconsize={20}
+      pixelbuttonsize={40}
       btnSize="sm"
       btnStyle="primary"
       onClick={() => {}}
@@ -40,11 +35,11 @@ storiesOf('IconButton', module).add(
         btnStyle={select(
           'btnStyle',
           ['success', 'default', 'primary', 'danger', 'warning'],
-          'default',
+          'primary',
         )}
-        btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
+        btnSize={select('btnSize', ['sm', 'md', 'lg'], 'sm')}
         pixelbuttonsize={select('pixelbuttonsize', [20, 30, 40, 50, 60], 40)}
-        iconsize={select('iconsize', [20, 30, 40, 50, 60], 30)}
+        iconsize={select('iconsize', [20, 30, 40, 50, 60], 20)}
         disabled={boolean('disabled', false)}
         onClick={action('Clicked!')}
       />
