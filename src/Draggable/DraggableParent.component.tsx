@@ -86,8 +86,7 @@ const SDraggableParent = styled.div`
 `;
 
 const SParentRightContent = styled.div`
-  margin: ${(props: any) =>
-    props.theme.common[props.guttersize || 'md'].padding};
+  margin: ${(props: any) => props.theme.common[props.guttersize].padding};
   margin-right: 0;
 `;
 
@@ -98,10 +97,6 @@ const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
   ];
   const newProps = useMergeWithParentProps(props, propsToMerge);
 
-  // React.useEffect(() => {
-  //   console.log('We have a new context ', draggableContext);
-  // }, [draggableContext]);
-
   return (
     <SParentRightContent {...newProps} key={props.color}>
       {props.children}
@@ -111,10 +106,20 @@ const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
 
 const Parent: React.FunctionComponent<Props> = ({ ...props }) => {
   const [parentActive, setParentActive] = React.useState(false);
+  const propsToMerge = [
+    { key: 'guttersize', defaultVal: 'md' },
+    { key: 'draggablestyle', defaultVal: 'primary' },
+    { key: 'guttersize', defaultVal: 'md' },
+    { key: 'color', defaultVal: 'lightGray' },
+    { key: 'bordercolor', defaultVal: 'lightGray' },
+    { key: 'parenthandlesize', defaultVal: 30 },
+    { key: 'parentActive', defaultVal: parentActive },
+  ];
+  const newProps: any = useMergeWithParentProps(props, propsToMerge);
   return (
-    <SDraggableParent parentActive={parentActive} {...props} key={props.color}>
+    <SDraggableParent {...newProps} key={props.color}>
       <DraggableHandle
-        size={props.parenthandlesize}
+        size={newProps.parenthandlesize}
         className="parentHandle"
         onMouseEnter={() => setParentActive(true)}
         onMouseLeave={() => setParentActive(false)}
@@ -122,13 +127,6 @@ const Parent: React.FunctionComponent<Props> = ({ ...props }) => {
       {props.children}
     </SDraggableParent>
   );
-};
-Parent.defaultProps = {
-  color: 'lightGray',
-  draggablestyle: 'primary',
-  bordercolor: 'lightGray',
-  guttersize: 'md' as 'md' | 'lg' | 'sm',
-  parenthandlesize: 30,
 };
 
 export const DraggableParent = { Parent, RightContent };

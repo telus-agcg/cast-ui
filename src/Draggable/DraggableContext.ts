@@ -10,9 +10,12 @@ export const useMergeWithParentProps: React.FunctionComponent<any> = (
 ) => {
   const parentProps = React.useContext(DraggableContext).parentProps;
   const [newProps, setNewProps] = React.useState(localProps);
+  propsToMerge.map((p: any) => {
+    newProps[p.key] = localProps[p.key] || parentProps[p.key] || p.defaultVal;
+  });
 
   function mergeProps() {
-    const mergedProps = { ...parentProps, ...localProps };
+    const mergedProps = { ...localProps };
     propsToMerge.map((p: any) => {
       mergedProps[p.key] =
         localProps[p.key] || parentProps[p.key] || p.defaultVal;
