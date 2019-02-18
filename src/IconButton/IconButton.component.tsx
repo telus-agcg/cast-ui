@@ -1,79 +1,74 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Icon from 'react-icons-kit';
-import { Button } from '../';
+import Button, { Props as ButtonProps } from '../Button';
 
-type Props = {
-  /**
-   * Set a className option
-   *
-   * @default ''
-   **/
-  className?: string;
-  /** Handle Button click events  */
-  onClick(e: React.MouseEvent<HTMLElement>): void;
-  /**
-   * Select DraggableIconButton color. Must be a color defined in theme colors
-   *
-   * @default 'lightGray'
-   **/
-  color?: string;
-  /**
-   * Set button icon
-   *
-   * @default null
-   **/
-  icon: React.ComponentType<any>;
-  /**
-   * Set button size in pixels
-   *
-   * @default '38'
-   **/
-  pixelbuttonsize?: number;
-  /**
-   * Select Button Size
-   *
-   * @default 'sm'
-   **/
-  btnSize?: string;
-  /**
-   * Select Button Size
-   *
-   * @default 'primary'
-   **/
-  btnStyle?: string;
-  /**
-   * Set Icon size
-   *
-   * @default '28'
-   **/
-  iconsize?: number;
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
+const defaultProps = {
+  color: 'lightGray',
+  pixelbuttonsize: 32,
+  iconsize: 24,
+  rounded: true,
 };
+
+type DefaultProps = Readonly<typeof defaultProps>;
+
+type Props = Partial<ButtonProps> &
+  Partial<DefaultProps> & {
+    /** Handle Button click events  */
+    onClick(e: React.MouseEvent<HTMLElement>): void;
+    /**
+     * Select IconButton color. Must be a color defined in theme colors
+     *
+     * @default 'lightGray'
+     **/
+    color?: string;
+    /**
+     * Set button icon
+     *
+     * @default null
+     **/
+    icon?: React.ComponentType<any>;
+    /**
+     * Set button size in pixels
+     *
+     * @default '38'
+     **/
+    pixelbuttonsize?: number;
+    /**
+     * Set Icon size
+     *
+     * @default '28'
+     **/
+    iconsize?: number;
+    /**
+     * Specify if the button is rounded
+     *
+     * @default true
+     **/
+    rounded?: boolean;
+    /**
+     * From theme provider
+     *
+     * @default defaultTheme
+     **/
+    theme?: any;
+  };
 
 const SIconButton = styled(Button)`
   position: relative;
-  border-radius: 50%;
-  min-width: 10px;
-  width: ${(props: any) => props.pixelbuttonsize}px;
-  height: ${(props: any) => props.pixelbuttonsize}px;
-  padding: 0;
+  border-radius: ${(props: any) => (props.rounded ? '50%' : '1px')};
+  min-width: ${(props: any) => (props.rounded ? '10px' : '75px')};
+  width: ${(props: any) =>
+    props.rounded ? `${props.pixelbuttonsize}px` : 'auto'};
+  height: ${(props: any) =>
+    props.rounded ? `${props.pixelbuttonsize}px` : 'auto'};
+  padding: ${(props: any) => (props.rounded ? '0' : 'inherit')};
+  outline: none;
 `;
 
 export const IconButton: React.FunctionComponent<Props> = props => (
   <SIconButton {...props}>
-    <Icon icon={props.icon} size={props.iconsize} />
+    {props.icon && <Icon icon={props.icon} size={props.iconsize} />}
+    {props.children}
   </SIconButton>
 );
-IconButton.defaultProps = {
-  color: 'lightGray',
-  pixelbuttonsize: 32,
-  btnSize: 'sm',
-  btnStyle: 'primary',
-  iconsize: 24,
-};

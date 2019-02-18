@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SButton from './SButton';
 
-type Props = {
+export type Props = {
   /**
    * Specify if the button is outline
    *

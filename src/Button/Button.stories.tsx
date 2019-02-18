@@ -23,7 +23,7 @@ storiesOf('Button', module).add(
   />
   ~~~`)(() => (
     <Button
-      outline={boolean('Outline', false)}
+      outline={boolean('outline', false)}
       btnStyle={select(
         'btnStyle',
         ['success', 'default', 'primary', 'danger', 'warning'],
