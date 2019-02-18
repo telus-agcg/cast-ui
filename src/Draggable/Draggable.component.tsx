@@ -34,18 +34,6 @@ type Props = {
    **/
   guttersize?: string;
   /**
-   * Size of the handle in the draggable parent
-   *
-   * @default '30'
-   **/
-  parenthandlesize?: number;
-  /**
-   * Size of the handle in the draggable item
-   *
-   * @default '30'
-   **/
-  itemhandlesize?: number;
-  /**
    * From theme provider
    *
    * @default defaultTheme

@@ -43,6 +43,12 @@ type Props = {
    **/
   itemhandlesize?: number;
   /**
+   * Optionally show the handle in the draggable item
+   *
+   * @default 'true'
+   **/
+  showitemhandle?: boolean;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -115,7 +121,6 @@ export const DraggableItem: React.FunctionComponent<Props> = props => {
     { key: 'draggablestyle', defaultVal: 'primary' },
     { key: 'color', defaultVal: 'lightGray' },
     { key: 'bordercolor', defaultVal: 'lightGray' },
-    { key: 'itemhandlesize', defaultVal: 30 },
   ];
   const newProps: any = useMergeWithParentProps(props, {
     propsToMerge,
@@ -123,12 +128,11 @@ export const DraggableItem: React.FunctionComponent<Props> = props => {
   });
   return (
     <SDraggableItem {...newProps} key="draggableItem">
-      <SItemLeftContent {...newProps}>
-        <DraggableHandle
-          size={newProps.itemhandlesize}
-          className="itemHandle"
-        />
-      </SItemLeftContent>
+      {props.showitemhandle && (
+        <SItemLeftContent {...newProps}>
+          <DraggableHandle size={props.itemhandlesize} className="itemHandle" />
+        </SItemLeftContent>
+      )}
       <SItemMainContent {...newProps}>{props.children}</SItemMainContent>
       <SItemRightContent {...newProps}>
         <Icon icon={IKAD} size={24} />

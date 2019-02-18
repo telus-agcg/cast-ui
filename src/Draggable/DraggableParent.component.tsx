@@ -35,11 +35,17 @@ type Props = {
    **/
   guttersize?: string;
   /**
-   * Size of the handle in the draggable parent container
+   * Size of the handle in the draggable parent
    *
    * @default '30'
    **/
   parenthandlesize?: number;
+  /**
+   * Optionally show the handle in the draggable parent
+   *
+   * @default 'true'
+   **/
+  showparenthandle?: boolean;
   /**
    * Active background for draggable parent container
    *
@@ -125,12 +131,14 @@ const Parent: React.FunctionComponent<Props> = ({ ...props }) => {
   });
   return (
     <SDraggableParent {...newProps} key={props.color}>
-      <DraggableHandle
-        size={newProps.parenthandlesize}
-        className="parentHandle"
-        onMouseEnter={() => setParentActive(true)}
-        onMouseLeave={() => setParentActive(false)}
-      />
+      {props.showparenthandle && (
+        <DraggableHandle
+          size={newProps.parenthandlesize}
+          className="parentHandle"
+          onMouseEnter={() => setParentActive(true)}
+          onMouseLeave={() => setParentActive(false)}
+        />
+      )}
       {props.children}
     </SDraggableParent>
   );

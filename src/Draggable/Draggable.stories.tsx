@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs/react';
+import { select, boolean } from '@storybook/addon-knobs/react';
 import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
 import { info } from 'react-icons-kit/fa/info';
 
@@ -43,9 +43,7 @@ storiesOf('Draggable', module).add(
         ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
         'lightGray',
       )}
-      guttersize={select('guttersize', ['sm', 'md', 'lg'], 'md')}
-      parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
-      itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+      guttersize={select('guttersize', ['sm', 'md', 'lg'], 'md')}>
       <DraggableInfo>
         <IconButton
           rounded
@@ -58,24 +56,12 @@ storiesOf('Draggable', module).add(
         />
         To create a new group, drag one qualification on top of another
       </DraggableInfo>
-      <DraggableParent.Parent>
-        <DraggableItem>
-          Qualification: Geography - AK: Aleutian East - AZ, NC, WA
-        </DraggableItem>
-        <DraggableParent.RightContent>
-          <IconButton
-            rounded
-            icon={icAdd}
-            iconsize={20}
-            pixelbuttonsize={32}
-            btnSize="sm"
-            btnStyle="primary"
-            onClick={() => {}}
-          />
-        </DraggableParent.RightContent>
-      </DraggableParent.Parent>
-      <DraggableParent.Parent>
-        <DraggableItem>
+      <DraggableParent.Parent
+        parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
+        showparenthandle={boolean('showparenthandle', true)}>
+        <DraggableItem
+          showitemhandle={boolean('showitemhandle', true)}
+          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
           Qualification: Geography - AK: Aleutian East - AZ, NC, WA
         </DraggableItem>
         <DraggableParent.RightContent>
