@@ -38,9 +38,7 @@ type Props = {
 export const DraggableHandle: React.FunctionComponent<Props> = props => (
   <div
     onMouseEnter={() => props.onMouseEnter}
-    onMouseLeave={() => props.onMouseLeave}
-    onDragStart={() => props.onDragStart}
-    draggable={props.draggable}>
+    onMouseLeave={() => props.onMouseLeave}>
     <Icon
       icon={icViewHeadline}
       {...props}

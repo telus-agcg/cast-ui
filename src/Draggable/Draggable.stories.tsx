@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select, boolean } from '@storybook/addon-knobs/react';
+import { action } from '@storybook/addon-actions';
+
 import Icon from 'react-icons-kit';
 import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
@@ -63,55 +65,9 @@ storiesOf('Draggable', module).add(
       <DraggableParent.ParentContainer
         parentActive={boolean('parentActive', false)}
         parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
-        showparenthandle={boolean('showparenthandle', true)}>
-        <DraggableParent.ParentMainContent>
-          <DraggableItem.ItemContainer
-            showitemhandle={boolean('showitemhandle', true)}
-            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
-            <DraggableItem.ItemMainContent>
-              <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
-            </DraggableItem.ItemMainContent>
-            <DraggableItem.ItemRightContent>
-              <Icon icon={IKAD} size={24} />
-            </DraggableItem.ItemRightContent>
-          </DraggableItem.ItemContainer>
-          <DraggableItem.ItemContainer
-            showitemhandle={boolean('showitemhandle', true)}
-            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
-            <DraggableItem.ItemMainContent>
-              <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
-            </DraggableItem.ItemMainContent>
-            <DraggableItem.ItemRightContent>
-              <Icon icon={IKAD} size={24} />
-            </DraggableItem.ItemRightContent>
-          </DraggableItem.ItemContainer>
-          <DraggableItem.ItemContainer
-            showitemhandle={boolean('showitemhandle', true)}
-            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
-            <DraggableItem.ItemMainContent>
-              <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
-            </DraggableItem.ItemMainContent>
-            <DraggableItem.ItemRightContent>
-              <Icon icon={IKAD} size={24} />
-            </DraggableItem.ItemRightContent>
-          </DraggableItem.ItemContainer>
-        </DraggableParent.ParentMainContent>
-        <DraggableParent.ParentRightContent>
-          <IconButton
-            rounded
-            icon={icAdd}
-            iconsize={20}
-            pixelbuttonsize={32}
-            btnSize="sm"
-            btnStyle="primary"
-            onClick={() => {}}
-          />
-        </DraggableParent.ParentRightContent>
-      </DraggableParent.ParentContainer>
-      <DraggableParent.ParentContainer
-        parentActive={boolean('parentActive', false)}
-        parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
-        showparenthandle={boolean('showparenthandle', true)}>
+        showparenthandle={boolean('showparenthandle', true)}
+        draggable={boolean('Parent draggable', true)}
+        onDragStart={action('Drag started!')}>
         <DraggableParent.ParentMainContent>
           <DraggableItem.ItemContainer
             showitemhandle={boolean('showitemhandle', true)}

@@ -4,6 +4,14 @@ import { DraggableHandle } from '../';
 import DraggableContext, { useMergeWithParentProps } from './DraggableContext';
 
 type Props = {
+  /** Listen to drag start events  */
+  onDragStart?(e: React.MouseEvent<HTMLElement>): void;
+  /**
+   * Listen to drag start events
+   *
+   * @default true
+   * */
+  draggable?: boolean;
   /**
    * Set a className option
    *
@@ -154,15 +162,17 @@ export const ParentContainer: React.FunctionComponent<Props> = ({
     parentProps,
   });
   return (
-    <SDraggableParent {...newProps} key={props.color}>
+    <SDraggableParent
+      {...newProps}
+      key={props.color}
+      draggable={parentActive && props.draggable}
+      onDragStart={props.onDragStart}>
       {props.showparenthandle && (
         <DraggableHandle
           size={newProps.parenthandlesize}
           className="parentHandle"
           onMouseEnter={() => setParentActive(true)}
           onMouseLeave={() => setParentActive(false)}
-          onDragStart={(e: any) => console.log('drag startted', e)}
-          draggable
         />
       )}
       {props.children}
