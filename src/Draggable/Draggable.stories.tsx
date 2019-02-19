@@ -60,21 +60,41 @@ storiesOf('Draggable', module).add(
         />
         To create a new group, drag one qualification on top of another
       </DraggableInfo>
-      {/* <Parent
+      <DraggableParent.ParentContainer
         parentActive={boolean('parentActive', false)}
         parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
         showparenthandle={boolean('showparenthandle', true)}>
-        <DraggableItem.Parent
+        <DraggableItem.ItemContainer
           showitemhandle={boolean('showitemhandle', true)}
           itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
-          <DraggableItem.MainContent>
+          <DraggableItem.ItemMainContent>
             <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
-          </DraggableItem.MainContent>
-          <DraggableItem.RightContent>
+          </DraggableItem.ItemMainContent>
+          <DraggableItem.ItemRightContent>
             <Icon icon={IKAD} size={24} />
-          </DraggableItem.RightContent>
-        </DraggableItem.Parent>
-        <RightContent>
+          </DraggableItem.ItemRightContent>
+        </DraggableItem.ItemContainer>
+        <DraggableItem.ItemContainer
+          showitemhandle={boolean('showitemhandle', true)}
+          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+          <DraggableItem.ItemMainContent>
+            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+          </DraggableItem.ItemMainContent>
+          <DraggableItem.ItemRightContent>
+            <Icon icon={IKAD} size={24} />
+          </DraggableItem.ItemRightContent>
+        </DraggableItem.ItemContainer>
+        <DraggableItem.ItemContainer
+          showitemhandle={boolean('showitemhandle', true)}
+          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+          <DraggableItem.ItemMainContent>
+            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+          </DraggableItem.ItemMainContent>
+          <DraggableItem.ItemRightContent>
+            <Icon icon={IKAD} size={24} />
+          </DraggableItem.ItemRightContent>
+        </DraggableItem.ItemContainer>
+        <DraggableParent.ParentRightContent>
           <IconButton
             rounded
             icon={icAdd}
@@ -84,12 +104,32 @@ storiesOf('Draggable', module).add(
             btnStyle="primary"
             onClick={() => {}}
           />
-        </RightContent>
-      </Parent> */}
+        </DraggableParent.ParentRightContent>
+      </DraggableParent.ParentContainer>
       <DraggableParent.ParentContainer
         parentActive={boolean('parentActive', false)}
         parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
         showparenthandle={boolean('showparenthandle', true)}>
+        <DraggableItem.ItemContainer
+          showitemhandle={boolean('showitemhandle', true)}
+          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+          <DraggableItem.ItemMainContent>
+            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+          </DraggableItem.ItemMainContent>
+          <DraggableItem.ItemRightContent>
+            <Icon icon={IKAD} size={24} />
+          </DraggableItem.ItemRightContent>
+        </DraggableItem.ItemContainer>
+        <DraggableItem.ItemContainer
+          showitemhandle={boolean('showitemhandle', true)}
+          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+          <DraggableItem.ItemMainContent>
+            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+          </DraggableItem.ItemMainContent>
+          <DraggableItem.ItemRightContent>
+            <Icon icon={IKAD} size={24} />
+          </DraggableItem.ItemRightContent>
+        </DraggableItem.ItemContainer>
         <DraggableItem.ItemContainer
           showitemhandle={boolean('showitemhandle', true)}
           itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>

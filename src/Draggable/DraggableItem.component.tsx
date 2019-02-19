@@ -151,7 +151,7 @@ export const ItemRightContent: React.FunctionComponent<Props> = ({
   );
 };
 
-export const ItemContainer: React.FunctionComponent<Props> = props => {
+export const ItemContainer: React.FunctionComponent<Props> = (props: any) => {
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
     { key: 'guttersize', defaultVal: 'md' },

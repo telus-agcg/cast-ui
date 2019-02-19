@@ -48,7 +48,7 @@ const SDraggable = styled.div`
   font-size: ${(props: Props) => props.theme.common.md.fontSize};
 `;
 
-export const Draggable: React.FunctionComponent<Props> = props => {
+export const Draggable: React.FunctionComponent<Props> = (props: any) => {
   return (
     <DraggableContext.Provider value={{ parentProps: props }}>
       <SDraggable {...props}>{props.children}</SDraggable>

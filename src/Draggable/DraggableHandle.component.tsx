@@ -7,6 +7,14 @@ type Props = {
   onMouseEnter?: Function;
   /** Deactivate Hover handle  */
   onMouseLeave?: Function;
+  /** Listen to drag start events  */
+  onDragStart?: Function;
+  /**
+   * Listen to drag start events
+   *
+   * @default true
+   * */
+  draggable?: boolean;
   /**
    * Pass in Handle Icon iconsize
    *
@@ -30,7 +38,9 @@ type Props = {
 export const DraggableHandle: React.FunctionComponent<Props> = props => (
   <div
     onMouseEnter={() => props.onMouseEnter}
-    onMouseLeave={() => props.onMouseLeave}>
+    onMouseLeave={() => props.onMouseLeave}
+    onDragStart={() => props.onDragStart}
+    draggable={props.draggable}>
     <Icon
       icon={icViewHeadline}
       {...props}

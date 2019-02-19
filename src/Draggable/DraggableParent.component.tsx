@@ -141,9 +141,11 @@ export const ParentContainer: React.FunctionComponent<Props> = ({
           className="parentHandle"
           onMouseEnter={() => setParentActive(true)}
           onMouseLeave={() => setParentActive(false)}
+          onDragStart={(e: any) => console.log('drag startted', e)}
+          draggable
         />
       )}
-      {props.children}
+      <div>{props.children}</div>
     </SDraggableParent>
   );
 };

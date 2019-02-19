@@ -33,6 +33,7 @@ export const useMergeWithParentProps: React.FunctionComponent<any> = (
         newProps = { ...mergedProps };
       }
     }
+    // tslint:disable-next-line
   }, [localProps, parentProps]);
   return newProps;
 };
