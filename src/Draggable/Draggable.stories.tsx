@@ -13,8 +13,6 @@ import {
   DraggableParent,
   DraggableItem,
   DraggableInfo,
-  // Parent,
-  // RightContent,
   DraggableFooter,
   IconButton,
 } from '../';
@@ -30,13 +28,54 @@ storiesOf('Draggable', module).add(
 
   ### Usage
   ~~~js
-    <Draggable
-      color="lightGray"
-      bordercolor="lightGray"
-      guttersize="md"
-      parenthandlesize={30}
-      itemhandlesize={30}
-    />
+    <Draggable>
+      <DraggableInfo>
+        <IconButton
+          rounded
+          icon={info}
+          iconsize={10}
+          pixelbuttonsize={18}
+          btnSize="sm"
+          btnStyle="success"
+          onClick={() => {}}
+        />
+        To create a new group, drag one qualification on top of another
+      </DraggableInfo>
+      <DraggableParent.ParentContainer>
+        <DraggableParent.ParentMainContent>
+          <DraggableItem.ItemContainer>
+            <DraggableItem.ItemMainContent>
+              <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+            </DraggableItem.ItemMainContent>
+            <DraggableItem.ItemRightContent>
+              <Icon icon={IKAD} size={24} />
+            </DraggableItem.ItemRightContent>
+          </DraggableItem.ItemContainer>
+        </DraggableParent.ParentMainContent>
+        <DraggableParent.ParentRightContent>
+          <IconButton
+            rounded
+            icon={icAdd}
+            iconsize={20}
+            pixelbuttonsize={32}
+            btnSize="sm"
+            btnStyle="primary"
+            onClick={() => {}}
+          />
+        </DraggableParent.ParentRightContent>
+      </DraggableParent.ParentContainer>
+      <DraggableFooter>
+        <IconButton
+          rounded
+          icon={icAdd}
+          iconsize={20}
+          pixelbuttonsize={32}
+          btnSize="sm"
+          btnStyle="primary"
+          onClick={() => {}}
+        />
+      </DraggableFooter>
+    </Draggable>
   ~~~`)(() => (
     <Draggable
       draggablestyle={select(

@@ -1,37 +1,14 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { DraggableProps } from './defaultProps';
 
-type Props = {
-  /**
-   * Set a className option
-   *
-   * @default ''
-   **/
-  className?: string;
-  /**
-   * Select DraggableInfo color. Must be a color defined in theme colors
-   *
-   * @default 'lightGray'
-   **/
-  color?: string;
-  /**
-   * Select Draggable Gutters Size
-   *
-   * @default 'md'
-   **/
-  guttersize?: string;
+type Props = Partial<DraggableProps> & {
   /**
    * Set Icon size
    *
    * @default '14'
    **/
   iconsize?: number;
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
 };
 
 const SDraggableInfo = styled.div`

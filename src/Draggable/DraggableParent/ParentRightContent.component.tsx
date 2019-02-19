@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { DraggableParentProps } from './props';
-import DraggableContext, { useMergeWithParentProps } from '../DraggableContext';
+import { DraggableProps } from '../defaultProps';
+import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
 
-type Props = Partial<DraggableParentProps>;
+type Props = Partial<DraggableProps>;
 
 const SParentRightContent = styled.div`
   margin: ${(props: any) => props.theme.common[props.guttersize].padding};

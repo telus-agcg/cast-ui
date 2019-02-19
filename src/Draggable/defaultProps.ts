@@ -1,4 +1,4 @@
-export type DraggableItemProps = {
+export type DraggableProps = {
   /**
    * Set a className option
    *
@@ -10,15 +10,15 @@ export type DraggableItemProps = {
    *
    * @default 'primary'
    **/
-  draggablestyle?: string;
+  draggablestyle?: string | 'primary';
   /**
-   * Select DraggableItem color. Must be a color defined in theme colors
+   * Select DraggableParent color. Must be a color defined in theme colors
    *
    * @default 'lightGray'
    **/
   color?: string;
   /**
-   * Select Draggable Item borders' color. Must be a color defined in theme colors
+   * Select Draggable Parent borders' color. Must be a color defined in theme colors
    *
    * @default 'lightGray'
    **/

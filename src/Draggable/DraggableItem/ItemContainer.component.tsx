@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { DraggableItemProps } from './props';
+import { DraggableProps } from '../defaultProps';
 import { DraggableHandle } from '../';
-import DraggableContext, { useMergeWithParentProps } from '../DraggableContext';
+import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
 
-type Props = Partial<DraggableItemProps> & {
+type Props = Partial<DraggableProps> & {
   /** Listen to drag start event  */
   onDragStart?(e: React.MouseEvent<HTMLElement>): void;
   /** Listen to drag over event  */

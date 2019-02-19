@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { DraggableItemProps } from './props';
-import DraggableContext, { useMergeWithParentProps } from '../DraggableContext';
+import { DraggableProps } from '../defaultProps';
+import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
 
-type Props = Partial<DraggableItemProps>;
+type Props = Partial<DraggableProps>;
 
 const SItemRightContent = styled.div`
   position: relative;
