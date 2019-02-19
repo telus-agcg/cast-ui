@@ -80,6 +80,7 @@ export const ParentContainer: React.FunctionComponent<Props> = ({
     { key: 'bordercolor', defaultVal: 'lightGray' },
     { key: 'parenthandlesize', defaultVal: 30 },
     { key: 'parentActive', defaultVal: parentActive },
+    { key: 'draggable', defaultVal: true },
   ];
   const newProps: any = useMergeWithParentProps(props, {
     propsToMerge,
@@ -89,11 +90,11 @@ export const ParentContainer: React.FunctionComponent<Props> = ({
     <SDraggableParent
       {...newProps}
       key="draggableParent"
-      draggable={parentActive && props.draggable}
-      onDragStart={props.onDragStart}
-      onDragOver={props.onDragOver}
-      onDrop={props.onDrop}>
-      {props.showparenthandle && (
+      draggable={parentActive && newProps.draggable}
+      onDragStart={newProps.onDragStart}
+      onDragOver={newProps.onDragOver}
+      onDrop={newProps.onDrop}>
+      {newProps.showparenthandle && (
         <DraggableHandle
           size={newProps.parenthandlesize}
           className="parentHandle"

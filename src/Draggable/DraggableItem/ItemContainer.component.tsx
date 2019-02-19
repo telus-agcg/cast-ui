@@ -86,6 +86,7 @@ export const ItemContainer: React.FunctionComponent<Props> = (props: any) => {
     { key: 'draggablestyle', defaultVal: 'primary' },
     { key: 'color', defaultVal: 'lightGray' },
     { key: 'bordercolor', defaultVal: 'lightGray' },
+    { key: 'draggable', defaultVal: true },
   ];
   const newProps: any = useMergeWithParentProps(props, {
     propsToMerge,
@@ -95,14 +96,11 @@ export const ItemContainer: React.FunctionComponent<Props> = (props: any) => {
     <SItemContainer
       {...newProps}
       key="draggableItem"
-      draggable={itemActive && props.draggable}
-      onDragStart={props.onDragStart}
-      onDragOver={props.onDragOver}
-      onDrop={props.onDrop}>
-      {props.showitemhandle && (
+      draggable={itemActive && newProps.draggable}>
+      {newProps.showitemhandle && (
         <SItemLeftContent {...newProps} draggable={false}>
           <DraggableHandle
-            size={props.itemhandlesize}
+            size={newProps.itemhandlesize}
             className="itemHandle"
             onMouseEnter={() => setItemActive(true)}
             onMouseLeave={() => setItemActive(false)}
