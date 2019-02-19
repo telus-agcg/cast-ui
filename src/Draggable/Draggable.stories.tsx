@@ -67,7 +67,9 @@ storiesOf('Draggable', module).add(
         parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
         showparenthandle={boolean('showparenthandle', true)}
         draggable={boolean('Parent draggable', true)}
-        onDragStart={action('Drag started!')}>
+        onDragStart={action('Drag started!')}
+        onDragOver={action('Dragging over!')}
+        onDrop={action('Item Droped in Parent Container!')}>
         <DraggableParent.ParentMainContent>
           <DraggableItem.ItemContainer
             showitemhandle={boolean('showitemhandle', true)}
