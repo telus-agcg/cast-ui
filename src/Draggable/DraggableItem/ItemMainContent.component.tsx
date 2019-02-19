@@ -1,15 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { DraggableParentProps } from './props';
+import { DraggableItemProps } from './props';
 import DraggableContext, { useMergeWithParentProps } from '../DraggableContext';
 
-type Props = Partial<DraggableParentProps>;
+type Props = Partial<DraggableItemProps>;
 
-const SParentMainContent = styled.div`
+const SItemMainContent = styled.div`
+  position: relative;
   width: 100%;
+  padding: ${(props: Props) => props.theme.common[props.guttersize!].padding};
 `;
 
-export const ParentMainContent: React.FunctionComponent<Props> = ({
+export const ItemMainContent: React.FunctionComponent<Props> = ({
   ...props
 }) => {
   const parentProps = React.useContext(DraggableContext).parentProps;
@@ -20,10 +22,10 @@ export const ParentMainContent: React.FunctionComponent<Props> = ({
   });
 
   return (
-    <SParentMainContent {...newProps} key={props.color}>
+    <SItemMainContent {...newProps} key={props.color}>
       {props.children}
-    </SParentMainContent>
+    </SItemMainContent>
   );
 };
 
-export default ParentMainContent;
+export default ItemMainContent;
