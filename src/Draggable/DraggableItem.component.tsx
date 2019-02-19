@@ -112,7 +112,9 @@ const SItemRightContent = styled.div`
     } / 2)`};
 `;
 
-const MainContent: React.FunctionComponent<Props> = ({ ...props }) => {
+export const ItemMainContent: React.FunctionComponent<Props> = ({
+  ...props
+}) => {
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [{ key: 'guttersize', defaultVal: 'md' }];
   const newProps: any = useMergeWithParentProps(props, {
@@ -127,7 +129,9 @@ const MainContent: React.FunctionComponent<Props> = ({ ...props }) => {
   );
 };
 
-const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
+export const ItemRightContent: React.FunctionComponent<Props> = ({
+  ...props
+}) => {
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
     { key: 'guttersize', defaultVal: 'md' },
@@ -147,7 +151,7 @@ const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
   );
 };
 
-const Parent: React.FunctionComponent<Props> = props => {
+export const ItemContainer: React.FunctionComponent<Props> = props => {
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
     { key: 'guttersize', defaultVal: 'md' },
@@ -171,4 +175,4 @@ const Parent: React.FunctionComponent<Props> = props => {
   );
 };
 
-export const DraggableItem = { Parent, MainContent, RightContent };
+export default { ItemContainer, ItemMainContent, ItemRightContent };

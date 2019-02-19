@@ -11,6 +11,8 @@ import {
   DraggableParent,
   DraggableItem,
   DraggableInfo,
+  // Parent,
+  // RightContent,
   DraggableFooter,
   IconButton,
 } from '../';
@@ -58,7 +60,7 @@ storiesOf('Draggable', module).add(
         />
         To create a new group, drag one qualification on top of another
       </DraggableInfo>
-      <DraggableParent.Parent
+      {/* <Parent
         parentActive={boolean('parentActive', false)}
         parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
         showparenthandle={boolean('showparenthandle', true)}>
@@ -72,7 +74,7 @@ storiesOf('Draggable', module).add(
             <Icon icon={IKAD} size={24} />
           </DraggableItem.RightContent>
         </DraggableItem.Parent>
-        <DraggableParent.RightContent>
+        <RightContent>
           <IconButton
             rounded
             icon={icAdd}
@@ -82,8 +84,34 @@ storiesOf('Draggable', module).add(
             btnStyle="primary"
             onClick={() => {}}
           />
-        </DraggableParent.RightContent>
-      </DraggableParent.Parent>
+        </RightContent>
+      </Parent> */}
+      <DraggableParent.ParentContainer
+        parentActive={boolean('parentActive', false)}
+        parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
+        showparenthandle={boolean('showparenthandle', true)}>
+        <DraggableItem.ItemContainer
+          showitemhandle={boolean('showitemhandle', true)}
+          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+          <DraggableItem.ItemMainContent>
+            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+          </DraggableItem.ItemMainContent>
+          <DraggableItem.ItemRightContent>
+            <Icon icon={IKAD} size={24} />
+          </DraggableItem.ItemRightContent>
+        </DraggableItem.ItemContainer>
+        <DraggableParent.ParentRightContent>
+          <IconButton
+            rounded
+            icon={icAdd}
+            iconsize={20}
+            pixelbuttonsize={32}
+            btnSize="sm"
+            btnStyle="primary"
+            onClick={() => {}}
+          />
+        </DraggableParent.ParentRightContent>
+      </DraggableParent.ParentContainer>
       <DraggableFooter>
         <IconButton
           rounded

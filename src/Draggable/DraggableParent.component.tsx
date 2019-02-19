@@ -96,7 +96,9 @@ const SParentRightContent = styled.div`
   margin-right: 0;
 `;
 
-const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
+export const ParentRightContent: React.FunctionComponent<Props> = ({
+  ...props
+}) => {
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
     { key: 'guttersize', defaultVal: 'md' },
@@ -114,7 +116,9 @@ const RightContent: React.FunctionComponent<Props> = ({ ...props }) => {
   );
 };
 
-const Parent: React.FunctionComponent<Props> = ({ ...props }) => {
+export const ParentContainer: React.FunctionComponent<Props> = ({
+  ...props
+}) => {
   const [parentActive, setParentActive] = React.useState(false);
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
@@ -144,4 +148,4 @@ const Parent: React.FunctionComponent<Props> = ({ ...props }) => {
   );
 };
 
-export const DraggableParent = { Parent, RightContent };
+export default { ParentContainer, ParentRightContent };
