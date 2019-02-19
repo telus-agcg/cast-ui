@@ -64,6 +64,10 @@ const SDraggableItem = styled.div`
   border: 1px solid ${(props: Props) => props.theme.colors[props.bordercolor!]};
   border-radius: ${(props: Props) =>
     props.theme.common[props.guttersize!].borderRadius};
+  margin: ${(props: Props) =>
+    `${
+      props.theme.common[props.guttersize!].padding.toString().split(' ')[0]
+    } 0`};
   > * {
     display: flex;
     align-items: center;

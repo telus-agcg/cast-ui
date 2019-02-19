@@ -64,36 +64,38 @@ storiesOf('Draggable', module).add(
         parentActive={boolean('parentActive', false)}
         parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
         showparenthandle={boolean('showparenthandle', true)}>
-        <DraggableItem.ItemContainer
-          showitemhandle={boolean('showitemhandle', true)}
-          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
-          <DraggableItem.ItemMainContent>
-            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
-          </DraggableItem.ItemMainContent>
-          <DraggableItem.ItemRightContent>
-            <Icon icon={IKAD} size={24} />
-          </DraggableItem.ItemRightContent>
-        </DraggableItem.ItemContainer>
-        <DraggableItem.ItemContainer
-          showitemhandle={boolean('showitemhandle', true)}
-          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
-          <DraggableItem.ItemMainContent>
-            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
-          </DraggableItem.ItemMainContent>
-          <DraggableItem.ItemRightContent>
-            <Icon icon={IKAD} size={24} />
-          </DraggableItem.ItemRightContent>
-        </DraggableItem.ItemContainer>
-        <DraggableItem.ItemContainer
-          showitemhandle={boolean('showitemhandle', true)}
-          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
-          <DraggableItem.ItemMainContent>
-            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
-          </DraggableItem.ItemMainContent>
-          <DraggableItem.ItemRightContent>
-            <Icon icon={IKAD} size={24} />
-          </DraggableItem.ItemRightContent>
-        </DraggableItem.ItemContainer>
+        <DraggableParent.ParentMainContent>
+          <DraggableItem.ItemContainer
+            showitemhandle={boolean('showitemhandle', true)}
+            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+            <DraggableItem.ItemMainContent>
+              <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+            </DraggableItem.ItemMainContent>
+            <DraggableItem.ItemRightContent>
+              <Icon icon={IKAD} size={24} />
+            </DraggableItem.ItemRightContent>
+          </DraggableItem.ItemContainer>
+          <DraggableItem.ItemContainer
+            showitemhandle={boolean('showitemhandle', true)}
+            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+            <DraggableItem.ItemMainContent>
+              <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+            </DraggableItem.ItemMainContent>
+            <DraggableItem.ItemRightContent>
+              <Icon icon={IKAD} size={24} />
+            </DraggableItem.ItemRightContent>
+          </DraggableItem.ItemContainer>
+          <DraggableItem.ItemContainer
+            showitemhandle={boolean('showitemhandle', true)}
+            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+            <DraggableItem.ItemMainContent>
+              <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+            </DraggableItem.ItemMainContent>
+            <DraggableItem.ItemRightContent>
+              <Icon icon={IKAD} size={24} />
+            </DraggableItem.ItemRightContent>
+          </DraggableItem.ItemContainer>
+        </DraggableParent.ParentMainContent>
         <DraggableParent.ParentRightContent>
           <IconButton
             rounded
@@ -110,36 +112,38 @@ storiesOf('Draggable', module).add(
         parentActive={boolean('parentActive', false)}
         parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
         showparenthandle={boolean('showparenthandle', true)}>
-        <DraggableItem.ItemContainer
-          showitemhandle={boolean('showitemhandle', true)}
-          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
-          <DraggableItem.ItemMainContent>
-            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
-          </DraggableItem.ItemMainContent>
-          <DraggableItem.ItemRightContent>
-            <Icon icon={IKAD} size={24} />
-          </DraggableItem.ItemRightContent>
-        </DraggableItem.ItemContainer>
-        <DraggableItem.ItemContainer
-          showitemhandle={boolean('showitemhandle', true)}
-          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
-          <DraggableItem.ItemMainContent>
-            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
-          </DraggableItem.ItemMainContent>
-          <DraggableItem.ItemRightContent>
-            <Icon icon={IKAD} size={24} />
-          </DraggableItem.ItemRightContent>
-        </DraggableItem.ItemContainer>
-        <DraggableItem.ItemContainer
-          showitemhandle={boolean('showitemhandle', true)}
-          itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
-          <DraggableItem.ItemMainContent>
-            <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
-          </DraggableItem.ItemMainContent>
-          <DraggableItem.ItemRightContent>
-            <Icon icon={IKAD} size={24} />
-          </DraggableItem.ItemRightContent>
-        </DraggableItem.ItemContainer>
+        <DraggableParent.ParentMainContent>
+          <DraggableItem.ItemContainer
+            showitemhandle={boolean('showitemhandle', true)}
+            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+            <DraggableItem.ItemMainContent>
+              <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+            </DraggableItem.ItemMainContent>
+            <DraggableItem.ItemRightContent>
+              <Icon icon={IKAD} size={24} />
+            </DraggableItem.ItemRightContent>
+          </DraggableItem.ItemContainer>
+          <DraggableItem.ItemContainer
+            showitemhandle={boolean('showitemhandle', true)}
+            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+            <DraggableItem.ItemMainContent>
+              <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+            </DraggableItem.ItemMainContent>
+            <DraggableItem.ItemRightContent>
+              <Icon icon={IKAD} size={24} />
+            </DraggableItem.ItemRightContent>
+          </DraggableItem.ItemContainer>
+          <DraggableItem.ItemContainer
+            showitemhandle={boolean('showitemhandle', true)}
+            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+            <DraggableItem.ItemMainContent>
+              <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
+            </DraggableItem.ItemMainContent>
+            <DraggableItem.ItemRightContent>
+              <Icon icon={IKAD} size={24} />
+            </DraggableItem.ItemRightContent>
+          </DraggableItem.ItemContainer>
+        </DraggableParent.ParentMainContent>
         <DraggableParent.ParentRightContent>
           <IconButton
             rounded

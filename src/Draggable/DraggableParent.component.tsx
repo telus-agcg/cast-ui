@@ -63,7 +63,7 @@ type Props = {
 const SDraggableParent = styled.div`
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: start;
   padding: ${(props: Props) => props.theme.common[props.guttersize!].padding};
   margin: ${(props: Props) =>
@@ -90,11 +90,31 @@ const SDraggableParent = styled.div`
     }
   }
 `;
+const SParentMainContent = styled.div`
+  width: 100%;
+`;
 
 const SParentRightContent = styled.div`
   margin: ${(props: any) => props.theme.common[props.guttersize].padding};
   margin-right: 0;
 `;
+
+export const ParentMainContent: React.FunctionComponent<Props> = ({
+  ...props
+}) => {
+  const parentProps = React.useContext(DraggableContext).parentProps;
+  const propsToMerge = [{ key: 'guttersize', defaultVal: 'md' }];
+  const newProps: any = useMergeWithParentProps(props, {
+    propsToMerge,
+    parentProps,
+  });
+
+  return (
+    <SParentMainContent {...newProps} key={props.color}>
+      {props.children}
+    </SParentMainContent>
+  );
+};
 
 export const ParentRightContent: React.FunctionComponent<Props> = ({
   ...props
@@ -145,9 +165,9 @@ export const ParentContainer: React.FunctionComponent<Props> = ({
           draggable
         />
       )}
-      <div>{props.children}</div>
+      {props.children}
     </SDraggableParent>
   );
 };
 
-export default { ParentContainer, ParentRightContent };
+export default { ParentContainer, ParentMainContent, ParentRightContent };
