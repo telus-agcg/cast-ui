@@ -67,13 +67,17 @@ storiesOf('Draggable', module).add(
         parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
         showparenthandle={boolean('showparenthandle', true)}
         draggable={boolean('Parent draggable', true)}
-        onDragStart={action('Drag started!')}
-        onDragOver={action('Dragging over!')}
-        onDrop={action('Item Droped in Parent Container!')}>
+        onDragStart={action('Drag Parent Container started!')}
+        onDragOver={action('Dragging over Parent Container!')}
+        onDrop={action('Parent Droped!')}>
         <DraggableParent.ParentMainContent>
           <DraggableItem.ItemContainer
             showitemhandle={boolean('showitemhandle', true)}
-            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}>
+            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}
+            draggable={boolean('Item draggable', true)}
+            onDragStart={action('Drag Item Container started!')}
+            onDragOver={action('Dragging over an Item Container!')}
+            onDrop={action('Item Droped!')}>
             <DraggableItem.ItemMainContent>
               <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
             </DraggableItem.ItemMainContent>

@@ -5,6 +5,18 @@ import { DraggableHandle } from '../';
 import DraggableContext, { useMergeWithParentProps } from '../DraggableContext';
 
 type Props = Partial<DraggableItemProps> & {
+  /** Listen to drag start event  */
+  onDragStart?(e: React.MouseEvent<HTMLElement>): void;
+  /** Listen to drag over event  */
+  onDragOver?(e: React.MouseEvent<HTMLElement>): void;
+  /** Listen to drop event  */
+  onDrop?(e: React.MouseEvent<HTMLElement>): void;
+  /**
+   * Listen to drag start events
+   *
+   * @default true
+   * */
+  draggable?: boolean;
   /**
    * Size of the handle in the draggable item
    *
@@ -67,6 +79,7 @@ const SItemLeftContent = styled.div`
 `;
 
 export const ItemContainer: React.FunctionComponent<Props> = (props: any) => {
+  const [itemActive, setItemActive] = React.useState(false);
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
     { key: 'guttersize', defaultVal: 'md' },
@@ -79,10 +92,21 @@ export const ItemContainer: React.FunctionComponent<Props> = (props: any) => {
     parentProps,
   });
   return (
-    <SItemContainer {...newProps} key="draggableItem">
+    <SItemContainer
+      {...newProps}
+      key="draggableItem"
+      draggable={itemActive && props.draggable}
+      onDragStart={props.onDragStart}
+      onDragOver={props.onDragOver}
+      onDrop={props.onDrop}>
       {props.showitemhandle && (
-        <SItemLeftContent {...newProps}>
-          <DraggableHandle size={props.itemhandlesize} className="itemHandle" />
+        <SItemLeftContent {...newProps} draggable={false}>
+          <DraggableHandle
+            size={props.itemhandlesize}
+            className="itemHandle"
+            onMouseEnter={() => setItemActive(true)}
+            onMouseLeave={() => setItemActive(false)}
+          />
         </SItemLeftContent>
       )}
       {props.children}

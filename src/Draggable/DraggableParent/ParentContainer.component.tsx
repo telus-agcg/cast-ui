@@ -88,7 +88,7 @@ export const ParentContainer: React.FunctionComponent<Props> = ({
   return (
     <SDraggableParent
       {...newProps}
-      key={props.color}
+      key="draggableParent"
       draggable={parentActive && props.draggable}
       onDragStart={props.onDragStart}
       onDragOver={props.onDragOver}
