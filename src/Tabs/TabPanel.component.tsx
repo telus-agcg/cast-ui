@@ -1,7 +1,6 @@
 import * as React from 'react';
 // tslint:disable-next-line:max-line-length
 import { TabPanel as ReactTabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
 
 type Props = {
   /**
