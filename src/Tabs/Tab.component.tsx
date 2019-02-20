@@ -76,7 +76,7 @@ const SReactTab = styled(ReactTabProxy)`
     props.theme.colors.disabledBackground};
     }
   }
-`
+`;
 
 export class Tab extends React.Component<Props> {
   public static readonly tabsRole: string = 'Tab';
@@ -90,4 +90,4 @@ export class Tab extends React.Component<Props> {
       <SReactTab {...this.props}>{this.props.title}</SReactTab>
     );
   }
-};
+}
