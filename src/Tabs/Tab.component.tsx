@@ -23,8 +23,6 @@ type Props = {
   theme?: any;
 };
 
-
-
 const ReactTabProxy = ({ children, className, ...props }: any) => (
   <ReactTab {...props} className={` ${className} react-tabs__tab`}>
     {children}
@@ -92,4 +90,4 @@ export class Tab extends React.Component<Props> {
       <SReactTab {...this.props}>{this.props.title}</SReactTab>
     );
   }
-}
+};

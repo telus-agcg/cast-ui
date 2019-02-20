@@ -23,7 +23,7 @@ const SReactTabList = styled(ReactTabListProxy)`
   border-bottom: 1px solid #aaa;
   margin: 0 0 10px;
   padding: 0;
-`
+`;
 
 export class TabList extends React.Component<Props> {
   public static readonly tabsRole: string = 'TabList';

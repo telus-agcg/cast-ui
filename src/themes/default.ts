@@ -122,7 +122,7 @@ export const defaultTheme = {
     tabs: {
       borderRadius: '0px',
       fontSize: '14px',
-    }
+    },
   },
   typography: {
     fontFamily: '"Open Sans", arial, sans-serif',
@@ -295,5 +295,5 @@ export const defaultTheme = {
         },
       },
     },
-  }
+  },
 };
