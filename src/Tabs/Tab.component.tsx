@@ -41,9 +41,9 @@ const SReactTab = styled(ReactTabProxy)`
   padding: 12px;
   cursor: pointer;
   border-radius: ${(props: Props) =>
-    props.theme.styles.tabs.borderRadius};
+    props.theme.tabs.borderRadius};
   font-size:${(props: Props) =>
-    props.theme.styles.tabs.fontSize};
+    props.theme.tabs.fontSize};
 
   &[class$="--selected"]	 {
     color: ${(props: Props) =>
