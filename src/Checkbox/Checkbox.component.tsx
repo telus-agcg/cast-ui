@@ -107,8 +107,8 @@ const SInput = styled.input`
       transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
-      margin-left: 6px;
-
+      margin-left: ${(props: Props) =>
+    props.cbSize === 'lg' ? '7.5px' : '6px'};
     }
     &:checked&:disabled + label:after {
       border-color: ${(props: Props) => props.theme.checkbox.disabledText};
