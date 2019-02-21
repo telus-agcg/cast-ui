@@ -1,10 +1,18 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-// import DayPicker from 'react-day-picker';
+import { DayPickerInputProps } from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+
 import { Input } from '../';
 
-type Props = {
+type Props = Partial<DayPickerInputProps> & {
+  /**
+   * Select DatePicker Size
+   *
+   * @default 'md'
+   **/
+  datepickersize: string;
   /**
    * Select DatePicker color. Must be a color defined in theme colors
    *
@@ -38,30 +46,29 @@ type Props = {
 };
 
 const SDatePicker = styled.div`
-  width: ${(props: Props) => `${props.size}px`}
-  height: ${(props: Props) => `${props.size}px`};
   position: relative;
 `;
+const SOverlayComponent = styled.div`
+  background: #fff;
+  border: 1px solid ${(props: Props) => props.theme.input.borderColor};
+`;
 
-export const DatePicker: React.FunctionComponent<Props> = ({
-  color = 'lightGray',
-  size = 40,
-  animationSpeed = 2,
-  transitionType = 'ease-in-out',
-  theme,
-}) => (
-  <SDatePicker
-    color={color}
-    size={size}
-    animationSpeed={animationSpeed}
-    transitionType={transitionType}
-    theme={theme}>
-    <Input id="datepickerInput" type="text" inputSize="md" />
+function OverlayComponent({ children, ...props }: any) {
+  return <SOverlayComponent {...props}>{children}</SOverlayComponent>;
+}
+export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => (
+  <SDatePicker>
     <DayPickerInput
       format="YYYY/MM/DD"
       component={(props: any) => (
-        <Input {...props} id="datepickerInput" type="text" inputSize="md" />
+        <Input
+          {...props}
+          id="datepickerInput"
+          type="text"
+          inputSize={props.datepickersize}
+        />
       )}
+      overlayComponent={OverlayComponent}
     />
     {/* <DayPicker /> */}
   </SDatePicker>
