@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Input } from '../';
 
 type Props = {
   /**
@@ -38,52 +39,6 @@ const SDatePicker = styled.div`
   width: ${(props: Props) => `${props.size}px`}
   height: ${(props: Props) => `${props.size}px`};
   position: relative;
-  margin: 100px auto;
-
-  .double-bounce1,
-  .double-bounce2 {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: ${props => props.theme.colors[props.color]};
-    opacity: 0.6;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    -webkit-animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
-    animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
-  }
-
-  .double-bounce2 {
-    -webkit-animation-delay: ${(props: Props) =>
-      `-${props.animationSpeed / 2}s`};
-    animation-delay: ${(props: Props) => `-${props.animationSpeed / 2}s`};
-  }
-
-  @-webkit-keyframes sk-bounce {
-    0%,
-    100% {
-      -webkit-transform: scale(0);
-    }
-    50% {
-      -webkit-transform: scale(1);
-    }
-  }
-
-  @keyframes sk-bounce {
-    0%,
-    100% {
-      transform: scale(0);
-      -webkit-transform: scale(0);
-    }
-    50% {
-      transform: scale(1);
-      -webkit-transform: scale(1);
-    }
-  }
 `;
 
 export const DatePicker: React.FunctionComponent<Props> = ({
@@ -99,7 +54,6 @@ export const DatePicker: React.FunctionComponent<Props> = ({
     animationSpeed={animationSpeed}
     transitionType={transitionType}
     theme={theme}>
-    <div className="double-bounce1" />
-    <div className="double-bounce2" />
+    <Input id="datepickerInput" type="text" inputSize="md" />
   </SDatePicker>
 );
