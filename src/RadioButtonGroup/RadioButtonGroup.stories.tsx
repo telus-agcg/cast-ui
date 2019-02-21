@@ -25,7 +25,6 @@ storiesOf('RadioButton', module).add(
       id='myInput1'
       disabled={false}
       rbSize='md'
-      rbStyle='primary'
       value='1'
       >
       One
@@ -35,7 +34,6 @@ storiesOf('RadioButton', module).add(
       name='myRadioButtonGroup'
       disabled={false}
       rbSize='md'
-      rbStyle='primary'
       value='2'
       >
       Two
@@ -51,11 +49,6 @@ storiesOf('RadioButton', module).add(
         id="myInput1"
         disabled={boolean('disabled (button 1)', false)}
         rbSize={select('rbSize (button 1)', ['sm', 'md', 'lg'], 'md')}
-        rbStyle={select(
-          'rbStyle (button 1)',
-          ['success', 'default', 'primary', 'danger', 'warning'],
-          'primary',
-        )}
         value="1"
       >
         One
@@ -64,11 +57,6 @@ storiesOf('RadioButton', module).add(
         id="myInput2"
         disabled={false}
         rbSize={select('rbSize (button 2)', ['sm', 'md', 'lg'], 'md')}
-        rbStyle={select(
-          'rbStyle (button 2)',
-          ['success', 'default', 'primary', 'danger', 'warning'],
-          'primary',
-        )}
         value="2"
       >
         Two

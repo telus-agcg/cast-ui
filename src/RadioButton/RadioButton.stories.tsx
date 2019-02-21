@@ -20,7 +20,6 @@ storiesOf('RadioButton', module).add(
     id='myInput1'
     disabled={false}
     rbSize='md'
-    rbStyle='primary'
     value={1}
     checked={true}
     onChange={fn()}
@@ -32,11 +31,6 @@ storiesOf('RadioButton', module).add(
       id="myInput1"
       disabled={boolean('disabled', false)}
       rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
-      rbStyle={select(
-        'rbStyle',
-        ['success', 'default', 'primary', 'danger', 'warning'],
-        'primary',
-      )}
       value="1"
       onChange={action('Button 1 changed')}
       checked={boolean('checked', true)}
