@@ -15,12 +15,6 @@ type Props = {
    **/
   cbSize: 'sm' | 'md' | 'lg';
   /**
-   * Specify the style of the checkbox (primary, default, success, etc.)
-   *
-   * @default 'default'
-   **/
-  cbStyle: string;
-  /**
    * Specify if the checkbox is checked
    *
    * @default false
@@ -99,16 +93,18 @@ const SInput = styled.input`
       padding: 2px;
       text-align: center;
       position: absolute;
-      height: 5px;
+      height:  ${(props: Props) =>
+    props.cbSize === 'lg' ? '8px' : '6px'};
       border-style: solid;
       border-color: ${(props: Props) =>
-        props.theme.styles[props.cbStyle].borderColor};
-      border-width: 0 3px 3px 0;
+        props.theme.styles.primary.borderColor};
+      border-width: ${(props: Props) =>
+  props.cbSize === 'lg' ? '0 4px 4px 0' : '0 3px 3px 0'};
       transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       margin-left: ${(props: Props) =>
-    props.cbSize === 'lg' ? '7.5px' : '6px'};
+    props.cbSize === 'lg' ? '6.5px' : '6px'};
     }
     &:checked&:disabled + label:after {
       border-color: ${(props: Props) => props.theme.checkbox.disabledText};
@@ -130,7 +126,6 @@ class Checkbox extends React.Component<Props> {
           onChange={(evt: any) => {
             this.props.onChange(this.input.checked, this.props.id, evt);
           }}
-          cbStyle={this.props.cbStyle}
           cbSize={this.props.cbSize}
           disabled={this.props.disabled}
           id={this.props.id}

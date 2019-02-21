@@ -19,7 +19,6 @@ storiesOf('Checkbox', module).add(
   <Checkbox
     id='myInput1'
     cbSize='md'
-    cbStyle='primary'
     defaultChecked={true}
     disabled={false}
     onChange={fn()}
@@ -32,11 +31,6 @@ storiesOf('Checkbox', module).add(
       <Checkbox
         id="myInput1"
         cbSize={select('cbSize', ['sm', 'md', 'lg'], 'md')}
-        cbStyle={select(
-          'cbStyle (checkbox 1)',
-          ['success', 'default', 'primary', 'danger', 'warning'],
-          'primary',
-        )}
         defaultChecked={true}
         disabled={boolean('disabled (checkbox 1)', false)}
         onChange={action('onChange 1')}
@@ -47,11 +41,6 @@ storiesOf('Checkbox', module).add(
       <Checkbox
         id="myInput2"
         cbSize={select('cbSize (checkbox 2)', ['sm', 'md', 'lg'], 'md')}
-        cbStyle={select(
-          'cbStyle (checkbox 2)',
-          ['success', 'default', 'primary', 'danger', 'warning'],
-          'primary',
-        )}
         defaultChecked={true}
         disabled={boolean('disabled (checkbox 2)', false)}
         onChange={action('onChange 2')}
