@@ -1,5 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+// import DayPicker from 'react-day-picker';
 import { Input } from '../';
 
 type Props = {
@@ -55,5 +57,12 @@ export const DatePicker: React.FunctionComponent<Props> = ({
     transitionType={transitionType}
     theme={theme}>
     <Input id="datepickerInput" type="text" inputSize="md" />
+    <DayPickerInput
+      format="YYYY/MM/DD"
+      component={(props: any) => (
+        <Input {...props} id="datepickerInput" type="text" inputSize="md" />
+      )}
+    />
+    {/* <DayPicker /> */}
   </SDatePicker>
 );
