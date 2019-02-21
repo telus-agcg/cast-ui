@@ -41,6 +41,8 @@ export const defaultTheme = {
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.blue,
       badgeColor: defaultColors.white,
+      alertColor: defaultColors.white,
+      alertBackground: defaultColors.blue,
     },
     danger: {
       borderColor: defaultColors.red,
@@ -53,6 +55,8 @@ export const defaultTheme = {
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.red,
       badgeColor: defaultColors.white,
+      alertColor: defaultColors.white,
+      alertBackground: defaultColors.red,
     },
     warning: {
       borderColor: defaultColors.yellow,
@@ -65,6 +69,8 @@ export const defaultTheme = {
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.yellow,
       badgeColor: defaultColors.white,
+      alertColor: defaultColors.white,
+      alertBackground: defaultColors.yellow,
     },
     success: {
       borderColor: defaultColors.green,
@@ -77,6 +83,8 @@ export const defaultTheme = {
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.green,
       badgeColor: defaultColors.white,
+      alertColor: defaultColors.green,
+      alertBackground: defaultColors.white,
     },
     default: {
       borderColor: defaultColors.gray,
@@ -89,6 +97,8 @@ export const defaultTheme = {
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.gray,
       badgeColor: defaultColors.black,
+      alertColor: defaultColors.black,
+      alertBackground: defaultColors.gray,
     },
   },
   pagination: {
@@ -229,6 +239,23 @@ export const defaultTheme = {
     },
     lg: {
       borderRadius: '14px',
+      fontSize: '14px',
+      padding: '4px 10px',
+    },
+  },
+  alert: {
+    borderRadius: '0px',
+    fontSize: '14px',
+    padding: '4px 10px',
+    sm: {
+      fontSize: '10px',
+      padding: '4px 10px',
+    },
+    md: {
+      fontSize: '12px',
+      padding: '4px 10px',
+    },
+    lg: {
       fontSize: '14px',
       padding: '4px 10px',
     },
