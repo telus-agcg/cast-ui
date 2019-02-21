@@ -27,13 +27,7 @@ storiesOf('DatePicker', module).add(
         ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
         'lightGray',
       )}
-      size={select('size', [20, 30, 40, 50, 60], 40)}
-      animationSpeed={select('animationSpeed', [1, 2, 3, 4, 5], 2)}
-      transitionType={select(
-        'transitionType',
-        ['ease-in-out', 'ease-in', 'ease-out', 'linear', 'ease'],
-        'ease-in-out',
-      )}
+      datepickersize={select('datepickersize', ['sm', 'md', 'lg'], 'md')}
     />
   )),
 );
