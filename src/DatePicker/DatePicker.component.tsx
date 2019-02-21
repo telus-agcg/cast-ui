@@ -12,7 +12,7 @@ type Props = Partial<DayPickerInputProps> & {
    *
    * @default 'md'
    **/
-  datepickersize: string;
+  datepickersize?: string;
   /**
    * Select DatePicker color. Must be a color defined in theme colors
    *
@@ -65,7 +65,7 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => (
           {...props}
           id="datepickerInput"
           type="text"
-          inputSize={props.datepickersize}
+          inputSize={props.datepickersize!}
         />
       )}
       overlayComponent={OverlayComponent}
@@ -73,3 +73,7 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => (
     {/* <DayPicker /> */}
   </SDatePicker>
 );
+
+DatePicker.defaultProps = {
+  datepickersize: 'md',
+};
