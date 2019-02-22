@@ -4,6 +4,7 @@ export { ThemeProvider } from 'styled-components';
 
 export const defaultColors = {
   blue: '#167BE0',
+  blueDisabled: '#167BE0',
   green: '#00B52D',
   red: '#FE4A49',
   yellow: '#FEC934',
@@ -13,7 +14,6 @@ export const defaultColors = {
   mediumGray: '#C9CDCE',
   darkGray: '#515C61',
   primary: '#303E47',
-  primaryDisabled: '#167BE0',
   black: '#0A1521',
   placeholderGray: '#727A80',
   disabledBackground: '#ECEFF2',
@@ -35,8 +35,9 @@ export const defaultTheme = {
       borderColor: defaultColors.blue,
       flood: defaultColors.blue,
       lightFlood: lighten(defaultColors.blue, 50),
-      hoverlightFlood: lighten(defaultColors.blue, 80),
+      hoverlightFlood: lighten(defaultColors.blue, 100),
       text: defaultColors.blue,
+      disabled: defaultColors.blueDisabled,
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.blue, 5),
       selectedFlood: darken(defaultColors.blue, 25),

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import DayPicker, { DayPickerInputProps } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import { withTheme } from 'styled-components';
 
 import { Input } from '../';
 
@@ -71,15 +72,21 @@ const SOverlayComponent = styled.div`
     font-size: ${(props: Props) =>
       props.theme.common[props.datepickersize!].fontSize}
   }
+  .DayPicker-Month {
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+  }
   .DayPicker-Day {
     opacity: .8;
     padding: .7em;
     font-size: ${(props: Props) =>
       props.theme.common[props.datepickersize!].fontSize}
   }
-  .DayPicker-Month {
-    margin-left: 1.5em;
-    margin-right: 1.5em;
+  .DayPicker-Day--saturdays, .DayPicker-Day--sundays {
+    color: ${(props: Props) => props.theme.colors.blue};
+  }
+  .DayPicker-Day--today, .DayPicker-Day--selected {
+    background-color: ${(props: Props) => props.theme.styles.primary.disabled};
   }
 `;
 
@@ -97,10 +104,12 @@ const OverlayComponent: React.FunctionComponent<Props> = ({
 const modifiers = {
   sundays: { daysOfWeek: [0] },
   saturdays: { daysOfWeek: [6] },
-  birthday: new Date(2018, 9, 30),
 };
 
-export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
+export const DatePickerProvider: React.FunctionComponent<Props> = ({
+  ...props
+}) => {
+  console.log('try theme ', props);
   return (
     <div>
       <DayPickerInput
@@ -126,6 +135,8 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
   );
 };
 
-DatePicker.defaultProps = {
+DatePickerProvider.defaultProps = {
   datepickersize: 'md',
 };
+
+export const DatePicker = withTheme(DatePickerProvider);
