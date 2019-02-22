@@ -16,13 +16,15 @@ storiesOf('DatePicker', module).add(
   ### Usage
   ~~~js
     <DatePicker
-      color="lightGray"
-      size={40}
-      animationSpeed={2}
+      id="datepicker"
+      placeholder="Select start date"
+      datepickerstyle="primary"
+      datepickersize="md"
     />
   ~~~`)(() => (
     <DatePicker
       id="datepicker"
+      placeholder="Select start date"
       datepickerstyle={select(
         'datepickerstyle',
         ['success', 'default', 'primary', 'danger', 'warning'],

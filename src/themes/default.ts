@@ -245,18 +245,21 @@ export const defaultTheme = {
       fontSize: '11px',
       padding: '4px 8px',
       tableCellPadding: '7px',
+      inputIconSize: '14px',
     },
     md: {
       borderRadius: '1px',
       fontSize: '14px',
       padding: '8px 14px',
       tableCellPadding: '9px',
+      inputIconSize: '20px',
     },
     lg: {
       borderRadius: '1px',
       fontSize: '16px',
       padding: '10px 16px',
       tableCellPadding: '11px',
+      inputIconSize: '24px',
     },
   },
   validation: {
