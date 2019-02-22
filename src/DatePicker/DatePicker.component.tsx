@@ -92,6 +92,26 @@ const OverlayComponent: React.FunctionComponent<Props> = ({
 }: any) => {
   return <SOverlayComponent {...props}>{children}</SOverlayComponent>;
 };
+
+// const formatMonthTitle: Function = (d: any) => {
+//   return `${d.getMonth() + 1}/${d.getFullYear()}`;
+// };
+
+const modifiers = {
+  thursdays: { daysOfWeek: [4] },
+  birthday: new Date(2018, 9, 30),
+};
+const modifiersStyles = {
+  birthday: {
+    color: 'white',
+    backgroundColor: '#ffc107',
+  },
+  thursdays: {
+    color: '#ffc107',
+    backgroundColor: '#fffdee',
+  },
+};
+
 export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => (
   <SDatePicker>
     <DayPickerInput
@@ -107,6 +127,11 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => (
       overlayComponent={(overlayProps: any) => (
         <OverlayComponent {...props} {...overlayProps} />
       )}
+      dayPickerProps={{
+        modifiers,
+        modifiersStyles,
+        // localeUtils: { ...LocaleUtils, formatMonthTitle },
+      }}
     />
     <DayPicker />
   </SDatePicker>
