@@ -108,7 +108,7 @@ const SErrorDiv = styled.div`
   font-style: italic;
 `;
 
-export const Input: React.FunctionComponent<Props> = inputProps => {
+export const Input: React.FunctionComponent<Props> = ({ ...inputProps }) => {
   const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : undefined;
 
   const error = inputProps.invalid ? (
