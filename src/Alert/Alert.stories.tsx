@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs/react';
+import { select, boolean } from '@storybook/addon-knobs/react';
 
 import { Alert } from './Alert.component';
 import { wInfo } from '../storybook-utils';
@@ -13,25 +13,24 @@ storiesOf('Alert', module).add(
 
   This is a Alert
 
+  The default theme mode is dark.
+
   ### Usage
   ~~~js
   <Alert
-    alertStyle='success'
+    alertStyle='primary'
+    lightMode=true
   >
-    123
+    Reminder: Sales meeting at Rm 223 in 10 minutes
   </Alert>
   ~~~`)(() => (
     <Alert
       alertStyle={select(
         'alertStyle',
-        ['success', 'default', 'primary', 'danger', 'warning'],
+        ['success', 'primary', 'secondary', 'danger', 'warning'],
         'primary',
       )}
-      theme={select(
-        'theme',
-        ['default', 'dark'],
-        'default',
-      )}
+      lightMode={boolean('lightMode', false)}
     >
       Reminder: Sales meeting at Rm 223 in 10 minutes
     </Alert>

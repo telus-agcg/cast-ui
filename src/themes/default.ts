@@ -43,6 +43,26 @@ export const defaultTheme = {
       badgeColor: defaultColors.white,
       alertColor: defaultColors.white,
       alertBackground: defaultColors.blue,
+      light:{
+        alertBackground: lighten(defaultColors.blue, 50),
+        alertColor: defaultColors.black,
+      },
+    },
+    secondary: {
+      borderColor: defaultColors.gray,
+      flood: defaultColors.gray,
+      lightFlood: lighten(defaultColors.gray, 50),
+      hoverlightFlood: lighten(defaultColors.gray, 80),
+      text: defaultColors.white,
+      reverseText: defaultColors.black,
+      hoverFlood: darken(defaultColors.gray, 5),
+      selectedFlood: darken(defaultColors.blue, 25),
+      alertColor: defaultColors.white,
+      alertBackground: defaultColors.gray,
+      light: {
+        alertBackground: lighten(defaultColors.gray, 50),
+        alertColor: defaultColors.black,
+      },
     },
     danger: {
       borderColor: defaultColors.red,
@@ -57,6 +77,10 @@ export const defaultTheme = {
       badgeColor: defaultColors.white,
       alertColor: defaultColors.white,
       alertBackground: defaultColors.red,
+      light: {
+        alertBackground: lighten(defaultColors.red, 50),
+        alertColor: defaultColors.black,
+      },
     },
     warning: {
       borderColor: defaultColors.yellow,
@@ -71,6 +95,10 @@ export const defaultTheme = {
       badgeColor: defaultColors.white,
       alertColor: defaultColors.white,
       alertBackground: defaultColors.yellow,
+      light: {
+        alertBackground: lighten(defaultColors.yellow, 50),
+        alertColor: defaultColors.black,
+      },
     },
     success: {
       borderColor: defaultColors.green,
@@ -85,6 +113,10 @@ export const defaultTheme = {
       badgeColor: defaultColors.white,
       alertColor: defaultColors.green,
       alertBackground: defaultColors.white,
+      light: {
+        alertBackground: lighten(defaultColors.green, 50),
+        alertColor: defaultColors.black,
+      },
     },
     default: {
       borderColor: defaultColors.gray,
@@ -246,18 +278,10 @@ export const defaultTheme = {
   alert: {
     borderRadius: '0px',
     fontSize: '14px',
-    padding: '4px 10px',
-    sm: {
-      fontSize: '10px',
-      padding: '4px 10px',
-    },
-    md: {
-      fontSize: '12px',
-      padding: '4px 10px',
-    },
-    lg: {
-      fontSize: '14px',
-      padding: '4px 10px',
+    padding: '8px 16px',
+    fontWeight: 'bold',
+    light:{
+      fontWeight: 'Medium',
     },
   },
   popover: {
