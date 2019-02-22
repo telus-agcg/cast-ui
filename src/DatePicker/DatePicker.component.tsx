@@ -4,7 +4,6 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import DayPicker, { DayPickerInputProps } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
-import DatePickerContext from './datepickerContext';
 import { Input } from '../';
 
 type Props = Partial<DayPickerInputProps> & {
@@ -100,27 +99,10 @@ const modifiers = {
   saturdays: { daysOfWeek: [6] },
   birthday: new Date(2018, 9, 30),
 };
-const modifiersStyles = ({ ...props }) => {
-  console.log('these are the props ', props);
-  return {
-    birthday: {
-      color: 'white',
-      backgroundColor: '#ffc107',
-    },
-    sundays: {
-      color: 'blue',
-    },
-    saturdays: {
-      color: 'blue',
-    },
-  };
-};
 
 export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
-  const parentProps = React.useContext(DatePickerContext).parentProps;
-  console.log('general props: ', props, parentProps);
   return (
-    <DatePickerContext.Provider value={{ parentProps: props }}>
+    <div>
       <DayPickerInput
         format={props.format || 'YYYY/MM/DD'}
         component={(inputProps: Props) => (
@@ -136,12 +118,11 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
         )}
         dayPickerProps={{
           modifiers,
-          modifiersStyles: modifiersStyles(parentProps),
           // localeUtils: { ...LocaleUtils, formatMonthTitle },
         }}
       />
       <DayPicker />
-    </DatePickerContext.Provider>
+    </div>
   );
 };
 
