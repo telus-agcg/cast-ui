@@ -22,10 +22,10 @@ storiesOf('DatePicker', module).add(
     />
   ~~~`)(() => (
     <DatePicker
-      color={select(
-        'color',
-        ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
-        'lightGray',
+      datepickerstyle={select(
+        'datepickerstyle',
+        ['success', 'default', 'primary', 'danger', 'warning'],
+        'primary',
       )}
       datepickersize={select('datepickersize', ['sm', 'md', 'lg'], 'md')}
     />

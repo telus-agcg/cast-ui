@@ -19,6 +19,12 @@ type PropsThemeOnly = {
 
 type Props = PropsThemeOnly & {
   /**
+   * Set className
+   *
+   * @default ''
+   **/
+  className?: string;
+  /**
    * The ID of the control
    *
    * @default null
