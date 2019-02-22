@@ -14,6 +14,18 @@ type Props = Partial<DayPickerInputProps> & {
    **/
   className?: string;
   /**
+   * The ID of the control
+   *
+   * @default null
+   **/
+  id: string;
+  /**
+   * Type of input (text, number, email, etc)
+   *
+   * @default 'text'
+   **/
+  type?: string;
+  /**
    * Select DatePicker Size
    *
    * @default 'md'
@@ -99,7 +111,8 @@ const SOverlayComponent = styled.div`
 `;
 
 const SInput = styled(Input)`
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACFElEQ…7PplFC4ZeZAE1DUs7scpIGYoiXwzQVYDH7EAVfIrgq/AcyOcW0wheJvQAAAABJRU5ErkJggg==);
+  // tslint:disable-next-line
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACFElEQVRIibWVMYsTURSFvzOEEEIqCbLIEq1sFYsFLV0RwdZC0crCWpJiSZowCLGKuJWoldj4Kyy2X2wXf4GVyBYhhJBjMTNvXibJwu5mDwzM3HffPfee+94dGbMO3UHaECzGo+Fs3XqvnyaGhsR8kw+AqgS9fpogngMvbGYSh+PR8GjJZ5C2bA4k9oBT4DPwczwaLqoESdVg0Qa+Ak3gFvCpN0jrFbfXEm+AU5sbNt+A1pkV5EHqwG2bY4l9m7sSPcx9xN9oX2rzCLEveAx8t7kp+IeYxJXUclk6mPeIh0BdAsOC7NlBHOffWVbQQvyWmQNzZ0r8QkyAA+DHkkQW9xDPgB3DtUwryIkSoC24jvMHmsqZrJw0k7Zj87I7SBtLFQgaQN0OfQDx1NBRxlUEyd4NZAFfYe6o6F9mbyiTehoIQsZhL9i8LbKkDEpEuIsZA4kVVVw59bVo8xz4IpgUzkVWReZ2yReSWQ76pNi3TJA3VfBuPBr+4YLoDdI2sBvbwj3Qivv5UZWnJPD6xXMj7leOIJE2ZHCR+DGCRHEDt4kgEZSX5tKI4iSx4eoqyLGNPleDrIzrrWDlFLFFeSqBylNUYb4U1lQwVTaLDrv9dFrMHuUDLuYtbBvwADhBhH90DcDmCPgosVdcuHhonSmfSyfDST7PplFC4ZeZAE1DUs7scpIGYoiXwzQVYDH7EAVfIrgq/AcyOcW0wheJvQAAAABJRU5ErkJggg==');
   background-repeat: no-repeat;
   background-size: auto;
   background-position: right;
@@ -126,12 +139,7 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
       <DayPickerInput
         format={props.format || 'YYYY/MM/DD'}
         component={(inputProps: Props) => (
-          <SInput
-            {...inputProps}
-            id="datepickerInput"
-            type="text"
-            inputSize={inputProps.datepickersize!}
-          />
+          <SInput {...inputProps} inputSize={inputProps.datepickersize!} />
         )}
         overlayComponent={(overlayProps: any) => (
           <OverlayComponent {...props} {...overlayProps} />

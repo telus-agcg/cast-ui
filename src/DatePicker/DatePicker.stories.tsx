@@ -22,6 +22,7 @@ storiesOf('DatePicker', module).add(
     />
   ~~~`)(() => (
     <DatePicker
+      id="datepicker"
       datepickerstyle={select(
         'datepickerstyle',
         ['success', 'default', 'primary', 'danger', 'warning'],
