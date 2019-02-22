@@ -4,6 +4,7 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import DayPicker, { DayPickerInputProps } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
+import DatePickerContext from './datepickerContext';
 import { Input } from '../';
 
 type Props = Partial<DayPickerInputProps> & {
@@ -27,9 +28,6 @@ type Props = Partial<DayPickerInputProps> & {
   theme?: any;
 };
 
-const SDatePicker = styled.div`
-  position: relative;
-`;
 const SOverlayComponent = styled.div`
   background: #fff;
   border-radius: ${(props: Props) =>
@@ -98,44 +96,54 @@ const OverlayComponent: React.FunctionComponent<Props> = ({
 // };
 
 const modifiers = {
-  thursdays: { daysOfWeek: [4] },
+  sundays: { daysOfWeek: [0] },
+  saturdays: { daysOfWeek: [6] },
   birthday: new Date(2018, 9, 30),
 };
-const modifiersStyles = {
-  birthday: {
-    color: 'white',
-    backgroundColor: '#ffc107',
-  },
-  thursdays: {
-    color: '#ffc107',
-    backgroundColor: '#fffdee',
-  },
+const modifiersStyles = ({ ...props }) => {
+  console.log('these are the props ', props);
+  return {
+    birthday: {
+      color: 'white',
+      backgroundColor: '#ffc107',
+    },
+    sundays: {
+      color: 'blue',
+    },
+    saturdays: {
+      color: 'blue',
+    },
+  };
 };
 
-export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => (
-  <SDatePicker>
-    <DayPickerInput
-      format="YYYY/MM/DD"
-      component={(props: Props) => (
-        <Input
-          {...props}
-          id="datepickerInput"
-          type="text"
-          inputSize={props.datepickersize!}
-        />
-      )}
-      overlayComponent={(overlayProps: any) => (
-        <OverlayComponent {...props} {...overlayProps} />
-      )}
-      dayPickerProps={{
-        modifiers,
-        modifiersStyles,
-        // localeUtils: { ...LocaleUtils, formatMonthTitle },
-      }}
-    />
-    <DayPicker />
-  </SDatePicker>
-);
+export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
+  const parentProps = React.useContext(DatePickerContext).parentProps;
+  console.log('general props: ', props, parentProps);
+  return (
+    <DatePickerContext.Provider value={{ parentProps: props }}>
+      <DayPickerInput
+        format={props.format || 'YYYY/MM/DD'}
+        component={(inputProps: Props) => (
+          <Input
+            {...inputProps}
+            id="datepickerInput"
+            type="text"
+            inputSize={inputProps.datepickersize!}
+          />
+        )}
+        overlayComponent={(overlayProps: any) => (
+          <OverlayComponent {...props} {...overlayProps} />
+        )}
+        dayPickerProps={{
+          modifiers,
+          modifiersStyles: modifiersStyles(parentProps),
+          // localeUtils: { ...LocaleUtils, formatMonthTitle },
+        }}
+      />
+      <DayPicker />
+    </DatePickerContext.Provider>
+  );
+};
 
 DatePicker.defaultProps = {
   datepickersize: 'md',

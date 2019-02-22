@@ -13,6 +13,7 @@ export const defaultColors = {
   mediumGray: '#C9CDCE',
   darkGray: '#515C61',
   primary: '#303E47',
+  primaryDisabled: '#167BE0',
   black: '#0A1521',
   placeholderGray: '#727A80',
   disabledBackground: '#ECEFF2',
