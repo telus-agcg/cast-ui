@@ -50,17 +50,10 @@ export const defaultTheme = {
     },
     secondary: {
       borderColor: defaultColors.gray,
-      flood: defaultColors.gray,
-      lightFlood: lighten(defaultColors.gray, 50),
-      hoverlightFlood: lighten(defaultColors.gray, 80),
-      text: defaultColors.white,
-      reverseText: defaultColors.black,
-      hoverFlood: darken(defaultColors.gray, 5),
-      selectedFlood: darken(defaultColors.blue, 25),
       alertColor: defaultColors.white,
       alertBackground: defaultColors.gray,
       light: {
-        alertBackground: lighten(defaultColors.gray, 50),
+        alertBackground: lighten(defaultColors.gray, 35),
         alertColor: defaultColors.black,
       },
     },
@@ -78,7 +71,7 @@ export const defaultTheme = {
       alertColor: defaultColors.white,
       alertBackground: defaultColors.red,
       light: {
-        alertBackground: lighten(defaultColors.red, 50),
+        alertBackground: lighten(defaultColors.red, 20),
         alertColor: defaultColors.black,
       },
     },
@@ -96,7 +89,7 @@ export const defaultTheme = {
       alertColor: defaultColors.white,
       alertBackground: defaultColors.yellow,
       light: {
-        alertBackground: lighten(defaultColors.yellow, 50),
+        alertBackground: lighten(defaultColors.yellow, 30),
         alertColor: defaultColors.black,
       },
     },
@@ -111,8 +104,8 @@ export const defaultTheme = {
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.green,
       badgeColor: defaultColors.white,
-      alertColor: defaultColors.green,
-      alertBackground: defaultColors.white,
+      alertColor: defaultColors.white,
+      alertBackground: defaultColors.green,
       light: {
         alertBackground: lighten(defaultColors.green, 50),
         alertColor: defaultColors.black,
@@ -280,9 +273,7 @@ export const defaultTheme = {
     fontSize: '14px',
     padding: '8px 16px',
     fontWeight: 'bold',
-    light:{
-      fontWeight: 'Medium',
-    },
+    lineHeight: '18px',
   },
   popover: {
     borderColor: defaultColors.lightGray,
