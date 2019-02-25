@@ -11,7 +11,7 @@ storiesOf('DatePicker', module).add(
 
   ### Notes
 
-  This is a DatePicker
+  This is a DatePicker, based on [react-day-picker](http://react-day-picker.js.org/).
 
   ### Usage
   ~~~js
