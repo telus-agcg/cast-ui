@@ -31,6 +31,13 @@ storiesOf('DatePicker', module).add(
         'primary',
       )}
       datepickersize={select('datepickersize', ['sm', 'md', 'lg'], 'md')}
+      dayPickerProps={{
+        selectedDays: [
+          new Date('2019-2-5'),
+          { from: new Date('2019-2-5'), to: new Date('2019-2-9') },
+        ],
+        // localeUtils: { ...LocaleUtils, formatMonthTitle },
+      }}
     />
   )),
 );

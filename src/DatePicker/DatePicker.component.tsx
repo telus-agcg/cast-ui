@@ -106,11 +106,27 @@ const SOverlayComponent = styled.div`
     color: ${(props: Props) => props.theme.styles[props.datepickerstyle!].text};
   }
   .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside),
-  .DayPicker-Day--today {
+  .DayPicker-Day--today  {
     background-color: ${(props: Props) =>
-      props.theme.styles[props.datepickerstyle!].hoverFlood};
+      props.theme.styles[props.datepickerstyle!].flood};
     color: ${(props: Props) =>
       props.theme.styles[props.datepickerstyle!].reverseText};
+    &:hover {
+    background-color: ${(props: Props) =>
+      props.theme.styles[props.datepickerstyle!].hoverFlood};
+    }
+  }
+
+  .DayPicker-Day--selected:not(.DayPicker-Day--from):not(.DayPicker-Day--to):not(.DayPicker-Day--outside) {
+    border-radius: 0 !important;
+  }
+  .DayPicker-Day--from {
+    border-top-right-radius: 0% !important;
+    border-bottom-right-radius: 0% !important;
+  }
+  .DayPicker-Day--to {
+    border-top-left-radius: 0% !important;
+    border-bottom-left-radius: 0% !important;
   }
 `;
 
@@ -134,10 +150,13 @@ const OverlayComponent: React.FunctionComponent<Props> = ({
 // };
 
 export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
+  const selectedDays = (props.dayPickerProps || {}).selectedDays;
   const modifiers = {
     sundays: { daysOfWeek: [0] },
     saturdays: { daysOfWeek: [6] },
+    ...(selectedDays || [])[1],
   };
+  console.log('these props ', props, modifiers);
   return (
     <DayPickerInput
       format={props.format || 'YYYY/MM/DD'}
@@ -147,12 +166,12 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
       overlayComponent={(overlayProps: any) => (
         <OverlayComponent {...props} {...overlayProps} />
       )}
-      dayPickerProps={{
-        modifiers,
-        selectedDays: { daysOfWeek: [3] },
-        // localeUtils: { ...LocaleUtils, formatMonthTitle },
-      }}
       {...props}
+      dayPickerProps={{
+        // localeUtils: { ...LocaleUtils, formatMonthTitle },
+        ...props.dayPickerProps,
+        modifiers: { ...modifiers, ...(props.dayPickerProps || {}).modifiers },
+      }}
     />
   );
 };
