@@ -105,9 +105,12 @@ const SOverlayComponent = styled.div`
   .DayPicker-Day--saturdays, .DayPicker-Day--sundays {
     color: ${(props: Props) => props.theme.styles[props.datepickerstyle!].text};
   }
-  .DayPicker-Day--today, .DayPicker-Day--selected {
+  .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside),
+  .DayPicker-Day--today {
     background-color: ${(props: Props) =>
-      props.theme.styles[props.datepickerstyle!].lightFlood};
+      props.theme.styles[props.datepickerstyle!].hoverFlood};
+    color: ${(props: Props) =>
+      props.theme.styles[props.datepickerstyle!].reverseText};
   }
 `;
 
@@ -146,6 +149,7 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
       )}
       dayPickerProps={{
         modifiers,
+        selectedDays: { daysOfWeek: [3] },
         // localeUtils: { ...LocaleUtils, formatMonthTitle },
       }}
       {...props}
