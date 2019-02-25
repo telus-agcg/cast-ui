@@ -97,7 +97,7 @@ const SOverlayComponent = styled.div`
       props.theme.datepicker[props.datepickersize!].margins.dayPickerMonth}
   }
   .DayPicker-Day {
-    opacity: .8;
+    opacity: .99;
     padding: .7em;
     font-size: ${(props: Props) =>
       props.theme.common[props.datepickersize!].fontSize};
@@ -107,26 +107,45 @@ const SOverlayComponent = styled.div`
   }
   .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside),
   .DayPicker-Day--today:not(.DayPicker-Day--outside)  {
-    background-color: ${(props: Props) =>
-      props.theme.styles[props.datepickerstyle!].flood};
+    position: relative;
     color: ${(props: Props) =>
       props.theme.styles[props.datepickerstyle!].reverseText};
+    background-color: transparent;
+    &:after {
+      content: ''; 
+      width: 100%; 
+      height: 100%;
+      background-color: ${(props: Props) =>
+        props.theme.styles[props.datepickerstyle!].flood};
+      opacity: 0.5; 
+      position: absolute; 
+      top: 0; 
+      left: 0;
+      z-index: -1;
+      border-radius: 50%;
+    }
     &:hover {
-    background-color: ${(props: Props) =>
-      props.theme.styles[props.datepickerstyle!].hoverFlood};
+      background-color: ${(props: Props) =>
+        props.theme.styles[props.datepickerstyle!].hoverFlood};
     }
   }
 
   .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--from):not(.DayPicker-Day--to):not(.DayPicker-Day--outside) {
-    border-radius: 0 !important;
+    &:after {
+      border-radius: 0 !important;
+    }
   }
   .Selectable .DayPicker-Day--from {
-    border-top-right-radius: 0% !important;
-    border-bottom-right-radius: 0% !important;
+     &:after {
+      border-top-right-radius: 0% !important;
+      border-bottom-right-radius: 0% !important;
+    }
   }
   .Selectable .DayPicker-Day--to {
-    border-top-left-radius: 0% !important;
-    border-bottom-left-radius: 0% !important;
+     &:after {
+      border-top-left-radius: 0% !important;
+      border-bottom-left-radius: 0% !important;
+    }
   }
 `;
 
