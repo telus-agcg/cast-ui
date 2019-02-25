@@ -55,7 +55,7 @@ const SDraggableParent = styled.div`
       ? props.theme.colors.panelBackground
       : props.theme.colors.white};
   .parentHandle {
-    cursor: pointer;
+    cursor: ${(props: Props) => (props.draggable ? 'grab' : 'not-allowed')};
     color: ${(props: Props) => props.theme.colors[props.bordercolor!]};
     padding: ${(props: Props) => props.theme.common[props.guttersize!].padding};
     margin-left: ${(props: Props) =>
@@ -63,7 +63,10 @@ const SDraggableParent = styled.div`
         props.theme.common[props.guttersize!].padding.toString().split(' ')[1]
       }`};
     &:hover {
-      color: ${(props: Props) => props.theme.colors.blue};
+      color: ${(props: Props) =>
+        props.draggable
+          ? props.theme.colors.blue
+          : props.theme.colors[props.bordercolor!]};
     }
   }
 `;

@@ -62,7 +62,7 @@ const SItemLeftContent = styled.div`
   border-right: 1px solid
     ${(props: Props) => props.theme.colors[props.bordercolor!]};
   .itemHandle {
-    cursor: pointer;
+    cursor: ${(props: any) => (props.itemDraggable ? 'grab' : 'not-allowed')};
     color: ${(props: Props) => props.theme.colors[props.bordercolor!]};
     padding: ${(props: Props) =>
       `calc(${
@@ -70,10 +70,12 @@ const SItemLeftContent = styled.div`
       } / 2)`};
   }
   &:hover {
-    cursor: pointer;
     background-color: ${(props: Props) => props.theme.colors.panelBackground};
     .itemHandle {
-      color: ${(props: Props) => props.theme.colors.blue};
+      color: ${(props: any) =>
+        props.itemDraggable
+          ? props.theme.colors.blue
+          : props.theme.colors[props.bordercolor!]};
     }
   }
 `;
@@ -98,7 +100,10 @@ export const ItemContainer: React.FunctionComponent<Props> = (props: any) => {
       key="draggableItem"
       draggable={itemActive && newProps.draggable}>
       {newProps.showitemhandle && (
-        <SItemLeftContent {...newProps} draggable={false}>
+        <SItemLeftContent
+          {...newProps}
+          draggable={false}
+          itemDraggable={itemActive && newProps.draggable}>
           <DraggableHandle
             size={newProps.itemhandlesize}
             className="itemHandle"

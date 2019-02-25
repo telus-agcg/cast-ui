@@ -113,7 +113,7 @@ storiesOf('Draggable', module).add(
           <DraggableItem.ItemContainer
             showitemhandle={boolean('showitemhandle', true)}
             itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}
-            draggable={boolean('Item draggable', true)}
+            draggable={boolean('Item 1 draggable', true)}
             onDragStart={action('Drag Item Container started!')}
             onDragOver={action('Dragging over an Item Container!')}
             onDrop={action('Item Droped!')}>
