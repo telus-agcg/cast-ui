@@ -107,7 +107,7 @@ const SInput = styled.input`
     props.cbSize === 'lg' ? '6.5px' : '6px'};
     }
     &:checked&:disabled + label:after {
-      border-color: ${(props: Props) => props.theme.checkbox.disabledText};
+      opacity: 0.5;
     }
 `;
 
