@@ -86,7 +86,7 @@ export const ItemContainer: React.FunctionComponent<Props> = (props: any) => {
     { key: 'draggablestyle', defaultVal: 'primary' },
     { key: 'color', defaultVal: 'lightGray' },
     { key: 'bordercolor', defaultVal: 'lightGray' },
-    { key: 'draggable', defaultVal: true },
+    { key: 'draggable', defaultVal: props.draggable },
   ];
   const newProps: any = useMergeWithParentProps(props, {
     propsToMerge,

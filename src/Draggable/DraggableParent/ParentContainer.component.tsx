@@ -80,7 +80,7 @@ export const ParentContainer: React.FunctionComponent<Props> = ({
     { key: 'bordercolor', defaultVal: 'lightGray' },
     { key: 'parenthandlesize', defaultVal: 30 },
     { key: 'parentActive', defaultVal: parentActive },
-    { key: 'draggable', defaultVal: true },
+    { key: 'draggable', defaultVal: props.draggable },
   ];
   const newProps: any = useMergeWithParentProps(props, {
     propsToMerge,
