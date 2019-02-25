@@ -20,6 +20,7 @@ storiesOf('Alert', module).add(
   <Alert
     alertStyle='primary'
     lightMode=true
+    fullWidth=true
   >
     Reminder: Sales meeting at Rm 223 in 10 minutes
   </Alert>
@@ -31,6 +32,7 @@ storiesOf('Alert', module).add(
         'primary',
       )}
       lightMode={boolean('lightMode', false)}
+      fullWidth={boolean('fullWidth', false)}
     >
       Reminder: Sales meeting at Rm 223 in 10 minutes
     </Alert>
