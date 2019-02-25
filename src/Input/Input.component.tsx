@@ -9,7 +9,7 @@ import styled from 'styled-components';
 // }
 
 type PropsThemeOnly = {
-    /**
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -18,6 +18,12 @@ type PropsThemeOnly = {
 };
 
 type Props = PropsThemeOnly & {
+  /**
+   * Set className
+   *
+   * @default ''
+   **/
+  className?: string;
   /**
    * The ID of the control
    *
@@ -29,7 +35,7 @@ type Props = PropsThemeOnly & {
    *
    * @default 'text'
    **/
-  type: string;
+  type?: string;
   /**
    * Autocomplete settings for this field
    *
@@ -47,7 +53,7 @@ type Props = PropsThemeOnly & {
    *
    * @default 'md'
    **/
-  inputSize: string;
+  inputSize?: string;
   /**
    * Specify whether the control is currently invalid
    *
@@ -82,10 +88,10 @@ const SInput = styled.input`
   background: ${(props: Props) => props.theme.input.background}
   border: 1px solid ${(props: Props) => props.theme.input.borderColor};
   border-radius: ${(props: Props) =>
-    props.theme.common[props.inputSize].borderRadius};
-  padding: ${(props: Props) => props.theme.common[props.inputSize].padding}
+    props.theme.common[props.inputSize!].borderRadius};
+  padding: ${(props: Props) => props.theme.common[props.inputSize!].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.inputSize].fontSize}
+  font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
     border-color: ${props => props.theme.input.disabled.borderColor};
@@ -108,8 +114,8 @@ const SErrorDiv = styled.div`
   font-style: italic;
 `;
 
-export const Input: React.FunctionComponent<Props> = (inputProps) => {
-  const errorId = inputProps.invalid ? (`${inputProps.id}-error-msg`) : (undefined);
+export const Input: React.FunctionComponent<Props> = ({ ...inputProps }) => {
+  const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : undefined;
 
   const error = inputProps.invalid ? (
     <SErrorDiv id={errorId} theme={inputProps.theme}>
@@ -123,11 +129,15 @@ export const Input: React.FunctionComponent<Props> = (inputProps) => {
         {...inputProps}
         data-invalid={inputProps.invalid ? '' : undefined}
         aria-invalid={inputProps.invalid ? true : undefined}
-        aria-describedby={errorId}
-      >
+        aria-describedby={errorId}>
         {inputProps.children}
       </SInput>
       {error}
     </>
   );
+};
+
+Input.defaultProps = {
+  inputSize: 'md',
+  type: 'text',
 };
