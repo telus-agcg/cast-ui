@@ -41,6 +41,21 @@ export const defaultTheme = {
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.blue,
       badgeColor: defaultColors.white,
+      alertColor: defaultColors.white,
+      alertBackground: defaultColors.blue,
+      light:{
+        alertBackground: lighten(defaultColors.blue, 50),
+        alertColor: defaultColors.black,
+      },
+    },
+    secondary: {
+      borderColor: defaultColors.gray,
+      alertColor: defaultColors.white,
+      alertBackground: defaultColors.gray,
+      light: {
+        alertBackground: lighten(defaultColors.gray, 35),
+        alertColor: defaultColors.black,
+      },
     },
     danger: {
       borderColor: defaultColors.red,
@@ -53,6 +68,12 @@ export const defaultTheme = {
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.red,
       badgeColor: defaultColors.white,
+      alertColor: defaultColors.white,
+      alertBackground: defaultColors.red,
+      light: {
+        alertBackground: lighten(defaultColors.red, 20),
+        alertColor: defaultColors.black,
+      },
     },
     warning: {
       borderColor: defaultColors.yellow,
@@ -65,6 +86,12 @@ export const defaultTheme = {
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.yellow,
       badgeColor: defaultColors.white,
+      alertColor: defaultColors.white,
+      alertBackground: defaultColors.yellow,
+      light: {
+        alertBackground: lighten(defaultColors.yellow, 30),
+        alertColor: defaultColors.black,
+      },
     },
     success: {
       borderColor: defaultColors.green,
@@ -77,6 +104,12 @@ export const defaultTheme = {
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.green,
       badgeColor: defaultColors.white,
+      alertColor: defaultColors.white,
+      alertBackground: defaultColors.green,
+      light: {
+        alertBackground: lighten(defaultColors.green, 50),
+        alertColor: defaultColors.black,
+      },
     },
     default: {
       borderColor: defaultColors.gray,
@@ -89,6 +122,8 @@ export const defaultTheme = {
       selectedFlood: darken(defaultColors.blue, 25),
       badgeBackground: defaultColors.gray,
       badgeColor: defaultColors.black,
+      alertColor: defaultColors.black,
+      alertBackground: defaultColors.gray,
     },
   },
   pagination: {
@@ -232,6 +267,13 @@ export const defaultTheme = {
       fontSize: '14px',
       padding: '4px 10px',
     },
+  },
+  alert: {
+    borderRadius: '0px',
+    fontSize: '14px',
+    padding: '8px 16px',
+    fontWeight: 'bold',
+    lineHeight: '18px',
   },
   popover: {
     borderColor: defaultColors.lightGray,
