@@ -112,14 +112,14 @@ const SOverlayComponent = styled.div`
       props.theme.styles[props.datepickerstyle!].reverseText};
     background-color: transparent;
     &:after {
-      content: ''; 
-      width: 100%; 
+      content: '';
+      width: 100%;
       height: 100%;
       background-color: ${(props: Props) =>
         props.theme.styles[props.datepickerstyle!].flood};
-      opacity: 0.5; 
-      position: absolute; 
-      top: 0; 
+      opacity: 0.5;
+      position: absolute;
+      top: 0;
       left: 0;
       z-index: -1;
       border-radius: 50%;
