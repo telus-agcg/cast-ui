@@ -44,17 +44,19 @@ const SReactTab = styled(ReactTabProxy)`
     props.theme.tabs.borderRadius};
   font-size:${(props: Props) =>
     props.theme.tabs.fontSize};
+  font-weight: normal;
 
   &[class$="--selected"]	 {
     color: ${(props: Props) =>
     props.theme.colors.blue};
     border-bottom: 5px solid ${(props: Props) =>
     props.theme.colors.blue}
+    font-weight: bold;
   }
 
   &[class$="--disabled"] {
     color: ${(props: Props) =>
-    props.theme.colors.black}
+    props.theme.colors.gray}
     cursor: not-allowed;
   }
 
