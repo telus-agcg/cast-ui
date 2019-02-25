@@ -117,14 +117,14 @@ const SOverlayComponent = styled.div`
     }
   }
 
-  .DayPicker-Day--selected:not(.DayPicker-Day--from):not(.DayPicker-Day--to):not(.DayPicker-Day--outside) {
+  .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--from):not(.DayPicker-Day--to):not(.DayPicker-Day--outside) {
     border-radius: 0 !important;
   }
-  .DayPicker-Day--from {
+  .Selectable .DayPicker-Day--from {
     border-top-right-radius: 0% !important;
     border-bottom-right-radius: 0% !important;
   }
-  .DayPicker-Day--to {
+  .Selectable .DayPicker-Day--to {
     border-top-left-radius: 0% !important;
     border-bottom-left-radius: 0% !important;
   }
@@ -171,6 +171,10 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
         // localeUtils: { ...LocaleUtils, formatMonthTitle },
         ...props.dayPickerProps,
         modifiers: { ...modifiers, ...(props.dayPickerProps || {}).modifiers },
+        className: `
+          ${(props.dayPickerProps || {}).className || ''}  ${
+          ((selectedDays || [])[1] || {}).from ? 'Selectable' : ''
+        }`,
       }}
     />
   );
