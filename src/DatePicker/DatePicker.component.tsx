@@ -106,7 +106,7 @@ const SOverlayComponent = styled.div`
     color: ${(props: Props) => props.theme.styles[props.datepickerstyle!].text};
   }
   .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside),
-  .DayPicker-Day--today  {
+  .DayPicker-Day--today:not(.DayPicker-Day--outside)  {
     background-color: ${(props: Props) =>
       props.theme.styles[props.datepickerstyle!].flood};
     color: ${(props: Props) =>
@@ -145,10 +145,6 @@ const OverlayComponent: React.FunctionComponent<Props> = ({
   return <SOverlayComponent {...props}>{children}</SOverlayComponent>;
 };
 
-// const formatMonthTitle: Function = (d: any) => {
-//   return `${d.getMonth() + 1}/${d.getFullYear()}`;
-// };
-
 export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
   const selectedDays = (props.dayPickerProps || {}).selectedDays;
   const modifiers = {
@@ -168,7 +164,7 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
       )}
       {...props}
       dayPickerProps={{
-        // localeUtils: { ...LocaleUtils, formatMonthTitle },
+        weekdaysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
         ...props.dayPickerProps,
         modifiers: { ...modifiers, ...(props.dayPickerProps || {}).modifiers },
         className: `
