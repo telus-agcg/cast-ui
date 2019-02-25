@@ -29,7 +29,7 @@ const CastUiButtons = (props: any) => (
     </ul>
     <Switch>
       <CrumbRoute
-        title="Cast UI Buttons"
+        title="Standard Buttons"
         path="/buttons/standard-buttons"
         render={() => <Event name="Standard Buttons" />}
       />
@@ -56,9 +56,6 @@ storiesOf('Breadcrumb', module).add(
       <Router history={newHistory}>
         <div>
           <Breadcrumbs
-            BreadcrumbsContainer="nav"
-            BreadcrumbItemContainer="span"
-            separator="span"
             breadcrumbdefaultstyle="default"
             breadcrumbactivestyle="primary"
             breadcrumbsize="md"

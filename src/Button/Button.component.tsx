@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SButton from './SButton';
 
-type Props = {
+export type Props = {
   /**
    * Specify if the button is outline
    *
@@ -11,17 +11,23 @@ type Props = {
   /** this dictates what the button will do  */
   onClick(e: React.MouseEvent<HTMLElement>): void;
   /**
+   * Set a className for the button
+   *
+   * @default ''
+   **/
+  className?: string;
+  /**
    * Select Button Style
    *
    * @default 'default'
    **/
-  btnStyle: string;
+  btnStyle?: string;
   /**
    * Select Button Size
    *
    * @default 'md'
    **/
-  btnSize: string;
+  btnSize?: string;
   /**
    * Specify if the button is disabled
    *
@@ -58,12 +64,14 @@ export const Button: React.FunctionComponent<Props> = ({
   children,
   btnStyle = 'default',
   btnSize = 'md',
+  className,
   theme,
 }) => (
   <SButton
     outline={outline}
     btnSize={btnSize}
     btnStyle={btnStyle}
+    className={className}
     theme={theme}
     disabled={disabled}
     selected={selected}
