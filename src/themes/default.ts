@@ -121,7 +121,7 @@ export const defaultTheme = {
     },
   },
   typography: {
-    fontFamily: '"Open Sans", arial, sans-serif',
+    fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     color: defaultColors.black,
   },
   input: {
@@ -335,5 +335,9 @@ export const defaultTheme = {
         right: '3.2rem',
       },
     },
+  },
+  tabs: {
+    borderRadius: '0px',
+    fontSize: '14px',
   },
 };

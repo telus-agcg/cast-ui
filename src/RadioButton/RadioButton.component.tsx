@@ -34,10 +34,6 @@ type Props = {
    **/
   rbSize: 'sm' | 'md' | 'lg';
   /**
-   * Specify the style of the button (primary, default, success, etc.)
-   **/
-  rbStyle: string;
-  /**
    * Specify the value of the radio button group when the current button is selected
    **/
   value: string;
@@ -97,11 +93,11 @@ const SInput = styled.input`
   }
   &:checked + label:before {
     background-color: ${(props: Props) =>
-      props.theme.styles[props.rbStyle].flood};
+      props.theme.styles.primary.flood};
   }
   &:disabled:checked + label:before {
     background-color:  ${(props: Props) =>
-    lighten(props.theme.styles[props.rbStyle].flood, 15)};
+    lighten(props.theme.styles.primary.flood, 15)};
   }
 `;
 
@@ -116,7 +112,6 @@ export default class RadioButton extends React.Component<Props> {
         <SInput
           type="radio"
           name={this.props.name}
-          rbStyle={this.props.rbStyle}
           rbSize={this.props.rbSize}
           disabled={this.props.disabled}
           id={this.props.id}
