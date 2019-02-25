@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TabList as ReactTabList } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import styled from 'styled-components';
 
 type Props = {
   /**
@@ -11,6 +11,20 @@ type Props = {
   theme?: any;
 };
 
+const ReactTabListProxy = ({ children, className, ...props }: any) => (
+  <ReactTabList {...props} className={` ${className} react-tabs__tab`}>
+    {children}
+  </ReactTabList>
+);
+
+ReactTabListProxy.tabsRole = 'TabList';
+
+const SReactTabList = styled(ReactTabListProxy)`
+  border-bottom: 1px solid #aaa;
+  margin: 0 0 10px;
+  padding: 0;
+`;
+
 export class TabList extends React.Component<Props> {
   public static readonly tabsRole: string = 'TabList';
 
@@ -20,9 +34,9 @@ export class TabList extends React.Component<Props> {
 
   render() {
     return (
-      <ReactTabList {...this.props}>
+      <SReactTabList {...this.props}>
         {this.props.children}
-      </ReactTabList>
+      </SReactTabList>
     );
   }
 }

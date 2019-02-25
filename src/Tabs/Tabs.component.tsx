@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Tabs as ReactTabs } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
 
 type PropsThemeOnly = {
   /**
