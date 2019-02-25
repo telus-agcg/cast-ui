@@ -61,7 +61,7 @@
     "@types/react-tabs": "^2.3.0",
     "@types/storybook-addon-jsx": "^5.4.0",
     "@types/storybook__addon-actions": "^3.4.1",
-    "@types/storybook__addon-info": "^3.4.2",
+    "@types/storybook__addon-info": "^4.1.0",
     "@types/storybook__addon-knobs": "^3.4.1",
     "@types/storybook__react": "^4.0.0",
     "@types/styled-components": "^4.0.3",
