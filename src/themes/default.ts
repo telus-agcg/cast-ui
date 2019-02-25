@@ -34,7 +34,7 @@ export const defaultTheme = {
       borderColor: defaultColors.blue,
       flood: defaultColors.blue,
       lightFlood: lighten(defaultColors.blue, 50),
-      hoverlightFlood: lighten(defaultColors.blue, 80),
+      hoverlightFlood: lighten(defaultColors.blue, 100),
       text: defaultColors.blue,
       reverseText: defaultColors.white,
       hoverFlood: darken(defaultColors.blue, 5),
@@ -245,18 +245,21 @@ export const defaultTheme = {
       fontSize: '11px',
       padding: '4px 8px',
       tableCellPadding: '7px',
+      inputIconSize: '14px',
     },
     md: {
       borderRadius: '1px',
       fontSize: '14px',
       padding: '8px 14px',
       tableCellPadding: '9px',
+      inputIconSize: '20px',
     },
     lg: {
       borderRadius: '1px',
       fontSize: '16px',
       padding: '10px 16px',
       tableCellPadding: '11px',
+      inputIconSize: '24px',
     },
   },
   validation: {
@@ -289,6 +292,47 @@ export const defaultTheme = {
         nextPrevious: {
           fontWeight: 'bold',
         },
+      },
+    },
+  },
+  datepicker: {
+    sm: {
+      margins: {
+        dayPickerWraper: '1rem 0',
+        dayPickerMonth: '1rem 1rem auto',
+        dayPickerCaption: '.3rem auto 2rem',
+      },
+      btnPrev: {
+        left: '2rem',
+      },
+      btnNext: {
+        right: '2.2rem',
+      },
+    },
+    md: {
+      margins: {
+        dayPickerWraper: '1.5rem 0',
+        dayPickerMonth: '1rem 1.5rem auto',
+        dayPickerCaption: '.3rem auto 3rem',
+      },
+      btnPrev: {
+        left: '3rem',
+      },
+      btnNext: {
+        right: '3.2rem',
+      },
+    },
+    lg: {
+      margins: {
+        dayPickerWraper: '1.5rem 0',
+        dayPickerMonth: '1rem 1.5rem auto',
+        dayPickerCaption: '.3rem auto 3rem',
+      },
+      btnPrev: {
+        left: '3rem',
+      },
+      btnNext: {
+        right: '3.2rem',
       },
     },
   },
