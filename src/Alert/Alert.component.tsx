@@ -51,7 +51,7 @@ export const Alert: React.FunctionComponent<Props> = ({
   children,
   alertStyle = 'primary',
   lightMode = false,
-  fullWidth=false
+  fullWidth = false,
 }) => (
   <SAlert
     alertStyle={alertStyle}
