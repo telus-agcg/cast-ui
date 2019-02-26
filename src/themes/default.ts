@@ -33,6 +33,7 @@ export const defaultTheme = {
     primary: {
       borderColor: defaultColors.blue,
       flood: defaultColors.blue,
+      disabledFlood: lighten(defaultColors.blue, 25),
       lightFlood: lighten(defaultColors.blue, 50),
       hoverlightFlood: lighten(defaultColors.blue, 100),
       text: defaultColors.blue,
@@ -43,7 +44,7 @@ export const defaultTheme = {
       badgeColor: defaultColors.white,
       alertColor: defaultColors.white,
       alertBackground: defaultColors.blue,
-      light:{
+      light: {
         alertBackground: lighten(defaultColors.blue, 50),
         alertColor: defaultColors.black,
       },
@@ -60,6 +61,7 @@ export const defaultTheme = {
     danger: {
       borderColor: defaultColors.red,
       flood: defaultColors.red,
+      disabledFlood: lighten(defaultColors.red, 25),
       lightFlood: lighten(defaultColors.red, 50),
       hoverlightFlood: lighten(defaultColors.red, 80),
       text: defaultColors.red,
@@ -78,6 +80,7 @@ export const defaultTheme = {
     warning: {
       borderColor: defaultColors.yellow,
       flood: defaultColors.yellow,
+      disabledFlood: lighten(defaultColors.yellow, 25),
       lightFlood: lighten(defaultColors.yellow, 50),
       hoverlightFlood: lighten(defaultColors.yellow, 80),
       text: defaultColors.yellow,
@@ -96,6 +99,7 @@ export const defaultTheme = {
     success: {
       borderColor: defaultColors.green,
       flood: defaultColors.green,
+      disabledFlood: lighten(defaultColors.green, 40),
       lightFlood: lighten(defaultColors.green, 50),
       hoverlightFlood: lighten(defaultColors.green, 80),
       text: defaultColors.green,
@@ -114,6 +118,7 @@ export const defaultTheme = {
     default: {
       borderColor: defaultColors.gray,
       flood: defaultColors.gray,
+      disabledFlood: lighten(defaultColors.gray, 25),
       lightFlood: lighten(defaultColors.gray, 50),
       hoverlightFlood: lighten(defaultColors.gray, 80),
       text: defaultColors.primary,

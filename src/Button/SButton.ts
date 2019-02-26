@@ -48,6 +48,7 @@ const computeColor: Function = (
   btnStyle: string,
   theme: any,
 ) => {
+  console.log('the theme here ', theme.styles[btnStyle]);
   switch (true) {
     case selected === true:
       switch (btnState) {
@@ -60,7 +61,7 @@ const computeColor: Function = (
         case 'disabled':
           return {
             background: theme.colors.disabledText,
-            color: theme.colors.white,
+            color: theme.styles[btnStyle].reverseText,
             borderColor: theme.styles[btnStyle].disabledText,
           };
         default:
@@ -101,9 +102,9 @@ const computeColor: Function = (
           };
         case 'disabled':
           return {
-            background: theme.colors.disabledText,
-            color: theme.colors.white,
-            borderColor: theme.styles[btnStyle].disabledText,
+            background: theme.styles[btnStyle].disabledFlood,
+            color: theme.styles[btnStyle].reverseText,
+            borderColor: theme.styles[btnStyle].disabledFlood,
           };
         default:
           return {
