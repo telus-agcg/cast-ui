@@ -8,8 +8,12 @@ export type Props = {
    * @default false
    **/
   outline?: boolean;
-  /** this dictates what the button will do  */
-  onClick(e: React.MouseEvent<HTMLElement>): void;
+  /**
+   * This dictates what the button will do
+   *
+   * @default void
+   * */
+  onClick?(e: React.MouseEvent<HTMLElement>): void;
   /**
    * Set a className for the button
    *
@@ -58,7 +62,7 @@ const noop = () => {}; // tslint:disable-line
 
 export const Button: React.FunctionComponent<Props> = ({
   outline,
-  onClick,
+  onClick = noop,
   disabled,
   selected,
   children,
