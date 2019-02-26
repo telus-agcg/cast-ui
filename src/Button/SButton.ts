@@ -48,7 +48,6 @@ const computeColor: Function = (
   btnStyle: string,
   theme: any,
 ) => {
-  console.log('the theme here ', theme.styles[btnStyle]);
   switch (true) {
     case selected === true:
       switch (btnState) {
