@@ -99,7 +99,7 @@ export const defaultTheme = {
     success: {
       borderColor: defaultColors.green,
       flood: defaultColors.green,
-      disabledFlood: lighten(defaultColors.green, 40),
+      disabledFlood: lighten(defaultColors.green, 50),
       lightFlood: lighten(defaultColors.green, 50),
       hoverlightFlood: lighten(defaultColors.green, 80),
       text: defaultColors.green,
