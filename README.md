@@ -7,16 +7,18 @@
 ### Installation
 
 The library depends on [styled-components](https://www.styled-components.com/)
-as well as React. To install with all peer dependencies:
+as well as React. There are current dependencies on react-router-dom and redux
+in the breadcrumb component that we are working to remove. To install with
+all peer dependencies:
 
 ```
-npm install @tkxs/cast-ui styled-components react react-dom --save
+npm install @tkxs/cast-ui styled-components react react-dom react-router-dom redux --save
 ```
 
 or
 
 ```
-yarn add @tkxs/cast-ui styled-components react react-dom
+yarn add @tkxs/cast-ui styled-components react react-dom react-router-dom redux
 ```
 
 The package includes UMD, CommonJS, and ES5 modules. Type definitions are
