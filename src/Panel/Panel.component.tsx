@@ -94,7 +94,7 @@ const PanelBody = styled.div`
     props.theme.colors[props.bodyBackgroundColor!] ||
     props.bodyBackgroundColor};
   border: ${(props: Props) =>
-    `${props.theme.panel.borderWidth} solid 
+    `${props.theme.panel.borderWidth} solid
     ${props.theme.colors[props.bodyBorderColor!] || props.bodyBorderColor}`};
   border-top: none;
   padding: ${(props: Props) =>
