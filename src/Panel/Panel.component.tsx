@@ -22,6 +22,18 @@ type Props = {
    * */
   title?: string;
   /**
+   * Set header background color. A CSS color code or a color defined in theme colors
+   *
+   * @default 'white'
+   **/
+  headerBackgroundColor?: string;
+  /**
+   * Set header border color. A CSS color code or a color defined in theme colors
+   *
+   * @default 'gray'
+   **/
+  headerBorderColor?: string;
+  /**
    * 'default', 'primary', 'success', 'warning', 'danger'
    *
    *  @default 'default'
@@ -45,6 +57,18 @@ type Props = {
    */
   noPadding?: boolean;
   /**
+   * Set body background color. A CSS color code or a color defined in theme colors
+   *
+   * @default 'panelBackground'
+   **/
+  bodyBackgroundColor?: string;
+  /**
+   * Set body border color. A CSS color code or a color defined in theme colors
+   *
+   * @default 'gray'
+   **/
+  bodyBorderColor?: string;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -53,23 +77,25 @@ type Props = {
 };
 
 const PanelWrapper = styled.div`
-  border: ${(props: Props) =>
-    `${props.theme.borders.width} solid ${props.theme.styles[props.panelStyle]
-      .borderColor || '#eee'}`};
   overflow: hidden;
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.typography.fontSize};
   border-radius: ${(props: Props) => props.theme.borders.radius};
 `;
 
 const PanelBody = styled.div`
-  color: ${(props: Props) => props.theme.styles[props.panelStyle].text};
-  background: ${(props: Props) => props.theme.panel.body.background};
+  background: ${(props: Props) =>
+    props.theme.colors[props.bodyBackgroundColor!] ||
+    props.bodyBackgroundColor};
+  border: ${(props: Props) =>
+    `${props.theme.panel.borderWidth} solid ${props.theme.colors[
+      props.bodyBorderColor!
+    ] || props.bodyBorderColor}`};
+  border-top: none;
   padding: ${(props: Props) =>
     props.noPadding ? '0' : props.theme.panel.body.padding};
   overflow: hidden;
   height: auto;
-  font-size: 14px;
-  opacity: ${(props: Props) => 1};
   transition: all 300ms ease-in-out;
 `;
 
@@ -88,6 +114,14 @@ export class Panel extends React.Component<Props, State> {
     this.bodyRef = React.createRef();
     this.handleToggleCollapse.bind(this);
   }
+
+  static defaultProps = {
+    noPadding: false,
+    headerBackgroundColor: 'white',
+    headerBorderColor: 'lightGray',
+    bodyBackgroundColor: 'panelBackground',
+    bodyBorderColor: 'lightGray',
+  };
 
   readonly state: State = initialState;
   localIsCollapsed: boolean = false;
@@ -132,6 +166,8 @@ export class Panel extends React.Component<Props, State> {
         />
         <PanelBody
           panelStyle={this.props.panelStyle}
+          bodyBackgroundColor={this.props.bodyBackgroundColor}
+          bodyBorderColor={this.props.bodyBorderColor}
           noPadding={this.props.noPadding}
           isCollapsed={this.localIsCollapsed}
           ref={this.bodyRef}

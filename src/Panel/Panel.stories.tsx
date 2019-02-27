@@ -17,6 +17,10 @@ storiesOf('Panel', module).add(
       isCollapsed={boolean('isCollapsed', false)}
       noPadding={boolean('noPadding', false)}
       collapsible={boolean('Collapsible', true)}
+      headerBackgroundColor={text('headerBackgroundColor', 'white')}
+      headerBorderColor={text('headerBorderColor', 'lightGray')}
+      bodyBackgroundColor={text('bodyBackgroundColor', 'panelBackground')}
+      bodyBorderColor={text('bodyBorderColor', 'lightGray')}
       panelStyle={select(
         'panelStyle',
         ['success', 'default', 'primary', 'danger', 'warning'],
