@@ -116,6 +116,7 @@ export class Panel extends React.Component<Props, State> {
   }
 
   static defaultProps = {
+    panelStyle: 'default',
     noPadding: false,
     headerBackgroundColor: 'white',
     headerBorderColor: 'lightGray',
@@ -155,6 +156,8 @@ export class Panel extends React.Component<Props, State> {
       <PanelWrapper panelStyle={this.props.panelStyle} theme={this.props.theme}>
         <PanelHeader
           panelStyle={this.props.panelStyle}
+          headerBackgroundColor={this.props.headerBackgroundColor}
+          headerBorderColor={this.props.headerBorderColor}
           collapsible={this.props.collapsible}
           toggleItem={() => {
             this.toggleItem();

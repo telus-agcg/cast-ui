@@ -75,14 +75,14 @@ const SPanelHeader = styled.div`
   background: ${(props: Props) =>
     props.theme.styles[props.panelStyle].lightFlood};
   padding: ${(props: Props) => props.theme.panel.header.padding};
-  font-size: 16px;
-  color: ${(props: Props) => props.theme.styles[props.panelStyle].text};
-  line-height: 32px;
+  background: ${(props: Props) =>
+    props.theme.colors[props.headerBackgroundColor!] ||
+    props.headerBackgroundColor};
+  border: ${(props: Props) =>
+    `${props.theme.panel.borderWidth} solid ${props.theme.colors[
+      props.headerBorderColor!
+    ] || props.headerBorderColor}`};
   &:hover {
-    background: ${(props: Props) =>
-      props.collapsible
-        ? props.theme.styles[props.panelStyle].hoverlightFlood
-        : props.theme.styles[props.panelStyle].lightFlood};
     cursor: ${(props: Props) => (props.collapsible ? 'pointer' : 'auto')};
   }
 `;
@@ -91,7 +91,7 @@ const SPanelHeader = styled.div`
 const SExpandIcon = styled.div`
   float: right;
   padding: 0;
-  margin: 4px 0 0;
+  margin: -4px 0 0;
   background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
   border: 0;
   -webkit-appearance: none;
@@ -100,16 +100,16 @@ const SExpandIcon = styled.div`
   -ms-filter: none;
   filter: none;
   outline: none;
-  width: 24px;
-  height: 24px;
-  background-size: contain;
+  width: 28px;
+  height: 28px;
+  background-size: 28px;
   background-repeat: no-repeat;
 `;
 
 const SCollapseIcon = styled.div`
   float: right;
   padding: 0;
-  margin: 4px 0 0;
+  margin: -4px 0 0;
   background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
   border: 0;
   -webkit-appearance: none;
@@ -118,9 +118,9 @@ const SCollapseIcon = styled.div`
   -ms-filter: none;
   filter: none;
   outline: none;
-  width: 24px;
-  height: 24px;
-  background-size: contain;
+  width: 28px;
+  height: 28px;
+  background-size: 28px;
   background-repeat: no-repeat;
 `;
 
@@ -132,10 +132,12 @@ export class PanelHeader extends React.Component<Props> {
       <SCollapseIcon />
     );
     const toggleItem =
-      this.props.toggleItem || (() => console.log('collapsing'));
+      this.props.toggleItem || (() => console.log('toggle collapse'));
     return (
       <SPanelHeader
-        panelStyle={this.props.panelStyle || 'default'}
+        panelStyle={this.props.panelStyle}
+        headerBackgroundColor={this.props.headerBackgroundColor}
+        headerBorderColor={this.props.headerBorderColor}
         collapsible={this.props.collapsible}
         onClick={toggleItem}
         theme={this.props.theme}>

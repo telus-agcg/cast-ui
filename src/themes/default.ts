@@ -162,7 +162,7 @@ export const defaultTheme = {
   },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
-    fontSize: '14px',
+    fontSize: '16px',
     color: defaultColors.black,
   },
   input: {
