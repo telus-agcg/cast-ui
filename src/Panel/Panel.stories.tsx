@@ -15,6 +15,7 @@ storiesOf('Panel', module).add(
       name={text('Panel Name', 'Catchy Name')}
       title={text('Title', 'Catchy title')}
       isCollapsed={boolean('isCollapsed', false)}
+      noPadding={boolean('noPadding', false)}
       collapsible={boolean('Collapsible', true)}
       panelStyle={select(
         'panelStyle',

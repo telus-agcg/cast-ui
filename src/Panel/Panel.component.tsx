@@ -3,24 +3,47 @@ import styled from 'styled-components';
 import { PanelHeader } from './PanelHeader.component';
 
 type Props = {
-  /** the content of the panel  */
+  /**
+   * The content of the panel
+   * 
+   * @default null
+   * */
   children?: any;
-  /** the name of the panel  */
+  /** 
+   * The name of the panel
+   * 
+   * @default ''
+   * */
   name?: string;
-  /** the title of the panel  */
+  /**
+   * The title of the panel
+   * 
+   * @default ''
+   * */
   title?: string;
-  /** 'default', 'primary', 'success', 'warning', 'danger'
+  /** 
+   * 'default', 'primary', 'success', 'warning', 'danger'
+   * 
    *  @default 'default'
    */
   panelStyle: string;
-  /** whether the panel can be collapsed
+  /**
+   *  Whether the panel can be collapsed
+   * 
    *  @default 'false'
    */
   collapsible?: boolean;
-  /** whether the panel is collapsed or not
+  /** 
+   * Whether the panel is collapsed or not
+   * 
    *  @default 'false'
    */
   isCollapsed?: boolean;
+  /** Whether the panel has padding or not
+   * 
+   *  @default 'false'
+   */
+  noPadding?: boolean;
   /**
    * From theme provider
    *
