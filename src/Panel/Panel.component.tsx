@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { PanelHeader } from './PanelHeader.component';
 
 type Props = {
@@ -109,7 +109,7 @@ const initialState = {
 };
 type State = Readonly<typeof initialState>;
 
-export class Panel extends React.Component<Props, State> {
+class Panel extends React.Component<Props, State> {
   static Header: React.Component;
   static Body: React.Component;
   private bodyRef: React.RefObject<HTMLDivElement>;
@@ -141,14 +141,16 @@ export class Panel extends React.Component<Props, State> {
   }
 
   handleToggleCollapse() {
-    if (this.bodyRef.current && (this.props.collapsible || false)) {
+    console.log(' this props', this.props);
+    const { collapsible, noPadding, theme } = this.props;
+    if (this.bodyRef.current && (collapsible || false)) {
       this.localIsCollapsed
-        ? collapseSection(this.bodyRef.current, this.props.noPadding || false)
-        : expandSection(this.bodyRef.current, this.props.noPadding || false);
+        ? collapseSection(this.bodyRef.current, theme, noPadding || false)
+        : expandSection(this.bodyRef.current, theme, noPadding || false);
     }
 
     this.setState({
-      isCollapsed: this.localIsCollapsed && (this.props.collapsible || false),
+      isCollapsed: this.localIsCollapsed && (collapsible || false),
     });
   }
 
@@ -158,6 +160,7 @@ export class Panel extends React.Component<Props, State> {
   }
 
   render() {
+    console.log('Current theme: ', this.props.theme);
     return (
       <PanelWrapper panelStyle={this.props.panelStyle} theme={this.props.theme}>
         <PanelHeader
@@ -189,7 +192,11 @@ export class Panel extends React.Component<Props, State> {
   }
 }
 
-const collapseSection = (element: HTMLElement | null, noPadding: boolean) => {
+const collapseSection = (
+  element: HTMLElement | null,
+  theme: any,
+  noPadding: boolean,
+) => {
   if (element !== null) {
     const sectionHeight = element.scrollHeight;
     const elementTransition = element.style.transition;
@@ -199,16 +206,24 @@ const collapseSection = (element: HTMLElement | null, noPadding: boolean) => {
       element.style.transition = elementTransition;
       requestAnimationFrame(() => {
         element.style.height = '0px';
-        element.style.padding = noPadding ? '0px' : '0 30px';
+        element.style.padding = noPadding
+          ? '0px'
+          : `0px ${theme.panel.body.padding.toString().split(' ')[1]}`;
         element.style.opacity = '0';
       });
     });
   }
 };
 
-const expandSection = (element: HTMLElement, noPadding: boolean) => {
+const expandSection = (
+  element: HTMLElement,
+  theme: any,
+  noPadding: boolean,
+) => {
   const sectionHeight = element.scrollHeight;
   element.style.height = `${sectionHeight}px`;
-  element.style.padding = noPadding ? '0px' : '30px 30px';
+  element.style.padding = noPadding ? '0px' : theme.panel.body.padding;
   element.style.opacity = '1';
 };
+
+export default withTheme(Panel);

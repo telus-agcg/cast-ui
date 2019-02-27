@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { text, boolean, select } from '@storybook/addon-knobs/react';
 import { wInfo } from '../storybook-utils';
 
-import { Panel } from './Panel.component';
+import Panel from './Panel.component';
 
 storiesOf('Panel', module).add(
   'Panel with Title',
