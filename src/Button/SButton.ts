@@ -60,7 +60,7 @@ const computeColor: Function = (
         case 'disabled':
           return {
             background: theme.colors.disabledText,
-            color: theme.colors.white,
+            color: theme.styles[btnStyle].reverseText,
             borderColor: theme.styles[btnStyle].disabledText,
           };
         default:
@@ -74,19 +74,19 @@ const computeColor: Function = (
       switch (btnState) {
         case 'hover':
           return {
-            background: theme.styles[btnStyle].reverseText,
-            color: theme.styles[btnStyle].hoverFlood,
-            borderColor: theme.styles[btnStyle].hoverFlood,
+            background: 'none',
+            color: theme.styles[btnStyle].flood,
+            borderColor: theme.styles[btnStyle].borderColor,
           };
         case 'disabled':
           return {
-            background: theme.colors.white,
-            color: theme.colors.disabledText,
-            borderColor: theme.styles[btnStyle].disabledText,
+            background: 'none',
+            color: theme.styles[btnStyle].disabledFlood,
+            borderColor: theme.styles[btnStyle].disabledFlood,
           };
         default:
           return {
-            background: theme.styles[btnStyle].reverseText,
+            background: 'none',
             color: theme.styles[btnStyle].flood,
             borderColor: theme.styles[btnStyle].borderColor,
           };
@@ -101,9 +101,9 @@ const computeColor: Function = (
           };
         case 'disabled':
           return {
-            background: theme.colors.disabledText,
-            color: theme.colors.white,
-            borderColor: theme.styles[btnStyle].disabledText,
+            background: theme.styles[btnStyle].disabledFlood,
+            color: theme.styles[btnStyle].reverseText,
+            borderColor: theme.styles[btnStyle].disabledFlood,
           };
         default:
           return {
