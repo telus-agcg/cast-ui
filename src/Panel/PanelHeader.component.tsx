@@ -79,9 +79,9 @@ const SPanelHeader = styled.div`
     props.theme.colors[props.headerBackgroundColor!] ||
     props.headerBackgroundColor};
   border: ${(props: Props) =>
-    `${props.theme.panel.borderWidth} solid ${props.theme.colors[
-      props.headerBorderColor!
-    ] || props.headerBorderColor}`};
+    `${props.theme.panel.borderWidth} solid 
+    ${props.theme.colors[props.headerBorderColor!] ||
+      props.headerBorderColor}`};
   &:hover {
     cursor: ${(props: Props) => (props.collapsible ? 'pointer' : 'auto')};
   }
