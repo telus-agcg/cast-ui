@@ -14,8 +14,6 @@ type DefaultProps = Readonly<typeof defaultProps>;
 
 type Props = Partial<ButtonProps> &
   Partial<DefaultProps> & {
-    /** Handle Button click events  */
-    onClick(e: React.MouseEvent<HTMLElement>): void;
     /**
      * Select IconButton color. Must be a color defined in theme colors
      *

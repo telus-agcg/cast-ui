@@ -41,7 +41,7 @@ storiesOf('IconButton', module).add(
         pixelbuttonsize={select('pixelbuttonsize', [20, 30, 40, 50, 60], 40)}
         iconsize={select('iconsize', [20, 30, 40, 50, 60], 20)}
         disabled={boolean('disabled', false)}
-        onClick={action('Clicked!')}
+        onClick={action('Icon Button Clicked!')}
       />
     </div>
   )),
