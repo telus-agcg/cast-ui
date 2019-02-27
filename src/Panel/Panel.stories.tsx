@@ -17,6 +17,7 @@ storiesOf('Panel', module).add(
       isCollapsed={boolean('isCollapsed', false)}
       noPadding={boolean('noPadding', false)}
       collapsible={boolean('Collapsible', true)}
+      headerColor={text('headerColor', 'primary')}
       headerBackgroundColor={text('headerBackgroundColor', 'white')}
       headerBorderColor={text('headerBorderColor', 'lightGray')}
       bodyBackgroundColor={text('bodyBackgroundColor', 'panelBackground')}

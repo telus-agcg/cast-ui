@@ -21,6 +21,12 @@ type Props = {
    * */
   title?: string;
   /**
+   * Set header color. A CSS color code or a color defined in theme colors
+   *
+   * @default 'primary'
+   **/
+  headerColor?: string;
+  /**
    * Set header background color. A CSS color code or a color defined in theme colors
    *
    * @default 'white'
@@ -75,6 +81,8 @@ const SPanelHeader = styled.div`
   background: ${(props: Props) =>
     props.theme.styles[props.panelStyle].lightFlood};
   padding: ${(props: Props) => props.theme.panel.header.padding};
+  color: ${(props: Props) =>
+    props.theme.colors[props.headerColor!] || props.headerColor};
   background: ${(props: Props) =>
     props.theme.colors[props.headerBackgroundColor!] ||
     props.headerBackgroundColor};
@@ -136,6 +144,7 @@ export class PanelHeader extends React.Component<Props> {
     return (
       <SPanelHeader
         panelStyle={this.props.panelStyle}
+        headerColor={this.props.headerColor}
         headerBackgroundColor={this.props.headerBackgroundColor}
         headerBorderColor={this.props.headerBorderColor}
         collapsible={this.props.collapsible}

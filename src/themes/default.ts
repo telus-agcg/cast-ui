@@ -251,7 +251,7 @@ export const defaultTheme = {
   },
   panel: {
     header: {
-      padding: '14px 30px',
+      padding: '14px 16px 14px 30px',
     },
     body: {
       padding: '30px 30px',

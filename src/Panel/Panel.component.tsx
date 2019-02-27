@@ -22,6 +22,12 @@ type Props = {
    * */
   title?: string;
   /**
+   * Set header color. A CSS color code or a color defined in theme colors
+   *
+   * @default 'primary'
+   **/
+  headerColor?: string;
+  /**
    * Set header background color. A CSS color code or a color defined in theme colors
    *
    * @default 'white'
@@ -117,6 +123,7 @@ export class Panel extends React.Component<Props, State> {
   static defaultProps = {
     panelStyle: 'default',
     noPadding: false,
+    headerColor: 'primary',
     headerBackgroundColor: 'white',
     headerBorderColor: 'lightGray',
     bodyBackgroundColor: 'panelBackground',
@@ -136,8 +143,8 @@ export class Panel extends React.Component<Props, State> {
   handleToggleCollapse() {
     if (this.bodyRef.current && (this.props.collapsible || false)) {
       this.localIsCollapsed
-        ? collapseSection(this.bodyRef.current)
-        : expandSection(this.bodyRef.current);
+        ? collapseSection(this.bodyRef.current, this.props.noPadding || false)
+        : expandSection(this.bodyRef.current, this.props.noPadding || false);
     }
 
     this.setState({
@@ -155,6 +162,7 @@ export class Panel extends React.Component<Props, State> {
       <PanelWrapper panelStyle={this.props.panelStyle} theme={this.props.theme}>
         <PanelHeader
           panelStyle={this.props.panelStyle}
+          headerColor={this.props.headerColor}
           headerBackgroundColor={this.props.headerBackgroundColor}
           headerBorderColor={this.props.headerBorderColor}
           collapsible={this.props.collapsible}
@@ -181,7 +189,7 @@ export class Panel extends React.Component<Props, State> {
   }
 }
 
-const collapseSection = (element: HTMLElement | null) => {
+const collapseSection = (element: HTMLElement | null, noPadding: boolean) => {
   if (element !== null) {
     const sectionHeight = element.scrollHeight;
     const elementTransition = element.style.transition;
@@ -191,16 +199,16 @@ const collapseSection = (element: HTMLElement | null) => {
       element.style.transition = elementTransition;
       requestAnimationFrame(() => {
         element.style.height = '0px';
-        element.style.padding = '0 28px';
+        element.style.padding = noPadding ? '0px' : '0 30px';
         element.style.opacity = '0';
       });
     });
   }
 };
 
-const expandSection = (element: HTMLElement) => {
+const expandSection = (element: HTMLElement, noPadding: boolean) => {
   const sectionHeight = element.scrollHeight;
   element.style.height = `${sectionHeight}px`;
-  element.style.padding = '20px 28px';
+  element.style.padding = noPadding ? '0px' : '30px 30px';
   element.style.opacity = '1';
 };
