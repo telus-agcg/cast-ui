@@ -250,6 +250,7 @@ export const defaultTheme = {
   },
   panel: {
     body: {
+      padding: '30px 30px',
       background: defaultColors.panelBackground,
     },
   },

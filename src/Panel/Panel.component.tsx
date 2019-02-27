@@ -5,42 +5,42 @@ import { PanelHeader } from './PanelHeader.component';
 type Props = {
   /**
    * The content of the panel
-   * 
+   *
    * @default null
    * */
   children?: any;
-  /** 
+  /**
    * The name of the panel
-   * 
+   *
    * @default ''
    * */
   name?: string;
   /**
    * The title of the panel
-   * 
+   *
    * @default ''
    * */
   title?: string;
-  /** 
+  /**
    * 'default', 'primary', 'success', 'warning', 'danger'
-   * 
+   *
    *  @default 'default'
    */
   panelStyle: string;
   /**
    *  Whether the panel can be collapsed
-   * 
+   *
    *  @default 'false'
    */
   collapsible?: boolean;
-  /** 
+  /**
    * Whether the panel is collapsed or not
-   * 
+   *
    *  @default 'false'
    */
   isCollapsed?: boolean;
   /** Whether the panel has padding or not
-   * 
+   *
    *  @default 'false'
    */
   noPadding?: boolean;
@@ -64,9 +64,10 @@ const PanelWrapper = styled.div`
 const PanelBody = styled.div`
   color: ${(props: Props) => props.theme.styles[props.panelStyle].text};
   background: ${(props: Props) => props.theme.panel.body.background};
+  padding: ${(props: Props) =>
+    props.noPadding ? '0' : props.theme.panel.body.padding};
   overflow: hidden;
   height: auto;
-  padding: ${(props: Props) => '20px 28px'};
   font-size: 14px;
   opacity: ${(props: Props) => 1};
   transition: all 300ms ease-in-out;
@@ -119,7 +120,7 @@ export class Panel extends React.Component<Props, State> {
     return (
       <PanelWrapper panelStyle={this.props.panelStyle} theme={this.props.theme}>
         <PanelHeader
-          panelStyle={this.props.panelStyle || 'default'}
+          panelStyle={this.props.panelStyle}
           collapsible={this.props.collapsible}
           toggleItem={() => {
             this.toggleItem();
@@ -130,7 +131,8 @@ export class Panel extends React.Component<Props, State> {
           theme={this.props.theme}
         />
         <PanelBody
-          panelStyle={this.props.panelStyle || 'default'}
+          panelStyle={this.props.panelStyle}
+          noPadding={this.props.noPadding}
           isCollapsed={this.localIsCollapsed}
           ref={this.bodyRef}
           theme={this.props.theme}>
