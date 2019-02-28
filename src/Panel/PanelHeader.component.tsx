@@ -3,11 +3,17 @@ import styled, { withTheme } from 'styled-components';
 
 type Props = {
   /**
-   * The content of the panel
+   * The content of the panel header
    *
    * @default null
    * */
   children?: any;
+  /**
+   * The ref of the panel headre
+   *
+   * @default null
+   * */
+  headerRef?: React.RefObject<HTMLDivElement>;
   /**
    * The name of the panel
    *
@@ -149,6 +155,7 @@ export class PanelHeader extends React.Component<Props> {
         headerBorderColor={this.props.headerBorderColor}
         collapsible={this.props.collapsible}
         onClick={(e: any) => toggleItem(e, this.props.theme)}
+        ref={this.props.headerRef}
         theme={this.props.theme}>
         {this.props.name && <b>{this.props.name}:</b>} {this.props.title}{' '}
         {this.props.collapsible && ChevronImage}

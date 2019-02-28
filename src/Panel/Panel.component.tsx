@@ -112,10 +112,12 @@ type State = Readonly<typeof initialState>;
 class Panel extends React.Component<Props, State> {
   static Header: React.Component;
   static Body: React.Component;
+  private headerRef: React.RefObject<HTMLDivElement>;
   private bodyRef: React.RefObject<HTMLDivElement>;
 
   constructor(props: Props) {
     super(props);
+    this.headerRef = React.createRef();
     this.bodyRef = React.createRef();
     this.handleToggleCollapse = this.handleToggleCollapse.bind(this);
     this.toggleItem = this.toggleItem.bind(this);
@@ -136,8 +138,8 @@ class Panel extends React.Component<Props, State> {
 
   componentWillReceiveProps(nextProps: Props) {
     if (this.props.isCollapsed !== nextProps.isCollapsed) {
-      this.localIsCollapsed = !!nextProps.isCollapsed;
-      this.handleToggleCollapse({});
+      const header: any = this.headerRef.current;
+      header.click();
     }
   }
 
@@ -172,6 +174,7 @@ class Panel extends React.Component<Props, State> {
           name={this.props.name}
           title={this.props.title}
           localIsCollapsed={this.localIsCollapsed}
+          headerRef={this.headerRef}
           theme={this.props.theme}
         />
         <PanelBody
