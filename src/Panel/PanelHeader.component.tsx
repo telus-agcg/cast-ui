@@ -88,14 +88,14 @@ const SPanelHeader = styled.div`
     props.theme.styles[props.panelStyle].lightFlood};
   padding: ${(props: Props) => props.theme.panel.header.padding};
   color: ${(props: Props) =>
-    props.theme.colors[props.headerColor!] || props.headerColor};
+    props.theme.colors[props.headerColor!] || props.headerColor!.toString()};
   background: ${(props: Props) =>
     props.theme.colors[props.headerBackgroundColor!] ||
-    props.headerBackgroundColor};
+    props.headerBackgroundColor!.toString()};
   border: ${(props: Props) =>
     `${props.theme.panel.borderWidth} solid
     ${props.theme.colors[props.headerBorderColor!] ||
-      props.headerBorderColor}`};
+      props.headerBorderColor!.toString()}`};
   &:hover {
     cursor: ${(props: Props) => (props.collapsible ? 'pointer' : 'auto')};
   }

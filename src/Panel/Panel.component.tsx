@@ -92,10 +92,11 @@ const PanelWrapper = styled.div`
 const PanelBody = styled.div`
   background: ${(props: Props) =>
     props.theme.colors[props.bodyBackgroundColor!] ||
-    props.bodyBackgroundColor};
+    props.bodyBackgroundColor!.toString()};
   border: ${(props: Props) =>
     `${props.theme.panel.borderWidth} solid
-    ${props.theme.colors[props.bodyBorderColor!] || props.bodyBorderColor}`};
+    ${props.theme.colors[props.bodyBorderColor!] ||
+      props.bodyBorderColor!.toString()}`};
   border-top: none;
   padding: ${(props: Props) =>
     props.noPadding ? '0' : props.theme.panel.body.padding};
@@ -109,7 +110,7 @@ const initialState = {
 };
 type State = Readonly<typeof initialState>;
 
-class Panel extends React.Component<Props, State> {
+export class Panel extends React.Component<Props, State> {
   static Header: React.Component;
   static Body: React.Component;
   private headerRef: React.RefObject<HTMLDivElement>;
