@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled, { withTheme } from 'styled-components';
-import { PanelHeader } from './PanelHeader.component';
+import styled from 'styled-components';
+import PanelHeader from './PanelHeader.component';
 
 type Props = {
   /**
@@ -154,7 +154,8 @@ class Panel extends React.Component<Props, State> {
     });
   }
 
-  toggleItem() {
+  toggleItem(e: any, theme: any) {
+    console.log('we finaly got yah ', e, theme);
     this.localIsCollapsed = !this.localIsCollapsed;
     this.handleToggleCollapse();
   }
@@ -169,9 +170,7 @@ class Panel extends React.Component<Props, State> {
           headerBackgroundColor={this.props.headerBackgroundColor}
           headerBorderColor={this.props.headerBorderColor}
           collapsible={this.props.collapsible}
-          toggleItem={() => {
-            this.toggleItem();
-          }}
+          toggleItem={this.toggleItem}
           name={this.props.name}
           title={this.props.title}
           localIsCollapsed={this.localIsCollapsed}
@@ -226,4 +225,4 @@ const expandSection = (
   element.style.opacity = '1';
 };
 
-export default withTheme(Panel);
+export default Panel;

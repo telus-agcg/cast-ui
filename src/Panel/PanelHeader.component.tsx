@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 
 type Props = {
   /**
@@ -148,7 +148,7 @@ export class PanelHeader extends React.Component<Props> {
         headerBackgroundColor={this.props.headerBackgroundColor}
         headerBorderColor={this.props.headerBorderColor}
         collapsible={this.props.collapsible}
-        onClick={toggleItem}
+        onClick={(e: any) => toggleItem(e, this.props.theme)}
         theme={this.props.theme}>
         {this.props.name && <b>{this.props.name}:</b>} {this.props.title}{' '}
         {this.props.collapsible && ChevronImage}
@@ -156,3 +156,5 @@ export class PanelHeader extends React.Component<Props> {
     );
   }
 }
+
+export default withTheme(PanelHeader);
