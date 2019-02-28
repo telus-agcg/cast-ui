@@ -117,7 +117,8 @@ class Panel extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.bodyRef = React.createRef();
-    this.handleToggleCollapse.bind(this);
+    this.handleToggleCollapse = this.handleToggleCollapse.bind(this);
+    this.toggleItem = this.toggleItem.bind(this);
   }
 
   static defaultProps = {
@@ -136,13 +137,12 @@ class Panel extends React.Component<Props, State> {
   componentWillReceiveProps(nextProps: Props) {
     if (this.props.isCollapsed !== nextProps.isCollapsed) {
       this.localIsCollapsed = !!nextProps.isCollapsed;
-      this.handleToggleCollapse();
+      this.handleToggleCollapse({});
     }
   }
 
-  handleToggleCollapse() {
-    console.log(' this props', this.props);
-    const { collapsible, noPadding, theme } = this.props;
+  handleToggleCollapse(theme: any) {
+    const { collapsible, noPadding } = this.props;
     if (this.bodyRef.current && (collapsible || false)) {
       this.localIsCollapsed
         ? collapseSection(this.bodyRef.current, theme, noPadding || false)
@@ -155,13 +155,11 @@ class Panel extends React.Component<Props, State> {
   }
 
   toggleItem(e: any, theme: any) {
-    console.log('we finaly got yah ', e, theme);
     this.localIsCollapsed = !this.localIsCollapsed;
-    this.handleToggleCollapse();
+    this.handleToggleCollapse(theme);
   }
 
   render() {
-    console.log('Current theme: ', this.props.theme);
     return (
       <PanelWrapper panelStyle={this.props.panelStyle} theme={this.props.theme}>
         <PanelHeader
