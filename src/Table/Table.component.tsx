@@ -3,12 +3,17 @@ import styled from 'styled-components';
 import ReactTable from 'react-table';
 import TablePagination from '../TablePagination/TablePagination.component';
 import 'react-table/react-table.css';
+import { Icon } from 'react-icons-kit';
+import { bars as IconLarge } from 'react-icons-kit/fa/bars';
+import { ic_format_align_justify as IconCondensed }
+  from 'react-icons-kit/md/ic_format_align_justify';
+import { ic_view_headline as IconMedium }
+  from 'react-icons-kit/md/ic_view_headline';
 
 type Props = {
   data: any;
   columns: any;
-  inputSize: string;
-
+  tableSize: string;
   /**
    * Specify if pagination controls should be shown
    *
@@ -100,6 +105,12 @@ type Props = {
    **/
   filterable?: boolean;
   /**
+   * Specify if grid data rows should be stripped
+   *
+   * @default false
+   **/
+  stripped?: boolean;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -112,7 +123,30 @@ const SWrapperDiv = styled.div`
   background: ${(props: any) => props.theme.input.background};
   border: 0;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
-  font-size: ${(props: any) => props.theme.common[props.inputSize].fontSize};
+  font-size: ${(props: any) => props.theme.table.fontSize};
+
+  .table-size-controls{
+    text-align: right;
+    &-left{
+      text-align: left;
+    }
+    & > div{
+      cursor: pointer;
+      opacity: 0.5;
+      &.selected{
+        opacity: 1;
+      }
+    }
+  }
+
+  .pagination-top, .pagination-bottom{
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  .ReactTable{
+    border: 0;
+  }
 
   .ReactTable .rt-thead.-header {
     box-shadow: none;
@@ -138,8 +172,10 @@ const SWrapperDiv = styled.div`
   .ReactTable .rt-thead .rt-th,
   .ReactTable .rt-tbody .rt-td,
   .ReactTable .rt-tfoot .rt-td {
-    padding: ${(props: any) =>
-      props.theme.common[props.inputSize].tableCellPadding};
+    padding: ${(props: Props) =>
+      props.theme.common[props.tableSize].tableCellPadding};
+    padding-left: 0;
+    padding-right: 0;
     border-right: 0;
   }
 
@@ -169,16 +205,32 @@ const SWrapperDiv = styled.div`
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
   }
 `;
+const initialState = { tableSize: 'md' };
+type State = Readonly<typeof initialState>;
 
 class Table extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
 
+  readonly state:State = initialState;
+
+  changeTableSize(size: string) {
+    this.setState({
+      tableSize: size,
+    });
+  }
+
   render() {
     return (
-      <SWrapperDiv {...this.props}>
+      <SWrapperDiv {...this.props} tableSize={this.state.tableSize}>
+        <div className="table-size-controls">
+          <Icon icon={IconLarge} size={24} onClick={this.changeTableSize.bind(this, 'lg')} className={(this.state.tableSize === 'lg' ? 'selected' : '')}/>
+          <Icon icon={IconMedium} size={30} onClick={this.changeTableSize.bind(this, 'md')} className={(this.state.tableSize === 'md' ? 'selected' : '')}/>
+          <Icon icon={IconCondensed} size={24} onClick={this.changeTableSize.bind(this, 'sm')} className={(this.state.tableSize === 'sm' ? 'selected' : '')}/>
+        </div>
         <ReactTable
+          className={`-highlight  + ${this.props.stripped ? '-striped ' : ''}`}
           PaginationComponent={TablePagination}
           data={this.props.data}
           columns={this.props.columns}
