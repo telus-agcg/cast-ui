@@ -56,10 +56,9 @@ storiesOf('CopyToClipboard', module).add(
         'Some text that is usually copied to clipboard.',
       )}
       copyContainerClass={text('Copy Container Class', 'copy-container')}
-      background={select(
+      background={text(
         'Background',
-        ['disabledBackground', 'gray', 'blue', 'white', 'red', 'yellow'],
-        'lightGray',
+        'lightBackground',
       )}
       includeCopyButton={boolean('Include Copy Button', true)}
       copyButtonText={text('Copy Button Text', 'copy')}

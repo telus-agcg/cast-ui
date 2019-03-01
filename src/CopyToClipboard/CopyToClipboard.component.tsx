@@ -15,11 +15,11 @@ type Props = {
    **/
   copyContainerClass?: string;
   /**
-   * Select container background color. Must be a color defined in theme colors
+   * Set container background color. A css color code or a color defined in theme colors
    *
-   * @default 'disabledBackground'
+   * @default 'lightBackground'
    **/
-  background: string;
+  background?: string;
   /**
    * Include the copy-text button
    *
@@ -52,7 +52,7 @@ const SCopyToClipboard = styled.div`
   position: relative;
   display: flex;
   padding: 16px;
-  background-color: ${(props: Props) => props.theme.colors[props.background]};
+  background-color: ${(props: Props) => props.theme.colors[props.background!] || props.background!.toString()};
 
   .copy-container {
     flex-grow: 1;
