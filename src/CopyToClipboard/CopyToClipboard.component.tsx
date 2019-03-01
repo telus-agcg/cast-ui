@@ -145,6 +145,7 @@ export class CopyToClipboard extends React.Component<Props> {
     this.setState({ copied: true });
     setTimeout(() => {
       this.setState({ copied: false });
+      // tslint:disable-next-line
     }, 2000);
   }
   render() {
