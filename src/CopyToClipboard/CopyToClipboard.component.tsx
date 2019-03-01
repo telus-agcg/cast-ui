@@ -52,10 +52,23 @@ const SCopyToClipboard = styled.div`
   position: relative;
   display: flex;
   padding: 16px;
-  background-color: ${(props: Props) => props.theme.colors[props.background!] || props.background!.toString()};
+  background-color: ${(props: Props) =>
+    props.theme.colors[props.background!] || props.background!.toString()};
 
   .copy-container {
+    font-family: monospace;
     flex-grow: 1;
+    white-space: pre;
+    unicode-bidi: embed;
+    overflow: visible;
+    word-break: break-all;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    white-space: pre;
+    white-space: pre\9; /* IE7+ */
   }
   .copy-button {
     flex-grow: 0;
@@ -81,7 +94,11 @@ export class CopyToClipboard extends React.Component<Props> {
     document.execCommand('copy');
     textField.remove();
   }
-
+  public unescapeHTML(html: any) {
+    const escapeEl = document.createElement('textarea');
+    escapeEl.innerHTML = html;
+    return escapeEl.textContent;
+  }
   render() {
     const {
       copyText = '',
@@ -107,7 +124,7 @@ export class CopyToClipboard extends React.Component<Props> {
             CopyToClipboard.copyToClipboard(this.copyContainerRef.current)
           }
           className={`copy-container ${copyContainerClass}`}>
-          {copyText}
+          {this.unescapeHTML(copyText)}
         </div>
         {includeCopyButton && (
           <button
