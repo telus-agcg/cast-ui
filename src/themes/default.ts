@@ -387,4 +387,15 @@ export const defaultTheme = {
     borderRadius: '0px',
     fontSize: '14px',
   },
+  copyToClipboard: {
+    fontFamily: 'monospace',
+    fontSize: '14px',
+    color: defaultColors.primary,
+    padding: '16px',
+    button: {
+      textTransform: 'uppercase',
+      height: '20px',
+      fontWeight: '600',
+    },
+  },
 };

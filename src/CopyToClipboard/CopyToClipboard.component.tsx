@@ -3,11 +3,17 @@ import styled from 'styled-components';
 
 type Props = {
   /**
+   * Set the className option
+   *
+   * @default ''
+   **/
+  className?: string;
+  /**
    * Text to be copied
    *
    * @default ''
    **/
-  copyText: string;
+  copyContent: JSX.Element | React.Component | string;
   /**
    * Assign class to the container enclosing the text to be copied
    *
@@ -27,11 +33,11 @@ type Props = {
    **/
   includeCopyButton?: boolean;
   /**
-   * Label to be used on the button
+   * Content to be used in the button
    *
    * @default 'copy'
    **/
-  copyButtonText?: string;
+  copyButtonContent?: JSX.Element | React.Component | string;
   /**
    * Assign class to the copy button
    *
@@ -51,12 +57,14 @@ const SCopyToClipboard = styled.div`
   height: auto;
   position: relative;
   display: flex;
-  padding: 16px;
+  padding: ${(props: Props) => props.theme.copyToClipboard.padding};
   background-color: ${(props: Props) =>
     props.theme.colors[props.background!] || props.background!.toString()};
+  font-family: ${(props: Props) => props.theme.copyToClipboard.fontFamily};
+  font-size: ${(props: Props) => props.theme.copyToClipboard.fontSize};
+  color: ${(props: Props) => props.theme.copyToClipboard.color};
 
   .copy-container {
-    font-family: monospace;
     flex-grow: 1;
     white-space: pre;
     unicode-bidi: embed;
@@ -73,7 +81,14 @@ const SCopyToClipboard = styled.div`
   .copy-button {
     flex-grow: 0;
     cursor: pointer;
-    height: 25px;
+    font-family: ${(props: Props) => props.theme.typography.fontFamily};
+    font-weight: ${(props: Props) =>
+      props.theme.copyToClipboard.button.fontWeight};
+    height: ${(props: Props) => props.theme.copyToClipboard.button.height};
+    text-transform: ${(props: Props) =>
+      props.theme.copyToClipboard.button.textTransform};
+    border: none;
+    background: none;
   }
 `;
 
@@ -101,21 +116,21 @@ export class CopyToClipboard extends React.Component<Props> {
   }
   render() {
     const {
-      copyText = '',
+      copyContent = '',
       copyContainerClass = '',
       background = 'disabledBackground',
       includeCopyButton = true,
-      copyButtonText = 'copy',
+      copyButtonContent = 'copy',
       copyButtonClass = '',
       theme,
     } = this.props;
     return (
       <SCopyToClipboard
-        copyText={copyText}
+        copyContent={copyContent}
         copyContainerClass={copyContainerClass}
         background={background}
         includeCopyButton={includeCopyButton}
-        copyButtonText={copyButtonText}
+        copyButtonContent={copyButtonContent}
         copyButtonClass={copyButtonClass}
         theme={theme}>
         <div
@@ -124,7 +139,7 @@ export class CopyToClipboard extends React.Component<Props> {
             CopyToClipboard.copyToClipboard(this.copyContainerRef.current)
           }
           className={`copy-container ${copyContainerClass}`}>
-          {this.unescapeHTML(copyText)}
+          {this.unescapeHTML(copyContent)}
         </div>
         {includeCopyButton && (
           <button
@@ -133,7 +148,7 @@ export class CopyToClipboard extends React.Component<Props> {
             }
             type="button"
             className={`copy-button ${copyButtonClass}`}>
-            {copyButtonText}
+            {copyButtonContent}
           </button>
         )}
       </SCopyToClipboard>
