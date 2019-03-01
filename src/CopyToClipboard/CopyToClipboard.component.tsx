@@ -1,5 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import Icon from 'react-icons-kit';
+import { ic_check as icCheck } from 'react-icons-kit/md/ic_check';
 
 type Props = {
   /**
@@ -35,9 +37,15 @@ type Props = {
   /**
    * Content to be used in the button
    *
-   * @default 'copy'
+   * @default 'COPY'
    **/
   copyButtonContent?: JSX.Element | React.Component | string;
+  /**
+   * Success content to be used in the button
+   *
+   * @default '<Icon size={ 18 } icon={ icCheck } /> COPIED'
+   **/
+  copyButtonSuccessContent?: JSX.Element | React.Component | string;
   /**
    * Assign class to the copy button
    *
@@ -87,18 +95,36 @@ const SCopyToClipboard = styled.div`
     height: ${(props: Props) => props.theme.copyToClipboard.button.height};
     text-transform: ${(props: Props) =>
       props.theme.copyToClipboard.button.textTransform};
+    color: ${(props: any) =>
+      props.theme.copyToClipboard.button[`${props.buttonColor}Color`]};
     border: none;
     background: none;
+    outline: none;
+    border-radius: ${(props: Props) => props.theme.borders.radius};
+    &:hover {
+      color: white;
+      background-color: ${(props: any) =>
+        props.theme.copyToClipboard.button[`${props.buttonColor}Color`]};
+    }
   }
 `;
 
+const initialState = {
+  copied: false,
+};
+type State = Readonly<typeof initialState>;
 export class CopyToClipboard extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
   private copyContainerRef = React.createRef<HTMLDivElement>();
 
-  static copyToClipboard(e: any) {
+  constructor(props: Props) {
+    super(props);
+    this.unescapeHTML = this.unescapeHTML.bind(this);
+    this.copySuccessful = this.copySuccessful.bind(this);
+  }
+
+  readonly state: State = initialState;
+
+  static copyToClipboard(e: any, cb: Function) {
     const newCopyText: string = e.target
       ? e.target.innerText
       : e.innerText || e;
@@ -108,35 +134,49 @@ export class CopyToClipboard extends React.Component<Props> {
     textField.select();
     document.execCommand('copy');
     textField.remove();
+    return cb() || null;
   }
   public unescapeHTML(html: any) {
     const escapeEl = document.createElement('textarea');
     escapeEl.innerHTML = html;
     return escapeEl.textContent;
   }
+  public copySuccessful() {
+    this.setState({ copied: true });
+    setTimeout(() => {
+      this.setState({ copied: false });
+    }, 2000);
+  }
   render() {
+    const SuccessContent = () => (
+      <span>
+        <Icon size={18} icon={icCheck} />
+        copied
+      </span>
+    );
     const {
       copyContent = '',
       copyContainerClass = '',
       background = 'disabledBackground',
       includeCopyButton = true,
       copyButtonContent = 'copy',
+      copyButtonSuccessContent = <SuccessContent />,
       copyButtonClass = '',
       theme,
     } = this.props;
+    const { copied } = this.state;
     return (
       <SCopyToClipboard
-        copyContent={copyContent}
-        copyContainerClass={copyContainerClass}
+        buttonColor={copied ? 'success' : 'primary'}
         background={background}
-        includeCopyButton={includeCopyButton}
-        copyButtonContent={copyButtonContent}
-        copyButtonClass={copyButtonClass}
         theme={theme}>
         <div
           ref={this.copyContainerRef}
           onClick={() =>
-            CopyToClipboard.copyToClipboard(this.copyContainerRef.current)
+            CopyToClipboard.copyToClipboard(
+              this.copyContainerRef.current,
+              this.copySuccessful,
+            )
           }
           className={`copy-container ${copyContainerClass}`}>
           {this.unescapeHTML(copyContent)}
@@ -144,11 +184,15 @@ export class CopyToClipboard extends React.Component<Props> {
         {includeCopyButton && (
           <button
             onClick={() =>
-              CopyToClipboard.copyToClipboard(this.copyContainerRef.current)
+              CopyToClipboard.copyToClipboard(
+                this.copyContainerRef.current,
+                this.copySuccessful,
+              )
             }
             type="button"
             className={`copy-button ${copyButtonClass}`}>
-            {copyButtonContent}
+            {!copied && copyButtonContent}
+            {copied && copyButtonSuccessContent}
           </button>
         )}
       </SCopyToClipboard>

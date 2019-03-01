@@ -396,6 +396,8 @@ export const defaultTheme = {
       textTransform: 'uppercase',
       height: '20px',
       fontWeight: '600',
+      primaryColor: defaultColors.blue,
+      successColor: defaultColors.green,
     },
   },
 };
