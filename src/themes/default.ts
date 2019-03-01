@@ -18,7 +18,7 @@ export const defaultColors = {
   disabledBackground: '#ECEFF2',
   disabledBorder: '#A3AAAD',
   disabledText: '#A3AAAD',
-  panelBackground: '#F5F7F8',
+  lightBackground: '#F5F7F8',
 };
 
 export const defaultTheme = {
@@ -250,7 +250,7 @@ export const defaultTheme = {
   },
   panel: {
     body: {
-      background: defaultColors.panelBackground,
+      background: defaultColors.lightBackground,
     },
   },
   badge: {
