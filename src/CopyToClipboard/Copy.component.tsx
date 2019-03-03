@@ -6,7 +6,7 @@ type Props = {
    *
    * @default null
    */
-  e: any;
+  e: any | null;
   /**
    * Pass a callback
    *
@@ -16,6 +16,7 @@ type Props = {
 };
 
 export const Copy: React.FunctionComponent<Props> = ({ e, cb }) => {
+  console.log('this is e ', e);
   const newCopyText: string = e.target ? e.target.innerText : e.innerText || e;
   const textField = document.createElement('textarea');
   textField.innerText = newCopyText;

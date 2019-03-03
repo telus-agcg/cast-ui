@@ -398,6 +398,7 @@ export const defaultTheme = {
       fontWeight: '600',
       primaryColor: defaultColors.blue,
       successColor: defaultColors.green,
+      margin: '0 4px',
     },
   },
 };

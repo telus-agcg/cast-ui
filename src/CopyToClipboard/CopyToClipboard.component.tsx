@@ -29,6 +29,12 @@ type Props = {
    **/
   background?: string;
   /**
+   * Occupy full width of parent
+   *
+   * @default true
+   **/
+  fullWidth?: boolean;
+  /**
    * Include the copy-text button
    *
    * @default true
@@ -64,7 +70,7 @@ const SCopyToClipboard = styled.div`
   width: auto;
   height: auto;
   position: relative;
-  display: flex;
+  display: ${(props: Props) => (props.fullWidth ? 'flex' : 'inline-flex')};
   padding: ${(props: Props) => props.theme.copyToClipboard.padding};
   background-color: ${(props: Props) =>
     props.theme.colors[props.background!] || props.background!.toString()};
@@ -92,6 +98,8 @@ const SCopyToClipboard = styled.div`
     font-family: ${(props: Props) => props.theme.typography.fontFamily};
     font-weight: ${(props: Props) =>
       props.theme.copyToClipboard.button.fontWeight};
+    height: ${(props: Props) => props.theme.copyToClipboard.button.height};
+    margin: ${(props: Props) => props.theme.copyToClipboard.button.margin};
     height: ${(props: Props) => props.theme.copyToClipboard.button.height};
     text-transform: ${(props: Props) =>
       props.theme.copyToClipboard.button.textTransform};
@@ -124,7 +132,7 @@ export class CopyToClipboard extends React.Component<Props> {
 
   readonly state: State = initialState;
 
-  static copyToClipboard(e: any, cb: Function) {
+  static Copy(e: any, cb: Function) {
     const newCopyText: string = e.target
       ? e.target.innerText
       : e.innerText || e;
@@ -136,6 +144,7 @@ export class CopyToClipboard extends React.Component<Props> {
     textField.remove();
     return cb() || null;
   }
+
   public unescapeHTML(html: any) {
     const escapeEl = document.createElement('textarea');
     escapeEl.innerHTML = html;
@@ -159,6 +168,7 @@ export class CopyToClipboard extends React.Component<Props> {
       copyContent = '',
       copyContainerClass = '',
       background = 'disabledBackground',
+      fullWidth = true,
       includeCopyButton = true,
       copyButtonContent = 'copy',
       copyButtonSuccessContent = <SuccessContent />,
@@ -170,11 +180,12 @@ export class CopyToClipboard extends React.Component<Props> {
       <SCopyToClipboard
         buttonColor={copied ? 'success' : 'primary'}
         background={background}
+        fullWidth={fullWidth}
         theme={theme}>
         <div
           ref={this.copyContainerRef}
           onClick={() =>
-            CopyToClipboard.copyToClipboard(
+            CopyToClipboard.Copy(
               this.copyContainerRef.current,
               this.copySuccessful,
             )
@@ -185,7 +196,7 @@ export class CopyToClipboard extends React.Component<Props> {
         {includeCopyButton && (
           <button
             onClick={() =>
-              CopyToClipboard.copyToClipboard(
+              CopyToClipboard.Copy(
                 this.copyContainerRef.current,
                 this.copySuccessful,
               )
