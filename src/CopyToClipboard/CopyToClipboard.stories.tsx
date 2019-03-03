@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { text, boolean } from '@storybook/addon-knobs/react';
 
 import { CopyToClipboard } from './CopyToClipboard.component';
+
 import { wInfo } from '../storybook-utils';
 import Icon from 'react-icons-kit';
 import { ic_content_copy as ICopy } from 'react-icons-kit/md/ic_content_copy';
@@ -79,10 +80,7 @@ storiesOf('CopyToClipboard', module).add(
       />
       <br />
       <CopyToClipboard
-        copyContent={text('Second Copy Text', `CBA6697-67895`)}
-        copyContainerClass={text('Copy Container Class', 'copy-container')}
-        background={text('Background', 'lightBackground')}
-        includeCopyButton={boolean('Include Copy Button', true)}
+        copyContent={text('Second Copy Content', `CBA6697-67895`)}
         copyButtonContent={<SecondaryCopyContent />}
         copyButtonSuccessContent={<SecondaryCopySuccessContent />}
         fullWidth={boolean('Second Copy Occupy full width of parent', false)}
