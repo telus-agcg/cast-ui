@@ -76,7 +76,10 @@ const SCopyToClipboard = styled.div`
     props.theme.colors[props.background!] || props.background!.toString()};
   font-family: ${(props: Props) => props.theme.copyToClipboard.fontFamily};
   font-size: ${(props: Props) => props.theme.copyToClipboard.fontSize};
-  color: ${(props: Props) => props.theme.copyToClipboard.color};
+  color: ${(props: any) =>
+    props.copied
+      ? props.theme.copyToClipboard.copiedColor
+      : props.theme.copyToClipboard.color};
 
   .copy-container {
     flex-grow: 1;
@@ -181,6 +184,7 @@ export class CopyToClipboard extends React.Component<Props> {
         buttonColor={copied ? 'success' : 'primary'}
         background={background}
         fullWidth={fullWidth}
+        copied={copied}
         theme={theme}>
         <div
           ref={this.copyContainerRef}
