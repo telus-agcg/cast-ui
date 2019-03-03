@@ -135,7 +135,7 @@ export class CopyToClipboard extends React.Component<Props> {
 
   readonly state: State = initialState;
 
-  static Copy(e: any, cb: Function) {
+  static copy(e: any, cb: Function) {
     const newCopyText: string = e.target
       ? e.target.innerText
       : e.innerText || e;
@@ -189,7 +189,7 @@ export class CopyToClipboard extends React.Component<Props> {
         <div
           ref={this.copyContainerRef}
           onClick={() =>
-            CopyToClipboard.Copy(
+            CopyToClipboard.copy(
               this.copyContainerRef.current,
               this.copySuccessful,
             )
@@ -200,7 +200,7 @@ export class CopyToClipboard extends React.Component<Props> {
         {includeCopyButton && (
           <button
             onClick={() =>
-              CopyToClipboard.Copy(
+              CopyToClipboard.copy(
                 this.copyContainerRef.current,
                 this.copySuccessful,
               )

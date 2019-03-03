@@ -22,9 +22,9 @@ storiesOf('CopyToClipboard', module).add(
   ### Usage
   ~~~js
     <CopyToClipboard
-      copyContent='Some text that is usually copied to clipboard.'
+      copyContent='Some text hat is usually copied to clipboard.'
       copyContainerClass='copy-container'
-      background='disabledBackground'
+      background='disabledBackgroutnd'
       includeCopyButton={true}
       copyButtonContent='copy'
       copyButtonClass='copy-button'
@@ -33,14 +33,14 @@ storiesOf('CopyToClipboard', module).add(
     // Alternatively, the CopyToClipboard function can be used
     // on some external element to copy enclosed text as follows:
 
-    <button type="button" onClick={CopyToClipboard.Copy}>
+    <button type="button" onClick={CopyToClipboard.copy}>
       Copy Me
     </button>
 
     <button
       type="button"
       onClick={() =>
-        CopyToClipboard.Copy('Some Custom Text')
+        CopyToClipboard.copy('Some Custom Text')
       }>
       Navigate
     </button>
@@ -48,7 +48,7 @@ storiesOf('CopyToClipboard', module).add(
     <a
       href="#"
       onClick={() =>
-        CopyToClipboard.Copy(
+        CopyToClipboard.copy(
           'https://www.npmjs.com/package/@tkxs/cast-ui',
         )
       }>
