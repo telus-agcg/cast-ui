@@ -1,2 +1,1 @@
-import { Panel } from './Panel.component';
-export default Panel;
+export { default as Panel } from './Panel.component';
