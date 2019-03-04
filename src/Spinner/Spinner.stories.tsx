@@ -24,7 +24,7 @@ storiesOf('Spinner', module).add(
     <Spinner
       color={select(
         'color',
-        ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
+        ['lightGray', 'gray', 'blue', 'white', 'green', 'red', 'yellow'],
         'lightGray',
       )}
       size={select('size', [20, 30, 40, 50, 60], 40)}
