@@ -148,6 +148,10 @@ const SWrapperDiv = styled.div`
     border: 0;
   }
 
+  .ReactTable .rt-resizer{
+    bottom: -450px;
+  }
+
   .ReactTable .rt-thead.-header {
     box-shadow: none;
     color: ${(props: any) => props.theme.table.header.color};
