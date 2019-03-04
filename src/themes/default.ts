@@ -391,7 +391,7 @@ export const defaultTheme = {
     fontFamily: 'monospace',
     fontSize: '14px',
     color: defaultColors.primary,
-    copiedColor: defaultColors.disabledText,
+    copiedColor: defaultColors.placeholderGray,
     padding: '16px',
     button: {
       textTransform: 'uppercase',

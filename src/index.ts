@@ -20,4 +20,3 @@ export * from './Breadcrumb';
 export * from './Draggable';
 export * from './IconButton';
 export * from './CopyToClipboard';
-export { default as Popover } from './Popover';
