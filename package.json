@@ -36,7 +36,7 @@
     "react-paginate": "^6.2.1",
     "react-select": "^2.2.0",
     "react-table": "^6.8.6",
-    "react-tabs": "^2.3.0",
+    "react-tabs": "^3.0.0",
     "tinycolor2": "^1.4.1",
     "@tippy.js/react": "^1.1.1"
   },
