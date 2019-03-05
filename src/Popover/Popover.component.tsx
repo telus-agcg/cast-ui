@@ -113,8 +113,7 @@ class Popover extends React.Component<Props> {
           isVisible={true}
           content={this.props.content}
           distance={this.props.distance || distance}
-          {...this.props}
-        >
+          {...this.props}>
           {this.props.children}
         </Tippy>
       </React.Fragment>
