@@ -18,7 +18,7 @@ export const defaultColors = {
   disabledBackground: '#ECEFF2',
   disabledBorder: '#A3AAAD',
   disabledText: '#A3AAAD',
-  panelBackground: '#F5F7F8',
+  lightBackground: '#F5F7F8',
 };
 
 export const defaultTheme = {
@@ -391,5 +391,20 @@ export const defaultTheme = {
   tabs: {
     borderRadius: '0px',
     fontSize: '14px',
+  },
+  copyToClipboard: {
+    fontFamily: 'monospace',
+    fontSize: '14px',
+    color: defaultColors.primary,
+    copiedColor: defaultColors.placeholderGray,
+    padding: '16px',
+    button: {
+      textTransform: 'uppercase',
+      height: '20px',
+      fontWeight: '600',
+      primaryColor: defaultColors.blue,
+      successColor: defaultColors.green,
+      margin: '0 4px',
+    },
   },
 };
