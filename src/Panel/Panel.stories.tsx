@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { text, boolean, select } from '@storybook/addon-knobs/react';
 import { wInfo } from '../storybook-utils';
 
-import { Panel } from './Panel.component';
+import Panel from './Panel.component';
 
 storiesOf('Panel', module).add(
   'Panel with Title',
@@ -15,7 +15,13 @@ storiesOf('Panel', module).add(
       name={text('Panel Name', 'Catchy Name')}
       title={text('Title', 'Catchy title')}
       isCollapsed={boolean('isCollapsed', false)}
+      noPadding={boolean('noPadding', false)}
       collapsible={boolean('Collapsible', true)}
+      headerColor={text('headerColor', 'primary')}
+      headerBackgroundColor={text('headerBackgroundColor', 'white')}
+      headerBorderColor={text('headerBorderColor', 'lightGray')}
+      bodyBackgroundColor={text('bodyBackgroundColor', 'panelBackground')}
+      bodyBorderColor={text('bodyBorderColor', 'lightGray')}
       panelStyle={select(
         'panelStyle',
         ['success', 'default', 'primary', 'danger', 'warning'],

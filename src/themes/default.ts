@@ -162,6 +162,7 @@ export const defaultTheme = {
   },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
+    fontSize: '16px',
     color: defaultColors.black,
   },
   input: {
@@ -249,9 +250,13 @@ export const defaultTheme = {
     },
   },
   panel: {
-    body: {
-      background: defaultColors.lightBackground,
+    header: {
+      padding: '14px 16px 14px 30px',
     },
+    body: {
+      padding: '30px 30px',
+    },
+    borderWidth: '1px',
   },
   badge: {
     borderRadius: '10px',
