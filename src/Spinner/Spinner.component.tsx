@@ -7,37 +7,37 @@ type Props = {
    *
    * @default 'lightGray'
    **/
-  backgroundColor: string;
+  backgroundColor?: string;
   /**
    * Set body background color. A CSS color code or a color defined in theme colors
    *
-   * @default 'red'
+   * @default 'blue'
    **/
-  borderColor: string;
+  borderColor?: string;
   /**
    * Adjust spinner size in pixels
    *
    * @default 40px
    **/
-  size: number;
+  size?: number;
   /**
    * Set border width
    *
    * @default '2'
    **/
-  borderWidth: number;
+  borderWidth?: number;
   /**
    * Adjust animation speed in seconds
    *
    * @default 2s
    **/
-  animationSpeed: number;
+  animationSpeed?: number;
   /**
    * Select transition type
    *
    * @default 'ease-in-out'
    **/
-  transitionType: string;
+  transitionType?: string;
   /**
    * From theme provider
    *
@@ -59,8 +59,8 @@ const SSpinner = styled.div`
     left: 50%;
     width: ${(props: Props) => `${props.size}px`}
     height: ${(props: Props) => `${props.size}px`};
-    margin-top: ${(props: Props) => `-${props.size / 2}px`};
-    margin-left: ${(props: Props) => `-${props.size / 2}px`};
+    margin-top: ${(props: Props) => `-${props.size! / 2}px`};
+    margin-left: ${(props: Props) => `-${props.size! / 2}px`};
     border-radius: 50%;
     border: ${(props: Props) =>
       `${props.borderWidth}px solid
@@ -78,7 +78,7 @@ const SSpinner = styled.div`
 
 export const Spinner: React.FunctionComponent<Props> = ({
   backgroundColor = 'lightGray',
-  borderColor = 'red',
+  borderColor = 'blue',
   borderWidth = 2,
   size = 40,
   animationSpeed = 2,

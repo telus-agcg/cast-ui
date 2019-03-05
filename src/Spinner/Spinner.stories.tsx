@@ -22,12 +22,18 @@ storiesOf('Spinner', module).add(
     />
   ~~~`)(() => (
     <Spinner
-      color={select(
+      backgroundColor={select(
         'color',
         ['lightGray', 'gray', 'blue', 'white', 'green', 'red', 'yellow'],
         'lightGray',
       )}
+      borderColor={select(
+        'color',
+        ['lightGray', 'gray', 'blue', 'white', 'green', 'red', 'yellow'],
+        'blue',
+      )}
       size={select('size', [20, 30, 40, 50, 60], 40)}
+      borderWidth={select('borderWidth', [1, 2, 3, 4, 5], 2)}
       animationSpeed={select('animationSpeed', [1, 2, 3, 4, 5], 2)}
       transitionType={select(
         'transitionType',
