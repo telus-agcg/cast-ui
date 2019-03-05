@@ -38,51 +38,26 @@ const SSpinner = styled.div`
   width: ${(props: Props) => `${props.size}px`}
   height: ${(props: Props) => `${props.size}px`};
   position: relative;
-  margin: 100px auto;
-
-  .double-bounce1,
-  .double-bounce2 {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: ${props => props.theme.colors[props.color]};
-    opacity: 0.6;
+  margin: auto; 
+  &:before {
+    content: '';
+    box-sizing: border-box;
     position: absolute;
-    top: 0;
-    left: 0;
-
-    -webkit-animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
-    animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
+    top: 50%;
+    left: 50%;
+    width: ${(props: Props) => `${props.size}px`}
+    height: ${(props: Props) => `${props.size}px`};
+    margin-top: ${(props: Props) => `-${props.size / 2}px`};
+    margin-left: ${(props: Props) => `-${props.size / 2}px`};
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    border-top-color: #07d;
+    animation: spinner .6s linear infinite;
   }
 
-  .double-bounce2 {
-    -webkit-animation-delay: ${(props: Props) =>
-      `-${props.animationSpeed / 2}s`};
-    animation-delay: ${(props: Props) => `-${props.animationSpeed / 2}s`};
-  }
-
-  @-webkit-keyframes sk-bounce {
-    0%,
-    100% {
-      -webkit-transform: scale(0);
-    }
-    50% {
-      -webkit-transform: scale(1);
-    }
-  }
-
-  @keyframes sk-bounce {
-    0%,
-    100% {
-      transform: scale(0);
-      -webkit-transform: scale(0);
-    }
-    50% {
-      transform: scale(1);
-      -webkit-transform: scale(1);
-    }
+    
+  @keyframes spinner {
+    to {transform: rotate(360deg);}
   }
 `;
 
@@ -98,8 +73,6 @@ export const Spinner: React.FunctionComponent<Props> = ({
     size={size}
     animationSpeed={animationSpeed}
     transitionType={transitionType}
-    theme={theme}>
-    <div className="double-bounce1" />
-    <div className="double-bounce2" />
-  </SSpinner>
+    theme={theme}
+  />
 );
