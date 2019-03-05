@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs/react';
+import { select, text } from '@storybook/addon-knobs/react';
 
 import { Spinner } from './Spinner.component';
 import { wInfo } from '../storybook-utils';
@@ -16,30 +16,17 @@ storiesOf('Spinner', module).add(
   ### Usage
   ~~~js
     <Spinner
-      color="lightGray"
+      borderColor="blue"
       size={40}
-      animationSpeed={2}
+      animationSpeed={1}
     />
   ~~~`)(() => (
     <Spinner
-      backgroundColor={select(
-        'color',
-        ['lightGray', 'gray', 'blue', 'white', 'green', 'red', 'yellow'],
-        'lightGray',
-      )}
-      borderColor={select(
-        'color',
-        ['lightGray', 'gray', 'blue', 'white', 'green', 'red', 'yellow'],
-        'blue',
-      )}
-      size={select('size', [20, 30, 40, 50, 60], 40)}
-      borderWidth={select('borderWidth', [1, 2, 3, 4, 5], 2)}
-      animationSpeed={select('animationSpeed', [1, 2, 3, 4, 5], 2)}
-      transitionType={select(
-        'transitionType',
-        ['ease-in-out', 'ease-in', 'ease-out', 'linear', 'ease'],
-        'ease-in-out',
-      )}
+      backgroundColor={text('backgroundColor', 'lightGray')}
+      borderColor={text('borderColor', 'blue')}
+      size={select('size', [20, 30, 40, 50, 60, 70], 50)}
+      borderWidth={select('borderWidth', [1, 2, 3, 4, 5], 3)}
+      animationSpeed={select('animationSpeed', [1, 2, 3, 4, 5], 1)}
     />
   )),
 );

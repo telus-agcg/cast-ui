@@ -17,25 +17,25 @@ type Props = {
   /**
    * Adjust spinner size in pixels
    *
-   * @default 40px
+   * @default 50
    **/
   size?: number;
   /**
    * Set border width
    *
-   * @default '2'
+   * @default 3
    **/
   borderWidth?: number;
   /**
    * Adjust animation speed in seconds
    *
-   * @default 2s
+   * @default 1
    **/
   animationSpeed?: number;
   /**
-   * Select transition type
+   * Set transition type
    *
-   * @default 'ease-in-out'
+   * @default 'linear'
    **/
   transitionType?: string;
   /**
@@ -64,13 +64,15 @@ const SSpinner = styled.div`
     border-radius: 50%;
     border: ${(props: Props) =>
       `${props.borderWidth}px solid
-      ${props.theme.colors[props.borderColor!] ||
+      ${props.theme.colors[props.backgroundColor!] ||
+        props.backgroundColor!.toString()}`};
+    border-top-color: ${(props: Props) =>
+      `${props.theme.colors[props.borderColor!] ||
         props.borderColor!.toString()}`};
-    border-top-color: #07d;
-    animation: spinner .6s linear infinite;
+    animation: ${(props: Props) =>
+      `spinner ${props.animationSpeed}s ${props.transitionType} infinite`};
   }
 
-    
   @keyframes spinner {
     to {transform: rotate(360deg);}
   }
@@ -79,10 +81,10 @@ const SSpinner = styled.div`
 export const Spinner: React.FunctionComponent<Props> = ({
   backgroundColor = 'lightGray',
   borderColor = 'blue',
-  borderWidth = 2,
-  size = 40,
-  animationSpeed = 2,
-  transitionType = 'ease-in-out',
+  borderWidth = 3,
+  size = 50,
+  animationSpeed = 1,
+  transitionType = 'linear',
   ...props
 }) => (
   <SSpinner
