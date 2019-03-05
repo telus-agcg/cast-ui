@@ -2,6 +2,14 @@ import { lighten, darken } from '../utils/colorUtils';
 
 export { ThemeProvider } from 'styled-components';
 
+const toggleColors = {
+  toggleBg: '#D1D4D5',
+  disabledToggleBg: '#ECEDED',
+  activeDisabledToggle: '#B9DCFF',
+  inactiveDisabledToggle: lighten('#8D9599', 10),
+  inactiveDisabledBorderToggle: lighten('#8D9599', 10),
+};
+
 export const defaultColors = {
   blue: '#167BE0',
   green: '#59C067',
@@ -15,6 +23,7 @@ export const defaultColors = {
   primary: '#303E47',
   black: '#0A1521',
   placeholderGray: '#727A80',
+  secondaryDisabled: '#ECEDED',
   disabledBackground: '#ECEFF2',
   disabledBorder: '#A3AAAD',
   disabledText: '#A3AAAD',
@@ -212,6 +221,48 @@ export const defaultTheme = {
     },
     lg: {
       size: '14px',
+    },
+  },
+  toggle: {
+    background: {
+      inactiveColor: toggleColors.toggleBg,
+      inactiveBorderColor: toggleColors.toggleBg,
+      activeColor: toggleColors.toggleBg,
+      activeBorderColor: toggleColors.toggleBg,
+      disabled: toggleColors.disabledToggleBg,
+      disabledBorderColor: toggleColors.disabledToggleBg,
+    },
+    inactiveColor: defaultColors.gray,
+    inactiveBorderColor: defaultColors.gray,
+    activeColor: defaultColors.blue,
+    activeBorderColor: defaultColors.blue,
+    activeDisabledColor: toggleColors.activeDisabledToggle,
+    activeDisabledBorderColor: toggleColors.activeDisabledToggle,
+    inactiveDisabledColor: toggleColors.inactiveDisabledToggle,
+    inactiveDisabledBorderColor: toggleColors.inactiveDisabledToggle,
+    sm: {
+      toggleSize: '20px',
+      toggleOffsetTop: '-3px',
+      toggleOffsetLeft: '0px',
+      activeOffset: '0px',
+      backgroundHeight: '15px',
+      backgroundWidth: '35px',
+    },
+    md: {
+      toggleSize: '25px',
+      toggleOffsetTop: '-5px',
+      toggleOffsetLeft: '0px',
+      activeOffset: '0px',
+      backgroundHeight: '15px',
+      backgroundWidth: '45px',
+    },
+    lg: {
+      toggleSize: '30px',
+      toggleOffsetTop: '-5px',
+      toggleOffsetLeft: '0px',
+      activeOffset: '0px',
+      backgroundHeight: '20px',
+      backgroundWidth: '55px',
     },
   },
   label: {
