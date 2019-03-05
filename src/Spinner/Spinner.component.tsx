@@ -50,7 +50,7 @@ const SSpinner = styled.div`
   width: ${(props: Props) => `${props.size}px`}
   height: ${(props: Props) => `${props.size}px`};
   position: relative;
-  margin: auto; 
+  margin: auto;
   &:before {
     content: '';
     box-sizing: border-box;
