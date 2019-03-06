@@ -3,29 +3,41 @@ import styled from 'styled-components';
 
 type Props = {
   /**
-   * Select Spinner color. Must be a color defined in theme colors
+   * Set body background color. A CSS color code or a color defined in theme colors
    *
    * @default 'lightGray'
    **/
-  color: string;
+  backgroundColor?: string;
+  /**
+   * Set body background color. A CSS color code or a color defined in theme colors
+   *
+   * @default 'blue'
+   **/
+  borderColor?: string;
   /**
    * Adjust spinner size in pixels
    *
-   * @default 40px
+   * @default 50
    **/
-  size: number;
+  size?: number;
+  /**
+   * Set border width
+   *
+   * @default 3
+   **/
+  borderWidth?: number;
   /**
    * Adjust animation speed in seconds
    *
-   * @default 2s
+   * @default 1
    **/
-  animationSpeed: number;
+  animationSpeed?: number;
   /**
-   * Select transition type
+   * Set transition type
    *
-   * @default 'ease-in-out'
+   * @default 'linear'
    **/
-  transitionType: string;
+  transitionType?: string;
   /**
    * From theme provider
    *
@@ -38,68 +50,50 @@ const SSpinner = styled.div`
   width: ${(props: Props) => `${props.size}px`}
   height: ${(props: Props) => `${props.size}px`};
   position: relative;
-  margin: 100px auto;
-
-  .double-bounce1,
-  .double-bounce2 {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: ${props => props.theme.colors[props.color]};
-    opacity: 0.6;
+  margin: auto;
+  &:before {
+    content: '';
+    box-sizing: border-box;
     position: absolute;
-    top: 0;
-    left: 0;
-
-    -webkit-animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
+    top: 50%;
+    left: 50%;
+    width: ${(props: Props) => `${props.size}px`}
+    height: ${(props: Props) => `${props.size}px`};
+    margin-top: ${(props: Props) => `-${props.size! / 2}px`};
+    margin-left: ${(props: Props) => `-${props.size! / 2}px`};
+    border-radius: 50%;
+    border: ${(props: Props) =>
+      `${props.borderWidth}px solid
+      ${props.theme.colors[props.backgroundColor!] ||
+        props.backgroundColor!.toString()}`};
+    border-top-color: ${(props: Props) =>
+      `${props.theme.colors[props.borderColor!] ||
+        props.borderColor!.toString()}`};
     animation: ${(props: Props) =>
-      `sk-bounce ${props.animationSpeed}s infinite ${props.transitionType}`};
+      `spinner ${props.animationSpeed}s ${props.transitionType} infinite`};
   }
 
-  .double-bounce2 {
-    -webkit-animation-delay: ${(props: Props) =>
-      `-${props.animationSpeed / 2}s`};
-    animation-delay: ${(props: Props) => `-${props.animationSpeed / 2}s`};
-  }
-
-  @-webkit-keyframes sk-bounce {
-    0%,
-    100% {
-      -webkit-transform: scale(0);
-    }
-    50% {
-      -webkit-transform: scale(1);
-    }
-  }
-
-  @keyframes sk-bounce {
-    0%,
-    100% {
-      transform: scale(0);
-      -webkit-transform: scale(0);
-    }
-    50% {
-      transform: scale(1);
-      -webkit-transform: scale(1);
-    }
+  @keyframes spinner {
+    to {transform: rotate(360deg);}
   }
 `;
 
 export const Spinner: React.FunctionComponent<Props> = ({
-  color = 'lightGray',
-  size = 40,
-  animationSpeed = 2,
-  transitionType = 'ease-in-out',
-  theme,
+  backgroundColor = 'lightGray',
+  borderColor = 'blue',
+  borderWidth = 3,
+  size = 50,
+  animationSpeed = 1,
+  transitionType = 'linear',
+  ...props
 }) => (
   <SSpinner
-    color={color}
+    backgroundColor={backgroundColor}
+    borderColor={borderColor}
+    borderWidth={borderWidth}
     size={size}
     animationSpeed={animationSpeed}
     transitionType={transitionType}
-    theme={theme}>
-    <div className="double-bounce1" />
-    <div className="double-bounce2" />
-  </SSpinner>
+    {...props}
+  />
 );
