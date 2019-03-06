@@ -1,13 +1,21 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import Icon from 'react-icons-kit';
+import { ic_check as icCheck } from 'react-icons-kit/md/ic_check';
 
 type Props = {
+  /**
+   * Set the className option
+   *
+   * @default ''
+   **/
+  className?: string;
   /**
    * Text to be copied
    *
    * @default ''
    **/
-  copyText: string;
+  copyContent: JSX.Element | React.Component | string;
   /**
    * Assign class to the container enclosing the text to be copied
    *
@@ -15,11 +23,17 @@ type Props = {
    **/
   copyContainerClass?: string;
   /**
-   * Select container background color. Must be a color defined in theme colors
+   * Set container background color. A css color code or a color defined in theme colors
    *
-   * @default 'disabledBackground'
+   * @default 'lightBackground'
    **/
-  background: string;
+  background?: string;
+  /**
+   * Occupy full width of parent
+   *
+   * @default true
+   **/
+  fullWidth?: boolean;
   /**
    * Include the copy-text button
    *
@@ -27,11 +41,17 @@ type Props = {
    **/
   includeCopyButton?: boolean;
   /**
-   * Label to be used on the button
+   * Content to be used in the button
    *
-   * @default 'copy'
+   * @default 'COPY'
    **/
-  copyButtonText?: string;
+  copyButtonContent?: JSX.Element | React.Component | string;
+  /**
+   * Success content to be used in the button
+   *
+   * @default '<Icon size={ 18 } icon={ icCheck } /> COPIED'
+   **/
+  copyButtonSuccessContent?: JSX.Element | React.Component | string;
   /**
    * Assign class to the copy button
    *
@@ -50,27 +70,72 @@ const SCopyToClipboard = styled.div`
   width: auto;
   height: auto;
   position: relative;
-  display: flex;
-  padding: 16px;
-  background-color: ${(props: Props) => props.theme.colors[props.background]};
+  display: ${(props: Props) => (props.fullWidth ? 'flex' : 'inline-flex')};
+  padding: ${(props: Props) => props.theme.copyToClipboard.padding};
+  background-color: ${(props: Props) =>
+    props.theme.colors[props.background!] || props.background!.toString()};
+  font-family: ${(props: Props) => props.theme.copyToClipboard.fontFamily};
+  font-size: ${(props: Props) => props.theme.copyToClipboard.fontSize};
+  color: ${(props: any) =>
+    props.copied
+      ? props.theme.copyToClipboard.copiedColor
+      : props.theme.copyToClipboard.color};
 
   .copy-container {
     flex-grow: 1;
+    white-space: pre;
+    unicode-bidi: embed;
+    overflow: visible;
+    word-break: break-all;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    white-space: pre;
+    white-space: pre\9; /* IE7+ */
   }
   .copy-button {
     flex-grow: 0;
     cursor: pointer;
-    height: 25px;
+    font-family: ${(props: Props) => props.theme.typography.fontFamily};
+    font-weight: ${(props: Props) =>
+      props.theme.copyToClipboard.button.fontWeight};
+    height: ${(props: Props) => props.theme.copyToClipboard.button.height};
+    margin: ${(props: Props) => props.theme.copyToClipboard.button.margin};
+    height: ${(props: Props) => props.theme.copyToClipboard.button.height};
+    text-transform: ${(props: Props) =>
+      props.theme.copyToClipboard.button.textTransform};
+    color: ${(props: any) =>
+      props.theme.copyToClipboard.button[`${props.buttonColor}Color`]};
+    border: none;
+    background: none;
+    outline: none;
+    border-radius: ${(props: Props) => props.theme.borders.radius};
+    &:hover {
+      color: white;
+      background-color: ${(props: any) =>
+        props.theme.copyToClipboard.button[`${props.buttonColor}Color`]};
+    }
   }
 `;
 
+const initialState = {
+  copied: false,
+};
+type State = Readonly<typeof initialState>;
 export class CopyToClipboard extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
   private copyContainerRef = React.createRef<HTMLDivElement>();
 
-  static copyToClipboard(e: any) {
+  constructor(props: Props) {
+    super(props);
+    this.unescapeHTML = this.unescapeHTML.bind(this);
+    this.copySuccessful = this.copySuccessful.bind(this);
+  }
+
+  readonly state: State = initialState;
+
+  static copy(e: any, cb: Function) {
     const newCopyText: string = e.target
       ? e.target.innerText
       : e.innerText || e;
@@ -80,43 +145,70 @@ export class CopyToClipboard extends React.Component<Props> {
     textField.select();
     document.execCommand('copy');
     textField.remove();
+    return cb() || null;
   }
 
+  public unescapeHTML(html: any) {
+    const escapeEl = document.createElement('textarea');
+    escapeEl.innerHTML = html;
+    return escapeEl.textContent;
+  }
+  public copySuccessful() {
+    this.setState({ copied: true });
+    setTimeout(() => {
+      this.setState({ copied: false });
+      // tslint:disable-next-line
+    }, 2000);
+  }
   render() {
+    const SuccessContent = () => (
+      <span>
+        <Icon size={18} icon={icCheck} />
+        copied
+      </span>
+    );
     const {
-      copyText = '',
+      copyContent = '',
       copyContainerClass = '',
       background = 'disabledBackground',
+      fullWidth = true,
       includeCopyButton = true,
-      copyButtonText = 'copy',
+      copyButtonContent = 'copy',
+      copyButtonSuccessContent = <SuccessContent />,
       copyButtonClass = '',
       theme,
     } = this.props;
+    const { copied } = this.state;
     return (
       <SCopyToClipboard
-        copyText={copyText}
-        copyContainerClass={copyContainerClass}
+        buttonColor={copied ? 'success' : 'primary'}
         background={background}
-        includeCopyButton={includeCopyButton}
-        copyButtonText={copyButtonText}
-        copyButtonClass={copyButtonClass}
+        fullWidth={fullWidth}
+        copied={copied}
         theme={theme}>
         <div
           ref={this.copyContainerRef}
           onClick={() =>
-            CopyToClipboard.copyToClipboard(this.copyContainerRef.current)
+            CopyToClipboard.copy(
+              this.copyContainerRef.current,
+              this.copySuccessful,
+            )
           }
           className={`copy-container ${copyContainerClass}`}>
-          {copyText}
+          {this.unescapeHTML(copyContent)}
         </div>
         {includeCopyButton && (
           <button
             onClick={() =>
-              CopyToClipboard.copyToClipboard(this.copyContainerRef.current)
+              CopyToClipboard.copy(
+                this.copyContainerRef.current,
+                this.copySuccessful,
+              )
             }
             type="button"
             className={`copy-button ${copyButtonClass}`}>
-            {copyButtonText}
+            {!copied && copyButtonContent}
+            {copied && copyButtonSuccessContent}
           </button>
         )}
       </SCopyToClipboard>

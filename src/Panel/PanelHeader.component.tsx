@@ -1,30 +1,76 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 
 type Props = {
-  /** the content of the panel  */
-  children?: React.ReactNode;
-  /** the name of the panel  */
+  /**
+   * The content of the panel header
+   *
+   * @default null
+   * */
+  children?: any;
+  /**
+   * The ref of the panel headre
+   *
+   * @default null
+   * */
+  headerRef?: React.RefObject<HTMLDivElement>;
+  /**
+   * The name of the panel
+   *
+   * @default ''
+   * */
   name?: string;
-  /** the title of the panel  */
+  /**
+   * The title of the panel
+   *
+   * @default ''
+   * */
   title?: string;
-  /** 'default', 'primary', 'success', 'warning', 'danger'
+  /**
+   * Set header color. A CSS color code or a color defined in theme colors
+   *
+   * @default 'primary'
+   **/
+  headerColor?: string;
+  /**
+   * Set header background color. A CSS color code or a color defined in theme colors
+   *
+   * @default 'white'
+   **/
+  headerBackgroundColor?: string;
+  /**
+   * Set header border color. A CSS color code or a color defined in theme colors
+   *
+   * @default 'gray'
+   **/
+  headerBorderColor?: string;
+  /**
+   * 'default', 'primary', 'success', 'warning', 'danger'
+   *
    *  @default 'default'
    */
   panelStyle: string;
-  /** whether the panel can be collapsed
+  /**
+   *  Whether the panel can be collapsed
+   *
    *  @default 'false'
    */
   collapsible?: boolean;
-  /** whether the panel is collapsed
-   *  @default 'false'
-   */
-  localIsCollapsed?: boolean;
-  /** whether the panel is collapsed or not
+  /**
+   * Whether the panel is collapsed or not
+   *
    *  @default 'false'
    */
   isCollapsed?: boolean;
-  /** toggle panel body
+  /**
+   * Whether the panel is collapsed
+   *
+   *  @default 'false'
+   */
+  localIsCollapsed?: boolean;
+  /**
+   * Toggle panel body
+   *
    *  @default 'void'
    */
   toggleItem?: Function;
@@ -40,15 +86,17 @@ type Props = {
 const SPanelHeader = styled.div`
   background: ${(props: Props) =>
     props.theme.styles[props.panelStyle].lightFlood};
-  padding: 8px 16px;
-  font-size: 16px;
-  color: ${(props: Props) => props.theme.styles[props.panelStyle].text};
-  line-height: 32px;
+  padding: ${(props: Props) => props.theme.panel.header.padding};
+  color: ${(props: Props) =>
+    props.theme.colors[props.headerColor!] || props.headerColor!.toString()};
+  background: ${(props: Props) =>
+    props.theme.colors[props.headerBackgroundColor!] ||
+    props.headerBackgroundColor!.toString()};
+  border: ${(props: Props) =>
+    `${props.theme.panel.borderWidth} solid
+    ${props.theme.colors[props.headerBorderColor!] ||
+      props.headerBorderColor!.toString()}`};
   &:hover {
-    background: ${(props: Props) =>
-      props.collapsible
-        ? props.theme.styles[props.panelStyle].hoverlightFlood
-        : props.theme.styles[props.panelStyle].lightFlood};
     cursor: ${(props: Props) => (props.collapsible ? 'pointer' : 'auto')};
   }
 `;
@@ -57,9 +105,8 @@ const SPanelHeader = styled.div`
 const SExpandIcon = styled.div`
   float: right;
   padding: 0;
-  margin: 4px 0 0;
-  // tslint:disable-next-line
-  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
+  margin: -4px 0 0;
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
   border: 0;
   -webkit-appearance: none;
   text-shadow: none;
@@ -67,17 +114,17 @@ const SExpandIcon = styled.div`
   -ms-filter: none;
   filter: none;
   outline: none;
-  width: 24px;
-  height: 24px;
-  background-size: contain;
+  width: 28px;
+  height: 28px;
+  background-size: 28px;
   background-repeat: no-repeat;
 `;
 
 const SCollapseIcon = styled.div`
   float: right;
   padding: 0;
-  margin: 4px 0 0;
-  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
+  margin: -4px 0 0;
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
   border: 0;
   -webkit-appearance: none;
   text-shadow: none;
@@ -85,9 +132,9 @@ const SCollapseIcon = styled.div`
   -ms-filter: none;
   filter: none;
   outline: none;
-  width: 24px;
-  height: 24px;
-  background-size: contain;
+  width: 28px;
+  height: 28px;
+  background-size: 28px;
   background-repeat: no-repeat;
 `;
 
@@ -99,12 +146,16 @@ export class PanelHeader extends React.Component<Props> {
       <SCollapseIcon />
     );
     const toggleItem =
-      this.props.toggleItem || (() => console.log('collapsing'));
+      this.props.toggleItem || (() => console.log('toggle collapse'));
     return (
       <SPanelHeader
-        panelStyle={this.props.panelStyle || 'default'}
+        panelStyle={this.props.panelStyle}
+        headerColor={this.props.headerColor}
+        headerBackgroundColor={this.props.headerBackgroundColor}
+        headerBorderColor={this.props.headerBorderColor}
         collapsible={this.props.collapsible}
-        onClick={toggleItem}
+        onClick={(e: any) => toggleItem(e, this.props.theme)}
+        ref={this.props.headerRef}
         theme={this.props.theme}>
         {this.props.name && <b>{this.props.name}:</b>} {this.props.title}{' '}
         {this.props.collapsible && ChevronImage}
@@ -112,3 +163,5 @@ export class PanelHeader extends React.Component<Props> {
     );
   }
 }
+
+export default withTheme(PanelHeader);
