@@ -4,29 +4,10 @@ import { boolean, select } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
 import Checkbox from './Checkbox.component';
-import { wInfo } from '../storybook-utils';
 
 storiesOf('Checkbox', module).add(
   'Checkbox',
-  wInfo(`
-
-  ### Notes
-
-  This is a Checkbox control
-
-  ### Usage
-  ~~~js
-  <Checkbox
-    id='myInput1'
-    cbSize='md'
-    defaultChecked={true}
-    disabled={false}
-    onChange={fn()}
-    value='1'
-    >
-    One
-  </Checkbox>
-  ~~~`)(() => (
+  () => (
     <div>
       <Checkbox
         id="myInput1"
@@ -49,5 +30,14 @@ storiesOf('Checkbox', module).add(
         Two
       </Checkbox>
     </div>
-  )),
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is a Checkbox control
+      `,
+    },
+  },
 );

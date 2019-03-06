@@ -5,28 +5,10 @@ import { action } from '@storybook/addon-actions';
 import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
 
 import { IconButton } from './';
-import { wInfo } from '../storybook-utils';
 
 storiesOf('IconButton', module).add(
   'IconButton',
-  wInfo(`
-
-  ### Notes
-
-  This is a IconButton
-
-  ### Usage
-  ~~~js
-    <IconButton
-      rounded
-      icon={icAdd}
-      iconsize={20}
-      pixelbuttonsize={40}
-      btnSize="sm"
-      btnStyle="primary"
-      onClick={() => {}}
-    />
-  ~~~`)(() => (
+  () => (
     <div>
       <IconButton
         icon={icAdd}
@@ -44,5 +26,14 @@ storiesOf('IconButton', module).add(
         onClick={action('Icon Button Clicked!')}
       />
     </div>
-  )),
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is a IconButton
+        `,
+    },
+  },
 );

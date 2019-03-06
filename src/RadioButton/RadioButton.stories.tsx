@@ -3,30 +3,11 @@ import { storiesOf } from '@storybook/react';
 import { boolean, select } from '@storybook/addon-knobs/react';
 
 import RadioButton from './RadioButton.component';
-import { wInfo } from '../storybook-utils';
 import { action } from '@storybook/addon-actions';
 
 storiesOf('RadioButton', module).add(
   'RadioButton',
-  wInfo(`
-
-  ### Notes
-
-  This is a RadioButton control
-
-  ### Usage
-  ~~~js
-  <RadioButton
-    id='myInput1'
-    disabled={false}
-    rbSize='md'
-    value={1}
-    checked={true}
-    onChange={fn()}
-    >
-    One
-  </RadioButton>
-  ~~~`)(() => (
+  () => (
     <RadioButton
       id="myInput1"
       disabled={boolean('disabled', false)}
@@ -37,5 +18,14 @@ storiesOf('RadioButton', module).add(
     >
       One
     </RadioButton>
-  )),
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is a RadioButton control
+        `,
+    },
+  },
 );
