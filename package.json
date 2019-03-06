@@ -25,8 +25,7 @@
   "peerDependencies": {
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "styled-components": "^4.1.0",
-    "react-router-dom": "^4.3.1"
+    "styled-components": "^4.1.0"
   },
   "dependencies": {
     "@tippy.js/react": "^1.1.1",
@@ -37,7 +36,6 @@
     "react-select": "^2.2.0",
     "react-table": "^6.8.6",
     "react-tabs": "^3.0.0",
-    "redux": "^4.0.1",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
