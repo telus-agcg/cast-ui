@@ -36,7 +36,13 @@ storiesOf('Table', module).add(
       text: `
         ### Notes
 
-        This is a wrappered version of react-table.
+          This is a wrapped version of [react-table](https://github.com/tannerlinsley/react-table)
+
+          It uses the *SelectTable* HOC for the checkbox column.
+
+          It uses the Popover component for the row controls on the right most column.
+
+          All the options available to react-table can be passed directly from the component.
         `,
     },
   },
