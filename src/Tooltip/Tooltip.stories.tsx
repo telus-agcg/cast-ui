@@ -2,18 +2,17 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Tooltip from './Tooltip.component';
-import { wInfo } from '../storybook-utils';
 import { boolean } from '@storybook/addon-knobs';
 
-storiesOf('Tooltip', module).add(
-  'ControlledTooltip',
-  wInfo(`
+storiesOf('Tooltip', module).add('ControlledTooltip', () => <TooltipStory />, {
+  info: {
+    text: `
+      ### Notes
 
-  ### Notes
-
-  This is a Tooltip, based on [tippy.js](https://atomiks.github.io/tippyjs/).
- `)(() => <TooltipStory />),
-);
+      This is a Tooltip, based on [tippy.js](https://atomiks.github.io/tippyjs/).
+    `,
+  },
+});
 
 const MyComponent = (props: any) => (
   <div>This is a component to be rendered in the tooltip</div>

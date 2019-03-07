@@ -3,24 +3,10 @@ import { storiesOf } from '@storybook/react';
 import { select, text } from '@storybook/addon-knobs/react';
 
 import { Spinner } from './Spinner.component';
-import { wInfo } from '../storybook-utils';
 
 storiesOf('Spinner', module).add(
   'Spinner',
-  wInfo(`
-
-  ### Notes
-
-  This is a spinner
-
-  ### Usage
-  ~~~js
-    <Spinner
-      borderColor="blue"
-      size={40}
-      animationSpeed={1}
-    />
-  ~~~`)(() => (
+  () => (
     <Spinner
       backgroundColor={text('backgroundColor', 'lightGray')}
       borderColor={text('borderColor', 'blue')}
@@ -28,5 +14,14 @@ storiesOf('Spinner', module).add(
       borderWidth={select('borderWidth', [1, 2, 3, 4, 5], 3)}
       animationSpeed={select('animationSpeed', [1, 2, 3, 4, 5], 1)}
     />
-  )),
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is a spinner
+        `,
+    },
+  },
 );

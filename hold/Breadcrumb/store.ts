@@ -1,5 +1,5 @@
 // Import External Dependencies
-import { createStore } from 'redux';
+// import { createStore } from 'redux';
 
 // Create the reducer
 const crumbs = (state: any = [], action: any) => {
@@ -23,8 +23,8 @@ const crumbs = (state: any = [], action: any) => {
 };
 
 // Create the store
-const store = createStore(crumbs);
+// const store = createStore(crumbs);
 
 // Export store and Dispatch method
-export default store;
-export const Dispatch = store.dispatch;
+// export default store;
+// export const Dispatch = store.dispatch;
