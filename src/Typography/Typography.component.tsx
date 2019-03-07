@@ -15,6 +15,5 @@ export const Typography: React.FunctionComponent<Props> = ({
   children,
   theme,
 }) => (
-  <div>
-  </div>
+  <div><Headline>Text</Headline></div>
 );

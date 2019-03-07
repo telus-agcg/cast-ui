@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
 export type Props = {
   /**
@@ -15,12 +16,18 @@ export type Props = {
   theme?: any;
 };
 
+const SHeadline = styled.h1`
+  font-weight: ${(props: Props) => props.theme.typography.headline.fontWeight};
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.typography.headline.fontSize};
+`;
+
 export const Headline: React.FunctionComponent<Props> = ({
   className,
   children,
   theme,
 }) => (
-  <div className={className}>
+  <SHeadline className={className}>
     {children}
-  </div>
+  </SHeadline>
 );
