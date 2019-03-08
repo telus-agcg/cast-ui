@@ -1,22 +1,19 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Headline } from './Headline.component';
-import { wInfo } from '../../storybook-utils';
 
 storiesOf('Headline', module).add(
   'Headline',
-  wInfo(`
+  () => (
+    <Headline>27px Light</Headline>
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
 
-  ### Notes
-
-  This is a Headline
-
-  ### Usage
-  ~~~js
-  <Headline>Headline</Headline>
-  ~~~`)(() => (
-    <Headline>
-      Submit Headline
-    </Headline>
-  )),
+        Documentation and examples for Cast UI Headline.
+        `,
+    },
+  },
 );

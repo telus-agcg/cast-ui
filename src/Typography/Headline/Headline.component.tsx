@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import 'typeface-roboto';
 
 export type Props = {
   /**
@@ -16,10 +17,11 @@ export type Props = {
   theme?: any;
 };
 
-const SHeadline = styled.h1`
+const SHeadline = styled.h2`
   font-weight: ${(props: Props) => props.theme.typography.headline.fontWeight};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.headline.fontSize};
+  color: ${(props: Props) => props.theme.colors.primary}
 `;
 
 export const Headline: React.FunctionComponent<Props> = ({
