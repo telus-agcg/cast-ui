@@ -12,7 +12,7 @@ storiesOf('Table', module).add(
       <Table
         data={SampleData.Customers}
         columns={ColumnDefs}
-        inputSize={select('inputSize', ['sm', 'md', 'lg'], 'md')}
+        tableSize={select('tableSize', ['sm', 'md', 'lg'], 'md')}
         showPagination={boolean('showPagination', true)}
         showPaginationTop={boolean('showPaginationTop', false)}
         showPaginationBottom={boolean('showPaginationBottom', true)}
