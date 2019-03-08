@@ -175,7 +175,7 @@ export const defaultTheme = {
     fontSize: '16px',
     color: defaultColors.primary,
     headline: {
-      fontWeight: 'light',
+      fontWeight: '300',
       fontSize: '27px',
     },
   },
