@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 
 import { Button } from '../Button/Button.component';
 import Popover from './Popover.component';
-import { wInfo } from '../storybook-utils';
 import { boolean, select } from '@storybook/addon-knobs';
 
 const MyComponent = (props: any) => (
@@ -16,12 +15,7 @@ const MyComponent = (props: any) => (
 
 storiesOf('Popover', module).add(
   'ControlledPopover',
-  wInfo(`
-
-  ### Notes
-
-  This is a Popover, based on [tippy.js](https://atomiks.github.io/tippyjs/).
-  `)(() => (
+  () => (
     <Popover
       content={<MyComponent />}
       isVisible={boolean('isVisible', false)}
@@ -47,5 +41,14 @@ storiesOf('Popover', module).add(
         This button has a controlled popover
       </Button>
     </Popover>
-  )),
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is a Popover, based on [tippy.js](https://atomiks.github.io/tippyjs/).
+        `,
+    },
+  },
 );

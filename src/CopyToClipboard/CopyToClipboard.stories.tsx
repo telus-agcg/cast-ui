@@ -4,7 +4,6 @@ import { text, boolean } from '@storybook/addon-knobs/react';
 
 import { CopyToClipboard } from '../';
 
-import { wInfo } from '../storybook-utils';
 import Icon from 'react-icons-kit';
 import { ic_content_copy as ICopy } from 'react-icons-kit/md/ic_content_copy';
 import { ic_check as icCheck } from 'react-icons-kit/md/ic_check';
@@ -13,49 +12,7 @@ const SecondaryCopySuccessContent = () => <Icon size={16} icon={icCheck} />;
 
 storiesOf('CopyToClipboard', module).add(
   'CopyToClipboard',
-  wInfo(`
-
-  ### Notes
-
-  This is a Copy-To-Clipboard component
-
-  ### Usage
-  ~~~js
-    <CopyToClipboard
-      copyContent='Some text hat is usually copied to clipboard.'
-      copyContainerClass='copy-container'
-      background='disabledBackgroutnd'
-      includeCopyButton={true}
-      copyButtonContent='copy'
-      copyButtonClass='copy-button'
-    />
-
-    // Alternatively, the CopyToClipboard function can be used
-    // on some external element to copy enclosed text as follows:
-
-    <button type="button" onClick={CopyToClipboard.copy}>
-      Copy Me
-    </button>
-
-    <button
-      type="button"
-      onClick={() =>
-        CopyToClipboard.copy('Some Custom Text')
-      }>
-      Navigate
-    </button>
-
-    <a
-      href="#"
-      onClick={() =>
-        CopyToClipboard.copy(
-          'https://www.npmjs.com/package/@tkxs/cast-ui',
-        )
-      }>
-      Copy Me
-    </a>
-
-  ~~~`)(() => (
+  () => (
     <div>
       <CopyToClipboard
         copyContent={text(
@@ -86,5 +43,14 @@ storiesOf('CopyToClipboard', module).add(
         fullWidth={boolean('Second Copy Occupy full width of parent', false)}
       />
     </div>
-  )),
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is a Copy-To-Clipboard component
+        `,
+    },
+  },
 );

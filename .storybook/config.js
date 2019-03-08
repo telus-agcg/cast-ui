@@ -1,11 +1,61 @@
 import React from 'react';
-import { configure, addDecorator } from '@storybook/react';
+import { configure, addDecorator, addParameters } from '@storybook/react';
+import { create } from '@storybook/theming';
 import { withKnobs } from '@storybook/addon-knobs/react';
 import { withInfo } from '@storybook/addon-info';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from '../src/themes/default';
 
-addDecorator(withInfo);
+const wInfoStyle = {
+  header: {
+    h1: {
+      marginRight: '20px',
+      fontSize: '25px',
+      display: 'inline',
+      fontFamily: defaultTheme.typography.fontFamily,
+    },
+    body: {
+      paddingTop: 0,
+      paddingBottom: 0,
+      fontFamily: defaultTheme.typography.fontFamily,
+    },
+    h2: {
+      fontFamily: defaultTheme.typography.fontFamily,
+      display: 'inline',
+      color: '#999',
+    },
+  },
+  infoBody: {
+    fontFamily: defaultTheme.typography.fontFamily,
+    backgroundColor: '#fafafa',
+    padding: '0px 5px',
+    lineHeight: '2',
+  },
+};
+
+addParameters({
+  options: {
+    theme: create({
+      base: 'light',
+      brandTitle: 'Cast UI',
+      brandUrl: 'https://github.com/technekes/cast-ui',
+      // To control appearance:
+      brandImage: 'https://cdn2.hubspot.net/hubfs/1976913/tkxs-logo.png',
+    }),
+    isFullscreen: false,
+    panelPosition: 'right',
+  },
+});
+addDecorator(
+  withInfo({
+    inline: true,
+    source: true,
+    styles: wInfoStyle,
+  }),
+);
+export const wInfo = text =>
+  withInfo({ inline: true, source: true, styles: wInfoStyle, text: text });
+
 addDecorator(withKnobs);
 addDecorator(story => (
   <ThemeProvider theme={defaultTheme}>{story()}</ThemeProvider>

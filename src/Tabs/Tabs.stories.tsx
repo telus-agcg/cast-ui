@@ -3,36 +3,10 @@ import { storiesOf } from '@storybook/react';
 import { text, boolean } from '@storybook/addon-knobs/react';
 
 import { Tab, TabList, TabPanel, Tabs } from './';
-import { wInfo } from '../storybook-utils';
 
 storiesOf('Tabs', module).add(
   'Tabs',
-  wInfo(`
-
-  ### Notes
-
-  This is a Tab Set
-
-  ### Usage
-  ~~~js
-  <Tabs onSelect={() => alert('Tab page selected!')} defaultIndex={2}>
-    <TabList>
-      <Tab title='Tab Page 01'></Tab>
-      <Tab title='Tab Page 02' disabled={true}></Tab>
-      <Tab title='Tab Page 03'></Tab>
-    </TabList>
-
-    <TabPanel>
-      <h2>Any content 1</h2>
-    </TabPanel>
-    <TabPanel>
-      <h2>Any content 2</h2>
-    </TabPanel>
-    <TabPanel>
-      <h2>Any content 3</h2>
-    </TabPanel>
-  </Tabs>
-  ~~~`)(() => (
+  () => (
     <Tabs onSelect={() => alert('Tab page selected!')} defaultIndex={2}>
       <TabList>
         <Tab title={text('title (tab 1)', 'Tab Page 01')} />
@@ -77,5 +51,14 @@ storiesOf('Tabs', module).add(
         omnis voluptas assumenda est, omnis dolor repellendus.
       </TabPanel>
     </Tabs>
-  )),
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is a Tab Set
+        `,
+    },
+  },
 );

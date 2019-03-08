@@ -347,21 +347,21 @@ export const defaultTheme = {
       borderRadius: '1px',
       fontSize: '11px',
       padding: '4px 8px',
-      tableCellPadding: '7px',
+      tableCellPadding: '5px 0',
       inputIconSize: '14px',
     },
     md: {
       borderRadius: '1px',
       fontSize: '14px',
       padding: '8px 14px',
-      tableCellPadding: '9px',
+      tableCellPadding: '9px 0',
       inputIconSize: '20px',
     },
     lg: {
       borderRadius: '1px',
       fontSize: '16px',
       padding: '10px 16px',
-      tableCellPadding: '11px',
+      tableCellPadding: '11px 0',
       inputIconSize: '24px',
     },
   },
@@ -372,10 +372,11 @@ export const defaultTheme = {
     padding: '4px',
   },
   table: {
+    fontSize: '14px',
     header: {
       borderBottomColor: defaultColors.darkGray,
       color: defaultColors.blue,
-      fontWeight: 'bold',
+      fontWeight: 'normal',
     },
     row: {
       borderBottomColor: defaultColors.mediumGray,

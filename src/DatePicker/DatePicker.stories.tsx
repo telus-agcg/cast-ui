@@ -3,25 +3,10 @@ import { storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs/react';
 
 import { DatePicker } from './DatePicker.component';
-import { wInfo } from '../storybook-utils';
 
 storiesOf('DatePicker', module).add(
   'DatePicker',
-  wInfo(`
-
-  ### Notes
-
-  This is a DatePicker, based on [react-day-picker](http://react-day-picker.js.org/).
-
-  ### Usage
-  ~~~js
-    <DatePicker
-      id="datepicker"
-      placeholder="Select start date"
-      datepickerstyle="primary"
-      datepickersize="md"
-    />
-  ~~~`)(() => (
+  () => (
     <DatePicker
       id="datepicker"
       placeholder="Select start date"
@@ -38,5 +23,14 @@ storiesOf('DatePicker', module).add(
         ],
       }}
     />
-  )),
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is a DatePicker, based on [react-day-picker](http://react-day-picker.js.org/).
+        `,
+    },
+  },
 );

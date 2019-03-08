@@ -3,31 +3,10 @@ import { storiesOf } from '@storybook/react';
 import { number, boolean, select, text } from '@storybook/addon-knobs/react';
 
 import { Input } from './Input.component';
-import { wInfo } from '../storybook-utils';
 
 storiesOf('Input', module).add(
   'Input',
-  wInfo(`
-
-  ### Notes
-
-  This is an Input
-
-  ### Usage
-  ~~~js
-  <Input
-    id='myInput'
-    type='text'
-    autoComplete='on'
-    disabled={false}
-    inputSize='md'
-    invalid={false}
-    invalidText='A valid value is required'
-    maxLength='1000'
-    placeholder='Please enter some text'
-    required='false'
-  />
-  ~~~`)(() => (
+  () => (
     <Input
       id="myInput"
       type={select('type', ['text', 'number', 'email', 'password'], 'text')}
@@ -40,5 +19,14 @@ storiesOf('Input', module).add(
       placeholder={text('placeholder', 'Please enter some text')}
       required={boolean('required', false)}
     />
-  )),
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is an Input
+        `,
+    },
+  },
 );
