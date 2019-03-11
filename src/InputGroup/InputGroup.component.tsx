@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-type Props = {
+export type Props = {
   /** the content of the input group  */
   // children?: React.ReactNode[] | Function;
   /** the label of the input group  */

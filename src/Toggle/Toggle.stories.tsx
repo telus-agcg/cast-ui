@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { boolean, select } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
-import Toggle from './Toggle.component';
+import { Toggle } from '../';
 
 storiesOf('Toggle', module).add(
   'Toggle',

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { Pagination } from './Pagination.component';
+import { Pagination } from '../';
 import { action } from '@storybook/addon-actions';
 import { number, select } from '@storybook/addon-knobs';
 

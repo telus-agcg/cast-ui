@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, boolean } from '@storybook/addon-knobs/react';
 
-import { Tab, TabList, TabPanel, Tabs } from './';
+import { Tab, TabList, TabPanel, Tabs } from '../';
 
 storiesOf('Tabs', module).add(
   'Tabs',

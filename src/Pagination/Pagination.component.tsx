@@ -59,7 +59,7 @@ const defaultProps = {
 
 type DefaultProps = Readonly<typeof defaultProps>;
 
-type Props = Partial<ReactPaginateProps> &
+export type Props = Partial<ReactPaginateProps> &
   Partial<DefaultProps> & {
     /* The size of the clickable links
       @default 'md'

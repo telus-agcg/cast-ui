@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-type Props = {
+export type Props = {
   /**
    * The ID of the control
    *
@@ -42,7 +42,7 @@ type Props = {
    * @default null
    **/
   maxLength?: number;
-    /**
+  /**
    * What is the maximum length of the text in the field?
    *
    * @default null
@@ -75,7 +75,8 @@ const STextarea = styled.textarea`
     props.theme.common[props.textareaSize].borderRadius};
   padding: ${(props: Props) => props.theme.common[props.textareaSize].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.textareaSize].fontSize}
+  font-size: ${(props: Props) =>
+    props.theme.common[props.textareaSize].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
     border-color: ${props => props.theme.textarea.disabled.borderColor};
@@ -98,8 +99,10 @@ const SErrorDiv = styled.div`
   font-style: italic;
 `;
 
-export const Textarea: React.FunctionComponent<Props> = (textareaProps) => {
-  const errorId = textareaProps.invalid ? (`${textareaProps.id}-error-msg`) : (undefined);
+export const Textarea: React.FunctionComponent<Props> = textareaProps => {
+  const errorId = textareaProps.invalid
+    ? `${textareaProps.id}-error-msg`
+    : undefined;
 
   const error = textareaProps.invalid ? (
     <SErrorDiv id={errorId} theme={textareaProps.theme}>

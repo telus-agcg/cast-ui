@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-type Props = {
+export type Props = {
   /**
    * Set body background color. A CSS color code or a color defined in theme colors
    *

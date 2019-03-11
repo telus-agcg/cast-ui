@@ -4,7 +4,7 @@ import { DraggableProps } from '../defaultProps';
 import { DraggableHandle } from '../';
 import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
 
-type Props = Partial<DraggableProps> & {
+export type Props = Partial<DraggableProps> & {
   /** Listen to drag start event  */
   onDragStart?(e: React.MouseEvent<HTMLElement>): void;
   /** Listen to drag over event  */
@@ -98,12 +98,14 @@ export const ItemContainer: React.FunctionComponent<Props> = (props: any) => {
     <SItemContainer
       {...newProps}
       key="draggableItem"
-      draggable={itemActive && newProps.draggable}>
+      draggable={itemActive && newProps.draggable}
+    >
       {newProps.showitemhandle && (
         <SItemLeftContent
           {...newProps}
           draggable={false}
-          itemDraggable={itemActive && newProps.draggable}>
+          itemDraggable={itemActive && newProps.draggable}
+        >
           <DraggableHandle
             size={newProps.itemhandlesize}
             className="itemHandle"

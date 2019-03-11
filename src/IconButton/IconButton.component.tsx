@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Icon from 'react-icons-kit';
-import Button, { Props as ButtonProps } from '../Button';
+import Button, { ButtonProps } from '../Button';
 
 const defaultProps = {
   color: 'lightGray',
@@ -12,7 +12,7 @@ const defaultProps = {
 
 type DefaultProps = Readonly<typeof defaultProps>;
 
-type Props = Partial<ButtonProps> &
+export type Props = Partial<ButtonProps> &
   Partial<DefaultProps> & {
     /**
      * Select IconButton color. Must be a color defined in theme colors

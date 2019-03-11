@@ -4,7 +4,7 @@ import { boolean, select } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
 
-import { IconButton } from './';
+import { IconButton } from '../';
 
 storiesOf('IconButton', module).add(
   'IconButton',

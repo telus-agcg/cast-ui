@@ -6,7 +6,7 @@ import 'react-day-picker/lib/style.css';
 
 import { Input } from '../';
 
-type Props = Partial<DayPickerInputProps> & {
+export type Props = Partial<DayPickerInputProps> & {
   /**
    * Set className
    *

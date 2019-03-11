@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Button } from '../Button/Button.component';
 import SButton from '../Button/SButton';
 
-type Props = {
+export type Props = {
   /**
    * From theme provider
    *
@@ -103,7 +103,8 @@ const CloseButton = styled.div`
   line-height: 20px;
   cursor: pointer;
   // tslint:disable-next-line:max-line-length
-  background: transparent url(data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgVHJlbmQgTWljcm8gU3R5bGUgUG9ydGFsIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiPg0KICA8dGl0bGU+Y2xvc2U8L3RpdGxlPg0KICA8cGF0aCBmaWxsPSJyZ2IoMzQsMzQsMzQpIiBkPSJNMTUgMmwtMS0xLTYgNi02LTYtMC45OSAwLjk5IDUuOTkgNi4wMTAtNiA2IDEgMSA2LTYgNiA2IDEtMS02LTYgNi02eiI+PC9wYXRoPg0KPC9zdmc+);
+  background: transparent
+    url(data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgVHJlbmQgTWljcm8gU3R5bGUgUG9ydGFsIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiPg0KICA8dGl0bGU+Y2xvc2U8L3RpdGxlPg0KICA8cGF0aCBmaWxsPSJyZ2IoMzQsMzQsMzQpIiBkPSJNMTUgMmwtMS0xLTYgNi02LTYtMC45OSAwLjk5IDUuOTkgNi4wMTAtNiA2IDEgMSA2LTYgNiA2IDEtMS02LTYgNi02eiI+PC9wYXRoPg0KPC9zdmc+);
   border: 0;
   -webkit-appearance: none;
   text-shadow: none;
@@ -116,7 +117,7 @@ const CloseButton = styled.div`
   opacity: 0.5;
 `;
 
-class Modal extends React.Component<Props> {
+export class Modal extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
@@ -130,38 +131,62 @@ class Modal extends React.Component<Props> {
   renderButtons(buttonType: 'OkCancel' | 'OkOnly' | 'YesNo') {
     switch (buttonType) {
       case 'OkOnly':
-        return <>
-          <Button btnSize="md"
-            btnStyle="primary"
-            onClick={() => this.closeModal(this.props.onOkOrYes)}>OK</Button>
-        </>;
+        return (
+          <>
+            <Button
+              btnSize="md"
+              btnStyle="primary"
+              onClick={() => this.closeModal(this.props.onOkOrYes)}
+            >
+              OK
+            </Button>
+          </>
+        );
       case 'YesNo':
-        return <>
-          <Button btnSize="md"
-            btnStyle="primary"
-            onClick={() => this.closeModal(this.props.onOkOrYes)}>Yes</Button>
-          <Button btnSize="md"
-            btnStyle="default"
-            onClick={() => this.closeModal(this.props.onCancelOrNo)}>No</Button>
-        </>;
+        return (
+          <>
+            <Button
+              btnSize="md"
+              btnStyle="primary"
+              onClick={() => this.closeModal(this.props.onOkOrYes)}
+            >
+              Yes
+            </Button>
+            <Button
+              btnSize="md"
+              btnStyle="default"
+              onClick={() => this.closeModal(this.props.onCancelOrNo)}
+            >
+              No
+            </Button>
+          </>
+        );
       case 'OkCancel':
       default:
-        return <>
-          <Button btnSize="md"
-            btnStyle="primary"
-            onClick={() => this.closeModal(this.props.onOkOrYes)}>OK</Button>
-          <Button btnSize="md"
-            btnStyle="default"
-            onClick={() => this.closeModal(this.props.onCancelOrNo)}>Cancel</Button>
-        </>;
+        return (
+          <>
+            <Button
+              btnSize="md"
+              btnStyle="primary"
+              onClick={() => this.closeModal(this.props.onOkOrYes)}
+            >
+              OK
+            </Button>
+            <Button
+              btnSize="md"
+              btnStyle="default"
+              onClick={() => this.closeModal(this.props.onCancelOrNo)}
+            >
+              Cancel
+            </Button>
+          </>
+        );
     }
   }
 
   render() {
     return (
-      <SDiv
-        className="modal-wrapper"
-      >
+      <SDiv className="modal-wrapper">
         <ReactModal
           role="dialog"
           isOpen={this.props.isOpen}
@@ -197,13 +222,13 @@ class Modal extends React.Component<Props> {
           <ModalHeaderDiv>
             <h2>{this.props.modalTitle}</h2>
           </ModalHeaderDiv>
-          <ModalBodyDiv>
-            {this.props.children}
-          </ModalBodyDiv>
+          <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
           <ModalFooterDiv>
             {this.renderButtons(this.props.buttonType)}
           </ModalFooterDiv>
-          <CloseButton onClick={() => this.closeModal(this.props.onCancelOrNo)}></CloseButton>
+          <CloseButton
+            onClick={() => this.closeModal(this.props.onCancelOrNo)}
+          />
         </ReactModal>
       </SDiv>
     );

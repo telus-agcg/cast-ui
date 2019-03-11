@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, boolean, select } from '@storybook/addon-knobs/react';
 
-import Panel from './Panel.component';
+import { Panel } from '../';
 
 storiesOf('Panel', module).add(
   'Panel with Title',

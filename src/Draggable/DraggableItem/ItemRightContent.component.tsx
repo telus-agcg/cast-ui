@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { DraggableProps } from '../defaultProps';
 import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
 
-type Props = Partial<DraggableProps>;
+export type Props = Partial<DraggableProps>;
 
 const SItemRightContent = styled.div`
   position: relative;
