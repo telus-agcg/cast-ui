@@ -2,7 +2,7 @@ import * as React from 'react';
 import RadioButton from '../RadioButton';
 import styled from 'styled-components';
 
-type Props = {
+export type Props = {
   /**
    * Specify the value of the radio button to select by default
    *
@@ -36,7 +36,7 @@ const initialState = {
 };
 type State = Readonly<typeof initialState>;
 
-export default class RadioButtonGroup extends React.Component<Props, State> {
+export class RadioButtonGroup extends React.Component<Props, State> {
   readonly state: State = {
     selected: this.props.defaultChecked || this.props.valueChecked,
   };

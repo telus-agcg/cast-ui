@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { boolean, select } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
-import Checkbox from './Checkbox.component';
+import { Checkbox } from '../';
 
 storiesOf('Checkbox', module).add(
   'Checkbox',

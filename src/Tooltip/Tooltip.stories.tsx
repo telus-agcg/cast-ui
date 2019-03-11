@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Tooltip from './Tooltip.component';
+import { Tooltip } from '../';
 import { boolean } from '@storybook/addon-knobs';
 
 storiesOf('Tooltip', module).add('ControlledTooltip', () => <TooltipStory />, {

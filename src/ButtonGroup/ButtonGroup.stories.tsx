@@ -2,8 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs/react';
 
-import ButtonGroup from './ButtonGroup.component';
-import { Button } from '../Button/Button.component';
+import { Button, ButtonGroup } from '../';
 
 storiesOf('ButtonGroup', module).add(
   'ButtonGroup',

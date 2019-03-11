@@ -5,12 +5,23 @@ import { default as DraggableItem } from './DraggableItem';
 import { DraggableFooter } from './DraggableFooter.component';
 import { DraggableHandle } from './DraggableHandle.component';
 
-export * from './Draggable.component';
-export * from './DraggableInfo.component';
+export { Draggable, Props as DraggableProps } from './Draggable.component';
+export {
+  DraggableInfo,
+  Props as DraggableInfoProps,
+} from './DraggableInfo.component';
+export * from './DraggableParent';
+export * from './DraggableItem';
 export { default as DraggableParent } from './DraggableParent';
 export { default as DraggableItem } from './DraggableItem';
-export * from './DraggableFooter.component';
-export * from './DraggableHandle.component';
+export {
+  DraggableFooter,
+  Props as DraggableFooterProps,
+} from './DraggableFooter.component';
+export {
+  DraggableHandle,
+  Props as DraggableHandleProps,
+} from './DraggableHandle.component';
 
 export default {
   Draggable,

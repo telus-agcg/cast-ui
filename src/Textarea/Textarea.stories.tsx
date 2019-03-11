@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { number, boolean, select, text } from '@storybook/addon-knobs/react';
 
-import { Textarea } from './Textarea.component';
+import { Textarea } from '../';
 
 storiesOf('Textarea', module).add(
   'Textarea',

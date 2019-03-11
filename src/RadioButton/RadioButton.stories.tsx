@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select } from '@storybook/addon-knobs/react';
 
-import RadioButton from './RadioButton.component';
+import { RadioButton } from '../';
 import { action } from '@storybook/addon-actions';
 
 storiesOf('RadioButton', module).add(

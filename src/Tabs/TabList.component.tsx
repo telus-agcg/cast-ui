@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TabList as ReactTabList } from 'react-tabs';
 import styled from 'styled-components';
 
-type Props = {
+export type Props = {
   /**
    * From theme provider
    *
@@ -33,10 +33,6 @@ export class TabList extends React.Component<Props> {
   }
 
   render() {
-    return (
-      <SReactTabList {...this.props}>
-        {this.props.children}
-      </SReactTabList>
-    );
+    return <SReactTabList {...this.props}>{this.props.children}</SReactTabList>;
   }
 }

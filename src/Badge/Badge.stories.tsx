@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs/react';
 
-import { Badge } from './Badge.component';
+import { Badge } from '../';
 
 storiesOf('Badge', module).add(
   'Badge',

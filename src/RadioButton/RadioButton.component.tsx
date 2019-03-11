@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { lighten } from '../utils/colorUtils';
 
-type Props = {
+export type Props = {
   /**
    * Specify the ID of the individual radio button
    *
@@ -88,20 +88,19 @@ const SInput = styled.input`
   }
   &:disabled + label:before {
     background-color: ${(props: Props) =>
-    props.theme.input.disabled.background};
+      props.theme.input.disabled.background};
     border-color: ${(props: Props) => props.theme.input.disabled.borderColor};
   }
   &:checked + label:before {
-    background-color: ${(props: Props) =>
-      props.theme.styles.primary.flood};
+    background-color: ${(props: Props) => props.theme.styles.primary.flood};
   }
   &:disabled:checked + label:before {
     background-color:  ${(props: Props) =>
-    lighten(props.theme.styles.primary.flood, 15)};
+      lighten(props.theme.styles.primary.flood, 15)};
   }
 `;
 
-export default class RadioButton extends React.Component<Props> {
+export class RadioButton extends React.Component<Props> {
   handleChange = (evt: any) => {
     this.props.onChange(this.props.value, this.props.name, evt);
   }

@@ -17,7 +17,7 @@ type PropsThemeOnly = {
   theme?: any;
 };
 
-type Props = PropsThemeOnly & {
+export type Props = PropsThemeOnly & {
   /**
    * Set className
    *
@@ -129,7 +129,8 @@ export const Input: React.FunctionComponent<Props> = ({ ...inputProps }) => {
         {...inputProps}
         data-invalid={inputProps.invalid ? '' : undefined}
         aria-invalid={inputProps.invalid ? true : undefined}
-        aria-describedby={errorId}>
+        aria-describedby={errorId}
+      >
         {inputProps.children}
       </SInput>
       {error}

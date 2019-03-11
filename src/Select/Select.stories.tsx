@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
 
-import Select from './Select.component';
+import { Select } from '../';
 
 storiesOf('Select', module).add(
   'Select',

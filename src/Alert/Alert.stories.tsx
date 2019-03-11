@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select, boolean } from '@storybook/addon-knobs/react';
 
-import { Alert } from './Alert.component';
+import { Alert } from '../';
 
 storiesOf('Alert', module).add(
   'Alert',

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Tab as ReactTab } from 'react-tabs';
 import styled from 'styled-components';
 
-type Props = {
+export type Props = {
   /**
    * Specify the title text of the tab
    *
@@ -40,32 +40,26 @@ const SReactTab = styled(ReactTabProxy)`
   list-style: none;
   padding: 12px;
   cursor: pointer;
-  border-radius: ${(props: Props) =>
-    props.theme.tabs.borderRadius};
-  font-size:${(props: Props) =>
-    props.theme.tabs.fontSize};
+  border-radius: ${(props: Props) => props.theme.tabs.borderRadius};
+  font-size:${(props: Props) => props.theme.tabs.fontSize};
   font-weight: normal;
 
   &[class$="--selected"]	 {
-    color: ${(props: Props) =>
-    props.theme.colors.blue};
-    border-bottom: 5px solid ${(props: Props) =>
-    props.theme.colors.blue}
+    color: ${(props: Props) => props.theme.colors.blue};
+    border-bottom: 5px solid ${(props: Props) => props.theme.colors.blue}
     font-weight: bold;
   }
 
   &[class$="--disabled"] {
-    color: ${(props: Props) =>
-    props.theme.colors.gray}
+    color: ${(props: Props) => props.theme.colors.gray}
     cursor: not-allowed;
   }
 
   &:focus, &:hover {
     border-bottom: 5px solid ${(props: Props) =>
-  props.theme.colors.disabledBackground};
+      props.theme.colors.disabledBackground};
     outline: none;
-    background: ${(props: Props) =>
-    props.theme.colors.disabledBackground};
+    background: ${(props: Props) => props.theme.colors.disabledBackground};
 
     &:after {
       content: "";
@@ -74,8 +68,7 @@ const SReactTab = styled(ReactTabProxy)`
       left: 0;
       right: 0;
       bottom: 0px;
-      background: ${(props: Props) =>
-    props.theme.colors.disabledBackground};
+      background: ${(props: Props) => props.theme.colors.disabledBackground};
     }
   }
 `;
@@ -88,8 +81,6 @@ export class Tab extends React.Component<Props> {
   }
 
   render() {
-    return (
-      <SReactTab {...this.props}>{this.props.title}</SReactTab>
-    );
+    return <SReactTab {...this.props}>{this.props.title}</SReactTab>;
   }
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 // tslint:disable-next-line:max-line-length
 import { TabPanel as ReactTabPanel } from 'react-tabs';
 
-type Props = {
+export type Props = {
   /**
    * From theme provider
    *
@@ -19,10 +19,6 @@ export class TabPanel extends React.Component<Props> {
   }
 
   render() {
-    return (
-      <ReactTabPanel {...this.props}>
-        {this.props.children}
-      </ReactTabPanel>
-    );
+    return <ReactTabPanel {...this.props}>{this.props.children}</ReactTabPanel>;
   }
 }

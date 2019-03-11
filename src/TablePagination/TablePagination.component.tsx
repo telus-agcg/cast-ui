@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import SPaginationButton from './SPaginationButton';
 import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
 
-type Props = {
+export type Props = {
   /**
    * Specify the size of the buttons to use
    **/
@@ -63,7 +63,7 @@ const SDivPaginationSectionWrapper = styled.div`
   display: inline-block;
 `;
 
-class TablePagination extends React.Component<Props> {
+export class TablePagination extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 

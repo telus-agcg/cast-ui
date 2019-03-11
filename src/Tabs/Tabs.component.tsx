@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Tabs as ReactTabs } from 'react-tabs';
 
-type PropsThemeOnly = {
+export type PropsThemeOnly = {
   /**
    * From theme provider
    *
@@ -11,19 +11,19 @@ type PropsThemeOnly = {
   theme?: any;
 };
 
-type Props = PropsThemeOnly & {
+export type Props = PropsThemeOnly & {
   /**
-  * Specify the tab that should be open on initial render.
-  * This is a zero-based index, so first tab is 0, second tab is 1, ...
-  *
-  * @default null
-  **/
+   * Specify the tab that should be open on initial render.
+   * This is a zero-based index, so first tab is 0, second tab is 1, ...
+   *
+   * @default null
+   **/
   defaultIndex?: number;
   /**
-  * Function to fire when a tab page is selected
-  *
-  * @default 0
-  **/
+   * Function to fire when a tab page is selected
+   *
+   * @default 0
+   **/
   onSelect?: any;
 };
 

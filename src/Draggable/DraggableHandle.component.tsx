@@ -2,7 +2,7 @@ import * as React from 'react';
 import Icon from 'react-icons-kit';
 import { ic_view_headline as icViewHeadline } from 'react-icons-kit/md/ic_view_headline';
 
-type Props = {
+export type Props = {
   /** Activae Hover handle  */
   onMouseEnter?: Function;
   /** Deactivate Hover handle  */
@@ -38,7 +38,8 @@ type Props = {
 export const DraggableHandle: React.FunctionComponent<Props> = props => (
   <div
     onMouseEnter={() => props.onMouseEnter}
-    onMouseLeave={() => props.onMouseLeave}>
+    onMouseLeave={() => props.onMouseLeave}
+  >
     <Icon
       icon={icViewHeadline}
       {...props}
