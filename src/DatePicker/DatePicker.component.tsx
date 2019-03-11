@@ -4,7 +4,7 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { DayPickerInputProps } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
-import { Input } from '../';
+import { Input } from '../Input/Input.component';
 
 export type Props = Partial<DayPickerInputProps> & {
   /**
@@ -171,7 +171,6 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
     saturdays: { daysOfWeek: [6] },
     ...(selectedDays || [])[1],
   };
-  console.log('these props ', props, modifiers);
   return (
     <DayPickerInput
       format={props.format || 'YYYY/MM/DD'}
