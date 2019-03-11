@@ -17,6 +17,7 @@ export type Props = {
   data: any;
   columns: any;
   tableSize: string;
+  children?: any;
   /**
    * Specify if pagination controls should be shown
    *

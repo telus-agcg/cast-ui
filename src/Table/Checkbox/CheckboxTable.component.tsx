@@ -20,6 +20,7 @@ type Props = {
   columns: any;
   tableSize: string;
   keyField: string;
+  children?: any;
   /**
    * Specify if pagination controls should be shown
    *
