@@ -14,7 +14,7 @@ export type Props = TippyProps &
 export class Tooltip extends React.Component<Props> {
   contentIsString = () => {
     return typeof this.props.content === 'string';
-  };
+  }
   public render() {
     return (
       <Tippy isVisible={true} content={this.props.content} {...this.props}>

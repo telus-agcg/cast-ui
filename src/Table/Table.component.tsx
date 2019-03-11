@@ -1,3 +1,4 @@
+/* tslint:disable:max-line-length */
 import * as React from 'react';
 import styled from 'styled-components';
 import ReactTable from 'react-table';
@@ -120,7 +121,6 @@ export type Props = {
   theme?: any;
 };
 
-/* tslint:disable:max-line-length */
 const SWrapperDiv = styled.div`
   background: ${(props: any) => props.theme.input.background};
   border: 0;

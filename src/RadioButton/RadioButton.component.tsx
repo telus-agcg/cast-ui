@@ -103,7 +103,7 @@ const SInput = styled.input`
 export class RadioButton extends React.Component<Props> {
   handleChange = (evt: any) => {
     this.props.onChange(this.props.value, this.props.name, evt);
-  };
+  }
 
   render() {
     return (
