@@ -31,6 +31,7 @@ storiesOf('Table', module).add(
         resizable={boolean('resizable', true)}
         sortable={boolean('sortable', true)}
         multiSort={boolean('multiSort', true)}
+        sizable={boolean('sizable', true)}
       />
       </div>
     );

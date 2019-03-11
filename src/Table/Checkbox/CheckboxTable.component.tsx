@@ -11,8 +11,6 @@ import { ic_format_align_justify as IconCondensed }
   from 'react-icons-kit/md/ic_format_align_justify';
 import { ic_view_headline as IconMedium }
   from 'react-icons-kit/md/ic_view_headline';
-import { threeHorizontal as IconMore } from 'react-icons-kit/entypo/threeHorizontal';
-import Popover from '../../Popover/Popover.component';
 import TablePagination from '../../TablePagination/TablePagination.component';
 
 type Props = Partial<TableProps> & {
@@ -118,6 +116,12 @@ type Props = Partial<TableProps> & {
    **/
   striped?: boolean;
   /**
+   * Specify if table size is adjustable
+   *
+   * @default true
+   **/
+  sizable?: boolean;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -218,10 +222,6 @@ const SWrapperDiv = styled.div`
 
 `;
 
-const RowOptions = (props: any) => (
-  <div>Add controls here</div>
-);
-
 const SelectTable = selectTableHOC(ReactTable);
 
 const initialState = { tableSize: 'md', striped: false, columns: [] };
@@ -235,63 +235,26 @@ class CheckboxTable extends React.Component<Props> {
     super(props);
   }
 
-  componentDidMount() {
-    this.addControlColumn(this.props);
-  }
-
   changeTableSize(size: string) {
     this.setState({
       tableSize: size,
     });
   }
 
-  addControlColumn(props: Props) {
-    const controlColumn =
-      {
-        Header: () => <span></span>,
-        accessor: 'Id',
-        Cell: (row: any) => (
-          <Popover
-            content={<RowOptions />}
-            isVisible={false}
-            arrow
-            size="regular"
-            placement="top"
-            trigger="mouseenter click focus"
-          >
-            <Icon icon={IconMore} size={24} />
-          </Popover>
-        ),
-      };
-
-    const data = props.columns;
-
-    const newColumns = [];
-    for (const record of data) {
-      const newRecord = { ...record };
-      newColumns.push(newRecord);
-    }
-
-    newColumns.push(controlColumn);
-
-    this.setState({
-      columns: newColumns,
-    });
-  }
-
   render() {
     return (
       <SWrapperDiv {...this.props} tableSize={this.state.tableSize} >
-        <div className="table-size-controls">
-          <Icon icon={IconLarge} size={24} onClick={this.changeTableSize.bind(this, 'lg')} className={(this.state.tableSize === 'lg' ? 'selected' : '')} />
-          <Icon icon={IconMedium} size={30} onClick={this.changeTableSize.bind(this, 'md')} className={(this.state.tableSize === 'md' ? 'selected' : '')} />
-          <Icon icon={IconCondensed} size={24} onClick={this.changeTableSize.bind(this, 'sm')} className={(this.state.tableSize === 'sm' ? 'selected' : '')} />
-        </div>
+        {this.props.sizable &&
+          <div className="table-size-controls">
+            <Icon icon={IconLarge} size={24} onClick={this.changeTableSize.bind(this, 'lg')} className={(this.state.tableSize === 'lg' ? 'selected' : '')} />
+            <Icon icon={IconMedium} size={30} onClick={this.changeTableSize.bind(this, 'md')} className={(this.state.tableSize === 'md' ? 'selected' : '')} />
+            <Icon icon={IconCondensed} size={24} onClick={this.changeTableSize.bind(this, 'sm')} className={(this.state.tableSize === 'sm' ? 'selected' : '')} />
+          </div>
+        }
         <SelectTable
           {...this.props}
           className={`-highlight  + ${this.state.striped ? '-striped ' : ''}`}
           PaginationComponent={TablePagination}
-          columns={this.state.columns}
           nextText="Next >"
           previousText="< Previous"
           selectType="checkbox"
