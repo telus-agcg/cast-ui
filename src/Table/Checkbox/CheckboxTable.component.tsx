@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import ReactTable from 'react-table';
+import ReactTable, { TableProps } from 'react-table';
 import 'react-table/react-table.css';
 
 import selectTableHOC from 'react-table/lib/hoc/selectTable';
@@ -15,7 +15,7 @@ import { threeHorizontal as IconMore } from 'react-icons-kit/entypo/threeHorizon
 import Popover from '../../Popover/Popover.component';
 import TablePagination from '../../TablePagination/TablePagination.component';
 
-type Props = {
+type Props = Partial<TableProps> & {
   data: any;
   columns: any;
   tableSize: string;
@@ -288,13 +288,13 @@ class CheckboxTable extends React.Component<Props> {
           <Icon icon={IconCondensed} size={24} onClick={this.changeTableSize.bind(this, 'sm')} className={(this.state.tableSize === 'sm' ? 'selected' : '')} />
         </div>
         <SelectTable
+          {...this.props}
           className={`-highlight  + ${this.state.striped ? '-striped ' : ''}`}
           PaginationComponent={TablePagination}
           columns={this.state.columns}
           nextText="Next >"
           previousText="< Previous"
           selectType="checkbox"
-          {...this.props}
         />
       </SWrapperDiv>
     );

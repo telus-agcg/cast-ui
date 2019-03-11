@@ -1,7 +1,7 @@
 /* tslint:disable:max-line-length */
 import * as React from 'react';
 import styled from 'styled-components';
-import ReactTable from 'react-table';
+import ReactTable, { TableProps } from 'react-table';
 
 import { Icon } from 'react-icons-kit';
 import { bars as IconLarge } from 'react-icons-kit/fa/bars';
@@ -13,7 +13,7 @@ import Popover from '../Popover/Popover.component';
 import TablePagination from '../TablePagination/TablePagination.component';
 import 'react-table/react-table.css';
 
-export type Props = {
+type Props = Partial<TableProps> & {
   data: any;
   columns: any;
   tableSize: string;
@@ -293,12 +293,12 @@ export class Table extends React.Component<Props> {
           />
         </div>
         <ReactTable
+          {...this.props}
           className={`-highlight  + ${this.state.striped ? '-striped ' : ''}`}
           PaginationComponent={TablePagination}
           columns={this.state.columns}
           nextText="Next >"
           previousText="< Previous"
-          {...this.props}
         />
       </SWrapperDiv>
     );
