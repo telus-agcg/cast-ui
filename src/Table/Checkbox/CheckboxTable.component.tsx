@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import ReactTable from 'react-table';
-import TablePagination from '../TablePagination/TablePagination.component';
 import 'react-table/react-table.css';
 
 import selectTableHOC from 'react-table/lib/hoc/selectTable';
@@ -13,12 +12,14 @@ import { ic_format_align_justify as IconCondensed }
 import { ic_view_headline as IconMedium }
   from 'react-icons-kit/md/ic_view_headline';
 import { threeHorizontal as IconMore } from 'react-icons-kit/entypo/threeHorizontal';
-import Popover from '../Popover/Popover.component';
+import Popover from '../../Popover/Popover.component';
+import TablePagination from '../../TablePagination/TablePagination.component';
 
 type Props = {
   data: any;
   columns: any;
   tableSize: string;
+  keyField: string;
   /**
    * Specify if pagination controls should be shown
    *
@@ -110,11 +111,11 @@ type Props = {
    **/
   filterable?: boolean;
   /**
-   * Specify if grid data rows should be stripped
+   * Specify if grid data rows should be striped
    *
    * @default false
    **/
-  stripped?: boolean;
+  striped?: boolean;
   /**
    * From theme provider
    *
@@ -222,7 +223,7 @@ const RowOptions = (props: any) => (
 
 const SelectTable = selectTableHOC(ReactTable);
 
-const initialState = { tableSize: 'md', stripped: false, columns: [] };
+const initialState = { tableSize: 'md', striped: false, columns: [] };
 type State = Readonly<typeof initialState>;
 
 class CheckboxTable extends React.Component<Props> {
@@ -286,29 +287,13 @@ class CheckboxTable extends React.Component<Props> {
           <Icon icon={IconCondensed} size={24} onClick={this.changeTableSize.bind(this, 'sm')} className={(this.state.tableSize === 'sm' ? 'selected' : '')} />
         </div>
         <SelectTable
-          keyField="Id"
-          className={`-highlight  + ${this.state.stripped ? '-striped ' : ''}`}
+          className={`-highlight  + ${this.state.striped ? '-striped ' : ''}`}
           PaginationComponent={TablePagination}
-          data={this.props.data}
           columns={this.state.columns}
-          showPagination={this.props.showPagination}
-          showPaginationTop={this.props.showPaginationTop}
-          showPaginationBottom={this.props.showPaginationBottom}
-          showPageSizeOptions={this.props.showPageSizeOptions}
-          pageSizeOptions={this.props.pageSizeOptions}
-          defaultPageSize={this.props.defaultPageSize}
-          showPageJump={this.props.showPageJump}
-          collapseOnSortingChange={this.props.collapseOnSortingChange}
-          collapseOnPageChange={this.props.collapseOnPageChange}
-          collapseOnDataChange={this.props.collapseOnDataChange}
-          freezeWhenExpanded={this.props.freezeWhenExpanded}
-          sortable={this.props.sortable}
-          multiSort={this.props.multiSort}
-          resizable={this.props.resizable}
-          filterable={this.props.filterable}
           nextText="Next >"
           previousText="< Previous"
           selectType="checkbox"
+          {...this.props}
         />
       </SWrapperDiv>
     );

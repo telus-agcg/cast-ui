@@ -2,15 +2,16 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import ReactTable from 'react-table';
-import TablePagination from '../TablePagination/TablePagination.component';
-import 'react-table/react-table.css';
 
 import { Icon } from 'react-icons-kit';
 import { bars as IconLarge } from 'react-icons-kit/fa/bars';
 import { ic_format_align_justify as IconCondensed } from 'react-icons-kit/md/ic_format_align_justify';
 import { ic_view_headline as IconMedium } from 'react-icons-kit/md/ic_view_headline';
 import { threeHorizontal as IconMore } from 'react-icons-kit/entypo/threeHorizontal';
+
 import Popover from '../Popover/Popover.component';
+import TablePagination from '../TablePagination/TablePagination.component';
+import 'react-table/react-table.css';
 
 export type Props = {
   data: any;
@@ -107,11 +108,11 @@ export type Props = {
    **/
   filterable?: boolean;
   /**
-   * Specify if grid data rows should be stripped
+   * Specify if grid data rows should be striped
    *
    * @default false
    **/
-  stripped?: boolean;
+  striped?: boolean;
   /**
    * From theme provider
    *
@@ -214,7 +215,7 @@ const SWrapperDiv = styled.div`
 
 const RowOptions = (props: any) => <div>Add controls here</div>;
 
-const initialState = { tableSize: 'md', stripped: false, columns: [] };
+const initialState = { tableSize: 'md', striped: false, columns: [] };
 type State = Readonly<typeof initialState>;
 
 export class Table extends React.Component<Props> {
@@ -291,27 +292,12 @@ export class Table extends React.Component<Props> {
           />
         </div>
         <ReactTable
-          className={`-highlight  + ${this.state.stripped ? '-striped ' : ''}`}
+          className={`-highlight  + ${this.state.striped ? '-striped ' : ''}`}
           PaginationComponent={TablePagination}
-          data={this.props.data}
           columns={this.state.columns}
-          showPagination={this.props.showPagination}
-          showPaginationTop={this.props.showPaginationTop}
-          showPaginationBottom={this.props.showPaginationBottom}
-          showPageSizeOptions={this.props.showPageSizeOptions}
-          pageSizeOptions={this.props.pageSizeOptions}
-          defaultPageSize={this.props.defaultPageSize}
-          showPageJump={this.props.showPageJump}
-          collapseOnSortingChange={this.props.collapseOnSortingChange}
-          collapseOnPageChange={this.props.collapseOnPageChange}
-          collapseOnDataChange={this.props.collapseOnDataChange}
-          freezeWhenExpanded={this.props.freezeWhenExpanded}
-          sortable={this.props.sortable}
-          multiSort={this.props.multiSort}
-          resizable={this.props.resizable}
-          filterable={this.props.filterable}
           nextText="Next >"
           previousText="< Previous"
+          {...this.props}
         />
       </SWrapperDiv>
     );
