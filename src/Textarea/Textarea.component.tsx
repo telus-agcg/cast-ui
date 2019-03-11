@@ -99,7 +99,9 @@ const SErrorDiv = styled.div`
   font-style: italic;
 `;
 
-export const Textarea: React.FunctionComponent<Props> = textareaProps => {
+export const Textarea: React.FunctionComponent<Props> = ({
+  ...textareaProps
+}) => {
   const errorId = textareaProps.invalid
     ? `${textareaProps.id}-error-msg`
     : undefined;
