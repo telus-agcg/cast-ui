@@ -70,7 +70,7 @@ const SItemLeftContent = styled.div`
       } / 2)`};
   }
   &:hover {
-    background-color: ${(props: Props) => props.theme.colors.panelBackground};
+    background-color: ${(props: Props) => props.theme.colors.lightBackground};
     .itemHandle {
       color: ${(props: any) =>
         props.itemDraggable
