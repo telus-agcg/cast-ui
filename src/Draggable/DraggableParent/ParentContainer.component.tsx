@@ -52,7 +52,7 @@ const SDraggableParent = styled.div`
     props.theme.common[props.guttersize!].borderRadius};
   background-color: ${(props: Props) =>
     props.parentActive
-      ? props.theme.colors.panelBackground
+      ? props.theme.colors.lightBackground
       : props.theme.colors.white};
   .parentHandle {
     cursor: ${(props: Props) => (props.draggable ? 'grab' : 'not-allowed')};
