@@ -2,7 +2,7 @@ import * as React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
 
-type Props = {
+export type Props = {
   /**
    * From theme provider
    *
@@ -60,20 +60,15 @@ type Props = {
 
 const SDiv = styled.div`
   background: ${(props: Props) => props.theme.input.background}
-  border: 1px solid ${(props: Props) =>
-    props.theme.input.borderColor};
+  border: 1px solid ${(props: Props) => props.theme.input.borderColor};
   border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize].borderRadius};
-  padding: ${(props: Props) =>
-    props.theme.common[props.inputSize].padding}
-  font-family: ${(props: Props) =>
-    props.theme.typography.fontFamily};
-  font-size: ${(props: Props) =>
-    props.theme.common[props.inputSize].fontSize}
+  padding: ${(props: Props) => props.theme.common[props.inputSize].padding}
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.common[props.inputSize].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
-    background: ${(props: Props) =>
-      props.theme.input.backgroundDisabled};
+    background: ${(props: Props) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
   }
   .react-select-component > div {
@@ -88,7 +83,7 @@ const SErrorDiv = styled.div`
   padding: ${(props: any) => props.theme.validation.padding};
 `;
 
-class CustomSelect extends React.Component<Props> {
+export class CustomSelect extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }

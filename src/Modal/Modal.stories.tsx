@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
-import Modal from './Modal.component';
+import { Modal } from '../';
 
 storiesOf('Modal', module).add(
   'Modal',

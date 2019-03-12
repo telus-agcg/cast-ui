@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { Button } from '../Button/Button.component';
-import Popover from './Popover.component';
+import { Popover, Button } from '../';
 import { boolean, select } from '@storybook/addon-knobs';
 
 const MyComponent = (props: any) => (

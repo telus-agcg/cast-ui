@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableProps } from './defaultProps';
 
-type Props = Partial<DraggableProps> & {
+export type Props = Partial<DraggableProps> & {
   /**
    * Set Icon size
    *

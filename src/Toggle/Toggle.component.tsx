@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-type Props = {
+export type Props = {
   /**
    * Specify the ID of the individual toggle
    *
@@ -130,7 +130,7 @@ const SDiv = styled.div`
   }
 `;
 
-class Toggle extends React.Component<Props> {
+export class Toggle extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }

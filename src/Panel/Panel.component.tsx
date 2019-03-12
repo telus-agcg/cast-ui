@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import PanelHeader from './PanelHeader.component';
 
-type Props = {
+export type Props = {
   /**
    * The content of the panel
    *
@@ -185,7 +185,8 @@ export class Panel extends React.Component<Props, State> {
           noPadding={this.props.noPadding}
           isCollapsed={this.localIsCollapsed}
           ref={this.bodyRef}
-          theme={this.props.theme}>
+          theme={this.props.theme}
+        >
           {this.props.children}
         </PanelBody>
       </PanelWrapper>

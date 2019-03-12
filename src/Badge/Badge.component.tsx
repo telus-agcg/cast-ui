@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-type Props = {
+export type Props = {
   /**
    * Select Badge Size
    *
@@ -23,8 +23,10 @@ type Props = {
 };
 
 const SBadge = styled.div`
-  background: ${(props: Props) => props.theme.styles[props.badgeStyle].badgeBackground};
-  border-radius: ${(props: Props) => props.theme.badge[props.badgeSize].borderRadius};
+  background: ${(props: Props) =>
+    props.theme.styles[props.badgeStyle].badgeBackground};
+  border-radius: ${(props: Props) =>
+    props.theme.badge[props.badgeSize].borderRadius};
   color: ${(props: Props) => props.theme.styles[props.badgeStyle].badgeColor};
   display: inline-block;
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
@@ -39,11 +41,7 @@ export const Badge: React.FunctionComponent<Props> = ({
   badgeStyle = 'primary',
   theme,
 }) => (
-  <SBadge
-    badgeSize={badgeSize}
-    badgeStyle={badgeStyle}
-    theme={theme}
-  >
+  <SBadge badgeSize={badgeSize} badgeStyle={badgeStyle} theme={theme}>
     {children}
   </SBadge>
 );

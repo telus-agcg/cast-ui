@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { InputGroup } from './InputGroup.component';
-import { Input } from '../Input/Input.component';
+import { InputGroup, Input } from '../';
 import { text } from '@storybook/addon-knobs';
 
 storiesOf('InputGroup', module).add(

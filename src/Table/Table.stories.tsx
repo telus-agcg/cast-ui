@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, number, select } from '@storybook/addon-knobs/react';
-import Table from './Table.component';
+import { Table } from '../';
 import * as SampleData from './sampleData.json';
 import * as ColumnDefs from './sampleColumnDefs.json';
 

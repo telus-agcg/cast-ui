@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-type Props = {
+export type Props = {
   /**
    * Specify the ID of the individual checkbox
    *
@@ -93,25 +93,23 @@ const SInput = styled.input`
       padding: 2px;
       text-align: center;
       position: absolute;
-      height:  ${(props: Props) =>
-    props.cbSize === 'lg' ? '8px' : '6px'};
+      height:  ${(props: Props) => (props.cbSize === 'lg' ? '8px' : '6px')};
       border-style: solid;
-      border-color: ${(props: Props) =>
-        props.theme.styles.primary.borderColor};
+      border-color: ${(props: Props) => props.theme.styles.primary.borderColor};
       border-width: ${(props: Props) =>
-  props.cbSize === 'lg' ? '0 4px 4px 0' : '0 3px 3px 0'};
+        props.cbSize === 'lg' ? '0 4px 4px 0' : '0 3px 3px 0'};
       transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       margin-left: ${(props: Props) =>
-    props.cbSize === 'lg' ? '6.5px' : '6px'};
+        props.cbSize === 'lg' ? '6.5px' : '6px'};
     }
     &:checked&:disabled + label:after {
       opacity: 0.5;
     }
 `;
 
-class Checkbox extends React.Component<Props> {
+export class Checkbox extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }

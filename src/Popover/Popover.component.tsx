@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import Tippy, { TippyProps } from '@tippy.js/react';
 import 'tippy.js/dist/tippy.css';
 
-type Props = TippyProps & {
+export type Props = TippyProps & {
   /** the content of the Popover  */
   content: JSX.Element | React.Component | string;
   /** Whether to show an pointer on the popover
@@ -97,7 +97,7 @@ const CastTheme = createGlobalStyle`
   }
 `;
 
-class Popover extends React.Component<Props> {
+export class Popover extends React.Component<Props> {
   public render() {
     const { arrow } = this.props;
     const withArrowDistance = 10;
@@ -113,7 +113,8 @@ class Popover extends React.Component<Props> {
           isVisible={true}
           content={this.props.content}
           distance={this.props.distance || distance}
-          {...this.props}>
+          {...this.props}
+        >
           {this.props.children}
         </Tippy>
       </React.Fragment>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 type ButtonGroupRole = 'group' | 'toolbar';
 type ButtonGroupMode = 'radio' | 'checkbox';
 
-type Props = {
+export type Props = {
   /**
    * Specify role (group or toolbar)
    *
@@ -26,15 +26,15 @@ type Props = {
 };
 
 const ButtonGroupWrapper = styled.div`
-overflow: hidden;
-font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  overflow: hidden;
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
 `;
 
 type State = {
   SelectedValues: number[];
 };
 
-class ButtonGroup extends React.Component<Props> {
+export class ButtonGroup extends React.Component<Props> {
   static Header: React.Component;
   static Body: React.Component;
   state: State;
@@ -52,7 +52,7 @@ class ButtonGroup extends React.Component<Props> {
       const newArray = [key];
       this.setState({ SelectedValues: newArray });
     } else {
-      const myClonedArray  = Object.assign([], this.state.SelectedValues);
+      const myClonedArray = Object.assign([], this.state.SelectedValues);
       const index = myClonedArray.indexOf(key);
       if (index < 0) {
         myClonedArray.push(key);
@@ -68,12 +68,16 @@ class ButtonGroup extends React.Component<Props> {
   }
 
   renderChildren() {
-    return React.Children.map(this.props.children, (child: React.ReactElement<any>) => {
-      return React.cloneElement(child, {
-        onClick: () => this.onBtnClick(child.props.value, child.props.onClick),
-        selected: this.state.SelectedValues.includes(child.props.value),
-      });
-    });
+    return React.Children.map(
+      this.props.children,
+      (child: React.ReactElement<any>) => {
+        return React.cloneElement(child, {
+          onClick: () =>
+            this.onBtnClick(child.props.value, child.props.onClick),
+          selected: this.state.SelectedValues.includes(child.props.value),
+        });
+      },
+    );
   }
 
   render() {

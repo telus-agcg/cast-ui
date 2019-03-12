@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Icon from 'react-icons-kit';
 import { ic_check as icCheck } from 'react-icons-kit/md/ic_check';
 
-type Props = {
+export type Props = {
   /**
    * Set the className option
    *
@@ -185,7 +185,8 @@ export class CopyToClipboard extends React.Component<Props> {
         background={background}
         fullWidth={fullWidth}
         copied={copied}
-        theme={theme}>
+        theme={theme}
+      >
         <div
           ref={this.copyContainerRef}
           onClick={() =>
@@ -194,7 +195,8 @@ export class CopyToClipboard extends React.Component<Props> {
               this.copySuccessful,
             )
           }
-          className={`copy-container ${copyContainerClass}`}>
+          className={`copy-container ${copyContainerClass}`}
+        >
           {this.unescapeHTML(copyContent)}
         </div>
         {includeCopyButton && (
@@ -206,7 +208,8 @@ export class CopyToClipboard extends React.Component<Props> {
               )
             }
             type="button"
-            className={`copy-button ${copyButtonClass}`}>
+            className={`copy-button ${copyButtonClass}`}
+          >
             {!copied && copyButtonContent}
             {copied && copyButtonSuccessContent}
           </button>

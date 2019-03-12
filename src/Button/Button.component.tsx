@@ -79,7 +79,8 @@ export const Button: React.FunctionComponent<Props> = ({
     theme={theme}
     disabled={disabled}
     selected={selected}
-    onClick={!disabled ? onClick : noop}>
+    onClick={!disabled ? onClick : noop}
+  >
     {children}
   </SButton>
 );

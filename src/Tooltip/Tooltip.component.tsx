@@ -4,14 +4,14 @@ import * as React from 'react';
 import Tippy, { TippyProps } from '@tippy.js/react';
 import 'tippy.js/dist/tippy.css';
 
-type Props = TippyProps &
+export type Props = TippyProps &
   Partial<{
     children: any;
     usePointer?: boolean;
     theme: any;
   }>;
 
-class Tooltip extends React.Component<Props> {
+export class Tooltip extends React.Component<Props> {
   contentIsString = () => {
     return typeof this.props.content === 'string';
   }
