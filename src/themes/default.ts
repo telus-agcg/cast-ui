@@ -459,4 +459,8 @@ export const defaultTheme = {
       margin: '0 4px',
     },
   },
+  navbar: {
+    height: '60px',
+    padding: '0 32px ',
+  },
 };
