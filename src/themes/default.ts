@@ -465,5 +465,6 @@ export const defaultTheme = {
     padding: '0 32px ',
     borderTop: '',
     borderBottom: '',
+    color: defaultColors.primary,
   },
 };
