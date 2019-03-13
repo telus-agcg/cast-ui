@@ -178,6 +178,20 @@ export const defaultTheme = {
       fontWeight: '300',
       fontSize: '27px',
     },
+    sectionHeader: {
+      fontWeight: '500',
+      fontSize: '16px',
+      lineHeight: '1px',
+      color: '#8D9599',
+    },
+    display: {
+      fontWeight: '400',
+      fontSize: '37px',
+    },
+    title: {
+      fontWeight: '500',
+      fontSize: '20px',
+    },
   },
   input: {
     background: defaultColors.white,
