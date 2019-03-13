@@ -181,8 +181,9 @@ export const defaultTheme = {
     sectionHeader: {
       fontWeight: '500',
       fontSize: '16px',
-      lineHeight: '1px',
-      color: '#8D9599',
+      borderWidth: '1px',
+      borderColor: '#8D9599',
+      borderStyle: 'solid',
     },
     display: {
       fontWeight: '400',
