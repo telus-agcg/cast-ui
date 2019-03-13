@@ -459,4 +459,12 @@ export const defaultTheme = {
       margin: '0 4px',
     },
   },
+  navbar: {
+    height: '60px',
+    background: defaultColors.white,
+    padding: '0 32px ',
+    borderTop: '',
+    borderBottom: '',
+    color: defaultColors.primary,
+  },
 };

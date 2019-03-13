@@ -1,125 +1,19 @@
 /* tslint:disable:max-line-length */
 import * as React from 'react';
 import styled from 'styled-components';
-import ReactTable from 'react-table';
-import TablePagination from '../TablePagination/TablePagination.component';
-import 'react-table/react-table.css';
-import selectTableHOC from 'react-table/lib/hoc/selectTable';
+import ReactTable, { TableProps } from 'react-table';
 
 import { Icon } from 'react-icons-kit';
 import { bars as IconLarge } from 'react-icons-kit/fa/bars';
-import { ic_format_align_justify as IconCondensed } from 'react-icons-kit/md/ic_format_align_justify';
-import { ic_view_headline as IconMedium } from 'react-icons-kit/md/ic_view_headline';
-import { threeHorizontal as IconMore } from 'react-icons-kit/entypo/threeHorizontal';
-import Popover from '../Popover/Popover.component';
+import { ic_format_align_justify as IconCondensed }
+  from 'react-icons-kit/md/ic_format_align_justify';
+import { ic_view_headline as IconMedium }
+  from 'react-icons-kit/md/ic_view_headline';
+import TablePagination from '../TablePagination/TablePagination.component';
+import 'react-table/react-table.css';
+import { castTableProps } from './castTableProps';
 
-export type Props = {
-  data: any;
-  columns: any;
-  tableSize: string;
-  /**
-   * Specify if pagination controls should be shown
-   *
-   * @default true
-   **/
-  showPagination?: boolean;
-  /**
-   * Specify if pagination controls should be shown at the top of the table
-   *
-   * @default false
-   **/
-  showPaginationTop?: boolean;
-  /**
-   * Specify if pagination controls should be shown at the bottom of the table
-   *
-   * @default true
-   **/
-  showPaginationBottom?: boolean;
-  /**
-   * Specify if the page size options dropdown should be shown
-   *
-   * @default true
-   **/
-  showPageSizeOptions?: boolean;
-  /**
-   * Specify the available page size options
-   *
-   * @default true
-   **/
-  pageSizeOptions?: number[];
-  /**
-   * Specify the default page size
-   *
-   * @default true
-   **/
-  defaultPageSize?: number;
-  /**
-   * Specify if the current page number should be editable
-   *
-   * @default true
-   **/
-  showPageJump?: boolean;
-  /**
-   * Specify if hierarchies should be collapsed on sorting change
-   *
-   * @default true
-   **/
-  collapseOnSortingChange?: boolean;
-  /**
-   * Specify if hierarchies should be collapsed on page change
-   *
-   * @default true
-   **/
-  collapseOnPageChange?: boolean;
-  /**
-   * Specify if hierarchies should be collapsed on data change
-   *
-   * @default true
-   **/
-  collapseOnDataChange?: boolean;
-  /**
-   * Specify if scrolling should be infinite
-   *
-   * @default true
-   **/
-  freezeWhenExpanded?: boolean;
-  /**
-   * Specify if the grid should be sortable
-   *
-   * @default true
-   **/
-  sortable?: boolean;
-  /**
-   * Specify if the grid should allow multi-column sorting
-   *
-   * @default true
-   **/
-  multiSort?: boolean;
-  /**
-   * Specify if grid columns should be resizable
-   *
-   * @default true
-   **/
-  resizable?: boolean;
-  /**
-   * Specify if grid data should be filterable
-   *
-   * @default true
-   **/
-  filterable?: boolean;
-  /**
-   * Specify if grid data rows should be stripped
-   *
-   * @default false
-   **/
-  stripped?: boolean;
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
-};
+type Props = Partial<TableProps> & castTableProps;
 
 const SWrapperDiv = styled.div`
   background: ${(props: any) => props.theme.input.background};
@@ -213,11 +107,7 @@ const SWrapperDiv = styled.div`
   }
 `;
 
-const RowOptions = (props: any) => <div>Add controls here</div>;
-
-const CheckboxTable = selectTableHOC(ReactTable);
-
-const initialState = { tableSize: 'md', stripped: false, columns: [] };
+const initialState = { tableSize: 'md', striped: false, columns: [] };
 type State = Readonly<typeof initialState>;
 
 export class Table extends React.Component<Props> {
@@ -227,52 +117,16 @@ export class Table extends React.Component<Props> {
     super(props);
   }
 
-  componentDidMount() {
-    this.addControlColumn(this.props);
-  }
-
   changeTableSize(size: string) {
     this.setState({
       tableSize: size,
     });
   }
 
-  addControlColumn(props: Props) {
-    const controlColumn = {
-      Header: () => <span />,
-      accessor: 'Id',
-      Cell: (row: any) => (
-        <Popover
-          content={<RowOptions />}
-          isVisible={false}
-          arrow
-          size="regular"
-          placement="top"
-          trigger="mouseenter click focus"
-        >
-          <Icon icon={IconMore} size={24} />
-        </Popover>
-      ),
-    };
-
-    const data = props.columns;
-
-    const newColumns = [];
-    for (const record of data) {
-      const newRecord = { ...record };
-      newColumns.push(newRecord);
-    }
-
-    newColumns.push(controlColumn);
-
-    this.setState({
-      columns: newColumns,
-    });
-  }
-
   render() {
     return (
-      <SWrapperDiv {...this.props} tableSize={this.state.tableSize}>
+      <SWrapperDiv {...this.props} tableSize={this.state.tableSize} >
+        {this.props.sizable &&
         <div className="table-size-controls">
           <Icon
             icon={IconLarge}
@@ -293,34 +147,15 @@ export class Table extends React.Component<Props> {
             className={this.state.tableSize === 'sm' ? 'selected' : ''}
           />
         </div>
-        <CheckboxTable
-          keyField="Id"
-          className={`-highlight  + ${this.state.stripped ? '-striped ' : ''}`}
+        }
+        <ReactTable
+          {...this.props}
+          className={`-highlight  + ${this.state.striped ? '-striped ' : ''}`}
           PaginationComponent={TablePagination}
-          data={this.props.data}
-          columns={this.state.columns}
-          showPagination={this.props.showPagination}
-          showPaginationTop={this.props.showPaginationTop}
-          showPaginationBottom={this.props.showPaginationBottom}
-          showPageSizeOptions={this.props.showPageSizeOptions}
-          pageSizeOptions={this.props.pageSizeOptions}
-          defaultPageSize={this.props.defaultPageSize}
-          showPageJump={this.props.showPageJump}
-          collapseOnSortingChange={this.props.collapseOnSortingChange}
-          collapseOnPageChange={this.props.collapseOnPageChange}
-          collapseOnDataChange={this.props.collapseOnDataChange}
-          freezeWhenExpanded={this.props.freezeWhenExpanded}
-          sortable={this.props.sortable}
-          multiSort={this.props.multiSort}
-          resizable={this.props.resizable}
-          filterable={this.props.filterable}
           nextText="Next >"
           previousText="< Previous"
-          selectType="checkbox"
         />
       </SWrapperDiv>
     );
   }
 }
-
-export default Table;
