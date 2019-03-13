@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Headline } from './Headline.component';
 
-storiesOf('Headline', module).add(
+storiesOf('Typography', module).add(
   'Headline',
   () => (
     <Headline>27px Light</Headline>
