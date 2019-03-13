@@ -23,6 +23,8 @@ const SSectionHeader = styled.h1`
   font-size: ${(props: Props) => props.theme.typography.sectionHeader.fontSize};
   color: ${(props: Props) => props.theme.typography.sectionHeader.color}
   line-height: ${(props: Props) => props.theme.typography.sectionHeader.lineHeight}
+  border-bottom: 2px solid ${(props: Props) => props.theme.typography.sectionHeader.color};
+  padding-bottom: 1em;
 `;
 
 export const SectionHeader: React.FunctionComponent<Props> = ({
