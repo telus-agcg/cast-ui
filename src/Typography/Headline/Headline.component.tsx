@@ -22,6 +22,7 @@ const SHeadline = styled.h2`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.headline.fontSize};
   color: ${(props: Props) => props.theme.colors.primary}
+  line-height: ${(props: Props) => props.theme.typography.headline.lineHeight};
 `;
 
 export const Headline: React.FunctionComponent<Props> = ({

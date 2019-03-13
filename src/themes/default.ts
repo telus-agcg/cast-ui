@@ -174,10 +174,12 @@ export const defaultTheme = {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     fontSize: '14px',
     fontWeight: '400',
+    lineHeight: '160%',
     color: defaultColors.primary,
     headline: {
       fontWeight: '300',
       fontSize: '27px',
+      lineHeight: '125%',
     },
     sectionHeader: {
       fontWeight: '500',
@@ -189,14 +191,17 @@ export const defaultTheme = {
     display: {
       fontWeight: '400',
       fontSize: '37px',
+      lineHeight: '120%',
     },
     title: {
       fontWeight: '500',
       fontSize: '20px',
+      lineHeight: '130%',
     },
     subTitle: {
       fontWeight: '300',
       fontSize: '18px',
+      lineHeight: '135%',
     },
     caption: {
       fontWeight: '300',
