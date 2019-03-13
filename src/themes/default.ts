@@ -172,7 +172,8 @@ export const defaultTheme = {
   },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
-    fontSize: '16px',
+    fontSize: '14px',
+    fontWeight: '400',
     color: defaultColors.primary,
     headline: {
       fontWeight: '300',
@@ -192,6 +193,14 @@ export const defaultTheme = {
     title: {
       fontWeight: '500',
       fontSize: '20px',
+    },
+    subTitle: {
+      fontWeight: '300',
+      fontSize: '18px',
+    },
+    caption: {
+      fontWeight: '300',
+      fontSize: '12px',
     },
   },
   input: {
