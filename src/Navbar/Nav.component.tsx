@@ -33,6 +33,8 @@ const SNav = styled.nav`
     props.right || props.center ? 'auto' : '0'};
   margin-right: ${(props: Props) =>
     props.left || props.center ? 'auto' : '0'};
+  display: flex;
+  align-items: center;
 `;
 
 export const Nav: React.FunctionComponent<Props> = ({ children, ...props }) => (

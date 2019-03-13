@@ -2,6 +2,11 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text } from '@storybook/addon-knobs/react';
 
+import Icon from 'react-icons-kit';
+import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
+import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
+import { info } from 'react-icons-kit/fa/info';
+
 import { Navbar, Nav } from '../';
 
 storiesOf('Navbar', module).add(
@@ -9,11 +14,26 @@ storiesOf('Navbar', module).add(
   () => (
     <Navbar
       background={text('background', 'lightBackground')}
-      height={text('height', '60px')}
+      height={text('height', '80px')}
+      borderTop={text('borderTop', '')}
+      borderBottom={text('borderBottom', '1px solid grey')}
     >
-      <Nav left>Lets see what we have left</Nav>
-      <Nav>Lets see what we have</Nav>
-      <Nav right>Lets see what we have right</Nav>
+      <Nav left>
+        <img
+          src="https://www.tkxs.com/hubfs/TKXS-brand/TKXS%20Official%20Logo%20(black).svg"
+          alt="TKXS"
+          style={{ width: '100px' }}
+        />
+        <h2 style={{ padding: '0 16px' }}>Cast UI</h2>
+      </Nav>
+      <Nav center>
+        <h3 style={{ padding: '0 16px' }}>Center Item</h3>
+        <h3 style={{ padding: '0 16px' }}>Center Item</h3>
+      </Nav>
+      <Nav right>
+        <h3 style={{ padding: '0 0 0 16px' }}>Right Item</h3>
+        <h3 style={{ padding: '0 0 0 16px' }}>Right Item</h3>
+      </Nav>
     </Navbar>
   ),
   {

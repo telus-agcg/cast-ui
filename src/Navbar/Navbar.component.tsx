@@ -24,7 +24,7 @@ export type Props = {
   /**
    * Adjust Navbar height.
    *
-   * @default '60px'
+   * @default '80px'
    **/
   height?: string;
   /**
@@ -40,6 +40,8 @@ const SNavbar = styled.div`
   padding: ${(props: Props) => props.theme.navbar.padding};
   background: ${(props: Props) =>
     props.theme.colors[props.background!] || props.background!.toString()};
+  border-top: ${(props: Props) => props.borderTop!.toString()};
+  border-bottom: ${(props: Props) => props.borderBottom!.toString()};
   display: flex;
   align-items: center;
 `;
