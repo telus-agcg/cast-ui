@@ -42,9 +42,13 @@ const SNavbar = styled.div`
   height: ${(props: Props) => props.height || props.theme.navbar.height};
   padding: ${(props: Props) => props.theme.navbar.padding};
   background: ${(props: Props) =>
-    props.theme.colors[props.background!] || props.background!.toString()};
-  border-top: ${(props: Props) => props.borderTop!.toString()};
-  border-bottom: ${(props: Props) => props.borderBottom!.toString()};
+    props.theme.colors[props.background!] ||
+    props.background!.toString() ||
+    props.theme.navbar.background};
+  border-top: ${(props: Props) =>
+    props.borderTop!.toString() || props.theme.navbar.borderTop};
+  border-bottom: ${(props: Props) =>
+    props.borderBottom!.toString() || props.theme.navbar.borderBottom};
   display: flex;
   align-items: center;
 `;
@@ -55,7 +59,7 @@ export const Navbar: React.FunctionComponent<Props> = ({
 }) => <SNavbar {...props}>{children}</SNavbar>;
 
 Navbar.defaultProps = {
-  background: 'white',
+  background: '',
   borderTop: '',
   borderBottom: '',
 };

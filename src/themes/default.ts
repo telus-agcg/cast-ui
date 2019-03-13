@@ -461,6 +461,9 @@ export const defaultTheme = {
   },
   navbar: {
     height: '60px',
+    background: defaultColors.white,
     padding: '0 32px ',
+    borderTop: '',
+    borderBottom: '',
   },
 };

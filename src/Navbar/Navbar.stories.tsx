@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { text } from '@storybook/addon-knobs/react';
 
 import Icon from 'react-icons-kit';
-// import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
-import { ic_insert_emoticon as icIE } from 'react-icons-kit/md/ic_insert_emoticon';
+import { userSecret } from 'react-icons-kit/fa/userSecret';
+// import { ic_insert_emoticon as icIE } from 'react-icons-kit/md/ic_insert_emoticon';
 import { Navbar, Nav } from '../';
 
 storiesOf('Navbar', module).add(
@@ -25,14 +25,13 @@ storiesOf('Navbar', module).add(
         <h2 style={{ padding: '0 16px' }}>Cast UI</h2>
       </Nav>
       <Nav center>
-        <h3 style={{ padding: '0 16px' }}>Center Item</h3>
-        <h3 style={{ padding: '0 16px' }}>Center Item</h3>
+        <h3 style={{ padding: '0 12px' }}>Center Item</h3>
+        <h3 style={{ padding: '0 12px' }}>Center Item</h3>
       </Nav>
       <Nav right>
         <h3 style={{ padding: '0 0 0 16px' }}>Right Item</h3>
         <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
-          user
-          <Icon icon={icIE} size={24} />
+          <Icon icon={userSecret} size={32} />
         </h3>
       </Nav>
     </Navbar>
@@ -42,7 +41,7 @@ storiesOf('Navbar', module).add(
       text: `
         ### Notes
 
-        This is a spinner
+        This is a navbar
         `,
     },
   },
