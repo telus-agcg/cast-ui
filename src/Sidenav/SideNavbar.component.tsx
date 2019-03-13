@@ -14,19 +14,25 @@ export type Props = {
    *
    * @default ''
    **/
-  borderTop?: string;
+  borderLeft?: string;
   /**
    * The shorthand string for setting element border-bottom
    *
    * @default ''
    **/
-  borderBottom?: string;
+  borderRight?: string;
   /**
-   * Adjust Navbar height.
+   * Adjust SideNavbar height.
+   *
+   * @default ''
+   **/
+  height?: string;
+  /**
+   * Adjust SideNavbar width.
    *
    * @default '80px'
    **/
-  height?: string;
+  width?: string;
   /**
    * From theme provider
    *
@@ -40,17 +46,25 @@ const SSideNavbar = styled.div`
   font-size: ${(props: Props) => props.theme.typography.fontSize};
   color: ${(props: Props) => props.theme.navbar.color};
   height: ${(props: Props) => props.height || props.theme.navbar.height};
+  width: ${(props: Props) => props.width || props.theme.navbar.width};
   padding: ${(props: Props) => props.theme.navbar.padding};
   background: ${(props: Props) =>
     props.theme.colors[props.background!] ||
     props.background!.toString() ||
     props.theme.navbar.background};
   border-top: ${(props: Props) =>
-    props.borderTop!.toString() || props.theme.navbar.borderTop};
+    props.borderLeft!.toString() || props.theme.navbar.borderLeft};
   border-bottom: ${(props: Props) =>
-    props.borderBottom!.toString() || props.theme.navbar.borderBottom};
-  display: flex;
-  align-items: center;
+    props.borderRight!.toString() || props.theme.navbar.borderRight};
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1006;
+  min-width: 64px;
+  -webkit-transition: min-width 0.15s;
+  -o-transition: min-width 0.15s;
+  transition: min-width 0.15s;
 `;
 
 export const SideNavbar: React.FunctionComponent<Props> = ({
@@ -60,6 +74,6 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
 
 SideNavbar.defaultProps = {
   background: '',
-  borderTop: '',
-  borderBottom: '',
+  borderLeft: '',
+  borderRight: '',
 };
