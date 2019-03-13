@@ -38,6 +38,8 @@ const SSideNav = styled.nav`
     props.top || props.center ? 'auto' : '0'};
   margin-top: ${(props: Props) =>
     props.bottom || props.center ? 'auto' : '0'};
+  display: flex;
+  flex-direction: column;
 `;
 
 export const SideNav: React.FunctionComponent<Props> = ({

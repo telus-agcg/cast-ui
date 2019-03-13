@@ -4,10 +4,10 @@ import { text } from '@storybook/addon-knobs/react';
 
 import Icon from 'react-icons-kit';
 import { userSecret } from 'react-icons-kit/fa/userSecret';
-import { SideNavbar, SideNav } from '../';
+import { SideNavbar, SideNav, SideNavItem } from '../';
 
-storiesOf('SideNavbar', module).add(
-  'SideNavbar',
+storiesOf('Sidenav', module).add(
+  'Sidenav',
   () => (
     <div style={{ height: '400px', position: 'relative' }}>
       <SideNavbar
@@ -18,14 +18,16 @@ storiesOf('SideNavbar', module).add(
         borderRight={text('borderRight', '1px solid grey')}
       >
         <SideNav top>
-          <img
-            src="https://www.tkxs.com/hubfs/TKXS-brand/TKXS%20Official%20Logo%20(black).svg"
-            alt="TKXS"
-            style={{ width: '60px' }}
-          />
-          <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
+          <SideNavItem>
+            <img
+              src="https://www.tkxs.com/hubfs/TKXS-brand/TKXS%20Official%20Logo%20(black).svg"
+              alt="TKXS"
+              style={{ width: '60px' }}
+            />
+          </SideNavItem>
+          <SideNavItem active>
             <Icon icon={userSecret} size={32} />
-          </h3>
+          </SideNavItem>
         </SideNav>
         <SideNav center>
           <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
