@@ -36,6 +36,9 @@ export type Props = {
 };
 
 const SNavbar = styled.div`
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.typography.fontSize};
+  color: ${(props: Props) => props.theme.typography.color};
   height: ${(props: Props) => props.height || props.theme.navbar.height};
   padding: ${(props: Props) => props.theme.navbar.padding};
   background: ${(props: Props) =>

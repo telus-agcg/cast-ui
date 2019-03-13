@@ -3,10 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { text } from '@storybook/addon-knobs/react';
 
 import Icon from 'react-icons-kit';
-import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
-import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
-import { info } from 'react-icons-kit/fa/info';
-
+// import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
+import { ic_insert_emoticon as icIE } from 'react-icons-kit/md/ic_insert_emoticon';
 import { Navbar, Nav } from '../';
 
 storiesOf('Navbar', module).add(
@@ -32,7 +30,10 @@ storiesOf('Navbar', module).add(
       </Nav>
       <Nav right>
         <h3 style={{ padding: '0 0 0 16px' }}>Right Item</h3>
-        <h3 style={{ padding: '0 0 0 16px' }}>Right Item</h3>
+        <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
+          user
+          <Icon icon={icIE} size={24} />
+        </h3>
       </Nav>
     </Navbar>
   ),
