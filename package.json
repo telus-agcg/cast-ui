@@ -37,7 +37,7 @@
     "react-table": "^6.8.6",
     "react-tabs": "^3.0.0",
     "tinycolor2": "^1.4.1",
-    "typeface-roboto": "^0.0.54"
+    "typeface-roboto": "0.0.54"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
