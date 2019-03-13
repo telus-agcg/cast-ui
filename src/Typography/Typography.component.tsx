@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Headline } from './Headline/Headline.component';
+import { SectionHeader } from './SectionHeader/SectionHeader.component';
 
 export type Props = {
   /**
@@ -15,5 +16,8 @@ export const Typography: React.FunctionComponent<Props> = ({
   children,
   theme,
 }) => (
-  <div><Headline>Text</Headline></div>
+  <div>
+    <Headline>27px Light</Headline>
+    <SectionHeader>Roboto 16 Medium, line: 1 px, #8D9599</SectionHeader>
+  </div>
 );
