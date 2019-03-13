@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, number, select } from '@storybook/addon-knobs/react';
-import { Table } from '../';
+
+import { Table } from './';
+
 import * as SampleData from './sampleData.json';
 import * as ColumnDefs from './sampleColumnDefs.json';
 
@@ -9,6 +11,7 @@ storiesOf('Table', module).add(
   'Table',
   () => {
     return (
+      <div>
       <Table
         data={SampleData.Customers}
         columns={ColumnDefs}
@@ -28,7 +31,9 @@ storiesOf('Table', module).add(
         resizable={boolean('resizable', true)}
         sortable={boolean('sortable', true)}
         multiSort={boolean('multiSort', true)}
+        sizable={boolean('sizable', true)}
       />
+      </div>
     );
   },
   {
