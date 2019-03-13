@@ -467,4 +467,13 @@ export const defaultTheme = {
     borderBottom: '',
     color: defaultColors.primary,
   },
+  sidenav: {
+    height: '',
+    width: '80px',
+    background: defaultColors.white,
+    padding: '32px ',
+    borderLeft: '',
+    borderRight: '',
+    color: defaultColors.primary,
+  },
 };

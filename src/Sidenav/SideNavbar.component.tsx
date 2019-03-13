@@ -44,18 +44,18 @@ export type Props = {
 const SSideNavbar = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.fontSize};
-  color: ${(props: Props) => props.theme.navbar.color};
-  height: ${(props: Props) => props.height || props.theme.navbar.height};
-  width: ${(props: Props) => props.width || props.theme.navbar.width};
-  padding: ${(props: Props) => props.theme.navbar.padding};
+  color: ${(props: Props) => props.theme.sidenav.color};
+  height: ${(props: Props) => props.height || props.theme.sidenav.height};
+  width: ${(props: Props) => props.width || props.theme.sidenav.width};
+  padding: ${(props: Props) => props.theme.sidenav.padding};
   background: ${(props: Props) =>
     props.theme.colors[props.background!] ||
     props.background!.toString() ||
-    props.theme.navbar.background};
-  border-top: ${(props: Props) =>
-    props.borderLeft!.toString() || props.theme.navbar.borderLeft};
-  border-bottom: ${(props: Props) =>
-    props.borderRight!.toString() || props.theme.navbar.borderRight};
+    props.theme.sidenav.background};
+  border-left: ${(props: Props) =>
+    props.borderLeft!.toString() || props.theme.sidenav.borderLeft};
+  border-right: ${(props: Props) =>
+    props.borderRight!.toString() || props.theme.sidenav.borderRight};
   position: absolute;
   top: 0;
   bottom: 0;
