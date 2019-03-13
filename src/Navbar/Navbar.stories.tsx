@@ -8,12 +8,12 @@ storiesOf('Navbar', module).add(
   'Navbar',
   () => (
     <Navbar
-      backgroundColor={text('backgroundColor', 'lightGray')}
+      background={text('background', 'lightBackground')}
       height={text('height', '60px')}
     >
-      <Nav left>Lets see what we have</Nav>
-      <Nav center>Lets see what we have</Nav>
-      <Nav right>Lets see what we have</Nav>
+      <Nav left>Lets see what we have left</Nav>
+      <Nav>Lets see what we have</Nav>
+      <Nav right>Lets see what we have right</Nav>
     </Navbar>
   ),
   {

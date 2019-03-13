@@ -3,11 +3,24 @@ import styled from 'styled-components';
 
 export type Props = {
   /**
-   * Set body background color. A CSS color code or a color defined in theme colors
+   * A color defined in theme colors or a CSS color code
+   * or shorthand string for setting element background
    *
-   * @default 'lightGray'
+   * @default 'white'
    **/
-  backgroundColor?: string;
+  background?: string;
+  /**
+   * The shorthand string for setting element border-top
+   *
+   * @default ''
+   **/
+  borderTop?: string;
+  /**
+   * The shorthand string for setting element border-bottom
+   *
+   * @default ''
+   **/
+  borderBottom?: string;
   /**
    * Adjust Navbar height.
    *
@@ -25,9 +38,8 @@ export type Props = {
 const SNavbar = styled.div`
   height: ${(props: Props) => props.height || props.theme.navbar.height};
   padding: ${(props: Props) => props.theme.navbar.padding};
-  background-color: ${(props: Props) =>
-    props.theme.colors[props.backgroundColor!] ||
-    props.backgroundColor!.toString()};
+  background: ${(props: Props) =>
+    props.theme.colors[props.background!] || props.background!.toString()};
   display: flex;
   align-items: center;
 `;
@@ -38,5 +50,7 @@ export const Navbar: React.FunctionComponent<Props> = ({
 }) => <SNavbar {...props}>{children}</SNavbar>;
 
 Navbar.defaultProps = {
-  backgroundColor: 'white',
+  background: 'white',
+  borderTop: '',
+  borderBottom: '',
 };
