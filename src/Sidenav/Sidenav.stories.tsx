@@ -17,20 +17,28 @@ storiesOf('SideNavbar', module).add(
         borderLeft={text('borderLeft', '')}
         borderRight={text('borderRight', '1px solid grey')}
       >
-        <SideNav left>
+        <SideNav top>
           <img
             src="https://www.tkxs.com/hubfs/TKXS-brand/TKXS%20Official%20Logo%20(black).svg"
             alt="TKXS"
-            style={{ width: '100px' }}
+            style={{ width: '60px' }}
           />
-          <h2 style={{ padding: '0 16px' }}>Cast UI</h2>
+          <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
+            <Icon icon={userSecret} size={32} />
+          </h3>
         </SideNav>
         <SideNav center>
-          <h3 style={{ padding: '0 12px' }}>Center Item</h3>
-          <h3 style={{ padding: '0 12px' }}>Center Item</h3>
+          <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
+            <Icon icon={userSecret} size={32} />
+          </h3>
+          <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
+            <Icon icon={userSecret} size={32} />
+          </h3>
         </SideNav>
-        <SideNav right>
-          <h3 style={{ padding: '0 0 0 16px' }}>Right Item</h3>
+        <SideNav bottom>
+          <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
+            <Icon icon={userSecret} size={32} />
+          </h3>
           <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
             <Icon icon={userSecret} size={32} />
           </h3>

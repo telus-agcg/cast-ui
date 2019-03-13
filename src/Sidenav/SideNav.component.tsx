@@ -3,23 +3,23 @@ import styled from 'styled-components';
 
 export type Props = {
   /**
-   * Float the SideNav container to the left of the SideNavbar
+   * Align the SideNav container at the top of the SideNavbar
    *
    * @default false
    **/
-  left?: boolean;
+  top?: boolean;
   /**
-   * Float the SideNav container to the center of the SideNavbar
+   * Align the SideNav container at the center of the SideNavbar
    *
    * @default false
    **/
   center?: boolean;
   /**
-   * Float the SideNav container to the right of the SideNavbar
+   * Align the SideNav container at the bottom of the SideNavbar
    *
    * @default false
    **/
-  right?: boolean;
+  bottom?: boolean;
   /**
    * From theme provider
    *
@@ -28,13 +28,16 @@ export type Props = {
   theme?: any;
 };
 const SSideNav = styled.nav`
+  float: left;
+  clear: both;
+  list-style: none;
+  width: 100%;
   height: auto;
-  margin-left: ${(props: Props) =>
-    props.right || props.center ? 'auto' : '0'};
-  margin-right: ${(props: Props) =>
-    props.left || props.center ? 'auto' : '0'};
-  display: flex;
-  align-items: center;
+  padding: ${(props: Props) => props.theme.sidenav.nav.padding};
+  margin-bottom: ${(props: Props) =>
+    props.top || props.center ? 'auto' : '0'};
+  margin-top: ${(props: Props) =>
+    props.bottom || props.center ? 'auto' : '0'};
 `;
 
 export const SideNav: React.FunctionComponent<Props> = ({
@@ -43,7 +46,7 @@ export const SideNav: React.FunctionComponent<Props> = ({
 }) => <SSideNav {...props}>{children}</SSideNav>;
 
 SideNav.defaultProps = {
-  left: false,
+  top: false,
   center: false,
-  right: false,
+  bottom: false,
 };

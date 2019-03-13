@@ -471,9 +471,15 @@ export const defaultTheme = {
     height: '',
     width: '80px',
     background: defaultColors.white,
-    padding: '32px ',
+    padding: '',
+    margin: '',
     borderLeft: '',
     borderRight: '',
     color: defaultColors.primary,
+    zIndex: 5,
+    nav: {
+      padding: '',
+      margin: '',
+    },
   },
 };

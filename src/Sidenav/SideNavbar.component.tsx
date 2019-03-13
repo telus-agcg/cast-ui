@@ -48,6 +48,8 @@ const SSideNavbar = styled.div`
   height: ${(props: Props) => props.height || props.theme.sidenav.height};
   width: ${(props: Props) => props.width || props.theme.sidenav.width};
   padding: ${(props: Props) => props.theme.sidenav.padding};
+  margin: ${(props: Props) => props.theme.sidenav.margin};
+  z-index: ${(props: Props) => props.theme.sidenav.zIndex};
   background: ${(props: Props) =>
     props.theme.colors[props.background!] ||
     props.background!.toString() ||
@@ -65,6 +67,8 @@ const SSideNavbar = styled.div`
   -webkit-transition: min-width 0.15s;
   -o-transition: min-width 0.15s;
   transition: min-width 0.15s;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const SideNavbar: React.FunctionComponent<Props> = ({
