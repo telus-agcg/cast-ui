@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import SideNavContext from './context';
+import { SideNavToggle } from '../';
 
 export type Props = {
   /**
@@ -77,15 +78,21 @@ const SSideNavbar = styled.div`
 `;
 
 export const SideNavbar: React.FunctionComponent<Props> = ({
+  isOpen,
   children,
   ...props
-}) => (
-  <SideNavContext.Provider value={{ baseProps: props }}>
-    <SSideNavbar role="side-nav-bar" {...props}>
-      {children}
-    </SSideNavbar>
-  </SideNavContext.Provider>
-);
+}) => {
+  const [toggle, setToggle] = React.useState(isOpen);
+  const newProps = { ...props, isOpen: toggle };
+  return (
+    <SideNavContext.Provider value={{ baseProps: newProps }}>
+      <SSideNavbar role="side-nav-bar" {...newProps}>
+        <SideNavToggle onClick={() => setToggle(!toggle)}>Open</SideNavToggle>
+        {children}
+      </SSideNavbar>
+    </SideNavContext.Provider>
+  );
+};
 
 SideNavbar.defaultProps = {
   isOpen: false,

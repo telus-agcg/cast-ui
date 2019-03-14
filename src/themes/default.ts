@@ -484,6 +484,12 @@ export const defaultTheme = {
       padding: '',
       margin: '',
     },
+    toggle: {
+      height: '80px',
+      cursor: 'pointer',
+      padding: '',
+      borderBottom: `1px solid ${defaultColors.lightBorder}`,
+    },
     navItem: {
       color: 'inherit',
       fontWeight: 'inherit',
