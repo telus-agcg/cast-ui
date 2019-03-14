@@ -1,12 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import SideNavContext, { useMergeWithBaseProps } from './context';
+import SideNavContext from './context';
 
 export type Props = {
-  /**
-   * Display/hide sidenav item text
-   **/
-  visible?: boolean;
   children?: any;
   /**
    * From theme provider

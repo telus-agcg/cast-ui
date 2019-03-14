@@ -50,7 +50,7 @@ export type Props = {
 
 const SSideNavbar = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.typography.fontSize};
+  font-size: ${(props: Props) => props.theme.sidenav.fontSize};
   color: ${(props: Props) => props.theme.sidenav.color};
   height: ${(props: Props) => props.height || props.theme.sidenav.height};
   padding: ${(props: Props) => props.theme.sidenav.padding};

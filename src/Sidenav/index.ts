@@ -1,10 +1,15 @@
 import { SideNavbar } from './SideNavbar.component';
+import { SideNavToggle } from './SideNavToggle.component';
 import { SideNav } from './SideNav.component';
 import { SideNavItem } from './SideNavItem.component';
 import { SideNavItemIcon } from './SideNavItemIcon.component';
 import { SideNavItemText } from './SideNavItemText.component';
 
 export { SideNavbar, Props as SideNavbarProps } from './SideNavbar.component';
+export {
+  SideNavToggle,
+  Props as SideNavToggleProps,
+} from './SideNavToggle.component';
 export { SideNav, Props as SideNavProps } from './SideNav.component';
 export {
   SideNavItem,
@@ -21,6 +26,7 @@ export {
 
 export default {
   SideNavbar,
+  SideNavToggle,
   SideNav,
   SideNavItem,
   SideNavItemIcon,

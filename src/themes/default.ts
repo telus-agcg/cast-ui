@@ -469,6 +469,7 @@ export const defaultTheme = {
     color: defaultColors.primary,
   },
   sidenav: {
+    fontSize: '14px',
     height: '',
     width: '50px',
     openWidth: '220px',
