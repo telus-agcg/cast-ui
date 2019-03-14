@@ -3,6 +3,12 @@ import styled from 'styled-components';
 
 export type Props = {
   /**
+   * Expand/collapse the sidebar
+   *
+   * @default false
+   **/
+  isOpen?: boolean;
+  /**
    * A color defined in theme colors or a CSS color code
    * or shorthand string for setting element background
    *
@@ -30,7 +36,7 @@ export type Props = {
   /**
    * Adjust SideNavbar width.
    *
-   * @default '64px'
+   * @default '50px'
    **/
   width?: string;
   /**
@@ -46,7 +52,6 @@ const SSideNavbar = styled.div`
   font-size: ${(props: Props) => props.theme.typography.fontSize};
   color: ${(props: Props) => props.theme.sidenav.color};
   height: ${(props: Props) => props.height || props.theme.sidenav.height};
-  width: ${(props: Props) => props.width || props.theme.sidenav.width};
   padding: ${(props: Props) => props.theme.sidenav.padding};
   margin: ${(props: Props) => props.theme.sidenav.margin};
   z-index: ${(props: Props) => props.theme.sidenav.zIndex};
@@ -62,10 +67,9 @@ const SSideNavbar = styled.div`
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: 1006;
-  min-width: 40px;
-  -webkit-transition: min-width 0.15s;
-  -o-transition: min-width 0.15s;
+  min-width: ${(props: Props) =>
+    props.width ||
+    (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
   transition: min-width 0.15s;
   display: flex;
   flex-direction: column;
@@ -77,6 +81,8 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
 }) => <SSideNavbar {...props}>{children}</SSideNavbar>;
 
 SideNavbar.defaultProps = {
+  isOpen: false,
+  width: '',
   background: '',
   borderLeft: '',
   borderRight: '',

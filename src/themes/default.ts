@@ -28,6 +28,7 @@ export const defaultColors = {
   disabledBorder: '#A3AAAD',
   disabledText: '#A3AAAD',
   lightBackground: '#F5F7F8',
+  lightBorder: '#DDDDDD',
 };
 
 export const defaultTheme = {
@@ -469,12 +470,13 @@ export const defaultTheme = {
   },
   sidenav: {
     height: '',
-    width: '80px',
+    width: '50px',
+    openWidth: '220px',
     background: defaultColors.white,
     padding: '',
     margin: '',
     borderLeft: '',
-    borderRight: '',
+    borderRight: `1px solid ${defaultColors.lightBorder}`,
     color: defaultColors.primary,
     zIndex: 5,
     nav: {
@@ -482,11 +484,24 @@ export const defaultTheme = {
       margin: '',
     },
     navItem: {
+      cursor: 'pointer',
+      padding: '10px',
+      display: 'inline-block',
+      background: 'transparent',
+      leftBorderWidth: '0',
+      leftBorderColor: 'transparent',
+      topNavBorderBottom: `1px solid ${defaultColors.lightBorder}`,
+      bottonNavBorderBottom: '',
+    },
+    activenavItem: {
       cursor: 'default',
       padding: '10px',
-    },
-    activeNavItem: {
+      display: 'inline-block',
+      background: defaultColors.white,
+      leftBorderWidth: '4px',
       leftBorderColor: defaultColors.blue,
+      topNavBorderBottom: `1px solid ${defaultColors.lightBorder}`,
+      bottonNavBorderBottom: '',
     },
   },
 };

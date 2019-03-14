@@ -18,22 +18,30 @@ export type Props = {
 const SSideNavItem = styled.div`
   float: left;
   list-style: none;
-  width: 100%;
   height: auto;
   position: relative;
   margin: 0;
-  cursor: ${(props: Props) => props.theme.sidenav.navItem.cursor};
-  padding: ${(props: Props) => props.theme.sidenav.navItem.padding};
+  display: ${(props: Props) =>
+    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].display};
+  cursor: ${(props: Props) =>
+    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].cursor};
+  padding: ${(props: Props) =>
+    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].padding};
+  background: ${(props: Props) =>
+    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].background};
   &:before {
     content: '';
     display: block;
-    width: ${(props: Props) => (props.active ? '4px' : '0')};
-    background-color: ${(props: Props) =>
-      props.theme.sidenav.activeNavItem.leftBorderColor};
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
+    width: ${(props: Props) =>
+      props.theme.sidenav[`${props.active ? 'active' : ''}navItem`]
+        .leftBorderWidth};
+    background-color: ${(props: Props) =>
+      props.theme.sidenav[`${props.active ? 'active' : ''}navItem`]
+        .leftBorderColor};
   }
 `;
 

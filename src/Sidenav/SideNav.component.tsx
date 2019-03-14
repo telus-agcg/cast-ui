@@ -40,6 +40,12 @@ const SSideNav = styled.nav`
     props.bottom || props.center ? 'auto' : '0'};
   display: flex;
   flex-direction: column;
+  > *:not(:last-child) {
+    border-bottom: ${(props: Props) =>
+      props.top || props.center
+        ? props.theme.sidenav.navItem.topNavBorderBottom
+        : props.theme.sidenav.navItem.bottomNavBorderBottom};
+  }
 `;
 
 export const SideNav: React.FunctionComponent<Props> = ({

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { text } from '@storybook/addon-knobs/react';
+import { text, boolean } from '@storybook/addon-knobs/react';
 
 import Icon from 'react-icons-kit';
 import { userSecret } from 'react-icons-kit/fa/userSecret';
@@ -11,11 +11,12 @@ storiesOf('Sidenav', module).add(
   () => (
     <div style={{ height: '400px', position: 'relative' }}>
       <SideNavbar
+        isOpen={boolean('isOpen', false)}
         background={text('background', 'lightBackground')}
         height={text('height', '')}
-        width={text('width', '64px')}
+        width={text('width', '')}
         borderLeft={text('borderLeft', '')}
-        borderRight={text('borderRight', '1px solid grey')}
+        borderRight={text('borderRight', '')}
       >
         <SideNav top>
           <SideNavItem>
@@ -26,6 +27,9 @@ storiesOf('Sidenav', module).add(
             />
           </SideNavItem>
           <SideNavItem active>
+            <Icon icon={userSecret} size={24} />
+          </SideNavItem>
+          <SideNavItem>
             <Icon icon={userSecret} size={24} />
           </SideNavItem>
         </SideNav>
