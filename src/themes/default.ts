@@ -211,6 +211,20 @@ export const defaultTheme = {
       fontWeight: '500',
       fontSize: '16px',
     },
+    link: {
+      fontWeight: '500',
+      fontSize: '14px',
+      color: defaultColors.blue,
+      textDecoration: 'none',
+      visited: {
+        color: lighten(defaultColors.blue, 40),
+        textDecoration: 'underline',
+      },
+      hover: {
+        color: defaultColors.blue,
+        textDecoration: 'underline',
+      },
+    },
   },
   input: {
     background: defaultColors.white,
