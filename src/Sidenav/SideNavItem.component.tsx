@@ -21,15 +21,19 @@ const SSideNavItem = styled.div`
   width: 100%;
   height: auto;
   position: relative;
+  margin: 0;
+  cursor: ${(props: Props) => props.theme.sidenav.navItem.cursor};
+  padding: ${(props: Props) => props.theme.sidenav.navItem.padding};
   &:before {
     content: '';
     display: block;
     width: ${(props: Props) => (props.active ? '4px' : '0')};
-    background-color: blue;
+    background-color: ${(props: Props) =>
+      props.theme.sidenav.activeNavItem.leftBorderColor};
     height: 100%;
     position: absolute;
     top: 0;
-    let: 0;
+    left: 0;
   }
 `;
 

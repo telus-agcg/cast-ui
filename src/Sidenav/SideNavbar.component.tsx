@@ -30,7 +30,7 @@ export type Props = {
   /**
    * Adjust SideNavbar width.
    *
-   * @default '80px'
+   * @default '64px'
    **/
   width?: string;
   /**
@@ -63,7 +63,7 @@ const SSideNavbar = styled.div`
   bottom: 0;
   left: 0;
   z-index: 1006;
-  min-width: 64px;
+  min-width: 40px;
   -webkit-transition: min-width 0.15s;
   -o-transition: min-width 0.15s;
   transition: min-width 0.15s;

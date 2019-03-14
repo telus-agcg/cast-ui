@@ -481,5 +481,12 @@ export const defaultTheme = {
       padding: '',
       margin: '',
     },
+    navItem: {
+      cursor: 'default',
+      padding: '10px',
+    },
+    activeNavItem: {
+      leftBorderColor: defaultColors.blue,
+    },
   },
 };
