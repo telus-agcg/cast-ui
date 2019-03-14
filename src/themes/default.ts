@@ -487,8 +487,6 @@ export const defaultTheme = {
       color: 'inherit',
       fontWeight: 'inherit',
       cursor: 'pointer',
-      padding: '8px 0 8px 12px',
-      display: 'inline-block',
       background: 'transparent',
       leftBorderWidth: '0',
       leftBorderColor: 'transparent',
@@ -499,13 +497,17 @@ export const defaultTheme = {
       color: defaultColors.blue,
       fontWeight: 700,
       cursor: 'default',
-      padding: '8px 0 8px 12px',
-      display: 'inline-block',
       background: defaultColors.white,
       leftBorderWidth: '4px',
       leftBorderColor: defaultColors.blue,
       topNavBorderBottom: `1px solid ${defaultColors.lightBorder}`,
       bottonNavBorderBottom: '',
+    },
+    navIcon: {
+      padding: '8px 0 8px 12px',
+    },
+    navText: {
+      padding: '8px 0 8px 12px',
     },
   },
 };

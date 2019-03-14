@@ -3,11 +3,18 @@ import { storiesOf } from '@storybook/react';
 import { text, boolean } from '@storybook/addon-knobs/react';
 
 import Icon from 'react-icons-kit';
-import { userSecret } from 'react-icons-kit/fa/userSecret';
+import { socialBitcoinOutline } from 'react-icons-kit/ionicons/socialBitcoinOutline';
+import { socialAndroidOutline } from 'react-icons-kit/ionicons/socialAndroidOutline';
 import { iosHomeOutline } from 'react-icons-kit/ionicons/iosHomeOutline';
 import { iosPaperOutline } from 'react-icons-kit/ionicons/iosPaperOutline';
 import { iosWorldOutline } from 'react-icons-kit/ionicons/iosWorldOutline';
-import { SideNavbar, SideNav, SideNavItem } from '../';
+import {
+  SideNavbar,
+  SideNav,
+  SideNavItem,
+  SideNavItemIcon,
+  SideNavItemText,
+} from '../';
 
 storiesOf('Sidenav', module).add(
   'Sidenav',
@@ -23,32 +30,56 @@ storiesOf('Sidenav', module).add(
       >
         <SideNav top>
           <SideNavItem>
-            <Icon icon={iosHomeOutline} size={24} />
+            <SideNavItemIcon>
+              <Icon icon={iosHomeOutline} size={24} />
+            </SideNavItemIcon>
+            <SideNavItemText>Home</SideNavItemText>
           </SideNavItem>
           <SideNavItem active>
-            <Icon icon={iosPaperOutline} size={24} />
+            <SideNavItemIcon>
+              <Icon icon={iosPaperOutline} size={24} />
+            </SideNavItemIcon>
+            <SideNavItemText>Documents</SideNavItemText>
           </SideNavItem>
           <SideNavItem>
-            <Icon icon={iosWorldOutline} size={24} />
+            <SideNavItemIcon>
+              <Icon icon={iosWorldOutline} size={24} />
+            </SideNavItemIcon>
+            <SideNavItemText>The Web</SideNavItemText>
           </SideNavItem>
           <SideNavItem>
-            <Icon icon={userSecret} size={24} />
+            <SideNavItemIcon>
+              <Icon icon={socialBitcoinOutline} size={24} />
+            </SideNavItemIcon>
+            <SideNavItemText>Currencies</SideNavItemText>
           </SideNavItem>
         </SideNav>
         <SideNav center>
           <SideNavItem>
-            <Icon icon={userSecret} size={24} />
+            <SideNavItemIcon>
+              <Icon icon={socialAndroidOutline} size={24} />
+            </SideNavItemIcon>
+            <SideNavItemText>Technology</SideNavItemText>
           </SideNavItem>
           <SideNavItem>
-            <Icon icon={userSecret} size={24} />
+            <SideNavItemIcon>
+              <Icon icon={socialBitcoinOutline} size={24} />
+            </SideNavItemIcon>
+            <SideNavItemText>Currencies</SideNavItemText>
           </SideNavItem>
         </SideNav>
         <SideNav bottom>
           <SideNavItem>
-            <Icon icon={iosPaperOutline} size={24} />
+            <SideNavItemIcon>
+              <Icon icon={iosPaperOutline} size={24} />
+            </SideNavItemIcon>
+            <SideNavItemText>Documents</SideNavItemText>
           </SideNavItem>
           <SideNavItem>
-            <Icon icon={iosWorldOutline} size={24} />
+            <SideNavItemIcon>
+              <Icon icon={iosHomeOutline} size={24} />
+            </SideNavItemIcon>
+            <SideNavItemText>Home</SideNavItemText>
           </SideNavItem>
         </SideNav>
       </SideNavbar>

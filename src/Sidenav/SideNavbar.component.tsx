@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import SideNavContext from './context';
 
 export type Props = {
   /**
@@ -78,7 +79,13 @@ const SSideNavbar = styled.div`
 export const SideNavbar: React.FunctionComponent<Props> = ({
   children,
   ...props
-}) => <SSideNavbar {...props}>{children}</SSideNavbar>;
+}) => (
+  <SideNavContext.Provider value={{ baseProps: props }}>
+    <SSideNavbar role="side-nav-bar" {...props}>
+      {children}
+    </SSideNavbar>
+  </SideNavContext.Provider>
+);
 
 SideNavbar.defaultProps = {
   isOpen: false,

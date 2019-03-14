@@ -51,7 +51,11 @@ const SSideNav = styled.nav`
 export const SideNav: React.FunctionComponent<Props> = ({
   children,
   ...props
-}) => <SSideNav {...props}>{children}</SSideNav>;
+}) => (
+  <SSideNav role="side-nav" {...props}>
+    {children}
+  </SSideNav>
+);
 
 SideNav.defaultProps = {
   top: false,

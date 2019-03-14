@@ -21,16 +21,14 @@ const SSideNavItem = styled.div`
   height: auto;
   position: relative;
   margin: 0;
+  display: inline-flex;
+  align-items: center;
   color: ${(props: Props) =>
     props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].color};
   font-weight: ${(props: Props) =>
     props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].fontWeight};
-  display: ${(props: Props) =>
-    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].display};
   cursor: ${(props: Props) =>
     props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].cursor};
-  padding: ${(props: Props) =>
-    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].padding};
   background: ${(props: Props) =>
     props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].background};
   &:before {
@@ -52,7 +50,11 @@ const SSideNavItem = styled.div`
 export const SideNavItem: React.FunctionComponent<Props> = ({
   children,
   ...props
-}) => <SSideNavItem {...props}>{children}</SSideNavItem>;
+}) => (
+  <SSideNavItem role="side-nav-item" {...props}>
+    {children}
+  </SSideNavItem>
+);
 
 SideNavItem.defaultProps = {
   active: false,
