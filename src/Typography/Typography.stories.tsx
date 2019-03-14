@@ -10,11 +10,7 @@ storiesOf('Typography', module).add(
   ),
   {
     info: {
-      text: `
-        ### Notes
-
-        Documentation and examples for Cast UI typography.
-        `,
+      disable : true,
     },
   },
 );
