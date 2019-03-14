@@ -4,12 +4,15 @@ import { text, boolean } from '@storybook/addon-knobs/react';
 
 import Icon from 'react-icons-kit';
 import { userSecret } from 'react-icons-kit/fa/userSecret';
+import { iosHomeOutline } from 'react-icons-kit/ionicons/iosHomeOutline';
+import { iosPaperOutline } from 'react-icons-kit/ionicons/iosPaperOutline';
+import { iosWorldOutline } from 'react-icons-kit/ionicons/iosWorldOutline';
 import { SideNavbar, SideNav, SideNavItem } from '../';
 
 storiesOf('Sidenav', module).add(
   'Sidenav',
   () => (
-    <div style={{ height: '400px', position: 'relative' }}>
+    <div style={{ height: '600px', position: 'relative' }}>
       <SideNavbar
         isOpen={boolean('isOpen', false)}
         background={text('background', 'lightBackground')}
@@ -20,14 +23,13 @@ storiesOf('Sidenav', module).add(
       >
         <SideNav top>
           <SideNavItem>
-            <img
-              src="https://www.tkxs.com/hubfs/TKXS-brand/TKXS%20Official%20Logo%20(black).svg"
-              alt="TKXS"
-              style={{ width: '40px' }}
-            />
+            <Icon icon={iosHomeOutline} size={24} />
           </SideNavItem>
           <SideNavItem active>
-            <Icon icon={userSecret} size={24} />
+            <Icon icon={iosPaperOutline} size={24} />
+          </SideNavItem>
+          <SideNavItem>
+            <Icon icon={iosWorldOutline} size={24} />
           </SideNavItem>
           <SideNavItem>
             <Icon icon={userSecret} size={24} />
@@ -43,10 +45,10 @@ storiesOf('Sidenav', module).add(
         </SideNav>
         <SideNav bottom>
           <SideNavItem>
-            <Icon icon={userSecret} size={24} />
+            <Icon icon={iosPaperOutline} size={24} />
           </SideNavItem>
-          <SideNavItem active>
-            <Icon icon={userSecret} size={24} />
+          <SideNavItem>
+            <Icon icon={iosWorldOutline} size={24} />
           </SideNavItem>
         </SideNav>
       </SideNavbar>

@@ -484,8 +484,10 @@ export const defaultTheme = {
       margin: '',
     },
     navItem: {
+      color: 'inherit',
+      fontWeight: 'inherit',
       cursor: 'pointer',
-      padding: '10px',
+      padding: '8px 0 8px 12px',
       display: 'inline-block',
       background: 'transparent',
       leftBorderWidth: '0',
@@ -494,8 +496,10 @@ export const defaultTheme = {
       bottonNavBorderBottom: '',
     },
     activenavItem: {
+      color: defaultColors.blue,
+      fontWeight: 700,
       cursor: 'default',
-      padding: '10px',
+      padding: '8px 0 8px 12px',
       display: 'inline-block',
       background: defaultColors.white,
       leftBorderWidth: '4px',

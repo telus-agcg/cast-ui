@@ -21,6 +21,10 @@ const SSideNavItem = styled.div`
   height: auto;
   position: relative;
   margin: 0;
+  color: ${(props: Props) =>
+    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].color};
+  font-weight: ${(props: Props) =>
+    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].fontWeight};
   display: ${(props: Props) =>
     props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].display};
   cursor: ${(props: Props) =>
