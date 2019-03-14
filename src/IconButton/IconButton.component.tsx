@@ -50,9 +50,6 @@ export type Props = Partial<ButtonProps> &
      * @default defaultTheme
      **/
     theme?: any;
-    children?: any;
-    ref?: any;
-    as?: any;
   };
 
 const SIconButton = styled(Button)`
