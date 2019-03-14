@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SButton from './SButton';
 
-export type Props = {
+export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
   /**
    * Specify if the button is outline
    *

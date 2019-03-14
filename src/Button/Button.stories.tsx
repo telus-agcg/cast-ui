@@ -9,6 +9,7 @@ storiesOf('Button', module).add(
   'Button',
   () => (
     <Button
+      type="submit"
       outline={boolean('outline', false)}
       selected={boolean('selected', false)}
       btnStyle={select(

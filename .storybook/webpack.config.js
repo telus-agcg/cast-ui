@@ -1,11 +1,27 @@
 const path = require('path');
-const TSDocgenPlugin = require('react-docgen-typescript-webpack-plugin');
 module.exports = ({ config, mode }) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
-    loader: require.resolve('awesome-typescript-loader'),
+    include: path.resolve(__dirname, '../src'),
+    use: [
+      {
+        loader: require.resolve('awesome-typescript-loader'),
+      },
+      {
+        loader: require.resolve('react-docgen-typescript-loader'),
+        options: {
+          propFilter: prop => {
+            if (prop.parent == null) {
+              return true;
+            }
+            return (
+              prop.parent.fileName.indexOf('node_modules/@types/react/') < 0
+            );
+          },
+        },
+      },
+    ],
   });
-  config.plugins.push(new TSDocgenPlugin());
   config.resolve.extensions.push('.ts', '.tsx');
   return config;
 };
