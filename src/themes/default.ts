@@ -207,6 +207,10 @@ export const defaultTheme = {
       fontWeight: '300',
       fontSize: '12px',
     },
+    subHeading: {
+      fontWeight: '500',
+      fontSize: '16px',
+    },
   },
   input: {
     background: defaultColors.white,
