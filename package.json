@@ -35,7 +35,7 @@
     "react-paginate": "^6.2.1",
     "react-select": "^2.2.0",
     "react-table": "^6.8.6",
-    "react-tabs": "^3.0.0",
+    "react-tabs": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
