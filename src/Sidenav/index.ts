@@ -5,7 +5,11 @@ import { SideNavItem } from './SideNavItem.component';
 import { SideNavItemIcon } from './SideNavItemIcon.component';
 import { SideNavItemText } from './SideNavItemText.component';
 
-export { SideNavbar, Props as SideNavbarProps } from './SideNavbar.component';
+export {
+  SideNavbar,
+  SecondarySideNavbar,
+  Props as SideNavbarProps,
+} from './SideNavbar.component';
 export {
   SideNavToggle,
   Props as SideNavToggleProps,

@@ -18,6 +18,40 @@ export const useMergeWithBaseProps: React.FunctionComponent<any> = (
   });
   return mergedProps;
 };
+export function findObjects(
+  obj: any,
+  targetProp: any,
+  targetValue: any,
+  finalResults: any,
+) {
+  function getObject(theObject: any) {
+    // let result = null;
+    if (theObject instanceof Array) {
+      for (let i = 0; i < theObject.length; i++) {
+        getObject(theObject[i]);
+      }
+    } else {
+      for (let prop in theObject) {
+        if (theObject.hasOwnProperty(prop)) {
+          if (prop === targetProp) {
+            if (theObject[prop] === targetValue) {
+              console.log('----found porop', prop, ', ', theObject);
+              finalResults.push(theObject);
+            }
+          }
+          if (
+            theObject[prop] instanceof Object ||
+            theObject[prop] instanceof Array
+          ) {
+            getObject(theObject[prop]);
+          }
+        }
+      }
+    }
+  }
+
+  getObject(obj);
+}
 
 export default {
   SideNavContext,

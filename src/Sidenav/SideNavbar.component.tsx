@@ -1,6 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { SideNavContext, SecondarySideNavContext } from './context';
+import {
+  SideNavContext,
+  SecondarySideNavContext,
+  findObjects,
+} from './context';
 import { SideNavToggle } from '../';
 
 export type Props = {
@@ -164,6 +168,11 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
 }) => {
   const [toggle, setToggle] = React.useState(isOpen);
   const newProps = { ...props, isOpen: toggle || isOpen };
+  console.log(
+    'the children are changing ',
+    children,
+    findObjects(children, 'active', true, []),
+  );
   return (
     <SideNavContext.Provider value={{ baseProps: newProps }}>
       <SSideNavbar role="side-nav-bar" {...newProps}>
@@ -176,8 +185,7 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
     </SideNavContext.Provider>
   );
 };
-
-SideNavbar.defaultProps = {
+const defaultProps = {
   isOpen: false,
   width: '',
   background: '',
@@ -188,3 +196,5 @@ SideNavbar.defaultProps = {
   secondaryNavbarBackground: '',
   secondaryNavbarHeight: '',
 };
+SideNavbar.defaultProps = defaultProps;
+SecondarySideNavbar.defaultProps = defaultProps;
