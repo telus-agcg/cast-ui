@@ -147,6 +147,7 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   const [toggle, setToggle] = React.useState(isOpen);
   const newProps = { ...props, isOpen: toggle || isOpen };
   const activeSideNavItems: any = [];
+  // const activeSideNavItemsChildren: any = [];
   propsDeepSearch(children, 'activeSideNavItem', true, activeSideNavItems);
   let activeSideNavItemsChildren: any = [];
   activeSideNavItems.map((child: any) => {
@@ -157,6 +158,22 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
       ),
     ];
   });
+  // propsDeepSearch(children, 'secondary', true, activeSideNavItemsChildren);
+  // activeSideNavItems.map((child: any) => {
+  //   child.children.map((grandChild: any) => {
+  //     if (grandChild.props) {
+  //       if (grandChild.props.secondary) {
+  //         activeSideNavItemsChildren.push(grandChild.props.children);
+  //       }
+  //     }
+  //   });
+  // });
+  console.log(
+    'the children are changing ',
+    children,
+    activeSideNavItems,
+    activeSideNavItemsChildren,
+  );
   return (
     <SideNavContext.Provider value={{ baseProps: newProps }}>
       <SSideNavbar role="side-nav-bar" {...newProps}>
@@ -166,6 +183,7 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
         {children}
       </SSideNavbar>
       <SSecondarySideNavbar role="secondary-side-nav-bar" {...newProps}>
+        secondary side nav
         {activeSideNavItemsChildren}
       </SSecondarySideNavbar>
     </SideNavContext.Provider>

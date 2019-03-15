@@ -44,12 +44,10 @@ storiesOf('Sidenav', module).add(
               <Icon icon={iosPaperOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>Documents</SideNavItemText>
-            <SideNav center secondary>
+            <SideNav top secondary>
               <SideNavItem>
-                <SideNavItemIcon>
-                  <Icon icon={iosWorldOutline} size={24} />
-                </SideNavItemIcon>
-                <SideNavItemText>The Web</SideNavItemText>
+                <div style={{ padding: '8px 16px' }}>Home Documents</div>
+                {/* <div style={{ padding: '8px 16px' }}>Home Documents</div> */}
               </SideNavItem>
               <SideNavItem>
                 <SideNavItemIcon>
@@ -70,7 +68,7 @@ storiesOf('Sidenav', module).add(
               <Icon icon={socialBitcoinOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>Currencies</SideNavItemText>
-            <SideNav center secondary>
+            <SideNav bottom secondary>
               <SideNavItem>
                 <SideNavItemIcon>
                   <Icon icon={iosWorldOutline} size={24} />

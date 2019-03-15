@@ -56,9 +56,12 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
   children,
   ...props
 }) => {
-  const itemChildren = children.filter((child: any) =>
-    child.props ? !child.props.secondary : true,
-  );
+  const itemChildren =
+    children instanceof Array
+      ? children.filter((child: any) =>
+          child.props ? !child.props.secondary : true,
+        )
+      : children;
   // let itemSecondaryChildren: any = [];
   // children.map((child: any) => {
   //   if (props.activeSideNavItem) {
