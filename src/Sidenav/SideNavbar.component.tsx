@@ -125,16 +125,16 @@ const SSecondarySideNavbar = styled.div`
   bottom: 0;
   left: ${(props: Props) =>
     props.width ||
-    (props.isSecondaryNavbarOpen
-      ? props.theme.sidenav.openWidth
-      : props.theme.sidenav.width)};
-  min-width: ${(props: Props) =>
+    (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
+  width: ${(props: Props) =>
     props.secondaryNavbarWidth ||
-    (props.isOpen
+    (props.isSecondaryNavbarOpen
       ? props.theme.sidenav.secondaryNavbar.openWidth
       : props.theme.sidenav.secondaryNavbar.width)};
   transition: ${(props: Props) =>
     props.theme.sidenav.secondaryNavbar.transition};
+  visibility: ${(props: any) =>
+    props.isSecondaryNavbarOpen ? 'visible' : 'hidden'};
   display: flex;
   flex-direction: column;
 `;
@@ -167,6 +167,7 @@ SideNavbar.defaultProps = {
   background: '',
   borderLeft: '',
   borderRight: '',
+  isSecondaryNavbarOpen: false,
   secondaryNavbarWidth: '',
   secondaryNavbarBackground: '',
   secondaryNavbarHeight: '',
