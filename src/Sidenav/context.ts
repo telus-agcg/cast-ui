@@ -4,6 +4,10 @@ export const SideNavContext = React.createContext({
   baseProps: {},
 });
 
+export const SecondarySideNavContext = React.createContext({
+  secondaryNavChildren: [],
+});
+
 export const useMergeWithBaseProps: React.FunctionComponent<any> = (
   localProps: any,
   { propsToMerge, baseProps }: any,
@@ -15,4 +19,8 @@ export const useMergeWithBaseProps: React.FunctionComponent<any> = (
   return mergedProps;
 };
 
-export default SideNavContext;
+export default {
+  SideNavContext,
+  SecondarySideNavContext,
+  useMergeWithBaseProps,
+};

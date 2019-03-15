@@ -1,7 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { SecondarySideNavContext } from './context';
 
 export type Props = {
+  children: any;
   /**
    * Set SideNavItem as active
    *
@@ -50,11 +52,29 @@ const SSideNavItem = styled.div`
 export const SideNavItem: React.FunctionComponent<Props> = ({
   children,
   ...props
-}) => (
-  <SSideNavItem role="side-nav-item" {...props}>
-    {children}
-  </SSideNavItem>
-);
+}) => {
+  const itemChildren = children.filter((child: any) =>
+    child.props ? !child.props.secondary : true,
+  );
+  let secondaryNavChildren: any = [];
+  children.map((child: any) => {
+    if (props.active) {
+      if (child.props) {
+        if (child.props.secondary) {
+          secondaryNavChildren = child.props.children;
+        }
+      }
+    }
+  });
+  console.log('Item children ', itemChildren, secondaryNavChildren, children);
+  return (
+    <SecondarySideNavContext.Provider value={{ secondaryNavChildren }}>
+      <SSideNavItem role="side-nav-item" {...props}>
+        {itemChildren}
+      </SSideNavItem>
+    </SecondarySideNavContext.Provider>
+  );
+};
 
 SideNavItem.defaultProps = {
   active: false,

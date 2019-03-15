@@ -21,6 +21,12 @@ export type Props = {
    **/
   bottom?: boolean;
   /**
+   * Assign SideNav as a child of secondary navbar
+   *
+   * @default false
+   **/
+  secondary?: boolean;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -61,4 +67,5 @@ SideNav.defaultProps = {
   top: false,
   center: false,
   bottom: false,
+  secondary: false,
 };

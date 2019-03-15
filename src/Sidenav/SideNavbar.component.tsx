@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import SideNavContext from './context';
+import { SideNavContext, SecondarySideNavContext } from './context';
 import { SideNavToggle } from '../';
 
 export type Props = {
@@ -139,6 +139,24 @@ const SSecondarySideNavbar = styled.div`
   flex-direction: column;
 `;
 
+export const SecondarySideNavbar: React.FunctionComponent<Props> = ({
+  ...props
+}) => {
+  const { secondaryNavChildren } = React.useContext(SecondarySideNavContext);
+
+  setTimeout(() => {
+    console.log('we are here ', secondaryNavChildren);
+  }, 1500);
+  React.useEffect(() => {
+    console.log('the children are changing ', secondaryNavChildren);
+  }, [secondaryNavChildren]);
+  return (
+    <SSecondarySideNavbar role="secondary-side-nav-bar" {...props}>
+      secondary side nav
+    </SSecondarySideNavbar>
+  );
+};
+
 export const SideNavbar: React.FunctionComponent<Props> = ({
   isOpen,
   children,
@@ -154,9 +172,7 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
         </SideNavToggle>
         {children}
       </SSideNavbar>
-      <SSecondarySideNavbar role="secondary-side-nav-bar" {...newProps}>
-        secondary side nav
-      </SSecondarySideNavbar>
+      <SecondarySideNavbar {...props} />
     </SideNavContext.Provider>
   );
 };

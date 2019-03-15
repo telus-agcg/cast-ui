@@ -490,7 +490,7 @@ export const defaultTheme = {
       zIndex: 4,
       borderLeft: '',
       borderRight: `1px solid ${defaultColors.lightBorder}`,
-      transition: 'width 0.15s, , left 0.15s, visibility 0.15s',
+      transition: 'left 0.15s',
     },
     nav: {
       padding: '',

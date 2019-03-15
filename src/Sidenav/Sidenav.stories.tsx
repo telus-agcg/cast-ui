@@ -44,6 +44,20 @@ storiesOf('Sidenav', module).add(
               <Icon icon={iosPaperOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>Documents</SideNavItemText>
+            <SideNav center secondary>
+              <SideNavItem>
+                <SideNavItemIcon>
+                  <Icon icon={iosWorldOutline} size={24} />
+                </SideNavItemIcon>
+                <SideNavItemText>The Web</SideNavItemText>
+              </SideNavItem>
+              <SideNavItem>
+                <SideNavItemIcon>
+                  <Icon icon={socialBitcoinOutline} size={24} />
+                </SideNavItemIcon>
+                <SideNavItemText>Currencies</SideNavItemText>
+              </SideNavItem>
+            </SideNav>
           </SideNavItem>
           <SideNavItem>
             <SideNavItemIcon>
@@ -56,6 +70,20 @@ storiesOf('Sidenav', module).add(
               <Icon icon={socialBitcoinOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>Currencies</SideNavItemText>
+            <SideNav center secondary>
+              <SideNavItem>
+                <SideNavItemIcon>
+                  <Icon icon={iosWorldOutline} size={24} />
+                </SideNavItemIcon>
+                <SideNavItemText>The Web</SideNavItemText>
+              </SideNavItem>
+              <SideNavItem>
+                <SideNavItemIcon>
+                  <Icon icon={socialBitcoinOutline} size={24} />
+                </SideNavItemIcon>
+                <SideNavItemText>Currencies</SideNavItemText>
+              </SideNavItem>
+            </SideNav>
           </SideNavItem>
         </SideNav>
         <SideNav center>
