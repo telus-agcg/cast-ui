@@ -12,7 +12,7 @@ module.exports = ({ config, mode }) => {
         options: {
           propFilter: prop =>
             prop.parent == null ||
-            (prop.parent.fiename &&
+            (prop.parent.filename &&
               prop.parent.filename.indexOf('node_modules/@types/react/') < 0),
         },
       },
