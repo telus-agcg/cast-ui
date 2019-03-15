@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { SideNavContext } from './context';
 
 export type Props = {
   children: any;
@@ -56,25 +57,27 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
   children,
   ...props
 }) => {
+  const {
+    baseProps: { setSecondaryToggle, secondaryToggle, isSecondaryNavbarOpen },
+  } = React.useContext(SideNavContext);
   const itemChildren =
     children instanceof Array
       ? children.filter((child: any) =>
           child.props ? !child.props.secondary : true,
         )
       : children;
-  // let itemSecondaryChildren: any = [];
-  // children.map((child: any) => {
-  //   if (props.activeSideNavItem) {
-  //     if (child.props) {
-  //       if (child.props.secondary) {
-  //         itemSecondaryChildren = child.props.children;
-  //       }
-  //     }
-  //   }
-  // });
-  // console.log('Item children ', itemChildren, itemSecondaryChildren, children);
+
+  const handleClick = (e: any) => {
+    console.log(
+      'We got clicked ',
+      setSecondaryToggle,
+      secondaryToggle,
+      isSecondaryNavbarOpen,
+    );
+    setSecondaryToggle(!(secondaryToggle || isSecondaryNavbarOpen));
+  };
   return (
-    <SSideNavItem role="side-nav-item" {...props}>
+    <SSideNavItem role="side-nav-item" {...props} onClick={e => handleClick(e)}>
       {itemChildren}
     </SSideNavItem>
   );

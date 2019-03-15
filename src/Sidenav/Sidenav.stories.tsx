@@ -46,14 +46,14 @@ storiesOf('Sidenav', module).add(
             <SideNavItemText>Documents</SideNavItemText>
             <SideNav top secondary>
               <SideNavItem>
-                <div style={{ padding: '8px 16px' }}>Home Documents</div>
-                {/* <div style={{ padding: '8px 16px' }}>Home Documents</div> */}
+                <div style={{ padding: '12px 0 12px 12px' }}>
+                  Home Documents
+                </div>
               </SideNavItem>
               <SideNavItem>
-                <SideNavItemIcon>
-                  <Icon icon={socialBitcoinOutline} size={24} />
-                </SideNavItemIcon>
-                <SideNavItemText>Currencies</SideNavItemText>
+                <div style={{ padding: '12px 0 12px 12px' }}>
+                  Office Documents
+                </div>
               </SideNavItem>
             </SideNav>
           </SideNavItem>
@@ -68,20 +68,6 @@ storiesOf('Sidenav', module).add(
               <Icon icon={socialBitcoinOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>Currencies</SideNavItemText>
-            <SideNav bottom secondary>
-              <SideNavItem>
-                <SideNavItemIcon>
-                  <Icon icon={iosWorldOutline} size={24} />
-                </SideNavItemIcon>
-                <SideNavItemText>The Web</SideNavItemText>
-              </SideNavItem>
-              <SideNavItem>
-                <SideNavItemIcon>
-                  <Icon icon={socialBitcoinOutline} size={24} />
-                </SideNavItemIcon>
-                <SideNavItemText>Currencies</SideNavItemText>
-              </SideNavItem>
-            </SideNav>
           </SideNavItem>
         </SideNav>
         <SideNav center>

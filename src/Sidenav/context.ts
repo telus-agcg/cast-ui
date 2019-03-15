@@ -1,7 +1,14 @@
 import * as React from 'react';
 
 export const SideNavContext = React.createContext({
-  baseProps: {},
+  baseProps: {
+    primaryToggle: false,
+    isOpen: false,
+    secondaryToggle: false,
+    isSecondaryNavbarOpen: false,
+    setPrimaryToggle: (val: any) => {},
+    setSecondaryToggle: (val: any) => {},
+  },
 });
 
 export const propsDeepSearch = (
