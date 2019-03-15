@@ -482,7 +482,7 @@ export const defaultTheme = {
     borderRight: `1px solid ${defaultColors.lightBorder}`,
     transition: 'min-width 0.15s',
     secondaryNavbar: {
-      width: '170px',
+      width: '0px',
       openWidth: '170px',
       background: defaultColors.white,
       padding: '',
@@ -490,7 +490,7 @@ export const defaultTheme = {
       zIndex: 4,
       borderLeft: '',
       borderRight: `1px solid ${defaultColors.lightBorder}`,
-      transition: 'left 0.15s',
+      transition: 'left min-width 0.15s',
     },
     nav: {
       padding: '',

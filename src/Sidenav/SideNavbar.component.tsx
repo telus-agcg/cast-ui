@@ -42,6 +42,12 @@ export type Props = {
    **/
   width?: string;
   /**
+   * Expand/collapse the secondary sidebar
+   *
+   * @default false
+   **/
+  isSecondaryNavbarOpen?: boolean;
+  /**
    * Adjust width of Secondary SideNavbar.
    *
    * @default '170px'
@@ -119,7 +125,9 @@ const SSecondarySideNavbar = styled.div`
   bottom: 0;
   left: ${(props: Props) =>
     props.width ||
-    (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
+    (props.isSecondaryNavbarOpen
+      ? props.theme.sidenav.openWidth
+      : props.theme.sidenav.width)};
   min-width: ${(props: Props) =>
     props.secondaryNavbarWidth ||
     (props.isOpen
@@ -137,11 +145,11 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   ...props
 }) => {
   const [toggle, setToggle] = React.useState(isOpen);
-  const newProps = { ...props, isOpen: toggle };
+  const newProps = { ...props, isOpen: toggle || isOpen };
   return (
     <SideNavContext.Provider value={{ baseProps: newProps }}>
       <SSideNavbar role="side-nav-bar" {...newProps}>
-        <SideNavToggle onClick={() => setToggle(!(toggle && isOpen))}>
+        <SideNavToggle onClick={() => setToggle(!(toggle || isOpen))}>
           Open
         </SideNavToggle>
         {children}
