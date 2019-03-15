@@ -146,9 +146,17 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
 }) => {
   const [toggle, setToggle] = React.useState(isOpen);
   const newProps = { ...props, isOpen: toggle || isOpen };
-  const activeChildren: any = [];
-  propsDeepSearch(children, 'activeSideNavItem', true, activeChildren),
-    console.log('the children are changing ', children, activeChildren);
+  const activeSideNavItems: any = [];
+  propsDeepSearch(children, 'activeSideNavItem', true, activeSideNavItems);
+  let activeSideNavItemsChildren: any = [];
+  activeSideNavItems.map((child: any) => {
+    activeSideNavItemsChildren = [
+      ...activeSideNavItemsChildren,
+      ...child.children.filter((child: any) =>
+        child.props ? child.props.secondary : false,
+      ),
+    ];
+  });
   return (
     <SideNavContext.Provider value={{ baseProps: newProps }}>
       <SSideNavbar role="side-nav-bar" {...newProps}>
@@ -158,8 +166,7 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
         {children}
       </SSideNavbar>
       <SSecondarySideNavbar role="secondary-side-nav-bar" {...newProps}>
-        secondary side nav
-        {activeChildren.map((child: any) => child.children)}
+        {activeSideNavItemsChildren}
       </SSecondarySideNavbar>
     </SideNavContext.Provider>
   );

@@ -21,13 +21,13 @@ storiesOf('Sidenav', module).add(
   () => (
     <div style={{ height: '600px', position: 'relative' }}>
       <SideNavbar
-        isOpen={boolean('isOpen', false)}
+        isOpen={boolean('isOpen', true)}
         background={text('background', 'lightBackground')}
         height={text('height', '')}
         width={text('width', '')}
         borderLeft={text('borderLeft', '')}
         borderRight={text('borderRight', '')}
-        isSecondaryNavbarOpen={boolean('isSecondaryNavbarOpen', false)}
+        isSecondaryNavbarOpen={boolean('isSecondaryNavbarOpen', true)}
         secondaryNavbarWidth={text('secondaryNavbarWidth', '')}
         secondaryNavbarHeight={text('secondaryNavbarHeight', '')}
         secondaryNavbarBackground={text('secondaryNavbarBackground', 'white')}

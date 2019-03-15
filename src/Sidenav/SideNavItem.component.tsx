@@ -59,17 +59,17 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
   const itemChildren = children.filter((child: any) =>
     child.props ? !child.props.secondary : true,
   );
-  let itemSecondaryChildren: any = [];
-  children.map((child: any) => {
-    if (props.activeSideNavItem) {
-      if (child.props) {
-        if (child.props.secondary) {
-          itemSecondaryChildren = child.props.children;
-        }
-      }
-    }
-  });
-  console.log('Item children ', itemChildren, itemSecondaryChildren, children);
+  // let itemSecondaryChildren: any = [];
+  // children.map((child: any) => {
+  //   if (props.activeSideNavItem) {
+  //     if (child.props) {
+  //       if (child.props.secondary) {
+  //         itemSecondaryChildren = child.props.children;
+  //       }
+  //     }
+  //   }
+  // });
+  // console.log('Item children ', itemChildren, itemSecondaryChildren, children);
   return (
     <SSideNavItem role="side-nav-item" {...props}>
       {itemChildren}
