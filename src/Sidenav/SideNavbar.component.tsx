@@ -151,7 +151,7 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   );
   const newProps = {
     ...props,
-    isOpen: primaryToggle || isOpen,
+    isOpen: primaryToggle,
     isSecondaryNavbarOpen: secondaryToggle,
     primaryToggle,
     secondaryToggle,
@@ -159,6 +159,10 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
     setPrimaryToggle,
   };
 
+  // Perform deep search through sidenavbar props
+  // Select the 'activeSideNavItem' and search through its children.
+  // If a child has a SideNav with the 'secondary' prop set to true,
+  // its children will automatically be displayed in the secondary SideNavbar
   const activeSideNavItems: any = [];
   propsDeepSearch(children, 'activeSideNavItem', true, activeSideNavItems);
   let activeSideNavItemsChildren: any = [];
@@ -170,12 +174,19 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
       ),
     ];
   });
+
+  // Allow user to override the state of toggle buttons
+  React.useEffect(() => {
+    setPrimaryToggle(isOpen);
+    setSecondaryToggle(isSecondaryNavbarOpen);
+    // tslint:disable-next-line
+  }, [isOpen, isSecondaryNavbarOpen]);
   return (
     <SideNavContext.Provider
       value={{
         baseProps: {
           ...newProps,
-          isOpen: primaryToggle || isOpen,
+          isOpen: primaryToggle,
           isSecondaryNavbarOpen: secondaryToggle,
           primaryToggle,
           secondaryToggle,
@@ -186,7 +197,9 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
     >
       <SSideNavbar role="side-nav-bar" {...newProps}>
         <SideNavToggle
-          onClick={() => setPrimaryToggle(!(primaryToggle || isOpen))}
+          onClick={() =>
+            setPrimaryToggle(!(newProps.primaryToggle || newProps.isOpen))
+          }
         >
           Open
         </SideNavToggle>

@@ -63,7 +63,7 @@ storiesOf('Sidenav', module).add(
             </SideNavItemIcon>
             <SideNavItemText>The Web</SideNavItemText>
           </SideNavItem>
-          <SideNavItem activeSideNavItem>
+          <SideNavItem>
             <SideNavItemIcon>
               <Icon icon={socialBitcoinOutline} size={24} />
             </SideNavItemIcon>

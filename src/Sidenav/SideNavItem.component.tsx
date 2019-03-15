@@ -68,12 +68,6 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
       : children;
 
   const handleClick = (e: any) => {
-    console.log(
-      'We got clicked ',
-      setSecondaryToggle,
-      secondaryToggle,
-      isSecondaryNavbarOpen,
-    );
     setSecondaryToggle(!(secondaryToggle || isSecondaryNavbarOpen));
   };
   return (
