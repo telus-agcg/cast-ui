@@ -10,10 +10,13 @@ module.exports = ({ config, mode }) => {
       {
         loader: require.resolve('react-docgen-typescript-loader'),
         options: {
-          propFilter: prop =>
-            prop.parent == null ||
-            (prop.parent.filename &&
-              prop.parent.filename.indexOf('node_modules/@types/react/') < 0),
+          propFilter: prop => {
+            return (
+              prop.parent == null ||
+              (prop.parent.name.indexOf('HTMLAttributes') < 0 &&
+                prop.parent.name.indexOf('DOMAttributes') < 0)
+            );
+          },
         },
       },
     ],
