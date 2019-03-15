@@ -42,6 +42,25 @@ export type Props = {
    **/
   width?: string;
   /**
+   * Adjust width of Secondary SideNavbar.
+   *
+   * @default '170px'
+   **/
+  secondaryNavbarWidth?: string;
+  /**
+   * Adjust height of Secondary SideNavbar.
+   *
+   * @default ''
+   **/
+  secondaryNavbarHeight?: string;
+  /**
+   * A color defined in theme colors or a CSS color code
+   * or shorthand string for setting element background
+   *
+   * @default ''
+   **/
+  secondaryNavbarBackground?: string;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -72,7 +91,42 @@ const SSideNavbar = styled.div`
   min-width: ${(props: Props) =>
     props.width ||
     (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
-  transition: min-width 0.15s;
+  transition: ${(props: Props) => props.theme.sidenav.transition};
+  display: flex;
+  flex-direction: column;
+`;
+const SSecondarySideNavbar = styled.div`
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.sidenav.fontSize};
+  color: ${(props: Props) => props.theme.sidenav.color};
+  height: ${(props: Props) =>
+    props.secondaryNavbarHeight || props.theme.sidenav.secondaryNavbar.height};
+  padding: ${(props: Props) => props.theme.sidenav.secondaryNavbar.padding};
+  margin: ${(props: Props) => props.theme.sidenav.secondaryNavbar.margin};
+  z-index: ${(props: Props) => props.theme.sidenav.secondaryNavbar.zIndex};
+  background: ${(props: Props) =>
+    props.theme.colors[props.secondaryNavbarBackground!] ||
+    props.secondaryNavbarBackground!.toString() ||
+    props.theme.sidenav.secondaryNavbar.background};
+  border-left: ${(props: Props) =>
+    props.borderLeft!.toString() ||
+    props.theme.sidenav.secondaryNavbar.borderLeft};
+  border-right: ${(props: Props) =>
+    props.borderRight!.toString() ||
+    props.theme.sidenav.secondaryNavbar.borderRight};
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: ${(props: Props) =>
+    props.width ||
+    (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
+  min-width: ${(props: Props) =>
+    props.secondaryNavbarWidth ||
+    (props.isOpen
+      ? props.theme.sidenav.secondaryNavbar.openWidth
+      : props.theme.sidenav.secondaryNavbar.width)};
+  transition: ${(props: Props) =>
+    props.theme.sidenav.secondaryNavbar.transition};
   display: flex;
   flex-direction: column;
 `;
@@ -87,9 +141,14 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   return (
     <SideNavContext.Provider value={{ baseProps: newProps }}>
       <SSideNavbar role="side-nav-bar" {...newProps}>
-        <SideNavToggle onClick={() => setToggle(!toggle)}>Open</SideNavToggle>
+        <SideNavToggle onClick={() => setToggle(!(toggle && isOpen))}>
+          Open
+        </SideNavToggle>
         {children}
       </SSideNavbar>
+      <SSecondarySideNavbar role="secondary-side-nav-bar" {...newProps}>
+        secondary side nav
+      </SSecondarySideNavbar>
     </SideNavContext.Provider>
   );
 };
@@ -100,4 +159,7 @@ SideNavbar.defaultProps = {
   background: '',
   borderLeft: '',
   borderRight: '',
+  secondaryNavbarWidth: '',
+  secondaryNavbarBackground: '',
+  secondaryNavbarHeight: '',
 };

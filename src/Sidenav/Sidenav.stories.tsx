@@ -27,6 +27,9 @@ storiesOf('Sidenav', module).add(
         width={text('width', '')}
         borderLeft={text('borderLeft', '')}
         borderRight={text('borderRight', '')}
+        secondaryNavbarWidth={text('secondaryNavbarWidth', '')}
+        secondaryNavbarHeight={text('secondaryNavbarHeight', '')}
+        secondaryNavbarBackground={text('secondaryNavbarBackground', 'white')}
       >
         <SideNav top>
           <SideNavItem>
