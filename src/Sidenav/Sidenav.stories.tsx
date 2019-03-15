@@ -10,7 +10,6 @@ import { iosPaperOutline } from 'react-icons-kit/ionicons/iosPaperOutline';
 import { iosWorldOutline } from 'react-icons-kit/ionicons/iosWorldOutline';
 import {
   SideNavbar,
-  SecondarySideNavbar,
   SideNav,
   SideNavItem,
   SideNavItemIcon,
@@ -40,27 +39,25 @@ storiesOf('Sidenav', module).add(
             </SideNavItemIcon>
             <SideNavItemText>Home</SideNavItemText>
           </SideNavItem>
-          <SideNavItem active>
+          <SideNavItem activeSideNavItem>
             <SideNavItemIcon>
               <Icon icon={iosPaperOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>Documents</SideNavItemText>
-            <SecondarySideNavbar isSecondaryNavbarOpen>
-              <SideNav center secondary>
-                <SideNavItem>
-                  <SideNavItemIcon>
-                    <Icon icon={iosWorldOutline} size={24} />
-                  </SideNavItemIcon>
-                  <SideNavItemText>The Web</SideNavItemText>
-                </SideNavItem>
-                <SideNavItem>
-                  <SideNavItemIcon>
-                    <Icon icon={socialBitcoinOutline} size={24} />
-                  </SideNavItemIcon>
-                  <SideNavItemText>Currencies</SideNavItemText>
-                </SideNavItem>
-              </SideNav>
-            </SecondarySideNavbar>
+            <SideNav center secondary>
+              <SideNavItem>
+                <SideNavItemIcon>
+                  <Icon icon={iosWorldOutline} size={24} />
+                </SideNavItemIcon>
+                <SideNavItemText>The Web</SideNavItemText>
+              </SideNavItem>
+              <SideNavItem>
+                <SideNavItemIcon>
+                  <Icon icon={socialBitcoinOutline} size={24} />
+                </SideNavItemIcon>
+                <SideNavItemText>Currencies</SideNavItemText>
+              </SideNavItem>
+            </SideNav>
           </SideNavItem>
           <SideNavItem>
             <SideNavItemIcon>
@@ -68,7 +65,7 @@ storiesOf('Sidenav', module).add(
             </SideNavItemIcon>
             <SideNavItemText>The Web</SideNavItemText>
           </SideNavItem>
-          <SideNavItem>
+          <SideNavItem activeSideNavItem>
             <SideNavItemIcon>
               <Icon icon={socialBitcoinOutline} size={24} />
             </SideNavItemIcon>

@@ -4,10 +4,6 @@ export const SideNavContext = React.createContext({
   baseProps: {},
 });
 
-export const SecondarySideNavContext = React.createContext({
-  secondaryNavChildren: [],
-});
-
 export const useMergeWithBaseProps: React.FunctionComponent<any> = (
   localProps: any,
   { propsToMerge, baseProps }: any,
@@ -18,7 +14,7 @@ export const useMergeWithBaseProps: React.FunctionComponent<any> = (
   });
   return mergedProps;
 };
-export function findObjects(
+export function propsDeepSearch(
   obj: any,
   targetProp: any,
   targetValue: any,
@@ -55,6 +51,5 @@ export function findObjects(
 
 export default {
   SideNavContext,
-  SecondarySideNavContext,
   useMergeWithBaseProps,
 };

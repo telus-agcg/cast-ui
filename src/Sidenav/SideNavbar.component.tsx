@@ -1,10 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import {
-  SideNavContext,
-  SecondarySideNavContext,
-  findObjects,
-} from './context';
+import { SideNavContext, propsDeepSearch } from './context';
 import { SideNavToggle } from '../';
 
 export type Props = {
@@ -143,24 +139,6 @@ const SSecondarySideNavbar = styled.div`
   flex-direction: column;
 `;
 
-export const SecondarySideNavbar: React.FunctionComponent<Props> = ({
-  ...props
-}) => {
-  const { secondaryNavChildren } = React.useContext(SecondarySideNavContext);
-
-  setTimeout(() => {
-    console.log('we are here ', secondaryNavChildren);
-  }, 1500);
-  React.useEffect(() => {
-    console.log('the children are changing ', secondaryNavChildren);
-  }, [secondaryNavChildren]);
-  return (
-    <SSecondarySideNavbar role="secondary-side-nav-bar" {...props}>
-      secondary side nav
-    </SSecondarySideNavbar>
-  );
-};
-
 export const SideNavbar: React.FunctionComponent<Props> = ({
   isOpen,
   children,
@@ -168,11 +146,9 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
 }) => {
   const [toggle, setToggle] = React.useState(isOpen);
   const newProps = { ...props, isOpen: toggle || isOpen };
-  console.log(
-    'the children are changing ',
-    children,
-    findObjects(children, 'active', true, []),
-  );
+  const activeChildren: any = [];
+  propsDeepSearch(children, 'activeSideNavItem', true, activeChildren),
+    console.log('the children are changing ', children, activeChildren);
   return (
     <SideNavContext.Provider value={{ baseProps: newProps }}>
       <SSideNavbar role="side-nav-bar" {...newProps}>
@@ -181,11 +157,15 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
         </SideNavToggle>
         {children}
       </SSideNavbar>
-      <SecondarySideNavbar {...props} />
+      <SSecondarySideNavbar role="secondary-side-nav-bar" {...newProps}>
+        secondary side nav
+        {activeChildren.map((child: any) => child.children)}
+      </SSecondarySideNavbar>
     </SideNavContext.Provider>
   );
 };
-const defaultProps = {
+
+SideNavbar.defaultProps = {
   isOpen: false,
   width: '',
   background: '',
@@ -196,5 +176,3 @@ const defaultProps = {
   secondaryNavbarBackground: '',
   secondaryNavbarHeight: '',
 };
-SideNavbar.defaultProps = defaultProps;
-SecondarySideNavbar.defaultProps = defaultProps;

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { SecondarySideNavContext } from './context';
 
 export type Props = {
   children: any;
@@ -9,7 +8,7 @@ export type Props = {
    *
    * @default false
    **/
-  active?: boolean;
+  activeSideNavItem?: boolean;
   /**
    * From theme provider
    *
@@ -26,13 +25,17 @@ const SSideNavItem = styled.div`
   display: inline-flex;
   align-items: center;
   color: ${(props: Props) =>
-    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].color};
+    props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
+      .color};
   font-weight: ${(props: Props) =>
-    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].fontWeight};
+    props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
+      .fontWeight};
   cursor: ${(props: Props) =>
-    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].cursor};
+    props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
+      .cursor};
   background: ${(props: Props) =>
-    props.theme.sidenav[`${props.active ? 'active' : ''}navItem`].background};
+    props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
+      .background};
   &:before {
     content: '';
     display: block;
@@ -41,10 +44,10 @@ const SSideNavItem = styled.div`
     top: 0;
     left: 0;
     width: ${(props: Props) =>
-      props.theme.sidenav[`${props.active ? 'active' : ''}navItem`]
+      props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
         .leftBorderWidth};
     background-color: ${(props: Props) =>
-      props.theme.sidenav[`${props.active ? 'active' : ''}navItem`]
+      props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
         .leftBorderColor};
   }
 `;
@@ -56,26 +59,24 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
   const itemChildren = children.filter((child: any) =>
     child.props ? !child.props.secondary : true,
   );
-  let secondaryNavChildren: any = [];
+  let itemSecondaryChildren: any = [];
   children.map((child: any) => {
-    if (props.active) {
+    if (props.activeSideNavItem) {
       if (child.props) {
         if (child.props.secondary) {
-          secondaryNavChildren = child.props.children;
+          itemSecondaryChildren = child.props.children;
         }
       }
     }
   });
-  console.log('Item children ', itemChildren, secondaryNavChildren, children);
+  console.log('Item children ', itemChildren, itemSecondaryChildren, children);
   return (
-    <SecondarySideNavContext.Provider value={{ secondaryNavChildren }}>
-      <SSideNavItem role="side-nav-item" {...props}>
-        {itemChildren}
-      </SSideNavItem>
-    </SecondarySideNavContext.Provider>
+    <SSideNavItem role="side-nav-item" {...props}>
+      {itemChildren}
+    </SSideNavItem>
   );
 };
 
 SideNavItem.defaultProps = {
-  active: false,
+  activeSideNavItem: false,
 };
