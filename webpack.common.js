@@ -29,7 +29,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new CleanWebpackPlugin(['lib-umd']),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'cast-ui',
     }),
