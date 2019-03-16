@@ -1,25 +1,10 @@
 import * as React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Tippy, { TippyProps } from '@tippy.js/react';
-import 'tippy.js/dist/tippy.css';
 
 export type Props = TippyProps & {
-  /** the content of the Popover  */
-  content: JSX.Element | React.Component | string;
-  /** Whether to show an pointer on the popover
-   * @default false
-   **/
+  arrow: boolean;
   isVisible: boolean;
-  /** Whether to show an pointer on the popover
-   * @default false
-   **/
-  arrow?: boolean;
-  /** position of the popover
-   * @default 'bottom-end'
-   */
-  placement: TippyProps['placement'];
-  /** the content of the Popover  */
-  trigger: TippyProps['trigger'];
   /** anchor for the popover  */
   children?: any;
   /**
@@ -28,7 +13,7 @@ export type Props = TippyProps & {
    **/
   theme?: any;
 };
-
+ 
 const CastTheme = createGlobalStyle`
   .tippy-tooltip.cast-theme {
     font-family: ${(props: Props) => props.theme.typography.fontFamily};

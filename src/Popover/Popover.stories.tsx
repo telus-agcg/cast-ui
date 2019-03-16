@@ -36,9 +36,11 @@ storiesOf('Popover', module).add(
       )}
       trigger="manual"
     >
+      <span>
       <Button btnSize="md" btnStyle="primary" onClick={() => null}>
         This button has a controlled popover
       </Button>
+      </span>
     </Popover>
   ),
   {
