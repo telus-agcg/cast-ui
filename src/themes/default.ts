@@ -225,6 +225,14 @@ export const defaultTheme = {
         textDecoration: 'underline',
       },
     },
+    digits: {
+      fontWeight: '700',
+      fontSize: '18px',
+    },
+    tooltip: {
+      background: defaultColors.primary,
+      borderRadius: '1px',
+    },
   },
   input: {
     background: defaultColors.white,
