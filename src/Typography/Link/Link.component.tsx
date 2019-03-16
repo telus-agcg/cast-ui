@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-interface LinkProps extends React.LinkHTMLAttributes<HTMLLinkElement> {
+export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
   /**
    * Set a target for the Link
    *
@@ -26,9 +26,7 @@ interface LinkProps extends React.LinkHTMLAttributes<HTMLLinkElement> {
    * @default defaultTheme
    **/
   theme?: any;
-}
-
-export type Props = LinkProps;
+};
 
 const SLink = styled.a`
   font-weight: ${(props: Props) => props.theme.typography.link.fontWeight};
