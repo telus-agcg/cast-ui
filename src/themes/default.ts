@@ -233,6 +233,12 @@ export const defaultTheme = {
       background: defaultColors.primary,
       borderRadius: '1px',
     },
+    popover: {
+      background: defaultColors.white,
+      color: defaultColors.black,
+      borderRadius: '1px',
+      borderColor: defaultColors.lightGray,
+    },
   },
   input: {
     background: defaultColors.white,
@@ -397,8 +403,6 @@ export const defaultTheme = {
     lineHeight: '18px',
   },
   popover: {
-    borderColor: defaultColors.lightGray,
-    background: defaultColors.white,
     withArrowDistance: 10,
     withoutArrowDistance: 3,
   },
