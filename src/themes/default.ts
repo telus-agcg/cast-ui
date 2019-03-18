@@ -524,7 +524,7 @@ export const defaultTheme = {
       bottonNavBorderBottom: '',
     },
     itemToggle: {
-      position: 'abolute',
+      position: 'absolute',
       right: '0',
       background: defaultColors.lightBackground,
       height: '100%',

@@ -54,18 +54,18 @@ const SSideNavItemToggle = styled.div`
 export const SideNavItemToggle: React.FunctionComponent<Props> = ({
   isToggleVisible,
   isToggleOpen,
-  onClick,
+  onClick = () => {},
   openContent,
   closeContent,
   children,
   ...props
 }) => {
   const {
-    baseProps: { setPrimaryToggle, primaryToggle, isOpen },
+    // baseProps: { isOpen },
   } = React.useContext(SideNavContext);
 
   const handleClick = (e: any) => {
-    onClick ? onClick(e) : setPrimaryToggle(!(primaryToggle || isOpen));
+    onClick(e);
   };
   return isToggleVisible ? (
     <SSideNavItemToggle

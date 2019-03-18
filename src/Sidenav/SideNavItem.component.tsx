@@ -12,6 +12,12 @@ export type Props = {
    **/
   activeSideNavItem?: boolean;
   /**
+   * Set SideNavItem path
+   *
+   * @default ''
+   **/
+  path?: string;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -65,7 +71,6 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
   const {
     baseProps: {
       isOpen,
-      primaryToggle,
       setSecondaryToggle,
       secondaryToggle,
       isSecondaryNavbarOpen,
@@ -87,20 +92,18 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
 
   const newProps = {
     ...props,
-    activeSideNavItem: sideNavItemActive,
     sideNavItemActive,
+    activeSideNavItem: sideNavItemActive,
   };
 
   // Allow user to override the active state of NavItem
   React.useEffect(() => {
-    setSideNavItemActive(activeSideNavItem || sideNavItemActive);
-    console.log('setting new', activeSideNavItem || sideNavItemActive);
+    setSideNavItemActive(activeSideNavItem);
     // tslint:disable-next-line
-  }, [activeSideNavItem, sideNavItemActive]);
+  }, [activeSideNavItem]);
 
   const handleClick = (e: any) => {
     setSideNavItemActive(true);
-    // setTimeout(() => {
     if (itemSecondaryChildren.length && sideNavItemActive) {
       setSecondaryToggle(true);
     } else {
@@ -115,8 +118,6 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
       secondaryToggle,
       isSecondaryNavbarOpen,
     );
-    // tslint:disable-next-line
-    // }, 1200);
   };
   return (
     <SSideNavItem
@@ -126,10 +127,8 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
     >
       {itemChildren}
       <SideNavItemToggle
-        isToggleVisible={
-          itemSecondaryChildren.length > 0 && (primaryToggle || isOpen)
-        }
-        isToggleOpen={newProps.sideNavItemActive}
+        isToggleVisible={itemSecondaryChildren.length > 0 && isOpen}
+        isToggleOpen={newProps.sideNavItemActive && secondaryToggle}
       />
     </SSideNavItem>
   );
@@ -137,4 +136,5 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
 
 SideNavItem.defaultProps = {
   activeSideNavItem: false,
+  path: '',
 };

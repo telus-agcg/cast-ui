@@ -16,12 +16,6 @@ export type Props = {
    **/
   closeContent?: JSX.Element | React.Component | string;
   /**
-   * Click the Toggle Button
-   *
-   * @default 'void'
-   **/
-  onClick?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
-  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -41,18 +35,19 @@ const SSideNavToggle = styled.div`
 `;
 
 export const SideNavToggle: React.FunctionComponent<Props> = ({
-  onClick,
   openContent,
   closeContent,
   children,
   ...props
 }) => {
   const {
-    baseProps: { setPrimaryToggle, primaryToggle, isOpen },
+    baseProps: { isOpen, beforeToggle, onToggle, afterToggle },
   } = React.useContext(SideNavContext);
 
   const handleClick = (e: any) => {
-    onClick ? onClick(e) : setPrimaryToggle(!(primaryToggle || isOpen));
+    beforeToggle(e);
+    onToggle(e);
+    afterToggle(e);
   };
   return (
     <SSideNavToggle
@@ -61,8 +56,8 @@ export const SideNavToggle: React.FunctionComponent<Props> = ({
       onClick={(e: any) => handleClick(e)}
     >
       {children}
-      {!(primaryToggle || isOpen) && (openContent || <div>{'>'}</div>)}
-      {(primaryToggle || isOpen) && (closeContent || <div>{'<'}</div>)}
+      {!isOpen && (openContent || <div>{'>'}</div>)}
+      {isOpen && (closeContent || <div>{'<'}</div>)}
     </SSideNavToggle>
   );
 };

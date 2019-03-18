@@ -4,11 +4,29 @@ import { SideNavContext, propsDeepSearch } from './context';
 
 export type Props = {
   /**
-   * Expand/collapse the sidebar
+   * Is the sidebar Expanded/collapsed
    *
    * @default false
    **/
   isOpen?: boolean;
+  /**
+   * Before Expand/collapse the sidebar
+   *
+   * @default false
+   **/
+  beforeToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
+  /**
+   * Expand/collapse the sidebar
+   *
+   * @default false
+   **/
+  onToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
+  /**
+   * After Expand/collapse the sidebar
+   *
+   * @default false
+   **/
+  afterToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
   /**
    * A color defined in theme colors or a CSS color code
    * or shorthand string for setting element background
@@ -141,20 +159,23 @@ const SSecondarySideNavbar = styled.div`
 export const SideNavbar: React.FunctionComponent<Props> = ({
   isOpen = false,
   isSecondaryNavbarOpen = false,
+  beforeToggle = () => {},
+  onToggle = e => console.log('Toggling ', e),
+  afterToggle = () => {},
   children,
   ...props
 }) => {
-  const [primaryToggle, setPrimaryToggle] = React.useState(isOpen);
   const [secondaryToggle, setSecondaryToggle] = React.useState(
     isSecondaryNavbarOpen,
   );
   const newProps = {
     ...props,
-    primaryToggle,
+    isOpen,
     secondaryToggle,
     setSecondaryToggle,
-    setPrimaryToggle,
-    isOpen: primaryToggle,
+    beforeToggle,
+    onToggle,
+    afterToggle,
     isSecondaryNavbarOpen: secondaryToggle,
   };
 
@@ -176,20 +197,20 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
 
   // Allow user to override the state of toggle buttons
   React.useEffect(() => {
-    setPrimaryToggle(isOpen);
     setSecondaryToggle(isSecondaryNavbarOpen);
     // tslint:disable-next-line
-  }, [isOpen, isSecondaryNavbarOpen]);
+  }, [isSecondaryNavbarOpen]);
   return (
     <SideNavContext.Provider
       value={{
         baseProps: {
           ...newProps,
-          primaryToggle,
+          isOpen,
           secondaryToggle,
           setSecondaryToggle,
-          setPrimaryToggle,
-          isOpen: primaryToggle,
+          beforeToggle,
+          onToggle,
+          afterToggle,
           isSecondaryNavbarOpen: secondaryToggle,
         },
       }}

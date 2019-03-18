@@ -2,12 +2,13 @@ import * as React from 'react';
 
 export const SideNavContext = React.createContext({
   baseProps: {
-    primaryToggle: false,
     isOpen: false,
     secondaryToggle: false,
     isSecondaryNavbarOpen: false,
-    setPrimaryToggle: (val: any) => {},
     setSecondaryToggle: (val: any) => {},
+    beforeToggle: (e: any) => {},
+    onToggle: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {},
+    afterToggle: (e: any) => {},
   },
 });
 
