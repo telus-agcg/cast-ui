@@ -485,7 +485,7 @@ export const defaultTheme = {
       width: '0px',
       openWidth: '170px',
       background: defaultColors.white,
-      padding: '80px 16px 16px',
+      padding: '80px 0 16px',
       margin: '',
       zIndex: 4,
       borderLeft: '',

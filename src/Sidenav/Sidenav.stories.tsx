@@ -53,37 +53,43 @@ storiesOf('Sidenav', module).add(
             </SideNavItemIcon>
             <SideNavItemText>Home</SideNavItemText>
           </SideNavItem>
-          <SideNavItem path="/documents" activeSideNavItem>
+          <SideNavItem
+            path="/documents"
+            activeSideNavItem={boolean('Documents activeSideNavItem', true)}
+          >
             <SideNavItemIcon>
               <Icon icon={iosPaperOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>Documents</SideNavItemText>
             <SideNav secondary>
               <SideNavItem path="/documents/home-documents">
-                <div style={{ padding: '12px 0 12px 12px' }}>
+                <div style={{ padding: '12px 0 12px 24px' }}>
                   Home Documents
                 </div>
               </SideNavItem>
               <SideNavItem path="/documents/office-documents">
-                <div style={{ padding: '12px 0 12px 12px' }}>
+                <div style={{ padding: '12px 0 12px 24px' }}>
                   Office Documents
                 </div>
               </SideNavItem>
             </SideNav>
           </SideNavItem>
-          <SideNavItem path="/web">
+          <SideNavItem
+            path="/web"
+            activeSideNavItem={boolean('Web activeSideNavItem', false)}
+          >
             <SideNavItemIcon>
               <Icon icon={iosWorldOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>The Web</SideNavItemText>
             <SideNav top secondary>
               <SideNavItem path="/web/www">
-                <div style={{ padding: '12px 0 12px 12px' }}>
+                <div style={{ padding: '12px 0 12px 24px' }}>
                   World Wide Web
                 </div>
               </SideNavItem>
               <SideNavItem path="/web/dark-web">
-                <div style={{ padding: '12px 0 12px 12px' }}>The Dark Web</div>
+                <div style={{ padding: '12px 0 12px 24px' }}>The Dark Web</div>
               </SideNavItem>
             </SideNav>
           </SideNavItem>

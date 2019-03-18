@@ -189,18 +189,13 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   children,
   ...props
 }) => {
-  const [secondaryToggle, setSecondaryToggle] = React.useState(
-    isSecondaryNavbarOpen,
-  );
   const newProps = {
     ...props,
     isOpen,
-    secondaryToggle,
-    setSecondaryToggle,
     beforeToggle,
     onToggle,
     afterToggle,
-    isSecondaryNavbarOpen: secondaryToggle,
+    isSecondaryNavbarOpen,
   };
 
   // Perform deep search through sidenavbar props
@@ -219,26 +214,19 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
     ];
   });
 
-  // Allow user to override the state of toggle buttons
-  React.useEffect(() => {
-    setSecondaryToggle(isSecondaryNavbarOpen);
-    // tslint:disable-next-line
-  }, [isSecondaryNavbarOpen]);
   return (
     <SideNavContext.Provider
       value={{
         baseProps: {
           ...newProps,
           isOpen,
-          secondaryToggle,
-          setSecondaryToggle,
           beforeToggle,
           onToggle,
           afterToggle,
           itemToggleOpenContent,
           itemToggleCloseContent,
           onItemSelect: onSelect,
-          isSecondaryNavbarOpen: secondaryToggle,
+          isSecondaryNavbarOpen,
         },
       }}
     >
