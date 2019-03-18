@@ -67,6 +67,31 @@ const GlobalStyle = createGlobalStyle`
     color: ${defaultTheme.colors.primary}
     line-height: ${defaultTheme.typography.lineHeight};
   }
+
+  pre, code{
+    white-space: pre;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+  }
+
+  pre{
+    font-family: ${defaultTheme.typography.pre.fontFamily};
+    font-size: ${defaultTheme.typography.pre.fontSize};
+    line-height: ${defaultTheme.typography.pre.lineHeight};
+  }
+
+  code{
+    font-family: ${defaultTheme.typography.code.fontFamily};
+    font-size: ${defaultTheme.typography.code.fontSize};
+    line-height: ${defaultTheme.typography.code.lineHeight};
+  }
+
+  #content code{
+    display: block;
+    padding: 1.5em 2em;
+    border: 1px solid 
+  }
 `;
 
 addDecorator(story => (
