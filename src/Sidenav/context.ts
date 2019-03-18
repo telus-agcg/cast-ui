@@ -1,7 +1,18 @@
 import * as React from 'react';
+interface BaseProps {
+  isOpen: boolean;
+  isSecondaryNavbarOpen: boolean;
+  itemToggleOpenContent?: JSX.Element | React.Component | string;
+  itemToggleCloseContent?: JSX.Element | React.Component | string;
+  onToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
+  onItemSelect?(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    selectItemPath: string,
+  ): void;
+}
 
 export const SideNavContext = React.createContext({
-  baseProps: {
+  baseProps: <BaseProps>{
     isOpen: false,
     secondaryToggle: false,
     isSecondaryNavbarOpen: false,
@@ -13,6 +24,8 @@ export const SideNavContext = React.createContext({
       event: React.MouseEvent<HTMLDivElement, MouseEvent>,
       selectItemPath: string,
     ) => {},
+    itemToggleOpenContent: '',
+    itemToggleCloseContent: '',
   },
 });
 

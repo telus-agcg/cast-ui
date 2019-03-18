@@ -4,13 +4,13 @@ import { SideNavContext } from './context';
 
 export type Props = {
   /**
-   * Open toggle Button content
+   * Custom content for the ToggleButton on open mode
    *
    * @default '>'
    **/
   openContent?: JSX.Element | React.Component | string;
   /**
-   * Close toggle Button content
+   * Custom content for the ToggleButton on close mode
    *
    * @default '<'
    **/

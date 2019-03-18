@@ -39,6 +39,8 @@ storiesOf('Sidenav', module).add(
         beforeToggle={action('Before Toggle!')}
         afterToggle={action('After Toggle!')}
         onSelect={action('Selected!')}
+        itemToggleOpenContent={<Icon icon={IKAR} size={24} />}
+        itemToggleCloseContent={<Icon icon={IKAL} size={24} />}
       >
         <SideNavToggle
           openContent={<Icon icon={IKAR} size={24} />}

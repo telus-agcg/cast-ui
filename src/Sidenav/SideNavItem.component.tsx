@@ -35,6 +35,18 @@ export type Props = {
     selectItemPath: string,
   ): void;
   /**
+   * Custom content for the itemToggleButton on open mode
+   *
+   * @default '>'
+   **/
+  itemToggleOpenContent?: JSX.Element | React.Component | string;
+  /**
+   * Custom content for the itemToggleButton on close mode
+   *
+   * @default '<'
+   **/
+  itemToggleCloseContent?: JSX.Element | React.Component | string;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -95,7 +107,13 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
     activeSideNavItem,
   );
   const {
-    baseProps: { isOpen, isSecondaryNavbarOpen, onItemSelect },
+    baseProps: {
+      isOpen,
+      isSecondaryNavbarOpen,
+      onItemSelect,
+      itemToggleCloseContent,
+      itemToggleOpenContent,
+    },
   } = React.useContext(SideNavContext);
 
   const itemChildren =
@@ -123,11 +141,11 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
     // tslint:disable-next-line
   }, [activeSideNavItem]);
 
+  const noop = () => {};
   const handleSelect = (e: any) => {
     onSelect(e, path);
-    onItemSelect(e, path);
+    onItemSelect ? onItemSelect(e, path) : noop;
   };
-  const noop = () => {};
   return (
     <SSideNavItem
       role="side-nav-item"
@@ -138,6 +156,8 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
       <SideNavItemToggle
         isToggleVisible={itemSecondaryChildren.length > 0 && isOpen}
         isToggleOpen={newProps.sideNavItemActive && isSecondaryNavbarOpen}
+        openContent={newProps.itemToggleOpenContent || itemToggleOpenContent}
+        closeContent={newProps.itemToggleCloseContent || itemToggleCloseContent}
       />
     </SSideNavItem>
   );

@@ -93,6 +93,18 @@ export type Props = {
    **/
   secondaryNavbarBackground?: string;
   /**
+   * Custom content for the itemToggleButton on open mode
+   *
+   * @default '>'
+   **/
+  itemToggleOpenContent?: JSX.Element | React.Component | string;
+  /**
+   * Custom content for the itemToggleButton on close mode
+   *
+   * @default '<'
+   **/
+  itemToggleCloseContent?: JSX.Element | React.Component | string;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -172,6 +184,8 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   onToggle = e => console.log('Toggling ', e),
   afterToggle = () => {},
   onSelect = (e, path) => console.log('Side Nav Item Selected ', e, path),
+  itemToggleOpenContent,
+  itemToggleCloseContent,
   children,
   ...props
 }) => {
@@ -221,6 +235,8 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
           beforeToggle,
           onToggle,
           afterToggle,
+          itemToggleOpenContent,
+          itemToggleCloseContent,
           onItemSelect: onSelect,
           isSecondaryNavbarOpen: secondaryToggle,
         },
@@ -246,4 +262,6 @@ SideNavbar.defaultProps = {
   secondaryNavbarWidth: '',
   secondaryNavbarBackground: '',
   secondaryNavbarHeight: '',
+  itemToggleOpenContent: '',
+  itemToggleCloseContent: '',
 };

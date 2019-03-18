@@ -16,13 +16,13 @@ export type Props = {
    **/
   isToggleOpen?: boolean;
   /**
-   * Open toggle Button content
+   * Custom content for the itemToggleButton on open mode
    *
    * @default '>'
    **/
   openContent?: JSX.Element | React.Component | string;
   /**
-   * Close toggle Button content
+   * Custom content for the itemToggleButton on close mode
    *
    * @default '<'
    **/
