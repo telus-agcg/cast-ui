@@ -94,6 +94,14 @@ const SSideNavItem = styled.div`
       props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
         .leftBorderColor};
   }
+  &:hover {
+    color: ${(props: Props) =>
+      props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
+        .color};
+    background: ${(props: Props) =>
+      props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
+        .background};
+  }
 `;
 
 export const SideNavItem: React.FunctionComponent<Props> = ({

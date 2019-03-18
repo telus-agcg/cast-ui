@@ -214,6 +214,8 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
     ];
   });
 
+  console.log(' The secondary items ', activeSideNavItemsChildren);
+
   return (
     <SideNavContext.Provider
       value={{
@@ -225,8 +227,8 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
           afterToggle,
           itemToggleOpenContent,
           itemToggleCloseContent,
-          onItemSelect: onSelect,
           isSecondaryNavbarOpen,
+          onItemSelect: onSelect,
         },
       }}
     >
