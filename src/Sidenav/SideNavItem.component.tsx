@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { SideNavContext } from './context';
+import { SideNavItemToggle } from '../';
 
 export type Props = {
   children: any;
@@ -124,9 +125,12 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
       onClick={e => handleClick(e)}
     >
       {itemChildren}
-      {itemSecondaryChildren.length > 0 && (primaryToggle || isOpen) && (
-        <div>{'<'}</div>
-      )}
+      <SideNavItemToggle
+        isToggleVisible={
+          itemSecondaryChildren.length > 0 && (primaryToggle || isOpen)
+        }
+        isToggleOpen={newProps.sideNavItemActive}
+      />
     </SSideNavItem>
   );
 };

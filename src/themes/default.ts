@@ -523,6 +523,14 @@ export const defaultTheme = {
       topNavBorderBottom: `1px solid ${defaultColors.lightBorder}`,
       bottonNavBorderBottom: '',
     },
+    itemToggle: {
+      position: 'abolute',
+      right: '0',
+      background: defaultColors.lightBackground,
+      height: '100%',
+      width: '30px',
+      display: 'flex',
+    },
     navIcon: {
       padding: '8px 0 8px 12px',
     },

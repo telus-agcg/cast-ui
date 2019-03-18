@@ -4,6 +4,18 @@ import { SideNavContext } from './context';
 
 export type Props = {
   /**
+   * Show/Hide toggle button
+   *
+   * @default 'false'
+   **/
+  isToggleVisible?: boolean;
+  /**
+   * Is it the current item?
+   *
+   * @default 'false'
+   **/
+  isToggleOpen?: boolean;
+  /**
    * Open toggle Button content
    *
    * @default '>'
@@ -29,20 +41,19 @@ export type Props = {
   theme?: any;
 };
 const SSideNavItemToggle = styled.div`
-  height: ${(props: Props) => props.theme.sidenav.toggle.height};
-  cursor: ${(props: Props) => props.theme.sidenav.toggle.cursor};
-  border-bottom: ${(props: Props) => props.theme.sidenav.toggle.borderBottom};
-  display: ${(props: Props) => props.theme.sidenav.toggle.display};
+  position: ${(props: Props) => props.theme.sidenav.itemToggle.position};
+  right: ${(props: Props) => props.theme.sidenav.itemToggle.right};
+  background: ${(props: Props) => props.theme.sidenav.itemToggle.background};
+  height: ${(props: Props) => props.theme.sidenav.itemToggle.height};
+  width: ${(props: Props) => props.theme.sidenav.itemToggle.width};
+  display: ${(props: Props) => props.theme.sidenav.itemToggle.display};
   align-items: center;
-  justify-content: right;
-  position: absolute;
-  right: 12px;
-  > * {
-    padding: ${(props: Props) => props.theme.sidenav.toggle.padding};
-  }
+  justify-content: center;
 `;
 
 export const SideNavItemToggle: React.FunctionComponent<Props> = ({
+  isToggleVisible,
+  isToggleOpen,
   onClick,
   openContent,
   closeContent,
@@ -56,20 +67,22 @@ export const SideNavItemToggle: React.FunctionComponent<Props> = ({
   const handleClick = (e: any) => {
     onClick ? onClick(e) : setPrimaryToggle(!(primaryToggle || isOpen));
   };
-  return (
+  return isToggleVisible ? (
     <SSideNavItemToggle
       role="side-nav-toggle"
       {...props}
       onClick={(e: any) => handleClick(e)}
     >
       {children}
-      {!(primaryToggle || isOpen) && (openContent || <div>{'>'}</div>)}
-      {(primaryToggle || isOpen) && (closeContent || <div>{'<'}</div>)}
+      {!isToggleOpen && (openContent || <div>{'>'}</div>)}
+      {isToggleOpen && (closeContent || <div>{'<'}</div>)}
     </SSideNavItemToggle>
-  );
+  ) : null;
 };
 
 SideNavItemToggle.defaultProps = {
+  isToggleVisible: false,
+  isToggleOpen: false,
   openContent: '',
   closeContent: '',
 };
