@@ -515,7 +515,7 @@ export const defaultTheme = {
     activenavItem: {
       color: defaultColors.blue,
       fontWeight: 700,
-      cursor: 'default',
+      cursor: 'pointer',
       background: defaultColors.white,
       leftBorderWidth: '4px',
       leftBorderColor: defaultColors.blue,

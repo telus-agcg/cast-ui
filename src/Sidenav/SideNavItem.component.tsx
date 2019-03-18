@@ -54,24 +54,55 @@ const SSideNavItem = styled.div`
 `;
 
 export const SideNavItem: React.FunctionComponent<Props> = ({
+  activeSideNavItem,
   children,
   ...props
 }) => {
+  const [sideNavItemActive, setSideNavItemActive] = React.useState(
+    activeSideNavItem,
+  );
   const {
     baseProps: { setSecondaryToggle, secondaryToggle, isSecondaryNavbarOpen },
   } = React.useContext(SideNavContext);
+
   const itemChildren =
     children instanceof Array
       ? children.filter((child: any) =>
           child.props ? !child.props.secondary : true,
         )
       : children;
+  const itemSecondaryChildren =
+    children instanceof Array
+      ? children.filter((child: any) =>
+          child.props ? child.props.secondary : false,
+        )
+      : [];
+
+  const newProps = {
+    ...props,
+    activeSideNavItem: sideNavItemActive,
+  };
+
+  // Allow user to override the active state of NavItem
+  React.useEffect(() => {
+    setSideNavItemActive(activeSideNavItem);
+    // tslint:disable-next-line
+  }, [activeSideNavItem]);
 
   const handleClick = (e: any) => {
-    setSecondaryToggle(!(secondaryToggle || isSecondaryNavbarOpen));
+    console.log('Item clicked ', e, newProps, itemSecondaryChildren);
+    setSecondaryToggle(
+      !(secondaryToggle || isSecondaryNavbarOpen) &&
+        itemSecondaryChildren.length,
+    );
+    setSideNavItemActive(!(sideNavItemActive || activeSideNavItem));
   };
   return (
-    <SSideNavItem role="side-nav-item" {...props} onClick={e => handleClick(e)}>
+    <SSideNavItem
+      role="side-nav-item"
+      {...newProps}
+      onClick={e => handleClick(e)}
+    >
       {itemChildren}
     </SSideNavItem>
   );

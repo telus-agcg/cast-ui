@@ -62,6 +62,16 @@ storiesOf('Sidenav', module).add(
               <Icon icon={iosWorldOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>The Web</SideNavItemText>
+            <SideNav top secondary>
+              <SideNavItem>
+                <div style={{ padding: '12px 0 12px 12px' }}>
+                  World Wide Web
+                </div>
+              </SideNavItem>
+              <SideNavItem>
+                <div style={{ padding: '12px 0 12px 12px' }}>The Dark Web</div>
+              </SideNavItem>
+            </SideNav>
           </SideNavItem>
           <SideNavItem>
             <SideNavItemIcon>

@@ -15,5 +15,9 @@ module.exports = merge(common, {
   plugins: [new webpack.HotModuleReplacementPlugin()],
   optimization: {
     usedExports: true,
+    splitChunks: {
+      chunks: 'all',
+      runtimeChunk: true,
+    },
   },
 });
