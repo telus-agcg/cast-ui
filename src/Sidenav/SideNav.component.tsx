@@ -48,17 +48,14 @@ const SSideNav = styled.nav`
   flex-direction: column;
   > *:hover {
     color: ${(props: Props) =>
-      props.theme.sidenav[
-        `${props.secondary ? 'activeSecondary' : 'active'}navItem`
-      ].color};
+      props.theme.sidenav[`${props.secondary ? 'activeSec' : 'active'}navItem`]
+        .color};
     background: ${(props: Props) =>
-      props.theme.sidenav[
-        `${props.secondary ? 'activeSecondary' : 'active'}navItem`
-      ].background};
+      props.theme.sidenav[`${props.secondary ? 'activeSec' : 'active'}navItem`]
+        .background};
     font-weight: ${(props: Props) =>
-      props.theme.sidenav[
-        `${props.secondary ? 'activeSecondary' : 'active'}navItem`
-      ].fontWeight};
+      props.theme.sidenav[`${props.secondary ? 'activeSec' : 'active'}navItem`]
+        .fontWeight};
   }
   > *:not(:last-child) {
     border-bottom: ${(props: Props) =>

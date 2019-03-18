@@ -526,7 +526,7 @@ export const defaultTheme = {
       topNavBorderBottom: `1px solid ${defaultColors.lightBorder}`,
       bottonNavBorderBottom: '',
     },
-    activeSecondarynavItem: {
+    activeSecnavItem: {
       color: defaultColors.blue,
       fontWeight: 700,
       background: defaultColors.lightBackground,
