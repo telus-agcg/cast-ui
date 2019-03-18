@@ -62,7 +62,13 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
     activeSideNavItem,
   );
   const {
-    baseProps: { setSecondaryToggle, secondaryToggle, isSecondaryNavbarOpen },
+    baseProps: {
+      isOpen,
+      primaryToggle,
+      setSecondaryToggle,
+      secondaryToggle,
+      isSecondaryNavbarOpen,
+    },
   } = React.useContext(SideNavContext);
 
   const itemChildren =
@@ -93,23 +99,23 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
 
   const handleClick = (e: any) => {
     setSideNavItemActive(true);
-    setTimeout(() => {
-      if (itemSecondaryChildren.length && sideNavItemActive) {
-        setSecondaryToggle(true);
-      } else {
-        setSecondaryToggle(false);
-      }
-      console.log(
-        'Item clicked ',
-        e,
-        newProps,
-        itemSecondaryChildren,
-        sideNavItemActive,
-        secondaryToggle,
-        isSecondaryNavbarOpen,
-      );
-      // tslint:disable-next-line
-    }, 1200);
+    // setTimeout(() => {
+    if (itemSecondaryChildren.length && sideNavItemActive) {
+      setSecondaryToggle(true);
+    } else {
+      setSecondaryToggle(false);
+    }
+    console.log(
+      'Item clicked ',
+      e,
+      newProps,
+      itemSecondaryChildren,
+      sideNavItemActive,
+      secondaryToggle,
+      isSecondaryNavbarOpen,
+    );
+    // tslint:disable-next-line
+    // }, 1200);
   };
   return (
     <SSideNavItem
@@ -118,6 +124,9 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
       onClick={e => handleClick(e)}
     >
       {itemChildren}
+      {itemSecondaryChildren.length > 0 && (primaryToggle || isOpen) && (
+        <div>{'<'}</div>
+      )}
     </SSideNavItem>
   );
 };

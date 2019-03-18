@@ -4,6 +4,7 @@ import { SideNav } from './SideNav.component';
 import { SideNavItem } from './SideNavItem.component';
 import { SideNavItemIcon } from './SideNavItemIcon.component';
 import { SideNavItemText } from './SideNavItemText.component';
+import { SideNavItemToggle } from './SideNavItemToggle.component';
 
 export { SideNavbar, Props as SideNavbarProps } from './SideNavbar.component';
 export {
@@ -23,6 +24,10 @@ export {
   SideNavItemText,
   Props as SideNavItemTextProps,
 } from './SideNavItemText.component';
+export {
+  SideNavItemToggle,
+  Props as SideNavItemToggleProps,
+} from './SideNavItemToggle.component';
 
 export default {
   SideNavbar,
@@ -31,4 +36,5 @@ export default {
   SideNavItem,
   SideNavItemIcon,
   SideNavItemText,
+  SideNavItemToggle,
 };
