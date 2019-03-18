@@ -17,8 +17,7 @@ storiesOf('Popover', module).add(
   () => (
     <Popover
       content={<MyComponent />}
-      isVisible={boolean('isVisible', false)}
-      arrow={boolean('arrow', true)}
+      arrow={boolean('arrow', false)}
       size={select('size', ['small', 'regular', 'large'], 'regular')}
       placement={select(
         'placement',
@@ -32,9 +31,8 @@ storiesOf('Popover', module).add(
           'left',
           'right',
         ],
-        'bottom-end',
+        'bottom-start',
       )}
-      trigger="manual"
     >
       <span>
       <Button btnSize="md" btnStyle="primary" onClick={() => null}>
