@@ -4,7 +4,7 @@ import { SideNavContext, propsDeepSearch } from './context';
 
 export type Props = {
   /**
-   * Is the sidebar Expanded/collapsed
+   * Set the sidebar as Expanded/collapsed
    *
    * @default false
    **/
