@@ -85,7 +85,7 @@ storiesOf('Sidenav', module).add(
               </SideNavItem>
             </SideNav>
           </SideNavItem>
-          <SideNavItem path="/currencies">
+          <SideNavItem path="/currencies" disabled>
             <SideNavItemIcon>
               <Icon icon={socialBitcoinOutline} size={24} />
             </SideNavItemIcon>
@@ -99,7 +99,7 @@ storiesOf('Sidenav', module).add(
             </SideNavItemIcon>
             <SideNavItemText>Technology</SideNavItemText>
           </SideNavItem>
-          <SideNavItem path="/currencies">
+          <SideNavItem path="/currencies" disabled>
             <SideNavItemIcon>
               <Icon icon={socialBitcoinOutline} size={24} />
             </SideNavItemIcon>

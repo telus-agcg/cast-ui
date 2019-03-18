@@ -6,17 +6,34 @@ import { SideNavItemToggle } from '../';
 export type Props = {
   children: any;
   /**
-   * Set SideNavItem as active
+   * Highlight the navigation item as active
    *
    * @default false
    **/
   activeSideNavItem?: boolean;
   /**
-   * Set SideNavItem path
+   * Disable the navigation item, making it unselectable
+   *
+   * @default false
+   **/
+  disabled?: boolean;
+  /**
+   * Set SideNavItem path.
+   * This Value is passed to the onSelect handler,
+   * Useful for identifying the selected navigation item
    *
    * @default ''
    **/
-  path?: string;
+  path?: any;
+  /**
+   * Callback fired when a navigation item is selected.
+   *
+   * @default false
+   **/
+  onSelect?(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    selectItemPath: string,
+  ): void;
   /**
    * From theme provider
    *
@@ -39,11 +56,18 @@ const SSideNavItem = styled.div`
     props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
       .fontWeight};
   cursor: ${(props: Props) =>
-    props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
-      .cursor};
+    props.disabled
+      ? 'not-allowed'
+      : props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
+          .cursor};
   background: ${(props: Props) =>
     props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
       .background};
+  opacity: ${(props: Props) =>
+    props.disabled
+      ? '.6'
+      : props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
+          .opacity};
   &:before {
     content: '';
     display: block;
@@ -62,6 +86,7 @@ const SSideNavItem = styled.div`
 
 export const SideNavItem: React.FunctionComponent<Props> = ({
   activeSideNavItem,
+  onSelect = () => {},
   path = '',
   children,
   ...props
@@ -98,14 +123,16 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
     // tslint:disable-next-line
   }, [activeSideNavItem]);
 
-  const handleClick = (e: any) => {
+  const handleSelect = (e: any) => {
+    onSelect(e, path);
     onItemSelect(e, path);
   };
+  const noop = () => {};
   return (
     <SSideNavItem
       role="side-nav-item"
       {...newProps}
-      onClick={e => handleClick(e)}
+      onClick={newProps.disabled ? noop : handleSelect}
     >
       {itemChildren}
       <SideNavItemToggle
@@ -118,5 +145,6 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
 
 SideNavItem.defaultProps = {
   activeSideNavItem: false,
+  disabled: false,
   path: '',
 };
