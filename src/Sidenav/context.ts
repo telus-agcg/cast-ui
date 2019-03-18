@@ -16,16 +16,11 @@ interface BaseProps {
 export const SideNavContext = React.createContext({
   baseProps: <BaseProps>{
     isOpen: false,
-    secondaryToggle: false,
     isSecondaryNavbarOpen: false,
-    setSecondaryToggle: (val: any) => {},
-    beforeToggle: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {},
-    onToggle: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {},
-    afterToggle: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {},
-    onItemSelect: (
-      event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-      selectItemPath: string,
-    ) => {},
+    beforeToggle: () => {},
+    onToggle: () => {},
+    afterToggle: () => {},
+    onItemSelect: () => {},
     itemToggleOpenContent: '',
     itemToggleCloseContent: '',
   },
