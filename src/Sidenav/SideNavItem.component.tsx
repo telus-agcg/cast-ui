@@ -61,6 +61,7 @@ const SSideNavItem = styled.div`
   margin: 0;
   display: inline-flex;
   align-items: center;
+  transition: ${(props: Props) => props.theme.sidenav.navItem.transition};
   color: ${(props: Props) =>
     props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
       .color};
@@ -93,14 +94,6 @@ const SSideNavItem = styled.div`
     background-color: ${(props: Props) =>
       props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
         .leftBorderColor};
-  }
-  &:hover {
-    color: ${(props: Props) =>
-      props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
-        .color};
-    background: ${(props: Props) =>
-      props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
-        .background};
   }
 `;
 

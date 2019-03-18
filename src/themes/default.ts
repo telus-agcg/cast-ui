@@ -513,6 +513,7 @@ export const defaultTheme = {
       leftBorderColor: 'transparent',
       topNavBorderBottom: `1px solid ${defaultColors.lightBorder}`,
       bottonNavBorderBottom: '',
+      transition: 'all 0.5s ease-in-out',
     },
     activenavItem: {
       color: defaultColors.blue,
@@ -524,6 +525,11 @@ export const defaultTheme = {
       leftBorderColor: defaultColors.blue,
       topNavBorderBottom: `1px solid ${defaultColors.lightBorder}`,
       bottonNavBorderBottom: '',
+    },
+    activeSecondarynavItem: {
+      color: defaultColors.blue,
+      fontWeight: 700,
+      background: defaultColors.lightBackground,
     },
     itemToggle: {
       position: 'absolute',

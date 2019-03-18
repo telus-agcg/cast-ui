@@ -46,6 +46,20 @@ const SSideNav = styled.nav`
     props.bottom || props.center ? 'auto' : '0'};
   display: flex;
   flex-direction: column;
+  > *:hover {
+    color: ${(props: Props) =>
+      props.theme.sidenav[
+        `${props.secondary ? 'activeSecondary' : 'active'}navItem`
+      ].color};
+    background: ${(props: Props) =>
+      props.theme.sidenav[
+        `${props.secondary ? 'activeSecondary' : 'active'}navItem`
+      ].background};
+    font-weight: ${(props: Props) =>
+      props.theme.sidenav[
+        `${props.secondary ? 'activeSecondary' : 'active'}navItem`
+      ].fontWeight};
+  }
   > *:not(:last-child) {
     border-bottom: ${(props: Props) =>
       (props.top || props.center) && !props.secondary

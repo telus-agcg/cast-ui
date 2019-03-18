@@ -214,8 +214,6 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
     ];
   });
 
-  console.log(' The secondary items ', activeSideNavItemsChildren);
-
   return (
     <SideNavContext.Provider
       value={{
