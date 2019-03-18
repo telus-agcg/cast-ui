@@ -81,21 +81,35 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
   const newProps = {
     ...props,
     activeSideNavItem: sideNavItemActive,
+    sideNavItemActive,
   };
 
   // Allow user to override the active state of NavItem
   React.useEffect(() => {
-    setSideNavItemActive(activeSideNavItem);
+    setSideNavItemActive(activeSideNavItem || sideNavItemActive);
+    console.log('setting new', activeSideNavItem || sideNavItemActive);
     // tslint:disable-next-line
-  }, [activeSideNavItem]);
+  }, [activeSideNavItem, sideNavItemActive]);
 
   const handleClick = (e: any) => {
-    console.log('Item clicked ', e, newProps, itemSecondaryChildren);
-    setSecondaryToggle(
-      !(secondaryToggle || isSecondaryNavbarOpen) &&
-        itemSecondaryChildren.length,
-    );
-    setSideNavItemActive(!(sideNavItemActive || activeSideNavItem));
+    setSideNavItemActive(true);
+    setTimeout(() => {
+      if (itemSecondaryChildren.length && sideNavItemActive) {
+        setSecondaryToggle(true);
+      } else {
+        setSecondaryToggle(false);
+      }
+      console.log(
+        'Item clicked ',
+        e,
+        newProps,
+        itemSecondaryChildren,
+        sideNavItemActive,
+        secondaryToggle,
+        isSecondaryNavbarOpen,
+      );
+      // tslint:disable-next-line
+    }, 1200);
   };
   return (
     <SSideNavItem

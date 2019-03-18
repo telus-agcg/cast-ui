@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { SideNavContext } from './context';
 
 export type Props = {
   /**
@@ -29,12 +30,26 @@ const SSideNavToggle = styled.div`
 `;
 
 export const SideNavToggle: React.FunctionComponent<Props> = ({
+  onClick,
   children,
   ...props
-}) => (
-  <SSideNavToggle role="side-nav-toggle" {...props}>
-    {children}
-  </SSideNavToggle>
-);
+}) => {
+  const {
+    baseProps: { setPrimaryToggle, primaryToggle, isOpen },
+  } = React.useContext(SideNavContext);
+
+  const handleClick = (e: any) => {
+    onClick ? onClick(e) : setPrimaryToggle(!(primaryToggle || isOpen));
+  };
+  return (
+    <SSideNavToggle
+      role="side-nav-toggle"
+      {...props}
+      onClick={(e: any) => handleClick(e)}
+    >
+      {children}
+    </SSideNavToggle>
+  );
+};
 
 SideNavToggle.defaultProps = {};

@@ -14,6 +14,7 @@ import {
   SideNavItem,
   SideNavItemIcon,
   SideNavItemText,
+  SideNavToggle,
 } from '../';
 
 storiesOf('Sidenav', module).add(
@@ -27,11 +28,12 @@ storiesOf('Sidenav', module).add(
         width={text('width', '')}
         borderLeft={text('borderLeft', '')}
         borderRight={text('borderRight', '')}
-        isSecondaryNavbarOpen={boolean('isSecondaryNavbarOpen', true)}
+        isSecondaryNavbarOpen={boolean('isSecondaryNavbarOpen', false)}
         secondaryNavbarWidth={text('secondaryNavbarWidth', '')}
         secondaryNavbarHeight={text('secondaryNavbarHeight', '')}
         secondaryNavbarBackground={text('secondaryNavbarBackground', 'white')}
       >
+        <SideNavToggle />
         <SideNav top>
           <SideNavItem>
             <SideNavItemIcon>
