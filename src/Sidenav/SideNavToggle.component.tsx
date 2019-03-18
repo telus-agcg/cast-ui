@@ -4,11 +4,17 @@ import { SideNavContext } from './context';
 
 export type Props = {
   /**
-   * Toggle Button content
+   * Open toggle Button content
    *
-   * @default '>|<'
+   * @default '>'
    **/
-  content?: JSX.Element | React.Component | string;
+  openContent?: JSX.Element | React.Component | string;
+  /**
+   * Close toggle Button content
+   *
+   * @default '<'
+   **/
+  closeContent?: JSX.Element | React.Component | string;
   /**
    * Click the Toggle Button
    *
@@ -25,12 +31,19 @@ export type Props = {
 const SSideNavToggle = styled.div`
   height: ${(props: Props) => props.theme.sidenav.toggle.height};
   cursor: ${(props: Props) => props.theme.sidenav.toggle.cursor};
-  padding: ${(props: Props) => props.theme.sidenav.toggle.padding};
   border-bottom: ${(props: Props) => props.theme.sidenav.toggle.borderBottom};
+  display: ${(props: Props) => props.theme.sidenav.toggle.display};
+  align-items: center;
+  justify-content: right;
+  > * {
+    padding: ${(props: Props) => props.theme.sidenav.toggle.padding};
+  }
 `;
 
 export const SideNavToggle: React.FunctionComponent<Props> = ({
   onClick,
+  openContent,
+  closeContent,
   children,
   ...props
 }) => {
@@ -48,8 +61,13 @@ export const SideNavToggle: React.FunctionComponent<Props> = ({
       onClick={(e: any) => handleClick(e)}
     >
       {children}
+      {!(primaryToggle || isOpen) && (openContent || <div>{'>'}</div>)}
+      {(primaryToggle || isOpen) && (closeContent || <div>{'<'}</div>)}
     </SSideNavToggle>
   );
 };
 
-SideNavToggle.defaultProps = {};
+SideNavToggle.defaultProps = {
+  openContent: '',
+  closeContent: '',
+};

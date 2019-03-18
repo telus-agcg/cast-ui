@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { SideNavContext, propsDeepSearch } from './context';
-import { SideNavToggle } from '../';
 
 export type Props = {
   /**
@@ -196,13 +195,6 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
       }}
     >
       <SSideNavbar role="side-nav-bar" {...newProps}>
-        <SideNavToggle
-          onClick={() =>
-            setPrimaryToggle(!(newProps.primaryToggle || newProps.isOpen))
-          }
-        >
-          Open
-        </SideNavToggle>
         {children}
       </SSideNavbar>
       <SSecondarySideNavbar role="secondary-side-nav-bar" {...newProps}>

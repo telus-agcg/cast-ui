@@ -3,6 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { text, boolean } from '@storybook/addon-knobs/react';
 
 import Icon from 'react-icons-kit';
+import { ic_keyboard_arrow_left as IKAL } from 'react-icons-kit/md/ic_keyboard_arrow_left';
+import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
 import { socialBitcoinOutline } from 'react-icons-kit/ionicons/socialBitcoinOutline';
 import { socialAndroidOutline } from 'react-icons-kit/ionicons/socialAndroidOutline';
 import { iosHomeOutline } from 'react-icons-kit/ionicons/iosHomeOutline';
@@ -33,7 +35,10 @@ storiesOf('Sidenav', module).add(
         secondaryNavbarHeight={text('secondaryNavbarHeight', '')}
         secondaryNavbarBackground={text('secondaryNavbarBackground', 'white')}
       >
-        <SideNavToggle />
+        <SideNavToggle
+          openContent={<Icon icon={IKAR} size={24} />}
+          closeContent={<Icon icon={IKAL} size={24} />}
+        />
         <SideNav top>
           <SideNavItem>
             <SideNavItemIcon>

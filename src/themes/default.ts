@@ -499,8 +499,9 @@ export const defaultTheme = {
     toggle: {
       height: '80px',
       cursor: 'pointer',
-      padding: '',
+      padding: '0 12px',
       borderBottom: `1px solid ${defaultColors.lightBorder}`,
+      display: 'grid',
     },
     navItem: {
       color: 'inherit',
