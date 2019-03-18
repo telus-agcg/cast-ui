@@ -150,12 +150,12 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   );
   const newProps = {
     ...props,
-    isOpen: primaryToggle,
-    isSecondaryNavbarOpen: secondaryToggle,
     primaryToggle,
     secondaryToggle,
     setSecondaryToggle,
     setPrimaryToggle,
+    isOpen: primaryToggle,
+    isSecondaryNavbarOpen: secondaryToggle,
   };
 
   // Perform deep search through sidenavbar props
@@ -185,12 +185,12 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
       value={{
         baseProps: {
           ...newProps,
-          isOpen: primaryToggle,
-          isSecondaryNavbarOpen: secondaryToggle,
           primaryToggle,
           secondaryToggle,
           setSecondaryToggle,
           setPrimaryToggle,
+          isOpen: primaryToggle,
+          isSecondaryNavbarOpen: secondaryToggle,
         },
       }}
     >
