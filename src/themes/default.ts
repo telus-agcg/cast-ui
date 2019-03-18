@@ -239,6 +239,18 @@ export const defaultTheme = {
       borderRadius: '1px',
       borderColor: defaultColors.lightGray,
     },
+    pre: {
+      background: defaultColors.lightBackground,
+      fontFamily: '"Roboto Mono", Courier, monospace',
+      fontSize: '100%',
+      lineHeight: '100%',
+    },
+    code: {
+      background: defaultColors.lightBackground,
+      fontFamily: '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
+      fontSize: '95%',
+      lineHeight: '140%',
+    },
   },
   input: {
     background: defaultColors.white,
