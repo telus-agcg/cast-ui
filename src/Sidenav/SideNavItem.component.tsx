@@ -62,6 +62,7 @@ const SSideNavItem = styled.div`
 
 export const SideNavItem: React.FunctionComponent<Props> = ({
   activeSideNavItem,
+  path = '',
   children,
   ...props
 }) => {
@@ -69,12 +70,7 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
     activeSideNavItem,
   );
   const {
-    baseProps: {
-      isOpen,
-      setSecondaryToggle,
-      secondaryToggle,
-      isSecondaryNavbarOpen,
-    },
+    baseProps: { isOpen, isSecondaryNavbarOpen, onItemSelect },
   } = React.useContext(SideNavContext);
 
   const itemChildren =
@@ -103,21 +99,7 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
   }, [activeSideNavItem]);
 
   const handleClick = (e: any) => {
-    setSideNavItemActive(true);
-    if (itemSecondaryChildren.length && sideNavItemActive) {
-      setSecondaryToggle(true);
-    } else {
-      setSecondaryToggle(false);
-    }
-    console.log(
-      'Item clicked ',
-      e,
-      newProps,
-      itemSecondaryChildren,
-      sideNavItemActive,
-      secondaryToggle,
-      isSecondaryNavbarOpen,
-    );
+    onItemSelect(e, path);
   };
   return (
     <SSideNavItem
@@ -128,7 +110,7 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
       {itemChildren}
       <SideNavItemToggle
         isToggleVisible={itemSecondaryChildren.length > 0 && isOpen}
-        isToggleOpen={newProps.sideNavItemActive && secondaryToggle}
+        isToggleOpen={newProps.sideNavItemActive && isSecondaryNavbarOpen}
       />
     </SSideNavItem>
   );

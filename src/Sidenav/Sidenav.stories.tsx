@@ -30,7 +30,7 @@ storiesOf('Sidenav', module).add(
         width={text('width', '')}
         borderLeft={text('borderLeft', '')}
         borderRight={text('borderRight', '')}
-        isSecondaryNavbarOpen={boolean('isSecondaryNavbarOpen', false)}
+        isSecondaryNavbarOpen={boolean('isSecondaryNavbarOpen', true)}
         secondaryNavbarWidth={text('secondaryNavbarWidth', '')}
         secondaryNavbarHeight={text('secondaryNavbarHeight', '')}
         secondaryNavbarBackground={text('secondaryNavbarBackground', 'white')}
@@ -40,47 +40,47 @@ storiesOf('Sidenav', module).add(
           closeContent={<Icon icon={IKAL} size={24} />}
         />
         <SideNav top>
-          <SideNavItem>
+          <SideNavItem path="/home">
             <SideNavItemIcon>
               <Icon icon={iosHomeOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>Home</SideNavItemText>
           </SideNavItem>
-          <SideNavItem activeSideNavItem>
+          <SideNavItem path="/documents" activeSideNavItem>
             <SideNavItemIcon>
               <Icon icon={iosPaperOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>Documents</SideNavItemText>
             <SideNav top secondary>
-              <SideNavItem>
+              <SideNavItem path="/documents/home-documents">
                 <div style={{ padding: '12px 0 12px 12px' }}>
                   Home Documents
                 </div>
               </SideNavItem>
-              <SideNavItem>
+              <SideNavItem path="/documents/office-documents">
                 <div style={{ padding: '12px 0 12px 12px' }}>
                   Office Documents
                 </div>
               </SideNavItem>
             </SideNav>
           </SideNavItem>
-          <SideNavItem>
+          <SideNavItem path="/web">
             <SideNavItemIcon>
               <Icon icon={iosWorldOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>The Web</SideNavItemText>
             <SideNav top secondary>
-              <SideNavItem>
+              <SideNavItem path="/web/www">
                 <div style={{ padding: '12px 0 12px 12px' }}>
                   World Wide Web
                 </div>
               </SideNavItem>
-              <SideNavItem>
+              <SideNavItem path="/web/dark-web">
                 <div style={{ padding: '12px 0 12px 12px' }}>The Dark Web</div>
               </SideNavItem>
             </SideNav>
           </SideNavItem>
-          <SideNavItem>
+          <SideNavItem path="/currencies">
             <SideNavItemIcon>
               <Icon icon={socialBitcoinOutline} size={24} />
             </SideNavItemIcon>
@@ -88,13 +88,13 @@ storiesOf('Sidenav', module).add(
           </SideNavItem>
         </SideNav>
         <SideNav center>
-          <SideNavItem>
+          <SideNavItem path="/technology">
             <SideNavItemIcon>
               <Icon icon={socialAndroidOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>Technology</SideNavItemText>
           </SideNavItem>
-          <SideNavItem>
+          <SideNavItem path="/currencies">
             <SideNavItemIcon>
               <Icon icon={socialBitcoinOutline} size={24} />
             </SideNavItemIcon>
@@ -102,13 +102,13 @@ storiesOf('Sidenav', module).add(
           </SideNavItem>
         </SideNav>
         <SideNav bottom>
-          <SideNavItem>
+          <SideNavItem path="/documents">
             <SideNavItemIcon>
               <Icon icon={iosPaperOutline} size={24} />
             </SideNavItemIcon>
             <SideNavItemText>Documents</SideNavItemText>
           </SideNavItem>
-          <SideNavItem>
+          <SideNavItem path="/home">
             <SideNavItemIcon>
               <Icon icon={iosHomeOutline} size={24} />
             </SideNavItemIcon>

@@ -28,6 +28,15 @@ export type Props = {
    **/
   afterToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
   /**
+   * Handle select SideNavItem
+   *
+   * @default false
+   **/
+  onSelect?(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    selectItemPath: string,
+  ): void;
+  /**
    * A color defined in theme colors or a CSS color code
    * or shorthand string for setting element background
    *
@@ -162,6 +171,7 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   beforeToggle = () => {},
   onToggle = e => console.log('Toggling ', e),
   afterToggle = () => {},
+  onSelect = (e, path) => console.log('Side Nav Item Selected ', e, path),
   children,
   ...props
 }) => {
@@ -211,6 +221,7 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
           beforeToggle,
           onToggle,
           afterToggle,
+          onItemSelect: onSelect,
           isSecondaryNavbarOpen: secondaryToggle,
         },
       }}

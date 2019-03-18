@@ -6,9 +6,13 @@ export const SideNavContext = React.createContext({
     secondaryToggle: false,
     isSecondaryNavbarOpen: false,
     setSecondaryToggle: (val: any) => {},
-    beforeToggle: (e: any) => {},
+    beforeToggle: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {},
     onToggle: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {},
-    afterToggle: (e: any) => {},
+    afterToggle: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {},
+    onItemSelect: (
+      event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+      selectItemPath: string,
+    ) => {},
   },
 });
 
