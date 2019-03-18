@@ -10,14 +10,10 @@ module.exports = merge(common, {
     hot: true,
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].[contenthash].js',
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   optimization: {
     usedExports: true,
-    splitChunks: {
-      chunks: 'all',
-      runtimeChunk: true,
-    },
   },
 });

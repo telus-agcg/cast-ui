@@ -20,9 +20,12 @@ export const SideNavItemText: React.FunctionComponent<Props> = ({
   children,
   ...props
 }) => {
-  const { baseProps } = React.useContext(SideNavContext);
+  const {
+    baseProps: { isOpen },
+  } = React.useContext(SideNavContext);
+  const newProps = { ...props, isOpen };
   return (
-    <SSideNavItemText role="side-nav-text" {...baseProps} {...props}>
+    <SSideNavItemText role="side-nav-text" {...newProps}>
       {children}
     </SSideNavItemText>
   );
