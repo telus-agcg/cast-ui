@@ -44,10 +44,11 @@ export const SideNavToggle: React.FunctionComponent<Props> = ({
     baseProps: { isOpen, beforeToggle, onToggle, afterToggle },
   } = React.useContext(SideNavContext);
 
+  const noop = () => {};
   const handleClick = (e: any) => {
-    beforeToggle(e);
-    onToggle(e);
-    afterToggle(e);
+    beforeToggle ? beforeToggle(e) : noop;
+    onToggle ? onToggle(e) : noop;
+    afterToggle ? afterToggle(e) : noop;
   };
   return (
     <SSideNavToggle

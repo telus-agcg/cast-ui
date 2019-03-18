@@ -1,10 +1,12 @@
 import * as React from 'react';
 interface BaseProps {
-  isOpen: boolean;
-  isSecondaryNavbarOpen: boolean;
+  isOpen?: boolean;
+  isSecondaryNavbarOpen?: boolean;
   itemToggleOpenContent?: JSX.Element | React.Component | string;
   itemToggleCloseContent?: JSX.Element | React.Component | string;
+  afterToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
   onToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
+  beforeToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
   onItemSelect?(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     selectItemPath: string,
