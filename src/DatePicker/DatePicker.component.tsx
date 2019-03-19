@@ -58,6 +58,7 @@ const SOverlayComponent = styled.div`
     props.theme.common[props.datepickersize!].fontSize}
   color: ${(props: Props) => props.theme.colors.primary};
   box-shadow: #0000001a 0px 3px 25px;
+  position: absolute;
   .DayPicker-wrapper {
     padding: ${(props: Props) =>
       props.theme.datepicker[props.datepickersize!].margins.dayPickerWraper}
