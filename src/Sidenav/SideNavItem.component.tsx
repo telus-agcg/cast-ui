@@ -98,15 +98,11 @@ const SSideNavItem = styled.div`
 `;
 
 export const SideNavItem: React.FunctionComponent<Props> = ({
-  activeSideNavItem,
   onSelect = () => {},
   path = '',
   children,
   ...props
 }) => {
-  const [sideNavItemActive, setSideNavItemActive] = React.useState(
-    activeSideNavItem,
-  );
   const {
     baseProps: {
       isOpen,
@@ -130,35 +126,25 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
         )
       : [];
 
-  const newProps = {
-    ...props,
-    sideNavItemActive,
-    activeSideNavItem: sideNavItemActive,
-  };
-
-  // Allow user to override the active state of NavItem
-  React.useEffect(() => {
-    setSideNavItemActive(activeSideNavItem);
-    // tslint:disable-next-line
-  }, [activeSideNavItem]);
-
   const noop = () => {};
+
   const handleSelect = (e: any) => {
     onSelect(e, path);
     onItemSelect ? onItemSelect(e, path) : noop;
   };
+
   return (
     <SSideNavItem
       role="side-nav-item"
-      {...newProps}
-      onClick={newProps.disabled ? noop : handleSelect}
+      {...props}
+      onClick={props.disabled ? noop : handleSelect}
     >
       {itemChildren}
       <SideNavItemToggle
         isToggleVisible={itemSecondaryChildren.length > 0 && isOpen}
-        isToggleOpen={newProps.sideNavItemActive && isSecondaryNavbarOpen}
-        openContent={newProps.itemToggleOpenContent || itemToggleOpenContent}
-        closeContent={newProps.itemToggleCloseContent || itemToggleCloseContent}
+        isToggleOpen={props.activeSideNavItem && isSecondaryNavbarOpen}
+        openContent={props.itemToggleOpenContent || itemToggleOpenContent}
+        closeContent={props.itemToggleCloseContent || itemToggleCloseContent}
       />
     </SSideNavItem>
   );
