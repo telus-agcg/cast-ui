@@ -513,7 +513,7 @@ export const defaultTheme = {
       leftBorderColor: 'transparent',
       topNavBorderBottom: `1px solid ${defaultColors.lightBorder}`,
       bottonNavBorderBottom: '',
-      transition: 'all 0.15s',
+      transition: 'opacity 0.15s',
     },
     activenavItem: {
       color: defaultColors.blue,
