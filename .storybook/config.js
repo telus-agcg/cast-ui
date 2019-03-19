@@ -92,6 +92,23 @@ const GlobalStyle = createGlobalStyle`
     padding: 1.5em 2em;
     border: 1px solid 
   }
+
+  .tippy-popper[x-placement^=bottom] .tippy-arrow{
+    border-bottom: 8px solid ${defaultTheme.colors.white};
+  }
+
+  .tippy-popper[x-placement^=right] .tippy-arrow{
+    border-right: 8px solid ${defaultTheme.colors.white};
+  }
+
+  .tippy-popper[x-placement^=left] .tippy-arrow{
+    border-left: 8px solid ${defaultTheme.colors.white};
+  }
+
+  .tippy-popper[x-placement^=top] .tippy-arrow{
+    border-top: 8px solid ${defaultTheme.colors.white};
+  }
+
 `;
 
 addDecorator(story => (
