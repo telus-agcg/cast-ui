@@ -26,6 +26,7 @@ export * from './Popover';
 export * from './RadioButton';
 export * from './RadioButtonGroup';
 export * from './Select';
+export * from './Sidenav';
 export * from './Spinner';
 export * from './Table';
 export * from './TablePagination';
