@@ -4,8 +4,6 @@ import { text, boolean } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
 import Icon from 'react-icons-kit';
-import { ic_keyboard_arrow_left as IKAL } from 'react-icons-kit/md/ic_keyboard_arrow_left';
-import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
 import { socialBitcoinOutline } from 'react-icons-kit/ionicons/socialBitcoinOutline';
 import { socialAndroidOutline } from 'react-icons-kit/ionicons/socialAndroidOutline';
 import { iosHomeOutline } from 'react-icons-kit/ionicons/iosHomeOutline';
@@ -39,13 +37,8 @@ storiesOf('Sidenav', module).add(
         beforeToggle={action('Before Toggle!')}
         afterToggle={action('After Toggle!')}
         onSelect={action('Selected!')}
-        itemToggleOpenContent={<Icon icon={IKAR} size={24} />}
-        itemToggleCloseContent={<Icon icon={IKAL} size={24} />}
       >
-        <SideNavToggle
-          openContent={<Icon icon={IKAR} size={24} />}
-          closeContent={<Icon icon={IKAL} size={24} />}
-        />
+        <SideNavToggle />
         <SideNav top>
           <SideNavItem path="/home">
             <SideNavItemIcon>

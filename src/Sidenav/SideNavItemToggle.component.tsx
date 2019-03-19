@@ -1,5 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import Icon from 'react-icons-kit';
+import { ic_keyboard_arrow_left as IKAL } from 'react-icons-kit/md/ic_keyboard_arrow_left';
+import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
+
 import { SideNavContext } from './context';
 
 export type Props = {
@@ -74,8 +78,8 @@ export const SideNavItemToggle: React.FunctionComponent<Props> = ({
       onClick={(e: any) => handleClick(e)}
     >
       {children}
-      {!isToggleOpen && (openContent || <div>{'>'}</div>)}
-      {isToggleOpen && (closeContent || <div>{'<'}</div>)}
+      {!isToggleOpen && (openContent || <Icon icon={IKAR} size={24} />)}
+      {isToggleOpen && (closeContent || <Icon icon={IKAL} size={24} />)}
     </SSideNavItemToggle>
   ) : null;
 };
