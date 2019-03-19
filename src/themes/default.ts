@@ -1,3 +1,4 @@
+import { createGlobalStyle } from 'styled-components';
 import { lighten, darken } from '../utils/colorUtils';
 
 export { ThemeProvider } from 'styled-components';
@@ -624,3 +625,55 @@ export const defaultTheme = {
     },
   },
 };
+
+export const GlobalStyle = createGlobalStyle`
+  html, body{
+    font-weight: ${defaultTheme.typography.fontWeight};
+    font-family: ${defaultTheme.typography.fontFamily};
+    font-size: ${defaultTheme.typography.fontSize};
+    color: ${defaultTheme.colors.primary}
+    line-height: ${defaultTheme.typography.lineHeight};
+  }
+
+  pre, code{
+    white-space: pre;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+  }
+
+  pre{
+    font-family: ${defaultTheme.typography.pre.fontFamily};
+    font-size: ${defaultTheme.typography.pre.fontSize};
+    line-height: ${defaultTheme.typography.pre.lineHeight};
+  }
+
+  code{
+    font-family: ${defaultTheme.typography.code.fontFamily};
+    font-size: ${defaultTheme.typography.code.fontSize};
+    line-height: ${defaultTheme.typography.code.lineHeight};
+  }
+
+  #content code{
+    display: block;
+    padding: 1.5em 2em;
+    border: 1px solid;
+  }
+
+  .tippy-popper[x-placement^=bottom] .tippy-arrow{
+    border-bottom: 8px solid ${defaultTheme.colors.white};
+  }
+
+  .tippy-popper[x-placement^=right] .tippy-arrow{
+    border-right: 8px solid ${defaultTheme.colors.white};
+  }
+
+  .tippy-popper[x-placement^=left] .tippy-arrow{
+    border-left: 8px solid ${defaultTheme.colors.white};
+  }
+
+  .tippy-popper[x-placement^=top] .tippy-arrow{
+    border-top: 8px solid ${defaultTheme.colors.white};
+  }
+
+`;
