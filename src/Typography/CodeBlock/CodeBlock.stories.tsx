@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { CodeBlock } from './CodeBlock.component';
+
+import { CopyToClipboard } from '../../CopyToClipboard';
 
 const sampleCode = `
 pre {
@@ -33,14 +34,19 @@ code {
 storiesOf('Typography', module).add(
   'CodeBlock',
   () => (
-    <CodeBlock>{sampleCode}</CodeBlock>
+    <CopyToClipboard
+      copyContent={sampleCode || ''}
+      background="lightBackground"
+      includeCopyButton={true}
+    />
   ),
   {
     info: {
       text: `
         ### Notes
 
-        Documentation and examples for Cast UI CodeBlock.
+        The [CopyToClipboard](http://localhost:6006/?path=/story/copytoclipboard--copytoclipboard)
+        component can be used to display a code block.
         `,
     },
   },
