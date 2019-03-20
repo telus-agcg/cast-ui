@@ -215,13 +215,6 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
     ];
   });
 
-  console.log(
-    'do we have any children? ',
-    activeSideNavItems,
-    activeSideNavItemsChildren,
-    // results,
-  );
-
   return (
     <SideNavContext.Provider
       value={{
