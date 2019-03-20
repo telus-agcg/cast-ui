@@ -56,12 +56,6 @@ export type Props = ReactModal.Props & {
    * @default 'md'
    **/
   modalSize?: string;
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
 };
 
 const castStyles = {
@@ -87,6 +81,8 @@ const castStyles = {
     lineHeight: '20px',
     position:'absolute',
     boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
+    minWidth: '300px',
+    maxWidth: '80%',
     whiteSpace: 'normal',
     verticalAlign: 'middle',
     padding: '0',
@@ -98,9 +94,12 @@ const castStyles = {
 
 const SReactModal = styled(ReactModal)`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
-  color: ${(props: any) => props.theme.colors.primary};
+  color: ${(props: any) => props.theme.reverseText};
   max-width: ${(props: Props) => props.theme.modal[props.modalSize || 'md'].maxWidth};
-  outline: none;
+  &:disabled {
+    background: ${(props: any) => props.theme.input.backgroundDisabled};
+    cursor: not-allowed;
+  }
 `;
 
 const ModalHeaderDiv = styled.div`
@@ -174,10 +173,23 @@ const CloseButton = styled.div`
   opacity: 0.5;
 `;
 
+type State = {
+  modalIsOpen: boolean,
+};
+
 export class Modal extends React.Component<Props> {
+  state: State;
 
   constructor(props: Props) {
     super(props);
+
+    this.state = {
+      modalIsOpen: props.isOpen,
+    };
+  }
+
+  openModal() {
+    this.setState({ modalIsOpen: true });
   }
 
   closeModal(fn: any) {
@@ -256,9 +268,8 @@ export class Modal extends React.Component<Props> {
     return (
       <SReactModal
         role="dialog"
-        isOpen={this.props.isOpen}
+        isOpen={this.state.modalIsOpen}
         style={castStyles}
-        modalSize={this.props.modalSize || 'md'}
         {...this.props.controlSpecificProps}
       >
         {this.props.modalTitle &&
@@ -270,11 +281,9 @@ export class Modal extends React.Component<Props> {
         </ModalHeaderDiv>
         }
         <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
-        {this.props.footerContent &&
         <ModalFooterDiv>
-          {this.renderFooter(this.props.footerContent)}
+          {this.renderButtons(this.props.buttonType)}
         </ModalFooterDiv>
-        }
         <CloseButton
           onClick={() => this.closeModal(this.props.onCancelOrNo)}
         />

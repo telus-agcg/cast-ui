@@ -24,6 +24,7 @@ storiesOf('Modal', module).add(
       modalTitle={text('modalTitle', 'Hello Modal')}
       onCancelOrNo={action('Clicked Cancel/No!')}
       onOkOrYes={action('Clicked OK/Yes!')}
+      modalSize={select('modalSize', ['sm', 'md', 'lg'], 'md')}
     >
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
