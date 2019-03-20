@@ -401,6 +401,8 @@ export const defaultTheme = {
     },
   },
   datepicker: {
+    position: 'absolute',
+    zIndex: 99,
     sm: {
       margins: {
         dayPickerWraper: '1rem 0',
