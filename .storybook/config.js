@@ -60,13 +60,6 @@ export const wInfo = text =>
 addDecorator(withKnobs);
 
 addDecorator(story => (
-  <React.Fragment>
-    <GlobalStyle />
-    {story()}
-  </React.Fragment>
-));
-
-addDecorator(story => (
   <ThemeProvider theme={defaultTheme}>{story()}</ThemeProvider>
 ));
 
