@@ -39,24 +39,24 @@ export const propsDeepSearch = (
       }
     } else {
       for (const prop in theObject) {
+        const acceptablePropTypes = [
+          '$$typeof',
+          'children',
+          'props',
+          targetProp,
+        ];
         if (
-          prop === '$$typeof' ||
-          prop === 'children' ||
-          prop === 'props' ||
-          prop === targetProp
+          acceptablePropTypes.includes(prop) &&
+          theObject.hasOwnProperty(prop)
         ) {
-          if (theObject.hasOwnProperty(prop)) {
-            if (prop === targetProp) {
-              if (theObject[prop] === targetValue) {
-                finalResults.push(theObject);
-              }
-            }
-            if (
-              theObject[prop] instanceof Object ||
-              theObject[prop] instanceof Array
-            ) {
-              getObject(theObject[prop]);
-            }
+          if (prop === targetProp && theObject[prop] === targetValue) {
+            finalResults.push(theObject);
+          }
+          if (
+            theObject[prop] instanceof Object ||
+            theObject[prop] instanceof Array
+          ) {
+            getObject(theObject[prop]);
           }
         }
       }
