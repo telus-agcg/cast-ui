@@ -140,12 +140,12 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
       onClick={props.disabled ? noop : handleSelect}
     >
       {itemChildren}
-      {/* <SideNavItemToggle
+      <SideNavItemToggle
         isToggleVisible={itemSecondaryChildren.length > 0 && isOpen}
         isToggleOpen={props.activeSideNavItem && isSecondaryNavbarOpen}
         openContent={props.itemToggleOpenContent || itemToggleOpenContent}
         closeContent={props.itemToggleCloseContent || itemToggleCloseContent}
-      /> */}
+      />
     </SSideNavItem>
   );
 };
