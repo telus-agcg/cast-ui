@@ -36,15 +36,23 @@ use the `ThemeProvider`, which is passed on from
 If no theme is provided, components will fall back to a default theme.
 
 ```
-class App extends React.Component {
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import { Button, ThemeProvider, Themes } from "@tkxs/cast-ui";
+import "./App.css";
+
+class App extends Component {
   render() {
     return (
-      <ThemeProvider theme={CustomTheme}>
-        <App />
+      <ThemeProvider theme={Themes.defaultTheme}>
+        <Button btnStyle="primary">Click for Awesomeness</Button>
       </ThemeProvider>
-    )
+    );
   }
 }
+
+export default App;
+
 ```
 
 Import and use the desired component.
