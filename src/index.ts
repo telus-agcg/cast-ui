@@ -42,4 +42,3 @@ export * from './Typography/SectionHeader';
 export * from './Typography/SubHeading';
 export * from './Typography/SubTitle';
 export * from './Typography/Title';
-export * from './Typography/CodeBlock';
