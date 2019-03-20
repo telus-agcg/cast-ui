@@ -204,9 +204,7 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   // If a child has a SideNav with the 'secondary' prop set to true,
   // its children will automatically be displayed in the secondary SideNavbar
   const activeSideNavItems: any = [];
-  const searchChildren = () =>
-    propsDeepSearch(children, 'activeSideNavItem', true, activeSideNavItems);
-  searchChildren;
+  propsDeepSearch(children, 'activeSideNavItem', true, activeSideNavItems);
   let activeSideNavItemsChildren: any = [];
   activeSideNavItems.map((child: any) => {
     activeSideNavItemsChildren = [
@@ -216,6 +214,13 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
       ),
     ];
   });
+
+  console.log(
+    'do we have any children? ',
+    activeSideNavItems,
+    activeSideNavItemsChildren,
+    // results,
+  );
 
   return (
     <SideNavContext.Provider
