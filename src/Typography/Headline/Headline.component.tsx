@@ -28,8 +28,12 @@ export const Headline: React.FunctionComponent<Props> = ({
   className,
   children,
   theme,
+  ...props
 }) => (
-  <SHeadline className={className}>
+  <SHeadline
+    className={className}
+    {...props}
+    >
     {children}
   </SHeadline>
 );

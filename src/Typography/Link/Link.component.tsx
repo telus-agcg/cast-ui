@@ -64,7 +64,9 @@ export const Link: React.FunctionComponent<Props> = ({
 }) => (
     <SLink
       className={`${linkProps.solo && 'solo'} ${className || ''}`}
-      href={linkProps.href} target={linkProps.target}>
+      href={linkProps.href}
+      target={linkProps.target}
+      >
       {children}
     </SLink>
   );

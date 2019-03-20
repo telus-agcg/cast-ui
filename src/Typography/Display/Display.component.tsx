@@ -27,8 +27,12 @@ export const Display: React.FunctionComponent<Props> = ({
   className,
   children,
   theme,
+  ...props
 }) => (
-    <SDisplay className={className}>
+    <SDisplay
+      className={className}
+      {...props}
+      >
       {children}
     </SDisplay>
   );

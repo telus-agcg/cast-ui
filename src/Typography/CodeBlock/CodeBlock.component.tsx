@@ -46,7 +46,10 @@ export const CodeBlock: React.FunctionComponent<Props> = ({
       background="lightBackground"
       includeCopyButton={true}
     />
-    <SCodeBlock className={className}>
+    <SCodeBlock
+      className={className}
+      {...props}
+      >
       <code>
       {children}
       </code>

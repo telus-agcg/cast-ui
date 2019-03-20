@@ -28,8 +28,12 @@ export const Title: React.FunctionComponent<Props> = ({
   className,
   children,
   theme,
+  ...props
 }) => (
-    <STitle className={className}>
+    <STitle
+      className={className}
+      {...props}
+      >
       {children}
     </STitle>
   );

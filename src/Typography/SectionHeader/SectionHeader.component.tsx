@@ -30,8 +30,12 @@ export const SectionHeader: React.FunctionComponent<Props> = ({
   className,
   children,
   theme,
+  ...props
 }) => (
-    <SSectionHeader className={className}>
+    <SSectionHeader
+      className={className}
+      {...props}
+      >
       {children}
     </SSectionHeader>
   );

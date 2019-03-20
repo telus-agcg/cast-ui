@@ -28,8 +28,12 @@ export const Caption: React.FunctionComponent<Props> = ({
   className,
   children,
   theme,
+  ...props
 }) => (
-    <SCaption className={className}>
+    <SCaption
+      className={className}
+      {...props}
+      >
       {children}
     </SCaption>
   );
