@@ -56,11 +56,52 @@ export type Props = {
    * @default null
    **/
   controlSpecificProps?: any;
+  /**
+   * Select Modal Size
+   *
+   * @default 'md'
+   **/
+  modalSize?: string;
 };
 
-const SDiv = styled.div`
+const castStyles = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    textAlign: 'center',
+  },
+  content: {
+    top: '40%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -40%)',
+    backgroundColor: '#F9F9F9',
+    border: '',
+    height: 'auto',
+    lineHeight: '20px',
+    position:'absolute',
+    boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
+    minWidth: '300px',
+    maxWidth: '80%',
+    whiteSpace: 'normal',
+    verticalAlign: 'middle',
+    padding: '0',
+    textAlign: 'left',
+    fontSize: '14px',
+    borderRadius: '1px',
+  },
+};
+
+const SReactModal = styled(ReactModal)`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   color: ${(props: any) => props.theme.reverseText};
+  max-width: ${(props: Props) => props.theme.modal[props.modalSize || 'md'].maxWidth};
   &:disabled {
     background: ${(props: any) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
@@ -70,9 +111,29 @@ const SDiv = styled.div`
 const ModalHeaderDiv = styled.div`
   min-height: ${(props: any) => props.theme.modal.header.minHeight};
   background-color: ${(props: any) => props.theme.modal.header.backgroundColor};
-  border-bottom: ${(props: any) => props.theme.modal.header.borderBottom};
+  border-bottom: ${(props: any) => `1px solid ${props.theme.modal.header.borderColor}`};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   padding: ${(props: any) => props.theme.modal.header.padding};
+  h5{
+    font-size: ${(props: any) => props.theme.modal.header.fontSize};
+    padding: 0;
+    margin: 0;
+  }
+  button{
+    padding: 1rem 1rem;
+    margin: -2.7rem -1rem -1rem auto;
+    float: right;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 1;
+    color: ${(props: any) => props.theme.colors.blue};
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
 `;
 
 const ModalBodyDiv = styled.div`
@@ -88,6 +149,7 @@ const ModalFooterDiv = styled.div`
   text-align: ${(props: any) => props.theme.modal.footer.textAlign};
   background-color: ${(props: any) => props.theme.modal.footer.backgroundColor};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
+  border-top: ${(props: any) => `1px solid ${props.theme.modal.footer.borderColor}`};
   ${SButton} + ${SButton} {
     margin-left: ${(props: any) => props.theme.modal.footer.buttonSpacing};
   }
@@ -117,14 +179,30 @@ const CloseButton = styled.div`
   opacity: 0.5;
 `;
 
+type State = {
+  modalIsOpen: boolean,
+};
+
 export class Modal extends React.Component<Props> {
+  state: State;
+
   constructor(props: Props) {
     super(props);
+
+    this.state = {
+      modalIsOpen: props.isOpen,
+    };
+  }
+
+  openModal() {
+    this.setState({ modalIsOpen: true });
   }
 
   closeModal(fn: any) {
     if (fn !== null && fn !== undefined) {
       fn();
+    }else {
+      this.setState({ modalIsOpen: false });
     }
   }
 
@@ -186,51 +264,28 @@ export class Modal extends React.Component<Props> {
 
   render() {
     return (
-      <SDiv className="modal-wrapper">
-        <ReactModal
-          role="dialog"
-          isOpen={this.props.isOpen}
-          style={{
-            overlay: {
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: 'rgba(255, 255, 255, 0.75)',
-              textAlign: 'center',
-            },
-            content: {
-              backgroundColor: '#fff',
-              border: '1px solid #ccc',
-              boxSizing: 'border-box',
-              display: 'inline-block',
-              height: 'auto',
-              lineHeight: '20px',
-              position: 'relative',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
-              minWidth: '400px',
-              maxWidth: '80%',
-              whiteSpace: 'normal',
-              verticalAlign: 'middle',
-              padding: '0',
-              textAlign: 'left',
-            },
-          }}
-          {...this.props.controlSpecificProps}
-        >
-          <ModalHeaderDiv>
-            <h2>{this.props.modalTitle}</h2>
-          </ModalHeaderDiv>
-          <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
-          <ModalFooterDiv>
-            {this.renderButtons(this.props.buttonType)}
-          </ModalFooterDiv>
-          <CloseButton
-            onClick={() => this.closeModal(this.props.onCancelOrNo)}
-          />
-        </ReactModal>
-      </SDiv>
+      <SReactModal
+        role="dialog"
+        isOpen={this.state.modalIsOpen}
+        style={castStyles}
+        {...this.props.controlSpecificProps}
+      >
+        {this.props.modalTitle &&
+        <ModalHeaderDiv>
+          <h5>{this.props.modalTitle}</h5>
+          <button type="button" aria-label="Close" onClick={() => this.closeModal(this.props.onCancelOrNo)}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </ModalHeaderDiv>
+        }
+        <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
+        <ModalFooterDiv>
+          {this.renderButtons(this.props.buttonType)}
+        </ModalFooterDiv>
+        <CloseButton
+          onClick={() => this.closeModal(this.props.onCancelOrNo)}
+        />
+      </SReactModal>
     );
   }
 }
