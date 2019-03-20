@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { SideNavContext, propsDeepSearch } from './context';
+// import { SideNavContext } from './context';
 
 export type Props = {
   /**
@@ -203,7 +204,9 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   // If a child has a SideNav with the 'secondary' prop set to true,
   // its children will automatically be displayed in the secondary SideNavbar
   const activeSideNavItems: any = [];
-  propsDeepSearch(children, 'activeSideNavItem', true, activeSideNavItems);
+  const searchChildren = () =>
+    propsDeepSearch(children, 'activeSideNavItem', true, activeSideNavItems);
+  searchChildren;
   let activeSideNavItemsChildren: any = [];
   activeSideNavItems.map((child: any) => {
     activeSideNavItemsChildren = [
