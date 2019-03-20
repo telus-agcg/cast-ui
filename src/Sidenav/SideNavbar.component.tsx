@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { SideNavContext, propsDeepSearch } from './context';
-// import { SideNavContext } from './context';
 
 export type Props = {
   /**
