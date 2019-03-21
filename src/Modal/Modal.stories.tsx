@@ -11,7 +11,7 @@ storiesOf('Modal', module).add(
     <Modal
       isOpen={boolean('isOpen', true)}
       id="myModal"
-      buttonType={select(
+      footerContent={select(
         'buttonType',
         ['OkOnly', 'OkCancel', 'YesNo'],
         'OkCancel',
@@ -39,6 +39,9 @@ storiesOf('Modal', module).add(
 
         This is a Modal, based on the react-modal component.
         To open or close the modal, change the 'isOpen' prop.
+
+        In addition of the string options under *footerContent*,
+        you can pass a component instead of any of those.
       `,
     },
   },

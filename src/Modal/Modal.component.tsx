@@ -24,11 +24,11 @@ export type Props = {
    **/
   isOpen: boolean;
   /**
-   * Specify the type of action buttons in the modal footer
+   * Specify the type of action buttons or Component in the modal footer
    *
-   * @default 'OkCancel'
+   * @default null
    **/
-  buttonType: 'OkCancel' | 'OkOnly' | 'YesNo';
+  footerContent: any;
   /**
    * Specify the title of the modal
    *
@@ -102,6 +102,7 @@ const SReactModal = styled(ReactModal)`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   color: ${(props: any) => props.theme.reverseText};
   max-width: ${(props: Props) => props.theme.modal[props.modalSize || 'md'].maxWidth};
+  outline: none;
   &:disabled {
     background: ${(props: any) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
@@ -206,8 +207,15 @@ export class Modal extends React.Component<Props> {
     }
   }
 
-  renderButtons(buttonType: 'OkCancel' | 'OkOnly' | 'YesNo') {
-    switch (buttonType) {
+  renderFooter(footerContent: any) {
+    if (typeof footerContent === 'function') {
+      return footerContent();
+    }
+    if (typeof footerContent === 'object') {
+      return footerContent;
+    }
+
+    switch (footerContent) {
       case 'OkOnly':
         return (
           <>
@@ -240,7 +248,6 @@ export class Modal extends React.Component<Props> {
           </>
         );
       case 'OkCancel':
-      default:
         return (
           <>
             <Button
@@ -259,6 +266,8 @@ export class Modal extends React.Component<Props> {
             </Button>
           </>
         );
+      default:
+        return null;
     }
   }
 
@@ -279,9 +288,11 @@ export class Modal extends React.Component<Props> {
         </ModalHeaderDiv>
         }
         <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
+        {this.props.footerContent &&
         <ModalFooterDiv>
-          {this.renderButtons(this.props.buttonType)}
+          {this.renderFooter(this.props.footerContent)}
         </ModalFooterDiv>
+        }
         <CloseButton
           onClick={() => this.closeModal(this.props.onCancelOrNo)}
         />
