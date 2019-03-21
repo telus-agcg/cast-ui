@@ -6,7 +6,7 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   devServer: {
-    contentBase: './lib',
+    contentBase: './lib-esm',
     hot: true,
   },
   output: {

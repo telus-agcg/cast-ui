@@ -21,7 +21,7 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        loader: 'json-loader',
       },
     ],
   },
@@ -37,7 +37,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     library: 'castUI',
-    path: path.resolve(__dirname, 'lib'),
+    path: path.resolve(__dirname, 'lib-esm'),
   },
   optimization: {
     runtimeChunk: 'single',

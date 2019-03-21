@@ -24,8 +24,8 @@ or
 yarn add @tkxs/cast-ui styled-components react react-dom react-router-dom redux
 ```
 
-The package includes UMD, CommonJS, and ES5 modules. Type definitions are
-included with CommonJS and ES5 modules.
+The package includes UMD (`/lib-umd`), CommonJS (`/lib-cjs`), and ES5 modules (`/lib-esm`).
+Type definitions are included with CommonJS and ES5 modules.
 
 ### Components
 
