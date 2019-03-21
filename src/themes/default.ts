@@ -249,7 +249,8 @@ export const defaultTheme = {
     },
     code: {
       background: defaultColors.lightBackground,
-      fontFamily: '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
+      fontFamily:
+        '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
       fontSize: '95%',
       lineHeight: '140%',
     },
