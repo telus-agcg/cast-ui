@@ -12,10 +12,10 @@ import {
   Caption,
   Link,
   SubHeading,
+  Digits,
 } from '../';
 import CopyToClipboard from '../CopyToClipboard';
 import { sampleCode } from './CodeBlock/CodeBlock.stories';
-import Digits from 'Typography/Digits';
 
 export type Props = {
   /**
@@ -62,7 +62,6 @@ export const Typography: React.FunctionComponent<Props> = ({
         <span><Button btnStyle="primary" outline={true}>Read More</Button></span>
       </Tooltip>
       <Digits>$25,855.90</Digits>
-      <br/>
       <br/>
       <CopyToClipboard
         copyContent={sampleCode || ''}
