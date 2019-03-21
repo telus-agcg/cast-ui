@@ -13,21 +13,6 @@ const STippy = styled(Tippy)`
   background: ${(props: Props) => props.theme.typography.tooltip.background};
   border-radius: ${(props: Props) => props.theme.typography.tooltip.borderRadius};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  &[x-placement^=bottom] .tippy-arrow{
-    border-bottom: 8px solid ${(props: Props) => props.theme.colors.white};
-  }
-
-  &[x-placement^=right] .tippy-arrow{
-    border-right: 8px solid ${(props: Props) => props.theme.colors.white};
-  }
-
-  &[x-placement^=left] .tippy-arrow{
-    border-left: 8px solid ${(props: Props) => props.theme.colors.white};
-  }
-
-  &[x-placement^=top] .tippy-arrow{
-    border-top: 8px solid ${(props: Props) => props.theme.colors.white};
-  }
 `;
 
 export class Tooltip extends React.Component<Props> {
