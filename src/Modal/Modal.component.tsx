@@ -96,6 +96,7 @@ const SReactModal = styled(ReactModal)`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   color: ${(props: any) => props.theme.reverseText};
   max-width: ${(props: Props) => props.theme.modal[props.modalSize || 'md'].maxWidth};
+  outline: none;
   &:disabled {
     background: ${(props: any) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
@@ -281,9 +282,11 @@ export class Modal extends React.Component<Props> {
         </ModalHeaderDiv>
         }
         <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
+        {this.props.footerContent &&
         <ModalFooterDiv>
-          {this.renderButtons(this.props.buttonType)}
+          {this.renderFooter(this.props.footerContent)}
         </ModalFooterDiv>
+        }
         <CloseButton
           onClick={() => this.closeModal(this.props.onCancelOrNo)}
         />

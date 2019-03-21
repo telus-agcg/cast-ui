@@ -46,11 +46,6 @@ storiesOf('Modal', module).add(
 
         To open or close the modal, change the 'isOpen' prop.
 
-        To set the width of the modal, change the 'modalSize' props to either
-        - *sm* 300px
-        - *md* 500px (default)
-        - *lg* 800px
-
         In addition of the string options under *footerContent*,
         you can pass a component instead of any of those.
       `,
