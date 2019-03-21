@@ -28,15 +28,14 @@
     "styled-components": "^4.1.0"
   },
   "dependencies": {
-    "@tippy.js/react": "^1.1.1",
+    "@tippy.js/react": "^2.1.1",
     "react-day-picker": "^7.2.4",
     "react-icons-kit": "^1.2.1",
     "react-modal": "^3.8.1",
     "react-paginate": "^6.2.1",
     "react-select": "^2.2.0",
     "react-table": "^6.8.6",
-    "react-tabs": "^3.0.0",
-    "tinycolor2": "^1.4.1"
+    "react-tabs": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
@@ -88,6 +87,8 @@
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14",
-    "webpack-merge": "^4.1.4"
+    "webpack-merge": "^4.1.4",
+    "tinycolor2": "^1.4.1",
+    "typeface-roboto": "0.0.54"
   }
 }

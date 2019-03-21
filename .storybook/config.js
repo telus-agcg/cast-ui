@@ -3,8 +3,9 @@ import { configure, addDecorator, addParameters } from '@storybook/react';
 import { create } from '@storybook/theming';
 import { withKnobs } from '@storybook/addon-knobs/react';
 import { withInfo } from '@storybook/addon-info';
-import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from '../src/themes/default';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import 'typeface-roboto';
+import { defaultTheme, GlobalStyle } from '../src/themes/default';
 
 const wInfoStyle = {
   header: {
@@ -57,6 +58,7 @@ export const wInfo = text =>
   withInfo({ inline: true, source: true, styles: wInfoStyle, text: text });
 
 addDecorator(withKnobs);
+
 addDecorator(story => (
   <ThemeProvider theme={defaultTheme}>{story()}</ThemeProvider>
 ));

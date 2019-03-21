@@ -118,6 +118,30 @@ const SCopyToClipboard = styled.div`
         props.theme.copyToClipboard.button[`${props.buttonColor}Color`]};
     }
   }
+  pre, code{
+    white-space: pre;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+  }
+
+  pre{
+    font-family: ${(props: Props) => props.theme.typography.pre.fontFamily};
+    font-size: ${(props: Props) => props.theme.typography.pre.fontSize};
+    line-height: ${(props: Props) => props.theme.typography.pre.lineHeight};
+  }
+
+  code{
+    font-family: ${(props: Props) => props.theme.typography.code.fontFamily};
+    font-size: ${(props: Props) => props.theme.typography.code.fontSize};
+    line-height: ${(props: Props) => props.theme.typography.code.lineHeight};
+  }
+
+  #content code{
+    display: block;
+    padding: 1.5em 2em;
+    border: 1px solid;
+  }
 `;
 
 const initialState = {

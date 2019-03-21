@@ -172,8 +172,86 @@ export const defaultTheme = {
   },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
-    fontSize: '16px',
-    color: defaultColors.black,
+    secondaryFontFamily: '',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '160%',
+    color: defaultColors.primary,
+    headline: {
+      fontWeight: '300',
+      fontSize: '27px',
+      lineHeight: '125%',
+    },
+    sectionHeader: {
+      fontWeight: '500',
+      fontSize: '16px',
+      borderWidth: '1px',
+      borderColor: '#8D9599',
+      borderStyle: 'solid',
+    },
+    display: {
+      fontWeight: '400',
+      fontSize: '37px',
+      lineHeight: '120%',
+    },
+    title: {
+      fontWeight: '500',
+      fontSize: '20px',
+      lineHeight: '130%',
+    },
+    subTitle: {
+      fontWeight: '300',
+      fontSize: '18px',
+      lineHeight: '135%',
+    },
+    caption: {
+      fontWeight: '300',
+      fontSize: '12px',
+    },
+    subHeading: {
+      fontWeight: '500',
+      fontSize: '16px',
+    },
+    link: {
+      fontWeight: '500',
+      fontSize: '14px',
+      color: defaultColors.blue,
+      textDecoration: 'none',
+      visited: {
+        color: lighten(defaultColors.blue, 40),
+        textDecoration: 'underline',
+      },
+      hover: {
+        color: defaultColors.blue,
+        textDecoration: 'underline',
+      },
+    },
+    digits: {
+      fontWeight: '700',
+      fontSize: '18px',
+    },
+    tooltip: {
+      background: defaultColors.primary,
+      borderRadius: '1px',
+    },
+    popover: {
+      background: defaultColors.white,
+      color: defaultColors.black,
+      borderRadius: '1px',
+      borderColor: defaultColors.lightGray,
+    },
+    pre: {
+      background: defaultColors.lightBackground,
+      fontFamily: '"Roboto Mono", Courier, monospace',
+      fontSize: '100%',
+      lineHeight: '100%',
+    },
+    code: {
+      background: defaultColors.lightBackground,
+      fontFamily: '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
+      fontSize: '95%',
+      lineHeight: '140%',
+    },
   },
   input: {
     background: defaultColors.white,
@@ -338,8 +416,6 @@ export const defaultTheme = {
     lineHeight: '18px',
   },
   popover: {
-    borderColor: defaultColors.lightGray,
-    background: defaultColors.white,
     withArrowDistance: 10,
     withoutArrowDistance: 3,
   },
