@@ -31,7 +31,6 @@ export const Title: React.FunctionComponent<Props> = ({
   ...props
 }) => (
     <STitle
-      className={className}
       {...props}
       >
       {children}

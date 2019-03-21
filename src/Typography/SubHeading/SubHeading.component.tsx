@@ -31,7 +31,6 @@ export const SubHeading: React.FunctionComponent<Props> = ({
   ...props
 }) => (
     <SSubHeading
-      className={className}
       {...props}
       >
       {children}

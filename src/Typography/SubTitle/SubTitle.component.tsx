@@ -31,7 +31,6 @@ export const SubTitle: React.FunctionComponent<Props> = ({
   ...props
 }) => (
     <SSubTitle
-      className={className}
       {...props}
       >
       {children}

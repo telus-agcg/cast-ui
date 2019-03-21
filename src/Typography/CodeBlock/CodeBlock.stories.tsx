@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import { CopyToClipboard } from '../../CopyToClipboard';
 
-const sampleCode = `
+export const sampleCode = `
 pre {
   font-family: "Roboto Mono", Courier, monospace;
   font-size: 100%;

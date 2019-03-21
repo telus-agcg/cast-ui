@@ -31,7 +31,6 @@ export const Caption: React.FunctionComponent<Props> = ({
   ...props
 }) => (
     <SCaption
-      className={className}
       {...props}
       >
       {children}

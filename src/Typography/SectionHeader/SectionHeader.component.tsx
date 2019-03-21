@@ -33,7 +33,6 @@ export const SectionHeader: React.FunctionComponent<Props> = ({
   ...props
 }) => (
     <SSectionHeader
-      className={className}
       {...props}
       >
       {children}

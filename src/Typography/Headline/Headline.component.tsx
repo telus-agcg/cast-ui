@@ -31,7 +31,6 @@ export const Headline: React.FunctionComponent<Props> = ({
   ...props
 }) => (
   <SHeadline
-    className={className}
     {...props}
     >
     {children}

@@ -30,7 +30,6 @@ export const Display: React.FunctionComponent<Props> = ({
   ...props
 }) => (
     <SDisplay
-      className={className}
       {...props}
       >
       {children}
