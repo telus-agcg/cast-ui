@@ -16,10 +16,14 @@ storiesOf('Modal', module).add(
         ['OkOnly', 'OkCancel', 'YesNo'],
         'OkCancel',
       )}
+      modalSize={select(
+        'modalSize',
+        ['sm', 'md', 'lg'],
+        'md',
+      )}
       modalTitle={text('modalTitle', 'Hello Modal')}
       onCancelOrNo={action('Clicked Cancel/No!')}
       onOkOrYes={action('Clicked OK/Yes!')}
-      modalSize={select('modalSize', ['sm', 'md', 'lg'], 'md')}
     >
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -38,7 +42,13 @@ storiesOf('Modal', module).add(
         ### Notes
 
         This is a Modal, based on the react-modal component.
+
         To open or close the modal, change the 'isOpen' prop.
+
+        To set the width of the modal, change the 'modalSize' props to either
+        - *sm* 300px
+        - *md* 500px (default)
+        - *lg* 800px
 
         In addition of the string options under *footerContent*,
         you can pass a component instead of any of those.

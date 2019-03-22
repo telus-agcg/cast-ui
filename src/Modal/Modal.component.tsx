@@ -4,13 +4,7 @@ import styled from 'styled-components';
 import { Button } from '../Button/Button.component';
 import SButton from '../Button/SButton';
 
-export type Props = {
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
+export type Props = ReactModal.Props & {
   /**
    * The ID of the control
    *
@@ -62,6 +56,12 @@ export type Props = {
    * @default 'md'
    **/
   modalSize?: string;
+  /**
+   * From theme provider
+   *
+   * @default defaultTheme
+   **/
+  theme?: any;
 };
 
 const castStyles = {
@@ -87,8 +87,6 @@ const castStyles = {
     lineHeight: '20px',
     position:'absolute',
     boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
-    minWidth: '300px',
-    maxWidth: '80%',
     whiteSpace: 'normal',
     verticalAlign: 'middle',
     padding: '0',
@@ -100,13 +98,9 @@ const castStyles = {
 
 const SReactModal = styled(ReactModal)`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
-  color: ${(props: any) => props.theme.reverseText};
+  color: ${(props: any) => props.theme.colors.primary};
   max-width: ${(props: Props) => props.theme.modal[props.modalSize || 'md'].maxWidth};
   outline: none;
-  &:disabled {
-    background: ${(props: any) => props.theme.input.backgroundDisabled};
-    cursor: not-allowed;
-  }
 `;
 
 const ModalHeaderDiv = styled.div`
@@ -180,23 +174,10 @@ const CloseButton = styled.div`
   opacity: 0.5;
 `;
 
-type State = {
-  modalIsOpen: boolean,
-};
-
 export class Modal extends React.Component<Props> {
-  state: State;
 
   constructor(props: Props) {
     super(props);
-
-    this.state = {
-      modalIsOpen: props.isOpen,
-    };
-  }
-
-  openModal() {
-    this.setState({ modalIsOpen: true });
   }
 
   closeModal(fn: any) {
@@ -275,8 +256,9 @@ export class Modal extends React.Component<Props> {
     return (
       <SReactModal
         role="dialog"
-        isOpen={this.state.modalIsOpen}
+        isOpen={this.props.isOpen}
         style={castStyles}
+        modalSize={this.props.modalSize || 'md'}
         {...this.props.controlSpecificProps}
       >
         {this.props.modalTitle &&
