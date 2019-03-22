@@ -145,7 +145,7 @@ export const defaultTheme = {
       badgeColor: defaultColors.black,
       alertColor: defaultColors.black,
       alertBackground: defaultColors.gray,
-      cardTopBorderColor: defaultColors.lightBackground,
+      cardTopBorderColor: defaultColors.lightGray,
     },
   },
   pagination: {
@@ -434,9 +434,11 @@ export const defaultTheme = {
   },
   card: {
     borderRadius: '2px',
-    border: `2px solid ${defaultColors.lightBackground}`,
+    border: `1px solid ${defaultColors.lightBorder}`,
     fontSize: '14px',
     padding: '8px 16px',
+    background: defaultColors.white,
+    boxShadow: '0 2px 4px rgba(0,0,0,.075) !important;',
   },
   popover: {
     withArrowDistance: 10,
