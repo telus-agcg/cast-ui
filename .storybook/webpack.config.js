@@ -6,6 +6,10 @@ module.exports = ({ config, mode }) => {
     use: [
       {
         loader: require.resolve('awesome-typescript-loader'),
+        options: {
+          useCache: true,
+          forceIsolatedModules: true
+        }
       },
       {
         loader: require.resolve('react-docgen-typescript-loader'),

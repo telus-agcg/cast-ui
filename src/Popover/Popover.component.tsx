@@ -27,7 +27,6 @@ const SPopover = styled(TippyPopover)`
   border-radius: ${(props: Props) => props.theme.typography.popover.borderRadius};
   background: ${(props: Props) => props.theme.typography.popover.background};
   border:1px solid ${(props: Props) => props.theme.typography.popover.borderColor};
-  position: 'rinzler';
   &[x-placement^=bottom] .tippy-arrow{
     border-bottom: 8px solid ${(props: Props) => props.theme.colors.white};
   }

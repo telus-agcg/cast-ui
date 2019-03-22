@@ -29,6 +29,7 @@ export const defaultColors = {
   disabledText: '#A3AAAD',
   lightBackground: '#F5F7F8',
   lightBorder: '#DDDDDD',
+  modalBackground: '#F9F9F9',
 };
 
 export const defaultTheme = {
@@ -350,21 +351,31 @@ export const defaultTheme = {
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: defaultColors.white,
-      borderBottom: defaultColors.lightGray,
-      padding: '8px 15px',
+      backgroundColor: defaultColors.modalBackground,
+      borderColor: defaultColors.lightGray,
+      padding: '16px 16px',
+      fontSize: '16px',
     },
     body: {
       minHeight: '0',
-      backgroundColor: defaultColors.white,
+      backgroundColor: defaultColors.modalBackground,
       borderBottom: defaultColors.lightGray,
-      padding: '8px 15px',
+      padding: '8px 16px',
     },
     footer: {
       minHeight: '0',
-      backgroundColor: defaultColors.white,
-      borderBottom: defaultColors.lightGray,
-      padding: '8px 15px',
+      backgroundColor: defaultColors.modalBackground,
+      borderColor: defaultColors.lightGray,
+      padding: '8px 16px',
+    },
+    sm:{
+      maxWidth: '300px',
+    },
+    md:{
+      maxWidth: '500px',
+    },
+    lg:{
+      maxWidth: '800px',
     },
   },
   textarea: {
