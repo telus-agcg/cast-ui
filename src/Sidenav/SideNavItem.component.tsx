@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { SideNavContext } from './context';
 import { SideNavItemToggle } from '../';
+import { Themes } from '../themes';
 
 export type Props = {
   children: any;
@@ -151,6 +152,7 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
 };
 
 SideNavItem.defaultProps = {
+  theme: { ...Themes.defaultTheme },
   activeSideNavItem: false,
   disabled: false,
   path: '',

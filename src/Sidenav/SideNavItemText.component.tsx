@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { SideNavContext } from './context';
+import { Themes } from '../themes';
 
 export type Props = {
   children?: any;
@@ -31,4 +32,6 @@ export const SideNavItemText: React.FunctionComponent<Props> = ({
   );
 };
 
-SideNavItemText.defaultProps = {};
+SideNavItemText.defaultProps = {
+  theme: { ...Themes.defaultTheme },
+};

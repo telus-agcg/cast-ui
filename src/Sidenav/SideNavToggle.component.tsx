@@ -5,6 +5,7 @@ import { ic_keyboard_arrow_left as IKAL } from 'react-icons-kit/md/ic_keyboard_a
 import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
 
 import { SideNavContext } from './context';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -68,6 +69,7 @@ export const SideNavToggle: React.FunctionComponent<Props> = ({
 };
 
 SideNavToggle.defaultProps = {
+  theme: { ...Themes.defaultTheme },
   openContent: '',
   closeContent: '',
 };

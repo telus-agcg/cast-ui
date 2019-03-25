@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   children?: any;
@@ -23,4 +24,6 @@ export const SideNavItemIcon: React.FunctionComponent<Props> = ({
   </SSideNavItemIcon>
 );
 
-SideNavItemIcon.defaultProps = {};
+SideNavItemIcon.defaultProps = {
+  theme: { ...Themes.defaultTheme },
+};
