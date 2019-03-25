@@ -28,6 +28,49 @@ export type Props = {
   theme?: any;
 };
 
+const highlighBorderRules: Function = (
+  highlightBorder: string,
+  cardStyle: string,
+  theme: any,
+) => {
+  switch (highlightBorder) {
+    case 'all':
+      return {
+        'border-color': theme.styles[cardStyleg].cardTopBorderColor,
+        'border-width': theme.card.highlightAllBorderWidth,
+      };
+    case 'left':
+      return {
+        'border-color': theme.card.borderColor,
+        'border-left-color': theme.styles[cardStyle].cardTopBorderColor,
+        'border-width': theme.card.highlightAllBorderWidth,
+        'border-left-width': theme.card.highlightedBorderWidth,
+      };
+    case 'right':
+      return {
+        'border-color': theme.card.borderColor,
+        'border-right-color': theme.styles[cardStyle].cardTopBorderColor,
+        'border-width': theme.card.highlightAllBorderWidth,
+        'border-right-width': theme.card.highlightedBorderWidth,
+      };
+    case 'bottom':
+      return {
+        'border-color': theme.card.borderColor,
+        'border-bottom-color': theme.styles[cardStyle].cardTopBorderColor,
+        'border-width': theme.card.highlightAllBorderWidth,
+        'border-bottom-width': theme.card.highlightedBorderWidth,
+      };
+    case 'top':
+    default:
+      return {
+        'border-color': theme.card.borderColor,
+        'border-top-color': theme.styles[cardStyle].cardTopBorderColor,
+        'border-width': theme.card.highlightAllBorderWidth,
+        'border-top-width': theme.card.highlightedBorderWidth,
+      };
+  }
+};
+
 const SCard = styled.div`
   border-radius: ${(props: Props) => props.theme.card.borderRadius};
   color: ${(props: Props) => props.theme.styles[props.cardStyle].cardColor};
@@ -37,15 +80,8 @@ const SCard = styled.div`
   background: ${(props: Props) => (props.bgColor) ? props.bgColor : props.theme.card.background};
   box-shadow: ${(props: Props) => props.theme.card.boxShadow};
   border-style: solid;
-  border-width: 1px;
 
-  border-color: ${(props: Props) => (props.highlightBorder === 'all') ?
-  props.theme.styles[props.cardStyle].cardTopBorderColor :
-  props.theme.styles['default'].cardTopBorderColor};
-
-  border-${(props: Props) => (props.highlightBorder) ? props.highlightBorder : ''}-width: 5px;
-  border-${(props: Props) => (props.highlightBorder) ? props.highlightBorder : ''}-color:
-  ${(props: Props) => props.theme.styles[props.cardStyle].cardTopBorderColor};
+  ${(props: Props) => highlighBorderRules(props.highlightBorder, props.cardStyle, props.theme)}
 
   display: inline-block;
 `;
