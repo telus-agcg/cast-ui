@@ -434,11 +434,13 @@ export const defaultTheme = {
   },
   card: {
     borderRadius: '2px',
-    border: `1px solid ${defaultColors.lightBorder}`,
+    borderColor: defaultColors.lightBorder,
     fontSize: '14px',
     padding: '8px 16px',
     background: defaultColors.white,
     boxShadow: '0 2px 4px rgba(0,0,0,.075) !important;',
+    highlightAllBorderWidth: '1px',
+    highlightedBorderWidth: '5px',
   },
   popover: {
     withArrowDistance: 10,
