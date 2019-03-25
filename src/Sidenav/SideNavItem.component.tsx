@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { SideNavContext } from './context';
-import { SideNavItemToggle } from '../';
 import { Themes } from '../themes';
+import { SideNavItemToggle } from '../Sidenav/SideNavItemToggle.component';
 
 export type Props = {
   children: any;
