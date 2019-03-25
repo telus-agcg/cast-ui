@@ -34,6 +34,7 @@ export * from './Tabs';
 export * from './Textarea';
 export * from './Toggle';
 export * from './Tooltip';
+export * from './Card';
 export * from './Typography/Caption';
 export * from './Typography/Display';
 export * from './Typography/Headline';
