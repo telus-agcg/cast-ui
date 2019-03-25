@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableProps } from '../defaultProps';
-import { DraggableHandle } from '../';
+import { DraggableHandle } from '../DraggableHandle.component';
 import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
 
 export type Props = Partial<DraggableProps> & {

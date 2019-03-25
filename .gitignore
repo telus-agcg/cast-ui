@@ -1,7 +1,7 @@
 node_modules
 dist
-lib
-lib-esm
-lib-umd
+lib*
 .cache
 .awcache
+.rpt2_cache
+.DS_Store

@@ -59,6 +59,7 @@ export const defaultTheme = {
         alertBackground: lighten(defaultColors.blue, 45),
         alertColor: defaultColors.black,
       },
+      cardTopBorderColor: defaultColors.blue,
     },
     secondary: {
       borderColor: defaultColors.gray,
@@ -68,6 +69,7 @@ export const defaultTheme = {
         alertBackground: lighten(defaultColors.gray, 40),
         alertColor: defaultColors.black,
       },
+      cardTopBorderColor: defaultColors.gray,
     },
     danger: {
       borderColor: defaultColors.red,
@@ -87,6 +89,7 @@ export const defaultTheme = {
         alertBackground: lighten(defaultColors.red, 40),
         alertColor: defaultColors.black,
       },
+      cardTopBorderColor: defaultColors.red,
     },
     warning: {
       borderColor: defaultColors.yellow,
@@ -106,6 +109,7 @@ export const defaultTheme = {
         alertBackground: lighten(defaultColors.yellow, 30),
         alertColor: defaultColors.black,
       },
+      cardTopBorderColor: defaultColors.yellow,
     },
     success: {
       borderColor: defaultColors.green,
@@ -125,6 +129,7 @@ export const defaultTheme = {
         alertBackground: lighten(defaultColors.green, 40),
         alertColor: defaultColors.black,
       },
+      cardTopBorderColor: defaultColors.green,
     },
     default: {
       borderColor: defaultColors.gray,
@@ -140,6 +145,7 @@ export const defaultTheme = {
       badgeColor: defaultColors.black,
       alertColor: defaultColors.black,
       alertBackground: defaultColors.gray,
+      cardTopBorderColor: defaultColors.lightGray,
     },
   },
   pagination: {
@@ -249,7 +255,8 @@ export const defaultTheme = {
     },
     code: {
       background: defaultColors.lightBackground,
-      fontFamily: '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
+      fontFamily:
+        '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
       fontSize: '95%',
       lineHeight: '140%',
     },
@@ -425,6 +432,16 @@ export const defaultTheme = {
     padding: '8px 16px',
     fontWeight: 'bold',
     lineHeight: '18px',
+  },
+  card: {
+    borderRadius: '2px',
+    borderColor: defaultColors.lightBorder,
+    fontSize: '14px',
+    padding: '8px 16px',
+    background: defaultColors.white,
+    boxShadow: '0 2px 4px rgba(0,0,0,.075) !important;',
+    highlightAllBorderWidth: '1px',
+    highlightedBorderWidth: '5px',
   },
   popover: {
     withArrowDistance: 10,
