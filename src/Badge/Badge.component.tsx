@@ -4,15 +4,15 @@ import { Themes } from '../themes';
 
 export type Props = {
   /**
-   * Select Badge Size
+   * Set Badge Size
    *
-   * @default 'default'
+   * @default 'md'
    **/
   badgeSize?: string;
   /**
-   * Select Badge Style
+   * Set Badge Style
    *
-   * @default 'default'
+   * @default 'primary'
    **/
   badgeStyle?: string;
   /**
