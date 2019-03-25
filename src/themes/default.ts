@@ -249,7 +249,8 @@ export const defaultTheme = {
     },
     code: {
       background: defaultColors.lightBackground,
-      fontFamily: '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
+      fontFamily:
+        '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
       fontSize: '95%',
       lineHeight: '140%',
     },
@@ -368,13 +369,13 @@ export const defaultTheme = {
       borderColor: defaultColors.lightGray,
       padding: '8px 16px',
     },
-    sm:{
+    sm: {
       maxWidth: '300px',
     },
-    md:{
+    md: {
       maxWidth: '500px',
     },
-    lg:{
+    lg: {
       maxWidth: '800px',
     },
   },
@@ -422,6 +423,7 @@ export const defaultTheme = {
   alert: {
     borderRadius: '0px',
     fontSize: '14px',
+    display: 'block',
     padding: '8px 16px',
     fontWeight: 'bold',
     lineHeight: '18px',
