@@ -85,7 +85,7 @@ const castStyles = {
     border: '',
     height: 'auto',
     lineHeight: '20px',
-    position:'absolute',
+    position: 'absolute',
     boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
     whiteSpace: 'normal',
     verticalAlign: 'middle',
@@ -99,22 +99,24 @@ const castStyles = {
 const SReactModal = styled(ReactModal)`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   color: ${(props: any) => props.theme.colors.primary};
-  max-width: ${(props: Props) => props.theme.modal[props.modalSize || 'md'].maxWidth};
+  max-width: ${(props: Props) =>
+    props.theme.modal[props.modalSize || 'md'].maxWidth};
   outline: none;
 `;
 
 const ModalHeaderDiv = styled.div`
   min-height: ${(props: any) => props.theme.modal.header.minHeight};
   background-color: ${(props: any) => props.theme.modal.header.backgroundColor};
-  border-bottom: ${(props: any) => `1px solid ${props.theme.modal.header.borderColor}`};
+  border-bottom: ${(props: any) =>
+    `1px solid ${props.theme.modal.header.borderColor}`};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   padding: ${(props: any) => props.theme.modal.header.padding};
-  h5{
+  h5 {
     font-size: ${(props: any) => props.theme.modal.header.fontSize};
     padding: 0;
     margin: 0;
   }
-  button{
+  button {
     padding: 1rem 1rem;
     margin: -2.7rem -1rem -1rem auto;
     float: right;
@@ -144,7 +146,8 @@ const ModalFooterDiv = styled.div`
   text-align: ${(props: any) => props.theme.modal.footer.textAlign};
   background-color: ${(props: any) => props.theme.modal.footer.backgroundColor};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
-  border-top: ${(props: any) => `1px solid ${props.theme.modal.footer.borderColor}`};
+  border-top: ${(props: any) =>
+    `1px solid ${props.theme.modal.footer.borderColor}`};
   ${SButton} + ${SButton} {
     margin-left: ${(props: any) => props.theme.modal.footer.buttonSpacing};
   }
@@ -175,7 +178,6 @@ const CloseButton = styled.div`
 `;
 
 export class Modal extends React.Component<Props> {
-
   constructor(props: Props) {
     super(props);
   }
@@ -183,7 +185,7 @@ export class Modal extends React.Component<Props> {
   closeModal(fn: any) {
     if (fn !== null && fn !== undefined) {
       fn();
-    }else {
+    } else {
       this.setState({ modalIsOpen: false });
     }
   }
@@ -261,23 +263,25 @@ export class Modal extends React.Component<Props> {
         modalSize={this.props.modalSize || 'md'}
         {...this.props.controlSpecificProps}
       >
-        {this.props.modalTitle &&
-        <ModalHeaderDiv>
-          <h5>{this.props.modalTitle}</h5>
-          <button type="button" aria-label="Close" onClick={() => this.closeModal(this.props.onCancelOrNo)}>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </ModalHeaderDiv>
-        }
+        {this.props.modalTitle && (
+          <ModalHeaderDiv>
+            <h5>{this.props.modalTitle}</h5>
+            <button
+              type="button"
+              aria-label="Close"
+              onClick={() => this.closeModal(this.props.onCancelOrNo)}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </ModalHeaderDiv>
+        )}
         <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
-        {this.props.footerContent &&
-        <ModalFooterDiv>
-          {this.renderFooter(this.props.footerContent)}
-        </ModalFooterDiv>
-        }
-        <CloseButton
-          onClick={() => this.closeModal(this.props.onCancelOrNo)}
-        />
+        {this.props.footerContent && (
+          <ModalFooterDiv>
+            {this.renderFooter(this.props.footerContent)}
+          </ModalFooterDiv>
+        )}
+        <CloseButton onClick={() => this.closeModal(this.props.onCancelOrNo)} />
       </SReactModal>
     );
   }
