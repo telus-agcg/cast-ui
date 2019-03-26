@@ -161,13 +161,6 @@ export class Modal extends React.Component<Props> {
     super(props);
   }
 
-  renderFooter(footerContent: any) {
-    if (typeof footerContent === 'function') {
-      return footerContent();
-    }
-    return footerContent;
-  }
-
   render() {
     return (
       <SReactModal
