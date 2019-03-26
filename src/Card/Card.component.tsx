@@ -36,7 +36,7 @@ const highlighBorderRules: Function = (
   switch (highlightBorder) {
     case 'all':
       return {
-        'border-color': theme.styles[cardStyleg].cardTopBorderColor,
+        'border-color': theme.styles[cardStyle].cardTopBorderColor,
         'border-width': theme.card.highlightAllBorderWidth,
       };
     case 'left':
