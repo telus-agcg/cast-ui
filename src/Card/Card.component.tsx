@@ -8,7 +8,7 @@ export type Props = {
    *
    * @default 'primary'
    **/
-  cardStyle: 'primary' | 'success' | 'default' | 'danger' | 'warning';
+  cardStyle?: 'primary' | 'success' | 'default' | 'danger' | 'warning';
   /**
    * Select which color will be the background color
    *
@@ -74,7 +74,7 @@ const highlighBorderRules: Function = (
 
 const SCard = styled.div`
   border-radius: ${(props: Props) => props.theme.card.borderRadius};
-  color: ${(props: Props) => props.theme.styles[props.cardStyle].cardColor};
+  color: ${(props: Props) => props.theme.styles[props.cardStyle!].cardColor};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.card.fontSize};
   padding: ${(props: Props) => props.theme.card.padding};
@@ -91,13 +91,9 @@ const SCard = styled.div`
 
 export const Card: React.FunctionComponent<Props> = ({
   children,
-  cardStyle = 'default',
   ...props
-}) => (
-  <SCard cardStyle={cardStyle} {...props}>
-    {children}
-  </SCard>
-);
+}) => <SCard {...props}>{children}</SCard>;
 Card.defaultProps = {
   theme: { ...Themes.defaultTheme },
+  cardStyle: 'primary',
 };
