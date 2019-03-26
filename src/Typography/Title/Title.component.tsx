@@ -1,13 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../../themes';
 
 export type Props = {
-  /**
-   * Set a className for the Title
-   *
-   * @default ''
-   **/
-  className?: string;
   /**
    * From theme provider
    *
@@ -25,14 +20,9 @@ const STitle = styled.h1`
 `;
 
 export const Title: React.FunctionComponent<Props> = ({
-  className,
   children,
-  theme,
   ...props
-}) => (
-    <STitle
-      {...props}
-      >
-      {children}
-    </STitle>
-  );
+}) => <STitle {...props}>{children}</STitle>;
+Title.defaultProps = {
+  theme: { ...Themes.defaultTheme },
+};
