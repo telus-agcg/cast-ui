@@ -1,8 +1,6 @@
 import * as React from 'react';
 import * as ReactModal from 'react-modal';
 import styled from 'styled-components';
-import { Button } from '../Button/Button.component';
-import SButton from '../Button/SButton';
 
 export type Props = ReactModal.Props & {
   /**
@@ -30,32 +28,18 @@ export type Props = ReactModal.Props & {
    **/
   modalTitle: string;
   /**
-   * Specify the function to execute when the user clicks Cancel or No.
-   * The handler should care of closing the modal, e.g. changing the `isOpen` prop.
+   * Specify the function to execute when the user clicks the title close button.
+   * The close button on the title will be unavailable if this function is not available.
    *
    * @default null
    **/
-  onCancelOrNo?: any;
-  /**
-   * Specify the function to execute when the user clicks OK or Yes.
-   * The handler should care of closing the modal, e.g. changing the `isOpen` prop.
-   *
-   * @default null
-   **/
-  onOkOrYes?: any;
-  /**
-   * Any props that should be passed directly to the third-
-   * party react-modal control.
-   *
-   * @default null
-   **/
-  controlSpecificProps?: any;
+  onTitleClose?: any;
   /**
    * Select Modal Size
    *
    * @default 'md'
    **/
-  modalSize?: string;
+  modalSize?: 'sm' | 'md' | 'lg' | 'full';
   /**
    * From theme provider
    *
@@ -96,11 +80,32 @@ const castStyles = {
   },
 };
 
+const modalSizeRules: Function = (
+  modalSize:string,
+  theme: any,
+) => {
+  switch (modalSize) {
+    case ('full'):
+      return {
+        'max-width': '98%',
+        width: '95%',
+        height: '95% !important',
+      };
+    case 'sm':
+    case 'md':
+    case 'lg':
+    default:
+      return {
+        'max-width': theme.modal[modalSize || 'md'].maxWidth,
+      };
+  }
+};
+
 const SReactModal = styled(ReactModal)`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   color: ${(props: any) => props.theme.colors.primary};
-  max-width: ${(props: Props) => props.theme.modal[props.modalSize || 'md'].maxWidth};
   outline: none;
+  ${(props: any) => modalSizeRules(props.modalSize, props.theme)}
 `;
 
 const ModalHeaderDiv = styled.div`
@@ -144,34 +149,8 @@ const ModalFooterDiv = styled.div`
   text-align: ${(props: any) => props.theme.modal.footer.textAlign};
   background-color: ${(props: any) => props.theme.modal.footer.backgroundColor};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
-  border-top: ${(props: any) => `1px solid ${props.theme.modal.footer.borderColor}`};
-  ${SButton} + ${SButton} {
-    margin-left: ${(props: any) => props.theme.modal.footer.buttonSpacing};
-  }
-`;
-
-/* tslint:disable:max-line-length */
-const CloseButton = styled.div`
-  position: absolute;
-  top: 28px;
-  right: 24px;
-  padding: 0;
-  margin: 0;
-  line-height: 20px;
-  cursor: pointer;
-  // tslint:disable-next-line:max-line-length
-  background: transparent
-    url(data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgVHJlbmQgTWljcm8gU3R5bGUgUG9ydGFsIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiPg0KICA8dGl0bGU+Y2xvc2U8L3RpdGxlPg0KICA8cGF0aCBmaWxsPSJyZ2IoMzQsMzQsMzQpIiBkPSJNMTUgMmwtMS0xLTYgNi02LTYtMC45OSAwLjk5IDUuOTkgNi4wMTAtNiA2IDEgMSA2LTYgNiA2IDEtMS02LTYgNi02eiI+PC9wYXRoPg0KPC9zdmc+);
-  border: 0;
-  -webkit-appearance: none;
-  text-shadow: none;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
-  outline: none;
-  width: 16px;
-  height: 16px;
-  opacity: 0.5;
+  border-top: ${(props: Props) => (props.modalTitle && props.modalTitle !== undefined) ?
+    `1px solid ${props.theme.modal.footer.borderColor}` : 'none'};
 `;
 
 export class Modal extends React.Component<Props> {
@@ -180,75 +159,12 @@ export class Modal extends React.Component<Props> {
     super(props);
   }
 
-  closeModal(fn: any) {
-    if (fn !== null && fn !== undefined) {
-      fn();
-    }else {
-      this.setState({ modalIsOpen: false });
-    }
-  }
-
   renderFooter(footerContent: any) {
     if (typeof footerContent === 'function') {
       return footerContent();
     }
     if (typeof footerContent === 'object') {
       return footerContent;
-    }
-
-    switch (footerContent) {
-      case 'OkOnly':
-        return (
-          <>
-            <Button
-              btnSize="md"
-              btnStyle="primary"
-              onClick={() => this.closeModal(this.props.onOkOrYes)}
-            >
-              OK
-            </Button>
-          </>
-        );
-      case 'YesNo':
-        return (
-          <>
-            <Button
-              btnSize="md"
-              btnStyle="primary"
-              onClick={() => this.closeModal(this.props.onOkOrYes)}
-            >
-              Yes
-            </Button>
-            <Button
-              btnSize="md"
-              btnStyle="default"
-              onClick={() => this.closeModal(this.props.onCancelOrNo)}
-            >
-              No
-            </Button>
-          </>
-        );
-      case 'OkCancel':
-        return (
-          <>
-            <Button
-              btnSize="md"
-              btnStyle="primary"
-              onClick={() => this.closeModal(this.props.onOkOrYes)}
-            >
-              OK
-            </Button>
-            <Button
-              btnSize="md"
-              btnStyle="default"
-              onClick={() => this.closeModal(this.props.onCancelOrNo)}
-            >
-              Cancel
-            </Button>
-          </>
-        );
-      default:
-        return null;
     }
   }
 
@@ -259,25 +175,25 @@ export class Modal extends React.Component<Props> {
         isOpen={this.props.isOpen}
         style={castStyles}
         modalSize={this.props.modalSize || 'md'}
-        {...this.props.controlSpecificProps}
+        {...this.props}
       >
         {this.props.modalTitle &&
         <ModalHeaderDiv>
           <h5>{this.props.modalTitle}</h5>
-          <button type="button" aria-label="Close" onClick={() => this.closeModal(this.props.onCancelOrNo)}>
+          {this.props.onTitleClose &&
+          <button type="button" aria-label="Close"
+            onClick={() => null}>
             <span aria-hidden="true">&times;</span>
           </button>
+          }
         </ModalHeaderDiv>
         }
         <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
         {this.props.footerContent &&
-        <ModalFooterDiv>
+          <ModalFooterDiv modalTitle={this.props.modalTitle}>
           {this.renderFooter(this.props.footerContent)}
         </ModalFooterDiv>
         }
-        <CloseButton
-          onClick={() => this.closeModal(this.props.onCancelOrNo)}
-        />
       </SReactModal>
     );
   }

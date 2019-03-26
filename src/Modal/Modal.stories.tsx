@@ -1,9 +1,28 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
-import { action } from '@storybook/addon-actions';
+import { Button } from '../Button';
 
 import { Modal } from '../';
+
+const DemoButtons = () => {
+  return (
+    <div>
+      <Button
+        btnSize="md"
+        btnStyle="primary"
+      >
+        OK
+        </Button>
+      <Button
+        btnSize="md"
+        btnStyle="default"
+      >
+        Cancel
+        </Button>
+    </div>
+  );
+};
 
 storiesOf('Modal', module).add(
   'Modal',
@@ -11,19 +30,13 @@ storiesOf('Modal', module).add(
     <Modal
       isOpen={boolean('isOpen', true)}
       id="myModal"
-      footerContent={select(
-        'buttonType',
-        ['OkOnly', 'OkCancel', 'YesNo'],
-        'OkCancel',
-      )}
+      footerContent={DemoButtons}
       modalSize={select(
         'modalSize',
-        ['sm', 'md', 'lg'],
+        ['sm', 'md', 'lg', 'full'],
         'md',
       )}
-      modalTitle={text('modalTitle', 'Hello Modal')}
-      onCancelOrNo={action('Clicked Cancel/No!')}
-      onOkOrYes={action('Clicked OK/Yes!')}
+      modalTitle={text('modalTitle', 'red')}
     >
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
