@@ -20,7 +20,7 @@ export type Props = ReactModal.Props & {
    *
    * @default null
    **/
-  footerContent: any;
+  footerContent: JSX.Element | React.Component | React.FunctionComponent | string;
   /**
    * Specify the title of the modal
    *
@@ -33,7 +33,7 @@ export type Props = ReactModal.Props & {
    *
    * @default null
    **/
-  onTitleClose?: any;
+  onTitleClose?(e: React.MouseEvent<HTMLElement>): void;
   /**
    * Select Modal Size
    *
@@ -140,6 +140,8 @@ const ModalBodyDiv = styled.div`
   padding: ${(props: any) => props.theme.modal.body.padding};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   position: relative;
+  max-height: 80vh;
+  overflow: scroll;
 `;
 
 const ModalFooterDiv = styled.div`
@@ -163,9 +165,7 @@ export class Modal extends React.Component<Props> {
     if (typeof footerContent === 'function') {
       return footerContent();
     }
-    if (typeof footerContent === 'object') {
-      return footerContent;
-    }
+    return footerContent;
   }
 
   render() {
@@ -182,7 +182,7 @@ export class Modal extends React.Component<Props> {
           <h5>{this.props.modalTitle}</h5>
           {this.props.onTitleClose &&
           <button type="button" aria-label="Close"
-            onClick={() => null}>
+            onClick={() => this.props.onTitleClose}>
             <span aria-hidden="true">&times;</span>
           </button>
           }
@@ -191,7 +191,7 @@ export class Modal extends React.Component<Props> {
         <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
         {this.props.footerContent &&
           <ModalFooterDiv modalTitle={this.props.modalTitle}>
-          {this.renderFooter(this.props.footerContent)}
+          {this.props.footerContent}
         </ModalFooterDiv>
         }
       </SReactModal>
