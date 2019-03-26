@@ -16,12 +16,6 @@ export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
    * */
   onClick?(e: React.MouseEvent<HTMLElement>): void;
   /**
-   * Set a className for the button
-   *
-   * @default ''
-   **/
-  className?: string;
-  /**
    * Set Button Style
    *
    * @default 'default'
@@ -65,15 +59,9 @@ export const Button: React.FunctionComponent<Props> = ({
   onClick = noop,
   disabled,
   children,
-  className,
   ...props
 }) => (
-  <SButton
-    className={className}
-    disabled={disabled}
-    onClick={!disabled ? onClick : noop}
-    {...props}
-  >
+  <SButton disabled={disabled} onClick={!disabled ? onClick : noop} {...props}>
     {children}
   </SButton>
 );
