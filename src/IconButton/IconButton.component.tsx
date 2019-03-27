@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Icon from 'react-icons-kit';
 import Button, { ButtonProps } from '../Button';
+import { Themes } from '../themes';
 
 const defaultProps = {
   color: 'lightGray',
@@ -72,3 +73,6 @@ export const IconButton: React.FunctionComponent<Props> = props => (
     {props.children}
   </SIconButton>
 );
+IconButton.defaultProps = {
+  theme: Themes.defaultTheme,
+};
