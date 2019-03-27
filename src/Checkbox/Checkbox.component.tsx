@@ -36,7 +36,7 @@ export type Props = {
   /**
    * Specify the function to fire when the checkbox is changed
    *
-   * @default ''
+   * @default void
    **/
   onChange?: any;
   /**
@@ -119,8 +119,11 @@ export class Checkbox extends React.Component<Props> {
 
   render() {
     const {
+      id = '',
       cbSize = 'md',
+      onChange = () => {},
       theme = { ...Themes.defaultTheme },
+      children,
       ...props
     } = this.props;
     return (
@@ -128,17 +131,20 @@ export class Checkbox extends React.Component<Props> {
         <SInput
           type="checkbox"
           onChange={(evt: any) => {
-            this.props.onChange(this.input.checked, this.props.id, evt);
+            onChange(this.input.checked, id, evt);
           }}
           ref={(el: any) => {
             this.input = el;
           }}
+          id={id}
           cbSize={cbSize}
-          theme={theme}
-          {...props}
+          disabled={this.props.disabled}
+          value={this.props.value}
+          checked={this.props.checked}
+          defaultChecked={this.props.defaultChecked}
         />
-        <SLabel htmlFor={this.props.id} cbSize={cbSize} theme={theme}>
-          {this.props.children}
+        <SLabel htmlFor={id} cbSize={cbSize} theme={theme}>
+          {children}
         </SLabel>
       </SDiv>
     );
