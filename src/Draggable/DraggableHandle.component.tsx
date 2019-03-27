@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Icon from 'react-icons-kit';
 import { ic_view_headline as icViewHeadline } from 'react-icons-kit/md/ic_view_headline';
+import { defaultTheme } from '../themes/default';
 
 export type Props = {
   /** Activae Hover handle  */
@@ -50,4 +51,5 @@ export const DraggableHandle: React.FunctionComponent<Props> = props => (
 );
 DraggableHandle.defaultProps = {
   size: 25,
+  theme: { ...defaultTheme },
 };

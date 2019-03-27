@@ -1,12 +1,13 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableProps } from './defaultProps';
+import { defaultTheme } from '../themes/default';
 
 export type Props = Partial<DraggableProps> & {
   /**
    * Set Icon size
    *
-   * @default '14'
+   * @default '10'
    **/
   iconsize?: number;
 };
@@ -27,6 +28,7 @@ export const DraggableInfo: React.FunctionComponent<Props> = props => (
 );
 DraggableInfo.defaultProps = {
   color: 'lightGray',
-  guttersize: 'md',
+  guttersize: 'md' as 'md' | 'lg' | 'sm',
   iconsize: 10,
+  theme: { ...defaultTheme },
 };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Themes } from '../themes';
+import { defaultTheme } from '../themes/default';
 
 export type Props = {
   /**
@@ -42,7 +42,7 @@ export const Badge: React.FunctionComponent<Props> = ({
 }) => <SBadge {...props}>{children}</SBadge>;
 
 Badge.defaultProps = {
-  theme: { ...Themes.defaultTheme },
+  theme: { ...defaultTheme },
   badgeSize: 'md',
   badgeStyle: 'primary',
 };

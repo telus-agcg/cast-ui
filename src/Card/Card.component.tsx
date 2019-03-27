@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Themes } from '../themes';
+import { defaultTheme } from '../themes/default';
 
 export type Props = {
   /**
@@ -94,6 +94,6 @@ export const Card: React.FunctionComponent<Props> = ({
   ...props
 }) => <SCard {...props}>{children}</SCard>;
 Card.defaultProps = {
-  theme: { ...Themes.defaultTheme },
+  theme: { ...defaultTheme },
   cardStyle: 'primary',
 };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SButton from './SButton';
-import { Themes } from '../themes';
+import { defaultTheme } from '../themes/default';
 
 export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
   /**
@@ -66,7 +66,7 @@ export const Button: React.FunctionComponent<Props> = ({
   </SButton>
 );
 Button.defaultProps = {
-  theme: { ...Themes.defaultTheme },
+  theme: { ...defaultTheme },
   btnStyle: 'default',
   btnSize: 'md',
 };

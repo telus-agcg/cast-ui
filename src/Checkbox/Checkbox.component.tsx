@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Themes } from '../themes';
+import { defaultTheme } from '../themes/default';
 
 export type Props = {
   /**
@@ -122,7 +122,7 @@ export class Checkbox extends React.Component<Props> {
       id = '',
       cbSize = 'md',
       onChange = () => {},
-      theme = { ...Themes.defaultTheme },
+      theme = { ...defaultTheme },
       children,
       ...props
     } = this.props;

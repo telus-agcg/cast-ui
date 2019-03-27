@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Themes } from '../themes';
+import { defaultTheme } from '../themes/default';
 
 export type Props = {
   /**
@@ -52,7 +52,7 @@ export const Alert: React.FunctionComponent<Props> = ({
 }) => <SAlert {...props}>{children}</SAlert>;
 
 Alert.defaultProps = {
-  theme: { ...Themes.defaultTheme },
+  theme: { ...defaultTheme },
   alertStyle: 'primary',
   lightMode: false,
 };

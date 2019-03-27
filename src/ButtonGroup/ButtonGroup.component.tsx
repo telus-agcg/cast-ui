@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Themes } from '../themes';
+import { defaultTheme } from '../themes/default';
 
 type ButtonGroupRole = 'group' | 'toolbar';
 type ButtonGroupMode = 'radio' | 'checkbox';
@@ -82,7 +82,7 @@ export class ButtonGroup extends React.Component<Props> {
   }
 
   render() {
-    const { theme = { ...Themes.defaultTheme }, ...props } = this.props;
+    const { theme = { ...defaultTheme }, ...props } = this.props;
     return (
       <ButtonGroupWrapper theme={theme} {...props}>
         {this.renderChildren()}

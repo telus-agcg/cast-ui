@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Icon from 'react-icons-kit';
 import { ic_check as icCheck } from 'react-icons-kit/md/ic_check';
-import { Themes } from '../themes';
+import { defaultTheme } from '../themes/default';
 
 export type Props = {
   /**
@@ -202,7 +202,7 @@ export class CopyToClipboard extends React.Component<Props> {
       copyButtonContent = 'copy',
       copyButtonSuccessContent = <SuccessContent />,
       copyButtonClass = '',
-      theme = { ...Themes.defaultTheme },
+      theme = { ...defaultTheme },
     } = this.props;
     const { copied } = this.state;
     return (
