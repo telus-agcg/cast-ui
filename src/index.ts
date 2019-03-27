@@ -18,7 +18,7 @@ export * from './Draggable';
 export * from './IconButton';
 export * from './Input';
 export * from './InputGroup';
-export * from './Modal';
+// export * from './Modal';
 export * from './Navbar';
 export * from './Pagination';
 export * from './Panel';
