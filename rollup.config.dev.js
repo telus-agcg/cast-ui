@@ -16,13 +16,8 @@ const config = {
   output: {
     file: pkg.main,
     format: 'es',
-    globals: {
-      react: 'React',
-      'react-dom': 'ReactDOM',
-      'styled-components': 'styled',
-    },
   },
-  external: ['React', 'ReactDOM', 'styled'],
+  external: ['React', 'ReactDOM', 'styled-components'],
   plugins: [
     peerDepsExternal(),
     postcss({ extract: false, plugins: [autoprefixer] }),
