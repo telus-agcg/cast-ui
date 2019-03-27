@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Icon from 'react-icons-kit';
 import { ic_check as icCheck } from 'react-icons-kit/md/ic_check';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -15,7 +16,7 @@ export type Props = {
    *
    * @default ''
    **/
-  copyContent: JSX.Element | React.Component | string;
+  copyContent: JSX.Element | React.Component | React.FunctionComponent | string;
   /**
    * Assign class to the container enclosing the text to be copied
    *
@@ -118,26 +119,27 @@ const SCopyToClipboard = styled.div`
         props.theme.copyToClipboard.button[`${props.buttonColor}Color`]};
     }
   }
-  pre, code{
+  pre,
+  code {
     white-space: pre;
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
     white-space: -o-pre-wrap;
   }
 
-  pre{
+  pre {
     font-family: ${(props: Props) => props.theme.typography.pre.fontFamily};
     font-size: ${(props: Props) => props.theme.typography.pre.fontSize};
     line-height: ${(props: Props) => props.theme.typography.pre.lineHeight};
   }
 
-  code{
+  code {
     font-family: ${(props: Props) => props.theme.typography.code.fontFamily};
     font-size: ${(props: Props) => props.theme.typography.code.fontSize};
     line-height: ${(props: Props) => props.theme.typography.code.lineHeight};
   }
 
-  #content code{
+  #content code {
     display: block;
     padding: 1.5em 2em;
     border: 1px solid;
@@ -169,7 +171,7 @@ export class CopyToClipboard extends React.Component<Props> {
     textField.select();
     document.execCommand('copy');
     textField.remove();
-    return cb() || null;
+    return cb instanceof Function ? cb() : null;
   }
 
   public unescapeHTML(html: any) {
@@ -200,7 +202,7 @@ export class CopyToClipboard extends React.Component<Props> {
       copyButtonContent = 'copy',
       copyButtonSuccessContent = <SuccessContent />,
       copyButtonClass = '',
-      theme,
+      theme = { ...Themes.defaultTheme },
     } = this.props;
     const { copied } = this.state;
     return (

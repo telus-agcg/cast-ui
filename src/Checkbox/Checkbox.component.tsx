@@ -142,6 +142,7 @@ export class Checkbox extends React.Component<Props> {
           value={this.props.value}
           checked={this.props.checked}
           defaultChecked={this.props.defaultChecked}
+          theme={theme}
         />
         <SLabel htmlFor={id} cbSize={cbSize} theme={theme}>
           {children}
