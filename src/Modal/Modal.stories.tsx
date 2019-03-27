@@ -1,9 +1,28 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
-import { action } from '@storybook/addon-actions';
+import { Button } from '../Button';
 
 import { Modal } from '../';
+
+const DemoButtons = () => {
+  return (
+    <div>
+      <Button
+        btnSize="md"
+        btnStyle="primary"
+      >
+        OK
+        </Button>
+      <Button
+        btnSize="md"
+        btnStyle="default"
+      >
+        Cancel
+        </Button>
+    </div>
+  );
+};
 
 storiesOf('Modal', module).add(
   'Modal',
@@ -11,28 +30,16 @@ storiesOf('Modal', module).add(
     <Modal
       isOpen={boolean('isOpen', true)}
       id="myModal"
-      footerContent={select(
-        'buttonType',
-        ['OkOnly', 'OkCancel', 'YesNo'],
-        'OkCancel',
-      )}
+      footerContent={<DemoButtons />}
       modalSize={select(
         'modalSize',
-        ['sm', 'md', 'lg'],
+        ['sm', 'md', 'lg', 'full'],
         'md',
       )}
-      modalTitle={text('modalTitle', 'Hello Modal')}
-      onCancelOrNo={action('Clicked Cancel/No!')}
-      onOkOrYes={action('Clicked OK/Yes!')}
+      modalTitle={text('modalTitle', 'red')}
     >
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+        Lorem
       </p>
     </Modal>
   ),
