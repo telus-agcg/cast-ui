@@ -69,7 +69,7 @@ export const SideNavToggle: React.FunctionComponent<Props> = ({
 };
 
 SideNavToggle.defaultProps = {
-  theme: { ...Themes.defaultTheme },
+  theme: Themes.defaultTheme,
   openContent: '',
   closeContent: '',
 };

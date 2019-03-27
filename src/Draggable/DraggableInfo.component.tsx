@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableProps } from './defaultProps';
-import { defaultTheme } from '../themes/default';
+import { Themes } from '../themes';
 
 export type Props = Partial<DraggableProps> & {
   /**
@@ -30,5 +30,5 @@ DraggableInfo.defaultProps = {
   color: 'lightGray',
   guttersize: 'md' as 'md' | 'lg' | 'sm',
   iconsize: 10,
-  theme: { ...defaultTheme },
+  theme: Themes.defaultTheme,
 };

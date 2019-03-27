@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableProps } from '../defaultProps';
 import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
-import { defaultTheme } from '../../themes/default';
+import { Themes } from '../../themes';
 
 export type Props = Partial<DraggableProps>;
 
@@ -16,7 +16,7 @@ export const ParentMainContent: React.FunctionComponent<Props> = ({
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
     { key: 'guttersize', defaultVal: 'md' },
-    { key: 'theme', defaultVal: { ...defaultTheme } },
+    { key: 'theme', defaultVal: Themes.defaultTheme },
   ];
   const newProps: any = useMergeWithParentProps(props, {
     propsToMerge,

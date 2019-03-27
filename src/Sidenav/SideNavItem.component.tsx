@@ -152,7 +152,7 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
 };
 
 SideNavItem.defaultProps = {
-  theme: { ...Themes.defaultTheme },
+  theme: Themes.defaultTheme,
   activeSideNavItem: false,
   disabled: false,
   path: '',

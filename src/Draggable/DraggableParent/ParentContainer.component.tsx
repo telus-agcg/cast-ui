@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { DraggableHandle } from '../DraggableHandle.component';
 import { DraggableProps } from '../defaultProps';
 import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
-import { defaultTheme } from '../../themes/default';
+import { Themes } from '../../themes';
 
 export type Props = Partial<DraggableProps> & {
   /** Listen to drag start event  */
@@ -85,7 +85,7 @@ export const ParentContainer: React.FunctionComponent<Props> = ({
     { key: 'parenthandlesize', defaultVal: 30 },
     { key: 'parentActive', defaultVal: parentActive },
     { key: 'draggable', defaultVal: props.draggable },
-    { key: 'theme', defaultVal: { ...defaultTheme } },
+    { key: 'theme', defaultVal: Themes.defaultTheme },
   ];
   const newProps: any = useMergeWithParentProps(props, {
     propsToMerge,

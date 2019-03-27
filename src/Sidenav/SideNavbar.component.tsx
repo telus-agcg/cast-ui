@@ -242,7 +242,7 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
 };
 
 SideNavbar.defaultProps = {
-  theme: { ...Themes.defaultTheme },
+  theme: Themes.defaultTheme,
   isOpen: false,
   width: '',
   background: '',

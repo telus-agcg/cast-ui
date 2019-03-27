@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableProps } from '../defaultProps';
 import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
-import { defaultTheme } from '../../themes/default';
+import { Themes } from '../../themes';
 
 export type Props = Partial<DraggableProps>;
 
@@ -30,7 +30,7 @@ export const ItemRightContent: React.FunctionComponent<Props> = ({
     { key: 'draggablestyle', defaultVal: 'primary' },
     { key: 'color', defaultVal: 'lightGray' },
     { key: 'bordercolor', defaultVal: 'lightGray' },
-    { key: 'theme', defaultVal: { ...defaultTheme } },
+    { key: 'theme', defaultVal: Themes.defaultTheme },
   ];
   const newProps: any = useMergeWithParentProps(props, {
     propsToMerge,

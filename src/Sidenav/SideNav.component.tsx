@@ -76,7 +76,7 @@ export const SideNav: React.FunctionComponent<Props> = ({
 );
 
 SideNav.defaultProps = {
-  theme: { ...Themes.defaultTheme },
+  theme: Themes.defaultTheme,
   top: false,
   center: false,
   bottom: false,

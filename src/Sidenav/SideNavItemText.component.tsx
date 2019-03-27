@@ -33,5 +33,5 @@ export const SideNavItemText: React.FunctionComponent<Props> = ({
 };
 
 SideNavItemText.defaultProps = {
-  theme: { ...Themes.defaultTheme },
+  theme: Themes.defaultTheme,
 };

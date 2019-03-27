@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableProps } from './defaultProps';
 import DraggableContext from './draggableContext';
-import { defaultTheme } from '../themes/default';
+import { Themes } from '../themes';
 
 export type Props = Partial<DraggableProps>;
 
@@ -25,5 +25,5 @@ Draggable.defaultProps = {
   draggablestyle: 'primary',
   bordercolor: 'lightGray',
   guttersize: 'md' as 'md' | 'lg' | 'sm',
-  theme: { ...defaultTheme },
+  theme: Themes.defaultTheme,
 };
