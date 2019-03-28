@@ -11,7 +11,7 @@
   "scripts": {
     "start": "npm run storybook",
     "build": "npm run clean && rollup -c rollup.config.prod.js",
-    "build-dev": "npm run clean && rollup -c rollup.config.prod.js -w",
+    "build-dev": "npm run clean && rollup -c rollup.config.dev.js -w",
     "storybook": "start-storybook -p 6006 --ci -c .storybook",
     "lint": "tslint --project tsconfig.json",
     "clean": "shx rm -rf lib-cjs lib-esm lib-umd",
