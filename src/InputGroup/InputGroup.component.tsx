@@ -8,11 +8,17 @@ export type Props = {
   /** the label of the input group  */
   label?: string;
   /**
-   * Select Input Size
+   * Set Input Size
    *
    * @default 'md'
    **/
   inputSize: string;
+  /**
+   * Set orientation of inputGroup as vertical
+   *
+   * @default false
+   **/
+  vertical?: boolean;
   /**
    * From theme provider
    *
@@ -23,29 +29,30 @@ export type Props = {
 
 const InputGroupWrapper = styled.div`
   overflow: hidden;
+  border-radius: ${(props: Props) => props.theme.borders.radius};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   display: ${(props: Props) => props.theme.inputGroup.root.display};
   flex-wrap: ${(props: Props) => props.theme.inputGroup.root.flexWrap};
-  border-radius: ${(props: Props) => props.theme.borders.radius};
+  flex-direction: ${(props: Props) => (props.vertical ? 'column' : 'row')};
 `;
 const SLabel = styled.label`
-  background: white;
+  background: inherit;
   overflow: hidden;
   height: auto;
-  padding: ${(props: Props) => props.theme.label.padding};
+  padding: ${(props: Props) => (props.label ? props.theme.label.padding : '0')};
+  font-weight: ${(props: Props) => props.theme.label.fontWeight};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize};
 `;
 
 export const InputGroup: React.FunctionComponent<Props> = ({
   inputSize,
-  label,
   theme,
   children,
   ...props
 }) => (
   <InputGroupWrapper inputSize={inputSize} theme={theme} {...props}>
-    <SLabel inputSize={inputSize} theme={theme}>
-      {label}
+    <SLabel label={props.label} inputSize={inputSize} theme={theme}>
+      {props.label}
     </SLabel>
     {children}
   </InputGroupWrapper>
@@ -53,5 +60,6 @@ export const InputGroup: React.FunctionComponent<Props> = ({
 InputGroup.defaultProps = {
   inputSize: 'md',
   label: '',
+  vertical: false,
   theme: Themes.defaultTheme,
 };

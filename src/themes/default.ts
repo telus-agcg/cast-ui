@@ -353,7 +353,8 @@ export const defaultTheme = {
     },
   },
   label: {
-    padding: '9px 8px',
+    padding: '8px 16px 8px 0',
+    fontWeight: 500,
   },
   modal: {
     header: {
