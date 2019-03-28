@@ -1,11 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /** the content of the input group  */
   // children?: React.ReactNode[] | Function;
   /** the label of the input group  */
-  label: string;
+  label?: string;
   /**
    * Select Input Size
    *
@@ -32,31 +33,25 @@ const SLabel = styled.label`
   overflow: hidden;
   height: auto;
   padding: ${(props: Props) => props.theme.label.padding};
-  font-size: ${(props: Props) => props.theme.common[props.inputSize].fontSize};
+  font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize};
 `;
 
-const initialState = {
-  isCollapsed: false,
+export const InputGroup: React.FunctionComponent<Props> = ({
+  inputSize,
+  label,
+  theme,
+  children,
+  ...props
+}) => (
+  <InputGroupWrapper inputSize={inputSize} theme={theme} {...props}>
+    <SLabel inputSize={inputSize} theme={theme}>
+      {label}
+    </SLabel>
+    {children}
+  </InputGroupWrapper>
+);
+InputGroup.defaultProps = {
+  inputSize: 'md',
+  label: '',
+  theme: Themes.defaultTheme,
 };
-type State = Readonly<typeof initialState>;
-
-export class InputGroup extends React.Component<Props, State> {
-  static Header: React.Component;
-  static Body: React.Component;
-
-  constructor(props: Props) {
-    super(props);
-  }
-
-  readonly state: State = initialState;
-  localIsCollapsed: boolean = false;
-
-  render() {
-    return (
-      <InputGroupWrapper {...this.props}>
-        <SLabel {...this.props}>{this.props.label}</SLabel>
-        {this.props.children}
-      </InputGroupWrapper>
-    );
-  }
-}
