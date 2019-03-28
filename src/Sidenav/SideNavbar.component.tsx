@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { SideNavContext, propsDeepSearch } from './context';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -241,6 +242,7 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
 };
 
 SideNavbar.defaultProps = {
+  theme: Themes.defaultTheme,
   isOpen: false,
   width: '',
   background: '',

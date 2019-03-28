@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -75,6 +76,7 @@ export const SideNav: React.FunctionComponent<Props> = ({
 );
 
 SideNav.defaultProps = {
+  theme: Themes.defaultTheme,
   top: false,
   center: false,
   bottom: false,

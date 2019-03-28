@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { DraggableProps } from './defaultProps';
+import { Themes } from '../themes';
 
 export type Props = Partial<DraggableProps>;
 
@@ -19,4 +20,5 @@ DraggableFooter.defaultProps = {
   color: 'lightGray',
   guttersize: 'md',
   draggablestyle: 'primary',
+  theme: Themes.defaultTheme,
 };

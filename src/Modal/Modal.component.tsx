@@ -20,7 +20,11 @@ export type Props = ReactModal.Props & {
    *
    * @default null
    **/
-  footerContent: JSX.Element | React.Component | React.FunctionComponent | string;
+  footerContent:
+    | JSX.Element
+    | React.Component
+    | React.FunctionComponent
+    | string;
   /**
    * Specify the title of the modal
    *
@@ -69,7 +73,7 @@ const castStyles = {
     border: '',
     height: 'auto',
     lineHeight: '20px',
-    position:'absolute',
+    position: 'absolute',
     boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
     whiteSpace: 'normal',
     verticalAlign: 'middle',
@@ -80,12 +84,9 @@ const castStyles = {
   },
 };
 
-const modalSizeRules: Function = (
-  modalSize:string,
-  theme: any,
-) => {
+const modalSizeRules: Function = (modalSize: string, theme: any) => {
   switch (modalSize) {
-    case ('full'):
+    case 'full':
       return {
         'max-width': '98%',
         width: '95%',
@@ -111,15 +112,16 @@ const SReactModal = styled(ReactModal)`
 const ModalHeaderDiv = styled.div`
   min-height: ${(props: any) => props.theme.modal.header.minHeight};
   background-color: ${(props: any) => props.theme.modal.header.backgroundColor};
-  border-bottom: ${(props: any) => `1px solid ${props.theme.modal.header.borderColor}`};
+  border-bottom: ${(props: any) =>
+    `1px solid ${props.theme.modal.header.borderColor}`};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   padding: ${(props: any) => props.theme.modal.header.padding};
-  h5{
+  h5 {
     font-size: ${(props: any) => props.theme.modal.header.fontSize};
     padding: 0;
     margin: 0;
   }
-  button{
+  button {
     padding: 1rem 1rem;
     margin: -2.7rem -1rem -1rem auto;
     float: right;
@@ -151,12 +153,13 @@ const ModalFooterDiv = styled.div`
   text-align: ${(props: any) => props.theme.modal.footer.textAlign};
   background-color: ${(props: any) => props.theme.modal.footer.backgroundColor};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
-  border-top: ${(props: Props) => (props.modalTitle && props.modalTitle !== undefined) ?
-    `1px solid ${props.theme.modal.footer.borderColor}` : 'none'};
+  border-top: ${(props: Props) =>
+    props.modalTitle && props.modalTitle !== undefined
+      ? `1px solid ${props.theme.modal.footer.borderColor}`
+      : 'none'};
 `;
 
 export class Modal extends React.Component<Props> {
-
   constructor(props: Props) {
     super(props);
   }
@@ -170,23 +173,26 @@ export class Modal extends React.Component<Props> {
         modalSize={this.props.modalSize || 'md'}
         {...this.props}
       >
-        {this.props.modalTitle &&
-        <ModalHeaderDiv>
-          <h5>{this.props.modalTitle}</h5>
-          {this.props.onTitleClose &&
-          <button type="button" aria-label="Close"
-            onClick={() => this.props.onTitleClose}>
-            <span aria-hidden="true">&times;</span>
-          </button>
-          }
-        </ModalHeaderDiv>
-        }
+        {this.props.modalTitle && (
+          <ModalHeaderDiv>
+            <h5>{this.props.modalTitle}</h5>
+            {this.props.onTitleClose && (
+              <button
+                type="button"
+                aria-label="Close"
+                onClick={() => this.props.onTitleClose}
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            )}
+          </ModalHeaderDiv>
+        )}
         <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
-        {this.props.footerContent &&
+        {this.props.footerContent && (
           <ModalFooterDiv modalTitle={this.props.modalTitle}>
-          {this.props.footerContent}
-        </ModalFooterDiv>
-        }
+            {this.props.footerContent}
+          </ModalFooterDiv>
+        )}
       </SReactModal>
     );
   }

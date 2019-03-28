@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 // TODO: we should be able to use an interface to inherit the base properties of an
 // HTMLInputElement. However, when I do this, CPU usage goes nuts, and the base
@@ -18,12 +19,6 @@ type PropsThemeOnly = {
 };
 
 export type Props = PropsThemeOnly & {
-  /**
-   * Set className
-   *
-   * @default ''
-   **/
-  className?: string;
   /**
    * The ID of the control
    *
@@ -114,7 +109,10 @@ const SErrorDiv = styled.div`
   font-style: italic;
 `;
 
-export const Input: React.FunctionComponent<Props> = ({ ...inputProps }) => {
+export const Input: React.FunctionComponent<Props> = ({
+  children,
+  ...inputProps
+}) => {
   const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : undefined;
 
   const error = inputProps.invalid ? (
@@ -131,7 +129,7 @@ export const Input: React.FunctionComponent<Props> = ({ ...inputProps }) => {
         aria-invalid={inputProps.invalid ? true : undefined}
         aria-describedby={errorId}
       >
-        {inputProps.children}
+        {children}
       </SInput>
       {error}
     </>
@@ -139,6 +137,7 @@ export const Input: React.FunctionComponent<Props> = ({ ...inputProps }) => {
 };
 
 Input.defaultProps = {
+  theme: Themes.defaultTheme,
   inputSize: 'md',
   type: 'text',
 };

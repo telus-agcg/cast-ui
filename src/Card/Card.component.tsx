@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -7,7 +8,7 @@ export type Props = {
    *
    * @default 'primary'
    **/
-  cardStyle: 'primary' | 'success' | 'default' | 'danger' | 'warning';
+  cardStyle?: 'primary' | 'success' | 'default' | 'danger' | 'warning';
   /**
    * Select which color will be the background color
    *
@@ -73,27 +74,26 @@ const highlighBorderRules: Function = (
 
 const SCard = styled.div`
   border-radius: ${(props: Props) => props.theme.card.borderRadius};
-  color: ${(props: Props) => props.theme.styles[props.cardStyle].cardColor};
+  color: ${(props: Props) => props.theme.styles[props.cardStyle!].cardColor};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.card.fontSize};
   padding: ${(props: Props) => props.theme.card.padding};
-  background: ${(props: Props) => (props.bgColor) ? props.bgColor : props.theme.card.background};
+  background: ${(props: Props) =>
+    props.bgColor ? props.bgColor : props.theme.card.background};
   box-shadow: ${(props: Props) => props.theme.card.boxShadow};
   border-style: solid;
 
-  ${(props: Props) => highlighBorderRules(props.highlightBorder, props.cardStyle, props.theme)}
+  ${(props: Props) =>
+    highlighBorderRules(props.highlightBorder, props.cardStyle, props.theme)}
 
   display: inline-block;
 `;
 
 export const Card: React.FunctionComponent<Props> = ({
   children,
-  cardStyle = 'default',
   ...props
-}) => (
-  <SCard
-    cardStyle={cardStyle}
-    {...props}>
-    {children}
-  </SCard>
-);
+}) => <SCard {...props}>{children}</SCard>;
+Card.defaultProps = {
+  theme: Themes.defaultTheme,
+  cardStyle: 'primary',
+};

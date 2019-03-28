@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -14,12 +15,6 @@ export type Props = {
    * @default false
    **/
   lightMode?: boolean;
-  /**
-   * Toggle Alert Display Mode between full width and compact.
-   *
-   * @default false
-   **/
-  fullWidth?: boolean;
   /**
    * From theme provider
    *
@@ -43,7 +38,7 @@ const SAlert = styled.div`
       props.lightMode
         ? props.theme.styles[props.alertStyle].alertBackground
         : props.theme.styles[props.alertStyle].alertColor};
-  display: ${(props: Props) => (props.fullWidth ? 'block' : 'inline-block')};
+  display: ${(props: Props) => props.theme.alert.display};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.alert.fontSize};
   padding: ${(props: Props) => props.theme.alert.padding};
@@ -53,11 +48,11 @@ const SAlert = styled.div`
 
 export const Alert: React.FunctionComponent<Props> = ({
   children,
-  alertStyle = 'primary',
-  lightMode = false,
-  fullWidth = false,
-}) => (
-  <SAlert alertStyle={alertStyle} lightMode={lightMode} fullWidth={fullWidth}>
-    {children}
-  </SAlert>
-);
+  ...props
+}) => <SAlert {...props}>{children}</SAlert>;
+
+Alert.defaultProps = {
+  theme: Themes.defaultTheme,
+  alertStyle: 'primary',
+  lightMode: false,
+};

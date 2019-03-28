@@ -1,5 +1,6 @@
 import * as React from 'react';
 import SButton from './SButton';
+import { Themes } from '../themes';
 
 export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
   /**
@@ -15,13 +16,7 @@ export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
    * */
   onClick?(e: React.MouseEvent<HTMLElement>): void;
   /**
-   * Set a className for the button
-   *
-   * @default ''
-   **/
-  className?: string;
-  /**
-   * Select Button Style
+   * Set Button Style
    *
    * @default 'default'
    **/
@@ -61,26 +56,17 @@ export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
 const noop = () => {}; // tslint:disable-line
 
 export const Button: React.FunctionComponent<Props> = ({
-  outline,
   onClick = noop,
   disabled,
-  selected,
   children,
-  btnStyle = 'default',
-  btnSize = 'md',
-  className,
-  theme,
+  ...props
 }) => (
-  <SButton
-    outline={outline}
-    btnSize={btnSize}
-    btnStyle={btnStyle}
-    className={className}
-    theme={theme}
-    disabled={disabled}
-    selected={selected}
-    onClick={!disabled ? onClick : noop}
-  >
+  <SButton disabled={disabled} onClick={!disabled ? onClick : noop} {...props}>
     {children}
   </SButton>
 );
+Button.defaultProps = {
+  theme: Themes.defaultTheme,
+  btnStyle: 'default',
+  btnSize: 'md',
+};

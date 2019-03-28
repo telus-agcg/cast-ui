@@ -5,6 +5,7 @@ import { DayPickerInputProps } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 import { Input } from '../Input/Input.component';
+import { Themes } from '../themes';
 
 export type Props = Partial<DayPickerInputProps> & {
   /**
@@ -199,4 +200,5 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
 DatePicker.defaultProps = {
   datepickerstyle: 'primary',
   datepickersize: 'md',
+  theme: Themes.defaultTheme,
 };

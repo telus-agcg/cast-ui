@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -13,7 +14,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  cbSize: 'sm' | 'md' | 'lg';
+  cbSize?: 'sm' | 'md' | 'lg';
   /**
    * Specify if the checkbox is checked
    *
@@ -31,17 +32,17 @@ export type Props = {
    *
    * @default false
    **/
-  disabled: boolean;
+  disabled?: boolean;
   /**
    * Specify the function to fire when the checkbox is changed
    *
-   * @default 'default'
+   * @default void
    **/
   onChange?: any;
   /**
    * Specify the value of the checkbox group when the current button is selected
    *
-   * @default 'default'
+   * @default ''
    **/
   value: string;
   /**
@@ -63,7 +64,7 @@ const SLabel = styled.label`
   align-items: center;
   display: inline-flex;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.cbSize].fontSize};
+  font-size: ${(props: Props) => props.theme.common[props.cbSize!].fontSize};
 `;
 
 const SInput = styled.input`
@@ -71,8 +72,8 @@ const SInput = styled.input`
   + label:before {
     content: "";
     display: inline-block;
-    width: ${(props: Props) => props.theme.checkbox[props.cbSize].size};
-    height: ${(props: Props) => props.theme.checkbox[props.cbSize].size};
+    width: ${(props: Props) => props.theme.checkbox[props.cbSize!].size};
+    height: ${(props: Props) => props.theme.checkbox[props.cbSize!].size};
     background-clip: content-box;
     background-color: ${(props: Props) => props.theme.checkbox.unselectedColor};
     border-color: ${(props: Props) => props.theme.checkbox.borderColor};
@@ -117,25 +118,34 @@ export class Checkbox extends React.Component<Props> {
   input: any;
 
   render() {
+    const {
+      id = '',
+      cbSize = 'md',
+      onChange = () => {},
+      theme = Themes.defaultTheme,
+      children,
+      ...props
+    } = this.props;
     return (
-      <SDiv data-radiobutton="">
+      <SDiv data-radiobutton="" theme={theme} {...props}>
         <SInput
           type="checkbox"
           onChange={(evt: any) => {
-            this.props.onChange(this.input.checked, this.props.id, evt);
+            onChange(this.input.checked, id, evt);
           }}
-          cbSize={this.props.cbSize}
-          disabled={this.props.disabled}
-          id={this.props.id}
-          value={this.props.value}
-          checked={this.props.checked}
-          defaultChecked={this.props.defaultChecked}
           ref={(el: any) => {
             this.input = el;
           }}
+          id={id}
+          cbSize={cbSize}
+          disabled={this.props.disabled}
+          value={this.props.value}
+          checked={this.props.checked}
+          defaultChecked={this.props.defaultChecked}
+          theme={theme}
         />
-        <SLabel htmlFor={this.props.id} cbSize={this.props.cbSize}>
-          {this.props.children}
+        <SLabel htmlFor={id} cbSize={cbSize} theme={theme}>
+          {children}
         </SLabel>
       </SDiv>
     );

@@ -1,19 +1,20 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
-   * Select Badge Size
+   * Set Badge Size
    *
-   * @default 'default'
+   * @default 'md'
    **/
-  badgeSize: string;
+  badgeSize?: string;
   /**
-   * Select Badge Style
+   * Set Badge Style
    *
-   * @default 'default'
+   * @default 'primary'
    **/
-  badgeStyle: string;
+  badgeStyle?: string;
   /**
    * From theme provider
    *
@@ -24,24 +25,24 @@ export type Props = {
 
 const SBadge = styled.div`
   background: ${(props: Props) =>
-    props.theme.styles[props.badgeStyle].badgeBackground};
+    props.theme.styles[props.badgeStyle!].badgeBackground};
   border-radius: ${(props: Props) =>
-    props.theme.badge[props.badgeSize].borderRadius};
-  color: ${(props: Props) => props.theme.styles[props.badgeStyle].badgeColor};
+    props.theme.badge[props.badgeSize!].borderRadius};
+  color: ${(props: Props) => props.theme.styles[props.badgeStyle!].badgeColor};
   display: inline-block;
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.badge[props.badgeSize].fontSize};
+  font-size: ${(props: Props) => props.theme.badge[props.badgeSize!].fontSize};
   font-weight: bold;
-  padding: ${(props: Props) => props.theme.badge[props.badgeSize].padding};
+  padding: ${(props: Props) => props.theme.badge[props.badgeSize!].padding};
 `;
 
 export const Badge: React.FunctionComponent<Props> = ({
   children,
-  badgeSize = 'md',
-  badgeStyle = 'primary',
-  theme,
-}) => (
-  <SBadge badgeSize={badgeSize} badgeStyle={badgeStyle} theme={theme}>
-    {children}
-  </SBadge>
-);
+  ...props
+}) => <SBadge {...props}>{children}</SBadge>;
+
+Badge.defaultProps = {
+  theme: Themes.defaultTheme,
+  badgeSize: 'md',
+  badgeStyle: 'primary',
+};

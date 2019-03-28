@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { DraggableProps } from '../defaultProps';
 import { DraggableHandle } from '../DraggableHandle.component';
 import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
+import { Themes } from '../../themes';
 
 export type Props = Partial<DraggableProps> & {
   /** Listen to drag start event  */
@@ -89,6 +90,7 @@ export const ItemContainer: React.FunctionComponent<Props> = (props: any) => {
     { key: 'color', defaultVal: 'lightGray' },
     { key: 'bordercolor', defaultVal: 'lightGray' },
     { key: 'draggable', defaultVal: props.draggable },
+    { key: 'theme', defaultVal: Themes.defaultTheme },
   ];
   const newProps: any = useMergeWithParentProps(props, {
     propsToMerge,

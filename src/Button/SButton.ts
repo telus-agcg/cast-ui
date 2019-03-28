@@ -8,19 +8,19 @@ type Props = {
    **/
   outline?: boolean;
   /** this dictates what the button will do  */
-  onClick(e: React.MouseEvent<HTMLElement>): void;
+  onClick?(e: React.MouseEvent<HTMLElement>): void;
   /**
    * Select Button Style
    *
    * @default 'default'
    **/
-  btnStyle: string;
+  btnStyle?: string;
   /**
    * Select Button Size
    *
    * @default 'md'
    **/
-  btnSize: string;
+  btnSize?: string;
   /**
    * Specify if the button is disabled
    *
@@ -118,7 +118,7 @@ const computeColor: Function = (
 const SButton = styled.button`
   min-width: 75px;
   border-radius: ${(props: Props) =>
-    props.theme.common[props.btnSize].borderRadius};
+    props.theme.common[props.btnSize!].borderRadius};
   background: ${(props: Props) =>
     computeColor(
       'normal',
@@ -135,9 +135,9 @@ const SButton = styled.button`
       props.btnStyle,
       props.theme,
     ).borderColor}
-  padding: ${(props: Props) => props.theme.common[props.btnSize].padding}
+  padding: ${(props: Props) => props.theme.common[props.btnSize!].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.btnSize].fontSize}
+  font-size: ${(props: Props) => props.theme.common[props.btnSize!].fontSize}
   font-weight: 600;
   color: ${(props: Props) =>
     computeColor(
@@ -202,5 +202,4 @@ const SButton = styled.button`
     cursor: not-allowed;
   }
 `;
-
 export default SButton;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 type ButtonGroupRole = 'group' | 'toolbar';
 type ButtonGroupMode = 'radio' | 'checkbox';
@@ -47,7 +48,7 @@ export class ButtonGroup extends React.Component<Props> {
     this.onBtnClick = this.onBtnClick.bind(this);
   }
 
-  onBtnClick(key: any, fn: any) {
+  onBtnClick(key: any, fn: any, event: any) {
     if (this.props.mode === 'radio') {
       const newArray = [key];
       this.setState({ SelectedValues: newArray });
@@ -62,8 +63,8 @@ export class ButtonGroup extends React.Component<Props> {
       this.setState({ SelectedValues: [...myClonedArray] });
     }
 
-    if (fn !== null) {
-      fn();
+    if (fn !== null && fn instanceof Function) {
+      fn(event);
     }
   }
 
@@ -72,8 +73,8 @@ export class ButtonGroup extends React.Component<Props> {
       this.props.children,
       (child: React.ReactElement<any>) => {
         return React.cloneElement(child, {
-          onClick: () =>
-            this.onBtnClick(child.props.value, child.props.onClick),
+          onClick: (event: any) =>
+            this.onBtnClick(child.props.value, child.props.onClick, event),
           selected: this.state.SelectedValues.includes(child.props.value),
         });
       },
@@ -81,8 +82,9 @@ export class ButtonGroup extends React.Component<Props> {
   }
 
   render() {
+    const { theme = Themes.defaultTheme, ...props } = this.props;
     return (
-      <ButtonGroupWrapper {...this.props}>
+      <ButtonGroupWrapper theme={theme} {...props}>
         {this.renderChildren()}
       </ButtonGroupWrapper>
     );
