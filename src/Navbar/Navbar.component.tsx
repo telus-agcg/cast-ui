@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -62,4 +63,5 @@ Navbar.defaultProps = {
   background: '',
   borderTop: '',
   borderBottom: '',
+  theme: Themes.defaultTheme,
 };

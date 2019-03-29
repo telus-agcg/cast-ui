@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -45,4 +46,5 @@ Nav.defaultProps = {
   left: false,
   center: false,
   right: false,
+  theme: Themes.defaultTheme,
 };

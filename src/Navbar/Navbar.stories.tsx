@@ -4,7 +4,6 @@ import { text } from '@storybook/addon-knobs/react';
 
 import Icon from 'react-icons-kit';
 import { userSecret } from 'react-icons-kit/fa/userSecret';
-// import { ic_insert_emoticon as icIE } from 'react-icons-kit/md/ic_insert_emoticon';
 import { Navbar, Nav } from '../';
 
 storiesOf('Navbar', module).add(
