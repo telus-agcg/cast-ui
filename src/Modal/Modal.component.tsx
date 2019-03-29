@@ -21,10 +21,10 @@ export type Props = ReactModal.Props & {
    * @default null
    **/
   footerContent:
-    | JSX.Element
-    | React.Component
-    | React.FunctionComponent
-    | string;
+  | JSX.Element
+  | React.Component
+  | React.FunctionComponent
+  | string;
   /**
    * Specify the title of the modal
    *
@@ -92,12 +92,14 @@ const modalSizeRules: Function = (modalSize: string, theme: any) => {
         width: '95%',
         height: '95% !important',
       };
-    case 'sm':
-    case 'md':
-    case 'lg':
+    case modalSize:
+      return {
+        'max-width': '98%',
+        'width': theme.modal[modalSize].width,
+      };
     default:
       return {
-        'max-width': theme.modal[modalSize || 'md'].maxWidth,
+        'width': theme.modal[modalSize || 'md'].width,
       };
   }
 };
@@ -107,6 +109,8 @@ const SReactModal = styled(ReactModal)`
   color: ${(props: any) => props.theme.colors.primary};
   outline: none;
   ${(props: any) => modalSizeRules(props.modalSize, props.theme)}
+  display: flex;
+  flex-direction: column;
 `;
 
 const ModalHeaderDiv = styled.div`
@@ -118,6 +122,7 @@ const ModalHeaderDiv = styled.div`
   padding: ${(props: any) => props.theme.modal.header.padding};
   h5 {
     font-size: ${(props: any) => props.theme.modal.header.fontSize};
+    color: ${(props: any) => props.theme.modal.header.color};
     padding: 0;
     margin: 0;
   }
@@ -142,8 +147,9 @@ const ModalBodyDiv = styled.div`
   padding: ${(props: any) => props.theme.modal.body.padding};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   position: relative;
-  max-height: 80vh;
+  height: 100%;
   overflow: scroll;
+  color: ${(props: any) => props.theme.modal.body.color};
 `;
 
 const ModalFooterDiv = styled.div`

@@ -6,53 +6,54 @@ import { withInfo } from '@storybook/addon-info';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import 'typeface-roboto';
 import { defaultTheme, GlobalStyle } from '../src/themes/default';
+import { cobaltTheme } from "../src/themes/cobalt";
 
 const wInfoStyle = {
   header: {
     h1: {
-      marginRight: '20px',
-      fontSize: '25px',
-      display: 'inline',
-      fontFamily: defaultTheme.typography.fontFamily,
+      marginRight: "20px",
+      fontSize: "25px",
+      display: "inline",
+      fontFamily: defaultTheme.typography.fontFamily
     },
     body: {
       paddingTop: 0,
       paddingBottom: 0,
-      fontFamily: defaultTheme.typography.fontFamily,
+      fontFamily: defaultTheme.typography.fontFamily
     },
     h2: {
       fontFamily: defaultTheme.typography.fontFamily,
-      display: 'inline',
-      color: '#999',
-    },
+      display: "inline",
+      color: "#999"
+    }
   },
   infoBody: {
     fontFamily: defaultTheme.typography.fontFamily,
-    backgroundColor: '#fafafa',
-    padding: '0px 5px',
-    lineHeight: '2',
-  },
+    backgroundColor: "#fafafa",
+    padding: "0px 5px",
+    lineHeight: "2"
+  }
 };
 
 addParameters({
   options: {
     theme: create({
-      base: 'light',
-      brandTitle: 'Cast UI',
-      brandUrl: 'https://github.com/technekes/cast-ui',
+      base: "light",
+      brandTitle: "Cast UI",
+      brandUrl: "https://github.com/technekes/cast-ui",
       // To control appearance:
-      brandImage: 'https://cdn2.hubspot.net/hubfs/1976913/tkxs-logo.png',
+      brandImage: "https://cdn2.hubspot.net/hubfs/1976913/tkxs-logo.png"
     }),
     isFullscreen: false,
-    panelPosition: 'right',
-  },
+    panelPosition: "right"
+  }
 });
 addDecorator(
   withInfo({
     inline: true,
     source: true,
-    styles: wInfoStyle,
-  }),
+    styles: wInfoStyle
+  })
 );
 export const wInfo = text =>
   withInfo({ inline: true, source: true, styles: wInfoStyle, text: text });
@@ -60,13 +61,13 @@ export const wInfo = text =>
 addDecorator(withKnobs);
 
 addDecorator(story => (
-  <ThemeProvider theme={defaultTheme}>{story()}</ThemeProvider>
+  <ThemeProvider theme={cobaltTheme}>{story()}</ThemeProvider>
 ));
 
 // automatically import all files ending in *.stories.tsx
-const req = require.context('../src', true, /.stories.tsx$/);
+const req = require.context("../src", true, /.stories.tsx$/);
 function loadStories() {
-  require('./castUI');
+  require("./castUI");
   req.keys().forEach(filename => req(filename));
 }
 
