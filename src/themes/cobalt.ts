@@ -75,7 +75,8 @@ export const cobaltTheme = {
       light: {
         alertBackground: cobaltColors.primaryExtraLight,
         alertColor: cobaltColors.black
-      }
+      },
+      cardTopBorderColor: cobaltColors.primary,
     },
     secondary: {
       borderColor: cobaltColors.secondary,
@@ -84,7 +85,8 @@ export const cobaltTheme = {
       light: {
         alertBackground: cobaltColors.secondaryExtraLight,
         alertColor: cobaltColors.black
-      }
+      },
+      cardTopBorderColor: cobaltColors.secondary,
     },
     danger: {
       borderColor: cobaltColors.danger,
@@ -103,7 +105,8 @@ export const cobaltTheme = {
       light: {
         alertBackground: cobaltColors.dangerExtraLight,
         alertColor: cobaltColors.black
-      }
+      },
+      cardTopBorderColor: cobaltColors.danger,
     },
     warning: {
       borderColor: cobaltColors.warning,
@@ -122,7 +125,9 @@ export const cobaltTheme = {
       light: {
         alertBackground: cobaltColors.warningExtraLight,
         alertColor: cobaltColors.black
-      }
+      },
+      cardTopBorderColor: cobaltColors.warning,
+
     },
     success: {
       borderColor: cobaltColors.success,
@@ -141,7 +146,8 @@ export const cobaltTheme = {
       light: {
         alertBackground: cobaltColors.successExtraLight,
         alertColor: cobaltColors.black
-      }
+      },
+      cardTopBorderColor: cobaltColors.success,
     },
     default: {
       borderColor: cobaltColors.secondary,
@@ -156,7 +162,9 @@ export const cobaltTheme = {
       badgeBackground: cobaltColors.secondary,
       badgeColor: cobaltColors.black,
       alertColor: cobaltColors.black,
-      alertBackground: cobaltColors.secondary
+      alertBackground: cobaltColors.secondary,
+      cardTopBorderColor: cobaltColors.secondary,
+
     }
   },
   pagination: {
@@ -446,6 +454,16 @@ export const cobaltTheme = {
     padding: "8px 16px",
     fontWeight: "bold",
     lineHeight: "18px"
+  },
+  card: {
+    borderRadius: '2px',
+    borderColor: cobaltColors.secondaryDark,
+    fontSize: '14px',
+    padding: '8px 16px',
+    background: cobaltColors.white,
+    boxShadow: '0 2px 4px rgba(0,0,0,.075) !important;',
+    highlightAllBorderWidth: '1px',
+    highlightedBorderWidth: '5px',
   },
   popover: {
     borderColor: cobaltColors.lightGray,

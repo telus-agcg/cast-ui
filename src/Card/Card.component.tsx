@@ -91,6 +91,7 @@ const SCard = styled.div`
 
 export const Card: React.FunctionComponent<Props> = ({
   children,
+  theme,
   ...props
 }) => <SCard {...props}>{children}</SCard>;
 Card.defaultProps = {

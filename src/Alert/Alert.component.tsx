@@ -48,6 +48,7 @@ const SAlert = styled.div`
 
 export const Alert: React.FunctionComponent<Props> = ({
   children,
+  theme,
   ...props
 }) => <SAlert {...props}>{children}</SAlert>;
 
