@@ -95,7 +95,7 @@
     "rollup-plugin-terser": "^4.0.4",
     "rollup-plugin-typescript2": "^0.20.1",
     "shx": "^0.3.2",
-    "storybook-addon-jsx": "^6.0.0",
+    "storybook-addon-jsx": "^7.1.0",
     "styled-components": "^4.1.0",
     "tinycolor2": "^1.4.1",
     "tslint": "^5.11.0",
