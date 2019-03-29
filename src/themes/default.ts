@@ -276,6 +276,11 @@ export const defaultTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
+      color: defaultColors.primary,
+    },
+    label: {
+      padding: '8px 16px 8px 0',
+      fontWeight: 500,
     },
   },
   radioButton: {
@@ -353,8 +358,7 @@ export const defaultTheme = {
     },
   },
   label: {
-    padding: '8px 16px 8px 0',
-    fontWeight: 500,
+    padding: '9px 8px',
   },
   modal: {
     header: {
