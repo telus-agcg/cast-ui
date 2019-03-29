@@ -1,4 +1,4 @@
-{
+const data = {
   "Customers": [
     {
       "Id": "ALFKI",
@@ -1102,3 +1102,5 @@
     }
   ]
 }
+
+export default data;
