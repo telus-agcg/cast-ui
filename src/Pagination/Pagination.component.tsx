@@ -4,6 +4,7 @@ import Icon from 'react-icons-kit';
 import { chevronLeft } from 'react-icons-kit/fa/chevronLeft';
 import { chevronRight } from 'react-icons-kit/fa/chevronRight';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 const SPaginate = styled.div`
   .cast-paginate {
@@ -55,6 +56,7 @@ const defaultProps = {
   compact: false,
   pageRangeDisplayed: 3,
   marginPagesDisplayed: 1,
+  theme: Themes.defaultTheme,
 };
 
 type DefaultProps = Readonly<typeof defaultProps>;
