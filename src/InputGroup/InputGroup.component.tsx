@@ -35,6 +35,9 @@ const InputGroupWrapper = styled.div`
   display: ${(props: Props) => props.theme.inputGroup.root.display};
   flex-wrap: ${(props: Props) => props.theme.inputGroup.root.flexWrap};
   flex-direction: ${(props: Props) => (props.vertical ? 'column' : 'row')};
+  > *:not(:first-child) {
+    flex-grow: 1;
+  }
 `;
 const SLabel = styled.label`
   background: inherit;
