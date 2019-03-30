@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -87,6 +88,10 @@ export class CustomSelect extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
+
+  static defaultProps = {
+    theme: Themes.defaultTheme,
+  };
 
   render() {
     const errorId = this.props.invalid
