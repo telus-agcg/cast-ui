@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import PanelHeader from './PanelHeader.component';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -132,6 +133,7 @@ export class Panel extends React.Component<Props, State> {
     headerBorderColor: 'lightGray',
     bodyBackgroundColor: 'panelBackground',
     bodyBorderColor: 'lightGray',
+    theme: Themes.defaultTheme,
   };
 
   readonly state: State = initialState;
