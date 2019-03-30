@@ -50,7 +50,7 @@ export type Props = {
    *
    *  @default 'default'
    */
-  panelStyle: string;
+  panelStyle?: string;
   /**
    *  Whether the panel can be collapsed
    *
@@ -157,20 +157,14 @@ export class PanelHeader extends React.Component<Props> {
     ) : (
       <SCollapseIcon />
     );
-    const { toggleItem } = this.props;
+    const { toggleItem, headerRef, name, title, ...props } = this.props;
     return (
       <SPanelHeader
-        panelStyle={this.props.panelStyle}
-        headerColor={this.props.headerColor}
-        headerBackgroundColor={this.props.headerBackgroundColor}
-        headerBorderColor={this.props.headerBorderColor}
-        collapsible={this.props.collapsible}
-        onClick={(e: any) => toggleItem!(e, this.props.theme)}
-        ref={this.props.headerRef}
-        theme={this.props.theme}
+        onClick={(e: any) => toggleItem!(e, props.theme)}
+        ref={headerRef}
+        {...props}
       >
-        {this.props.name && <b>{this.props.name}:</b>} {this.props.title}{' '}
-        {this.props.collapsible && ChevronImage}
+        {name && <b>{name}:</b>} {title} {props.collapsible && ChevronImage}
       </SPanelHeader>
     );
   }
