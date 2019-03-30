@@ -94,13 +94,13 @@ export class CustomSelect extends React.Component<Props> {
   };
 
   render() {
-    const { theme } = this.props;
+    const { options, controlSpecificProps, theme, ...props } = this.props;
     const errorId = this.props.invalid
       ? `${this.props.id}-error-msg`
       : undefined;
 
     const error = this.props.invalid ? (
-      <SErrorDiv id={errorId} theme={this.props.theme}>
+      <SErrorDiv id={errorId} theme={theme}>
         {this.props.invalidText}
       </SErrorDiv>
     ) : null;
@@ -114,17 +114,17 @@ export class CustomSelect extends React.Component<Props> {
         aria-describedby={errorId}
         invalid={this.props.invalid}
         theme={theme}
+        {...props}
       >
         <Select
           className="react-select-component"
           isDisabled={this.props.disabled}
           value={this.props.selectedOption}
-          options={this.props.options}
+          options={options}
           {...this.props.invalid}
           aria-invalid={this.props.invalid ? true : undefined}
           aria-describedby={errorId}
-          {...this.props.controlSpecificProps}
-          theme={theme}
+          {...controlSpecificProps}
         />
         {error}
       </SDiv>
