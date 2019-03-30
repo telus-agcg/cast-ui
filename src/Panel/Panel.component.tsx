@@ -165,29 +165,43 @@ export class Panel extends React.Component<Props, State> {
   }
 
   render() {
+    const {
+      name,
+      title,
+      headerColor,
+      headerBackgroundColor,
+      headerBorderColor,
+      collapsible,
+      panelStyle,
+      bodyBackgroundColor,
+      bodyBorderColor,
+      noPadding,
+      theme,
+      ...props
+    } = this.props;
     return (
-      <PanelWrapper panelStyle={this.props.panelStyle} theme={this.props.theme}>
+      <PanelWrapper panelStyle={panelStyle} theme={theme} {...props}>
         <PanelHeader
-          panelStyle={this.props.panelStyle}
-          headerColor={this.props.headerColor}
-          headerBackgroundColor={this.props.headerBackgroundColor}
-          headerBorderColor={this.props.headerBorderColor}
-          collapsible={this.props.collapsible}
+          panelStyle={panelStyle}
+          headerColor={headerColor}
+          headerBackgroundColor={headerBackgroundColor}
+          headerBorderColor={headerBorderColor}
+          collapsible={collapsible}
+          name={name}
+          title={title}
+          theme={theme}
           toggleItem={this.toggleItem}
-          name={this.props.name}
-          title={this.props.title}
           localIsCollapsed={this.localIsCollapsed}
           headerRef={this.headerRef}
-          theme={this.props.theme}
         />
         <PanelBody
-          panelStyle={this.props.panelStyle}
-          bodyBackgroundColor={this.props.bodyBackgroundColor}
-          bodyBorderColor={this.props.bodyBorderColor}
-          noPadding={this.props.noPadding}
+          panelStyle={panelStyle}
+          bodyBackgroundColor={bodyBackgroundColor}
+          bodyBorderColor={bodyBorderColor}
+          noPadding={noPadding}
+          theme={theme}
           isCollapsed={this.localIsCollapsed}
           ref={this.bodyRef}
-          theme={this.props.theme}
         >
           {this.props.children}
         </PanelBody>
