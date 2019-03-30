@@ -15,7 +15,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  inputSize: string;
+  inputSize?: string;
   /**
    * The ID of the control
    *
@@ -63,10 +63,10 @@ const SDiv = styled.div`
   background: ${(props: Props) => props.theme.input.background}
   border: 1px solid ${(props: Props) => props.theme.input.borderColor};
   border-radius: ${(props: Props) =>
-    props.theme.common[props.inputSize].borderRadius};
-  padding: ${(props: Props) => props.theme.common[props.inputSize].padding}
+    props.theme.common[props.inputSize!].borderRadius};
+  padding: ${(props: Props) => props.theme.common[props.inputSize!].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.inputSize].fontSize}
+  font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
     background: ${(props: Props) => props.theme.input.backgroundDisabled};
@@ -90,6 +90,7 @@ export class CustomSelect extends React.Component<Props> {
   }
 
   static defaultProps = {
+    inputSize: 'md',
     theme: Themes.defaultTheme,
   };
 
