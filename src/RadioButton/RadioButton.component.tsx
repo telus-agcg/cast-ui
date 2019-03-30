@@ -41,7 +41,7 @@ export type Props = {
   /**
    * Specify the function to fire when the radiobutton is checked or unchecked
    *
-   * @default null
+   * @default void
    **/
   onChange?(
     value: string,
@@ -110,6 +110,8 @@ export class RadioButton extends React.Component<Props> {
     rbSize: 'md',
     name: '',
     theme: Themes.defaultTheme,
+    onChange: (value: any, name: any, e: any) =>
+      console.log('RadioBtn changed ', value, name, e),
   };
 
   render() {

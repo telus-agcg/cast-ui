@@ -1,6 +1,7 @@
 import * as React from 'react';
 import RadioButton from '../RadioButton';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -24,9 +25,13 @@ export type Props = {
   /**
    * Specify the function to fire when the selected value is changed
    *
-   * @default null
+   * @default void
    **/
-  onChange?: any;
+  onChange?(
+    value: string,
+    name: string,
+    event: React.MouseEvent<HTMLElement>,
+  ): void;
 };
 
 const SDiv = styled.div``;
@@ -40,13 +45,18 @@ export class RadioButtonGroup extends React.Component<Props, State> {
   readonly state: State = {
     selected: this.props.defaultChecked || this.props.valueChecked,
   };
+  static defaultProps = {
+    theme: Themes.defaultTheme,
+    onChange: (value: any, name: any, e: any) =>
+      console.log('RadioBtn changed ', value, name, e),
+  };
 
   handleChange = (newSelection: any, value: any, evt: any) => {
     if (newSelection !== this.state.selected) {
       this.setState({ selected: newSelection });
-      this.props.onChange(newSelection, this.props.name, evt);
+      this.props.onChange!(newSelection, this.props.name, evt);
     }
-  }
+  };
 
   getRadioButtons() {
     const children = React.Children.map(
