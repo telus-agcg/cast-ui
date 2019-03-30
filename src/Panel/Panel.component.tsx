@@ -177,6 +177,7 @@ export class Panel extends React.Component<Props, State> {
       bodyBorderColor,
       noPadding,
       theme,
+      children,
       ...props
     } = this.props;
     return (
@@ -203,7 +204,7 @@ export class Panel extends React.Component<Props, State> {
           isCollapsed={this.localIsCollapsed}
           ref={this.bodyRef}
         >
-          {this.props.children}
+          {children}
         </PanelBody>
       </PanelWrapper>
     );
