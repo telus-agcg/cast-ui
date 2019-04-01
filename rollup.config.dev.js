@@ -15,6 +15,11 @@ const config = {
   output: {
     file: pkg.main,
     format: 'es',
+    globals: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+      'styled-components': 'styled',
+    },
   },
   external: ['React', 'ReactDOM', 'styled-components'],
   plugins: [
@@ -22,7 +27,35 @@ const config = {
     babel({ exclude: 'node_modules/**' }),
     localResolve(),
     resolve(),
-    commonjs(),
+    commonjs({
+      include: ['node_modules/**'],
+      exclude: ['node_modules/process-es6/**'],
+      namedExports: {
+        'node_modules/react/index.js': [
+          'Children',
+          'Component',
+          'PropTypes',
+          'createContext',
+          'createElement',
+          'createRef',
+          'cloneElement',
+          'useLayoutEffect',
+          'useEffect',
+          'useState',
+          'useContext',
+          'useRef',
+          'useReducer',
+          'forwardRef',
+          'Fragment',
+          'PureComponent',
+        ],
+        'node_modules/react-dom/index.js': [
+          'render',
+          'createPortal',
+          'findDOMNode',
+        ],
+      },
+    }),
     filesize(),
     typescript({
       typescript: require('typescript'),
