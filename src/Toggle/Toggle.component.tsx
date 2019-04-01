@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -13,7 +14,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  toggleSize: 'sm' | 'md' | 'lg';
+  toggleSize?: 'sm' | 'md' | 'lg';
   /**
    * Specify if the toggle is checked
    *
@@ -66,9 +67,9 @@ const SDiv = styled.div`
     cursor: pointer;
     text-indent: -9999px;
     width: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize].backgroundWidth};
+      props.theme.toggle[props.toggleSize!].backgroundWidth};
     height: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize].backgroundHeight};
+      props.theme.toggle[props.toggleSize!].backgroundHeight};
     background: ${(props: Props) =>
       props.disabled
         ? props.theme.toggle.background.disabled
@@ -86,12 +87,13 @@ const SDiv = styled.div`
     content: '';
     position: absolute;
     top: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize].toggleOffsetTop};
+      props.theme.toggle[props.toggleSize!].toggleOffsetTop};
     left: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize].toggleOffsetLeft};
-    width: ${(props: Props) => props.theme.toggle[props.toggleSize].toggleSize};
+      props.theme.toggle[props.toggleSize!].toggleOffsetLeft};
+    width: ${(props: Props) =>
+      props.theme.toggle[props.toggleSize!].toggleSize};
     height: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize].toggleSize};
+      props.theme.toggle[props.toggleSize!].toggleSize};
     background: ${(props: Props) =>
       props.disabled
         ? props.theme.toggle.inactiveDisabledColor
@@ -113,7 +115,7 @@ const SDiv = styled.div`
 
   input:checked + label:after {
     left: ${(props: Props) =>
-      getCSSCalc(props.theme.toggle[props.toggleSize].activeOffset)};
+      getCSSCalc(props.theme.toggle[props.toggleSize!].activeOffset)};
     transform: translateX(-100%);
     background: ${(props: Props) =>
       props.disabled
@@ -126,7 +128,8 @@ const SDiv = styled.div`
   }
 
   label:active:after {
-    width: ${(props: Props) => props.theme.toggle[props.toggleSize].toggleSize};
+    width: ${(props: Props) =>
+      props.theme.toggle[props.toggleSize!].toggleSize};
   }
 `;
 
@@ -134,6 +137,10 @@ export class Toggle extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
+  static defaultProps = {
+    toggleSize: 'md',
+    theme: Themes.defaultTheme,
+  };
 
   render() {
     return (
