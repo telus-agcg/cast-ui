@@ -1,13 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../../themes';
 
 export type Props = {
-  /**
-   * Set a className for the Headline
-   *
-   * @default ''
-   **/
-  className?: string;
   /**
    * From theme provider
    *
@@ -25,14 +20,7 @@ const SHeadline = styled.h2`
 `;
 
 export const Headline: React.FunctionComponent<Props> = ({
-  className,
   children,
-  theme,
   ...props
-}) => (
-  <SHeadline
-    {...props}
-    >
-    {children}
-  </SHeadline>
-);
+}) => <SHeadline {...props}>{children}</SHeadline>;
+Headline.defaultProps = { theme: Themes.defaultTheme };

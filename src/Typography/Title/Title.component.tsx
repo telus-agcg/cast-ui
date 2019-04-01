@@ -24,5 +24,5 @@ export const Title: React.FunctionComponent<Props> = ({
   ...props
 }) => <STitle {...props}>{children}</STitle>;
 Title.defaultProps = {
-  theme: { ...Themes.defaultTheme },
+  theme: Themes.defaultTheme,
 };

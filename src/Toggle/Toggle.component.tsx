@@ -37,13 +37,13 @@ export type Props = {
   /**
    * Specify the function to fire when the toggle is changed
    *
-   * @default 'default'
+   * @default void
    **/
-  onChange?: any;
+  onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
   /**
    * Specify the value of the toggle group when the current button is selected
    *
-   * @default 'default'
+   * @default ''
    **/
   value: string;
   /**
@@ -139,6 +139,7 @@ export class Toggle extends React.Component<Props> {
   }
   static defaultProps = {
     toggleSize: 'md',
+    onChange: () => {},
     theme: Themes.defaultTheme,
   };
 

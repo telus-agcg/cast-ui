@@ -1,13 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../../themes';
 
 export type Props = {
-  /**
-   * Set a className for the SubTitle
-   *
-   * @default ''
-   **/
-  className?: string;
   /**
    * From theme provider
    *
@@ -25,14 +20,7 @@ const SSubTitle = styled.h2`
 `;
 
 export const SubTitle: React.FunctionComponent<Props> = ({
-  className,
   children,
-  theme,
   ...props
-}) => (
-    <SSubTitle
-      {...props}
-      >
-      {children}
-    </SSubTitle>
-  );
+}) => <SSubTitle {...props}>{children}</SSubTitle>;
+SubTitle.defaultProps = { theme: Themes.defaultTheme };

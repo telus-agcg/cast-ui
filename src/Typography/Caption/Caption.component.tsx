@@ -1,13 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../../themes';
 
 export type Props = {
-  /**
-   * Set a className for the Caption
-   *
-   * @default ''
-   **/
-  className?: string;
   /**
    * From theme provider
    *
@@ -25,14 +20,7 @@ const SCaption = styled.p`
 `;
 
 export const Caption: React.FunctionComponent<Props> = ({
-  className,
   children,
-  theme,
   ...props
-}) => (
-    <SCaption
-      {...props}
-      >
-      {children}
-    </SCaption>
-  );
+}) => <SCaption {...props}>{children}</SCaption>;
+Caption.defaultProps = { theme: Themes.defaultTheme };

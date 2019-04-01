@@ -1,13 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../../themes';
 
 export type Props = {
-  /**
-   * Set a className for the Digits
-   *
-   * @default ''
-   **/
-  className?: string;
   /**
    * From theme provider
    *
@@ -25,14 +20,7 @@ const SDigits = styled.p`
 `;
 
 export const Digits: React.FunctionComponent<Props> = ({
-  className,
   children,
-  theme,
   ...props
-}) => (
-    <SDigits
-      {...props}
-      >
-      {children}
-    </SDigits>
-  );
+}) => <SDigits {...props}>{children}</SDigits>;
+Digits.defaultProps = { theme: Themes.defaultTheme };
