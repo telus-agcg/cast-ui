@@ -23,7 +23,7 @@ export class Tooltip extends React.Component<Props> {
   };
   contentIsString = () => {
     return typeof this.props.content === 'string';
-  };
+  }
   public render() {
     return (
       <STippy
