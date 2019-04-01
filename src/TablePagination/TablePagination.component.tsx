@@ -92,7 +92,7 @@ export class TablePagination extends React.Component<Props> {
 
   filterPages = (visiblePages: number[], totalPages: number) => {
     return visiblePages.filter((page: number) => page <= totalPages);
-  };
+  }
 
   getVisiblePages = (page: number, total: number) => {
     if (total < 7) {
@@ -106,7 +106,7 @@ export class TablePagination extends React.Component<Props> {
       return [1, total - 3, total - 2, total - 1, total];
     }
     return [1, 2, 3, 4, 5, total];
-  };
+  }
 
   changePage(page: number) {
     const activePage = this.props.page + 1;
