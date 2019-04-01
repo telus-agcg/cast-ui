@@ -9,7 +9,7 @@ services:
       - .:/usr/src/app
       - node_modules:/usr/src/app/node_modules
     ports:
-      # - '8080:8080'
+      - '8080:8080'
       - "6006:6006"
     environment:
       HOST: 0.0.0.0
