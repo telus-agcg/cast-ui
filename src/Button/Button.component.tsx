@@ -53,19 +53,18 @@ export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
   theme?: any;
 };
 
-const noop = () => { }; // tslint:disable-line
+const noop = () => {}; // tslint:disable-line
 
 export const Button: React.FunctionComponent<Props> = ({
   onClick = noop,
   disabled,
   children,
-  theme,
   ...props
 }) => (
-    <SButton disabled={disabled} onClick={!disabled ? onClick : noop} {...props}>
-      {children}
-    </SButton>
-  );
+  <SButton disabled={disabled} onClick={!disabled ? onClick : noop} {...props}>
+    {children}
+  </SButton>
+);
 Button.defaultProps = {
   theme: Themes.defaultTheme,
   btnStyle: 'default',
