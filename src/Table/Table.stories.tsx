@@ -4,8 +4,8 @@ import { boolean, number, select } from '@storybook/addon-knobs/react';
 
 import { Table } from './';
 
-import * as SampleData from './sampleData.json';
-import * as ColumnDefs from './sampleColumnDefs.json';
+import SampleData from './sampleData';
+import ColumnDefs from './sampleColumnDefs';
 
 storiesOf('Table', module).add(
   'Table',
