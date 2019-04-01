@@ -1,61 +1,61 @@
-import { lighten } from "../utils/colorUtils";
+import { lighten } from '../utils/colorUtils';
 
-export { ThemeProvider } from "styled-components";
+export { ThemeProvider } from 'styled-components';
 
 const toggleColors = {
-  toggleBg: "#D1D4D5",
-  disabledToggleBg: "#ECEDED",
-  inactiveDisabledToggle: lighten("#8D9599", 10),
-  inactiveDisabledBorderToggle: lighten("#8D9599", 10)
+  toggleBg: '#D1D4D5',
+  disabledToggleBg: '#ECEDED',
+  inactiveDisabledToggle: lighten('#8D9599', 10),
+  inactiveDisabledBorderToggle: lighten('#8D9599', 10),
 };
 
 export const cobaltColors = {
-  blue: "#0072CE",
-  green: "#59C067",
-  red: "#FC4C02",
-  yellow: "#FAB64A",
-  white: "white",
-  gray: "#727A80",
-  lightGray: "#BCC0C3",
-  mediumGray: "#C9CDCE",
-  darkGray: "#515C61",
-  black: "#303E47",
-  placeholderGray: "#727A80",
-  secondaryDisabled: "#ECEDED",
-  disabledBackground: "#ECEFF2",
-  disabledBorder: "#A3AAAD",
-  disabledText: "#A3AAAD",
-  lightBackground: "#F5F7F8",
+  blue: '#0072CE',
+  green: '#59C067',
+  red: '#FC4C02',
+  yellow: '#FAB64A',
+  white: 'white',
+  gray: '#727A80',
+  lightGray: '#BCC0C3',
+  mediumGray: '#C9CDCE',
+  darkGray: '#515C61',
+  black: '#303E47',
+  placeholderGray: '#727A80',
+  secondaryDisabled: '#ECEDED',
+  disabledBackground: '#ECEFF2',
+  disabledBorder: '#A3AAAD',
+  disabledText: '#A3AAAD',
+  lightBackground: '#F5F7F8',
 
-  primary: "#0072CE",
-  primaryDark: "#004ABF",
-  primaryLight: "#7EB7E6",
-  primaryExtraLight: "#EDF5FD",
-  success: "#59C067",
-  successDark: "#00A254",
-  successLight: "#7EDEB6",
-  successExtraLight: "#E8FCF0",
-  danger: "#FC4C02",
-  dangerDark: "#CC3602",
-  dangerLight: "#FDA47F",
-  dangerExtraLight: "#FCEFF0",
-  warning: "#FAB64A",
-  warningDark: "#E29823",
-  warningLight: "#FCDAA3",
-  warningExtraLight: "#FAF0E0",
-  secondary: "#A7ADB1",
-  secondaryDark: "#888F93",
-  secondaryLight: "#D2D5D7",
-  secondaryExtraLight: "#ECEFF2"
+  primary: '#0072CE',
+  primaryDark: '#004ABF',
+  primaryLight: '#7EB7E6',
+  primaryExtraLight: '#EDF5FD',
+  success: '#59C067',
+  successDark: '#00A254',
+  successLight: '#7EDEB6',
+  successExtraLight: '#E8FCF0',
+  danger: '#FC4C02',
+  dangerDark: '#CC3602',
+  dangerLight: '#FDA47F',
+  dangerExtraLight: '#FCEFF0',
+  warning: '#FAB64A',
+  warningDark: '#E29823',
+  warningLight: '#FCDAA3',
+  warningExtraLight: '#FAF0E0',
+  secondary: '#A7ADB1',
+  secondaryDark: '#888F93',
+  secondaryLight: '#D2D5D7',
+  secondaryExtraLight: '#ECEFF2',
 };
 
 export const cobaltTheme = {
   colors: cobaltColors,
   borders: {
-    radius: "1px",
-    radiusSm: "3.2px",
-    radiusLg: "4.8px",
-    width: "1px"
+    radius: '1px',
+    radiusSm: '3.2px',
+    radiusLg: '4.8px',
+    width: '1px',
   },
   styles: {
     primary: {
@@ -74,7 +74,7 @@ export const cobaltTheme = {
       alertBackground: cobaltColors.primary,
       light: {
         alertBackground: cobaltColors.primaryExtraLight,
-        alertColor: cobaltColors.black
+        alertColor: cobaltColors.black,
       },
       cardTopBorderColor: cobaltColors.primary,
     },
@@ -84,7 +84,7 @@ export const cobaltTheme = {
       alertBackground: cobaltColors.secondary,
       light: {
         alertBackground: cobaltColors.secondaryExtraLight,
-        alertColor: cobaltColors.black
+        alertColor: cobaltColors.black,
       },
       cardTopBorderColor: cobaltColors.secondary,
     },
@@ -104,7 +104,7 @@ export const cobaltTheme = {
       alertBackground: cobaltColors.danger,
       light: {
         alertBackground: cobaltColors.dangerExtraLight,
-        alertColor: cobaltColors.black
+        alertColor: cobaltColors.black,
       },
       cardTopBorderColor: cobaltColors.danger,
     },
@@ -124,10 +124,9 @@ export const cobaltTheme = {
       alertBackground: cobaltColors.warning,
       light: {
         alertBackground: cobaltColors.warningExtraLight,
-        alertColor: cobaltColors.black
+        alertColor: cobaltColors.black,
       },
       cardTopBorderColor: cobaltColors.warning,
-
     },
     success: {
       borderColor: cobaltColors.success,
@@ -145,7 +144,7 @@ export const cobaltTheme = {
       alertBackground: cobaltColors.success,
       light: {
         alertBackground: cobaltColors.successExtraLight,
-        alertColor: cobaltColors.black
+        alertColor: cobaltColors.black,
       },
       cardTopBorderColor: cobaltColors.success,
     },
@@ -164,16 +163,15 @@ export const cobaltTheme = {
       alertColor: cobaltColors.black,
       alertBackground: cobaltColors.secondary,
       cardTopBorderColor: cobaltColors.secondary,
-
-    }
+    },
   },
   pagination: {
     text: cobaltColors.black,
-    fontWeight: "normal",
+    fontWeight: 'normal',
     background: cobaltColors.white,
     borderColor: cobaltColors.white,
     activeText: cobaltColors.blue,
-    activeFontWeight: "bold",
+    activeFontWeight: 'bold',
     activeBackground: cobaltColors.white,
     activeBorderColor: cobaltColors.blue,
     disabledText: cobaltColors.gray,
@@ -181,20 +179,20 @@ export const cobaltTheme = {
     disabledBorderColor: cobaltColors.white,
     hoverBackground: cobaltColors.white,
     hoverBorderColor: cobaltColors.white,
-    borderRadius: "1px",
+    borderRadius: '1px',
     button: {
       disabledText: cobaltColors.disabledText,
-      fontWeight: "normal",
-      fontWeightSelected: "bold",
+      fontWeight: 'normal',
+      fontWeightSelected: 'bold',
       padding: {
-        sm: "3px 6px",
-        md: "4px 8px",
-        lg: "5px 10px"
+        sm: '3px 6px',
+        md: '4px 8px',
+        lg: '5px 10px',
       },
       nextPrevious: {
-        fontWeight: "bold"
-      }
-    }
+        fontWeight: 'bold',
+      },
+    },
   },
   typography: {
     fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
@@ -284,50 +282,50 @@ export const cobaltTheme = {
     background: cobaltColors.white,
     borderColor: cobaltColors.secondary,
     color: cobaltColors.darkGray,
-    padding: "6px 12px",
+    padding: '6px 12px',
     placeholderColor: cobaltColors.placeholderGray,
     disabled: {
       background: cobaltColors.disabledBackground,
-      borderColor: cobaltColors.disabledBorder
-    }
+      borderColor: cobaltColors.disabledBorder,
+    },
   },
   inputGroup: {
     root: {
-      display: "flex",
-      flexWrap: "wrap"
-    }
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
   },
   radioButton: {
-    borderWidth: "1px",
-    borderStyle: "solid",
+    borderWidth: '1px',
+    borderStyle: 'solid',
     borderColor: cobaltColors.secondary,
     disabledText: cobaltColors.disabledText,
     unselectedColor: cobaltColors.white,
     sm: {
-      size: "6px"
+      size: '6px',
     },
     md: {
-      size: "10px"
+      size: '10px',
     },
     lg: {
-      size: "14px"
-    }
+      size: '14px',
+    },
   },
   checkbox: {
-    borderWidth: "1px",
-    borderStyle: "solid",
+    borderWidth: '1px',
+    borderStyle: 'solid',
     borderColor: cobaltColors.secondary,
     disabledText: cobaltColors.disabledText,
     unselectedColor: cobaltColors.white,
     sm: {
-      size: "6px"
+      size: '6px',
     },
     md: {
-      size: "10px"
+      size: '10px',
     },
     lg: {
-      size: "14px"
-    }
+      size: '14px',
+    },
   },
   toggle: {
     background: {
@@ -336,7 +334,7 @@ export const cobaltTheme = {
       activeColor: toggleColors.toggleBg,
       activeBorderColor: toggleColors.toggleBg,
       disabled: toggleColors.disabledToggleBg,
-      disabledBorderColor: toggleColors.disabledToggleBg
+      disabledBorderColor: toggleColors.disabledToggleBg,
     },
     inactiveColor: cobaltColors.secondary,
     inactiveBorderColor: cobaltColors.secondary,
@@ -347,32 +345,32 @@ export const cobaltTheme = {
     inactiveDisabledColor: toggleColors.inactiveDisabledToggle,
     inactiveDisabledBorderColor: toggleColors.inactiveDisabledToggle,
     sm: {
-      toggleSize: "20px",
-      toggleOffsetTop: "-3px",
-      toggleOffsetLeft: "0px",
-      activeOffset: "0px",
-      backgroundHeight: "15px",
-      backgroundWidth: "35px"
+      toggleSize: '20px',
+      toggleOffsetTop: '-3px',
+      toggleOffsetLeft: '0px',
+      activeOffset: '0px',
+      backgroundHeight: '15px',
+      backgroundWidth: '35px',
     },
     md: {
-      toggleSize: "25px",
-      toggleOffsetTop: "-5px",
-      toggleOffsetLeft: "0px",
-      activeOffset: "0px",
-      backgroundHeight: "15px",
-      backgroundWidth: "45px"
+      toggleSize: '25px',
+      toggleOffsetTop: '-5px',
+      toggleOffsetLeft: '0px',
+      activeOffset: '0px',
+      backgroundHeight: '15px',
+      backgroundWidth: '45px',
     },
     lg: {
-      toggleSize: "30px",
-      toggleOffsetTop: "-5px",
-      toggleOffsetLeft: "0px",
-      activeOffset: "0px",
-      backgroundHeight: "20px",
-      backgroundWidth: "55px"
-    }
+      toggleSize: '30px',
+      toggleOffsetTop: '-5px',
+      toggleOffsetLeft: '0px',
+      activeOffset: '0px',
+      backgroundHeight: '20px',
+      backgroundWidth: '55px',
+    },
   },
   label: {
-    padding: "9px 8px"
+    padding: '9px 8px',
   },
   modal: {
     header: {
@@ -381,15 +379,14 @@ export const cobaltTheme = {
       borderColor: cobaltColors.lightGray,
       padding: '16px 16px',
       fontSize: '16px',
-      color: cobaltColors.black
+      color: cobaltColors.black,
     },
     body: {
       minHeight: '0',
       backgroundColor: cobaltColors.lightBackground,
       borderBottom: cobaltColors.lightGray,
       padding: '8px 16px',
-      color: cobaltColors.black
-
+      color: cobaltColors.black,
     },
     footer: {
       minHeight: '0',
@@ -412,48 +409,48 @@ export const cobaltTheme = {
     backgroundDisabled: cobaltColors.secondaryExtraLight,
     borderColor: cobaltColors.secondary,
     color: cobaltColors.black,
-    padding: "6px 12px",
+    padding: '6px 12px',
     placeholderColor: cobaltColors.placeholderGray,
     disabled: {
       background: cobaltColors.disabledBackground,
-      borderColor: cobaltColors.secondaryLight
-    }
+      borderColor: cobaltColors.secondaryLight,
+    },
   },
   panel: {
     header: {
-      padding: "14px 16px 14px 30px"
+      padding: '14px 16px 14px 30px',
     },
     body: {
-      padding: "30px 30px"
+      padding: '30px 30px',
     },
-    borderWidth: "1px"
+    borderWidth: '1px',
   },
   badge: {
-    borderRadius: "4px",
-    fontSize: "15px",
-    padding: "4px 3px 3px",
+    borderRadius: '4px',
+    fontSize: '15px',
+    padding: '4px 3px 3px',
     sm: {
-      borderRadius: "4px",
-      fontSize: "12px",
-      padding: "4px 3px 3px"
+      borderRadius: '4px',
+      fontSize: '12px',
+      padding: '4px 3px 3px',
     },
     md: {
-      borderRadius: "4px",
-      fontSize: "15px",
-      padding: "4px 3px 3px"
+      borderRadius: '4px',
+      fontSize: '15px',
+      padding: '4px 3px 3px',
     },
     lg: {
-      borderRadius: "4px",
-      fontSize: "18px",
-      padding: "4px 3px 3px"
-    }
+      borderRadius: '4px',
+      fontSize: '18px',
+      padding: '4px 3px 3px',
+    },
   },
   alert: {
-    borderRadius: "1px",
-    fontSize: "14px",
-    padding: "8px 16px",
-    fontWeight: "bold",
-    lineHeight: "18px"
+    borderRadius: '1px',
+    fontSize: '14px',
+    padding: '8px 16px',
+    fontWeight: 'bold',
+    lineHeight: '18px',
   },
   card: {
     borderRadius: '2px',
@@ -469,131 +466,131 @@ export const cobaltTheme = {
     borderColor: cobaltColors.lightGray,
     background: cobaltColors.white,
     withArrowDistance: 10,
-    withoutArrowDistance: 3
+    withoutArrowDistance: 3,
   },
   common: {
     sm: {
-      borderRadius: "1px",
-      fontSize: "11px",
-      padding: "4px 8px",
-      tableCellPadding: "5px 0",
-      inputIconSize: "14px"
+      borderRadius: '1px',
+      fontSize: '11px',
+      padding: '4px 8px',
+      tableCellPadding: '5px 0',
+      inputIconSize: '14px',
     },
     md: {
-      borderRadius: "1px",
-      fontSize: "14px",
-      padding: "8px 14px",
-      tableCellPadding: "9px 0",
-      inputIconSize: "20px"
+      borderRadius: '1px',
+      fontSize: '14px',
+      padding: '8px 14px',
+      tableCellPadding: '9px 0',
+      inputIconSize: '20px',
     },
     lg: {
-      borderRadius: "1px",
-      fontSize: "16px",
-      padding: "10px 16px",
-      tableCellPadding: "11px 0",
-      inputIconSize: "24px"
-    }
+      borderRadius: '1px',
+      fontSize: '16px',
+      padding: '10px 16px',
+      tableCellPadding: '11px 0',
+      inputIconSize: '24px',
+    },
   },
   validation: {
-    borderColor: "red",
+    borderColor: 'red',
     errorTextColor: cobaltColors.placeholderGray,
-    fontSize: "11px",
-    padding: "4px"
+    fontSize: '11px',
+    padding: '4px',
   },
   table: {
-    fontSize: "14px",
+    fontSize: '14px',
     header: {
       borderBottomColor: cobaltColors.darkGray,
       color: cobaltColors.black,
-      fontWeight: "normal"
+      fontWeight: 'normal',
     },
     row: {
       borderBottomColor: cobaltColors.mediumGray,
-      hoverColor: cobaltColors.mediumGray
+      hoverColor: cobaltColors.mediumGray,
     },
     pagination: {
-      padding: "4px 0",
+      padding: '4px 0',
       button: {
         disabledText: cobaltColors.disabledText,
-        fontWeight: "normal",
-        fontWeightSelected: "bold",
+        fontWeight: 'normal',
+        fontWeightSelected: 'bold',
         padding: {
-          sm: "3px 6px",
-          md: "4px 8px",
-          lg: "5px 10px"
+          sm: '3px 6px',
+          md: '4px 8px',
+          lg: '5px 10px',
         },
         nextPrevious: {
-          fontWeight: "regular"
-        }
-      }
-    }
+          fontWeight: 'regular',
+        },
+      },
+    },
   },
   datepicker: {
     sm: {
       margins: {
-        dayPickerWraper: "16px 0",
-        dayPickerMonth: "16px 16px auto",
-        dayPickerCaption: "4.8px auto 32px"
+        dayPickerWraper: '16px 0',
+        dayPickerMonth: '16px 16px auto',
+        dayPickerCaption: '4.8px auto 32px',
       },
       btnPrev: {
-        left: "32px"
+        left: '32px',
       },
       btnNext: {
-        right: "35.2px"
-      }
+        right: '35.2px',
+      },
     },
     md: {
       margins: {
-        dayPickerWraper: "24px 0",
-        dayPickerMonth: "16px 24px auto",
-        dayPickerCaption: "4.8px auto 48px"
+        dayPickerWraper: '24px 0',
+        dayPickerMonth: '16px 24px auto',
+        dayPickerCaption: '4.8px auto 48px',
       },
       btnPrev: {
-        left: "48px"
+        left: '48px',
       },
       btnNext: {
-        right: "51.2px"
-      }
+        right: '51.2px',
+      },
     },
     lg: {
       margins: {
-        dayPickerWraper: "24px 0",
-        dayPickerMonth: "16px 24px auto",
-        dayPickerCaption: "4.8px auto 48px"
+        dayPickerWraper: '24px 0',
+        dayPickerMonth: '16px 24px auto',
+        dayPickerCaption: '4.8px auto 48px',
       },
       btnPrev: {
-        left: "48px"
+        left: '48px',
       },
       btnNext: {
-        right: "51.2px"
-      }
-    }
+        right: '51.2px',
+      },
+    },
   },
   tabs: {
-    borderRadius: "0px",
-    fontSize: "14px"
+    borderRadius: '0px',
+    fontSize: '14px',
   },
   copyToClipboard: {
-    fontFamily: "monospace",
-    fontSize: "14px",
+    fontFamily: 'monospace',
+    fontSize: '14px',
     color: cobaltColors.primary,
     copiedColor: cobaltColors.placeholderGray,
-    padding: "16px",
+    padding: '16px',
     button: {
-      textTransform: "uppercase",
-      height: "20px",
-      fontWeight: "600",
+      textTransform: 'uppercase',
+      height: '20px',
+      fontWeight: '600',
       primaryColor: cobaltColors.blue,
       successColor: cobaltColors.green,
-      margin: "0 4px"
-    }
+      margin: '0 4px',
+    },
   },
   navbar: {
-    height: "64px",
+    height: '64px',
     background: cobaltColors.white,
-    padding: "0 45px ",
-    borderTop: "",
-    borderBottom: "",
-    color: cobaltColors.black
-  }
+    padding: '0 45px ',
+    borderTop: '',
+    borderBottom: '',
+    color: cobaltColors.black,
+  },
 };
