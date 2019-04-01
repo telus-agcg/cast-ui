@@ -47,8 +47,7 @@ export class RadioButtonGroup extends React.Component<Props, State> {
   };
   static defaultProps = {
     theme: Themes.defaultTheme,
-    onChange: (value: any, name: any, e: any) =>
-      console.log('RadioBtnGrp changed ', value, name, e),
+    onChange: () => {},
   };
 
   handleChange = (newSelection: any, value: any, evt: any) => {
@@ -56,7 +55,7 @@ export class RadioButtonGroup extends React.Component<Props, State> {
       this.setState({ selected: newSelection });
       this.props.onChange!(newSelection, this.props.name, evt);
     }
-  }
+  };
 
   getRadioButtons() {
     const children = React.Children.map(

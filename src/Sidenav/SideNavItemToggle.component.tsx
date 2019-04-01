@@ -4,7 +4,6 @@ import Icon from 'react-icons-kit';
 import { ic_keyboard_arrow_left as IKAL } from 'react-icons-kit/md/ic_keyboard_arrow_left';
 import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
 
-import { SideNavContext } from './context';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -65,10 +64,6 @@ export const SideNavItemToggle: React.FunctionComponent<Props> = ({
   children,
   ...props
 }) => {
-  const {
-    // baseProps: { isOpen },
-  } = React.useContext(SideNavContext);
-
   const handleClick = (e: any) => {
     onClick(e);
   };

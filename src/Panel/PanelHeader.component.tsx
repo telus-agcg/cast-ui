@@ -146,8 +146,7 @@ export class PanelHeader extends React.Component<Props> {
     headerBackgroundColor: 'white',
     headerBorderColor: 'lightGray',
     collapsible: false,
-    toggleItem: (e: any, theme: any) =>
-      console.log('toggle collapse ', e, theme),
+    toggleItem: () => {},
     theme: Themes.defaultTheme,
   };
 

@@ -110,8 +110,7 @@ export class RadioButton extends React.Component<Props> {
     rbSize: 'md',
     name: '',
     theme: Themes.defaultTheme,
-    onChange: (value: any, name: any, e: any) =>
-      console.log('RadioBtn changed ', value, name, e),
+    onChange: () => {},
   };
 
   render() {
