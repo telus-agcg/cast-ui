@@ -21,10 +21,10 @@ export type Props = ReactModal.Props & {
    * @default null
    **/
   footerContent:
-  | JSX.Element
-  | React.Component
-  | React.FunctionComponent
-  | string;
+    | JSX.Element
+    | React.Component
+    | React.FunctionComponent
+    | string;
   /**
    * Specify the title of the modal
    *
@@ -95,11 +95,11 @@ const modalSizeRules: Function = (modalSize: string, theme: any) => {
     case modalSize:
       return {
         'max-width': '98%',
-        'width': theme.modal[modalSize].width,
+        width: theme.modal[modalSize].width,
       };
     default:
       return {
-        'width': theme.modal[modalSize || 'md'].width,
+        width: theme.modal[modalSize || 'md'].width,
       };
   }
 };
