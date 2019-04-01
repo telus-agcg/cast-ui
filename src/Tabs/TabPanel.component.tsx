@@ -1,7 +1,7 @@
 import * as React from 'react';
 // tslint:disable-next-line:max-line-length
 import { TabPanel as ReactTabPanel } from 'react-tabs';
-import { Themes } from '../';
+import { Themes } from '../themes';
 
 export type Props = {
   /**

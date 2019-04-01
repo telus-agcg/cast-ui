@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Tabs as ReactTabs } from 'react-tabs';
-import { Themes } from '../';
+import { Themes } from '../themes';
 
 export type PropsThemeOnly = {
   /**
