@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -13,7 +14,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  textareaSize: string;
+  textareaSize?: string;
   /**
    * Disables modification
    *
@@ -72,11 +73,11 @@ const STextarea = styled.textarea`
   background: ${(props: Props) => props.theme.textarea.background}
   border: 1px solid ${(props: Props) => props.theme.textarea.borderColor};
   border-radius: ${(props: Props) =>
-    props.theme.common[props.textareaSize].borderRadius};
-  padding: ${(props: Props) => props.theme.common[props.textareaSize].padding}
+    props.theme.common[props.textareaSize!].borderRadius};
+  padding: ${(props: Props) => props.theme.common[props.textareaSize!].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) =>
-    props.theme.common[props.textareaSize].fontSize}
+    props.theme.common[props.textareaSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
     border-color: ${props => props.theme.textarea.disabled.borderColor};
@@ -100,6 +101,7 @@ const SErrorDiv = styled.div`
 `;
 
 export const Textarea: React.FunctionComponent<Props> = ({
+  children,
   ...textareaProps
 }) => {
   const errorId = textareaProps.invalid
@@ -120,9 +122,13 @@ export const Textarea: React.FunctionComponent<Props> = ({
         aria-invalid={textareaProps.invalid ? true : undefined}
         aria-describedby={errorId}
       >
-        {textareaProps.children}
+        {children}
       </STextarea>
       {error}
     </>
   );
+};
+Textarea.defaultProps = {
+  textareaSize: 'md',
+  theme: Themes.defaultTheme,
 };
