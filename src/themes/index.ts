@@ -5,4 +5,4 @@ export const Themes = { defaultTheme, cobaltTheme };
 
 export * from './default';
 export * from './cobalt';
-export { default as styled, ThemeProvider } from 'styled-components';
+export { ThemeProvider } from 'styled-components';
