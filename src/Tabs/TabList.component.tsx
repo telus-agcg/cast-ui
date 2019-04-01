@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { TabList as ReactTabList } from 'react-tabs';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -31,6 +32,9 @@ export class TabList extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
+  static defaultProps = {
+    theme: Themes.defaultTheme,
+  };
 
   render() {
     return <SReactTabList {...this.props}>{this.props.children}</SReactTabList>;

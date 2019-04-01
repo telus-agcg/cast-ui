@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Tab as ReactTab } from 'react-tabs';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -79,6 +80,9 @@ export class Tab extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
+  static defaultProps = {
+    theme: Themes.defaultTheme,
+  };
 
   render() {
     return <SReactTab {...this.props}>{this.props.title}</SReactTab>;
