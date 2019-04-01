@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -78,22 +79,15 @@ const SSpinner = styled.div`
   }
 `;
 
-export const Spinner: React.FunctionComponent<Props> = ({
-  backgroundColor = 'lightGray',
-  borderColor = 'blue',
-  borderWidth = 3,
-  size = 50,
-  animationSpeed = 1,
-  transitionType = 'linear',
-  ...props
-}) => (
-  <SSpinner
-    backgroundColor={backgroundColor}
-    borderColor={borderColor}
-    borderWidth={borderWidth}
-    size={size}
-    animationSpeed={animationSpeed}
-    transitionType={transitionType}
-    {...props}
-  />
+export const Spinner: React.FunctionComponent<Props> = ({ ...props }) => (
+  <SSpinner {...props} />
 );
+Spinner.defaultProps = {
+  backgroundColor: 'lightGray',
+  borderColor: 'blue',
+  borderWidth: 3,
+  size: 50,
+  animationSpeed: 1,
+  transitionType: 'linear',
+  theme: Themes.defaultTheme,
+};
