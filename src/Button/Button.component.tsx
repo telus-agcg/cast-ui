@@ -1,6 +1,7 @@
 import * as React from 'react';
 import SButton from './SButton';
 import { Themes } from '../themes';
+import { ThemeProvider } from 'styled-components';
 
 export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
   /**
@@ -55,18 +56,24 @@ export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
 
 const noop = () => {}; // tslint:disable-line
 
-export const Button: React.FunctionComponent<Props> = ({
-  onClick = noop,
-  disabled,
-  children,
-  ...props
-}) => (
-  <SButton disabled={disabled} onClick={!disabled ? onClick : noop} {...props}>
-    {children}
-  </SButton>
-);
-Button.defaultProps = {
-  theme: Themes.defaultTheme,
-  btnStyle: 'default',
-  btnSize: 'md',
-};
+export class Button extends React.Component<Props, any> {
+  static defaultProps = {
+    theme: Themes.defaultTheme,
+    btnStyle: 'default',
+    btnSize: 'md',
+  };
+  render() {
+    const { theme, onClick = noop, disabled, children, ...props } = this.props;
+    return (
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SButton
+          disabled={disabled}
+          onClick={!disabled ? onClick : noop}
+          {...props}
+        >
+          {children}
+        </SButton>
+      </ThemeProvider>
+    );
+  }
+}

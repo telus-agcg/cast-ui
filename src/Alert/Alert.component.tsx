@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -48,8 +48,13 @@ const SAlert = styled.div`
 
 export const Alert: React.FunctionComponent<Props> = ({
   children,
+  theme,
   ...props
-}) => <SAlert {...props}>{children}</SAlert>;
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SAlert {...props}>{children}</SAlert>
+  </ThemeProvider>
+);
 
 Alert.defaultProps = {
   theme: Themes.defaultTheme,
