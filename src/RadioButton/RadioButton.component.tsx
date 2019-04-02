@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { lighten } from '../utils/colorUtils';
 import { Themes } from '../themes';
 
@@ -127,24 +127,25 @@ export class RadioButton extends React.Component<Props> {
       ...props
     } = this.props;
     return (
-      <SDiv data-radiobutton="" theme={theme} {...props}>
-        <SInput
-          type="radio"
-          name={name}
-          rbSize={rbSize}
-          disabled={disabled}
-          id={id}
-          value={value}
-          checked={checked}
-          onChange={(evt: any) => {
-            onChange!(value, name!, evt);
-          }}
-          theme={theme}
-        />
-        <SLabel htmlFor={id} rbSize={rbSize} theme={theme}>
-          {children}
-        </SLabel>
-      </SDiv>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SDiv data-radiobutton="" {...props}>
+          <SInput
+            type="radio"
+            name={name}
+            rbSize={rbSize}
+            disabled={disabled}
+            id={id}
+            value={value}
+            checked={checked}
+            onChange={(evt: any) => {
+              onChange!(value, name!, evt);
+            }}
+          />
+          <SLabel htmlFor={id} rbSize={rbSize}>
+            {children}
+          </SLabel>
+        </SDiv>
+      </ThemeProvider>
     );
   }
 }

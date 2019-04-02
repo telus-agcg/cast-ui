@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -117,37 +117,37 @@ export class Checkbox extends React.Component<Props> {
 
   input: any;
 
+  static defaultProps = {
+    cbSize: 'md',
+    onChange: () => {},
+    theme: Themes.defaultTheme,
+  };
+
   render() {
-    const {
-      id = '',
-      cbSize = 'md',
-      onChange = () => {},
-      theme = Themes.defaultTheme,
-      children,
-      ...props
-    } = this.props;
+    const { id, cbSize, onChange, theme, children, ...props } = this.props;
     return (
-      <SDiv data-radiobutton="" theme={theme} {...props}>
-        <SInput
-          type="checkbox"
-          onChange={(evt: any) => {
-            onChange(this.input.checked, id, evt);
-          }}
-          ref={(el: any) => {
-            this.input = el;
-          }}
-          id={id}
-          cbSize={cbSize}
-          disabled={this.props.disabled}
-          value={this.props.value}
-          checked={this.props.checked}
-          defaultChecked={this.props.defaultChecked}
-          theme={theme}
-        />
-        <SLabel htmlFor={id} cbSize={cbSize} theme={theme}>
-          {children}
-        </SLabel>
-      </SDiv>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SDiv data-radiobutton="" {...props}>
+          <SInput
+            type="checkbox"
+            onChange={(evt: any) => {
+              onChange(this.input.checked, id, evt);
+            }}
+            ref={(el: any) => {
+              this.input = el;
+            }}
+            id={id}
+            cbSize={cbSize}
+            disabled={this.props.disabled}
+            value={this.props.value}
+            checked={this.props.checked}
+            defaultChecked={this.props.defaultChecked}
+          />
+          <SLabel htmlFor={id} cbSize={cbSize}>
+            {children}
+          </SLabel>
+        </SDiv>
+      </ThemeProvider>
     );
   }
 }
