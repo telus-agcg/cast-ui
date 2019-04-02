@@ -32,6 +32,12 @@ export type Props = {
    */
   invalidText?: string;
   /**
+   * Color of the invalid text
+   *
+   * @default ''
+   **/
+  invalidTextColor?: string;
+  /**
    * Is the field required?
    *
    * @default false
@@ -93,7 +99,7 @@ const STextarea = styled.textarea`
 `;
 
 const SErrorDiv = styled.div`
-  color: ${(props: any) => props.theme.validation.errorTextColor};
+  color: ${(props: any) => props.invalidTextColor || props.theme.validation.errorTextColor};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.validation.fontSize};
   padding: ${(props: any) => props.theme.validation.padding};
@@ -107,7 +113,7 @@ export const Textarea: React.FunctionComponent<Props> = ({
 }) => {
   const errorId = textareaProps.invalid
     ? `${textareaProps.id}-error-msg`
-    : undefined;
+    : '';
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -120,9 +126,14 @@ export const Textarea: React.FunctionComponent<Props> = ({
         >
           {children}
         </STextarea>
-        {textareaProps.invalid ? (
-          <SErrorDiv id={errorId}>{textareaProps.invalidText}</SErrorDiv>
-        ) : null}
+        {textareaProps.invalid && (
+          <SErrorDiv 
+            {...textareaProps}
+            id={errorId}
+            theme={theme}>
+            {textareaProps.invalidText}
+          </SErrorDiv>
+        )}
       </>
     </ThemeProvider>
   );
