@@ -56,15 +56,15 @@ export type Props = PropsThemeOnly & {
    **/
   invalid?: boolean;
   /**
+   * Provide the text that is displayed when the control is in an invalid state
+   */
+  invalidText?: string;
+  /**
    * Color of the invalid text
    *
    * @default ''
    **/
-  invalidColor?: string;
-  /**
-   * Provide the text that is displayed when the control is in an invalid state
-   */
-  invalidText?: string;
+  invalidTextColor?: string;
   /**
    * What is the maximum length of the text in the field?
    *
@@ -108,7 +108,7 @@ const SInput = styled.input`
 `;
 
 const SErrorDiv = styled.div`
-  color: ${(props: Props) => props.invalidColor};
+  color: ${(props: Props) => props.invalidTextColor || props.theme.validation.errorTextColor};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.validation.fontSize};
   padding: ${(props: Props) => props.theme.validation.padding};
@@ -120,6 +120,7 @@ export const Input: React.FunctionComponent<Props> = ({
   children,
   ...inputProps
 }) => {
+  const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : '';
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
@@ -127,13 +128,14 @@ export const Input: React.FunctionComponent<Props> = ({
           {...inputProps}
           data-invalid={inputProps.invalid ? '' : undefined}
           aria-invalid={inputProps.invalid ? true : undefined}
+          aria-describedby={errorId}
         >
           {children}
         </SInput>
         {inputProps.invalid && (
           <SErrorDiv 
-            invalidColor={inputProps.invalidColor || theme.validation.errorTextColor}
-            id={`${inputProps.id}-error-msg`}
+            {...inputProps}
+            id={errorId}
             theme={theme}>
             {inputProps.invalidText}
           </SErrorDiv>
