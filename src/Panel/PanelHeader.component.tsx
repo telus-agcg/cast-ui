@@ -90,12 +90,12 @@ const SPanelHeader = styled.div`
   color: ${(props: Props) =>
     props.theme.colors[props.headerColor!] || props.headerColor!.toString()};
   background: ${(props: Props) =>
-    props.theme.colors[props.headerBackgroundColor!] ||
-    props.headerBackgroundColor!.toString()};
+    props.headerBackgroundColor!.toString() ||
+    props.theme.colors[props.headerBackgroundColor!]};
   border: ${(props: Props) =>
     `${props.theme.panel.borderWidth} solid
-    ${props.theme.colors[props.headerBorderColor!] ||
-      props.headerBorderColor!.toString()}`};
+    ${props.headerBorderColor!.toString() ||
+      props.theme.colors[props.headerBorderColor!]}`};
   &:hover {
     cursor: ${(props: Props) => (props.collapsible ? 'pointer' : 'auto')};
   }

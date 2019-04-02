@@ -74,7 +74,7 @@ const SCopyToClipboard = styled.div`
   display: ${(props: Props) => (props.fullWidth ? 'flex' : 'inline-flex')};
   padding: ${(props: Props) => props.theme.copyToClipboard.padding};
   background-color: ${(props: Props) =>
-    props.theme.colors[props.background!] || props.background!.toString()};
+    props.background!.toString() || props.theme.colors[props.background!]};
   font-family: ${(props: Props) => props.theme.copyToClipboard.fontFamily};
   font-size: ${(props: Props) => props.theme.copyToClipboard.fontSize};
   color: ${(props: any) =>
