@@ -1,9 +1,8 @@
-import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { lighten } from '../utils/colorUtils';
-import { Themes } from '../themes';
+import * as React from "react";
+import styled from "styled-components";
+import { lighten } from "../utils/colorUtils";
 
-export type Props = {
+export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
    * Specify the ID of the individual radio button
    *
@@ -23,6 +22,12 @@ export type Props = {
    **/
   checked?: boolean;
   /**
+   * Specify if the radio button is checked by default
+   *
+   * @default false
+   **/
+  defaultChecked?: boolean;
+  /**
    * Specify if the radio button should be disabled
    *
    * @default false
@@ -33,7 +38,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  rbSize?: 'sm' | 'md' | 'lg';
+  rbSize: "sm" | "md" | "lg";
   /**
    * Specify the value of the radio button group when the current button is selected
    **/
@@ -49,17 +54,33 @@ export type Props = {
     event: React.MouseEvent<HTMLElement>,
   ): void;
   /**
+   * Specify the display style the radio button will have
+   *
+   * @default 'stacked'
+   **/
+  displayStyle?: "inline" | "stacked";
+  /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
 const SDiv = styled.div`
-  display: inline-block;
+  display: ${(props: Props) =>
+		props.displayStyle === 'inline'
+			? 'inline-block'
+			: 'block'};
   + div[data-radiobutton] {
-    padding-left: 20px;
+    padding-left: ${(props: Props) =>
+      props.displayStyle === 'inline'
+        ? props.theme.radioButton.inlineSpacing
+        : '0px'};
+    padding-top: ${(props: any) =>
+      props.displayStyle === 'inline'
+        ? '0px'
+        : props.theme.radioButton.stackedSpacing};
   }
 `;
 
@@ -106,11 +127,8 @@ const SInput = styled.input`
 `;
 
 export class RadioButton extends React.Component<Props> {
-  static defaultProps = {
-    rbSize: 'md',
-    name: '',
-    theme: Themes.defaultTheme,
-    onChange: () => {},
+  handleChange = (evt: any) => {
+    this.props.onChange(this.props.value, this.props.name, evt);
   };
 
   render() {
@@ -127,25 +145,22 @@ export class RadioButton extends React.Component<Props> {
       ...props
     } = this.props;
     return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv data-radiobutton="" {...props}>
-          <SInput
-            type="radio"
-            name={name}
-            rbSize={rbSize}
-            disabled={disabled}
-            id={id}
-            value={value}
-            checked={checked}
-            onChange={(evt: any) => {
-              onChange!(value, name!, evt);
-            }}
-          />
-          <SLabel htmlFor={id} rbSize={rbSize}>
-            {children}
-          </SLabel>
-        </SDiv>
-      </ThemeProvider>
+      <SDiv data-radiobutton="" displayStyle={this.props.displayStyle}>
+        <SInput
+          type="radio"
+          name={this.props.name}
+          rbSize={this.props.rbSize}
+          disabled={this.props.disabled}
+          id={this.props.id}
+          value={this.props.value}
+          checked={this.props.checked}
+          defaultChecked={this.props.defaultChecked}
+          onChange={this.handleChange}
+        />
+        <SLabel htmlFor={this.props.id} rbSize={this.props.rbSize}>
+          {this.props.children}
+        </SLabel>
+      </SDiv>
     );
   }
 }
