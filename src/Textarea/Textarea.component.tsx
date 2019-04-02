@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -101,6 +101,7 @@ const SErrorDiv = styled.div`
 `;
 
 export const Textarea: React.FunctionComponent<Props> = ({
+  theme,
   children,
   ...textareaProps
 }) => {
@@ -108,24 +109,22 @@ export const Textarea: React.FunctionComponent<Props> = ({
     ? `${textareaProps.id}-error-msg`
     : undefined;
 
-  const error = textareaProps.invalid ? (
-    <SErrorDiv id={errorId} theme={textareaProps.theme}>
-      {textareaProps.invalidText}
-    </SErrorDiv>
-  ) : null;
-
   return (
-    <>
-      <STextarea
-        {...textareaProps}
-        data-invalid={textareaProps.invalid ? '' : undefined}
-        aria-invalid={textareaProps.invalid ? true : undefined}
-        aria-describedby={errorId}
-      >
-        {children}
-      </STextarea>
-      {error}
-    </>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <>
+        <STextarea
+          {...textareaProps}
+          data-invalid={textareaProps.invalid ? '' : undefined}
+          aria-invalid={textareaProps.invalid ? true : undefined}
+          aria-describedby={errorId}
+        >
+          {children}
+        </STextarea>
+        {textareaProps.invalid ? (
+          <SErrorDiv id={errorId}>{textareaProps.invalidText}</SErrorDiv>
+        ) : null}
+      </>
+    </ThemeProvider>
   );
 };
 Textarea.defaultProps = {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -144,17 +144,20 @@ export class Toggle extends React.Component<Props> {
   };
 
   render() {
+    const { theme, ...props } = this.props;
     return (
-      <SDiv {...this.props}>
-        <input
-          checked={this.props.checked}
-          disabled={this.props.disabled}
-          onChange={this.props.onChange}
-          type="checkbox"
-          id="switch"
-        />
-        <label htmlFor="switch">{this.props.label}</label>
-      </SDiv>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SDiv {...props}>
+          <input
+            checked={props.checked}
+            disabled={props.disabled}
+            onChange={props.onChange}
+            type="checkbox"
+            id="switch"
+          />
+          <label htmlFor="switch">{props.label}</label>
+        </SDiv>
+      </ThemeProvider>
     );
   }
 }
