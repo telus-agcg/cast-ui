@@ -104,7 +104,7 @@ export class CustomSelect extends React.Component<Props> {
     const { options, controlSpecificProps, theme, ...props } = this.props;
     const errorId = this.props.invalid
       ? `${this.props.id}-error-msg`
-      : undefined;
+      : '';
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
