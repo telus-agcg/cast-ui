@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { DraggableProps } from './defaultProps';
 import { Themes } from '../themes';
 
@@ -13,8 +13,13 @@ const SDraggableFooter = styled.div`
     } 0`};
 `;
 
-export const DraggableFooter: React.FunctionComponent<Props> = props => (
-  <SDraggableFooter {...props}>{props.children}</SDraggableFooter>
+export const DraggableFooter: React.FunctionComponent<Props> = ({
+  theme,
+  ...props
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SDraggableFooter {...props}>{props.children}</SDraggableFooter>
+  </ThemeProvider>
 );
 DraggableFooter.defaultProps = {
   color: 'lightGray',

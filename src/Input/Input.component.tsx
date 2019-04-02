@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 // TODO: we should be able to use an interface to inherit the base properties of an
@@ -110,29 +110,28 @@ const SErrorDiv = styled.div`
 `;
 
 export const Input: React.FunctionComponent<Props> = ({
+  theme,
   children,
   ...inputProps
 }) => {
   const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : undefined;
 
-  const error = inputProps.invalid ? (
-    <SErrorDiv id={errorId} theme={inputProps.theme}>
-      {inputProps.invalidText}
-    </SErrorDiv>
-  ) : null;
-
   return (
-    <>
-      <SInput
-        {...inputProps}
-        data-invalid={inputProps.invalid ? '' : undefined}
-        aria-invalid={inputProps.invalid ? true : undefined}
-        aria-describedby={errorId}
-      >
-        {children}
-      </SInput>
-      {error}
-    </>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <>
+        <SInput
+          {...inputProps}
+          data-invalid={inputProps.invalid ? '' : undefined}
+          aria-invalid={inputProps.invalid ? true : undefined}
+          aria-describedby={errorId}
+        >
+          {children}
+        </SInput>
+        {inputProps.invalid ? (
+          <SErrorDiv id={errorId}>{inputProps.invalidText}</SErrorDiv>
+        ) : null}
+      </>
+    </ThemeProvider>
   );
 };
 

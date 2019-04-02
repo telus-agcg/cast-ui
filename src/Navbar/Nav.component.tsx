@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -38,8 +38,14 @@ const SNav = styled.nav`
   align-items: center;
 `;
 
-export const Nav: React.FunctionComponent<Props> = ({ children, ...props }) => (
-  <SNav {...props}>{children}</SNav>
+export const Nav: React.FunctionComponent<Props> = ({
+  theme,
+  children,
+  ...props
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SNav {...props}>{children}</SNav>
+  </ThemeProvider>
 );
 
 Nav.defaultProps = {

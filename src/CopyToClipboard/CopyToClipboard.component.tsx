@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Icon from 'react-icons-kit';
 import { ic_check as icCheck } from 'react-icons-kit/md/ic_check';
 import { Themes } from '../themes';
@@ -146,10 +146,19 @@ const SCopyToClipboard = styled.div`
   }
 `;
 
+const SuccessContent = () => (
+  <span>
+    <Icon size={18} icon={icCheck} />
+    copied
+  </span>
+);
+
 const initialState = {
   copied: false,
 };
+
 type State = Readonly<typeof initialState>;
+
 export class CopyToClipboard extends React.Component<Props> {
   private copyContainerRef = React.createRef<HTMLDivElement>();
 
@@ -160,6 +169,18 @@ export class CopyToClipboard extends React.Component<Props> {
   }
 
   readonly state: State = initialState;
+
+  static defaultProps = {
+    copyContent: '',
+    copyContainerClass: '',
+    background: 'disabledBackground',
+    fullWidth: true,
+    includeCopyButton: true,
+    copyButtonContent: 'copy',
+    copyButtonSuccessContent: <SuccessContent />,
+    copyButtonClass: '',
+    theme: Themes.defaultTheme,
+  };
 
   static copy(e: any, cb: Function) {
     const newCopyText: string = e.target
@@ -187,60 +208,55 @@ export class CopyToClipboard extends React.Component<Props> {
     }, 2000);
   }
   render() {
-    const SuccessContent = () => (
-      <span>
-        <Icon size={18} icon={icCheck} />
-        copied
-      </span>
-    );
     const {
-      copyContent = '',
-      copyContainerClass = '',
-      background = 'disabledBackground',
-      fullWidth = true,
-      includeCopyButton = true,
-      copyButtonContent = 'copy',
-      copyButtonSuccessContent = <SuccessContent />,
-      copyButtonClass = '',
-      theme = Themes.defaultTheme,
+      copyContent,
+      copyContainerClass,
+      background,
+      fullWidth,
+      includeCopyButton,
+      copyButtonContent,
+      copyButtonSuccessContent,
+      copyButtonClass,
+      theme,
     } = this.props;
     const { copied } = this.state;
     return (
-      <SCopyToClipboard
-        buttonColor={copied ? 'success' : 'primary'}
-        background={background}
-        fullWidth={fullWidth}
-        copied={copied}
-        theme={theme}
-      >
-        <div
-          ref={this.copyContainerRef}
-          onClick={() =>
-            CopyToClipboard.copy(
-              this.copyContainerRef.current,
-              this.copySuccessful,
-            )
-          }
-          className={`copy-container ${copyContainerClass}`}
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SCopyToClipboard
+          buttonColor={copied ? 'success' : 'primary'}
+          background={background}
+          fullWidth={fullWidth}
+          copied={copied}
         >
-          {this.unescapeHTML(copyContent)}
-        </div>
-        {includeCopyButton && (
-          <button
+          <div
+            ref={this.copyContainerRef}
             onClick={() =>
               CopyToClipboard.copy(
                 this.copyContainerRef.current,
                 this.copySuccessful,
               )
             }
-            type="button"
-            className={`copy-button ${copyButtonClass}`}
+            className={`copy-container ${copyContainerClass}`}
           >
-            {!copied && copyButtonContent}
-            {copied && copyButtonSuccessContent}
-          </button>
-        )}
-      </SCopyToClipboard>
+            {this.unescapeHTML(copyContent)}
+          </div>
+          {includeCopyButton && (
+            <button
+              onClick={() =>
+                CopyToClipboard.copy(
+                  this.copyContainerRef.current,
+                  this.copySuccessful,
+                )
+              }
+              type="button"
+              className={`copy-button ${copyButtonClass}`}
+            >
+              {!copied && copyButtonContent}
+              {copied && copyButtonSuccessContent}
+            </button>
+          )}
+        </SCopyToClipboard>
+      </ThemeProvider>
     );
   }
 }

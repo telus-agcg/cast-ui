@@ -1,7 +1,7 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Tippy, { TippyProps } from '@tippy.js/react';
-// import { Themes } from '../themes';
+import { Themes } from '../themes';
 
 export type Props = TippyProps & {
   /** anchor for the popover  */
@@ -53,19 +53,21 @@ export class Popover extends React.Component<Props> {
   static defaultProps = {
     arrow: false,
     placement: 'bottom-start',
-    // theme: Themes.defaultTheme,
+    theme: Themes.defaultTheme,
   };
   public render() {
-    const { arrow, children } = this.props;
+    const { theme, arrow, children, ...props } = this.props;
     const withArrowDistance = 10;
     const withoutArrowDistance = 9;
     const distance = arrow ? withArrowDistance : withoutArrowDistance;
     return (
-      <React.Fragment>
-        <SPopover distance={this.props.distance || distance} {...this.props}>
-          {children}
-        </SPopover>
-      </React.Fragment>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <React.Fragment>
+          <SPopover distance={props.distance || distance} {...props}>
+            {children}
+          </SPopover>
+        </React.Fragment>
+      </ThemeProvider>
     );
   }
 }

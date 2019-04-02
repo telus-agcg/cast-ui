@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { DraggableProps } from './defaultProps';
 import { Themes } from '../themes';
 
@@ -23,8 +23,13 @@ const SDraggableInfo = styled.div`
     } / 4) 0`};
 `;
 
-export const DraggableInfo: React.FunctionComponent<Props> = props => (
-  <SDraggableInfo {...props}>{props.children}</SDraggableInfo>
+export const DraggableInfo: React.FunctionComponent<Props> = ({
+  theme,
+  ...props
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SDraggableInfo {...props}>{props.children}</SDraggableInfo>
+  </ThemeProvider>
 );
 DraggableInfo.defaultProps = {
   color: 'lightGray',

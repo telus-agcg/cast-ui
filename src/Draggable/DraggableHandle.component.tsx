@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ThemeProvider } from 'styled-components';
 import Icon from 'react-icons-kit';
 import { ic_view_headline as icViewHeadline } from 'react-icons-kit/md/ic_view_headline';
 import { Themes } from '../themes';
@@ -36,18 +37,23 @@ export type Props = {
   theme?: any;
 };
 
-export const DraggableHandle: React.FunctionComponent<Props> = props => (
-  <div
-    onMouseEnter={() => props.onMouseEnter}
-    onMouseLeave={() => props.onMouseLeave}
-  >
-    <Icon
-      icon={icViewHeadline}
-      {...props}
-      className={`handleIcon ${props.className}`}
-    />
-    {props.children}
-  </div>
+export const DraggableHandle: React.FunctionComponent<Props> = ({
+  theme,
+  ...props
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <div
+      onMouseEnter={() => props.onMouseEnter}
+      onMouseLeave={() => props.onMouseLeave}
+    >
+      <Icon
+        icon={icViewHeadline}
+        {...props}
+        className={`handleIcon ${props.className}`}
+      />
+      {props.children}
+    </div>
+  </ThemeProvider>
 );
 DraggableHandle.defaultProps = {
   size: 25,

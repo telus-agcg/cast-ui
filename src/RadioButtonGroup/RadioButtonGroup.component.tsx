@@ -1,6 +1,6 @@
 import * as React from 'react';
 import RadioButton from '../RadioButton';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -32,6 +32,12 @@ export type Props = {
     name: string,
     event: React.MouseEvent<HTMLElement>,
   ): void;
+  /**
+   * From ThemeProvider
+   *
+   * @default defaultTheme
+   **/
+  theme: any;
 };
 
 const SDiv = styled.div``;
@@ -55,7 +61,7 @@ export class RadioButtonGroup extends React.Component<Props, State> {
       this.setState({ selected: newSelection });
       this.props.onChange!(newSelection, this.props.name, evt);
     }
-  }
+  };
 
   getRadioButtons() {
     const children = React.Children.map(
@@ -79,6 +85,11 @@ export class RadioButtonGroup extends React.Component<Props, State> {
   }
 
   render() {
-    return <SDiv data-radiobutton="">{this.getRadioButtons()}</SDiv>;
+    const { theme } = this.props;
+    return (
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SDiv data-radiobutton="">{this.getRadioButtons()}</SDiv>
+      </ThemeProvider>
+    );
   }
 }

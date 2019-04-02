@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import PanelHeader from './PanelHeader.component';
 import { Themes } from '../themes';
 
@@ -165,33 +165,34 @@ export class Panel extends React.Component<Props, State> {
   }
 
   render() {
+    const { theme, children, ...props } = this.props;
     return (
-      <PanelWrapper panelStyle={this.props.panelStyle} theme={this.props.theme}>
-        <PanelHeader
-          panelStyle={this.props.panelStyle}
-          headerColor={this.props.headerColor}
-          headerBackgroundColor={this.props.headerBackgroundColor}
-          headerBorderColor={this.props.headerBorderColor}
-          collapsible={this.props.collapsible}
-          toggleItem={this.toggleItem}
-          name={this.props.name}
-          title={this.props.title}
-          localIsCollapsed={this.localIsCollapsed}
-          headerRef={this.headerRef}
-          theme={this.props.theme}
-        />
-        <PanelBody
-          panelStyle={this.props.panelStyle}
-          bodyBackgroundColor={this.props.bodyBackgroundColor}
-          bodyBorderColor={this.props.bodyBorderColor}
-          noPadding={this.props.noPadding}
-          isCollapsed={this.localIsCollapsed}
-          ref={this.bodyRef}
-          theme={this.props.theme}
-        >
-          {this.props.children}
-        </PanelBody>
-      </PanelWrapper>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <PanelWrapper panelStyle={props.panelStyle}>
+          <PanelHeader
+            panelStyle={props.panelStyle}
+            headerColor={props.headerColor}
+            headerBackgroundColor={props.headerBackgroundColor}
+            headerBorderColor={props.headerBorderColor}
+            collapsible={props.collapsible}
+            toggleItem={this.toggleItem}
+            name={props.name}
+            title={props.title}
+            localIsCollapsed={this.localIsCollapsed}
+            headerRef={this.headerRef}
+          />
+          <PanelBody
+            panelStyle={props.panelStyle}
+            bodyBackgroundColor={props.bodyBackgroundColor}
+            bodyBorderColor={props.bodyBorderColor}
+            noPadding={props.noPadding}
+            isCollapsed={this.localIsCollapsed}
+            ref={this.bodyRef}
+          >
+            {children}
+          </PanelBody>
+        </PanelWrapper>
+      </ThemeProvider>
     );
   }
 }

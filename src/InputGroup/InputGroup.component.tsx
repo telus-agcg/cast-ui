@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -55,12 +55,14 @@ export const InputGroup: React.FunctionComponent<Props> = ({
   children,
   ...props
 }) => (
-  <InputGroupWrapper inputSize={inputSize} theme={theme} {...props}>
-    <SLabel label={props.label} inputSize={inputSize} theme={theme}>
-      {props.label}
-    </SLabel>
-    {children}
-  </InputGroupWrapper>
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <InputGroupWrapper inputSize={inputSize} {...props}>
+      <SLabel label={props.label} inputSize={inputSize}>
+        {props.label}
+      </SLabel>
+      {children}
+    </InputGroupWrapper>
+  </ThemeProvider>
 );
 InputGroup.defaultProps = {
   inputSize: 'md',

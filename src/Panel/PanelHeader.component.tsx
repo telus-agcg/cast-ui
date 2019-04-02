@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled, { withTheme, ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -156,15 +156,17 @@ export class PanelHeader extends React.Component<Props> {
     ) : (
       <SCollapseIcon />
     );
-    const { toggleItem, headerRef, name, title, ...props } = this.props;
+    const { toggleItem, headerRef, name, title, theme, ...props } = this.props;
     return (
-      <SPanelHeader
-        onClick={(e: any) => toggleItem!(e, props.theme)}
-        ref={headerRef}
-        {...props}
-      >
-        {name && <b>{name}:</b>} {title} {props.collapsible && ChevronImage}
-      </SPanelHeader>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SPanelHeader
+          onClick={(e: any) => toggleItem!(e, theme)}
+          ref={headerRef}
+          {...props}
+        >
+          {name && <b>{name}:</b>} {title} {props.collapsible && ChevronImage}
+        </SPanelHeader>
+      </ThemeProvider>
     );
   }
 }

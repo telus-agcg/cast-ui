@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Select from 'react-select';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -100,35 +100,33 @@ export class CustomSelect extends React.Component<Props> {
       ? `${this.props.id}-error-msg`
       : undefined;
 
-    const error = this.props.invalid ? (
-      <SErrorDiv id={errorId} theme={theme}>
-        {this.props.invalidText}
-      </SErrorDiv>
-    ) : null;
-
     return (
-      <SDiv
-        className="select-wrapper"
-        inputSize={this.props.inputSize}
-        {...this.props.invalid}
-        aria-invalid={this.props.invalid ? true : undefined}
-        aria-describedby={errorId}
-        invalid={this.props.invalid}
-        theme={theme}
-        {...props}
-      >
-        <Select
-          className="react-select-component"
-          isDisabled={this.props.disabled}
-          value={this.props.selectedOption}
-          options={options}
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SDiv
+          className="select-wrapper"
+          inputSize={this.props.inputSize}
           {...this.props.invalid}
           aria-invalid={this.props.invalid ? true : undefined}
           aria-describedby={errorId}
-          {...controlSpecificProps}
-        />
-        {error}
-      </SDiv>
+          invalid={this.props.invalid}
+          theme={theme}
+          {...props}
+        >
+          <Select
+            className="react-select-component"
+            isDisabled={this.props.disabled}
+            value={this.props.selectedOption}
+            options={options}
+            {...this.props.invalid}
+            aria-invalid={this.props.invalid ? true : undefined}
+            aria-describedby={errorId}
+            {...controlSpecificProps}
+          />
+          {this.props.invalid ? (
+            <SErrorDiv id={errorId}>{this.props.invalidText}</SErrorDiv>
+          ) : null}
+        </SDiv>
+      </ThemeProvider>
     );
   }
 }
