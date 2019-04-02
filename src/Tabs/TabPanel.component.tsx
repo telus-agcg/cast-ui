@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ThemeProvider } from 'styled-components';
 // tslint:disable-next-line:max-line-length
 import { TabPanel as ReactTabPanel } from 'react-tabs';
 import { Themes } from '../themes';
@@ -23,6 +24,11 @@ export class TabPanel extends React.Component<Props> {
   };
 
   render() {
-    return <ReactTabPanel {...this.props}>{this.props.children}</ReactTabPanel>;
+    const { theme, children, ...props } = this.props;
+    return (
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <ReactTabPanel {...props}>{children}</ReactTabPanel>
+      </ThemeProvider>
+    );
   }
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -79,8 +79,13 @@ const SSpinner = styled.div`
   }
 `;
 
-export const Spinner: React.FunctionComponent<Props> = ({ ...props }) => (
-  <SSpinner {...props} />
+export const Spinner: React.FunctionComponent<Props> = ({
+  theme,
+  ...props
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SSpinner {...props} />
+  </ThemeProvider>
 );
 Spinner.defaultProps = {
   backgroundColor: 'lightGray',

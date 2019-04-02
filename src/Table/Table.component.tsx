@@ -1,6 +1,6 @@
 /* tslint:disable:max-line-length */
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import ReactTable, { TableProps } from 'react-table';
 import { Themes } from '../themes';
 
@@ -130,38 +130,41 @@ export class Table extends React.Component<Props> {
   }
 
   render() {
+    const { theme, ...props } = this.props;
     return (
-      <SWrapperDiv {...this.props} tableSize={this.state.tableSize}>
-        {this.props.sizable && (
-          <div className="table-size-controls">
-            <Icon
-              icon={IconLarge}
-              size={24}
-              onClick={this.changeTableSize.bind(this, 'lg')}
-              className={this.state.tableSize === 'lg' ? 'selected' : ''}
-            />
-            <Icon
-              icon={IconMedium}
-              size={30}
-              onClick={this.changeTableSize.bind(this, 'md')}
-              className={this.state.tableSize === 'md' ? 'selected' : ''}
-            />
-            <Icon
-              icon={IconCondensed}
-              size={24}
-              onClick={this.changeTableSize.bind(this, 'sm')}
-              className={this.state.tableSize === 'sm' ? 'selected' : ''}
-            />
-          </div>
-        )}
-        <ReactTable
-          {...this.props}
-          className={`-highlight  + ${this.props.striped ? '-striped ' : ''}`}
-          PaginationComponent={TablePagination}
-          nextText="Next >"
-          previousText="< Previous"
-        />
-      </SWrapperDiv>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SWrapperDiv {...this.props} tableSize={this.state.tableSize}>
+          {this.props.sizable && (
+            <div className="table-size-controls">
+              <Icon
+                icon={IconLarge}
+                size={24}
+                onClick={this.changeTableSize.bind(this, 'lg')}
+                className={this.state.tableSize === 'lg' ? 'selected' : ''}
+              />
+              <Icon
+                icon={IconMedium}
+                size={30}
+                onClick={this.changeTableSize.bind(this, 'md')}
+                className={this.state.tableSize === 'md' ? 'selected' : ''}
+              />
+              <Icon
+                icon={IconCondensed}
+                size={24}
+                onClick={this.changeTableSize.bind(this, 'sm')}
+                className={this.state.tableSize === 'sm' ? 'selected' : ''}
+              />
+            </div>
+          )}
+          <ReactTable
+            {...props}
+            className={`-highlight  + ${this.props.striped ? '-striped ' : ''}`}
+            PaginationComponent={TablePagination}
+            nextText="Next >"
+            previousText="< Previous"
+          />
+        </SWrapperDiv>
+      </ThemeProvider>
     );
   }
 }
