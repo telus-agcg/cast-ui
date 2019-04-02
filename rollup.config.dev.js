@@ -17,7 +17,6 @@ const config = {
     file: pkg.main,
     format: 'es',
   },
-  external: ['React', 'ReactDOM', 'styled-components'],
   plugins: [
     postcss({ extract: false, plugins: [autoprefixer] }),
     babel({ exclude: 'node_modules/**' }),
