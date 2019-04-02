@@ -14,6 +14,7 @@ storiesOf('Input', module).add(
       disabled={boolean('disabled', false)}
       inputSize={select('inputSize', ['sm', 'md', 'lg'], 'md')}
       invalid={boolean('invalid', false)}
+      invalidColor={text('invalidColor', '')}
       invalidText={text('invalidText', 'A valid value is required')}
       maxLength={number('maxLength', 1000)}
       placeholder={text('placeholder', 'Please enter some text')}

@@ -56,6 +56,12 @@ export type Props = PropsThemeOnly & {
    **/
   invalid?: boolean;
   /**
+   * Color of the invalid text
+   *
+   * @default ''
+   **/
+  invalidColor?: string;
+  /**
    * Provide the text that is displayed when the control is in an invalid state
    */
   invalidText?: string;
@@ -102,10 +108,10 @@ const SInput = styled.input`
 `;
 
 const SErrorDiv = styled.div`
-  color: ${(props: PropsThemeOnly) => props.theme.validation.errorTextColor};
-  font-family: ${(props: PropsThemeOnly) => props.theme.typography.fontFamily};
-  font-size: ${(props: PropsThemeOnly) => props.theme.validation.fontSize};
-  padding: ${(props: PropsThemeOnly) => props.theme.validation.padding};
+  color: ${(props: Props) => props.invalidColor};
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.validation.fontSize};
+  padding: ${(props: Props) => props.theme.validation.padding};
   font-style: italic;
 `;
 
@@ -114,8 +120,6 @@ export const Input: React.FunctionComponent<Props> = ({
   children,
   ...inputProps
 }) => {
-  const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : undefined;
-
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
@@ -123,13 +127,17 @@ export const Input: React.FunctionComponent<Props> = ({
           {...inputProps}
           data-invalid={inputProps.invalid ? '' : undefined}
           aria-invalid={inputProps.invalid ? true : undefined}
-          aria-describedby={errorId}
         >
           {children}
         </SInput>
-        {inputProps.invalid ? (
-          <SErrorDiv id={errorId}>{inputProps.invalidText}</SErrorDiv>
-        ) : null}
+        {inputProps.invalid && (
+          <SErrorDiv 
+            invalidColor={inputProps.invalidColor || theme.validation.errorTextColor}
+            id={`${inputProps.id}-error-msg`}
+            theme={theme}>
+            {inputProps.invalidText}
+          </SErrorDiv>
+        )}
       </>
     </ThemeProvider>
   );
