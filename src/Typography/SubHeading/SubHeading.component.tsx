@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../../themes';
 
 export type Props = {
@@ -22,7 +22,12 @@ const SSubHeading = styled.h2`
 `;
 
 export const SubHeading: React.FunctionComponent<Props> = ({
+  theme,
   children,
   ...props
-}) => <SSubHeading {...props}>{children}</SSubHeading>;
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SSubHeading {...props}>{children}</SSubHeading>
+  </ThemeProvider>
+);
 SubHeading.defaultProps = { theme: Themes.defaultTheme };

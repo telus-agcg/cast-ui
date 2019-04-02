@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../../themes';
 
 export type Props = {
@@ -20,7 +20,12 @@ const SHeadline = styled.h2`
 `;
 
 export const Headline: React.FunctionComponent<Props> = ({
+  theme,
   children,
   ...props
-}) => <SHeadline {...props}>{children}</SHeadline>;
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SHeadline {...props}>{children}</SHeadline>
+  </ThemeProvider>
+);
 Headline.defaultProps = { theme: Themes.defaultTheme };

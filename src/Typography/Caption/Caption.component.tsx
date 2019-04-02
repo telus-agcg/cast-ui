@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../../themes';
 
 export type Props = {
@@ -20,7 +20,12 @@ const SCaption = styled.p`
 `;
 
 export const Caption: React.FunctionComponent<Props> = ({
+  theme,
   children,
   ...props
-}) => <SCaption {...props}>{children}</SCaption>;
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SCaption {...props}>{children}</SCaption>
+  </ThemeProvider>
+);
 Caption.defaultProps = { theme: Themes.defaultTheme };

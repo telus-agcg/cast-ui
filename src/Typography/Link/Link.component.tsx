@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../../themes';
 
 export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
@@ -71,13 +71,14 @@ export const Link: React.FunctionComponent<Props> = ({
   theme,
   ...linkProps
 }) => (
-  <SLink
-    className={`${linkProps.solo && 'solo'} ${className || ''}`}
-    href={linkProps.href}
-    target={linkProps.target}
-    theme={theme}
-  >
-    {children}
-  </SLink>
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SLink
+      className={`${linkProps.solo && 'solo'} ${className || ''}`}
+      href={linkProps.href}
+      target={linkProps.target}
+    >
+      {children}
+    </SLink>
+  </ThemeProvider>
 );
 Link.defaultProps = { theme: Themes.defaultTheme };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../../themes';
 
 export type Props = {
@@ -19,7 +19,12 @@ const SDisplay = styled.h1`
 `;
 
 export const Display: React.FunctionComponent<Props> = ({
+  theme,
   children,
   ...props
-}) => <SDisplay {...props}>{children}</SDisplay>;
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SDisplay {...props}>{children}</SDisplay>
+  </ThemeProvider>
+);
 Display.defaultProps = { theme: Themes.defaultTheme };

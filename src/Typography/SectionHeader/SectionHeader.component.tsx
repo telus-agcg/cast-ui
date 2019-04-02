@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../../themes';
 
 export type Props = {
@@ -26,7 +26,12 @@ const SSectionHeader = styled.h1`
 `;
 
 export const SectionHeader: React.FunctionComponent<Props> = ({
+  theme,
   children,
   ...props
-}) => <SSectionHeader {...props}>{children}</SSectionHeader>;
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SSectionHeader {...props}>{children}</SSectionHeader>
+  </ThemeProvider>
+);
 SectionHeader.defaultProps = { theme: Themes.defaultTheme };

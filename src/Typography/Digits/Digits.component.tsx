@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../../themes';
 
 export type Props = {
@@ -20,7 +20,12 @@ const SDigits = styled.p`
 `;
 
 export const Digits: React.FunctionComponent<Props> = ({
+  theme,
   children,
   ...props
-}) => <SDigits {...props}>{children}</SDigits>;
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SDigits {...props}>{children}</SDigits>
+  </ThemeProvider>
+);
 Digits.defaultProps = { theme: Themes.defaultTheme };

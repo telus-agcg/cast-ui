@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 import {
   Headline,
@@ -37,36 +37,52 @@ export const Typography: React.FunctionComponent<Props> = ({
   children,
   theme,
 }) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
     <STypography>
       <SectionHeader>Section header</SectionHeader>
       <Display>Display</Display>
       <Headline>Headline</Headline>
       <Title>Title</Title>
       <SubTitle>Etiam mauris tellus</SubTitle>
-      <p>Etiam ullamcorper, metus sed luctus auctor,
-        tortor lorem auctor quam, ut condimentum massa tellus at turpis.</p>
+      <p>
+        Etiam ullamcorper, metus sed luctus auctor, tortor lorem auctor quam, ut
+        condimentum massa tellus at turpis.
+      </p>
       <Caption>Use for hero images and website headers</Caption>
-      <Link solo={true} href="https://www.tkxs.com" target="_blank">Read More</Link>
-      <br/>
+      <Link solo={true} href="https://www.tkxs.com" target="_blank">
+        Read More
+      </Link>
+      <br />
       <SubHeading>Subheader</SubHeading>
-      <p>Lorem ipsum dolor sit amet, consectetur <Link
-        href="https://theuselessweb.com/"
-        target="_blank">unvisited link in text</Link> over a <Link
-        href="https://www.tkxs.com"
-        target="_blank">visited link in text</Link> elit.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur{' '}
+        <Link href="https://theuselessweb.com/" target="_blank">
+          unvisited link in text
+        </Link>{' '}
+        over a{' '}
+        <Link href="https://www.tkxs.com" target="_blank">
+          visited link in text
+        </Link>{' '}
+        elit.
+      </p>
       <Button btnStyle="primary">Read More Button</Button>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
       <Tooltip content="Tooltip text appears here">
-        <span><Button btnStyle="primary" outline={true}>Read More</Button></span>
+        <span>
+          <Button btnStyle="primary" outline={true}>
+            Read More
+          </Button>
+        </span>
       </Tooltip>
       <Digits>$25,855.90</Digits>
-      <br/>
+      <br />
       <CopyToClipboard
         copyContent={sampleCode || ''}
         background="lightBackground"
         includeCopyButton={true}
       />
     </STypography>
+  </ThemeProvider>
 );
