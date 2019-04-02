@@ -288,7 +288,9 @@ export const defaultTheme = {
     borderStyle: 'solid',
     borderColor: defaultColors.gray,
     disabledText: defaultColors.disabledText,
-    unselectedColor: defaultColors.white,
+		unselectedColor: defaultColors.white,
+		stackedSpacing: '10px',
+		inlineSpacing: '20px',
     sm: {
       size: '6px',
     },
