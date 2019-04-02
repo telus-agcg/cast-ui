@@ -34,22 +34,21 @@ storiesOf("RadioButton", module).add(
     </div>
   ),
   {
-    info: {
-      text: `
+		info: {
+			text: `
         ### Notes
 
 				The Radio Button component improves the styling, layout and behavior of default radio input HTML elements.
 
-				Radio buttons are for selecting one option from many e.g. Plain or Spicy Chicken?
+        ##### Disabled
+        Disabled radio buttons are supported. The disabled attribute will apply a lighter color to help indicate the input’s state.
 
-				#### Disabled
-				Disabled radio buttons are supported. The disabled attribute will apply a lighter color to help indicate the input’s state.
-
-				#### Display Style
-				By default, any number of radio buttons that are immediate sibling will be vertically stacked and appropriately spaced.
-
+        ##### Display Style
+				By default, any number of radio buttons that are immediate sibling will be *vertically stacked* and appropriately spaced.
+				
 				Alternatively, group radio buttons on the same horizontal row by settings the **displayStyle** prop to **inline**
-        `
-    }
+
+        `,
+		},
   }
 );
