@@ -61,7 +61,7 @@ export class RadioButtonGroup extends React.Component<Props, State> {
       this.setState({ selected: newSelection });
       this.props.onChange!(newSelection, this.props.name, evt);
     }
-  };
+  }
 
   getRadioButtons() {
     const children = React.Children.map(
