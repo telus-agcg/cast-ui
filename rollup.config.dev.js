@@ -1,4 +1,5 @@
 import babel from 'rollup-plugin-babel';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
@@ -16,41 +17,12 @@ const config = {
     file: pkg.main,
     format: 'es',
   },
-  external: ['React', 'ReactDOM', 'styled-components'],
   plugins: [
     postcss({ extract: false, plugins: [autoprefixer] }),
     babel({ exclude: 'node_modules/**' }),
+    peerDepsExternal(),
     localResolve(),
     resolve(),
-    commonjs({
-      include: ['node_modules/**'],
-      exclude: ['node_modules/process-es6/**'],
-      namedExports: {
-        'node_modules/react/index.js': [
-          'Children',
-          'Component',
-          'PropTypes',
-          'createContext',
-          'createElement',
-          'createRef',
-          'cloneElement',
-          'useLayoutEffect',
-          'useEffect',
-          'useState',
-          'useContext',
-          'useRef',
-          'useReducer',
-          'forwardRef',
-          'Fragment',
-          'PureComponent',
-        ],
-        'node_modules/react-dom/index.js': [
-          'render',
-          'createPortal',
-          'findDOMNode',
-        ],
-      },
-    }),
     filesize(),
     typescript({
       typescript: require('typescript'),
@@ -58,6 +30,7 @@ const config = {
     replace({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
+    commonjs(),
   ],
 };
 
