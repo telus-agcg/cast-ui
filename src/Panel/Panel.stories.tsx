@@ -16,7 +16,7 @@ storiesOf('Panel', module).add(
       headerColor={text('headerColor', 'primary')}
       headerBackgroundColor={text('headerBackgroundColor', 'white')}
       headerBorderColor={text('headerBorderColor', 'lightGray')}
-      bodyBackgroundColor={text('bodyBackgroundColor', 'panelBackground')}
+      bodyBackgroundColor={text('bodyBackgroundColor', 'lightBackground')}
       bodyBorderColor={text('bodyBorderColor', 'lightGray')}
       panelStyle={select(
         'panelStyle',

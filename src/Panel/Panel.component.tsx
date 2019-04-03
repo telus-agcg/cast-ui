@@ -66,7 +66,7 @@ export type Props = {
   /**
    * Set body background color. A CSS color code or a color defined in theme colors
    *
-   * @default 'panelBackground'
+   * @default 'lightBackground'
    **/
   bodyBackgroundColor?: string;
   /**
@@ -131,7 +131,7 @@ export class Panel extends React.Component<Props, State> {
     headerColor: 'primary',
     headerBackgroundColor: 'white',
     headerBorderColor: 'lightGray',
-    bodyBackgroundColor: 'panelBackground',
+    bodyBackgroundColor: 'lightBackground',
     bodyBorderColor: 'lightGray',
     theme: Themes.defaultTheme,
   };
