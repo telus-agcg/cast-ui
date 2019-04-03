@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { DraggableProps } from './defaultProps';
 import DraggableContext from './draggableContext';
 import { Themes } from '../themes';
@@ -13,11 +13,15 @@ const SDraggable = styled.div`
   font-size: ${(props: Props) => props.theme.common.md.fontSize};
 `;
 
-export const Draggable: React.FunctionComponent<Props> = (props: any) => {
+export const Draggable: React.FunctionComponent<Props> = ({
+  ...props
+}: any) => {
   return (
-    <DraggableContext.Provider value={{ parentProps: props }}>
-      <SDraggable {...props}>{props.children}</SDraggable>
-    </DraggableContext.Provider>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || props.theme}>
+      <DraggableContext.Provider value={{ parentProps: props }}>
+        <SDraggable {...props}>{props.children}</SDraggable>
+      </DraggableContext.Provider>
+    </ThemeProvider>
   );
 };
 Draggable.defaultProps = {

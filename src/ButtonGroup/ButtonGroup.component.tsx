@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 type ButtonGroupRole = 'group' | 'toolbar';
@@ -48,6 +48,10 @@ export class ButtonGroup extends React.Component<Props> {
     this.onBtnClick = this.onBtnClick.bind(this);
   }
 
+  static defaultProps = {
+    theme: Themes.defaultTheme,
+  };
+
   onBtnClick(key: any, fn: any, event: any) {
     if (this.props.mode === 'radio') {
       const newArray = [key];
@@ -82,11 +86,13 @@ export class ButtonGroup extends React.Component<Props> {
   }
 
   render() {
-    const { theme = Themes.defaultTheme, ...props } = this.props;
+    const { theme, ...props } = this.props;
     return (
-      <ButtonGroupWrapper theme={theme} {...props}>
-        {this.renderChildren()}
-      </ButtonGroupWrapper>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <ButtonGroupWrapper {...props}>
+          {this.renderChildren()}
+        </ButtonGroupWrapper>
+      </ThemeProvider>
     );
   }
 }

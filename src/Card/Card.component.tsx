@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -93,8 +93,12 @@ export const Card: React.FunctionComponent<Props> = ({
   children,
   theme,
   ...props
-}) => <SCard {...props}>{children}</SCard>;
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SCard {...props}>{children}</SCard>
+  </ThemeProvider>
+);
 Card.defaultProps = {
-  theme: Themes.defaultTheme,
   cardStyle: 'primary',
+  theme: Themes.defaultTheme,
 };

@@ -276,6 +276,11 @@ export const defaultTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
+      color: defaultColors.primary,
+    },
+    label: {
+      padding: '8px 16px 8px 0',
+      fontWeight: 500,
     },
   },
   radioButton: {

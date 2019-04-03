@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -38,8 +38,13 @@ const SBadge = styled.div`
 
 export const Badge: React.FunctionComponent<Props> = ({
   children,
+  theme,
   ...props
-}) => <SBadge {...props}>{children}</SBadge>;
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SBadge {...props}>{children}</SBadge>
+  </ThemeProvider>
+);
 
 Badge.defaultProps = {
   theme: Themes.defaultTheme,

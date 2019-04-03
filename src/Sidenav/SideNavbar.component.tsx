@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { SideNavContext, propsDeepSearch } from './context';
 import { Themes } from '../themes';
 
@@ -216,28 +216,30 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   });
 
   return (
-    <SideNavContext.Provider
-      value={{
-        baseProps: {
-          ...newProps,
-          isOpen,
-          beforeToggle,
-          onToggle,
-          afterToggle,
-          itemToggleOpenContent,
-          itemToggleCloseContent,
-          isSecondaryNavbarOpen,
-          onItemSelect: onSelect,
-        },
-      }}
-    >
-      <SSideNavbar role="side-nav-bar" {...newProps}>
-        {children}
-      </SSideNavbar>
-      <SSecondarySideNavbar role="secondary-side-nav-bar" {...newProps}>
-        {activeSideNavItemsChildren}
-      </SSecondarySideNavbar>
-    </SideNavContext.Provider>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || newProps.theme}>
+      <SideNavContext.Provider
+        value={{
+          baseProps: {
+            ...newProps,
+            isOpen,
+            beforeToggle,
+            onToggle,
+            afterToggle,
+            itemToggleOpenContent,
+            itemToggleCloseContent,
+            isSecondaryNavbarOpen,
+            onItemSelect: onSelect,
+          },
+        }}
+      >
+        <SSideNavbar role="side-nav-bar" {...newProps}>
+          {children}
+        </SSideNavbar>
+        <SSecondarySideNavbar role="secondary-side-nav-bar" {...newProps}>
+          {activeSideNavItemsChildren}
+        </SSecondarySideNavbar>
+      </SideNavContext.Provider>
+    </ThemeProvider>
   );
 };
 

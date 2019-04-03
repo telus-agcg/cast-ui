@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Select from 'react-select';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -14,7 +15,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  inputSize: string;
+  inputSize?: string;
   /**
    * The ID of the control
    *
@@ -62,10 +63,10 @@ const SDiv = styled.div`
   background: ${(props: Props) => props.theme.input.background}
   border: 1px solid ${(props: Props) => props.theme.input.borderColor};
   border-radius: ${(props: Props) =>
-    props.theme.common[props.inputSize].borderRadius};
-  padding: ${(props: Props) => props.theme.common[props.inputSize].padding}
+    props.theme.common[props.inputSize!].borderRadius};
+  padding: ${(props: Props) => props.theme.common[props.inputSize!].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.inputSize].fontSize}
+  font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
     background: ${(props: Props) => props.theme.input.backgroundDisabled};
@@ -88,38 +89,44 @@ export class CustomSelect extends React.Component<Props> {
     super(props);
   }
 
+  static defaultProps = {
+    inputSize: 'md',
+    theme: Themes.defaultTheme,
+  };
+
   render() {
+    const { options, controlSpecificProps, theme, ...props } = this.props;
     const errorId = this.props.invalid
       ? `${this.props.id}-error-msg`
       : undefined;
 
-    const error = this.props.invalid ? (
-      <SErrorDiv id={errorId} theme={this.props.theme}>
-        {this.props.invalidText}
-      </SErrorDiv>
-    ) : null;
-
     return (
-      <SDiv
-        className="select-wrapper"
-        inputSize={this.props.inputSize}
-        {...this.props.invalid}
-        aria-invalid={this.props.invalid ? true : undefined}
-        aria-describedby={errorId}
-        invalid={this.props.invalid}
-      >
-        <Select
-          className="react-select-component"
-          isDisabled={this.props.disabled}
-          value={this.props.selectedOption}
-          options={this.props.options}
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SDiv
+          className="select-wrapper"
+          inputSize={this.props.inputSize}
           {...this.props.invalid}
           aria-invalid={this.props.invalid ? true : undefined}
           aria-describedby={errorId}
-          {...this.props.controlSpecificProps}
-        />
-        {error}
-      </SDiv>
+          invalid={this.props.invalid}
+          theme={theme}
+          {...props}
+        >
+          <Select
+            className="react-select-component"
+            isDisabled={this.props.disabled}
+            value={this.props.selectedOption}
+            options={options}
+            {...this.props.invalid}
+            aria-invalid={this.props.invalid ? true : undefined}
+            aria-describedby={errorId}
+            {...controlSpecificProps}
+          />
+          {this.props.invalid ? (
+            <SErrorDiv id={errorId}>{this.props.invalidText}</SErrorDiv>
+          ) : null}
+        </SDiv>
+      </ThemeProvider>
     );
   }
 }

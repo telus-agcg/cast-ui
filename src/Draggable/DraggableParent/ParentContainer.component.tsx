@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { DraggableHandle } from '../DraggableHandle.component';
 import { DraggableProps } from '../defaultProps';
 import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
@@ -87,29 +87,31 @@ export const ParentContainer: React.FunctionComponent<Props> = ({
     { key: 'draggable', defaultVal: props.draggable },
     { key: 'theme', defaultVal: Themes.defaultTheme },
   ];
-  const newProps: any = useMergeWithParentProps(props, {
+  const { theme, ...newProps }: any = useMergeWithParentProps(props, {
     propsToMerge,
     parentProps,
   });
   return (
-    <SDraggableParent
-      {...newProps}
-      key="draggableParent"
-      draggable={parentActive && newProps.draggable}
-      onDragStart={newProps.onDragStart}
-      onDragOver={newProps.onDragOver}
-      onDrop={newProps.onDrop}
-    >
-      {newProps.showparenthandle && (
-        <DraggableHandle
-          size={newProps.parenthandlesize}
-          className="parentHandle"
-          onMouseEnter={() => setParentActive(true)}
-          onMouseLeave={() => setParentActive(false)}
-        />
-      )}
-      {props.children}
-    </SDraggableParent>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SDraggableParent
+        {...newProps}
+        key="draggableParent"
+        draggable={parentActive && newProps.draggable}
+        onDragStart={newProps.onDragStart}
+        onDragOver={newProps.onDragOver}
+        onDrop={newProps.onDrop}
+      >
+        {newProps.showparenthandle && (
+          <DraggableHandle
+            size={newProps.parenthandlesize}
+            className="parentHandle"
+            onMouseEnter={() => setParentActive(true)}
+            onMouseLeave={() => setParentActive(false)}
+          />
+        )}
+        {props.children}
+      </SDraggableParent>
+    </ThemeProvider>
   );
 };
 
