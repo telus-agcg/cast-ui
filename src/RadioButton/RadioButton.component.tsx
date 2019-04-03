@@ -68,6 +68,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const SDiv = styled.div`
+	cursor: pointer;
   display: ${(props: Props) =>
 		props.displayStyle === 'inline'
 			? 'inline-block'
