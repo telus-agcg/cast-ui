@@ -63,11 +63,10 @@ const displayStyleRules: Function = (
   displayStyle: 'inline' | 'stacked',
   theme: any,
 ) => {
-  console.log(theme);
   if (displayStyle === 'inline') {
     return {
       display: 'inline-block',
-      'padding-right': theme.radioButton.inlineSpacing,
+      'padding-right': theme.checkbox.inlineSpacing,
     };
   }
   return {
