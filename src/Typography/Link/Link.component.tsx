@@ -1,5 +1,6 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../../themes';
 
 export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
   /**
@@ -33,25 +34,33 @@ const SLink = styled.a`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.link.fontSize};
   color: ${(props: Props) => props.theme.typography.link.color};
-  text-decoration: ${(props: Props) => props.theme.typography.link.textDecoration};
+  text-decoration: ${(props: Props) =>
+    props.theme.typography.link.textDecoration};
   display: inline-block;
-  &:hover, &:focus{
+  &:hover,
+  &:focus {
     color: ${(props: Props) => props.theme.typography.link.hover.color};
-    text-decoration: ${(props: Props) => props.theme.typography.link.hover.textDecoration};
+    text-decoration: ${(props: Props) =>
+      props.theme.typography.link.hover.textDecoration};
   }
-  &:visited{
+  &:visited {
     color: ${(props: Props) => props.theme.typography.link.visited.color};
-    text-decoration: ${(props: Props) => props.theme.typography.link.visited.textDecoration};
+    text-decoration: ${(props: Props) =>
+      props.theme.typography.link.visited.textDecoration};
   }
-  &.solo{
-    text-decoration: ${(props: Props) => props.theme.typography.link.hover.textDecoration};
-    &:hover, &:focus{
+  &.solo {
+    text-decoration: ${(props: Props) =>
+      props.theme.typography.link.hover.textDecoration};
+    &:hover,
+    &:focus {
       color: ${(props: Props) => props.theme.typography.link.hover.color};
-      text-decoration: ${(props: Props) => props.theme.typography.link.hover.textDecoration};
+      text-decoration: ${(props: Props) =>
+        props.theme.typography.link.hover.textDecoration};
     }
-    &:visited{
+    &:visited {
       color: ${(props: Props) => props.theme.typography.link.color};
-      text-decoration: ${(props: Props) => props.theme.typography.link.textDecoration};
+      text-decoration: ${(props: Props) =>
+        props.theme.typography.link.textDecoration};
     }
   }
 `;
@@ -62,11 +71,14 @@ export const Link: React.FunctionComponent<Props> = ({
   theme,
   ...linkProps
 }) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
     <SLink
       className={`${linkProps.solo && 'solo'} ${className || ''}`}
       href={linkProps.href}
       target={linkProps.target}
-      >
+    >
       {children}
     </SLink>
-  );
+  </ThemeProvider>
+);
+Link.defaultProps = { theme: Themes.defaultTheme };

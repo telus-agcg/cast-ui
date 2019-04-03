@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Icon from 'react-icons-kit';
 import { ic_keyboard_arrow_left as IKAL } from 'react-icons-kit/md/ic_keyboard_arrow_left';
 import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
@@ -42,6 +42,7 @@ const SSideNavToggle = styled.div`
 export const SideNavToggle: React.FunctionComponent<Props> = ({
   openContent,
   closeContent,
+  theme,
   children,
   ...props
 }) => {
@@ -56,15 +57,17 @@ export const SideNavToggle: React.FunctionComponent<Props> = ({
     afterToggle ? afterToggle(e) : noop;
   };
   return (
-    <SSideNavToggle
-      role="side-nav-toggle"
-      {...props}
-      onClick={(e: any) => handleClick(e)}
-    >
-      {children}
-      {!isOpen && (openContent || <Icon icon={IKAR} size={24} />)}
-      {isOpen && (closeContent || <Icon icon={IKAL} size={24} />)}
-    </SSideNavToggle>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SSideNavToggle
+        role="side-nav-toggle"
+        {...props}
+        onClick={(e: any) => handleClick(e)}
+      >
+        {children}
+        {!isOpen && (openContent || <Icon icon={IKAR} size={24} />)}
+        {isOpen && (closeContent || <Icon icon={IKAL} size={24} />)}
+      </SSideNavToggle>
+    </ThemeProvider>
   );
 };
 

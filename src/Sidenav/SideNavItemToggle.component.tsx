@@ -1,10 +1,9 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Icon from 'react-icons-kit';
 import { ic_keyboard_arrow_left as IKAL } from 'react-icons-kit/md/ic_keyboard_arrow_left';
 import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
 
-import { SideNavContext } from './context';
 import { Themes } from '../themes';
 
 export type Props = {
@@ -63,25 +62,24 @@ export const SideNavItemToggle: React.FunctionComponent<Props> = ({
   openContent,
   closeContent,
   children,
+  theme,
   ...props
 }) => {
-  const {
-    // baseProps: { isOpen },
-  } = React.useContext(SideNavContext);
-
   const handleClick = (e: any) => {
     onClick(e);
   };
   return isToggleVisible ? (
-    <SSideNavItemToggle
-      role="side-nav-toggle"
-      {...props}
-      onClick={(e: any) => handleClick(e)}
-    >
-      {children}
-      {!isToggleOpen && (openContent || <Icon icon={IKAR} size={24} />)}
-      {isToggleOpen && (closeContent || <Icon icon={IKAL} size={24} />)}
-    </SSideNavItemToggle>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SSideNavItemToggle
+        role="side-nav-toggle"
+        {...props}
+        onClick={(e: any) => handleClick(e)}
+      >
+        {children}
+        {!isToggleOpen && (openContent || <Icon icon={IKAR} size={24} />)}
+        {isToggleOpen && (closeContent || <Icon icon={IKAL} size={24} />)}
+      </SSideNavItemToggle>
+    </ThemeProvider>
   ) : null;
 };
 

@@ -1,13 +1,8 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../../themes';
 
 export type Props = {
-  /**
-   * Set a className for the Display
-   *
-   * @default ''
-   **/
-  className?: string;
   /**
    * From theme provider
    *
@@ -24,14 +19,12 @@ const SDisplay = styled.h1`
 `;
 
 export const Display: React.FunctionComponent<Props> = ({
-  className,
-  children,
   theme,
+  children,
   ...props
 }) => (
-    <SDisplay
-      {...props}
-      >
-      {children}
-    </SDisplay>
-  );
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SDisplay {...props}>{children}</SDisplay>
+  </ThemeProvider>
+);
+Display.defaultProps = { theme: Themes.defaultTheme };

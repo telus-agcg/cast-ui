@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Icon from 'react-icons-kit';
 import Button, { ButtonProps } from '../Button';
 import { Themes } from '../themes';
@@ -67,11 +67,16 @@ const SIconButton = styled(Button)`
   outline: none;
 `;
 
-export const IconButton: React.FunctionComponent<Props> = props => (
-  <SIconButton {...props}>
-    {props.icon && <Icon icon={props.icon} size={props.iconsize} />}
-    {props.children}
-  </SIconButton>
+export const IconButton: React.FunctionComponent<Props> = ({
+  theme,
+  ...props
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SIconButton {...props}>
+      {props.icon && <Icon icon={props.icon} size={props.iconsize} />}
+      {props.children}
+    </SIconButton>
+  </ThemeProvider>
 );
 IconButton.defaultProps = {
   theme: Themes.defaultTheme,

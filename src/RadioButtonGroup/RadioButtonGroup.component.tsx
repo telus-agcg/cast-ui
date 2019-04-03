@@ -1,6 +1,7 @@
 import * as React from 'react';
 import RadioButton from '../RadioButton';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -24,9 +25,19 @@ export type Props = {
   /**
    * Specify the function to fire when the selected value is changed
    *
-   * @default null
+   * @default void
    **/
-  onChange?: any;
+  onChange?(
+    value: string,
+    name: string,
+    event: React.MouseEvent<HTMLElement>,
+  ): void;
+  /**
+   * From ThemeProvider
+   *
+   * @default defaultTheme
+   **/
+  theme: any;
 };
 
 const SDiv = styled.div``;
@@ -40,11 +51,15 @@ export class RadioButtonGroup extends React.Component<Props, State> {
   readonly state: State = {
     selected: this.props.defaultChecked || this.props.valueChecked,
   };
+  static defaultProps = {
+    theme: Themes.defaultTheme,
+    onChange: () => {},
+  };
 
   handleChange = (newSelection: any, value: any, evt: any) => {
     if (newSelection !== this.state.selected) {
       this.setState({ selected: newSelection });
-      this.props.onChange(newSelection, this.props.name, evt);
+      this.props.onChange!(newSelection, this.props.name, evt);
     }
   }
 
@@ -70,6 +85,11 @@ export class RadioButtonGroup extends React.Component<Props, State> {
   }
 
   render() {
-    return <SDiv data-radiobutton="">{this.getRadioButtons()}</SDiv>;
+    const { theme } = this.props;
+    return (
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SDiv data-radiobutton="">{this.getRadioButtons()}</SDiv>
+      </ThemeProvider>
+    );
   }
 }

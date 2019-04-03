@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactModal from 'react-modal';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = ReactModal.Props & {
   /**
@@ -170,36 +171,43 @@ export class Modal extends React.Component<Props> {
     super(props);
   }
 
+  static defaultProps = {
+    theme: Themes.defaultTheme,
+  };
+
   render() {
+    const { theme, ...props } = this.props;
     return (
-      <SReactModal
-        role="dialog"
-        isOpen={this.props.isOpen}
-        style={castStyles}
-        modalSize={this.props.modalSize || 'md'}
-        {...this.props}
-      >
-        {this.props.modalTitle && (
-          <ModalHeaderDiv>
-            <h5>{this.props.modalTitle}</h5>
-            {this.props.onTitleClose && (
-              <button
-                type="button"
-                aria-label="Close"
-                onClick={() => this.props.onTitleClose}
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            )}
-          </ModalHeaderDiv>
-        )}
-        <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
-        {this.props.footerContent && (
-          <ModalFooterDiv modalTitle={this.props.modalTitle}>
-            {this.props.footerContent}
-          </ModalFooterDiv>
-        )}
-      </SReactModal>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SReactModal
+          role="dialog"
+          isOpen={this.props.isOpen}
+          style={castStyles}
+          modalSize={this.props.modalSize || 'md'}
+          {...props}
+        >
+          {this.props.modalTitle && (
+            <ModalHeaderDiv>
+              <h5>{this.props.modalTitle}</h5>
+              {this.props.onTitleClose && (
+                <button
+                  type="button"
+                  aria-label="Close"
+                  onClick={() => this.props.onTitleClose}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              )}
+            </ModalHeaderDiv>
+          )}
+          <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
+          {this.props.footerContent && (
+            <ModalFooterDiv modalTitle={this.props.modalTitle}>
+              {this.props.footerContent}
+            </ModalFooterDiv>
+          )}
+        </SReactModal>
+      </ThemeProvider>
     );
   }
 }

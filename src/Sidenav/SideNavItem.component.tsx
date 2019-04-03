@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { SideNavContext } from './context';
 import { Themes } from '../themes';
 import { SideNavItemToggle } from '../Sidenav/SideNavItemToggle.component';
@@ -101,6 +101,7 @@ const SSideNavItem = styled.div`
 export const SideNavItem: React.FunctionComponent<Props> = ({
   onSelect = () => {},
   path = '',
+  theme,
   children,
   ...props
 }) => {
@@ -135,19 +136,21 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <SSideNavItem
-      role="side-nav-item"
-      {...props}
-      onClick={props.disabled ? noop : handleSelect}
-    >
-      {itemChildren}
-      <SideNavItemToggle
-        isToggleVisible={itemSecondaryChildren.length > 0 && isOpen}
-        isToggleOpen={props.activeSideNavItem && isSecondaryNavbarOpen}
-        openContent={props.itemToggleOpenContent || itemToggleOpenContent}
-        closeContent={props.itemToggleCloseContent || itemToggleCloseContent}
-      />
-    </SSideNavItem>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SSideNavItem
+        role="side-nav-item"
+        {...props}
+        onClick={props.disabled ? noop : handleSelect}
+      >
+        {itemChildren}
+        <SideNavItemToggle
+          isToggleVisible={itemSecondaryChildren.length > 0 && isOpen}
+          isToggleOpen={props.activeSideNavItem && isSecondaryNavbarOpen}
+          openContent={props.itemToggleOpenContent || itemToggleOpenContent}
+          closeContent={props.itemToggleCloseContent || itemToggleCloseContent}
+        />
+      </SSideNavItem>
+    </ThemeProvider>
   );
 };
 

@@ -1,13 +1,8 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../../themes';
 
 export type Props = {
-  /**
-   * Set a className for the SubHeading
-   *
-   * @default ''
-   **/
-  className?: string;
   /**
    * From theme provider
    *
@@ -17,22 +12,22 @@ export type Props = {
 };
 
 const SSubHeading = styled.h2`
-  font-weight: ${(props: Props) => props.theme.typography.subHeading.fontWeight};
+  font-weight: ${(props: Props) =>
+    props.theme.typography.subHeading.fontWeight};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.subHeading.fontSize};
   color: ${(props: Props) => props.theme.colors.primary}
-  line-height: ${(props: Props) => props.theme.typography.subHeading.lineHeight};
+  line-height: ${(props: Props) =>
+    props.theme.typography.subHeading.lineHeight};
 `;
 
 export const SubHeading: React.FunctionComponent<Props> = ({
-  className,
-  children,
   theme,
+  children,
   ...props
 }) => (
-    <SSubHeading
-      {...props}
-      >
-      {children}
-    </SSubHeading>
-  );
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SSubHeading {...props}>{children}</SSubHeading>
+  </ThemeProvider>
+);
+SubHeading.defaultProps = { theme: Themes.defaultTheme };

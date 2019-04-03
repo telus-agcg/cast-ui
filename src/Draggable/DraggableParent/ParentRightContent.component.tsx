@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { DraggableProps } from '../defaultProps';
 import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
 import { Themes } from '../../themes';
@@ -20,15 +20,17 @@ export const ParentRightContent: React.FunctionComponent<Props> = ({
     { key: 'bordercolor', defaultVal: 'lightGray' },
     { key: 'theme', defaultVal: Themes.defaultTheme },
   ];
-  const newProps: any = useMergeWithParentProps(props, {
+  const { theme, ...newProps }: any = useMergeWithParentProps(props, {
     propsToMerge,
     parentProps,
   });
 
   return (
-    <SParentRightContent {...newProps} key={props.color}>
-      {props.children}
-    </SParentRightContent>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SParentRightContent {...newProps} key={props.color}>
+        {props.children}
+      </SParentRightContent>
+    </ThemeProvider>
   );
 };
 

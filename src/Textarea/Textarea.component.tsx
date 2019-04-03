@@ -1,5 +1,6 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -13,7 +14,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  textareaSize: string;
+  textareaSize?: string;
   /**
    * Disables modification
    *
@@ -72,11 +73,11 @@ const STextarea = styled.textarea`
   background: ${(props: Props) => props.theme.textarea.background}
   border: 1px solid ${(props: Props) => props.theme.textarea.borderColor};
   border-radius: ${(props: Props) =>
-    props.theme.common[props.textareaSize].borderRadius};
-  padding: ${(props: Props) => props.theme.common[props.textareaSize].padding}
+    props.theme.common[props.textareaSize!].borderRadius};
+  padding: ${(props: Props) => props.theme.common[props.textareaSize!].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) =>
-    props.theme.common[props.textareaSize].fontSize}
+    props.theme.common[props.textareaSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
     border-color: ${props => props.theme.textarea.disabled.borderColor};
@@ -100,29 +101,33 @@ const SErrorDiv = styled.div`
 `;
 
 export const Textarea: React.FunctionComponent<Props> = ({
+  theme,
+  children,
   ...textareaProps
 }) => {
   const errorId = textareaProps.invalid
     ? `${textareaProps.id}-error-msg`
     : undefined;
 
-  const error = textareaProps.invalid ? (
-    <SErrorDiv id={errorId} theme={textareaProps.theme}>
-      {textareaProps.invalidText}
-    </SErrorDiv>
-  ) : null;
-
   return (
-    <>
-      <STextarea
-        {...textareaProps}
-        data-invalid={textareaProps.invalid ? '' : undefined}
-        aria-invalid={textareaProps.invalid ? true : undefined}
-        aria-describedby={errorId}
-      >
-        {textareaProps.children}
-      </STextarea>
-      {error}
-    </>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <>
+        <STextarea
+          {...textareaProps}
+          data-invalid={textareaProps.invalid ? '' : undefined}
+          aria-invalid={textareaProps.invalid ? true : undefined}
+          aria-describedby={errorId}
+        >
+          {children}
+        </STextarea>
+        {textareaProps.invalid ? (
+          <SErrorDiv id={errorId}>{textareaProps.invalidText}</SErrorDiv>
+        ) : null}
+      </>
+    </ThemeProvider>
   );
+};
+Textarea.defaultProps = {
+  textareaSize: 'md',
+  theme: Themes.defaultTheme,
 };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { DayPickerInputProps } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
@@ -167,7 +167,10 @@ const OverlayComponent: React.FunctionComponent<Props> = ({
   return <SOverlayComponent {...props}>{children}</SOverlayComponent>;
 };
 
-export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
+export const DatePicker: React.FunctionComponent<Props> = ({
+  theme,
+  ...props
+}) => {
   const selectedDays = (props.dayPickerProps || {}).selectedDays;
   const modifiers = {
     sundays: { daysOfWeek: [0] },
@@ -175,25 +178,34 @@ export const DatePicker: React.FunctionComponent<Props> = ({ ...props }) => {
     ...(selectedDays || [])[1],
   };
   return (
-    <DayPickerInput
-      format={props.format || 'YYYY/MM/DD'}
-      component={(inputProps: Props) => (
-        <SInput {...inputProps} {...props} inputSize={props.datepickersize!} />
-      )}
-      overlayComponent={(overlayProps: any) => (
-        <OverlayComponent {...props} {...overlayProps} />
-      )}
-      {...props}
-      dayPickerProps={{
-        weekdaysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-        ...props.dayPickerProps,
-        modifiers: { ...modifiers, ...(props.dayPickerProps || {}).modifiers },
-        className: `
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <DayPickerInput
+        format={props.format || 'YYYY/MM/DD'}
+        component={(inputProps: Props) => (
+          <SInput
+            {...inputProps}
+            {...props}
+            inputSize={props.datepickersize!}
+          />
+        )}
+        overlayComponent={(overlayProps: any) => (
+          <OverlayComponent {...props} {...overlayProps} />
+        )}
+        {...props}
+        dayPickerProps={{
+          weekdaysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+          ...props.dayPickerProps,
+          modifiers: {
+            ...modifiers,
+            ...(props.dayPickerProps || {}).modifiers,
+          },
+          className: `
           ${(props.dayPickerProps || {}).className || ''}  ${
-          ((selectedDays || [])[1] || {}).from ? 'Selectable' : ''
-        }`,
-      }}
-    />
+            ((selectedDays || [])[1] || {}).from ? 'Selectable' : ''
+          }`,
+        }}
+      />
+    </ThemeProvider>
   );
 };
 

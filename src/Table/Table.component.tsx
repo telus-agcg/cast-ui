@@ -1,14 +1,13 @@
 /* tslint:disable:max-line-length */
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import ReactTable, { TableProps } from 'react-table';
+import { Themes } from '../themes';
 
 import { Icon } from 'react-icons-kit';
 import { bars as IconLarge } from 'react-icons-kit/fa/bars';
-import { ic_format_align_justify as IconCondensed }
-  from 'react-icons-kit/md/ic_format_align_justify';
-import { ic_view_headline as IconMedium }
-  from 'react-icons-kit/md/ic_view_headline';
+import { ic_format_align_justify as IconCondensed } from 'react-icons-kit/md/ic_format_align_justify';
+import { ic_view_headline as IconMedium } from 'react-icons-kit/md/ic_view_headline';
 import TablePagination from '../TablePagination/TablePagination.component';
 import 'react-table/react-table.css';
 import { castTableProps } from './castTableProps';
@@ -70,7 +69,7 @@ const SWrapperDiv = styled.div`
   .ReactTable .rt-tbody .rt-td,
   .ReactTable .rt-tfoot .rt-td {
     padding: ${(props: Props) =>
-      props.theme.common[props.tableSize].tableCellPadding};
+      props.theme.common[props.tableSize!].tableCellPadding};
     padding-left: 0;
     padding-right: 0;
     border-right: 0;
@@ -107,7 +106,7 @@ const SWrapperDiv = styled.div`
   }
 `;
 
-const initialState = { tableSize: 'md', striped: false, columns: [] };
+const initialState = { tableSize: 'md' };
 type State = Readonly<typeof initialState>;
 
 export class Table extends React.Component<Props> {
@@ -117,6 +116,13 @@ export class Table extends React.Component<Props> {
     super(props);
   }
 
+  static defaultProps = {
+    striped: false,
+    columns: [],
+    tableSize: 'md',
+    theme: Themes.defaultTheme,
+  };
+
   changeTableSize(size: string) {
     this.setState({
       tableSize: size,
@@ -124,38 +130,41 @@ export class Table extends React.Component<Props> {
   }
 
   render() {
+    const { theme, ...props } = this.props;
     return (
-      <SWrapperDiv {...this.props} tableSize={this.state.tableSize} >
-        {this.props.sizable &&
-        <div className="table-size-controls">
-          <Icon
-            icon={IconLarge}
-            size={24}
-            onClick={this.changeTableSize.bind(this, 'lg')}
-            className={this.state.tableSize === 'lg' ? 'selected' : ''}
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SWrapperDiv {...this.props} tableSize={this.state.tableSize}>
+          {this.props.sizable && (
+            <div className="table-size-controls">
+              <Icon
+                icon={IconLarge}
+                size={24}
+                onClick={this.changeTableSize.bind(this, 'lg')}
+                className={this.state.tableSize === 'lg' ? 'selected' : ''}
+              />
+              <Icon
+                icon={IconMedium}
+                size={30}
+                onClick={this.changeTableSize.bind(this, 'md')}
+                className={this.state.tableSize === 'md' ? 'selected' : ''}
+              />
+              <Icon
+                icon={IconCondensed}
+                size={24}
+                onClick={this.changeTableSize.bind(this, 'sm')}
+                className={this.state.tableSize === 'sm' ? 'selected' : ''}
+              />
+            </div>
+          )}
+          <ReactTable
+            {...props}
+            className={`-highlight  + ${this.props.striped ? '-striped ' : ''}`}
+            PaginationComponent={TablePagination}
+            nextText="Next >"
+            previousText="< Previous"
           />
-          <Icon
-            icon={IconMedium}
-            size={30}
-            onClick={this.changeTableSize.bind(this, 'md')}
-            className={this.state.tableSize === 'md' ? 'selected' : ''}
-          />
-          <Icon
-            icon={IconCondensed}
-            size={24}
-            onClick={this.changeTableSize.bind(this, 'sm')}
-            className={this.state.tableSize === 'sm' ? 'selected' : ''}
-          />
-        </div>
-        }
-        <ReactTable
-          {...this.props}
-          className={`-highlight  + ${this.state.striped ? '-striped ' : ''}`}
-          PaginationComponent={TablePagination}
-          nextText="Next >"
-          previousText="< Previous"
-        />
-      </SWrapperDiv>
+        </SWrapperDiv>
+      </ThemeProvider>
     );
   }
 }

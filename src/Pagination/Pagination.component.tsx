@@ -3,7 +3,8 @@ import ReactPaginate, { ReactPaginateProps } from 'react-paginate';
 import Icon from 'react-icons-kit';
 import { chevronLeft } from 'react-icons-kit/fa/chevronLeft';
 import { chevronRight } from 'react-icons-kit/fa/chevronRight';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../themes';
 
 const SPaginate = styled.div`
   .cast-paginate {
@@ -55,6 +56,7 @@ const defaultProps = {
   compact: false,
   pageRangeDisplayed: 3,
   marginPagesDisplayed: 1,
+  theme: Themes.defaultTheme,
 };
 
 type DefaultProps = Readonly<typeof defaultProps>;
@@ -88,22 +90,26 @@ const NextLabel = () => (
 export class Pagination extends React.Component<Props> {
   static defaultProps = defaultProps;
   render() {
+    const { theme, ...props } = this.props;
     return (
-      <SPaginate {...this.props}>
-        <ReactPaginate
-          pageCount={this.props.pageCount}
-          pageRangeDisplayed={
-            this.props.pageRangeDisplayed || defaultProps.pageRangeDisplayed
-          }
-          marginPagesDisplayed={
-            this.props.marginPagesDisplayed || defaultProps.marginPagesDisplayed
-          }
-          containerClassName={'cast-paginate'}
-          previousLabel={<PreviousLabel />}
-          nextLabel={<NextLabel />}
-          {...this.props}
-        />
-      </SPaginate>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SPaginate {...props}>
+          <ReactPaginate
+            pageCount={this.props.pageCount}
+            pageRangeDisplayed={
+              this.props.pageRangeDisplayed || defaultProps.pageRangeDisplayed
+            }
+            marginPagesDisplayed={
+              this.props.marginPagesDisplayed ||
+              defaultProps.marginPagesDisplayed
+            }
+            containerClassName={'cast-paginate'}
+            previousLabel={<PreviousLabel />}
+            nextLabel={<NextLabel />}
+            {...props}
+          />
+        </SPaginate>
+      </ThemeProvider>
     );
   }
 }

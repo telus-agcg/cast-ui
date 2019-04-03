@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { SideNavContext } from './context';
 import { Themes } from '../themes';
 
@@ -24,11 +24,13 @@ export const SideNavItemText: React.FunctionComponent<Props> = ({
   const {
     baseProps: { isOpen },
   } = React.useContext(SideNavContext);
-  const newProps = { ...props, isOpen };
+  const { theme, ...newProps } = { ...props, isOpen };
   return (
-    <SSideNavItemText role="side-nav-text" {...newProps}>
-      {children}
-    </SSideNavItemText>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SSideNavItemText role="side-nav-text" {...newProps}>
+        {children}
+      </SSideNavItemText>
+    </ThemeProvider>
   );
 };
 

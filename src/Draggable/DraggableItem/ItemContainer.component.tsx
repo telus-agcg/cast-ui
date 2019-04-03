@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { DraggableProps } from '../defaultProps';
 import { DraggableHandle } from '../DraggableHandle.component';
 import DraggableContext, { useMergeWithParentProps } from '../draggableContext';
@@ -92,32 +92,34 @@ export const ItemContainer: React.FunctionComponent<Props> = (props: any) => {
     { key: 'draggable', defaultVal: props.draggable },
     { key: 'theme', defaultVal: Themes.defaultTheme },
   ];
-  const newProps: any = useMergeWithParentProps(props, {
+  const { theme, ...newProps }: any = useMergeWithParentProps(props, {
     propsToMerge,
     parentProps,
   });
   return (
-    <SItemContainer
-      {...newProps}
-      key="draggableItem"
-      draggable={itemActive && newProps.draggable}
-    >
-      {newProps.showitemhandle && (
-        <SItemLeftContent
-          {...newProps}
-          draggable={false}
-          itemDraggable={itemActive && newProps.draggable}
-        >
-          <DraggableHandle
-            size={newProps.itemhandlesize}
-            className="itemHandle"
-            onMouseEnter={() => setItemActive(true)}
-            onMouseLeave={() => setItemActive(false)}
-          />
-        </SItemLeftContent>
-      )}
-      {props.children}
-    </SItemContainer>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SItemContainer
+        {...newProps}
+        key="draggableItem"
+        draggable={itemActive && newProps.draggable}
+      >
+        {newProps.showitemhandle && (
+          <SItemLeftContent
+            {...newProps}
+            draggable={false}
+            itemDraggable={itemActive && newProps.draggable}
+          >
+            <DraggableHandle
+              size={newProps.itemhandlesize}
+              className="itemHandle"
+              onMouseEnter={() => setItemActive(true)}
+              onMouseLeave={() => setItemActive(false)}
+            />
+          </SItemLeftContent>
+        )}
+        {props.children}
+      </SItemContainer>
+    </ThemeProvider>
   );
 };
 
