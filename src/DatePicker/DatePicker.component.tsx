@@ -4,10 +4,12 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { DayPickerInputProps } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
-import { Input } from '../Input/Input.component';
+import { Input, InputProps } from '../Input';
 import { Themes } from '../themes';
 
-export type Props = Partial<DayPickerInputProps> & {
+type BlendedProps = InputProps & DayPickerInputProps;
+
+export type Props = Partial<BlendedProps> & {
   /**
    * Set className
    *
