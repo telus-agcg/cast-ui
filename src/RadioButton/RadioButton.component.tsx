@@ -71,7 +71,6 @@ const displayStyleRules: Function = (
   displayStyle: 'inline' | 'stacked',
   theme: any,
 ) => {
-  console.log(theme);
   if (displayStyle === 'inline') {
     return {
       display: 'inline-block',
@@ -80,7 +79,7 @@ const displayStyleRules: Function = (
   }
   return {
     display: 'block',
-    'padding-bottom': theme.checkbox.stackedSpacing,
+    'padding-bottom': theme.radioButton.stackedSpacing,
   };
 };
 
