@@ -255,7 +255,7 @@ export const cobaltTheme = {
       fontSize: '18px',
     },
     tooltip: {
-      background: cobaltColors.primary,
+      background: cobaltColors.black,
       borderRadius: '1px',
     },
     popover: {
