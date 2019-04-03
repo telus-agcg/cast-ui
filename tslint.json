@@ -1,15 +1,12 @@
 {
-  "extends": ["tslint-config-airbnb"],
+  "extends": ["tslint-config-airbnb", "tslint-config-prettier"],
   "linterOptions": {
-    "exclude": [
-        "*.css",
-        "*.json",
-        "**/*.json"
-    ]
+    "exclude": ["*.css", "*.json", "**/*.json"]
   },
   "rules": {
     "import-name": [false],
     "variable-name": false,
-    "quote-props": [false]
+    "quote-props": [false],
+    "jsx-no-lambda": false
   }
 }
