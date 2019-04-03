@@ -122,9 +122,9 @@ const SSideNavbar = styled.div`
   margin: ${(props: Props) => props.theme.sidenav.margin};
   z-index: ${(props: Props) => props.theme.sidenav.zIndex};
   background: ${(props: Props) =>
-    props.theme.colors[props.background!] ||
     props.background!.toString() ||
-    props.theme.sidenav.background};
+    props.theme.sidenav.background ||
+    props.theme.colors[props.background!]};
   border-left: ${(props: Props) =>
     props.borderLeft!.toString() || props.theme.sidenav.borderLeft};
   border-right: ${(props: Props) =>
@@ -150,9 +150,9 @@ const SSecondarySideNavbar = styled.div`
   margin: ${(props: Props) => props.theme.sidenav.secondaryNavbar.margin};
   z-index: ${(props: Props) => props.theme.sidenav.secondaryNavbar.zIndex};
   background: ${(props: Props) =>
-    props.theme.colors[props.secondaryNavbarBackground!] ||
     props.secondaryNavbarBackground!.toString() ||
-    props.theme.sidenav.secondaryNavbar.background};
+    props.theme.sidenav.secondaryNavbar.background ||
+    props.theme.colors[props.secondaryNavbarBackground!]};
   border-left: ${(props: Props) =>
     props.borderLeft!.toString() ||
     props.theme.sidenav.secondaryNavbar.borderLeft};

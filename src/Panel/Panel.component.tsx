@@ -92,8 +92,8 @@ const PanelWrapper = styled.div`
 
 const PanelBody = styled.div`
   background: ${(props: Props) =>
-    props.theme.colors[props.bodyBackgroundColor!] ||
-    props.bodyBackgroundColor!.toString()};
+    props.bodyBackgroundColor!.toString() ||
+    props.theme.colors[props.bodyBackgroundColor!]};
   border: ${(props: Props) =>
     `${props.theme.panel.borderWidth} solid
     ${props.theme.colors[props.bodyBorderColor!] ||
