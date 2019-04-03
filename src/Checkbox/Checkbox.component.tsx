@@ -44,13 +44,13 @@ export type Props = {
    *
    * @default ''
    **/
-	value: string;
-	/**
+  value: string;
+  /**
    * Specify the display style the radio button will have
    *
    * @default 'stacked'
    **/
-	displayStyle?: "inline" | "stacked";
+  displayStyle?: 'inline' | 'stacked';
   /**
    * From theme provider
    *
@@ -60,27 +60,25 @@ export type Props = {
 };
 
 const displayStyleRules: Function = (
-	displayStyle: 'inline' | 'stacked',
-	theme: any,
+  displayStyle: 'inline' | 'stacked',
+  theme: any,
 ) => {
-	console.log(theme);
-	if(displayStyle === 'inline'){
-		return {
-			display: 'inline-block',
-			'padding-right': theme.radioButton.inlineSpacing
-		};
-	}else{
-		return {
-			display: 'block',
-			'padding-bottom': theme.checkbox.stackedSpacing
-		};
-	}
+  console.log(theme);
+  if (displayStyle === 'inline') {
+    return {
+      display: 'inline-block',
+      'padding-right': theme.radioButton.inlineSpacing,
+    };
+  }
+  return {
+    display: 'block',
+    'padding-bottom': theme.checkbox.stackedSpacing,
+  };
 };
 
 const SDiv = styled.div`
-	cursor: pointer;
-	${(props: Props) =>
-		displayStyleRules(props.displayStyle, Themes.defaultTheme)}
+  cursor: pointer;
+  ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)}
 `;
 
 const SLabel = styled.label`
