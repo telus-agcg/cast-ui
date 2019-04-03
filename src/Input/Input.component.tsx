@@ -2,14 +2,65 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-// TODO: we should be able to use an interface to inherit the base properties of an
-// HTMLInputElement. However, when I do this, CPU usage goes nuts, and the base
-// properties still don't inherit correctly. We need to research this further.
-// interface WrapperProps extends React.HTMLAttributes<HTMLInputElement> {
-// ...
-// }
-
-type PropsThemeOnly = {
+export type Props = React.InputHTMLAttributes<HTMLInputElement> & {
+  /**
+   * The ID of the control
+   *
+   * @default null
+   **/
+  id: string;
+  /**
+   * Type of input (text, number, email, etc)
+   *
+   * @default 'text'
+   **/
+  type?: string;
+  /**
+   * Autocomplete settings for this field
+   *
+   * @default 'on'
+   **/
+  autoComplete?: string;
+  /**
+   * Disables modification
+   *
+   * @default false
+   **/
+  disabled?: boolean;
+  /**
+   * Select Input Size
+   *
+   * @default 'md'
+   **/
+  inputSize?: string;
+  /**
+   * Specify whether the control is currently invalid
+   *
+   * @default false
+   **/
+  invalid?: boolean;
+  /**
+   * Provide the text that is displayed when the control is in an invalid state
+   */
+  invalidText?: string;
+  /**
+   * What is the maximum length of the text in the field?
+   *
+   * @default null
+   **/
+  maxLength?: number;
+  /**
+   * Specify the placeholder attribute for the <input>
+   *
+   * @default null
+   */
+  placeholder?: string;
+  /**
+   * Is the field required?
+   *
+   * @default false
+   **/
+  required?: boolean;
   /**
    * From theme provider
    *
@@ -17,68 +68,6 @@ type PropsThemeOnly = {
    **/
   theme?: any;
 };
-
-export type Props = React.InputHTMLAttributes<HTMLInputElement> &
-  PropsThemeOnly & {
-    /**
-     * The ID of the control
-     *
-     * @default null
-     **/
-    id: string;
-    /**
-     * Type of input (text, number, email, etc)
-     *
-     * @default 'text'
-     **/
-    type?: string;
-    /**
-     * Autocomplete settings for this field
-     *
-     * @default 'on'
-     **/
-    autoComplete?: string;
-    /**
-     * Disables modification
-     *
-     * @default false
-     **/
-    disabled?: boolean;
-    /**
-     * Select Input Size
-     *
-     * @default 'md'
-     **/
-    inputSize?: string;
-    /**
-     * Specify whether the control is currently invalid
-     *
-     * @default false
-     **/
-    invalid?: boolean;
-    /**
-     * Provide the text that is displayed when the control is in an invalid state
-     */
-    invalidText?: string;
-    /**
-     * What is the maximum length of the text in the field?
-     *
-     * @default null
-     **/
-    maxLength?: number;
-    /**
-     * Specify the placeholder attribute for the <input>
-     *
-     * @default null
-     */
-    placeholder?: string;
-    /**
-     * Is the field required?
-     *
-     * @default false
-     **/
-    required?: boolean;
-  };
 
 const SInput = styled.input`
   background: ${(props: Props) => props.theme.input.background}
@@ -103,8 +92,7 @@ const SInput = styled.input`
 `;
 
 const SErrorDiv = styled.div`
-  color: ${(props: Props) =>
-    props.invalidTextColor || props.theme.validation.errorTextColor};
+  color: ${(props: Props) => props.theme.validation.errorTextColor};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.validation.fontSize};
   padding: ${(props: Props) => props.theme.validation.padding};
