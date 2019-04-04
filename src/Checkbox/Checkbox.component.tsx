@@ -38,7 +38,11 @@ export type Props = {
    *
    * @default void
    **/
-  onChange?: any;
+  onChange?(
+    checked: boolean,
+    id: string,
+    event: React.MouseEvent<HTMLElement>,
+  ): void;
   /**
    * Specify the value of the checkbox group when the current button is selected
    *
@@ -131,7 +135,7 @@ export class Checkbox extends React.Component<Props> {
           <SInput
             type="checkbox"
             onChange={(evt: any) => {
-              onChange(this.input.checked, id, evt);
+              onChange!(this.input.checked, id, evt);
             }}
             ref={(el: any) => {
               this.input = el;
