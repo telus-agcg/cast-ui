@@ -87,7 +87,6 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-  onClick?: any;
 };
 
 const SPanelHeader = styled.div`

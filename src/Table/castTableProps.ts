@@ -1,7 +1,7 @@
 export type castTableProps = {
   data: any;
   columns: any;
-  tableSize?: string;
+  tableSize?: 'sm' | 'md' | 'lg';
   children?: any;
   /**
    * Specify if pagination controls should be shown
