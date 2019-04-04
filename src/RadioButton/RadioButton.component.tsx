@@ -1,6 +1,7 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { lighten } from '../utils/colorUtils';
+import { Themes } from '../themes';
 
 export type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   /**
@@ -38,7 +39,7 @@ export type Props = React.InputHTMLAttributes<HTMLInputElement> & {
    *
    * @default 'md'
    **/
-  rbSize: 'sm' | 'md' | 'lg';
+  rbSize?: 'sm' | 'md' | 'lg';
   /**
    * Specify the value of the radio button group when the current button is selected
    **/
@@ -50,7 +51,7 @@ export type Props = React.InputHTMLAttributes<HTMLInputElement> & {
    **/
   onChange?(
     value: string,
-    name: string | undefined,
+    name: string,
     event: React.MouseEvent<HTMLElement>,
   ): void;
   /**
@@ -85,7 +86,7 @@ const displayStyleRules: Function = (
 
 const SDiv = styled.div`
 	cursor: pointer;
-  ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)}
+  ${(props: any) => displayStyleRules(props.displayStyle, props.theme)}
   }
 `;
 
@@ -132,10 +133,12 @@ const SInput = styled.input`
 `;
 
 export class RadioButton extends React.Component<Props> {
-  handleChange = (evt: any) => {
-    if (undefined !== this.props.onChange) {
-      this.props.onChange(this.props.value, this.props.name, evt);
-    }
+  static defaultProps = {
+    rbSize: 'md',
+    displayStyle: 'stacked',
+    name: '',
+    theme: Themes.defaultTheme,
+    onChange: () => {},
   };
 
   render() {
@@ -147,25 +150,32 @@ export class RadioButton extends React.Component<Props> {
       value,
       checked,
       defaultChecked,
+      theme,
       children,
+      onChange,
+      ...props
     } = this.props;
     return (
-      <SDiv data-radiobutton="" displayStyle={this.props.displayStyle}>
-        <SInput
-          type="radio"
-          name={name}
-          rbSize={rbSize}
-          disabled={disabled}
-          id={id}
-          value={value}
-          checked={checked}
-          defaultChecked={defaultChecked}
-          onChange={this.handleChange}
-        />
-        <SLabel htmlFor={this.props.id} rbSize={this.props.rbSize}>
-          {children}
-        </SLabel>
-      </SDiv>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SDiv data-radiobutton="" {...props}>
+          <SInput
+            type="radio"
+            name={name}
+            rbSize={rbSize}
+            disabled={disabled}
+            id={id}
+            value={value}
+            checked={checked}
+            defaultChecked={defaultChecked}
+            onChange={(evt: any) => {
+              onChange!(value, name!, evt);
+            }}
+          />
+          <SLabel htmlFor={this.props.id} rbSize={this.props.rbSize}>
+            {children}
+          </SLabel>
+        </SDiv>
+      </ThemeProvider>
     );
   }
 }
