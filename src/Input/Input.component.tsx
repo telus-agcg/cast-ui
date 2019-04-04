@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-export type Props = React.InputHTMLAttributes<HTMLInputElement> & {
+export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
    * The ID of the control
    *
@@ -67,7 +67,7 @@ export type Props = React.InputHTMLAttributes<HTMLInputElement> & {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
 const SInput = styled.input`
   background: ${(props: Props) => props.theme.input.background}
