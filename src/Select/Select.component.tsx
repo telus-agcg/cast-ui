@@ -15,7 +15,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  inputSize?: string;
+  inputSize?: 'sm' | 'md' | 'lg';
   /**
    * The ID of the control
    *

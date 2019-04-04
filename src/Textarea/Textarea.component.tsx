@@ -14,7 +14,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  textareaSize?: string;
+  textareaSize?: 'sm' | 'md' | 'lg';
   /**
    * Disables modification
    *
