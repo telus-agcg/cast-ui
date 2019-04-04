@@ -61,7 +61,7 @@ export class RadioButtonGroup extends React.Component<Props, State> {
       this.setState({ selected: newSelection });
       this.props.onChange!(newSelection, this.props.name, evt);
     }
-  }
+  };
 
   getRadioButtons() {
     const children = React.Children.map(
@@ -85,10 +85,12 @@ export class RadioButtonGroup extends React.Component<Props, State> {
   }
 
   render() {
-    const { theme } = this.props;
+    const { theme, onChange, children, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv data-radiobutton="">{this.getRadioButtons()}</SDiv>
+        <SDiv data-radiobutton="" {...props}>
+          {this.getRadioButtons()}
+        </SDiv>
       </ThemeProvider>
     );
   }
