@@ -129,6 +129,7 @@ export class TablePagination extends React.Component<Props> {
   render() {
     const {
       theme,
+      onPageChange,
       PageButtonComponent = SPaginationButton,
       PageButtonNextPrevComponent = SPaginationButtonNextPrev,
       ...props
