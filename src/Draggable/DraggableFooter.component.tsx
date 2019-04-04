@@ -9,7 +9,7 @@ const SDraggableFooter = styled.div`
   position: relative;
   padding: ${(props: Props) =>
     `${
-      props.theme.common[props.guttersize!].padding.toString().split(' ')[0]
+      props.theme.common[props.gutterSize!].padding.toString().split(' ')[0]
     } 0`};
 `;
 
@@ -23,7 +23,7 @@ export const DraggableFooter: React.FunctionComponent<Props> = ({
 );
 DraggableFooter.defaultProps = {
   color: 'lightGray',
-  guttersize: 'md',
-  draggablestyle: 'primary',
+  gutterSize: 'md',
+  draggableStyle: 'primary',
   theme: Themes.defaultTheme,
 };

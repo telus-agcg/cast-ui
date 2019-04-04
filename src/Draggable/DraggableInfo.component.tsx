@@ -19,7 +19,7 @@ const SDraggableInfo = styled.div`
   font-style: italic;
   padding: ${(props: Props) =>
     `calc(${
-      props.theme.common[props.guttersize!].padding.toString().split(' ')[0]
+      props.theme.common[props.gutterSize!].padding.toString().split(' ')[0]
     } / 4) 0`};
 `;
 
@@ -33,7 +33,7 @@ export const DraggableInfo: React.FunctionComponent<Props> = ({
 );
 DraggableInfo.defaultProps = {
   color: 'lightGray',
-  guttersize: 'md' as 'md' | 'lg' | 'sm',
+  gutterSize: 'md' as 'md' | 'lg' | 'sm',
   iconsize: 10,
   theme: Themes.defaultTheme,
 };

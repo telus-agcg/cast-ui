@@ -15,7 +15,7 @@ export const ParentMainContent: React.FunctionComponent<Props> = ({
 }) => {
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
-    { key: 'guttersize', defaultVal: 'md' },
+    { key: 'gutterSize', defaultVal: 'md' },
     { key: 'theme', defaultVal: Themes.defaultTheme },
   ];
   const { theme, ...newProps }: any = useMergeWithParentProps(props, {
