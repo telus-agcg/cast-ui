@@ -21,7 +21,7 @@ export type Props = Partial<DayPickerInputProps> & {
    **/
   id: string;
   /**
-   * Type of input (text, number, email, etc)
+   * Type of input
    *
    * @default 'text'
    **/
@@ -31,13 +31,19 @@ export type Props = Partial<DayPickerInputProps> & {
    *
    * @default 'md'
    **/
-  datePickerSize?: string;
+  datePickerSize?: 'sm' | 'md' | 'lg';
   /**
    * Select DatePicker style.
    *
    * @default 'primary'
    **/
-  datePickerStyle?: string;
+  datePickerStyle?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'danger';
   /**
    * From theme provider
    *
