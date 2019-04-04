@@ -8,7 +8,13 @@ export type Props = {
    *
    * @default 'primary'
    **/
-  cardStyle?: 'primary' | 'success' | 'default' | 'danger' | 'warning';
+  cardStyle?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'danger';
   /**
    * Select which color will be the background color
    *
