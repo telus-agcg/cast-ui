@@ -155,6 +155,10 @@ export const defaultTheme = {
       badgeColor: defaultColors.black,
       alertColor: defaultColors.black,
       alertBackground: defaultColors.gray,
+      light: {
+        alertBackground: lighten(defaultColors.gray, 40),
+        alertColor: defaultColors.black,
+      },
       cardTopBorderColor: defaultColors.lightGray,
     },
   },
