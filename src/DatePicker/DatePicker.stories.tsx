@@ -19,7 +19,7 @@ storiesOf('DatePicker', module).add(
       dayPickerProps={{
         selectedDays: [
           new Date('2019-2-5'),
-          { from: new Date('2019-2-5'), to: new Date('2019-2-9') },
+          { from: new Date('2019-4-5'), to: new Date('2019-4-9') },
         ],
       }}
     />
