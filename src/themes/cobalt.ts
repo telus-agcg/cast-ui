@@ -319,7 +319,9 @@ export const cobaltTheme = {
     borderStyle: 'solid',
     borderColor: cobaltColors.secondary,
     disabledText: cobaltColors.disabledText,
-    unselectedColor: cobaltColors.white,
+		unselectedColor: cobaltColors.white,
+		stackedSpacing: '10px',
+		inlineSpacing: '20px',
     sm: {
       size: '6px',
     },
@@ -335,7 +337,9 @@ export const cobaltTheme = {
     borderStyle: 'solid',
     borderColor: cobaltColors.secondary,
     disabledText: cobaltColors.disabledText,
-    unselectedColor: cobaltColors.white,
+		unselectedColor: cobaltColors.white,
+		stackedSpacing: '10px',
+		inlineSpacing: '20px',
     sm: {
       size: '6px',
     },

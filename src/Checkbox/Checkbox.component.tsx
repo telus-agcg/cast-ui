@@ -50,6 +50,12 @@ export type Props = {
    **/
   value: string;
   /**
+   * Specify the display style the radio button will have
+   *
+   * @default 'stacked'
+   **/
+  displayStyle?: 'inline' | 'stacked';
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -57,11 +63,25 @@ export type Props = {
   theme?: any;
 };
 
-const SDiv = styled.div`
-  display: inline-block;
-  + div[data-radiobutton] {
-    padding-left: 20px;
+const displayStyleRules: Function = (
+  displayStyle: 'inline' | 'stacked',
+  theme: any,
+) => {
+  if (displayStyle === 'inline') {
+    return {
+      display: 'inline-block',
+      'padding-right': theme.checkbox.inlineSpacing,
+    };
   }
+  return {
+    display: 'block',
+    'padding-bottom': theme.checkbox.stackedSpacing,
+  };
+};
+
+const SDiv = styled.div`
+  cursor: pointer;
+  ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)}
 `;
 
 const SLabel = styled.label`
@@ -131,7 +151,7 @@ export class Checkbox extends React.Component<Props> {
     const { id, cbSize, onChange, theme, children, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv data-radiobutton="" {...props}>
+        <SDiv data-checkbox="" id={id} {...props}>
           <SInput
             type="checkbox"
             onChange={(evt: any) => {
