@@ -41,7 +41,7 @@ export type Props = {
   onChange?(
     checked: boolean,
     id: string,
-    event: React.MouseEvent<HTMLElement>,
+    event: React.SyntheticEvent<HTMLElement>,
   ): void;
   /**
    * Specify the value of the checkbox group when the current button is selected

@@ -10,12 +10,12 @@ storiesOf('DatePicker', module).add(
     <DatePicker
       id="datepicker"
       placeholder="Select start date"
-      datepickerstyle={select(
-        'datepickerstyle',
+      datePickerStyle={select(
+        'datePickerStyle',
         ['success', 'default', 'primary', 'danger', 'warning'],
         'primary',
       )}
-      datepickersize={select('datepickersize', ['sm', 'md', 'lg'], 'md')}
+      datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
       dayPickerProps={{
         selectedDays: [
           new Date('2019-2-5'),
