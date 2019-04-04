@@ -18,7 +18,7 @@ export type Props = {
    * */
   draggable?: boolean;
   /**
-   * Pass in Handle Icon iconsize
+   * Pass in Handle Icon iconSize
    *
    * @default '40'
    **/
