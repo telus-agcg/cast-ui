@@ -25,27 +25,18 @@ const config = {
         'styled-components': 'styled',
       },
     },
-    {
-      file: pkg.main,
-      format: 'es',
-      name: 'castUI',
-    },
-    {
-      file: pkg.module,
-      format: 'cjs',
-    },
   ],
   plugins: [
+    peerDepsExternal(),
     postcss({ extract: false, plugins: [autoprefixer] }),
     babel({ exclude: 'node_modules/**' }),
-    peerDepsExternal(),
+    typescript({
+      typescript: require('typescript'),
+    }),
     localResolve(),
     resolve(),
     commonjs(),
     filesize(),
-    typescript({
-      typescript: require('typescript'),
-    }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),

@@ -8,8 +8,9 @@ module.exports = ({ config, mode }) => {
         loader: require.resolve('awesome-typescript-loader'),
         options: {
           useCache: true,
-          forceIsolatedModules: true
-        }
+          forceIsolatedModules: true,
+          reportFiles: ['../src/**/*.{ts,tsx}'],
+        },
       },
       {
         loader: require.resolve('react-docgen-typescript-loader'),

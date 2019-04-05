@@ -38,7 +38,7 @@ If no theme is provided, components will fall back to a default theme.
 ```
 import React, { Component } from "react";
 import logo from "./logo.svg";
-import { Button, ThemeProvider, Themes } from "@tkxs/cast-ui";
+import { Button, ThemeProvider, Themes } from "@tkxs/cast-ui/lib-esm";
 import "./App.css";
 
 class App extends Component {
@@ -58,7 +58,7 @@ export default App;
 Import and use the desired component.
 
 ```
-import { Button } from '@tkxs/cast-ui';
+import { Button } from '@tkxs/cast-ui/lib-esm';
 ...
 
 const AwesomeButton = () => {
