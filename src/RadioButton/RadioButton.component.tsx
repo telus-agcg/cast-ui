@@ -83,7 +83,7 @@ const displayStyleRules: Function = (
   };
 };
 
-const SDiv = styled.div`
+const SDiv: any = styled.div`
 	cursor: pointer;
   ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)}
   }
@@ -148,9 +148,10 @@ export class RadioButton extends React.Component<Props> {
       checked,
       defaultChecked,
       children,
+      displayStyle,
     } = this.props;
     return (
-      <SDiv data-radiobutton="" displayStyle={this.props.displayStyle}>
+      <SDiv displayStyle={displayStyle}>
         <SInput
           type="radio"
           name={name}
