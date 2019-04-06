@@ -13,6 +13,7 @@ storiesOf('Textarea', module).add(
       disabled={boolean('disabled', false)}
       invalid={boolean('invalid', false)}
       invalidText={text('invalidText', 'A valid value is required')}
+      invalidTextColor={text('invalidTextColor', '')}
       maxLength={number('maxLength', 1000)}
       placeholder={text('placeholder', 'Placeholder Text')}
       required={boolean('required', false)}

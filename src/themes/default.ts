@@ -142,7 +142,7 @@ export const defaultTheme = {
       hoverFlood: darken(defaultColors.gray, 5),
       selectedFlood: darken(defaultColors.gray, 25),
       badgeBackground: defaultColors.gray,
-      badgeColor: defaultColors.black,
+      badgeColor: defaultColors.white,
       alertColor: defaultColors.black,
       alertBackground: defaultColors.gray,
       cardTopBorderColor: defaultColors.lightGray,
