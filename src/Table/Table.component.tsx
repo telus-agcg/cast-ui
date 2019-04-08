@@ -244,7 +244,6 @@ export class Table extends React.Component<Props> {
   }
 
   render() {
-    console.log(Table.defaultProps);
     const { theme, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
