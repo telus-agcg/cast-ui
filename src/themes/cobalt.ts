@@ -536,6 +536,7 @@ export const cobaltTheme = {
   },
   datepicker: {
     position: 'absolute',
+    zIndex: 99,
     sm: {
       margins: {
         dayPickerWraper: '16px 0',

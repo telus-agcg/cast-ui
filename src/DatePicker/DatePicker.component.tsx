@@ -4,47 +4,48 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { DayPickerInputProps } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
-import { Input } from '../Input/Input.component';
+import { Input, Props as InputProps } from '../Input/Input.component';
 import { Themes } from '../themes';
 
-export type Props = Partial<DayPickerInputProps> & {
-  /**
-   * Set className
-   *
-   * @default ''
-   **/
-  className?: string;
-  /**
-   * The ID of the control
-   *
-   * @default null
-   **/
-  id: string;
-  /**
-   * Type of input (text, number, email, etc)
-   *
-   * @default 'text'
-   **/
-  type?: string;
-  /**
-   * Select DatePicker Size
-   *
-   * @default 'md'
-   **/
-  datepickersize?: string;
-  /**
-   * Select DatePicker style.
-   *
-   * @default 'primary'
-   **/
-  datepickerstyle?: string;
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
-};
+export type Props = Partial<DayPickerInputProps> &
+  Partial<InputProps> & {
+    /**
+     * Set className
+     *
+     * @default ''
+     **/
+    className?: string;
+    /**
+     * The ID of the control
+     *
+     * @default null
+     **/
+    id: string;
+    /**
+     * Type of input (text, number, email, etc)
+     *
+     * @default 'text'
+     **/
+    type?: string;
+    /**
+     * Select DatePicker Size
+     *
+     * @default 'md'
+     **/
+    datepickersize?: string;
+    /**
+     * Select DatePicker style.
+     *
+     * @default 'primary'
+     **/
+    datepickerstyle?: string;
+    /**
+     * From theme provider
+     *
+     * @default defaultTheme
+     **/
+    theme?: any;
+  };
 
 /* tslint:disable:max-line-length */
 const SOverlayComponent = styled.div`
