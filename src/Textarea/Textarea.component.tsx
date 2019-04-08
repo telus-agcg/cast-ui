@@ -127,8 +127,9 @@ export const Textarea: React.FunctionComponent<Props> = ({
           {children}
         </STextarea>
         {textareaProps.invalid && (
-          <SErrorDiv {...textareaProps} id={errorId} theme={theme}>
+          <SErrorDiv id={errorId} theme={theme}>
             {textareaProps.invalidText}
+            {textareaProps.invalidTextColor}
           </SErrorDiv>
         )}
       </>
