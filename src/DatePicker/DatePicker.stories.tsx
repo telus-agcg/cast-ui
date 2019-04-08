@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs/react';
+import { number, boolean, select, text } from '@storybook/addon-knobs/react';
 
 import { DatePicker } from '../';
 
@@ -22,6 +22,13 @@ storiesOf('DatePicker', module).add(
           { from: new Date('2019-2-5'), to: new Date('2019-2-9') },
         ],
       }}
+      disabled={boolean('disabled', false)}
+      inputSize={select('inputSize', ['sm', 'md', 'lg'], 'md')}
+      invalid={boolean('invalid', false)}
+      invalidText={text('invalidText', 'A valid value is required')}
+      invalidTextColor={text('invalidTextColor', '')}
+      maxLength={number('maxLength', 1000)}
+      required={boolean('required', false)}
     />
   ),
   {
