@@ -32,7 +32,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    *
    * @default 'md'
    **/
-  inputSize?: string;
+  inputSize?: 'sm' | 'md' | 'lg';
   /**
    * Specify whether the control is currently invalid
    *
@@ -43,6 +43,12 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    * Provide the text that is displayed when the control is in an invalid state
    */
   invalidText?: string;
+  /**
+   * Color of the invalid text
+   *
+   * @default ''
+   **/
+  invalidTextColor?: string;
   /**
    * What is the maximum length of the text in the field?
    *
