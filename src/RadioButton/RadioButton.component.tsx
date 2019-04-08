@@ -84,7 +84,7 @@ const displayStyleRules: Function = (
   };
 };
 
-const SDiv = styled.div`
+const SDiv: any = styled.div`
 	cursor: pointer;
   ${(props: any) => displayStyleRules(props.displayStyle, props.theme)}
   }
