@@ -11,7 +11,7 @@ storiesOf('Card', module).add(
     <Card
       cardStyle={select(
         'cardStyle',
-        ['success', 'primary', 'default', 'danger', 'warning'],
+        ['success', 'primary', 'secondary', 'default', 'danger', 'warning'],
         'default',
       )}
       highlightBorder={select(
@@ -19,19 +19,19 @@ storiesOf('Card', module).add(
         ['top', 'left', 'right', 'bottom', 'all'],
         'top',
       )}
-      bgColor={color(
-        'bgColor',
-        '#FFFFFF',
-      )}
+      bgColor={color('bgColor', '#FFFFFF')}
     >
       <Title>Card Header</Title>
       <div>
         <b>Nullam mattis egestas tortor</b>
         <p>Aliquam porttitor aliquet fringilla.</p>
         <b>Nullam mattis egestas tortor</b>
-        <p>Duis pellentesque, risus id faucibus porttitor,<br/>
-          dolor arcu tristique ligula, id tincidunt odio nisl id tellus.
-          dolor arcu tristique ligula, id tincidunt odio nisl id tellus.</p>
+        <p>
+          Duis pellentesque, risus id faucibus porttitor,
+          <br />
+          dolor arcu tristique ligula, id tincidunt odio nisl id tellus. dolor
+          arcu tristique ligula, id tincidunt odio nisl id tellus.
+        </p>
       </div>
     </Card>
   ),

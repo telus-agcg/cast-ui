@@ -48,7 +48,7 @@ export type Props = PropsThemeOnly & {
    *
    * @default 'md'
    **/
-  inputSize?: string;
+  inputSize?: 'sm' | 'md' | 'lg';
   /**
    * Specify whether the control is currently invalid
    *
@@ -108,7 +108,8 @@ const SInput = styled.input`
 `;
 
 const SErrorDiv = styled.div`
-  color: ${(props: Props) => props.invalidTextColor || props.theme.validation.errorTextColor};
+  color: ${(props: Props) =>
+    props.invalidTextColor || props.theme.validation.errorTextColor};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.validation.fontSize};
   padding: ${(props: Props) => props.theme.validation.padding};
@@ -133,10 +134,7 @@ export const Input: React.FunctionComponent<Props> = ({
           {children}
         </SInput>
         {inputProps.invalid && (
-          <SErrorDiv 
-            {...inputProps}
-            id={errorId}
-            theme={theme}>
+          <SErrorDiv {...inputProps} id={errorId} theme={theme}>
             {inputProps.invalidText}
           </SErrorDiv>
         )}

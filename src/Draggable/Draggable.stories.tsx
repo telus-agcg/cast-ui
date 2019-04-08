@@ -21,17 +21,17 @@ storiesOf('Draggable', module).add(
   'Draggable',
   () => (
     <Draggable
-      draggablestyle={select(
-        'draggablestyle',
-        ['success', 'default', 'primary', 'danger', 'warning'],
+      draggableStyle={select(
+        'draggableStyle',
+        ['success', 'default', 'primary', 'secondary', 'danger', 'warning'],
         'primary',
       )}
-      bordercolor={select(
-        'bordercolor',
+      borderColor={select(
+        'borderColor',
         ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
         'lightGray',
       )}
-      guttersize={select('guttersize', ['sm', 'md', 'lg'], 'md')}
+      gutterSize={select('gutterSize', ['sm', 'md', 'lg'], 'md')}
     >
       <DraggableInfo>
         <IconButton
@@ -47,8 +47,8 @@ storiesOf('Draggable', module).add(
       </DraggableInfo>
       <DraggableParent.ParentContainer
         parentActive={boolean('parentActive', false)}
-        parenthandlesize={select('parenthandlesize', [20, 30, 40, 50, 60], 30)}
-        showparenthandle={boolean('showparenthandle', true)}
+        parentHandleSize={select('parentHandleSize', [20, 30, 40, 50, 60], 30)}
+        showParentHandle={boolean('showParentHandle', true)}
         draggable={boolean('Parent draggable', true)}
         onDragStart={action('Drag Parent Container started!')}
         onDragOver={action('Dragging over Parent Container!')}
@@ -56,8 +56,8 @@ storiesOf('Draggable', module).add(
       >
         <DraggableParent.ParentMainContent>
           <DraggableItem.ItemContainer
-            showitemhandle={boolean('showitemhandle', true)}
-            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}
+            showItemHandle={boolean('showItemHandle', true)}
+            itemHandleSize={select('itemHandleSize', [20, 30, 40, 50, 60], 30)}
             draggable={boolean('Item 1 draggable', true)}
             onDragStart={action('Drag Item Container started!')}
             onDragOver={action('Dragging over an Item Container!')}
@@ -71,8 +71,8 @@ storiesOf('Draggable', module).add(
             </DraggableItem.ItemRightContent>
           </DraggableItem.ItemContainer>
           <DraggableItem.ItemContainer
-            showitemhandle={boolean('showitemhandle', true)}
-            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}
+            showItemHandle={boolean('showItemHandle', true)}
+            itemHandleSize={select('itemHandleSize', [20, 30, 40, 50, 60], 30)}
           >
             <DraggableItem.ItemMainContent>
               <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA
@@ -82,8 +82,8 @@ storiesOf('Draggable', module).add(
             </DraggableItem.ItemRightContent>
           </DraggableItem.ItemContainer>
           <DraggableItem.ItemContainer
-            showitemhandle={boolean('showitemhandle', true)}
-            itemhandlesize={select('itemhandlesize', [20, 30, 40, 50, 60], 30)}
+            showItemHandle={boolean('showItemHandle', true)}
+            itemHandleSize={select('itemHandleSize', [20, 30, 40, 50, 60], 30)}
           >
             <DraggableItem.ItemMainContent>
               <b>Qualification:</b> Geography - AK: Aleutian East - AZ, NC, WA

@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, boolean } from '@storybook/addon-knobs/react';
+import { action } from '@storybook/addon-actions';
 
 import { Tab, TabList, TabPanel, Tabs } from '../';
 
 storiesOf('Tabs', module).add(
   'Tabs',
   () => (
-    <Tabs onSelect={() => alert('Tab page selected!')} defaultIndex={2}>
+    <Tabs onSelect={action('Tab page selected!')} defaultIndex={2}>
       <TabList>
         <Tab title={text('title (tab 1)', 'Tab Page 01')} />
         <Tab

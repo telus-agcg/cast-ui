@@ -21,13 +21,19 @@ export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
    *
    * @default 'default'
    **/
-  btnStyle?: string;
+  btnStyle?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'danger';
   /**
    * Select Button Size
    *
    * @default 'md'
    **/
-  btnSize?: string;
+  btnSize?: 'sm' | 'md' | 'lg';
   /**
    * Specify if the button is disabled
    *

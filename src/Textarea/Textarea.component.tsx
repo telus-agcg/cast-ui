@@ -14,7 +14,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  textareaSize?: string;
+  textareaSize?: 'sm' | 'md' | 'lg';
   /**
    * Disables modification
    *
@@ -99,7 +99,8 @@ const STextarea = styled.textarea`
 `;
 
 const SErrorDiv = styled.div`
-  color: ${(props: any) => props.invalidTextColor || props.theme.validation.errorTextColor};
+  color: ${(props: any) =>
+    props.invalidTextColor || props.theme.validation.errorTextColor};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.validation.fontSize};
   padding: ${(props: any) => props.theme.validation.padding};
@@ -111,9 +112,7 @@ export const Textarea: React.FunctionComponent<Props> = ({
   children,
   ...textareaProps
 }) => {
-  const errorId = textareaProps.invalid
-    ? `${textareaProps.id}-error-msg`
-    : '';
+  const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -127,10 +126,7 @@ export const Textarea: React.FunctionComponent<Props> = ({
           {children}
         </STextarea>
         {textareaProps.invalid && (
-          <SErrorDiv 
-            {...textareaProps}
-            id={errorId}
-            theme={theme}>
+          <SErrorDiv {...textareaProps} id={errorId} theme={theme}>
             {textareaProps.invalidText}
           </SErrorDiv>
         )}

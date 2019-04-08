@@ -15,7 +15,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  inputSize?: string;
+  inputSize?: 'sm' | 'md' | 'lg';
   /**
    * The ID of the control
    *
@@ -84,7 +84,8 @@ const SDiv = styled.div`
 `;
 
 const SErrorDiv = styled.div`
-  color: ${(props: any) => props.invalidTextColor || props.theme.validation.errorTextColor};
+  color: ${(props: any) =>
+    props.invalidTextColor || props.theme.validation.errorTextColor};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.validation.fontSize};
   padding: ${(props: any) => props.theme.validation.padding};
@@ -102,9 +103,7 @@ export class CustomSelect extends React.Component<Props> {
 
   render() {
     const { options, controlSpecificProps, theme, ...props } = this.props;
-    const errorId = this.props.invalid
-      ? `${this.props.id}-error-msg`
-      : '';
+    const errorId = this.props.invalid ? `${this.props.id}-error-msg` : '';
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -129,10 +128,7 @@ export class CustomSelect extends React.Component<Props> {
             {...controlSpecificProps}
           />
           {this.props.invalid && (
-            <SErrorDiv 
-              {...this.props}
-              id={errorId}
-              theme={this.props.theme}>
+            <SErrorDiv {...this.props} id={errorId} theme={this.props.theme}>
               {this.props.invalidText}
             </SErrorDiv>
           )}

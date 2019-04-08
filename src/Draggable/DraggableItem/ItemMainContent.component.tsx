@@ -9,7 +9,7 @@ export type Props = Partial<DraggableProps>;
 const SItemMainContent = styled.div`
   position: relative;
   width: 100%;
-  padding: ${(props: Props) => props.theme.common[props.guttersize!].padding};
+  padding: ${(props: Props) => props.theme.common[props.gutterSize!].padding};
 `;
 
 export const ItemMainContent: React.FunctionComponent<Props> = ({
@@ -17,7 +17,7 @@ export const ItemMainContent: React.FunctionComponent<Props> = ({
 }) => {
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
-    { key: 'guttersize', defaultVal: 'md' },
+    { key: 'gutterSize', defaultVal: 'md' },
     { key: 'theme', defaultVal: Themes.defaultTheme },
   ];
   const { theme, ...newProps }: any = useMergeWithParentProps(props, {

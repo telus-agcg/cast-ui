@@ -9,15 +9,15 @@ export type Props = Partial<DraggableProps>;
 const SItemRightContent = styled.div`
   position: relative;
   border-left: 1px solid
-    ${(props: Props) => props.theme.colors[props.bordercolor!]};
+    ${(props: Props) => props.theme.colors[props.borderColor!]};
   color: ${(props: Props) =>
-    props.theme.styles[props.draggablestyle!].reverseText};
+    props.theme.styles[props.draggableStyle!].reverseText};
   background-color: ${(props: Props) =>
-    props.theme.styles[props.draggablestyle!].flood};
+    props.theme.styles[props.draggableStyle!].flood};
   cursor: pointer;
   padding: ${(props: Props) =>
     `calc(${
-      props.theme.common[props.guttersize!].padding.toString().split(' ')[0]
+      props.theme.common[props.gutterSize!].padding.toString().split(' ')[0]
     } / 2)`};
 `;
 
@@ -26,10 +26,10 @@ export const ItemRightContent: React.FunctionComponent<Props> = ({
 }) => {
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
-    { key: 'guttersize', defaultVal: 'md' },
-    { key: 'draggablestyle', defaultVal: 'primary' },
+    { key: 'gutterSize', defaultVal: 'md' },
+    { key: 'draggableStyle', defaultVal: 'primary' },
     { key: 'color', defaultVal: 'lightGray' },
-    { key: 'bordercolor', defaultVal: 'lightGray' },
+    { key: 'borderColor', defaultVal: 'lightGray' },
     { key: 'theme', defaultVal: Themes.defaultTheme },
   ];
   const { theme, ...newProps }: any = useMergeWithParentProps(props, {

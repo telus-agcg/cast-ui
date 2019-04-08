@@ -10,7 +10,13 @@ export type DraggableProps = {
    *
    * @default 'primary'
    **/
-  draggablestyle?: string | 'primary';
+  draggableStyle?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'danger';
   /**
    * Select DraggableParent color. Must be a color defined in theme colors
    *
@@ -22,13 +28,13 @@ export type DraggableProps = {
    *
    * @default 'lightGray'
    **/
-  bordercolor?: string;
+  borderColor?: string;
   /**
    * Select Draggable Gutters Size
    *
    * @default 'md'
    **/
-  guttersize?: string;
+  gutterSize?: 'sm' | 'md' | 'lg';
   /**
    * From theme provider
    *
