@@ -63,6 +63,16 @@ export const defaultTheme = {
     },
     secondary: {
       borderColor: defaultColors.gray,
+      flood: defaultColors.gray,
+      disabledFlood: lighten(defaultColors.gray, 25),
+      lightFlood: lighten(defaultColors.gray, 50),
+      hoverlightFlood: lighten(defaultColors.gray, 100),
+      text: defaultColors.gray,
+      reverseText: defaultColors.white,
+      hoverFlood: darken(defaultColors.gray, 10),
+      selectedFlood: darken(defaultColors.gray, 25),
+      badgeBackground: defaultColors.gray,
+      badgeColor: defaultColors.white,
       alertColor: defaultColors.white,
       alertBackground: defaultColors.gray,
       light: {
@@ -145,6 +155,10 @@ export const defaultTheme = {
       badgeColor: defaultColors.white,
       alertColor: defaultColors.black,
       alertBackground: defaultColors.gray,
+      light: {
+        alertBackground: lighten(defaultColors.gray, 40),
+        alertColor: defaultColors.black,
+      },
       cardTopBorderColor: defaultColors.lightGray,
     },
   },

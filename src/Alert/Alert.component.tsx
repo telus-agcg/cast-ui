@@ -8,7 +8,13 @@ export type Props = {
    *
    * @default 'primary'
    **/
-  alertStyle: string;
+  alertStyle?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'danger';
   /**
    * Toggle Alert Light Mode
    *
@@ -26,18 +32,18 @@ export type Props = {
 const SAlert = styled.div`
   background: ${(props: Props) =>
     props.lightMode
-      ? props.theme.styles[props.alertStyle]['light'].alertBackground
-      : props.theme.styles[props.alertStyle].alertBackground};
+      ? props.theme.styles[props.alertStyle!]['light'].alertBackground
+      : props.theme.styles[props.alertStyle!].alertBackground};
   border-radius: ${(props: Props) => props.theme.alert.borderRadius};
   color: ${(props: Props) =>
     props.lightMode
-      ? props.theme.styles[props.alertStyle]['light'].alertColor
-      : props.theme.styles[props.alertStyle].alertColor};
+      ? props.theme.styles[props.alertStyle!]['light'].alertColor
+      : props.theme.styles[props.alertStyle!].alertColor};
   border: 1px solid
     ${(props: Props) =>
       props.lightMode
-        ? props.theme.styles[props.alertStyle].alertBackground
-        : props.theme.styles[props.alertStyle].alertColor};
+        ? props.theme.styles[props.alertStyle!].alertBackground
+        : props.theme.styles[props.alertStyle!].alertColor};
   display: ${(props: Props) => props.theme.alert.display};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.alert.fontSize};

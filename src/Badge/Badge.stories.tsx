@@ -11,7 +11,7 @@ storiesOf('Badge', module).add(
       badgeSize={select('badgeSize', ['sm', 'md', 'lg'], 'md')}
       badgeStyle={select(
         'badgeStyle',
-        ['success', 'default', 'primary', 'danger', 'warning'],
+        ['success', 'default', 'primary', 'secondary', 'danger', 'warning'],
         'success',
       )}
     >

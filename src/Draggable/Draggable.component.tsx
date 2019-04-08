@@ -8,7 +8,7 @@ export type Props = Partial<DraggableProps>;
 
 const SDraggable = styled.div`
   position: relative;
-  padding: ${(props: Props) => props.theme.common[props.guttersize!].padding};
+  padding: ${(props: Props) => props.theme.common[props.gutterSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common.md.fontSize};
 `;
@@ -26,8 +26,8 @@ export const Draggable: React.FunctionComponent<Props> = ({
 };
 Draggable.defaultProps = {
   color: 'lightGray',
-  draggablestyle: 'primary',
-  bordercolor: 'lightGray',
-  guttersize: 'md' as 'md' | 'lg' | 'sm',
+  draggableStyle: 'primary',
+  borderColor: 'lightGray',
+  gutterSize: 'md' as 'md' | 'lg' | 'sm',
   theme: Themes.defaultTheme,
 };

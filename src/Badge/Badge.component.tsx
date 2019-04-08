@@ -8,13 +8,19 @@ export type Props = {
    *
    * @default 'md'
    **/
-  badgeSize?: string;
+  badgeSize?: 'sm' | 'md' | 'lg';
   /**
    * Set Badge Style
    *
    * @default 'primary'
    **/
-  badgeStyle?: string;
+  badgeStyle?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'danger';
   /**
    * From theme provider
    *

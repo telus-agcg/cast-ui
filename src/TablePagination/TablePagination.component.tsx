@@ -7,8 +7,10 @@ import { Themes } from '../themes';
 export type Props = {
   /**
    * Specify the size of the buttons to use
+   *
+   * @default 'md'
    **/
-  btnSize: string;
+  btnSize: 'sm' | 'md' | 'lg';
   /**
    * Specify the text of the next button
    **/
@@ -16,7 +18,7 @@ export type Props = {
   /**
    * Specify the function to fire when a page is changed
    **/
-  onPageChange: any;
+  onPageChange?(page: number): any;
   /**
    * Specify the total number of pages
    **/
@@ -92,7 +94,7 @@ export class TablePagination extends React.Component<Props> {
 
   filterPages = (visiblePages: number[], totalPages: number) => {
     return visiblePages.filter((page: number) => page <= totalPages);
-  }
+  };
 
   getVisiblePages = (page: number, total: number) => {
     if (total < 7) {
@@ -106,7 +108,7 @@ export class TablePagination extends React.Component<Props> {
       return [1, total - 3, total - 2, total - 1, total];
     }
     return [1, 2, 3, 4, 5, total];
-  }
+  };
 
   changePage(page: number) {
     const activePage = this.props.page + 1;
@@ -121,12 +123,13 @@ export class TablePagination extends React.Component<Props> {
       visiblePages: this.filterPages(visiblePages, this.props.pages),
     });
 
-    this.props.onPageChange(page - 1);
+    this.props.onPageChange!(page - 1);
   }
 
   render() {
     const {
       theme,
+      onPageChange,
       PageButtonComponent = SPaginationButton,
       PageButtonNextPrevComponent = SPaginationButtonNextPrev,
       ...props

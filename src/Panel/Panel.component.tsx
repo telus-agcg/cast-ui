@@ -41,11 +41,17 @@ export type Props = {
    **/
   headerBorderColor?: string;
   /**
-   * 'default', 'primary', 'success', 'warning', 'danger'
+   * Set Panel Style
    *
    *  @default 'default'
    */
-  panelStyle: string;
+  panelStyle:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'danger';
   /**
    *  Whether the panel can be collapsed
    *

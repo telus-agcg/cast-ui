@@ -12,7 +12,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  inputSize: string;
+  inputSize: 'sm' | 'md' | 'lg';
   /**
    * Set orientation of inputGroup as vertical
    *

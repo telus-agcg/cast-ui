@@ -23,13 +23,13 @@ export type Props = Partial<DraggableProps> & {
    *
    * @default '30'
    **/
-  parenthandlesize?: number;
+  parentHandleSize?: number;
   /**
    * Optionally show the handle in the draggable parent
    *
    * @default 'true'
    **/
-  showparenthandle?: boolean;
+  showParentHandle?: boolean;
   /**
    * Active background for draggable parent container
    *
@@ -43,31 +43,31 @@ const SDraggableParent = styled.div`
   display: flex;
   align-items: start;
   justify-content: start;
-  padding: ${(props: Props) => props.theme.common[props.guttersize!].padding};
+  padding: ${(props: Props) => props.theme.common[props.gutterSize!].padding};
   margin: ${(props: Props) =>
     `${
-      props.theme.common[props.guttersize!].padding.toString().split(' ')[0]
+      props.theme.common[props.gutterSize!].padding.toString().split(' ')[0]
     } 0`};
-  border: 1px dashed ${(props: Props) => props.theme.colors[props.bordercolor!]};
+  border: 1px dashed ${(props: Props) => props.theme.colors[props.borderColor!]};
   border-radius: ${(props: Props) =>
-    props.theme.common[props.guttersize!].borderRadius};
+    props.theme.common[props.gutterSize!].borderRadius};
   background-color: ${(props: Props) =>
     props.parentActive
       ? props.theme.colors.lightBackground
       : props.theme.colors.white};
   .parentHandle {
     cursor: ${(props: Props) => (props.draggable ? 'grab' : 'not-allowed')};
-    color: ${(props: Props) => props.theme.colors[props.bordercolor!]};
-    padding: ${(props: Props) => props.theme.common[props.guttersize!].padding};
+    color: ${(props: Props) => props.theme.colors[props.borderColor!]};
+    padding: ${(props: Props) => props.theme.common[props.gutterSize!].padding};
     margin-left: ${(props: Props) =>
       `-${
-        props.theme.common[props.guttersize!].padding.toString().split(' ')[1]
+        props.theme.common[props.gutterSize!].padding.toString().split(' ')[1]
       }`};
     &:hover {
       color: ${(props: Props) =>
         props.draggable
           ? props.theme.colors.blue
-          : props.theme.colors[props.bordercolor!]};
+          : props.theme.colors[props.borderColor!]};
     }
   }
 `;
@@ -78,11 +78,11 @@ export const ParentContainer: React.FunctionComponent<Props> = ({
   const [parentActive, setParentActive] = React.useState(false);
   const parentProps = React.useContext(DraggableContext).parentProps;
   const propsToMerge = [
-    { key: 'guttersize', defaultVal: 'md' },
+    { key: 'gutterSize', defaultVal: 'md' },
     { key: 'draggablestyle', defaultVal: 'primary' },
     { key: 'color', defaultVal: 'lightGray' },
-    { key: 'bordercolor', defaultVal: 'lightGray' },
-    { key: 'parenthandlesize', defaultVal: 30 },
+    { key: 'borderColor', defaultVal: 'lightGray' },
+    { key: 'parentHandleSize', defaultVal: 30 },
     { key: 'parentActive', defaultVal: parentActive },
     { key: 'draggable', defaultVal: props.draggable },
     { key: 'theme', defaultVal: Themes.defaultTheme },
@@ -101,9 +101,9 @@ export const ParentContainer: React.FunctionComponent<Props> = ({
         onDragOver={newProps.onDragOver}
         onDrop={newProps.onDrop}
       >
-        {newProps.showparenthandle && (
+        {newProps.showParentHandle && (
           <DraggableHandle
-            size={newProps.parenthandlesize}
+            size={newProps.parentHandleSize}
             className="parentHandle"
             onMouseEnter={() => setParentActive(true)}
             onMouseLeave={() => setParentActive(false)}

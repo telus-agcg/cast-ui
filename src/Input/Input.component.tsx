@@ -48,7 +48,7 @@ export type Props = PropsThemeOnly & {
    *
    * @default 'md'
    **/
-  inputSize?: string;
+  inputSize?: 'sm' | 'md' | 'lg';
   /**
    * Specify whether the control is currently invalid
    *
