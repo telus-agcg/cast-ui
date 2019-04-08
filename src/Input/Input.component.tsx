@@ -117,6 +117,7 @@ const SErrorDiv = styled.div`
 `;
 
 export const Input: React.FunctionComponent<Props> = ({
+  invalidTextColor,
   theme,
   children,
   ...inputProps
@@ -134,7 +135,7 @@ export const Input: React.FunctionComponent<Props> = ({
           {children}
         </SInput>
         {inputProps.invalid && (
-          <SErrorDiv {...inputProps} id={errorId} theme={theme}>
+          <SErrorDiv id={errorId} invalidTextColor={invalidTextColor}>
             {inputProps.invalidText}
           </SErrorDiv>
         )}

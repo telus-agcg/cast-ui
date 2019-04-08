@@ -23,7 +23,6 @@ storiesOf('DatePicker', module).add(
         ],
       }}
       disabled={boolean('disabled', false)}
-      inputSize={select('inputSize', ['sm', 'md', 'lg'], 'md')}
       invalid={boolean('invalid', false)}
       invalidText={text('invalidText', 'A valid value is required')}
       invalidTextColor={text('invalidTextColor', '')}
