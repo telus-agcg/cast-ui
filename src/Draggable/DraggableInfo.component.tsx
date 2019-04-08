@@ -33,7 +33,7 @@ export const DraggableInfo: React.FunctionComponent<Props> = ({
 );
 DraggableInfo.defaultProps = {
   color: 'lightGray',
-  guttersize: 'md' as 'md' | 'lg' | 'sm',
+  gutterSize: 'md' as 'md' | 'lg' | 'sm',
   iconSize: 10,
   theme: Themes.defaultTheme,
 };
