@@ -188,7 +188,7 @@ export class Modal extends React.Component<Props> {
                 <button
                   type="button"
                   aria-label="Close"
-                  onClick={() => props.onTitleClose}
+                  onClick={props.onTitleClose}
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
