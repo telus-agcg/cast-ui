@@ -4,9 +4,7 @@ import { SubHeading } from './SubHeading.component';
 
 storiesOf('Typography', module).add(
   'SubHeading',
-  () => (
-    <SubHeading>16px Roboto Medium</SubHeading>
-  ),
+  () => <SubHeading>Example SubHeading</SubHeading>,
   {
     info: {
       text: `
