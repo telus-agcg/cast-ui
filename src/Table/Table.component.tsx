@@ -1,7 +1,7 @@
 /* tslint:disable:max-line-length */
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import ReactTable, { TableProps } from 'react-table';
+import ReactTable, { TableProps, ReactTableDefaults } from 'react-table';
 import { Themes } from '../themes';
 
 import { Icon } from 'react-icons-kit';
@@ -10,9 +10,29 @@ import { ic_format_align_justify as IconCondensed } from 'react-icons-kit/md/ic_
 import { ic_view_headline as IconMedium } from 'react-icons-kit/md/ic_view_headline';
 import TablePagination from '../TablePagination/TablePagination.component';
 import 'react-table/react-table.css';
-import { castTableProps } from './castTableProps';
 
-type Props = Partial<TableProps> & castTableProps;
+export interface Props extends TableProps {
+  data: any;
+  tableSize?: string;
+  /**
+   * Specify if grid data rows should be striped
+   *
+   * @default false
+   **/
+  striped?: boolean;
+  /**
+   * Specify if table size is adjustable
+   *
+   * @default true
+   **/
+  sizable?: boolean;
+  /**
+   * From theme provider
+   *
+   * @default defaultTheme
+   **/
+  theme?: any;
+}
 
 const SWrapperDiv = styled.div`
   background: ${(props: any) => props.theme.input.background};
@@ -108,6 +128,7 @@ const SWrapperDiv = styled.div`
 
 const initialState = { tableSize: 'md' };
 type State = Readonly<typeof initialState>;
+// const tableDefaults = ReactTableDefaults;
 
 export class Table extends React.Component<Props> {
   readonly state: State = initialState;
@@ -117,6 +138,7 @@ export class Table extends React.Component<Props> {
   }
 
   static defaultProps = {
+    ...ReactTableDefaults,
     striped: false,
     columns: [],
     tableSize: 'md',

@@ -3,7 +3,7 @@ import * as ReactModal from 'react-modal';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-export type Props = ReactModal.Props & {
+export interface Props extends ReactModal.Props {
   /**
    * The ID of the control
    *
@@ -51,7 +51,7 @@ export type Props = ReactModal.Props & {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
 const castStyles = {
   overlay: {
