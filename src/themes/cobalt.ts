@@ -277,6 +277,7 @@ export const cobaltTheme = {
     subHeading: {
       fontWeight: '500',
       fontSize: '16px',
+      lineHeight: '19px',
     },
     subTitle: {
       fontWeight: '300',
