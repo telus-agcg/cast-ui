@@ -238,8 +238,8 @@ export const cobaltTheme = {
     },
     headline: {
       fontWeight: '300',
-      fontSize: '27px',
-      lineHeight: '125%',
+      fontSize: '22px',
+      lineHeight: '25px',
     },
     link: {
       fontWeight: '500',
