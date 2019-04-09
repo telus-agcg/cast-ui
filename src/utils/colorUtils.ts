@@ -1,4 +1,4 @@
-import color from 'tinycolor2';
+const color = require('tinycolor2');
 
 export const lighten = (baseColor: string, amt: number) =>
   color(baseColor)

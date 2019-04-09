@@ -8,29 +8,48 @@ import autoprefixer from 'autoprefixer';
 import localResolve from 'rollup-plugin-local-resolve';
 import typescript from 'rollup-plugin-typescript2';
 import replace from 'rollup-plugin-replace';
+import { terser } from 'rollup-plugin-terser';
 
 import pkg from './package.json';
 
 const config = {
   input: 'src/index.ts',
-  output: {
-    file: pkg.main,
-    format: 'es',
-  },
+  output: [
+    {
+      file: pkg.browser,
+      format: 'umd',
+      name: 'castUI',
+      globals: {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        'styled-components': 'styled',
+      },
+    },
+    {
+      file: pkg.main,
+      format: 'es',
+      name: 'castUI',
+    },
+    {
+      file: pkg.module,
+      format: 'cjs',
+    },
+  ],
   plugins: [
     postcss({ extract: false, plugins: [autoprefixer] }),
     babel({ exclude: 'node_modules/**' }),
     peerDepsExternal(),
     localResolve(),
     resolve(),
+    commonjs(),
     filesize(),
     typescript({
       typescript: require('typescript'),
     }),
     replace({
-      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    commonjs(),
+    terser(),
   ],
 };
 
