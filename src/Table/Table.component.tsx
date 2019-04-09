@@ -127,7 +127,7 @@ export class Table extends React.Component<Props> {
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv {...props}>
           <ReactTable
-            {...this.props}
+            {...props}
             className={`-highlight  + ${this.props.striped ? '-striped ' : ''}`}
             PaginationComponent={TablePagination}
             nextText="Next >"
