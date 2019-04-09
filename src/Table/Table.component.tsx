@@ -133,7 +133,7 @@ export class Table extends React.Component<Props> {
     const { theme, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SWrapperDiv {...this.props} tableSize={this.state.tableSize}>
+        <SWrapperDiv {...props} tableSize={this.state.tableSize}>
           {this.props.sizable && (
             <div className="table-size-controls">
               <Icon
