@@ -122,10 +122,10 @@ export class Table extends React.Component<Props> {
   };
 
   render() {
-    const { theme } = this.props;
+    const { theme, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SWrapperDiv {...this.props}>
+        <SWrapperDiv {...props}>
           <ReactTable
             {...this.props}
             className={`-highlight  + ${this.props.striped ? '-striped ' : ''}`}
