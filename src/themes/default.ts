@@ -198,40 +198,31 @@ export const defaultTheme = {
     fontWeight: '400',
     lineHeight: '160%',
     color: defaultColors.primary,
-    headline: {
+    caption: {
       fontWeight: '300',
-      fontSize: '27px',
-      lineHeight: '125%',
+      fontSize: '12px',
+      lineHeight: '18px',
     },
-    sectionHeader: {
-      fontWeight: '500',
-      fontSize: '16px',
-      borderWidth: '1px',
-      borderColor: '#8D9599',
-      borderStyle: 'solid',
+    code: {
+      background: defaultColors.lightBackground,
+      fontFamily:
+        '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
+      fontSize: '95%',
+      lineHeight: '140%',
+    },
+    digits: {
+      fontWeight: '700',
+      fontSize: '18px',
     },
     display: {
       fontWeight: '400',
       fontSize: '37px',
       lineHeight: '120%',
     },
-    title: {
-      fontWeight: '500',
-      fontSize: '20px',
-      lineHeight: '130%',
-    },
-    subTitle: {
+    headline: {
       fontWeight: '300',
-      fontSize: '18px',
-      lineHeight: '135%',
-    },
-    caption: {
-      fontWeight: '300',
-      fontSize: '12px',
-    },
-    subHeading: {
-      fontWeight: '500',
-      fontSize: '16px',
+      fontSize: '27px',
+      lineHeight: '125%',
     },
     link: {
       fontWeight: '500',
@@ -247,13 +238,11 @@ export const defaultTheme = {
         textDecoration: 'underline',
       },
     },
-    digits: {
-      fontWeight: '700',
-      fontSize: '18px',
-    },
-    tooltip: {
-      background: defaultColors.primary,
-      borderRadius: '1px',
+    pre: {
+      background: defaultColors.lightBackground,
+      fontFamily: '"Roboto Mono", Courier, monospace',
+      fontSize: '100%',
+      lineHeight: '100%',
     },
     popover: {
       background: defaultColors.white,
@@ -261,18 +250,30 @@ export const defaultTheme = {
       borderRadius: '1px',
       borderColor: defaultColors.lightGray,
     },
-    pre: {
-      background: defaultColors.lightBackground,
-      fontFamily: '"Roboto Mono", Courier, monospace',
-      fontSize: '100%',
-      lineHeight: '100%',
+    sectionHeader: {
+      fontWeight: '500',
+      fontSize: '16px',
+      borderWidth: '1px',
+      borderColor: '#8D9599',
+      borderStyle: 'solid',
     },
-    code: {
-      background: defaultColors.lightBackground,
-      fontFamily:
-        '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
-      fontSize: '95%',
-      lineHeight: '140%',
+    subHeading: {
+      fontWeight: '500',
+      fontSize: '16px',
+    },
+    subTitle: {
+      fontWeight: '300',
+      fontSize: '18px',
+      lineHeight: '135%',
+    },
+    title: {
+      fontWeight: '500',
+      fontSize: '20px',
+      lineHeight: '130%',
+    },
+    tooltip: {
+      background: defaultColors.primary,
+      borderRadius: '1px',
     },
   },
   input: {
