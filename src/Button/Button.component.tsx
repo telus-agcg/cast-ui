@@ -3,7 +3,7 @@ import SButton from './SButton';
 import { Themes } from '../themes';
 import { ThemeProvider } from 'styled-components';
 
-export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
+export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Specify if the button is outline
    *
@@ -58,7 +58,7 @@ export type Props = Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> & {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
 const noop = () => {}; // tslint:disable-line
 

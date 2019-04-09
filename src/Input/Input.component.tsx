@@ -2,23 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-// TODO: we should be able to use an interface to inherit the base properties of an
-// HTMLInputElement. However, when I do this, CPU usage goes nuts, and the base
-// properties still don't inherit correctly. We need to research this further.
-// interface WrapperProps extends React.HTMLAttributes<HTMLInputElement> {
-// ...
-// }
-
-type PropsThemeOnly = {
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
-};
-
-export type Props = PropsThemeOnly & {
+export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
    * The ID of the control
    *
@@ -83,7 +67,13 @@ export type Props = PropsThemeOnly & {
    * @default false
    **/
   required?: boolean;
-};
+  /**
+   * From theme provider
+   *
+   * @default defaultTheme
+   **/
+  theme?: any;
+}
 
 const SInput = styled.input`
   background: ${(props: Props) => props.theme.input.background}
@@ -108,8 +98,7 @@ const SInput = styled.input`
 `;
 
 const SErrorDiv = styled.div`
-  color: ${(props: Props) =>
-    props.invalidTextColor || props.theme.validation.errorTextColor};
+  color: ${(props: Props) => props.theme.validation.errorTextColor};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.validation.fontSize};
   padding: ${(props: Props) => props.theme.validation.padding};

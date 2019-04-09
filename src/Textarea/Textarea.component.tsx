@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-export type Props = {
+export interface Props
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   /**
    * The ID of the control
    *
@@ -73,7 +74,7 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
 const STextarea = styled.textarea`
   background: ${(props: Props) => props.theme.textarea.background}
@@ -126,8 +127,9 @@ export const Textarea: React.FunctionComponent<Props> = ({
           {children}
         </STextarea>
         {textareaProps.invalid && (
-          <SErrorDiv {...textareaProps} id={errorId} theme={theme}>
+          <SErrorDiv id={errorId} theme={theme}>
             {textareaProps.invalidText}
+            {textareaProps.invalidTextColor}
           </SErrorDiv>
         )}
       </>
