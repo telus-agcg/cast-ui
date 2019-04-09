@@ -598,7 +598,7 @@ export const cobaltTheme = {
   copyToClipboard: {
     fontFamily: 'monospace',
     fontSize: '14px',
-    color: cobaltColors.primary,
+    color: cobaltColors.black,
     copiedColor: cobaltColors.placeholderGray,
     padding: '16px',
     button: {
