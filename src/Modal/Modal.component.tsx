@@ -1,9 +1,9 @@
 import * as React from 'react';
-import * as ReactModal from 'react-modal';
+import ReactModal, { Props as ReactModalProps } from 'react-modal';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-export interface Props extends ReactModal.Props {
+export interface Props extends ReactModalProps {
   /**
    * The ID of the control
    *
