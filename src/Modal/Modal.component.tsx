@@ -100,7 +100,7 @@ const modalSizeRules: Function = (modalSize: string, theme: any) => {
       };
     default:
       return {
-        width: theme.modal[modalSize || 'md'].width,
+        width: theme.modal[modalSize].width,
       };
   }
 };
@@ -172,38 +172,33 @@ export class Modal extends React.Component<Props> {
   }
 
   static defaultProps = {
+    modalSize: 'md',
     theme: Themes.defaultTheme,
   };
 
   render() {
-    const { theme, ...props } = this.props;
+    const { modalTitle, theme, footerContent, children, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SReactModal
-          role="dialog"
-          isOpen={this.props.isOpen}
-          style={castStyles}
-          modalSize={this.props.modalSize || 'md'}
-          {...props}
-        >
-          {this.props.modalTitle && (
+        <SReactModal role="dialog" style={castStyles} {...props}>
+          {modalTitle && (
             <ModalHeaderDiv>
-              <h5>{this.props.modalTitle}</h5>
-              {this.props.onTitleClose && (
+              <h5>{modalTitle}</h5>
+              {props.onTitleClose && (
                 <button
                   type="button"
                   aria-label="Close"
-                  onClick={() => this.props.onTitleClose}
+                  onClick={() => props.onTitleClose}
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
               )}
             </ModalHeaderDiv>
           )}
-          <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
-          {this.props.footerContent && (
-            <ModalFooterDiv modalTitle={this.props.modalTitle}>
-              {this.props.footerContent}
+          <ModalBodyDiv>{children}</ModalBodyDiv>
+          {footerContent && (
+            <ModalFooterDiv modalTitle={modalTitle}>
+              {footerContent}
             </ModalFooterDiv>
           )}
         </SReactModal>
