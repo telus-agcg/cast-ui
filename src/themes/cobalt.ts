@@ -237,7 +237,7 @@ export const cobaltTheme = {
       lineHeight: '25px',
     },
     headline: {
-      fontWeight: '300',
+      fontWeight: '400',
       fontSize: '22px',
       lineHeight: '25px',
     },
