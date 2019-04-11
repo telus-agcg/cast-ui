@@ -10,7 +10,7 @@ storiesOf('Select', module).add(
     <Select
       id="mySelect"
       disabled={boolean('disabled', false)}
-      inputSize={select('inputSize', ['sm', 'md', 'lg'], 'md')}
+      selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
       invalid={boolean('invalid', false)}
       invalidText={text('invalidText', 'A valid value is required')}
       invalidTextColor={text('invalidTextColor', '')}

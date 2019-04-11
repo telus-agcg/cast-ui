@@ -498,8 +498,9 @@ export const defaultTheme = {
   },
   validation: {
     borderColor: 'red',
-    errorTextColor: defaultColors.placeholderGray,
+    color: defaultColors.placeholderGray,
     fontSize: '11px',
+    fontStyle: 'italic',
     padding: '4px',
   },
   table: {
