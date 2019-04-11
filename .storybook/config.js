@@ -35,8 +35,6 @@ const wInfoStyle = {
   },
 };
 
-addDecorator(withThemesProvider([defaultTheme, cobaltTheme]));
-
 addParameters({
   options: {
     theme: create({
@@ -57,14 +55,10 @@ addDecorator(
     styles: wInfoStyle,
   }),
 );
-export const wInfo = text =>
-  withInfo({ inline: true, source: true, styles: wInfoStyle, text: text });
 
 addDecorator(withKnobs);
 
-addDecorator(story => (
-  <ThemeProvider theme={cobaltTheme}>{story()}</ThemeProvider>
-));
+addDecorator(withThemesProvider([defaultTheme, cobaltTheme]));
 
 // automatically import all files ending in *.stories.tsx
 const req = require.context('../src', true, /.stories.tsx$/);
