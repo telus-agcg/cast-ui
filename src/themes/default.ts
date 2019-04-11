@@ -497,7 +497,7 @@ export const defaultTheme = {
     },
   },
   validation: {
-    borderColor: 'red',
+    borderColor: defaultColors.red,
     color: defaultColors.placeholderGray,
     fontSize: '11px',
     fontStyle: 'italic',
