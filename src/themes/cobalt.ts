@@ -275,7 +275,7 @@ export const cobaltTheme = {
       borderStyle: 'solid',
     },
     subHeading: {
-      fontWeight: '500',
+      fontWeight: '700',
       fontSize: '16px',
       lineHeight: '19px',
     },
