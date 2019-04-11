@@ -4,9 +4,7 @@ import { SectionHeader } from './SectionHeader.component';
 
 storiesOf('Typography', module).add(
   'SectionHeader',
-  () => (
-    <SectionHeader>Roboto 16 Medium, line: 1 px, #8D9599</SectionHeader>
-  ),
+  () => <SectionHeader>Example SectionHeader</SectionHeader>,
   {
     info: {
       text: `

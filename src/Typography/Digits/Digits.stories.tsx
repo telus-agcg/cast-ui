@@ -4,9 +4,7 @@ import { Digits } from './Digits.component';
 
 storiesOf('Typography', module).add(
   'Digits',
-  () => (
-    <Digits>Roboto Black 18px</Digits>
-  ),
+  () => <Digits>Example Digits</Digits>,
   {
     info: {
       text: `

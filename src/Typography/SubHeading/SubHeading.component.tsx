@@ -16,7 +16,7 @@ const SSubHeading = styled.h2`
     props.theme.typography.subHeading.fontWeight};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.subHeading.fontSize};
-  color: ${(props: Props) => props.theme.colors.primary}
+  color: ${(props: Props) => props.theme.typography.color}
   line-height: ${(props: Props) =>
     props.theme.typography.subHeading.lineHeight};
 `;
