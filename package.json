@@ -102,6 +102,7 @@
     "rollup-plugin-typescript2": "^0.20.1",
     "shx": "^0.3.2",
     "storybook-addon-jsx": "^7.1.0",
+    "storybook-addon-styled-component-theme": "^1.2.1",
     "styled-components": "^4.1.0",
     "tinycolor2": "^1.4.1",
     "tslint": "^5.11.0",
