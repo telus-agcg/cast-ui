@@ -50,6 +50,7 @@ export const cobaltColors = {
 };
 
 export const cobaltTheme = {
+  name: 'Cobalt',
   colors: cobaltColors,
   borders: {
     radius: '1px',

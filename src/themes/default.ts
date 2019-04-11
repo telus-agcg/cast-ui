@@ -33,6 +33,7 @@ export const defaultColors = {
 };
 
 export const defaultTheme = {
+  name: 'Default',
   colors: defaultColors,
   borders: {
     radius: '1px',
