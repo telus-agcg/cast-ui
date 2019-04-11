@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { TabList as ReactTabList } from 'react-tabs';
+import { TabList as ReactTabList, TabListProps } from 'react-tabs';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import { Omit } from '../utils/castTypes';
 
-export type Props = {
+export interface Props extends Omit<TabListProps, 'as'> {
   /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
 const ReactTabListProxy = ({ children, className, ...props }: any) => (
   <ReactTabList {...props} className={` ${className} react-tabs__tab`}>

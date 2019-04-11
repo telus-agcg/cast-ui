@@ -37,8 +37,8 @@ storiesOf('Draggable', module).add(
         <IconButton
           rounded
           icon={info}
-          iconsize={10}
-          pixelbuttonsize={18}
+          iconSize={10}
+          pixelButtonSize={18}
           btnSize="sm"
           btnStyle="success"
           onClick={() => {}}
@@ -97,8 +97,8 @@ storiesOf('Draggable', module).add(
           <IconButton
             rounded
             icon={icAdd}
-            iconsize={20}
-            pixelbuttonsize={32}
+            iconSize={20}
+            pixelButtonSize={32}
             btnSize="sm"
             btnStyle="primary"
             onClick={() => {}}
@@ -109,8 +109,8 @@ storiesOf('Draggable', module).add(
         <IconButton
           rounded
           icon={icAdd}
-          iconsize={20}
-          pixelbuttonsize={32}
+          iconSize={20}
+          pixelButtonSize={32}
           btnSize="sm"
           btnStyle="primary"
           onClick={() => {}}

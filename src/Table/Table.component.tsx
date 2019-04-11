@@ -1,38 +1,40 @@
 /* tslint:disable:max-line-length */
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import ReactTable, { TableProps } from 'react-table';
+import ReactTable, { TableProps, ReactTableDefaults } from 'react-table';
 import { Themes } from '../themes';
 
-import { Icon } from 'react-icons-kit';
-import { bars as IconLarge } from 'react-icons-kit/fa/bars';
-import { ic_format_align_justify as IconCondensed } from 'react-icons-kit/md/ic_format_align_justify';
-import { ic_view_headline as IconMedium } from 'react-icons-kit/md/ic_view_headline';
 import TablePagination from '../TablePagination/TablePagination.component';
 import 'react-table/react-table.css';
-import { castTableProps } from './castTableProps';
 
-type Props = Partial<TableProps> & castTableProps;
+export interface Props extends TableProps {
+  data: any;
+  tableSize?: string;
+  /**
+   * Specify if grid data rows should be striped
+   *
+   * @default false
+   **/
+  striped?: boolean;
+  /**
+   * Specify if table size is adjustable
+   *
+   * @default true
+   **/
+  sizable?: boolean;
+  /**
+   * From theme provider
+   *
+   * @default defaultTheme
+   **/
+  theme?: any;
+}
 
 const SWrapperDiv = styled.div`
   background: ${(props: any) => props.theme.input.background};
   border: 0;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.table.fontSize};
-
-  .table-size-controls {
-    text-align: right;
-    &-left {
-      text-align: left;
-    }
-    & > div {
-      cursor: pointer;
-      opacity: 0.5;
-      &.selected {
-        opacity: 1;
-      }
-    }
-  }
 
   .pagination-top,
   .pagination-bottom {
@@ -106,56 +108,24 @@ const SWrapperDiv = styled.div`
   }
 `;
 
-const initialState = { tableSize: 'md' };
-type State = Readonly<typeof initialState>;
-
 export class Table extends React.Component<Props> {
-  readonly state: State = initialState;
-
   constructor(props: Props) {
     super(props);
   }
 
   static defaultProps = {
+    ...ReactTableDefaults,
     striped: false,
     columns: [],
     tableSize: 'md',
     theme: Themes.defaultTheme,
   };
 
-  changeTableSize(size: string) {
-    this.setState({
-      tableSize: size,
-    });
-  }
-
   render() {
     const { theme, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SWrapperDiv {...props} tableSize={this.state.tableSize}>
-          {this.props.sizable && (
-            <div className="table-size-controls">
-              <Icon
-                icon={IconLarge}
-                size={24}
-                onClick={this.changeTableSize.bind(this, 'lg')}
-                className={this.state.tableSize === 'lg' ? 'selected' : ''}
-              />
-              <Icon
-                icon={IconMedium}
-                size={30}
-                onClick={this.changeTableSize.bind(this, 'md')}
-                className={this.state.tableSize === 'md' ? 'selected' : ''}
-              />
-              <Icon
-                icon={IconCondensed}
-                size={24}
-                onClick={this.changeTableSize.bind(this, 'sm')}
-                className={this.state.tableSize === 'sm' ? 'selected' : ''}
-              />
-            </div>
-          )}
+        <SWrapperDiv {...props}>
           <ReactTable
             {...props}
             className={`-highlight  + ${this.props.striped ? '-striped ' : ''}`}

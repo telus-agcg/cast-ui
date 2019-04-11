@@ -9,7 +9,7 @@ export type Props = Partial<DraggableProps> & {
    *
    * @default '10'
    **/
-  iconsize?: number;
+  iconSize?: number;
 };
 
 const SDraggableInfo = styled.div`
@@ -34,6 +34,6 @@ export const DraggableInfo: React.FunctionComponent<Props> = ({
 DraggableInfo.defaultProps = {
   color: 'lightGray',
   gutterSize: 'md' as 'md' | 'lg' | 'sm',
-  iconsize: 10,
+  iconSize: 10,
   theme: Themes.defaultTheme,
 };

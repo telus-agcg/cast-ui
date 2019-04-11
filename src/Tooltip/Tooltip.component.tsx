@@ -3,12 +3,12 @@ import styled, { ThemeProvider } from 'styled-components';
 import Tippy, { TippyProps } from '@tippy.js/react';
 import { Themes } from '../themes';
 
-export type Props = TippyProps & {
+export interface Props extends TippyProps {
   children: any;
   usePointer?: boolean;
   arrow?: true;
   theme?: any;
-};
+}
 
 const STippy = styled(Tippy)`
   background: ${(props: Props) => props.theme.typography.tooltip.background};
@@ -23,7 +23,7 @@ export class Tooltip extends React.Component<Props> {
   };
   contentIsString = () => {
     return typeof this.props.content === 'string';
-  }
+  };
   public render() {
     const { theme, children, ...props } = this.props;
     return (

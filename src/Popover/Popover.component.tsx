@@ -3,15 +3,15 @@ import styled, { ThemeProvider } from 'styled-components';
 import Tippy, { TippyProps } from '@tippy.js/react';
 import { Themes } from '../themes';
 
-export type Props = TippyProps & {
+export interface Props extends TippyProps {
   /** anchor for the popover  */
-  children?: any;
+  children: any;
   /**
    * From theme provider
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
 const TippyPopover: React.FunctionComponent<Props> = (props: Props) => (
   <Tippy {...props} />
