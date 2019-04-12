@@ -13,10 +13,11 @@ const MyComponent = (props: any) => (
 );
 
 storiesOf('Popover', module).add(
-  'ControlledPopover',
+  'Controlled Popover',
   () => (
     <Popover
       content={<MyComponent />}
+      isVisible={boolean('isVisible', false)}
       arrow={boolean('arrow', false)}
       size={select('size', ['small', 'regular', 'large'], 'regular')}
       placement={select(
@@ -35,9 +36,9 @@ storiesOf('Popover', module).add(
       )}
     >
       <span>
-      <Button btnSize="md" btnStyle="primary" onClick={() => null}>
-        This button has a controlled popover
-      </Button>
+        <Button btnSize="md" btnStyle="primary" onClick={() => null}>
+          This button has a controlled popover
+        </Button>
       </span>
     </Popover>
   ),
