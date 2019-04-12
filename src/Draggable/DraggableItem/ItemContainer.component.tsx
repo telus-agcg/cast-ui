@@ -45,7 +45,9 @@ const SItemContainer = styled.div`
   align-items: stretch;
   justify-content: start;
   background: ${(props: Props) => props.theme.colors.white};
-  border: 1px solid ${(props: Props) => props.theme.colors[props.borderColor!]};
+  border: 1px solid
+    ${(props: Props) =>
+      props.theme.colors[props.borderColor!] || props.borderColor!.toString()};
   border-radius: ${(props: Props) =>
     props.theme.common[props.gutterSize!].borderRadius};
   margin: ${(props: Props) =>
@@ -61,10 +63,12 @@ const SItemContainer = styled.div`
 const SItemLeftContent = styled.div`
   position: relative;
   border-right: 1px solid
-    ${(props: Props) => props.theme.colors[props.borderColor!]};
+    ${(props: Props) =>
+      props.theme.colors[props.borderColor!] || props.borderColor!.toString()};
   .itemHandle {
     cursor: ${(props: any) => (props.itemDraggable ? 'grab' : 'not-allowed')};
-    color: ${(props: Props) => props.theme.colors[props.borderColor!]};
+    color: ${(props: Props) =>
+      props.theme.colors[props.borderColor!] || props.borderColor!.toString()};
     padding: ${(props: Props) =>
       `calc(${
         props.theme.common[props.gutterSize!].padding.toString().split(' ')[0]
@@ -76,7 +80,8 @@ const SItemLeftContent = styled.div`
       color: ${(props: any) =>
         props.itemDraggable
           ? props.theme.colors.blue
-          : props.theme.colors[props.borderColor!]};
+          : props.theme.colors[props.borderColor!] ||
+            props.borderColor!.toString()};
     }
   }
 `;

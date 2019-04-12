@@ -65,11 +65,11 @@ const SSpinner = styled.div`
     border-radius: 50%;
     border: ${(props: Props) =>
       `${props.borderWidth}px solid
-      ${props.backgroundColor!.toString() ||
-        props.theme.colors[props.backgroundColor!]}`};
+      ${props.theme.colors[props.backgroundColor!] ||
+        props.backgroundColor!.toString()}`};
     border-top-color: ${(props: Props) =>
-      `${props.borderColor!.toString() ||
-        props.theme.colors[props.borderColor!]}`};
+      `${props.theme.colors[props.borderColor!] ||
+        props.borderColor!.toString()}`};
     animation: ${(props: Props) =>
       `spinner ${props.animationSpeed}s ${props.transitionType} infinite`};
   }

@@ -122,9 +122,9 @@ const SSideNavbar = styled.div`
   margin: ${(props: Props) => props.theme.sidenav.margin};
   z-index: ${(props: Props) => props.theme.sidenav.zIndex};
   background: ${(props: Props) =>
-    props.background!.toString() ||
     props.theme.sidenav.background ||
-    props.theme.colors[props.background!]};
+    props.theme.colors[props.background!] ||
+    props.background!.toString()};
   border-left: ${(props: Props) =>
     props.borderLeft!.toString() || props.theme.sidenav.borderLeft};
   border-right: ${(props: Props) =>
