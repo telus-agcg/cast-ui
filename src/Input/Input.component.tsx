@@ -2,10 +2,8 @@ import * as React from 'react';
 import ErrorMessage from '../ErrorMessage';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
-import { Weaken } from '../utils/castTypes';
 
-export interface Props
-  extends Weaken<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
    * The ID of the control
    *
@@ -83,7 +81,7 @@ export interface Props
   /**
    * onChange handler
    */
-  onChange?: (value: string | React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SInput = styled.input`
@@ -120,12 +118,12 @@ export const Input: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInput
+          value={value}
+          onChange={onChange}
           {...inputProps}
           data-invalid={inputProps.invalid ? '' : undefined}
           aria-invalid={inputProps.invalid ? true : undefined}
           aria-describedby={errorId}
-          value={value}
-          onChange={onChange}
         >
           {children}
         </SInput>

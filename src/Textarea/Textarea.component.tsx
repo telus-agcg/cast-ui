@@ -2,13 +2,9 @@ import * as React from 'react';
 import ErrorMessage from '../ErrorMessage';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
-import { Weaken } from '../utils/castTypes';
 
 export interface Props
-  extends Weaken<
-    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-    'onChange'
-  > {
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   /**
    * The ID of the control
    *
@@ -86,7 +82,7 @@ export interface Props
   /**
    * onChange handler
    */
-  onChange?: (value: string | React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const STextarea = styled.textarea`
@@ -125,12 +121,12 @@ export const Textarea: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <STextarea
+          value={value}
+          onChange={onChange}
           {...textareaProps}
           data-invalid={textareaProps.invalid ? '' : undefined}
           aria-invalid={textareaProps.invalid ? true : undefined}
           aria-describedby={errorId}
-          value={value}
-          onChange={onChange}
         >
           {children}
         </STextarea>
