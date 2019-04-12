@@ -35,9 +35,9 @@ storiesOf('Popover', module).add(
       )}
     >
       <span>
-      <Button btnSize="md" btnStyle="primary" onClick={() => null}>
-        This button has a controlled popover
-      </Button>
+        <Button btnSize="md" btnStyle="primary" onClick={() => null}>
+          This button has a controlled popover
+        </Button>
       </span>
     </Popover>
   ),

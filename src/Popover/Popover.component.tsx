@@ -59,11 +59,12 @@ export class Popover extends React.Component<Props> {
     const { theme, children, ...props } = this.props;
     const withArrowDistance = 10;
     const withoutArrowDistance = 9;
-    const distance = props.arrow ? withArrowDistance : withoutArrowDistance;
+    const distance =
+      props.distance || props.arrow ? withArrowDistance : withoutArrowDistance;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <React.Fragment>
-          <SPopover distance={props.distance || distance} {...props}>
+          <SPopover distance={distance} {...props}>
             {children}
           </SPopover>
         </React.Fragment>
