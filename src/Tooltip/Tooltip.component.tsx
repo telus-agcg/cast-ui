@@ -6,19 +6,19 @@ import { Themes } from '../themes';
 export interface Props extends TippyProps {
   children: any;
   usePointer?: boolean;
-  arrow?: true;
+  arrow?: boolean;
   theme?: any;
 }
 
 const STippy = styled(Tippy)`
-  background: ${(props: Props) => props.theme.typography.tooltip.background};
-  border-radius: ${(props: Props) =>
-    props.theme.typography.tooltip.borderRadius};
+  background: ${(props: Props) => props.theme.tooltip.background};
+  border-radius: ${(props: Props) => props.theme.tooltip.borderRadius};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
 `;
 
 export class Tooltip extends React.Component<Props> {
   static defaultProps = {
+    arrow: true,
     theme: Themes.defaultTheme,
   };
   contentIsString = () => {
@@ -28,14 +28,7 @@ export class Tooltip extends React.Component<Props> {
     const { theme, children, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <STippy
-          isVisible={true}
-          content={this.props.content}
-          arrow={true}
-          {...props}
-        >
-          {children}
-        </STippy>
+        <STippy {...props}>{children}</STippy>
       </ThemeProvider>
     );
   }

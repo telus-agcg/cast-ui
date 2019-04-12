@@ -2,14 +2,30 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { Tooltip } from '../';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 
 storiesOf('Tooltip', module).add(
   'Controlled Tooltip',
   () => (
     <Tooltip
       content={<MyComponent />}
-      isVisible={boolean('isOpen', false)}
+      isVisible={boolean('isVisible', false)}
+      arrow={boolean('arrow', true)}
+      size={select('size', ['small', 'regular', 'large'], 'regular')}
+      placement={select(
+        'placement',
+        [
+          'top',
+          'top-start',
+          'top-end',
+          'bottom',
+          'bottom-end',
+          'bottom-start',
+          'left',
+          'right',
+        ],
+        'top-start',
+      )}
       trigger="manual"
     >
       <button>This button has a controlled tooltip</button>

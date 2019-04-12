@@ -80,8 +80,8 @@ const computeColor: Function = (
       switch (btnState) {
         case 'hover':
           return {
-            background: 'none',
-            color: theme.styles[btnStyle].flood,
+            background: theme.styles[btnStyle].selectedFlood,
+            color: theme.styles[btnStyle].reverseText,
             borderColor: theme.styles[btnStyle].borderColor,
           };
         case 'disabled':
