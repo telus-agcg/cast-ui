@@ -11,10 +11,9 @@ export interface Props extends TippyProps {
 }
 
 const STippy = styled(Tippy)`
-  background: ${(props: Props) => props.theme.typography.tooltip.background};
-  border-radius: ${(props: Props) =>
-    props.theme.typography.tooltip.borderRadius};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  background: ${(props: Props) => props.theme.tooltip.background};
+  border-radius: ${(props: Props) => props.theme.tooltip.borderRadius};
+  font-family: ${(props: Props) => props.theme.fontFamily};
 `;
 
 export class Tooltip extends React.Component<Props> {
