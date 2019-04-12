@@ -6,7 +6,7 @@ import { Themes } from '../themes';
 export interface Props extends TippyProps {
   children: any;
   usePointer?: boolean;
-  arrow?: true;
+  arrow?: boolean;
   theme?: any;
 }
 
@@ -18,6 +18,7 @@ const STippy = styled(Tippy)`
 
 export class Tooltip extends React.Component<Props> {
   static defaultProps = {
+    arrow: true,
     theme: Themes.defaultTheme,
   };
   contentIsString = () => {
