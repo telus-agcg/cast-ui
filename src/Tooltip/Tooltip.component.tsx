@@ -27,9 +27,7 @@ export class Tooltip extends React.Component<Props> {
     const { theme, children, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <STippy content={this.props.content} arrow={true} {...props}>
-          {children}
-        </STippy>
+        <STippy {...props}>{children}</STippy>
       </ThemeProvider>
     );
   }
