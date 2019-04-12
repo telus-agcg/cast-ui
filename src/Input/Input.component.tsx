@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ErrorMessage from '../ErrorMessage';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
@@ -97,14 +98,6 @@ const SInput = styled.input`
   }
 `;
 
-const SErrorDiv = styled.div`
-  color: ${(props: Props) => props.theme.validation.errorTextColor};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.validation.fontSize};
-  padding: ${(props: Props) => props.theme.validation.padding};
-  font-style: italic;
-`;
-
 export const Input: React.FunctionComponent<Props> = ({
   theme,
   children,
@@ -123,9 +116,11 @@ export const Input: React.FunctionComponent<Props> = ({
           {children}
         </SInput>
         {inputProps.invalid && (
-          <SErrorDiv {...inputProps} id={errorId} theme={theme}>
-            {inputProps.invalidText}
-          </SErrorDiv>
+          <ErrorMessage
+            id={errorId}
+            message={inputProps.invalidText || ''}
+            textColor={inputProps.invalidTextColor || ''}
+          />
         )}
       </>
     </ThemeProvider>

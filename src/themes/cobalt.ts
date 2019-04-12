@@ -518,9 +518,10 @@ export const cobaltTheme = {
     },
   },
   validation: {
-    borderColor: 'red',
-    errorTextColor: cobaltColors.placeholderGray,
+    borderColor: cobaltColors.danger,
+    color: cobaltColors.placeholderGray,
     fontSize: '11px',
+    fontStyle: 'italic',
     padding: '4px',
   },
   table: {
