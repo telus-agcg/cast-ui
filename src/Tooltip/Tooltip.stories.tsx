@@ -9,7 +9,7 @@ storiesOf('Tooltip', module).add(
   () => (
     <Tooltip
       content={<MyComponent />}
-      isVisible={boolean('isOpen', false)}
+      isVisible={boolean('isVisible', false)}
       trigger="manual"
     >
       <button>This button has a controlled tooltip</button>
