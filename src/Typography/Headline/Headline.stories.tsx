@@ -4,9 +4,7 @@ import { Headline } from './Headline.component';
 
 storiesOf('Typography', module).add(
   'Headline',
-  () => (
-    <Headline>27px Light</Headline>
-  ),
+  () => <Headline>Example Headline</Headline>,
   {
     info: {
       text: `

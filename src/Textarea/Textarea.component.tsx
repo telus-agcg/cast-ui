@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ErrorMessage from '../ErrorMessage';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
@@ -99,15 +100,6 @@ const STextarea = styled.textarea`
   }
 `;
 
-const SErrorDiv = styled.div`
-  color: ${(props: any) =>
-    props.invalidTextColor || props.theme.validation.errorTextColor};
-  font-family: ${(props: any) => props.theme.typography.fontFamily};
-  font-size: ${(props: any) => props.theme.validation.fontSize};
-  padding: ${(props: any) => props.theme.validation.padding};
-  font-style: italic;
-`;
-
 export const Textarea: React.FunctionComponent<Props> = ({
   theme,
   children,
@@ -127,10 +119,11 @@ export const Textarea: React.FunctionComponent<Props> = ({
           {children}
         </STextarea>
         {textareaProps.invalid && (
-          <SErrorDiv id={errorId} theme={theme}>
-            {textareaProps.invalidText}
-            {textareaProps.invalidTextColor}
-          </SErrorDiv>
+          <ErrorMessage
+            id={errorId}
+            message={textareaProps.invalidText || ''}
+            textColor={textareaProps.invalidTextColor || ''}
+          />
         )}
       </>
     </ThemeProvider>
