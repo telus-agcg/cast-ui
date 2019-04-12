@@ -2,8 +2,10 @@ import * as React from 'react';
 import ErrorMessage from '../ErrorMessage';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import { Weaken } from '../utils/castTypes';
 
-export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface Props
+  extends Weaken<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   /**
    * The ID of the control
    *
@@ -74,6 +76,14 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Value of the TextArea
+   */
+  value?: string;
+  /**
+   * onChange handler
+   */
+  onChange?: (value: string | React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SInput = styled.input`
@@ -101,6 +111,8 @@ const SInput = styled.input`
 export const Input: React.FunctionComponent<Props> = ({
   theme,
   children,
+  value,
+  onChange,
   ...inputProps
 }) => {
   const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : '';
@@ -112,6 +124,8 @@ export const Input: React.FunctionComponent<Props> = ({
           data-invalid={inputProps.invalid ? '' : undefined}
           aria-invalid={inputProps.invalid ? true : undefined}
           aria-describedby={errorId}
+          value={value}
+          onChange={onChange}
         >
           {children}
         </SInput>
