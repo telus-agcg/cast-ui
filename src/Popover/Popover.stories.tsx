@@ -13,7 +13,7 @@ const MyComponent = (props: any) => (
 );
 
 storiesOf('Popover', module).add(
-  'UncontrolledPopover',
+  'Uncontrolled Popover',
   () => (
     <Popover
       content={<MyComponent />}
