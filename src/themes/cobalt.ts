@@ -209,6 +209,14 @@ export const cobaltTheme = {
       },
     },
   },
+  body: {
+    fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '18px',
+    color: cobaltColors.black,
+    backgroundColor: cobaltColors.white,
+  },
   typography: {
     fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
