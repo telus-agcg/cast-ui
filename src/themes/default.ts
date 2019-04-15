@@ -192,6 +192,14 @@ export const defaultTheme = {
       },
     },
   },
+  body: {
+    fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '160%',
+    color: defaultColors.primary,
+    backgroundColor: defaultColors.white,
+  },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
