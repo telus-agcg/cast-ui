@@ -74,6 +74,14 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Value of the TextArea
+   */
+  value?: string;
+  /**
+   * onChange handler
+   */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SInput = styled.input`
@@ -101,6 +109,8 @@ const SInput = styled.input`
 export const Input: React.FunctionComponent<Props> = ({
   theme,
   children,
+  value,
+  onChange,
   ...inputProps
 }) => {
   const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : '';
@@ -108,6 +118,8 @@ export const Input: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInput
+          value={value}
+          onChange={onChange}
           {...inputProps}
           data-invalid={inputProps.invalid ? '' : undefined}
           aria-invalid={inputProps.invalid ? true : undefined}
