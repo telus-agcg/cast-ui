@@ -192,6 +192,14 @@ export const defaultTheme = {
       },
     },
   },
+  body: {
+    fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '160%',
+    color: defaultColors.primary,
+    backgroundColor: defaultColors.white,
+  },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
@@ -245,12 +253,6 @@ export const defaultTheme = {
       fontSize: '100%',
       lineHeight: '100%',
     },
-    popover: {
-      background: defaultColors.white,
-      color: defaultColors.black,
-      borderRadius: '1px',
-      borderColor: defaultColors.lightGray,
-    },
     sectionHeader: {
       fontWeight: '500',
       fontSize: '16px',
@@ -271,10 +273,6 @@ export const defaultTheme = {
       fontWeight: '500',
       fontSize: '20px',
       lineHeight: '130%',
-    },
-    tooltip: {
-      background: defaultColors.primary,
-      borderRadius: '1px',
     },
   },
   input: {
@@ -476,7 +474,15 @@ export const defaultTheme = {
   },
   popover: {
     withArrowDistance: 10,
-    withoutArrowDistance: 3,
+    withoutArrowDistance: 9,
+    background: defaultColors.white,
+    color: defaultColors.black,
+    borderRadius: '1px',
+    borderColor: defaultColors.lightGray,
+  },
+  tooltip: {
+    background: defaultColors.primary,
+    borderRadius: '1px',
   },
   common: {
     sm: {
