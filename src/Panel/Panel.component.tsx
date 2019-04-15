@@ -99,7 +99,7 @@ const PanelWrapper = styled.div`
 const PanelBody = styled.div`
   background: ${(props: Props) =>
     props.bodyBackgroundColor || props.theme.panel.bodyBackgroundColor};
-  border: ${props.theme.panel.borderWidth} solid
+  border: ${(props: Props) => props.theme.panel.borderWidth} solid
     ${(props: Props) =>
       props.bodyBorderColor || props.theme.panel.bodyBorderColor};
   border-top: none;
@@ -132,6 +132,11 @@ export class Panel extends React.Component<Props, State> {
   static defaultProps = {
     panelStyle: 'default',
     noPadding: false,
+    // headerColor: 'primary',
+    // headerBackgroundColor: 'white',
+    // headerBorderColor: 'lightGray',
+    // bodyBackgroundColor: 'lightBackground',
+    // bodyBorderColor: 'lightGray',
     theme: Themes.defaultTheme,
   };
 
