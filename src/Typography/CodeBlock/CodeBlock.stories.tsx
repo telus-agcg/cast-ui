@@ -36,7 +36,7 @@ storiesOf('Typography', module).add(
   () => (
     <CopyToClipboard
       copyContent={sampleCode || ''}
-      background="lightBackground"
+      background="#7EDEB6"
       includeCopyButton={true}
     />
   ),

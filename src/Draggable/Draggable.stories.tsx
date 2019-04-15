@@ -28,7 +28,7 @@ storiesOf('Draggable', module).add(
       )}
       borderColor={select(
         'borderColor',
-        ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow'],
+        ['lightGray', 'gray', 'blue', 'white', 'red', 'yellow', '#000'],
         'lightGray',
       )}
       gutterSize={select('gutterSize', ['sm', 'md', 'lg'], 'md')}

@@ -34,7 +34,7 @@ export interface Props
    */
   invalidText?: string;
   /**
-   * Color of the invalid text
+   * A CSS code of the invalid text
    *
    * @default ''
    **/

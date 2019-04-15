@@ -24,7 +24,7 @@ storiesOf('Sidenav', module).add(
     <div style={{ height: '600px', position: 'relative' }}>
       <SideNavbar
         isOpen={boolean('isOpen', true)}
-        background={text('background', 'lightBackground')}
+        background={text('background', '#7EDEB6')}
         height={text('height', '')}
         width={text('width', '')}
         borderLeft={text('borderLeft', '')}
@@ -32,7 +32,7 @@ storiesOf('Sidenav', module).add(
         isSecondaryNavbarOpen={boolean('isSecondaryNavbarOpen', true)}
         secondaryNavbarWidth={text('secondaryNavbarWidth', '')}
         secondaryNavbarHeight={text('secondaryNavbarHeight', '')}
-        secondaryNavbarBackground={text('secondaryNavbarBackground', 'white')}
+        secondaryNavbarBackground={text('secondaryNavbarBackground', '#FFFFFF')}
         onToggle={action('Toggle!')}
         beforeToggle={action('Before Toggle!')}
         afterToggle={action('After Toggle!')}

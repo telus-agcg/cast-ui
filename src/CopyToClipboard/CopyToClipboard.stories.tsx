@@ -21,7 +21,7 @@ storiesOf('CopyToClipboard', module).add(
     <CopyToClipboard
       copyContent='Some text that is usually copied to clipboard.'
       copyContainerClass='copy-container'
-      background='lightBackground'
+      background='#F5F7F8'
       includeCopyButton={true}
       copyButtonContent='copy'
       copyButtonClass='copy-button'
@@ -29,7 +29,7 @@ storiesOf('CopyToClipboard', module).add(
           `,
         )}
         copyContainerClass={text('Copy Container Class', 'copy-container')}
-        background={text('Background', 'lightBackground')}
+        background={text('Background', '#F5F7F8')}
         includeCopyButton={boolean('Include Copy Button', true)}
         copyButtonContent={text('Copy Button Text', 'copy')}
         copyButtonClass={text('Copy Button Class', 'copy-button')}

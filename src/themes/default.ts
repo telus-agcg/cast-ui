@@ -428,6 +428,11 @@ export const defaultTheme = {
       padding: '30px 30px',
     },
     borderWidth: '1px',
+    bodyBackgroundColor: defaultColors.lightBackground,
+    bodyBorderColor: defaultColors.lightGray,
+    headerColor: defaultColors.primary,
+    headerBackgroundColor: defaultColors.white,
+    headerBorderColor: defaultColors.lightGray,
   },
   badge: {
     borderRadius: '10px',
@@ -588,6 +593,7 @@ export const defaultTheme = {
     fontFamily: 'monospace',
     fontSize: '14px',
     color: defaultColors.primary,
+    background: defaultColors.lightBackground,
     copiedColor: defaultColors.placeholderGray,
     padding: '16px',
     button: {
@@ -684,5 +690,15 @@ export const defaultTheme = {
     navText: {
       padding: '8px 0 8px 12px',
     },
+  },
+  spinner: {
+    backgroundColor: defaultColors.lightGray,
+    borderColor: defaultColors.lightGray,
+  },
+  itemContainer: {
+    borderColor: defaultColors.lightGray,
+  },
+  draggable: {
+    borderColor: defaultColors.lightGray,
   },
 };

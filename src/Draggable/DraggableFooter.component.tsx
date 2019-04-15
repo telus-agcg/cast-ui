@@ -22,7 +22,6 @@ export const DraggableFooter: React.FunctionComponent<Props> = ({
   </ThemeProvider>
 );
 DraggableFooter.defaultProps = {
-  color: 'lightGray',
   gutterSize: 'md',
   draggableStyle: 'primary',
   theme: Themes.defaultTheme,

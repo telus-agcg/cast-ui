@@ -56,7 +56,7 @@ export type Props = Partial<BlendedProps> & {
 
 /* tslint:disable:max-line-length */
 const SOverlayComponent = styled.div`
-  background: #fff;
+  background: ${props => props.theme.colors.white};
   border-radius: ${(props: Props) =>
     props.theme.common[props.datePickerSize!].borderRadius};
   border: 1px solid ${(props: Props) => props.theme.colors.lightGray};

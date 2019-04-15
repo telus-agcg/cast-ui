@@ -18,13 +18,13 @@ export type DraggableProps = {
     | 'warning'
     | 'danger';
   /**
-   * Select DraggableParent color. Must be a color defined in theme colors
+   * Select DraggableParent color.
    *
    * @default 'lightGray'
    **/
   color?: string;
   /**
-   * Select Draggable Parent borders' color. Must be a color defined in theme colors
+   * Select Draggable Parent borders' color.
    *
    * @default 'lightGray'
    **/

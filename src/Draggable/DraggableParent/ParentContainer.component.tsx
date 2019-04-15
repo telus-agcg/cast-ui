@@ -48,7 +48,9 @@ const SDraggableParent = styled.div`
     `${
       props.theme.common[props.gutterSize!].padding.toString().split(' ')[0]
     } 0`};
-  border: 1px dashed ${(props: Props) => props.theme.colors[props.borderColor!]};
+  border: 1px dashed
+    ${(props: Props) =>
+      props.theme.colors[props.borderColor!] || props.borderColor!.toString()};
   border-radius: ${(props: Props) =>
     props.theme.common[props.gutterSize!].borderRadius};
   background-color: ${(props: Props) =>
@@ -57,7 +59,8 @@ const SDraggableParent = styled.div`
       : props.theme.colors.white};
   .parentHandle {
     cursor: ${(props: Props) => (props.draggable ? 'grab' : 'not-allowed')};
-    color: ${(props: Props) => props.theme.colors[props.borderColor!]};
+    color: ${(props: Props) =>
+      props.theme.colors[props.borderColor!] || props.borderColor!.toString()};
     padding: ${(props: Props) => props.theme.common[props.gutterSize!].padding};
     margin-left: ${(props: Props) =>
       `-${
