@@ -38,10 +38,9 @@ export type Props = {
     selectItemPath: string,
   ): void;
   /**
-   * A color defined in theme colors or a CSS color code
-   * or shorthand string for setting element background
+   * A  CSS color code
    *
-   * @default 'white'
+   * @default ''
    **/
   background?: string;
   /**
@@ -87,8 +86,7 @@ export type Props = {
    **/
   secondaryNavbarHeight?: string;
   /**
-   * A color defined in theme colors or a CSS color code
-   * or shorthand string for setting element background
+   * A CSS color code
    *
    * @default ''
    **/
@@ -122,9 +120,7 @@ const SSideNavbar = styled.div`
   margin: ${(props: Props) => props.theme.sidenav.margin};
   z-index: ${(props: Props) => props.theme.sidenav.zIndex};
   background: ${(props: Props) =>
-    props.theme.sidenav.background ||
-    props.theme.colors[props.background!] ||
-    props.background!.toString()};
+    props.background || props.theme.sidenav.background};
   border-left: ${(props: Props) =>
     props.borderLeft!.toString() || props.theme.sidenav.borderLeft};
   border-right: ${(props: Props) =>
@@ -150,15 +146,12 @@ const SSecondarySideNavbar = styled.div`
   margin: ${(props: Props) => props.theme.sidenav.secondaryNavbar.margin};
   z-index: ${(props: Props) => props.theme.sidenav.secondaryNavbar.zIndex};
   background: ${(props: Props) =>
-    props.secondaryNavbarBackground!.toString() ||
-    props.theme.sidenav.secondaryNavbar.background ||
-    props.theme.colors[props.secondaryNavbarBackground!]};
+    props.secondaryNavbarBackground ||
+    props.theme.sidenav.secondaryNavbar.background};
   border-left: ${(props: Props) =>
-    props.borderLeft!.toString() ||
-    props.theme.sidenav.secondaryNavbar.borderLeft};
+    props.borderLeft || props.theme.sidenav.secondaryNavbar.borderLeft};
   border-right: ${(props: Props) =>
-    props.borderRight!.toString() ||
-    props.theme.sidenav.secondaryNavbar.borderRight};
+    props.borderRight || props.theme.sidenav.secondaryNavbar.borderRight};
   position: absolute;
   top: 0;
   bottom: 0;
@@ -247,12 +240,10 @@ SideNavbar.defaultProps = {
   theme: Themes.defaultTheme,
   isOpen: false,
   width: '',
-  background: '',
   borderLeft: '',
   borderRight: '',
   isSecondaryNavbarOpen: false,
   secondaryNavbarWidth: '',
-  secondaryNavbarBackground: '',
   secondaryNavbarHeight: '',
   itemToggleOpenContent: '',
   itemToggleCloseContent: '',

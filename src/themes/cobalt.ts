@@ -450,6 +450,11 @@ export const cobaltTheme = {
       padding: '30px 30px',
     },
     borderWidth: '1px',
+    headerBorderColor: cobaltColors.lightGray,
+    bodyBackgroundColor: cobaltColors.lightBackground,
+    bodyBorderColor: cobaltColors.lightGray,
+    headerColor: cobaltColors.primary,
+    headerBackgroundColor: cobaltColors.white,
   },
   badge: {
     borderRadius: '4px',
@@ -601,6 +606,7 @@ export const cobaltTheme = {
     fontFamily: 'monospace',
     fontSize: '14px',
     color: cobaltColors.black,
+    background: cobaltColors.lightBackground,
     copiedColor: cobaltColors.placeholderGray,
     padding: '16px',
     button: {
@@ -697,5 +703,12 @@ export const cobaltTheme = {
     navText: {
       padding: '8px 0 8px 12px',
     },
+  },
+  spinner: {
+    backgroundColor: cobaltColors.lightGray,
+    borderColor: cobaltColors.lightGray,
+  },
+  itemContainer: {
+    borderColor: cobaltColors.lightGray,
   },
 };

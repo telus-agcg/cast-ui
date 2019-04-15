@@ -9,8 +9,7 @@ export type Props = Partial<DraggableProps>;
 const SItemRightContent = styled.div`
   position: relative;
   border-left: 1px solid
-    ${(props: Props) =>
-      props.theme.colors[props.borderColor!] || props.borderColor!.toString()};
+    ${(props: Props) => props.borderColor || props.theme.draggable.borderColor};
   color: ${(props: Props) =>
     props.theme.styles[props.draggableStyle!].reverseText};
   background-color: ${(props: Props) =>
