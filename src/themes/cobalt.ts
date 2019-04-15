@@ -256,12 +256,6 @@ export const cobaltTheme = {
         textDecoration: 'underline',
       },
     },
-    popover: {
-      background: cobaltColors.white,
-      color: cobaltColors.black,
-      borderRadius: '1px',
-      borderColor: cobaltColors.lightGray,
-    },
     pre: {
       background: cobaltColors.lightBackground,
       fontFamily: '"Roboto Mono", Courier, monospace',
@@ -289,10 +283,6 @@ export const cobaltTheme = {
       fontWeight: '700',
       fontSize: '18px',
       lineHeight: '22px',
-    },
-    tooltip: {
-      background: cobaltColors.black,
-      borderRadius: '1px',
     },
   },
   input: {
@@ -489,10 +479,16 @@ export const cobaltTheme = {
     highlightedBorderWidth: '5px',
   },
   popover: {
-    borderColor: cobaltColors.lightGray,
-    background: cobaltColors.white,
     withArrowDistance: 10,
-    withoutArrowDistance: 3,
+    withoutArrowDistance: 9,
+    background: cobaltColors.white,
+    color: cobaltColors.black,
+    borderRadius: '1px',
+    borderColor: cobaltColors.lightGray,
+  },
+  tooltip: {
+    background: cobaltColors.black,
+    borderRadius: '1px',
   },
   common: {
     sm: {
