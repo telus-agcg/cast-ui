@@ -8,7 +8,7 @@ storiesOf('Spinner', module).add(
   'Spinner',
   () => (
     <Spinner
-      backgroundColor={text('backgroundColor', 'lightGray')}
+      backgroundColor={text('backgroundColor', '#BCC0C3')}
       borderColor={text('borderColor', 'blue')}
       size={select('size', [20, 30, 40, 50, 60, 70], 50)}
       borderWidth={select('borderWidth', [1, 2, 3, 4, 5], 3)}

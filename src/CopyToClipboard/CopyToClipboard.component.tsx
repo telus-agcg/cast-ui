@@ -24,9 +24,9 @@ export type Props = {
    **/
   copyContainerClass?: string;
   /**
-   * Set container background color. A css color code or a color defined in theme colors
+   * Set container background color. A css color code
    *
-   * @default 'lightBackground'
+   * @default ''
    **/
   background?: string;
   /**
@@ -74,7 +74,7 @@ const SCopyToClipboard = styled.div`
   display: ${(props: Props) => (props.fullWidth ? 'flex' : 'inline-flex')};
   padding: ${(props: Props) => props.theme.copyToClipboard.padding};
   background-color: ${(props: Props) =>
-    props.background!.toString() || props.theme.colors[props.background!]};
+    props.background || props.theme.copyToClipboard.background};
   font-family: ${(props: Props) => props.theme.copyToClipboard.fontFamily};
   font-size: ${(props: Props) => props.theme.copyToClipboard.fontSize};
   color: ${(props: any) =>
@@ -173,7 +173,6 @@ export class CopyToClipboard extends React.Component<Props> {
   static defaultProps = {
     copyContent: '',
     copyContainerClass: '',
-    background: 'disabledBackground',
     fullWidth: true,
     includeCopyButton: true,
     copyButtonContent: 'copy',

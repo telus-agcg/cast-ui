@@ -84,8 +84,7 @@ const SCard = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.card.fontSize};
   padding: ${(props: Props) => props.theme.card.padding};
-  background: ${(props: Props) =>
-    props.bgColor ? props.bgColor : props.theme.card.background};
+  background: ${(props: Props) => props.bgColor || props.theme.card.background};
   box-shadow: ${(props: Props) => props.theme.card.boxShadow};
   border-style: solid;
 

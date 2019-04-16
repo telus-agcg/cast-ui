@@ -4,15 +4,15 @@ import { Themes } from '../themes';
 
 export type Props = {
   /**
-   * Set body background color. A CSS color code or a color defined in theme colors
+   * Set body background color. A CSS color code
    *
-   * @default 'lightGray'
+   * @default ''
    **/
   backgroundColor?: string;
   /**
-   * Set body background color. A CSS color code or a color defined in theme colors
+   * Set body background color. A CSS color code
    *
-   * @default 'blue'
+   * @default ''
    **/
   borderColor?: string;
   /**
@@ -65,11 +65,9 @@ const SSpinner = styled.div`
     border-radius: 50%;
     border: ${(props: Props) =>
       `${props.borderWidth}px solid
-      ${props.backgroundColor!.toString() ||
-        props.theme.colors[props.backgroundColor!]}`};
+      ${props.backgroundColor || props.theme.spinner.backgroundColor}`};
     border-top-color: ${(props: Props) =>
-      `${props.borderColor!.toString() ||
-        props.theme.colors[props.borderColor!]}`};
+      props.borderColor || props.theme.spinner.borderColor};
     animation: ${(props: Props) =>
       `spinner ${props.animationSpeed}s ${props.transitionType} infinite`};
   }
@@ -88,7 +86,6 @@ export const Spinner: React.FunctionComponent<Props> = ({
   </ThemeProvider>
 );
 Spinner.defaultProps = {
-  backgroundColor: 'lightGray',
   borderColor: 'blue',
   borderWidth: 3,
   size: 50,

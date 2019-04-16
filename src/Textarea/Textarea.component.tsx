@@ -34,7 +34,7 @@ export interface Props
    */
   invalidText?: string;
   /**
-   * Color of the invalid text
+   * A CSS code of the invalid text
    *
    * @default ''
    **/
@@ -75,6 +75,14 @@ export interface Props
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Value of the TextArea
+   */
+  value?: string;
+  /**
+   * onChange handler
+   */
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const STextarea = styled.textarea`
@@ -103,6 +111,8 @@ const STextarea = styled.textarea`
 export const Textarea: React.FunctionComponent<Props> = ({
   theme,
   children,
+  value,
+  onChange,
   ...textareaProps
 }) => {
   const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';
@@ -111,6 +121,8 @@ export const Textarea: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <STextarea
+          value={value}
+          onChange={onChange}
           {...textareaProps}
           data-invalid={textareaProps.invalid ? '' : undefined}
           aria-invalid={textareaProps.invalid ? true : undefined}

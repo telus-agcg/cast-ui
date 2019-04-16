@@ -209,6 +209,14 @@ export const cobaltTheme = {
       },
     },
   },
+  body: {
+    fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '18px',
+    color: cobaltColors.black,
+    backgroundColor: cobaltColors.white,
+  },
   typography: {
     fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
@@ -256,12 +264,6 @@ export const cobaltTheme = {
         textDecoration: 'underline',
       },
     },
-    popover: {
-      background: cobaltColors.white,
-      color: cobaltColors.black,
-      borderRadius: '1px',
-      borderColor: cobaltColors.lightGray,
-    },
     pre: {
       background: cobaltColors.lightBackground,
       fontFamily: '"Roboto Mono", Courier, monospace',
@@ -289,10 +291,6 @@ export const cobaltTheme = {
       fontWeight: '700',
       fontSize: '18px',
       lineHeight: '22px',
-    },
-    tooltip: {
-      background: cobaltColors.black,
-      borderRadius: '1px',
     },
   },
   input: {
@@ -450,6 +448,11 @@ export const cobaltTheme = {
       padding: '30px 30px',
     },
     borderWidth: '1px',
+    headerBorderColor: cobaltColors.lightGray,
+    bodyBackgroundColor: cobaltColors.lightBackground,
+    bodyBorderColor: cobaltColors.lightGray,
+    headerColor: cobaltColors.primary,
+    headerBackgroundColor: cobaltColors.white,
   },
   badge: {
     borderRadius: '4px',
@@ -489,10 +492,16 @@ export const cobaltTheme = {
     highlightedBorderWidth: '5px',
   },
   popover: {
-    borderColor: cobaltColors.lightGray,
-    background: cobaltColors.white,
     withArrowDistance: 10,
-    withoutArrowDistance: 3,
+    withoutArrowDistance: 9,
+    background: cobaltColors.white,
+    color: cobaltColors.black,
+    borderRadius: '1px',
+    borderColor: cobaltColors.lightGray,
+  },
+  tooltip: {
+    background: cobaltColors.black,
+    borderRadius: '1px',
   },
   common: {
     sm: {
@@ -601,6 +610,7 @@ export const cobaltTheme = {
     fontFamily: 'monospace',
     fontSize: '14px',
     color: cobaltColors.black,
+    background: cobaltColors.lightBackground,
     copiedColor: cobaltColors.placeholderGray,
     padding: '16px',
     button: {
@@ -697,5 +707,12 @@ export const cobaltTheme = {
     navText: {
       padding: '8px 0 8px 12px',
     },
+  },
+  spinner: {
+    backgroundColor: cobaltColors.lightGray,
+    borderColor: cobaltColors.lightGray,
+  },
+  itemContainer: {
+    borderColor: cobaltColors.lightGray,
   },
 };

@@ -25,9 +25,7 @@ export const Draggable: React.FunctionComponent<Props> = ({
   );
 };
 Draggable.defaultProps = {
-  color: 'lightGray',
   draggableStyle: 'primary',
-  borderColor: 'lightGray',
   gutterSize: 'md' as 'md' | 'lg' | 'sm',
   theme: Themes.defaultTheme,
 };
