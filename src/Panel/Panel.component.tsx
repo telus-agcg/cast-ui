@@ -90,7 +90,6 @@ export type Props = {
 };
 
 const PanelWrapper = styled.div`
-  overflow: hidden;
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.fontSize};
   border-radius: ${(props: Props) => props.theme.borders.radius};
@@ -105,7 +104,6 @@ const PanelBody = styled.div`
   border-top: none;
   padding: ${(props: Props) =>
     props.noPadding ? '0' : props.theme.panel.body.padding};
-  overflow: hidden;
   height: auto;
   transition: all 300ms ease-in-out;
 `;
@@ -132,11 +130,6 @@ export class Panel extends React.Component<Props, State> {
   static defaultProps = {
     panelStyle: 'default',
     noPadding: false,
-    // headerColor: 'primary',
-    // headerBackgroundColor: 'white',
-    // headerBorderColor: 'lightGray',
-    // bodyBackgroundColor: 'lightBackground',
-    // bodyBorderColor: 'lightGray',
     theme: Themes.defaultTheme,
   };
 
