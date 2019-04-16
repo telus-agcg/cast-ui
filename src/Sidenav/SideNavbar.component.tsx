@@ -68,6 +68,24 @@ export type Props = {
    **/
   width?: string;
   /**
+   * Set position of SideNavbar
+   *
+   * @default ''
+   **/
+  position?: 'absolute' | 'sticky' | 'fixed';
+  /**
+   * Set SideNavbar's distance from top of viewport
+   *
+   * @default ''
+   **/
+  top?: number | string;
+  /**
+   * Set SideNavbar's distance from bottom of viewport
+   *
+   * @default ''
+   **/
+  bottom?: number | string;
+  /**
    * Expand/collapse the secondary sidebar
    *
    * @default false
@@ -125,10 +143,11 @@ const SSideNavbar = styled.div`
     props.borderLeft!.toString() || props.theme.sidenav.borderLeft};
   border-right: ${(props: Props) =>
     props.borderRight!.toString() || props.theme.sidenav.borderRight};
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
+  position: ${(props: Props) => props.position || props.theme.sidenav.position};
+  top: ${(props: Props) => props.top || props.theme.sidenav.top};
+  bottom: ${(props: Props) => props.bottom || props.theme.sidenav.bottom};
+  left: ${(props: Props) => props.theme.sidenav.left};
+  right: ${(props: Props) => props.theme.sidenav.right};
   min-width: ${(props: Props) =>
     props.width ||
     (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
@@ -152,9 +171,13 @@ const SSecondarySideNavbar = styled.div`
     props.borderLeft || props.theme.sidenav.secondaryNavbar.borderLeft};
   border-right: ${(props: Props) =>
     props.borderRight || props.theme.sidenav.secondaryNavbar.borderRight};
-  position: absolute;
-  top: 0;
-  bottom: 0;
+  position: ${(props: Props) =>
+    props.position || props.theme.sidenav.secondaryNavbar.position};
+  top: ${(props: Props) =>
+    props.top || props.theme.sidenav.secondaryNavbar.top};
+  bottom: ${(props: Props) =>
+    props.bottom || props.theme.sidenav.secondaryNavbar.bottom};
+  right: ${(props: Props) => props.theme.sidenav.secondaryNavbar.right};
   left: ${(props: Props) =>
     props.width ||
     (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
