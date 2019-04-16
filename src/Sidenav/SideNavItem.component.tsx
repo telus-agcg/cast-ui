@@ -99,7 +99,7 @@ const SSideNavItem = styled.div`
 `;
 
 export const SideNavItem: React.FunctionComponent<Props> = ({
-  onSelect = () => {},
+  onSelect,
   path = '',
   theme,
   children,
@@ -131,8 +131,11 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
   const noop = () => {};
 
   const handleSelect = (e: any) => {
-    onSelect(e, path);
-    onItemSelect ? onItemSelect(e, path) : noop;
+    if (onSelect) {
+      onSelect(e, path);
+    } else {
+      onItemSelect ? onItemSelect(e, path) : noop;
+    }
   };
 
   return (
