@@ -24,7 +24,7 @@ storiesOf('Sidenav', module).add(
     <div style={{ height: '600px', position: 'relative' }}>
       <SideNavbar
         isOpen={boolean('isOpen', true)}
-        background={text('background', '#7EDEB6')}
+        background={text('background', '')}
         height={text('height', '')}
         width={text('width', '')}
         borderLeft={text('borderLeft', '')}
