@@ -33,7 +33,8 @@ export type Props = {
    **/
   onSelect?(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    selectItemPath: string,
+    selectItemPath: any,
+    itemSecondaryChildren: any,
   ): void;
   /**
    * Custom content for the itemToggleButton on open mode
@@ -132,9 +133,9 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
 
   const handleSelect = (e: any) => {
     if (onSelect) {
-      onSelect(e, path);
+      onSelect(e, path, itemSecondaryChildren);
     } else {
-      onItemSelect ? onItemSelect(e, path) : noop;
+      onItemSelect ? onItemSelect(e, path, itemSecondaryChildren) : noop;
     }
   };
 

@@ -55,7 +55,10 @@ storiesOf('Sidenav', module).add(
             </SideNavItemIcon>
             <SideNavItemText>Documents</SideNavItemText>
             <SideNav secondary>
-              <SideNavItem path="/documents/home-documents">
+              <SideNavItem
+                path="/documents/home-documents"
+                onSelect={action('Selected! now')}
+              >
                 <div style={{ padding: '12px 0 12px 24px' }}>
                   Home Documents
                 </div>

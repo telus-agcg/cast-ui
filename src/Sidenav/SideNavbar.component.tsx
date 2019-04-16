@@ -35,7 +35,8 @@ export type Props = {
    **/
   onSelect?(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    selectItemPath: string,
+    selectItemPath: any,
+    itemSecondaryChildren: any,
   ): void;
   /**
    * A  CSS color code
