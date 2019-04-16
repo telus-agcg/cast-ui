@@ -122,7 +122,17 @@ export class Table extends React.Component<Props> {
   };
 
   render() {
-    const { theme, ...props } = this.props;
+    const {
+      theme,
+      onFetchData,
+      onPageSizeChange,
+      onPageChange,
+      onSortedChange,
+      onFilteredChange,
+      onResizedChange,
+      onExpandedChange,
+      ...props
+    } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv {...props}>
@@ -132,6 +142,13 @@ export class Table extends React.Component<Props> {
             PaginationComponent={TablePagination}
             nextText="Next >"
             previousText="< Previous"
+            onFetchData={onFetchData}
+            onPageSizeChange={onPageSizeChange}
+            onPageChange={onPageChange}
+            onSortedChange={onSortedChange}
+            onFilteredChange={onFilteredChange}
+            onResizedChange={onResizedChange}
+            onExpandedChange={onExpandedChange}
           />
         </SWrapperDiv>
       </ThemeProvider>
