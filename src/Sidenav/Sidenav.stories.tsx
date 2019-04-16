@@ -57,7 +57,7 @@ storiesOf('Sidenav', module).add(
             <SideNav secondary>
               <SideNavItem
                 path="/documents/home-documents"
-                onSelect={action('Selected! now')}
+                onSelect={action('Selected without redundancy!')}
               >
                 <div style={{ padding: '12px 0 12px 24px' }}>
                   Home Documents
