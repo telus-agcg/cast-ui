@@ -80,7 +80,7 @@ export const Typography: React.FunctionComponent<Props> = ({
       <br />
       <CopyToClipboard
         copyContent={sampleCode || ''}
-        background="lightBackground"
+        background="#F5F7F8"
         includeCopyButton={true}
       />
     </STypography>

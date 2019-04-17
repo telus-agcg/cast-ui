@@ -2,8 +2,7 @@ import * as React from 'react';
 import { Tab as ReactTab, TabProps } from 'react-tabs';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
-
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+import { Omit } from '../utils/castTypes';
 
 export interface Props extends Omit<TabProps, 'as'> {
   /**

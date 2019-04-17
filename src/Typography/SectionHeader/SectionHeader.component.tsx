@@ -16,7 +16,7 @@ const SSectionHeader = styled.h1`
     props.theme.typography.sectionHeader.fontWeight};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.sectionHeader.fontSize};
-  color: ${(props: Props) => props.theme.colors.primary}
+  color: ${(props: Props) => props.theme.typography.color}
   border-bottom-width: ${(props: Props) =>
     props.theme.typography.sectionHeader.borderWidth};
   border-bottom-color: ${(props: Props) =>

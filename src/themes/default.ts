@@ -33,6 +33,7 @@ export const defaultColors = {
 };
 
 export const defaultTheme = {
+  name: 'Default',
   colors: defaultColors,
   borders: {
     radius: '1px',
@@ -191,6 +192,14 @@ export const defaultTheme = {
       },
     },
   },
+  body: {
+    fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '160%',
+    color: defaultColors.primary,
+    backgroundColor: defaultColors.white,
+  },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
@@ -198,40 +207,31 @@ export const defaultTheme = {
     fontWeight: '400',
     lineHeight: '160%',
     color: defaultColors.primary,
-    headline: {
+    caption: {
       fontWeight: '300',
-      fontSize: '27px',
-      lineHeight: '125%',
+      fontSize: '12px',
+      lineHeight: '18px',
     },
-    sectionHeader: {
-      fontWeight: '500',
-      fontSize: '16px',
-      borderWidth: '1px',
-      borderColor: '#8D9599',
-      borderStyle: 'solid',
+    code: {
+      background: defaultColors.lightBackground,
+      fontFamily:
+        '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
+      fontSize: '95%',
+      lineHeight: '140%',
+    },
+    digits: {
+      fontWeight: '700',
+      fontSize: '18px',
     },
     display: {
       fontWeight: '400',
       fontSize: '37px',
       lineHeight: '120%',
     },
-    title: {
-      fontWeight: '500',
-      fontSize: '20px',
-      lineHeight: '130%',
-    },
-    subTitle: {
+    headline: {
       fontWeight: '300',
-      fontSize: '18px',
-      lineHeight: '135%',
-    },
-    caption: {
-      fontWeight: '300',
-      fontSize: '12px',
-    },
-    subHeading: {
-      fontWeight: '500',
-      fontSize: '16px',
+      fontSize: '27px',
+      lineHeight: '125%',
     },
     link: {
       fontWeight: '500',
@@ -247,32 +247,32 @@ export const defaultTheme = {
         textDecoration: 'underline',
       },
     },
-    digits: {
-      fontWeight: '700',
-      fontSize: '18px',
-    },
-    tooltip: {
-      background: defaultColors.primary,
-      borderRadius: '1px',
-    },
-    popover: {
-      background: defaultColors.white,
-      color: defaultColors.black,
-      borderRadius: '1px',
-      borderColor: defaultColors.lightGray,
-    },
     pre: {
       background: defaultColors.lightBackground,
       fontFamily: '"Roboto Mono", Courier, monospace',
       fontSize: '100%',
       lineHeight: '100%',
     },
-    code: {
-      background: defaultColors.lightBackground,
-      fontFamily:
-        '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
-      fontSize: '95%',
-      lineHeight: '140%',
+    sectionHeader: {
+      fontWeight: '500',
+      fontSize: '16px',
+      borderWidth: '1px',
+      borderColor: '#8D9599',
+      borderStyle: 'solid',
+    },
+    subHeading: {
+      fontWeight: '500',
+      fontSize: '16px',
+    },
+    subTitle: {
+      fontWeight: '300',
+      fontSize: '18px',
+      lineHeight: '135%',
+    },
+    title: {
+      fontWeight: '500',
+      fontSize: '20px',
+      lineHeight: '130%',
     },
   },
   input: {
@@ -428,6 +428,11 @@ export const defaultTheme = {
       padding: '30px 30px',
     },
     borderWidth: '1px',
+    bodyBackgroundColor: defaultColors.lightBackground,
+    bodyBorderColor: defaultColors.lightGray,
+    headerColor: defaultColors.primary,
+    headerBackgroundColor: defaultColors.white,
+    headerBorderColor: defaultColors.lightGray,
   },
   badge: {
     borderRadius: '10px',
@@ -469,7 +474,15 @@ export const defaultTheme = {
   },
   popover: {
     withArrowDistance: 10,
-    withoutArrowDistance: 3,
+    withoutArrowDistance: 9,
+    background: defaultColors.white,
+    color: defaultColors.black,
+    borderRadius: '1px',
+    borderColor: defaultColors.lightGray,
+  },
+  tooltip: {
+    background: defaultColors.primary,
+    borderRadius: '1px',
   },
   common: {
     sm: {
@@ -495,9 +508,10 @@ export const defaultTheme = {
     },
   },
   validation: {
-    borderColor: 'red',
-    errorTextColor: defaultColors.placeholderGray,
+    borderColor: defaultColors.red,
+    color: defaultColors.placeholderGray,
     fontSize: '11px',
+    fontStyle: 'italic',
     padding: '4px',
   },
   table: {
@@ -579,6 +593,7 @@ export const defaultTheme = {
     fontFamily: 'monospace',
     fontSize: '14px',
     color: defaultColors.primary,
+    background: defaultColors.lightBackground,
     copiedColor: defaultColors.placeholderGray,
     padding: '16px',
     button: {
@@ -608,6 +623,11 @@ export const defaultTheme = {
     padding: '',
     margin: '',
     zIndex: 5,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 'auto',
     borderLeft: '',
     borderRight: `1px solid ${defaultColors.lightBorder}`,
     transition: 'min-width 0.15s',
@@ -618,6 +638,11 @@ export const defaultTheme = {
       padding: '80px 0 16px',
       margin: '',
       zIndex: 4,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 'auto',
       borderLeft: '',
       borderRight: `1px solid ${defaultColors.lightBorder}`,
       transition: 'left 0.15s',
@@ -675,5 +700,15 @@ export const defaultTheme = {
     navText: {
       padding: '8px 0 8px 12px',
     },
+  },
+  spinner: {
+    backgroundColor: defaultColors.lightGray,
+    borderColor: defaultColors.lightGray,
+  },
+  itemContainer: {
+    borderColor: defaultColors.lightGray,
+  },
+  draggable: {
+    borderColor: defaultColors.lightGray,
   },
 };

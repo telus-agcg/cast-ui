@@ -9,7 +9,8 @@ interface BaseProps {
   beforeToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
   onItemSelect?(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    selectItemPath: string,
+    selectItemPath: any,
+    itemSecondaryChildren: any,
   ): void;
 }
 

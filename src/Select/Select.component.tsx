@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Select from 'react-select';
+import ErrorMessage from '../ErrorMessage';
+import Select, { components } from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
@@ -15,7 +16,7 @@ export type Props = {
    *
    * @default 'md'
    **/
-  inputSize?: 'sm' | 'md' | 'lg';
+  selectSize?: 'sm' | 'md' | 'lg';
   /**
    * The ID of the control
    *
@@ -66,29 +67,30 @@ export type Props = {
 };
 
 const SDiv = styled.div`
-  background: ${(props: Props) => props.theme.input.background}
-  border: 1px solid ${(props: Props) => props.theme.input.borderColor};
-  border-radius: ${(props: Props) =>
-    props.theme.common[props.inputSize!].borderRadius};
-  padding: ${(props: Props) => props.theme.common[props.inputSize!].padding}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
+  font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
+  .react-select-component > div {
+    min-height: unset;
+    border-color: ${(props: any) =>
+      props.invalid && props.theme.validation.borderColor};
+  }
+`;
+
+const SSelect = styled(Select)`
+  border-radius: ${(props: Props) =>
+    props.theme.common[props.selectSize!].borderRadius};
   &:disabled {
     background: ${(props: Props) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
   }
-  .react-select-component > div {
-    border-color: ${(props: any) => props.invalid && 'red'};
-  }
 `;
 
-const SErrorDiv = styled.div`
-  color: ${(props: any) =>
-    props.invalidTextColor || props.theme.validation.errorTextColor};
-  font-family: ${(props: any) => props.theme.typography.fontFamily};
-  font-size: ${(props: any) => props.theme.validation.fontSize};
-  padding: ${(props: any) => props.theme.validation.padding};
+const IndicatorsContainer = styled(components.IndicatorsContainer)`
+  & > div {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 `;
 
 export class CustomSelect extends React.Component<Props> {
@@ -97,40 +99,60 @@ export class CustomSelect extends React.Component<Props> {
   }
 
   static defaultProps = {
-    inputSize: 'md',
+    selectSize: 'md',
     theme: Themes.defaultTheme,
+    invalidText: '',
+    invalidTextColor: '',
   };
 
   render() {
-    const { options, controlSpecificProps, theme, ...props } = this.props;
-    const errorId = this.props.invalid ? `${this.props.id}-error-msg` : '';
+    const {
+      options,
+      controlSpecificProps,
+      invalid,
+      selectSize,
+      theme,
+      id,
+
+      disabled,
+      selectedOption,
+      invalidText,
+      invalidTextColor,
+      ...props
+    } = this.props;
+    const errorId = invalid ? `${id}-error-msg` : '';
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
           className="select-wrapper"
-          inputSize={this.props.inputSize}
-          {...this.props.invalid}
-          aria-invalid={this.props.invalid ? true : undefined}
+          selectSize={selectSize}
+          aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
-          invalid={this.props.invalid}
-          theme={theme}
+          invalid={invalid}
+          id={id}
           {...props}
         >
-          <Select
+          <SSelect
+            components={{ IndicatorsContainer }}
+            closeMenuOnSelect={false}
             className="react-select-component"
-            isDisabled={this.props.disabled}
-            value={this.props.selectedOption}
+            isDisabled={disabled}
+            value={selectedOption}
             options={options}
-            {...this.props.invalid}
-            aria-invalid={this.props.invalid ? true : undefined}
+            invalid={invalid}
+            aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
+            selectSize={selectSize}
+            {...props}
             {...controlSpecificProps}
           />
-          {this.props.invalid && (
-            <SErrorDiv {...this.props} id={errorId} theme={this.props.theme}>
-              {this.props.invalidText}
-            </SErrorDiv>
+          {invalid && (
+            <ErrorMessage
+              id={errorId}
+              message={invalidText!}
+              textColor={invalidTextColor!}
+            />
           )}
         </SDiv>
       </ThemeProvider>

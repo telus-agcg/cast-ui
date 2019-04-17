@@ -4,9 +4,7 @@ import { Caption } from './Caption.component';
 
 storiesOf('Typography', module).add(
   'Caption',
-  () => (
-    <Caption>Roboto Light 12</Caption>
-  ),
+  () => <Caption>Example Caption</Caption>,
   {
     info: {
       text: `

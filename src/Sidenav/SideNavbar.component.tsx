@@ -35,13 +35,13 @@ export type Props = {
    **/
   onSelect?(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    selectItemPath: string,
+    selectItemPath: any,
+    itemSecondaryChildren: any,
   ): void;
   /**
-   * A color defined in theme colors or a CSS color code
-   * or shorthand string for setting element background
+   * A  CSS color code
    *
-   * @default 'white'
+   * @default ''
    **/
   background?: string;
   /**
@@ -69,6 +69,24 @@ export type Props = {
    **/
   width?: string;
   /**
+   * Set position of SideNavbar
+   *
+   * @default ''
+   **/
+  position?: 'absolute' | 'sticky' | 'fixed';
+  /**
+   * Set SideNavbar's distance from top of viewport
+   *
+   * @default ''
+   **/
+  top?: number | string;
+  /**
+   * Set SideNavbar's distance from bottom of viewport
+   *
+   * @default ''
+   **/
+  bottom?: number | string;
+  /**
    * Expand/collapse the secondary sidebar
    *
    * @default false
@@ -87,8 +105,7 @@ export type Props = {
    **/
   secondaryNavbarHeight?: string;
   /**
-   * A color defined in theme colors or a CSS color code
-   * or shorthand string for setting element background
+   * A CSS color code
    *
    * @default ''
    **/
@@ -122,17 +139,16 @@ const SSideNavbar = styled.div`
   margin: ${(props: Props) => props.theme.sidenav.margin};
   z-index: ${(props: Props) => props.theme.sidenav.zIndex};
   background: ${(props: Props) =>
-    props.background!.toString() ||
-    props.theme.sidenav.background ||
-    props.theme.colors[props.background!]};
+    props.background || props.theme.sidenav.background};
   border-left: ${(props: Props) =>
     props.borderLeft!.toString() || props.theme.sidenav.borderLeft};
   border-right: ${(props: Props) =>
     props.borderRight!.toString() || props.theme.sidenav.borderRight};
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
+  position: ${(props: Props) => props.position || props.theme.sidenav.position};
+  top: ${(props: Props) => props.top || props.theme.sidenav.top};
+  bottom: ${(props: Props) => props.bottom || props.theme.sidenav.bottom};
+  left: ${(props: Props) => props.theme.sidenav.left};
+  right: ${(props: Props) => props.theme.sidenav.right};
   min-width: ${(props: Props) =>
     props.width ||
     (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
@@ -150,18 +166,19 @@ const SSecondarySideNavbar = styled.div`
   margin: ${(props: Props) => props.theme.sidenav.secondaryNavbar.margin};
   z-index: ${(props: Props) => props.theme.sidenav.secondaryNavbar.zIndex};
   background: ${(props: Props) =>
-    props.secondaryNavbarBackground!.toString() ||
-    props.theme.sidenav.secondaryNavbar.background ||
-    props.theme.colors[props.secondaryNavbarBackground!]};
+    props.secondaryNavbarBackground ||
+    props.theme.sidenav.secondaryNavbar.background};
   border-left: ${(props: Props) =>
-    props.borderLeft!.toString() ||
-    props.theme.sidenav.secondaryNavbar.borderLeft};
+    props.borderLeft || props.theme.sidenav.secondaryNavbar.borderLeft};
   border-right: ${(props: Props) =>
-    props.borderRight!.toString() ||
-    props.theme.sidenav.secondaryNavbar.borderRight};
-  position: absolute;
-  top: 0;
-  bottom: 0;
+    props.borderRight || props.theme.sidenav.secondaryNavbar.borderRight};
+  position: ${(props: Props) =>
+    props.position || props.theme.sidenav.secondaryNavbar.position};
+  top: ${(props: Props) =>
+    props.top || props.theme.sidenav.secondaryNavbar.top};
+  bottom: ${(props: Props) =>
+    props.bottom || props.theme.sidenav.secondaryNavbar.bottom};
+  right: ${(props: Props) => props.theme.sidenav.secondaryNavbar.right};
   left: ${(props: Props) =>
     props.width ||
     (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
@@ -182,9 +199,9 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   isOpen = false,
   isSecondaryNavbarOpen = false,
   beforeToggle = () => {},
-  onToggle = e => console.log('Toggling ', e),
+  onToggle = () => {},
   afterToggle = () => {},
-  onSelect = (e, path) => console.log('Side Nav Item Selected ', e, path),
+  onSelect = () => {},
   itemToggleOpenContent,
   itemToggleCloseContent,
   children,
@@ -247,12 +264,10 @@ SideNavbar.defaultProps = {
   theme: Themes.defaultTheme,
   isOpen: false,
   width: '',
-  background: '',
   borderLeft: '',
   borderRight: '',
   isSecondaryNavbarOpen: false,
   secondaryNavbarWidth: '',
-  secondaryNavbarBackground: '',
   secondaryNavbarHeight: '',
   itemToggleOpenContent: '',
   itemToggleCloseContent: '',

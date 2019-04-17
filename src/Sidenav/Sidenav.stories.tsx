@@ -24,7 +24,7 @@ storiesOf('Sidenav', module).add(
     <div style={{ height: '600px', position: 'relative' }}>
       <SideNavbar
         isOpen={boolean('isOpen', true)}
-        background={text('background', 'lightBackground')}
+        background={text('background', '')}
         height={text('height', '')}
         width={text('width', '')}
         borderLeft={text('borderLeft', '')}
@@ -32,7 +32,7 @@ storiesOf('Sidenav', module).add(
         isSecondaryNavbarOpen={boolean('isSecondaryNavbarOpen', true)}
         secondaryNavbarWidth={text('secondaryNavbarWidth', '')}
         secondaryNavbarHeight={text('secondaryNavbarHeight', '')}
-        secondaryNavbarBackground={text('secondaryNavbarBackground', 'white')}
+        secondaryNavbarBackground={text('secondaryNavbarBackground', '#FFFFFF')}
         onToggle={action('Toggle!')}
         beforeToggle={action('Before Toggle!')}
         afterToggle={action('After Toggle!')}
@@ -55,7 +55,10 @@ storiesOf('Sidenav', module).add(
             </SideNavItemIcon>
             <SideNavItemText>Documents</SideNavItemText>
             <SideNav secondary>
-              <SideNavItem path="/documents/home-documents">
+              <SideNavItem
+                path="/documents/home-documents"
+                onSelect={action('Selected without redundancy!')}
+              >
                 <div style={{ padding: '12px 0 12px 24px' }}>
                   Home Documents
                 </div>

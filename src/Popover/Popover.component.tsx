@@ -26,12 +26,10 @@ TippyPopover.defaultProps = {
 };
 
 const SPopover = styled(TippyPopover)`
-  color: ${(props: Props) => props.theme.typography.popover.color};
-  border-radius: ${(props: Props) =>
-    props.theme.typography.popover.borderRadius};
-  background: ${(props: Props) => props.theme.typography.popover.background};
-  border: 1px solid
-    ${(props: Props) => props.theme.typography.popover.borderColor};
+  color: ${(props: Props) => props.theme.popover.color};
+  border-radius: ${(props: Props) => props.theme.popover.borderRadius};
+  background: ${(props: Props) => props.theme.popover.background};
+  border: 1px solid ${(props: Props) => props.theme.popover.borderColor};
   &[x-placement^='bottom'] .tippy-arrow {
     border-bottom: 8px solid ${(props: Props) => props.theme.colors.white};
   }
@@ -56,14 +54,15 @@ export class Popover extends React.Component<Props> {
     theme: Themes.defaultTheme,
   };
   public render() {
-    const { theme, arrow, children, ...props } = this.props;
-    const withArrowDistance = 10;
-    const withoutArrowDistance = 9;
-    const distance = arrow ? withArrowDistance : withoutArrowDistance;
+    const { theme, children, ...props } = this.props;
+    const distance =
+      props.distance || props.arrow
+        ? theme.popover.withArrowDistance
+        : theme.popover.withoutArrowDistance;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <React.Fragment>
-          <SPopover distance={props.distance || distance} {...props}>
+          <SPopover distance={distance} {...props}>
             {children}
           </SPopover>
         </React.Fragment>

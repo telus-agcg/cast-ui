@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ErrorMessage from '../ErrorMessage';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
@@ -73,6 +74,14 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Value of the TextArea
+   */
+  value?: string;
+  /**
+   * onChange handler
+   */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SInput = styled.input`
@@ -97,18 +106,12 @@ const SInput = styled.input`
   }
 `;
 
-const SErrorDiv = styled.div`
-  color: ${(props: Props) => props.theme.validation.errorTextColor};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.validation.fontSize};
-  padding: ${(props: Props) => props.theme.validation.padding};
-  font-style: italic;
-`;
-
 export const Input: React.FunctionComponent<Props> = ({
   invalidTextColor,
   theme,
   children,
+  value,
+  onChange,
   ...inputProps
 }) => {
   const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : '';
@@ -116,6 +119,8 @@ export const Input: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInput
+          value={value}
+          onChange={onChange}
           {...inputProps}
           data-invalid={inputProps.invalid ? '' : undefined}
           aria-invalid={inputProps.invalid ? true : undefined}
@@ -124,9 +129,11 @@ export const Input: React.FunctionComponent<Props> = ({
           {children}
         </SInput>
         {inputProps.invalid && (
-          <SErrorDiv id={errorId} invalidTextColor={invalidTextColor}>
-            {inputProps.invalidText}
-          </SErrorDiv>
+          <ErrorMessage
+            id={errorId}
+            message={inputProps.invalidText || ''}
+            textColor={inputProps.invalidTextColor || ''}
+          />
         )}
       </>
     </ThemeProvider>

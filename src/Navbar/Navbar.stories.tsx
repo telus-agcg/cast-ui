@@ -10,7 +10,7 @@ storiesOf('Navbar', module).add(
   'Navbar',
   () => (
     <Navbar
-      background={text('background', 'lightBackground')}
+      background={text('background', '#F5F7F8')}
       height={text('height', '80px')}
       borderTop={text('borderTop', '')}
       borderBottom={text('borderBottom', '1px solid grey')}
