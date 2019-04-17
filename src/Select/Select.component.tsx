@@ -130,7 +130,7 @@ export class CustomSelect extends React.Component<Props> {
             isDisabled={disabled}
             value={selectedOption}
             options={options}
-            invali={invalid}
+            invalid={invalid}
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
             selectSize={selectSize}
