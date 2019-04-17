@@ -71,6 +71,7 @@ const SDiv = styled.div`
   font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   .react-select-component > div {
+    padding: ${(props: Props) => props.theme.common[props.selectSize!].padding};
     border-color: ${(props: any) =>
       props.invalid && props.theme.validation.borderColor};
   }
