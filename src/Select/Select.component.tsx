@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ErrorMessage from '../ErrorMessage';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
@@ -71,7 +71,7 @@ const SDiv = styled.div`
   font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   .react-select-component > div {
-    padding: ${(props: Props) => props.theme.common[props.selectSize!].padding};
+    min-height: unset;
     border-color: ${(props: any) =>
       props.invalid && props.theme.validation.borderColor};
   }
@@ -83,6 +83,13 @@ const SSelect = styled(Select)`
   &:disabled {
     background: ${(props: Props) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
+  }
+`;
+
+const IndicatorsContainer = styled(components.IndicatorsContainer)`
+  & > div {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 `;
 
@@ -127,6 +134,8 @@ export class CustomSelect extends React.Component<Props> {
           {...props}
         >
           <SSelect
+            components={{ IndicatorsContainer }}
+            closeMenuOnSelect={false}
             className="react-select-component"
             isDisabled={disabled}
             value={selectedOption}
