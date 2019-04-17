@@ -40,15 +40,27 @@ storiesOf('Table', module).add(
   {
     info: {
       text: `
-        ### Notes
+### Notes
 
-          This is a wrapped version of [react-table](https://github.com/tannerlinsley/react-table)
+This is a wrapped version of [react-table](https://github.com/tannerlinsley/react-table)
 
-          It uses the *SelectTable* HOC for the checkbox column.
+It uses the *SelectTable* HOC for the checkbox column.
 
-          It uses the Popover component for the row controls on the right most column.
+It uses the Popover component for the row controls on the right most column.
 
-          All the options available to react-table can be passed directly from the component.
+All the options available to react-table can be passed directly from the component.
+
+##### Important note on Pagination
+
+Controlled Pagination's **forcePage** doesn't display the correct page. For example, if "4" is passed into the prop, "5" displays.
+
+It seems that the [react-table](https://github.com/tannerlinsley/react-table) package is built like this by default.
+
+Based on tests running the [official demo](https://github.com/AdeleD/react-paginate#demo), the npm package works the same way as the implementation on here.
+
+Moreover, looking at the tests used by the package, it clearly shows that the intended view for the link should outline +1 of the value of forcePage as evidenced [here](https://github.com/AdeleD/react-paginate/blob/74813adde216ab5337b15556749484b61c9f4500/__tests__/PaginationBoxView-test.js#L756) and [here](https://github.com/AdeleD/react-paginate/blob/74813adde216ab5337b15556749484b61c9f4500/__tests__/PaginationBoxView-test.js#L490)
+
+The same effect is experienced when using **initialPage** props as well.
         `,
     },
   },
