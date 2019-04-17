@@ -30,7 +30,7 @@ export interface Props extends TableProps {
   theme?: any;
 }
 
-const SWrapperDiv = styled.div`
+const SWrapperDiv = styled(ReactTable)`
   background: ${(props: any) => props.theme.input.background};
   border: 0;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
@@ -124,33 +124,23 @@ export class Table extends React.Component<Props> {
   render() {
     const {
       theme,
-      onFetchData,
-      onPageSizeChange,
-      onPageChange,
-      onSortedChange,
-      onFilteredChange,
-      onResizedChange,
-      onExpandedChange,
+      // onFetchData,
+      // onPageSizeChange,
+      // onPageChange,
+      // onSortedChange,
+      // onFilteredChange,
+      // onResizedChange,
+      // onExpandedChange,
       ...props
     } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SWrapperDiv {...props}>
-          <ReactTable
-            {...props}
-            className={`-highlight  + ${this.props.striped ? '-striped ' : ''}`}
-            PaginationComponent={TablePagination}
-            nextText="Next >"
-            previousText="< Previous"
-            onFetchData={onFetchData}
-            onPageSizeChange={onPageSizeChange}
-            onPageChange={onPageChange}
-            onSortedChange={onSortedChange}
-            onFilteredChange={onFilteredChange}
-            onResizedChange={onResizedChange}
-            onExpandedChange={onExpandedChange}
-          />
-        </SWrapperDiv>
+        <SWrapperDiv
+          {...props}
+          PaginationComponent={TablePagination}
+          nextText="Next >"
+          previousText="< Previous"
+        />
       </ThemeProvider>
     );
   }
