@@ -94,39 +94,55 @@ export class CustomSelect extends React.Component<Props> {
   static defaultProps = {
     selectSize: 'md',
     theme: Themes.defaultTheme,
+    invalidText: '',
+    invalidTextColor: '',
   };
 
   render() {
-    const { options, controlSpecificProps, theme, ...props } = this.props;
-    const errorId = this.props.invalid ? `${this.props.id}-error-msg` : '';
+    const {
+      options,
+      controlSpecificProps,
+      invalid,
+      selectSize,
+      theme,
+      id,
+
+      disabled,
+      selectedOption,
+      invalidText,
+      invalidTextColor,
+      ...props
+    } = this.props;
+    const errorId = invalid ? `${id}-error-msg` : '';
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
           className="select-wrapper"
-          selectSize={this.props.selectSize}
-          {...props.invalid}
-          aria-invalid={this.props.invalid ? true : undefined}
+          selectSize={selectSize}
+          aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
-          invalid={this.props.invalid}
+          invalid={invalid}
+          id={id}
           {...props}
         >
           <SSelect
-            {...props}
             className="react-select-component"
-            isDisabled={this.props.disabled}
-            value={this.props.selectedOption}
+            isDisabled={disabled}
+            value={selectedOption}
             options={options}
-            {...props.invalid}
-            aria-invalid={this.props.invalid ? true : undefined}
+            invalid={invalid}
+            aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
+            selectSize={selectSize}
+            {...props}
             {...controlSpecificProps}
           />
-          {this.props.invalid && (
+          {invalid && (
             <ErrorMessage
               id={errorId}
-              message={this.props.invalidText || ''}
-              textColor={this.props.invalidTextColor || ''}
+              message={invalidText!}
+              textColor={invalidTextColor!}
             />
           )}
         </SDiv>

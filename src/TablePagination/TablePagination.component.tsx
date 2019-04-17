@@ -49,6 +49,14 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * From table props
+   */
+  onPageSizeChange?: () => {};
+  /**
+   * From table props
+   */
+  onFetchData?: () => {};
 };
 
 const initialState = {
@@ -129,6 +137,8 @@ export class TablePagination extends React.Component<Props> {
   render() {
     const {
       theme,
+      onFetchData,
+      onPageSizeChange,
       onPageChange,
       PageButtonComponent = SPaginationButton,
       PageButtonNextPrevComponent = SPaginationButtonNextPrev,
