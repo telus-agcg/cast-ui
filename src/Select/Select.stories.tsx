@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
 
 import { Select } from '../';
-import { Input } from '../Input';
 
 storiesOf('Select', module).add(
   'Select',
@@ -21,19 +20,6 @@ storiesOf('Select', module).add(
           { value: 'strawberry', label: 'Strawberry' },
           { value: 'vanilla', label: 'Vanilla' },
         ]}
-      />
-      <Input
-        id="myInput"
-        type={'text'}
-        autoComplete={'on'}
-        disabled={false}
-        inputSize={'sm'}
-        invalid={false}
-        invalidText={'A valid value is required'}
-        invalidTextColor={''}
-        maxLength={1000}
-        placeholder={'Please enter some text'}
-        required={false}
       />
     </div>
   ),
