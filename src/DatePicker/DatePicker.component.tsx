@@ -138,13 +138,6 @@ export const DatePicker: React.FunctionComponent<Props> = ({
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <DayPickerInput
           format={props.format || 'YYYY/MM/DD'}
-          // component={(inputProps: Props) => (
-          //   <InputForDatePicker
-          //     {...inputProps}
-          //     {...props}
-          //     inputSize={props.datePickerSize!}
-          //   />
-          // )}
           component={InputForDatePicker}
           overlayComponent={(overlayProps: any) => (
             <OverlayComponent {...props} {...overlayProps} />
