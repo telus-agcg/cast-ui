@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Input } from '../Input';
-// import { DatePickerContext } from './context';
+import { DatePickerContext } from './context';
 import { Props as DatePickerProps } from './props';
+import { Themes } from '../themes';
 
 export type Props = Partial<DatePickerProps>;
 
@@ -18,13 +19,27 @@ export class InputForDatePicker extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
+
+  static defaultProps = {
+    datePickerStyle: 'primary',
+    datePickerSize: 'md',
+    theme: Themes.defaultTheme,
+  };
+
   render() {
-    // console.log('the props ', this.props);
+    const { baseProps } = this.context;
     const { theme, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SInput id="datepicker" {...props} />
+        <SInput
+          id="datepicker"
+          inputSize={baseProps.datePickerSize}
+          {...baseProps}
+          {...props}
+        />
       </ThemeProvider>
     );
   }
 }
+
+InputForDatePicker.contextType = DatePickerContext;
