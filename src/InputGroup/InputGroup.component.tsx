@@ -47,6 +47,7 @@ const SLabel = styled.label`
     props.label ? props.theme.inputGroup.label.padding : '0'};
   font-weight: ${(props: Props) => props.theme.inputGroup.label.fontWeight};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize};
+  color: ${(props: Props) => props.theme.body.color};
 `;
 
 export const InputGroup: React.FunctionComponent<Props> = ({
