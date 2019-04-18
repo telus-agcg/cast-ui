@@ -168,6 +168,15 @@ const SInput = styled(Input)`
   background-position: 96% center;
 `;
 
+class InputForDatePicker extends React.Component<InputProps> {
+  constructor(props: InputProps) {
+    super(props);
+  }
+  render() {
+    return <SInput {...this.props} />;
+  }
+}
+
 const OverlayComponent: React.FunctionComponent<Props> = ({
   children,
   ...props
@@ -190,7 +199,7 @@ export const DatePicker: React.FunctionComponent<Props> = ({
       <DayPickerInput
         format={props.format || 'YYYY/MM/DD'}
         component={(inputProps: Props) => (
-          <SInput
+          <InputForDatePicker
             {...inputProps}
             {...props}
             inputSize={props.datePickerSize!}

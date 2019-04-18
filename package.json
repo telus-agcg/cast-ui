@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@tippy.js/react": "^2.1.1",
-    "react-day-picker": "^7.2.4",
+    "react-day-picker": "^7.3.0",
     "react-icons-kit": "^1.2.1",
     "react-modal": "^3.8.1",
     "react-paginate": "^6.2.1",

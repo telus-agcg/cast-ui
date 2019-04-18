@@ -107,7 +107,6 @@ const SInput = styled.input`
 `;
 
 export const Input: React.FunctionComponent<Props> = ({
-  invalidTextColor,
   theme,
   children,
   value,
