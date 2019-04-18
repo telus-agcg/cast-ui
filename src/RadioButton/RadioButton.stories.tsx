@@ -20,17 +20,6 @@ storiesOf('RadioButton', module).add(
       >
         One
       </RadioButton>
-      <RadioButton
-        id="myInput2"
-        disabled={boolean('disabled', false)}
-        rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
-        value="1"
-        onChange={action('Button 1 changed')}
-        checked={boolean('checked', true)}
-        displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
-      >
-        One
-      </RadioButton>
     </div>
   ),
   {

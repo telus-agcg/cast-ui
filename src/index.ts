@@ -15,7 +15,7 @@ export * from './Checkbox';
 export * from './CopyToClipboard';
 export * from './DatePicker';
 export * from './Draggable';
-export * from './ErrorMessage';
+export * from './Typography/ErrorMessage/index';
 export * from './IconButton';
 export * from './Input';
 export * from './InputGroup';

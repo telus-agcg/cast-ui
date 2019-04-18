@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../Typography/ErrorMessage/index';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
@@ -86,7 +86,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const SInput = styled.input`
   background: ${(props: Props) => props.theme.input.background}
-  border: 1px solid ${(props: Props) => props.theme.input.borderColor};
+  border: ${(props: Props) => props.theme.input.border};
   border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize!].borderRadius};
   padding: ${(props: Props) => props.theme.common[props.inputSize!].padding}
@@ -94,7 +94,7 @@ const SInput = styled.input`
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
-    border-color: ${props => props.theme.input.disabled.borderColor};
+    border: ${props => props.theme.input.disabled.border};
     background: ${props => props.theme.input.disabled.background};
     cursor: not-allowed;
   }

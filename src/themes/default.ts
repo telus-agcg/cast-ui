@@ -277,13 +277,13 @@ export const defaultTheme = {
   },
   input: {
     background: defaultColors.white,
-    borderColor: defaultColors.gray,
+    border: `1px solid ${defaultColors.gray}`,
     color: defaultColors.darkGray,
     padding: '.375rem .75rem',
     placeholderColor: defaultColors.placeholderGray,
     disabled: {
       background: defaultColors.disabledBackground,
-      borderColor: defaultColors.disabledBorder,
+      border: `1px solid ${defaultColors.disabledBorder}`,
     },
   },
   inputGroup: {
@@ -703,7 +703,7 @@ export const defaultTheme = {
   },
   spinner: {
     backgroundColor: defaultColors.lightGray,
-    borderColor: defaultColors.lightGray,
+    borderColor: defaultColors.primary,
   },
   itemContainer: {
     borderColor: defaultColors.lightGray,
