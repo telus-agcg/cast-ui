@@ -95,7 +95,7 @@ const SInput = styled.input`
   color: ${(props: Props) => props.theme.reverseText};
   &:disabled {
     border-color: ${props => props.theme.input.disabled.borderColor};
-    background: ${props => props.theme.input.disabled.background};
+    background-color: ${props => props.theme.input.disabled.background};
     cursor: not-allowed;
   }
   &[data-invalid] {
