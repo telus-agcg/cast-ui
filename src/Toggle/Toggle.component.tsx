@@ -65,6 +65,7 @@ const SDiv = styled.div`
     height: 0;
     width: 0;
     visibility: hidden;
+    display: none;
   }
 
   label {
