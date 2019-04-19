@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../Typography/ErrorMessage/index';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 

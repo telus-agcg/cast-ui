@@ -116,7 +116,6 @@ export class Table extends React.Component<Props> {
   static defaultProps = {
     ...ReactTableDefaults,
     striped: false,
-    columns: [],
     tableSize: 'md',
     theme: Themes.defaultTheme,
   };
