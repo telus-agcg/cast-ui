@@ -1,9 +1,7 @@
-import React from 'react';
 import { configure, addDecorator, addParameters } from '@storybook/react';
 import { create } from '@storybook/theming';
 import { withKnobs } from '@storybook/addon-knobs/react';
 import { withInfo } from '@storybook/addon-info';
-import { ThemeProvider } from 'styled-components';
 import 'typeface-roboto';
 import { defaultTheme, cobaltTheme } from '../src/themes';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
@@ -36,18 +34,24 @@ const wInfoStyle = {
 };
 
 addParameters({
+  backgrounds: [
+    { name: 'Light', value: defaultTheme.colors.white, default: true },
+    { name: 'Dark', value: defaultTheme.colors.gray },
+  ],
   options: {
     theme: create({
       base: 'light',
       brandTitle: 'Cast UI',
       brandUrl: 'https://github.com/technekes/cast-ui',
       // To control appearance:
-      brandImage: 'https://cdn2.hubspot.net/hubfs/1976913/tkxs-logo.png',
+      brandImage:
+        'https://cdn2.hubspot.net/hubfs/1976913/TKXS-brand/tkxs-logo.png',
     }),
     isFullscreen: false,
     panelPosition: 'right',
   },
 });
+
 addDecorator(
   withInfo({
     inline: true,
