@@ -12,14 +12,7 @@ storiesOf('ToggleGroup', module).add(
       vertical={boolean('vertical', false)}
       toggleSize={select('toggleSize', ['sm', 'md', 'lg'], 'md')}
     >
-      <Toggle
-        // id="toggleId"
-        toggleSize={'md'}
-        checked={true}
-        disabled={false}
-        // onChange={action('onChange 1')}
-        value="1"
-      />
+      <Toggle toggleSize={'md'} checked={true} disabled={false} value="1" />
     </ToggleGroup>
   ),
   {
