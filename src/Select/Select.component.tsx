@@ -64,6 +64,8 @@ export type Props = {
    * @default null
    **/
   controlSpecificProps?: any;
+  borderColor?: string;
+  borderRadius?: string;
 };
 
 const SDiv = styled.div`
@@ -72,14 +74,15 @@ const SDiv = styled.div`
   color: ${(props: Props) => props.theme.reverseText};
   .react-select-component > div {
     min-height: unset;
+    border-radius: ${(props: Props) =>
+      props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
+    border-color: ${(props: Props) => props.borderColor || 'inherit'};
     border-color: ${(props: any) =>
       props.invalid && props.theme.validation.borderColor};
   }
 `;
 
 const SSelect = styled(Select)`
-  border-radius: ${(props: Props) =>
-    props.theme.common[props.selectSize!].borderRadius};
   &:disabled {
     background: ${(props: Props) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
