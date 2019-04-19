@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-export type Props = {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the ID of the individual toggle
    *
@@ -27,6 +27,9 @@ export type Props = {
    * @default false
    **/
   defaultChecked?: boolean;
+  /**
+   * Label to show before the toggle
+   */
   label?: string;
   /**
    * Specify if the toggle should be disabled
@@ -52,7 +55,7 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
 const getCSSCalc: (str: string) => string = str => `calc(100% - ${str})`;
 
@@ -137,6 +140,7 @@ export class Toggle extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
+
   static defaultProps = {
     toggleSize: 'md',
     onChange: () => {},
@@ -144,18 +148,27 @@ export class Toggle extends React.Component<Props> {
   };
 
   render() {
-    const { theme, ...props } = this.props;
+    const {
+      theme,
+      children,
+      checked,
+      disabled,
+      onChange,
+      label,
+
+      ...props
+    } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv {...props}>
+        <SDiv disabled={!!disabled} {...props}>
           <input
-            checked={props.checked}
-            disabled={props.disabled}
-            onChange={props.onChange}
+            checked={checked}
+            disabled={!!disabled}
+            onChange={onChange}
             type="checkbox"
             id="switch"
           />
-          <label htmlFor="switch">{props.label}</label>
+          <label htmlFor="switch">{label}</label>
         </SDiv>
       </ThemeProvider>
     );
