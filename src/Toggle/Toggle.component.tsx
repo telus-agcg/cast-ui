@@ -1,4 +1,5 @@
 import * as React from 'react';
+import uuid from 'uuid';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
@@ -6,9 +7,9 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the ID of the individual toggle
    *
-   * @default null
+   * @default uuid.v4
    **/
-  id: string;
+  id?: string;
   /**
    * Specify the size of the toggle (sm | md | lg)
    *
@@ -143,9 +144,14 @@ export class Toggle extends React.Component<Props> {
 
   static defaultProps = {
     toggleSize: 'md',
-    onChange: () => {},
     theme: Themes.defaultTheme,
+    id: uuid.v4(),
   };
+
+  onChange = event =>
+    this.props.onChange
+      ? this.props.onChange(event)
+      : alert(`Toggle with id ${this.props.id} was clicked!`);
 
   render() {
     const {
@@ -153,8 +159,8 @@ export class Toggle extends React.Component<Props> {
       children,
       checked,
       disabled,
-      onChange,
       label,
+      id,
 
       ...props
     } = this.props;
@@ -164,11 +170,11 @@ export class Toggle extends React.Component<Props> {
           <input
             checked={checked}
             disabled={!!disabled}
-            onChange={onChange}
+            onChange={this.onChange}
             type="checkbox"
-            id="switch"
+            id={id}
           />
-          <label htmlFor="switch">{label}</label>
+          <label htmlFor={id}>{label}</label>
         </SDiv>
       </ThemeProvider>
     );
