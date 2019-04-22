@@ -43,7 +43,7 @@ const SAlert = styled.div`
     ${(props: Props) =>
       props.lightMode
         ? props.theme.styles[props.alertStyle!].alertBackground
-        : props.theme.styles[props.alertStyle!].alertColor};
+        : props.theme.styles[props.alertStyle!].alertBackground};
   display: ${(props: Props) => props.theme.alert.display};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.alert.fontSize};
