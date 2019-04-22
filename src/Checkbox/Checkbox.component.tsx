@@ -87,7 +87,7 @@ const indeterminateCheckboxRules: Function = (cbSize: string) => {
   console.log(ySize);
   const transform = `rotate(90deg) translateX(${xSize}px) translateY(${ySize}px);`;
   return {
-    transform: transform,
+    transform,
     '-webkit-transform': transform,
     '-ms-transform': transform,
   };
