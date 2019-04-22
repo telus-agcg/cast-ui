@@ -28,6 +28,7 @@ storiesOf('DatePicker', module).add(
       invalidTextColor={text('invalidTextColor', '')}
       maxLength={number('maxLength', 1000)}
       required={boolean('required', false)}
+      withoutPicker={boolean('withoutPicker', true)}
     />
   ),
   {

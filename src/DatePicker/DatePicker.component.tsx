@@ -114,6 +114,9 @@ const SOverlayComponent = styled.div`
       border-bottom-left-radius: 0% !important;
     }
   }
+  .DayPicker.without-picker {
+    display: none;
+  }
 `;
 
 const OverlayComponent: React.FunctionComponent<Props> = ({
@@ -125,6 +128,7 @@ const OverlayComponent: React.FunctionComponent<Props> = ({
 
 export const DatePicker: React.FunctionComponent<Props> = ({
   theme,
+  withoutPicker,
   ...props
 }) => {
   const selectedDays = (props.dayPickerProps || {}).selectedDays;
@@ -150,10 +154,14 @@ export const DatePicker: React.FunctionComponent<Props> = ({
               ...modifiers,
               ...(props.dayPickerProps || {}).modifiers,
             },
-            className: `
-          ${(props.dayPickerProps || {}).className || ''}  ${
-              ((selectedDays || [])[1] || {}).from ? 'Selectable' : ''
-            }`,
+            className: [
+              // Trying to get classNames from dayPickerProps
+              (props.dayPickerProps || {}).className || '',
+              // if from exists, then add Selectable class
+              !!((selectedDays || [])[1] || {}).from ? 'Selectable' : '',
+              // If withoutPicker available then hide picker with 'without-picker' class
+              withoutPicker ? 'without-picker' : '',
+            ].join(', '),
           }}
         />
       </ThemeProvider>

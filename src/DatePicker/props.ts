@@ -47,4 +47,5 @@ export type Props = Partial<BlendedProps> & {
    * @default defaultTheme
    **/
   theme?: any;
+  withoutPicker: boolean;
 };
