@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes/index';
+import { Themes } from '../../themes/index';
 
 export interface Props {
   /**

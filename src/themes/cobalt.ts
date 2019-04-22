@@ -295,13 +295,13 @@ export const cobaltTheme = {
   },
   input: {
     background: cobaltColors.white,
-    borderColor: cobaltColors.secondary,
+    border: `1px solid ${cobaltColors.secondary}`,
     color: cobaltColors.darkGray,
     padding: '6px 12px',
     placeholderColor: cobaltColors.placeholderGray,
     disabled: {
       background: cobaltColors.disabledBackground,
-      borderColor: cobaltColors.disabledBorder,
+      border: `1px solid transparent`,
     },
   },
   inputGroup: {
@@ -722,7 +722,7 @@ export const cobaltTheme = {
   },
   spinner: {
     backgroundColor: cobaltColors.lightGray,
-    borderColor: cobaltColors.lightGray,
+    borderColor: cobaltColors.primary,
   },
   itemContainer: {
     borderColor: cobaltColors.lightGray,
