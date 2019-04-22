@@ -11,7 +11,7 @@ export interface Props extends React.HTMLAttributes<HTMLElement> {
    *
    * @default 'md'
    **/
-  toggleSize?: 'sm' | 'md' | 'lg';
+  labelSize?: 'sm' | 'md' | 'lg';
   /**
    * Set orientation of inputGroup as vertical
    *
@@ -45,8 +45,7 @@ const SLabel = styled.label`
   padding: ${(props: Props) =>
     props.label ? props.theme.inputGroup.label.padding : '0'};
   font-weight: ${(props: Props) => props.theme.inputGroup.label.fontWeight};
-  font-size: ${(props: Props) =>
-    props.theme.common[props.toggleSize!].fontSize};
+  font-size: ${(props: Props) => props.theme.common[props.labelSize!].fontSize};
   color: ${(props: Props) => props.theme.body.color};
 
   &:hover {
@@ -56,7 +55,7 @@ const SLabel = styled.label`
 
 export class ToggleGroup extends React.Component<Props> {
   static defaultProps = {
-    toggleSize: 'md',
+    labelSize: 'md',
     vertical: false,
     theme: Themes.defaultTheme,
   };
@@ -64,7 +63,7 @@ export class ToggleGroup extends React.Component<Props> {
   render() {
     const {
       label,
-      toggleSize,
+      labelSize,
       vertical,
       theme,
       children,
@@ -84,7 +83,7 @@ export class ToggleGroup extends React.Component<Props> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <ToggleGroupWrapper vertical={vertical} label={label} {...props}>
-          <SLabel label={label} toggleSize={toggleSize} htmlFor={id}>
+          <SLabel label={label} labelSize={labelSize} htmlFor={id}>
             {label}
           </SLabel>
           {clonedChildren && clonedChildren}

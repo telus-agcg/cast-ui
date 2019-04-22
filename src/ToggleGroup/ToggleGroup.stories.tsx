@@ -10,7 +10,7 @@ storiesOf('ToggleGroup', module).add(
     <ToggleGroup
       label={text('label', 'This is my label')}
       vertical={boolean('vertical', false)}
-      toggleSize={select('toggleSize', ['sm', 'md', 'lg'], 'md')}
+      labelSize={select('labelSize', ['sm', 'md', 'lg'], 'md')}
     >
       <Toggle toggleSize={'md'} checked={true} disabled={false} value="1" />
     </ToggleGroup>
