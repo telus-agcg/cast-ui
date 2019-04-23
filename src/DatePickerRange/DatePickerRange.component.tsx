@@ -1,8 +1,26 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { DateRangePicker } from 'react-dates';
+import uuid from 'uuid';
+import { Moment } from 'moment';
 
-export interface Props {
+type momentDate = Moment | null;
+type pickerSize = 'sm' | 'md' | 'lg';
+type pickerStyle =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'danger';
+type focusInputs = FocusInputs.START_DATE | FocusInputs.END_DATE | null;
+enum FocusInputs {
+  START_DATE = 'startDate',
+  END_DATE = 'endDate',
+}
+type dateChangeEvent = { startDate: momentDate; endDate: momentDate };
+
+export interface Props extends DateRangePicker {
   /**
    * Set className
    *
@@ -26,36 +44,86 @@ export interface Props {
    *
    * @default 'md'
    **/
-  datePickerSize?: 'sm' | 'md' | 'lg';
+  datePickerSize?: pickerSize;
   /**
    * Select DatePicker style.
    *
    * @default 'primary'
    **/
-  datePickerStyle?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'danger';
+  datePickerStyle?: pickerStyle;
   /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
+  startDate: momentDate;
+  endDate: momentDate;
+  startDateId: string;
+  endDateId: string;
+  focusedInput: focusInputs;
+  onDatesChange: (arg: dateChangeEvent) => null;
+  onFocusChange: (arg: focusInputs) => null;
 }
+
+type State = {
+  focusedInput: focusInputs;
+};
 
 const SWrapperComponent = styled.div``;
 
 export class DatePickerRange extends React.Component<Props> {
+  static defaultProps = {
+    className: '',
+    id: uuid.v4(),
+    type: 'text',
+    datePickerSize: 'md',
+    datePickerStyle: 'primary',
+    startDateId: uuid.v4(),
+    endDateId: uuid.v4(),
+    startDate: null,
+    endDate: null,
+    focusedInput: FocusInputs.START_DATE,
+    onDatesChange: null,
+    onFocusChange: null,
+  };
+
+  state: State = {
+    focusedInput: FocusInputs.START_DATE,
+  };
+
+  onDatesChange = (event: dateChangeEvent) =>
+    this.props.onDatesChange instanceof Function
+      ? this.props.onDatesChange(event)
+      : console.warn('onDatesChange must be function');
+
+  onFocusChange = (input: focusInputs) =>
+    this.props.onFocusChange instanceof Function
+      ? this.props.onFocusChange(input)
+      : this.setState({ focusedInput: input });
+
   render() {
-    const { theme, ...props } = this.props;
+    const {
+      theme,
+      /**
+       * exclude custom props
+       */
+      className,
+      id,
+      type,
+      datePickerSize,
+      datePickerStyle,
+      ...props
+    } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperComponent>
-          <DateRangePicker {...props} />
+          <DateRangePicker
+            {...props}
+            // The next properties have to be overrided by the instance's functions
+            onFocusChange={this.onFocusChange}
+            onDatesChange={this.onDatesChange}
+          />
         </SWrapperComponent>
       </ThemeProvider>
     );
