@@ -68,6 +68,7 @@ export interface Props extends DateRangePicker {
 
 type State = {
   focusedInput: focusInputs;
+  range: dateChangeEvent;
 };
 
 const SWrapperComponent = styled.div``;
@@ -83,24 +84,36 @@ export class DatePickerRange extends React.Component<Props> {
     endDateId: uuid.v4(),
     startDate: null,
     endDate: null,
-    focusedInput: FocusInputs.START_DATE,
+    focusedInput: null,
     onDatesChange: null,
     onFocusChange: null,
   };
 
   state: State = {
     focusedInput: FocusInputs.START_DATE,
+    range: {
+      startDate: null,
+      endDate: null,
+    },
   };
 
   onDatesChange = (event: dateChangeEvent) =>
     this.props.onDatesChange instanceof Function
       ? this.props.onDatesChange(event)
-      : console.warn('onDatesChange must be function');
+      : this.setState(
+          {
+            range: {
+              endDate: event.endDate || this.state.range.endDate,
+              startDate: event.startDate || this.state.range.startDate,
+            },
+          },
+          () => console.log(event),
+        );
 
   onFocusChange = (input: focusInputs) =>
     this.props.onFocusChange instanceof Function
       ? this.props.onFocusChange(input)
-      : this.setState({ focusedInput: input });
+      : this.setState({ focusedInput: input }, () => console.log(input));
 
   render() {
     const {
@@ -113,14 +126,22 @@ export class DatePickerRange extends React.Component<Props> {
       type,
       datePickerSize,
       datePickerStyle,
+      /** exclude props for combine with state */
+      startDate,
+      endDate,
+      focusedInput,
       ...props
     } = this.props;
+    console.log(startDate, endDate, this.state.range);
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperComponent>
           <DateRangePicker
             {...props}
             // The next properties have to be overrided by the instance's functions
+            startDate={startDate || this.state.range.startDate}
+            endDate={endDate || this.state.range.endDate}
+            focusedInput={focusedInput || this.state.focusedInput}
             onFocusChange={this.onFocusChange}
             onDatesChange={this.onDatesChange}
           />
