@@ -21,13 +21,6 @@ enum FocusInputs {
 type dateChangeEvent = { startDate: momentDate; endDate: momentDate };
 
 export interface Props extends DateRangePicker {
-  startDate: momentDate;
-  endDate: momentDate;
-  startDateId: string;
-  endDateId: string;
-  focusedInput: focusInputs;
-  onDatesChange: (arg: dateChangeEvent) => null;
-  onFocusChange: (arg: focusInputs) => null;
   /**
    * Set className
    *
@@ -40,12 +33,6 @@ export interface Props extends DateRangePicker {
    * @default null
    **/
   id?: string;
-  /**
-   * Type of input
-   *
-   * @default 'text'
-   **/
-  type?: string;
   /**
    * Select DatePicker Size
    *
@@ -64,6 +51,48 @@ export interface Props extends DateRangePicker {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * startDate of the range
+   *
+   * @default null
+   */
+  startDate: momentDate;
+  /**
+   * end date of the range
+   *
+   * @default null
+   */
+  endDate: momentDate;
+  /**
+   * default start date id
+   *
+   * @default uuid
+   */
+  startDateId: string;
+  /**
+   * default end date id
+   *
+   * @default uuid
+   */
+  endDateId: string;
+  /**
+   * focused input value
+   *
+   * @default null
+   */
+  focusedInput: focusInputs;
+  /**
+   * handler on date change
+   *
+   * @default Function
+   */
+  onDatesChange: (arg: dateChangeEvent) => void;
+  /**
+   * handler on changing focus
+   *
+   * @default Function
+   */
+  onFocusChange: (arg: focusInputs) => void;
 }
 
 type State = {
@@ -71,7 +100,7 @@ type State = {
   range: dateChangeEvent;
 };
 
-const SWrapperComponent = styled.div`
+const SWrapperComponent = styled.div<any>`
   background: ${(props: any) => props.theme.colors.white};
   border-radius: ${(props: any) =>
     props.theme.common[props.datePickerSize!].borderRadius};
@@ -85,9 +114,12 @@ const SWrapperComponent = styled.div`
   box-shadow: #0000001a 0px 3px 25px;
   position: ${(props: any) => props.theme.datepicker.position};
   z-index: ${(props: any) => props.theme.datepicker.zIndex};
+  input {
+    box-sizing: border-box;
+  }
 `;
 
-export class DatePickerRange extends React.Component<Props> {
+export class DatePickerRange extends React.PureComponent<Props> {
   static defaultProps = {
     className: '',
     id: uuid.v4(),
@@ -133,39 +165,40 @@ export class DatePickerRange extends React.Component<Props> {
     const {
       theme,
       /**
-       * exclude custom props
-       */
-      // className,
-      // id,
-      // type,
-      // datePickerSize,
-      // datePickerStyle,
-      /**
        * exclude props for combine with state
        */
       startDate,
       endDate,
       focusedInput,
-      startDateId,
-      endDateId,
       onDatesChange,
       onFocusChange,
+
+      /**
+       * exclude div props from the react-dates
+       */
+      className,
+      id,
+      datePickerSize,
+      datePickerStyle,
       ...props
     } = this.props;
-    console.log(startDate, endDate, this.state.range);
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SWrapperComponent {...props}>
+        <SWrapperComponent
+          className={className!}
+          id={id!}
+          datePickerSize={datePickerSize!}
+          datePickerStyle={datePickerStyle!}
+        >
           <DateRangePicker
-            {...props}
             // The next properties have to be overrided by the instance's functions
             startDate={startDate || this.state.range.startDate}
             endDate={endDate || this.state.range.endDate}
-            startDateId={startDateId}
-            endDateId={endDateId}
             focusedInput={focusedInput || this.state.focusedInput}
             onFocusChange={this.onFocusChange}
             onDatesChange={this.onDatesChange}
+            {...props}
           />
         </SWrapperComponent>
       </ThemeProvider>
