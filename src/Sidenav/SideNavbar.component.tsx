@@ -249,10 +249,18 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
           },
         }}
       >
-        <SSideNavbar role="side-nav-bar" {...newProps}>
+        <SSideNavbar
+          className="cui-sidenavbar"
+          role="side-nav-bar"
+          {...newProps}
+        >
           {children}
         </SSideNavbar>
-        <SSecondarySideNavbar role="secondary-side-nav-bar" {...newProps}>
+        <SSecondarySideNavbar
+          className="cui-secondary-sidenavbar"
+          role="secondary-side-nav-bar"
+          {...newProps}
+        >
           {activeSideNavItemsChildren}
         </SSecondarySideNavbar>
       </SideNavContext.Provider>

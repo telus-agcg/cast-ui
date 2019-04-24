@@ -70,13 +70,20 @@ export const SideNav: React.FunctionComponent<Props> = ({
   theme,
   children,
   ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SSideNav role="side-nav" {...props}>
-      {children}
-    </SSideNav>
-  </ThemeProvider>
-);
+}) => {
+  const position = props.top ? 'top' : props.center ? 'center' : 'bottom';
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SSideNav
+        className={`cui-sidenav cui-sidenav--${position}`}
+        role="side-nav"
+        {...props}
+      >
+        {children}
+      </SSideNav>
+    </ThemeProvider>
+  );
+};
 
 SideNav.defaultProps = {
   theme: Themes.defaultTheme,

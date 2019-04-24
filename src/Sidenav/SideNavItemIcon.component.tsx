@@ -21,7 +21,11 @@ export const SideNavItemIcon: React.FunctionComponent<Props> = ({
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SSideNavItemIcon role="side-nav-icon" {...props}>
+    <SSideNavItemIcon
+      className="cui-sidenav-item-icon"
+      role="side-nav-icon"
+      {...props}
+    >
       {children}
     </SSideNavItemIcon>
   </ThemeProvider>

@@ -27,7 +27,11 @@ export const SideNavItemText: React.FunctionComponent<Props> = ({
   const { theme, ...newProps } = { ...props, isOpen };
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SSideNavItemText role="side-nav-text" {...newProps}>
+      <SSideNavItemText
+        className="cui-sidenav-item-text"
+        role="side-nav-text"
+        {...newProps}
+      >
         {children}
       </SSideNavItemText>
     </ThemeProvider>

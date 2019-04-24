@@ -71,6 +71,7 @@ export const SideNavItemToggle: React.FunctionComponent<Props> = ({
   return isToggleVisible ? (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SSideNavItemToggle
+        className="cui-sidenav-item-toggle"
         role="side-nav-toggle"
         {...props}
         onClick={(e: any) => handleClick(e)}

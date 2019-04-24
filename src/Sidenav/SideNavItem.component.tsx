@@ -142,6 +142,11 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SSideNavItem
+        className={
+          props.activeSideNavItem
+            ? 'cui-sidenav-item cui-sidenav-item--active'
+            : 'cui-sidenav-item'
+        }
         role="side-nav-item"
         {...props}
         onClick={props.disabled ? noop : handleSelect}
