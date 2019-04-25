@@ -31,6 +31,7 @@ const SPopover = styled(TippyPopover)`
   background: ${(props: Props) => props.theme.popover.background};
   border: 1px solid ${(props: Props) => props.theme.popover.borderColor};
   box-shadow: ${(props: Props) => props.theme.popover.boxShadow};
+  padding: 0;
   .tippy-arrow:before {
     content: '';
     width: 9px;
