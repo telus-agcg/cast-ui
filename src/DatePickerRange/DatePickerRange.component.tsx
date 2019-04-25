@@ -20,7 +20,7 @@ enum FocusInputs {
 }
 type dateChangeEvent = { startDate: momentDate; endDate: momentDate };
 
-export interface Props {
+export interface Props extends DateRangePickerShape {
   /**
    * Set className
    *
@@ -59,10 +59,6 @@ type State = {
 };
 
 const SWrapperComponent = styled.div<any>`
-  background: ${(props: any) => props.theme.colors.white};
-  border-radius: ${(props: any) =>
-    props.theme.common[props.datePickerSize!].borderRadius};
-  border: 1px solid ${(props: any) => props.theme.colors.lightGray};
   margin-top: ${(props: any) =>
     props.theme.common[props.datePickerSize!].padding.toString().split(' ')[1]};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
@@ -75,11 +71,15 @@ const SWrapperComponent = styled.div<any>`
   input {
     box-sizing: border-box;
   }
+  .DateRangePickerInput {
+    background: ${(props: any) => props.theme.colors.white};
+    border-radius: ${(props: any) =>
+      props.theme.common[props.datePickerSize!].borderRadius};
+    border: 1px solid ${(props: any) => props.theme.colors.lightGray};
+  }
 `;
 
-type PickerProps = Props & DateRangePickerShape;
-
-export class DatePickerRange extends React.PureComponent<PickerProps> {
+export class DatePickerRange extends React.PureComponent<Props> {
   static defaultProps = {
     className: '',
     id: uuid.v4(),
