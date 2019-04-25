@@ -17,8 +17,8 @@ storiesOf('Popover', module).add(
   () => (
     <Popover
       content={<MyComponent />}
-      isVisible={boolean('isVisible', false)}
-      arrow={boolean('arrow', false)}
+      isVisible={boolean('isVisible', true)}
+      arrow={boolean('arrow', true)}
       size={select('size', ['small', 'regular', 'large'], 'regular')}
       placement={select(
         'placement',
@@ -32,7 +32,7 @@ storiesOf('Popover', module).add(
           'left',
           'right',
         ],
-        'bottom-start',
+        'bottom',
       )}
     >
       <span>

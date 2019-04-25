@@ -498,6 +498,7 @@ export const cobaltTheme = {
     color: cobaltColors.black,
     borderRadius: '1px',
     borderColor: cobaltColors.lightGray,
+    boxShadow: `0 0 5px ${cobaltColors.lightGray}`,
   },
   tooltip: {
     background: cobaltColors.black,

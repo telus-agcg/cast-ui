@@ -30,20 +30,41 @@ const SPopover = styled(TippyPopover)`
   border-radius: ${(props: Props) => props.theme.popover.borderRadius};
   background: ${(props: Props) => props.theme.popover.background};
   border: 1px solid ${(props: Props) => props.theme.popover.borderColor};
+  box-shadow: ${(props: Props) => props.theme.popover.boxShadow};
+  .tippy-arrow:before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    border-right: 1px solid ${(props: Props) => props.theme.popover.borderColor};
+    border-top: 1px solid ${(props: Props) => props.theme.popover.borderColor};
+    position: absolute;
+  }
   &[x-placement^='bottom'] .tippy-arrow {
     border-bottom: 8px solid ${(props: Props) => props.theme.colors.white};
+    &:before {
+      transform: rotate(-45deg) translate(-4px, -3px);
+    }
   }
 
   &[x-placement^='right'] .tippy-arrow {
     border-right: 8px solid ${(props: Props) => props.theme.colors.white};
+    &:before {
+      transform: rotate(225deg) translate(3px, 4px);
+    }
   }
 
   &[x-placement^='left'] .tippy-arrow {
     border-left: 8px solid ${(props: Props) => props.theme.colors.white};
+    &:before {
+      transform: rotate(45deg) translate(-11px, 4px);
+    }
   }
 
   &[x-placement^='top'] .tippy-arrow {
     border-top: 8px solid ${(props: Props) => props.theme.colors.white};
+    &:before {
+      transform: rotate(135deg) translate(-4px, 11px);
+    }
   }
 `;
 
