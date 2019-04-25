@@ -40,15 +40,18 @@
     "@tippy.js/react": "^2.1.1",
     "@types/moment": "^2.13.0",
     "@types/react-dates": "^17.1.5",
+    "@types/uuid": "^3.4.4",
     "moment": "^2.24.0",
     "react-dates": "^20.1.0",
     "react-day-picker": "^7.3.0",
+    "react-day-picker": "^7.2.4",
     "react-icons-kit": "^1.2.1",
     "react-modal": "^3.8.1",
     "react-paginate": "^6.2.1",
     "react-select": "^2.2.0",
     "react-table": "^6.8.6",
-    "react-tabs": "^3.0.0"
+    "react-tabs": "^3.0.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
