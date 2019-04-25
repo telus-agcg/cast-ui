@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { SideNavContext } from './context';
 import { Themes } from '../themes';
 import { SideNavItemToggle } from '../Sidenav/SideNavItemToggle.component';
+import { nameSpace } from '../utils/constants';
 
 export type Props = {
   children: any;
@@ -144,8 +145,8 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
       <SSideNavItem
         className={
           props.activeSideNavItem
-            ? 'cui-sidenav-item cui-sidenav-item--active'
-            : 'cui-sidenav-item'
+            ? `${nameSpace}-sidenav-item ${nameSpace}-sidenav-item--active`
+            : `${nameSpace}-sidenav-item`
         }
         role="side-nav-item"
         {...props}

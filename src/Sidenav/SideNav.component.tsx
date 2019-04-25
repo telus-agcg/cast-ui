@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import { nameSpace } from '../utils/constants';
 
 export type Props = {
   /**
@@ -75,7 +76,7 @@ export const SideNav: React.FunctionComponent<Props> = ({
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SSideNav
-        className={`cui-sidenav cui-sidenav--${position}`}
+        className={`${nameSpace}-sidenav ${nameSpace}-sidenav--${position}`}
         role="side-nav"
         {...props}
       >
