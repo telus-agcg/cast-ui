@@ -149,7 +149,8 @@ const ModalBodyDiv = styled.div`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   position: relative;
   height: 100%;
-  overflow: scroll;
+  overflow-y: ${(props: any) =>
+    props.modalSize === 'full' ? 'scroll' : 'auto'};
   color: ${(props: any) => props.theme.modal.body.color};
 `;
 
@@ -175,8 +176,22 @@ export class Modal extends React.Component<Props> {
     theme: Themes.defaultTheme,
   };
 
+  OnAfterOpen = fn => {
+    document.body.style.overflow = 'hidden';
+    if (fn) {
+      fn();
+    }
+  };
+
+  OnAfterClose = fn => {
+    document.body.removeAttribute('style');
+    if (fn) {
+      fn();
+    }
+  };
+
   render() {
-    const { theme, ...props } = this.props;
+    const { theme, onAfterOpen, onAfterClose, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SReactModal
@@ -184,20 +199,21 @@ export class Modal extends React.Component<Props> {
           isOpen={this.props.isOpen}
           style={castStyles}
           modalSize={this.props.modalSize || 'md'}
+          appElement={props.appElement || document.getElementById('root')!}
+          onAfterOpen={() => this.OnAfterOpen(onAfterOpen)}
+          onAfterClose={() => this.OnAfterClose(onAfterClose)}
           {...props}
         >
           {this.props.modalTitle && (
             <ModalHeaderDiv>
               <h5>{this.props.modalTitle}</h5>
-              {this.props.onTitleClose && (
-                <button
-                  type="button"
-                  aria-label="Close"
-                  onClick={() => this.props.onTitleClose}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              )}
+              <button
+                type="button"
+                aria-label="Close"
+                onClick={() => this.props.onTitleClose}
+              >
+                <span>&times;</span>
+              </button>
             </ModalHeaderDiv>
           )}
           <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
