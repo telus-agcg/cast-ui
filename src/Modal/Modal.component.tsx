@@ -207,13 +207,15 @@ export class Modal extends React.Component<Props> {
           {this.props.modalTitle && (
             <ModalHeaderDiv>
               <h5>{this.props.modalTitle}</h5>
-              <button
-                type="button"
-                aria-label="Close"
-                onClick={() => this.props.onTitleClose}
-              >
-                <span>&times;</span>
-              </button>
+              {props.onTitleClose && (
+                <button
+                  type="button"
+                  aria-label="Close"
+                  onClick={props.onTitleClose}
+                >
+                  <span>&times;</span>
+                </button>
+              )}
             </ModalHeaderDiv>
           )}
           <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
