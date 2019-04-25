@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { DateRangePicker } from 'react-dates';
+import { DateRangePicker, DateRangePickerShape } from 'react-dates';
 import uuid from 'uuid';
 import { Moment } from 'moment';
 
@@ -20,7 +20,7 @@ enum FocusInputs {
 }
 type dateChangeEvent = { startDate: momentDate; endDate: momentDate };
 
-export interface Props extends DateRangePicker {
+export interface Props {
   /**
    * Set className
    *
@@ -51,48 +51,6 @@ export interface Props extends DateRangePicker {
    * @default defaultTheme
    **/
   theme?: any;
-  /**
-   * startDate of the range
-   *
-   * @default null
-   */
-  startDate: momentDate;
-  /**
-   * end date of the range
-   *
-   * @default null
-   */
-  endDate: momentDate;
-  /**
-   * default start date id
-   *
-   * @default uuid
-   */
-  startDateId: string;
-  /**
-   * default end date id
-   *
-   * @default uuid
-   */
-  endDateId: string;
-  /**
-   * focused input value
-   *
-   * @default null
-   */
-  focusedInput: focusInputs;
-  /**
-   * handler on date change
-   *
-   * @default Function
-   */
-  onDatesChange: (arg: dateChangeEvent) => void;
-  /**
-   * handler on changing focus
-   *
-   * @default Function
-   */
-  onFocusChange: (arg: focusInputs) => void;
 }
 
 type State = {
@@ -119,11 +77,12 @@ const SWrapperComponent = styled.div<any>`
   }
 `;
 
-export class DatePickerRange extends React.PureComponent<Props> {
+type PickerProps = Props & DateRangePickerShape;
+
+export class DatePickerRange extends React.PureComponent<PickerProps> {
   static defaultProps = {
     className: '',
     id: uuid.v4(),
-    type: 'text',
     datePickerSize: 'md',
     datePickerStyle: 'primary',
     startDateId: uuid.v4(),
@@ -190,6 +149,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
           id={id!}
           datePickerSize={datePickerSize!}
           datePickerStyle={datePickerStyle!}
+          {...props}
         >
           <DateRangePicker
             // The next properties have to be overrided by the instance's functions
