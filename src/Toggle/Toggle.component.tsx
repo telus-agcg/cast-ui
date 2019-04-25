@@ -1,14 +1,15 @@
 import * as React from 'react';
+import uuid from 'uuid';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-export type Props = {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the ID of the individual toggle
    *
-   * @default null
+   * @default uuid.v4
    **/
-  id: string;
+  id?: string;
   /**
    * Specify the size of the toggle (sm | md | lg)
    *
@@ -27,6 +28,9 @@ export type Props = {
    * @default false
    **/
   defaultChecked?: boolean;
+  /**
+   * Label to show before the toggle
+   */
   label?: string;
   /**
    * Specify if the toggle should be disabled
@@ -52,7 +56,7 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
 const getCSSCalc: (str: string) => string = str => `calc(100% - ${str})`;
 
@@ -61,6 +65,7 @@ const SDiv = styled.div`
     height: 0;
     width: 0;
     visibility: hidden;
+    display: none;
   }
 
   label {
@@ -137,25 +142,40 @@ export class Toggle extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
+
   static defaultProps = {
     toggleSize: 'md',
-    onChange: () => {},
     theme: Themes.defaultTheme,
+    id: uuid.v4(),
   };
 
+  onChange = event =>
+    this.props.onChange
+      ? this.props.onChange(event)
+      : alert(`Toggle with id ${this.props.id} was clicked!`);
+
   render() {
-    const { theme, ...props } = this.props;
+    const {
+      theme,
+      children,
+      checked,
+      disabled,
+      label,
+      id,
+
+      ...props
+    } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv {...props}>
+        <SDiv disabled={!!disabled} {...props}>
           <input
-            checked={props.checked}
-            disabled={props.disabled}
-            onChange={props.onChange}
+            checked={checked}
+            disabled={!!disabled}
+            onChange={this.onChange}
             type="checkbox"
-            id="switch"
+            id={id}
           />
-          <label htmlFor="switch">{props.label}</label>
+          <label htmlFor={id}>{label}</label>
         </SDiv>
       </ThemeProvider>
     );

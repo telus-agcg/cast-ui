@@ -19,7 +19,6 @@ storiesOf('IconButton', module).add(
           ['success', 'default', 'primary', 'danger', 'warning'],
           'primary',
         )}
-        btnSize={select('btnSize', ['sm', 'md', 'lg'], 'sm')}
         pixelButtonSize={select('pixelButtonSize', [20, 30, 40, 50, 60], 40)}
         iconSize={select('iconSize', [20, 30, 40, 50, 60], 20)}
         disabled={boolean('disabled', false)}

@@ -21,6 +21,8 @@ export type Props = {
    * @default false
    **/
   checked?: boolean;
+
+  indeterminate?: boolean;
   /**
    * Specify if the default state of the checkbox is checked
    *
@@ -79,6 +81,22 @@ const displayStyleRules: Function = (
   };
 };
 
+
+
+const indeterminateCheckboxRules: Function = (
+  cbSize: string,
+) => {
+  const ySize = { lg: -1, md: 1, sm: 3 }[cbSize];
+  const xSize = { lg: -1, md: -2, sm: -1 }[cbSize];
+  console.log(ySize)
+  const transform = `rotate(90deg) translateX(${xSize}px) translateY(${ySize}px);`
+  return {
+    'transform': transform,
+    '-webkit-transform': transform,
+    '-ms-transform': transform,
+  }; 
+};
+
 const SDiv = styled.div`
   cursor: pointer;
   ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)}
@@ -111,7 +129,7 @@ const SInput = styled.input`
     color: ${(props: Props) => props.theme.checkbox.disabledText};
     cursor: not-allowed;
   }
-  &:checked + label:before {
+  &:checked + label:before,  &:indeterminate + label:before{
   }
   &:checked + label:after {
       content: "";
@@ -132,11 +150,34 @@ const SInput = styled.input`
     &:checked&:disabled + label:after {
       opacity: 0.5;
     }
+    &:indeterminate + label:after {
+      content: "";
+      padding: 2px;
+      text-align: center;
+      position: absolute;
+      height:  ${(props: Props) => (props.cbSize === 'lg' ? '8px' : '6px')};
+      border-style: solid;
+      border-color: ${(props: Props) => props.theme.styles.primary.borderColor};
+      border-width: ${(props: Props) =>
+        props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
+      ${(props: Props) => indeterminateCheckboxRules(props.cbSize)}
+      margin-left: ${(props: Props) =>
+        props.cbSize === 'lg' ? '6.5px' : '6px'};
+    }
 `;
 
 export class Checkbox extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
+  }
+
+  componentDidMount() {
+    this.input.indeterminate = this.props.indeterminate;
+  }
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.indeterminate !== this.props.indeterminate) {
+      this.input.indeterminate = this.props.indeterminate;
+    }
   }
 
   input: any;
@@ -145,10 +186,16 @@ export class Checkbox extends React.Component<Props> {
     cbSize: 'md',
     onChange: () => {},
     theme: Themes.defaultTheme,
+    indeterminate: false,
   };
+
+
+
 
   render() {
     const { id, cbSize, onChange, theme, children, ...props } = this.props;
+    
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv data-checkbox="" id={id} {...props}>
@@ -156,15 +203,14 @@ export class Checkbox extends React.Component<Props> {
             type="checkbox"
             onChange={(evt: any) => {
               onChange!(this.input.checked, id, evt);
-            }}
-            ref={(el: any) => {
-              this.input = el;
-            }}
+            }}            
+            ref={el => (this.input = el)}
             id={id}
             cbSize={cbSize}
             disabled={this.props.disabled}
             value={this.props.value}
             checked={this.props.checked}
+            indeterminate={this.props.indeterminate}
             defaultChecked={this.props.defaultChecked}
           />
           <SLabel htmlFor={id} cbSize={cbSize}>

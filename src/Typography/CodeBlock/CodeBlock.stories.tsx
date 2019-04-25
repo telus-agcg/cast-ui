@@ -34,11 +34,7 @@ code {
 storiesOf('Typography', module).add(
   'CodeBlock',
   () => (
-    <CopyToClipboard
-      copyContent={sampleCode || ''}
-      background="#7EDEB6"
-      includeCopyButton={true}
-    />
+    <CopyToClipboard copyContent={sampleCode || ''} includeCopyButton={true} />
   ),
   {
     info: {
