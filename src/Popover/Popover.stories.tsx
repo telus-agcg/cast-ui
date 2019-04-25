@@ -5,7 +5,7 @@ import { Popover, Button } from '../';
 import { boolean, select } from '@storybook/addon-knobs';
 
 const MyComponent = (props: any) => (
-  <div>
+  <div style={{ padding: '10px', fontFamily: 'Arial, sans-serif' }}>
     This can be a component
     <br />
     or text.
