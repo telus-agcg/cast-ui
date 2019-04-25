@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { SideNavContext, propsDeepSearch } from './context';
 import { Themes } from '../themes';
+import { nameSpace } from '../utils/constants';
 
 export type Props = {
   /**
@@ -249,10 +250,18 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
           },
         }}
       >
-        <SSideNavbar role="side-nav-bar" {...newProps}>
+        <SSideNavbar
+          className={`${nameSpace}-sidenavbar`}
+          role="side-nav-bar"
+          {...newProps}
+        >
           {children}
         </SSideNavbar>
-        <SSecondarySideNavbar role="secondary-side-nav-bar" {...newProps}>
+        <SSecondarySideNavbar
+          className={`${nameSpace}-secondary-sidenavbar`}
+          role="secondary-side-nav-bar"
+          {...newProps}
+        >
           {activeSideNavItemsChildren}
         </SSecondarySideNavbar>
       </SideNavContext.Provider>

@@ -6,6 +6,7 @@ import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_
 
 import { SideNavContext } from './context';
 import { Themes } from '../themes';
+import { nameSpace } from '../utils/constants';
 
 export type Props = {
   /**
@@ -60,6 +61,7 @@ export const SideNavToggle: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SSideNavToggle
         role="side-nav-toggle"
+        className={`${nameSpace}-sidenav-toggle`}
         {...props}
         onClick={(e: any) => handleClick(e)}
       >
