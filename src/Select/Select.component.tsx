@@ -1,10 +1,19 @@
 import * as React from 'react';
 import ErrorMessage from '../Typography/ErrorMessage/index';
-import Select, { components } from 'react-select';
+import Select, { components, SelectBase } from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-export type Props = {
+export type OptionType = {
+  value: string;
+  label: string;
+};
+
+export interface ControlSpecificProps extends SelectBase<OptionType> {
+  children: React.ReactElement;
+}
+
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * From theme provider
    *
@@ -63,12 +72,22 @@ export type Props = {
    *
    * @default null
    **/
-  controlSpecificProps?: any;
+  controlSpecificProps?: ControlSpecificProps;
+  /**
+   * Color of the input's border
+   *
+   * @default: ''
+   */
   borderColor?: string;
+  /**
+   * Color of the input's radius
+   *
+   * @default: ''
+   */
   borderRadius?: string;
-};
+}
 
-const SDiv = styled.div`
+const SDiv = styled.div<Props>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
@@ -95,10 +114,6 @@ const IndicatorsContainer = styled(components.IndicatorsContainer)`
 `;
 
 export class CustomSelect extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   static defaultProps = {
     selectSize: 'md',
     theme: Themes.defaultTheme,
