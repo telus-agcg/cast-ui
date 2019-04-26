@@ -77,8 +77,6 @@ const SDiv = styled.div`
     border-radius: ${(props: Props) =>
       props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
     border-color: ${(props: Props) => props.borderColor || 'inherit'};
-    border-color: ${(props: any) =>
-      props.invalid && props.theme.validation.borderColor};
   }
 `;
 
