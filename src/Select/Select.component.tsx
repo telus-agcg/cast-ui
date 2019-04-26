@@ -3,6 +3,7 @@ import ErrorMessage from '../Typography/ErrorMessage/index';
 import Select, { components, SelectBase } from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import uuid from 'uuid';
 
 export type OptionType = {
   value: string;
@@ -31,7 +32,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default null
    **/
-  id: string;
+  id?: string;
   /**
    * Specify if the tab is disabled
    *
@@ -119,6 +120,7 @@ export class CustomSelect extends React.Component<Props> {
     theme: Themes.defaultTheme,
     invalidText: '',
     invalidTextColor: '',
+    id: uuid.v4(),
   };
 
   render() {
