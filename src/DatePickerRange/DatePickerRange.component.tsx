@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { DateRangePicker, DateRangePickerShape } from 'react-dates';
 import uuid from 'uuid';
 import { Moment } from 'moment';
+import { Themes } from '../themes';
 
 type momentDate = Moment | null;
 type pickerSize = 'sm' | 'md' | 'lg';
@@ -92,6 +93,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
     focusedInput: null,
     onDatesChange: null,
     onFocusChange: null,
+    theme: Themes.defaultTheme,
   };
 
   state: State = {
@@ -143,7 +145,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
     } = this.props;
 
     return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <ThemeProvider theme={theme}>
         <SWrapperComponent
           className={className!}
           id={id!}
