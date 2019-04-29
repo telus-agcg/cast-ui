@@ -2,91 +2,67 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-export interface Props {
+export type Props = {
   /**
-   * Set body background color. A CSS color code
+   * A CSS color code
    *
    * @default ''
    **/
-  backgroundColor?: string;
+  background?: string;
   /**
-   * Set body background color. A CSS color code
+   * The shorthand string for setting element border-top
    *
    * @default ''
    **/
-  borderColor?: string;
+  borderTop?: string;
   /**
-   * Adjust spinner size in pixels
+   * The shorthand string for setting element border-bottom
    *
-   * @default 50
+   * @default ''
    **/
-  size?: number;
+  borderBottom?: string;
   /**
-   * Set border width
+   * Adjust Tabnav height.
    *
-   * @default 3
+   * @default '80px'
    **/
-  borderWidth?: number;
-  /**
-   * Adjust animation speed in seconds
-   *
-   * @default 1
-   **/
-  animationSpeed?: number;
-  /**
-   * Set transition type
-   *
-   * @default 'linear'
-   **/
-  transitionType?: string;
+  height?: string;
   /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
-}
+};
 
 const STabnav = styled.div`
-  width: ${(props: Props) => `${props.size}px`}
-  height: ${(props: Props) => `${props.size}px`};
-  position: relative;
-  margin: auto;
-  &:before {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: ${(props: Props) => `${props.size}px`}
-    height: ${(props: Props) => `${props.size}px`};
-    margin-top: ${(props: Props) => `-${props.size! / 2}px`};
-    margin-left: ${(props: Props) => `-${props.size! / 2}px`};
-    border-radius: 50%;
-    border: ${(props: Props) =>
-      `${props.borderWidth}px solid
-      ${props.backgroundColor || props.theme.spinner.backgroundColor}`};
-    border-top-color: ${(props: Props) =>
-      props.borderColor || props.theme.spinner.borderColor};
-    animation: ${(props: Props) =>
-      `spinner ${props.animationSpeed}s ${props.transitionType} infinite`};
-  }
-
-  @keyframes spinner {
-    to {transform: rotate(360deg);}
-  }
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.typography.fontSize};
+  color: ${(props: Props) => props.theme.tabnav.color};
+  height: ${(props: Props) => props.height || props.theme.tabnav.height};
+  padding: ${(props: Props) => props.theme.tabnav.padding};
+  background: ${(props: Props) =>
+    props.background || props.theme.tabnav.background};
+  border-top: ${(props: Props) =>
+    props.borderTop || props.theme.tabnav.borderTop};
+  border-bottom: ${(props: Props) =>
+    props.borderBottom || props.theme.tabnav.borderBottom};
+  display: flex;
+  align-items: center;
 `;
 
-export const Tabnav: React.FunctionComponent<Props> = ({ theme, ...props }) => (
+export const Tabnav: React.FunctionComponent<Props> = ({
+  theme,
+  children,
+  ...props
+}) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <STabnav {...props} />
+    <STabnav {...props}>{children}</STabnav>
   </ThemeProvider>
 );
+
 Tabnav.defaultProps = {
-  borderColor: 'blue',
-  borderWidth: 3,
-  size: 50,
-  animationSpeed: 1,
-  transitionType: 'linear',
+  borderTop: '',
+  borderBottom: '',
   theme: Themes.defaultTheme,
 };

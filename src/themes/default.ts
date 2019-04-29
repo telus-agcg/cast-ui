@@ -613,6 +613,14 @@ export const defaultTheme = {
     borderBottom: '',
     color: defaultColors.primary,
   },
+  tabnav: {
+    height: '110px',
+    background: lighten(defaultColors.blue, 45),
+    padding: '0 32px ',
+    borderTop: '',
+    borderBottom: '',
+    color: defaultColors.primary,
+  },
   sidenav: {
     fontSize: '14px',
     color: defaultColors.primary,

@@ -630,6 +630,14 @@ export const cobaltTheme = {
     borderBottom: '',
     color: cobaltColors.black,
   },
+  tabnav: {
+    height: '110px',
+    background: cobaltColors.primaryExtraLight,
+    padding: '0 32px ',
+    borderTop: '',
+    borderBottom: '',
+    color: cobaltColors.primary,
+  },
   sidenav: {
     fontSize: '14px',
     color: cobaltColors.primary,
