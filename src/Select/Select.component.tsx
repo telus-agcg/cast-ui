@@ -33,6 +33,18 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   selectSize?: 'sm' | 'md' | 'lg';
   /**
+   * Select Select Style
+   *
+   * @default 'primary'
+   **/
+  selectStyle?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'danger';
+  /**
    * The ID of the control
    *
    * @default null
@@ -107,7 +119,10 @@ const SDiv = styled.div<Props>`
     min-height: unset;
     border-radius: ${(props: Props) =>
       props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
-    border-color: ${(props: Props) => props.borderColor || 'inherit'};
+    border-color: ${(props: Props) =>
+      props.borderColor ||
+      props.theme.styles[props.selectStyle!].borderColor ||
+      'inherit'};
   }
 `;
 
@@ -145,6 +160,7 @@ const IndicatorsContainer = styled(components.IndicatorsContainer)`
 export class CustomSelect extends React.Component<Props> {
   static defaultProps = {
     selectSize: 'md',
+    selectStyle: 'default',
     theme: Themes.defaultTheme,
     invalidText: '',
     invalidTextColor: '',
