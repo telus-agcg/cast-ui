@@ -17,7 +17,6 @@ storiesOf('Select', module).add(
         invalidTextColor={text('invalidTextColor', '')}
         borderColor={text('borderColor', '')}
         borderRadius={text('borderRadius', '')}
-        indicatorColor={'red'}
         options={[
           { value: 'chocolate', label: 'Chocolate' },
           { value: 'strawberry', label: 'Strawberry' },

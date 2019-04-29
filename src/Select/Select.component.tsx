@@ -108,7 +108,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default ''
    */
-  indicatorColor?: string;
+  dropdownColor?: string;
 }
 
 const SDiv = styled.div<Props>`
@@ -136,18 +136,18 @@ const SSelect = styled(Select)`
 const SIndicatorWrapper = styled.div<Props>`
   & > div > div {
     color: ${(props: any) =>
-      props.indicatorColor ||
-      props.theme.common[props.selectSize!].indicatorColor};
+      props.dropdownColor ||
+      props.theme.styles[props.selectStyle!].dropdownColor};
     &:hover {
       color: ${(props: Props) =>
-        props.indicatorColor ||
-        props.theme.common[props.selectSize!].indicatorColor};
+        props.dropdownColor ||
+        props.theme.styles[props.selectStyle!].dropdownColor};
     }
   }
   & > div > span {
     color: ${(props: Props) =>
-      props.indicatorColor ||
-      props.theme.common[props.selectSize!].indicatorColor};
+      props.dropdownColor ||
+      props.theme.styles[props.selectStyle!].dropdownColor};
   }
 `;
 
@@ -173,6 +173,7 @@ export class CustomSelect extends React.Component<Props> {
       controlSpecificProps,
       invalid,
       selectSize,
+      selectStyle,
       theme,
       id,
 
@@ -180,12 +181,10 @@ export class CustomSelect extends React.Component<Props> {
       selectedOption,
       invalidText,
       invalidTextColor,
-      indicatorColor,
+      dropdownColor,
       ...props
     } = this.props;
     const errorId = invalid ? `${id}-error-msg` : '';
-
-    console.log(indicatorColor);
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -196,12 +195,16 @@ export class CustomSelect extends React.Component<Props> {
           aria-describedby={errorId}
           invalid={invalid}
           id={id}
+          selectStyle={selectStyle}
           {...props}
         >
           <SSelect
             components={{
               IndicatorsContainer: p => (
-                <SIndicatorWrapper indicatorColor={indicatorColor}>
+                <SIndicatorWrapper
+                  dropdownColor={dropdownColor}
+                  selectStyle={selectStyle}
+                >
                   <IndicatorsContainer {...p} />
                 </SIndicatorWrapper>
               ),
@@ -215,7 +218,7 @@ export class CustomSelect extends React.Component<Props> {
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
             selectSize={selectSize}
-            indicatorColor={indicatorColor}
+            dropdownColor={dropdownColor}
             {...props}
             {...controlSpecificProps}
           />
