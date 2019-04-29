@@ -27,6 +27,22 @@ export type Props = {
    * @default '80px'
    **/
   height?: string;
+
+  /**
+   * An array of objects.
+   * Each object define properties of a each tab.
+   * If an object has property children<Array>, the children
+   * will automatically appear in the tab's popup view.
+   *
+   * @default []
+   **/
+  tabs?: {
+    label: String;
+    active?: boolean;
+    to?: any;
+    onClick?: void;
+    children?: any;
+  }[];
   /**
    * From theme provider
    *
@@ -64,5 +80,6 @@ export const Tabnav: React.FunctionComponent<Props> = ({
 Tabnav.defaultProps = {
   borderTop: '',
   borderBottom: '',
+  tabs: [],
   theme: Themes.defaultTheme,
 };

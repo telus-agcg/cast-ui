@@ -636,7 +636,7 @@ export const cobaltTheme = {
     padding: '0 32px ',
     borderTop: '',
     borderBottom: '',
-    color: cobaltColors.primary,
+    color: cobaltColors.black,
   },
   sidenav: {
     fontSize: '14px',
