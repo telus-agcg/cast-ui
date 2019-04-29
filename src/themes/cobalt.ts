@@ -729,5 +729,6 @@ export const cobaltTheme = {
     dropdownColor: cobaltColors.blue,
     optionBackgroundColor: cobaltColors.lightGray,
     hoverOptionBackgroundColor: lighten(cobaltColors.blue, 75),
+    borderColor: cobaltColors.lightGray,
   },
 };

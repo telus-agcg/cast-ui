@@ -716,5 +716,6 @@ export const defaultTheme = {
     dropdownColor: defaultColors.blue,
     optionBackgroundColor: defaultColors.lightGray,
     hoverOptionBackgroundColor: defaultColors.lightBlue,
+    borderColor: defaultColors.lightGray,
   },
 };
