@@ -125,6 +125,9 @@ const SDiv = styled.div<Props>`
       props.borderColor ||
       props.theme.styles[props.selectStyle!].borderColor ||
       'inherit'};
+      >div>div:hover {
+        cursor: pointer;
+      }
   }
 `;
 
