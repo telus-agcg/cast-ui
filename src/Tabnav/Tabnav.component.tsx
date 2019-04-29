@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-export type Props = {
+export interface Props {
   /**
    * Set body background color. A CSS color code
    *
@@ -45,7 +45,7 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
 const STabnav = styled.div`
   width: ${(props: Props) => `${props.size}px`}
