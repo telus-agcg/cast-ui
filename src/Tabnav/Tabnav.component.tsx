@@ -50,13 +50,7 @@ export type Props = {
    *
    * @default void
    **/
-  onTabClick?(
-    tabLabel: String,
-    isTabActive: boolean,
-    tabTo: any,
-    tabChildren: any,
-    event: React.MouseEvent<HTMLElement>,
-  ): void;
+  onTabClick?(tab: any, event: React.MouseEvent<HTMLElement>): void;
   /**
    * From theme provider
    *
@@ -97,6 +91,7 @@ export const Tabnav: React.FunctionComponent<Props> = ({
   theme,
   children,
   tabs,
+  onTabClick = () => {},
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -105,7 +100,7 @@ export const Tabnav: React.FunctionComponent<Props> = ({
       {tabs && (
         <div>
           {tabs.map((tab: any, i: any) => (
-            <STab key={i}>
+            <STab key={i} onClick={(e: any) => onTabClick(tab, e)}>
               {tab.label}
               {tab.children && <span>^</span>}
             </STab>
