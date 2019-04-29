@@ -6,13 +6,13 @@ import { Tabnav } from '../';
 
 storiesOf('Tabnav', module).add(
   'Tabnav',
-  () => <Tabnav background={text('background', '')} />,
+  () => <Tabnav background={text('background', '')}>Sample content</Tabnav>,
   {
     info: {
       text: `
         ### Notes
 
-        This is a spinner
+        This is a Tabnav
         `,
     },
   },
