@@ -38,10 +38,12 @@ export type Props = {
   tabs?: {
     label: String;
     active?: boolean;
+    disabled?: boolean;
     to?: any;
     children?: {
       label: String;
       active?: boolean;
+      disabled?: boolean;
       to?: any;
     }[];
   }[];
@@ -84,7 +86,37 @@ const SChildren = styled.div`
   flex-grow: 1;
 `;
 const STab = styled.div`
-  padding: 4px 56px 8px 0;
+  position: relative;
+  padding: ${(props: any) => props.theme.tabnav.tab.padding};
+  margin: ${(props: any) => props.theme.tabnav.tab.margin};
+  transition: ${(props: any) => props.theme.tabnav.tab.transition};
+  color: ${(props: any) =>
+    props.theme.tabnav[`${props.active ? 'active' : ''}tab`].color};
+  font-weight: ${(props: any) =>
+    props.theme.tabnav[`${props.active ? 'active' : ''}tab`].fontWeight};
+  cursor: ${(props: any) =>
+    props.disabled
+      ? 'not-allowed'
+      : props.theme.tabnav[`${props.active ? 'active' : ''}tab`].cursor};
+  background: ${(props: any) =>
+    props.theme.tabnav[`${props.active ? 'active' : ''}tab`].background};
+  opacity: ${(props: any) =>
+    props.disabled
+      ? '.6'
+      : props.theme.tabnav[`${props.active ? 'active' : ''}tab`].opacity};
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: ${(props: any) =>
+      props.theme.tabnav[`${props.active ? 'active' : ''}tab`]
+        .bottomBorderWidth};
+    background-color: ${(props: any) =>
+      props.theme.tabnav[`${props.active ? 'active' : ''}tab`]
+        .bottomBorderColor};
+  }
 `;
 
 export const Tabnav: React.FunctionComponent<Props> = ({
@@ -100,7 +132,7 @@ export const Tabnav: React.FunctionComponent<Props> = ({
       {tabs && (
         <div>
           {tabs.map((tab: any, i: any) => (
-            <STab key={i} onClick={(e: any) => onTabClick(tab, e)}>
+            <STab key={i} onClick={(e: any) => onTabClick(tab, e)} {...tab}>
               {tab.label}
               {tab.children && <span>^</span>}
             </STab>
