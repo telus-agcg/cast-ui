@@ -1,0 +1,27 @@
+import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import { select, text } from '@storybook/addon-knobs/react';
+
+import { Tabnav } from '../';
+
+storiesOf('Tabnav', module).add(
+  'Tabnav',
+  () => (
+    <Tabnav
+      backgroundColor={text('backgroundColor', '')}
+      borderColor={text('borderColor', '')}
+      size={select('size', [20, 30, 40, 50, 60, 70], 50)}
+      borderWidth={select('borderWidth', [1, 2, 3, 4, 5], 3)}
+      animationSpeed={select('animationSpeed', [1, 2, 3, 4, 5], 1)}
+    />
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is a spinner
+        `,
+    },
+  },
+);

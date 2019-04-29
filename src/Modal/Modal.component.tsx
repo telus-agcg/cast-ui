@@ -4,6 +4,10 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export interface Props extends ReactModalProps {
+  complexProp?: {
+    value?: string;
+    optValue?: string;
+  };
   /**
    * The ID of the control
    *

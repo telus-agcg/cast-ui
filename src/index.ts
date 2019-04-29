@@ -33,6 +33,7 @@ export * from './Spinner';
 export * from './Table';
 export * from './TablePagination';
 export * from './Tabs';
+export * from './Tabnav';
 export * from './Textarea';
 export * from './Toggle';
 export * from './ToggleGroup';
