@@ -61,7 +61,6 @@ export const cobaltTheme = {
   styles: {
     primary: {
       borderColor: cobaltColors.primary,
-      dropdownColor: cobaltColors.primary,
       flood: cobaltColors.primary,
       disabledFlood: cobaltColors.primaryLight,
       lightFlood: cobaltColors.primaryLight,
@@ -82,7 +81,6 @@ export const cobaltTheme = {
     },
     secondary: {
       borderColor: cobaltColors.secondary,
-      dropdownColor: cobaltColors.secondary,
       flood: cobaltColors.secondary,
       disabledFlood: cobaltColors.secondaryLight,
       lightFlood: cobaltColors.secondaryLight,
@@ -103,7 +101,6 @@ export const cobaltTheme = {
     },
     danger: {
       borderColor: cobaltColors.danger,
-      dropdownColor: cobaltColors.danger,
       flood: cobaltColors.danger,
       disabledFlood: cobaltColors.dangerLight,
       lightFlood: cobaltColors.dangerLight,
@@ -124,7 +121,6 @@ export const cobaltTheme = {
     },
     warning: {
       borderColor: cobaltColors.warning,
-      dropdownColor: cobaltColors.warning,
       flood: cobaltColors.warning,
       disabledFlood: cobaltColors.warningLight,
       lightFlood: cobaltColors.warningLight,
@@ -145,7 +141,6 @@ export const cobaltTheme = {
     },
     success: {
       borderColor: cobaltColors.success,
-      dropdownColor: cobaltColors.success,
       flood: cobaltColors.success,
       disabledFlood: cobaltColors.successLight,
       lightFlood: cobaltColors.successLight,
@@ -166,7 +161,6 @@ export const cobaltTheme = {
     },
     default: {
       borderColor: cobaltColors.secondary,
-      dropdownColor: cobaltColors.secondary,
       flood: cobaltColors.secondary,
       disabledFlood: cobaltColors.secondaryLight,
       lightFlood: cobaltColors.secondaryLight,
@@ -730,5 +724,10 @@ export const cobaltTheme = {
   },
   itemContainer: {
     borderColor: cobaltColors.lightGray,
+  },
+  select: {
+    dropdownColor: cobaltColors.blue,
+    optionBackgroundColor: cobaltColors.lightGray,
+    hoverOptionBackgroundColor: lighten(cobaltColors.blue, 75),
   },
 };

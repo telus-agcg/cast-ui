@@ -12,6 +12,7 @@ const toggleColors = {
 
 export const defaultColors = {
   blue: '#167BE0',
+  lightBlue: lighten('#167BE0', 25),
   green: '#59C067',
   red: '#D93945',
   yellow: '#FD984E',
@@ -44,7 +45,6 @@ export const defaultTheme = {
   styles: {
     primary: {
       borderColor: defaultColors.blue,
-      dropdownColor: defaultColors.blue,
       flood: defaultColors.blue,
       disabledFlood: lighten(defaultColors.blue, 25),
       lightFlood: lighten(defaultColors.blue, 50),
@@ -65,7 +65,6 @@ export const defaultTheme = {
     },
     secondary: {
       borderColor: defaultColors.gray,
-      dropdownColor: defaultColors.gray,
       flood: defaultColors.gray,
       disabledFlood: lighten(defaultColors.gray, 25),
       lightFlood: lighten(defaultColors.gray, 50),
@@ -86,7 +85,6 @@ export const defaultTheme = {
     },
     danger: {
       borderColor: defaultColors.red,
-      dropdownColor: defaultColors.red,
       flood: defaultColors.red,
       disabledFlood: lighten(defaultColors.red, 25),
       lightFlood: lighten(defaultColors.red, 50),
@@ -107,7 +105,6 @@ export const defaultTheme = {
     },
     warning: {
       borderColor: defaultColors.yellow,
-      dropdownColor: defaultColors.yellow,
       flood: defaultColors.yellow,
       disabledFlood: lighten(defaultColors.yellow, 25),
       lightFlood: lighten(defaultColors.yellow, 50),
@@ -128,7 +125,6 @@ export const defaultTheme = {
     },
     success: {
       borderColor: defaultColors.green,
-      dropdownColor: defaultColors.green,
       flood: defaultColors.green,
       disabledFlood: lighten(defaultColors.green, 25),
       lightFlood: lighten(defaultColors.green, 50),
@@ -149,7 +145,6 @@ export const defaultTheme = {
     },
     default: {
       borderColor: defaultColors.gray,
-      dropdownColor: defaultColors.gray,
       flood: defaultColors.gray,
       disabledFlood: lighten(defaultColors.gray, 25),
       lightFlood: lighten(defaultColors.gray, 50),
@@ -716,5 +711,10 @@ export const defaultTheme = {
   },
   draggable: {
     borderColor: defaultColors.lightGray,
+  },
+  select: {
+    dropdownColor: defaultColors.blue,
+    optionBackgroundColor: defaultColors.lightGray,
+    hoverOptionBackgroundColor: defaultColors.lightBlue,
   },
 };

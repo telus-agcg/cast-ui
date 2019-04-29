@@ -33,18 +33,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   selectSize?: 'sm' | 'md' | 'lg';
   /**
-   * Select Select Style
-   *
-   * @default 'primary'
-   **/
-  selectStyle?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'danger';
-  /**
    * The ID of the control
    *
    * @default null
@@ -109,6 +97,18 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default ''
    */
   dropdownColor?: string;
+  /**
+   * option color representation
+   *
+   * @default '''
+   */
+  optionBackgroundColor?: string;
+  /**
+   * option's hover color representation
+   *
+   * @default '''
+   */
+  hoverOptionBackgroundColor?: string;
 }
 
 const SDiv = styled.div<Props>`
@@ -122,12 +122,7 @@ const SDiv = styled.div<Props>`
     border-radius: ${(props: Props) =>
       props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
     border-color: ${(props: Props) =>
-      props.borderColor ||
-      props.theme.styles[props.selectStyle!].borderColor ||
-      'inherit'};
-      >div>div:hover {
-        cursor: pointer;
-      }
+      props.borderColor || props.theme.select.borderColor || 'inherit'};
   }
 `;
 
@@ -141,20 +136,29 @@ const SSelect = styled(Select)`
 const SIndicatorWrapper = styled.div<Props>`
   & > div > div {
     color: ${(props: any) =>
-      props.dropdownColor ||
-      props.theme.styles[props.selectStyle!].dropdownColor};
+      props.dropdownColor || props.theme.select.dropdownColor};
     &:hover {
       color: ${(props: Props) =>
-        props.dropdownColor ||
-        props.theme.styles[props.selectStyle!].dropdownColor};
+        props.dropdownColor || props.theme.select.dropdownColor};
     }
   }
   & > div > span {
     color: ${(props: Props) =>
-      props.dropdownColor ||
-      props.theme.styles[props.selectStyle!].dropdownColor};
+      props.dropdownColor || props.theme.select.dropdownColor};
   }
 `;
+
+const SOption = styled.div<Props>`
+  backgroundcolor: ${(props: Props) =>
+    props.optionBackgroundColor || props.theme.select.optionBackgroundColor};
+  &:hover {
+    backgroundcolor: ${(props: Props) =>
+      props.hoverOptionBackgroundColor ||
+      props.theme.select.hoverOptionBackgroundColor};
+  }
+`;
+
+const Option = styled(components.Option)``;
 
 const IndicatorsContainer = styled(components.IndicatorsContainer)`
   & > div {
@@ -165,11 +169,13 @@ const IndicatorsContainer = styled(components.IndicatorsContainer)`
 export class CustomSelect extends React.Component<Props> {
   static defaultProps = {
     selectSize: 'md',
-    selectStyle: 'default',
     theme: Themes.defaultTheme,
     invalidText: '',
     invalidTextColor: '',
     id: uuid.v4(),
+    option: {},
+    optionBackgroundColor: '',
+    hoverOptionBackgroundColor: '',
   };
 
   render() {
@@ -178,7 +184,6 @@ export class CustomSelect extends React.Component<Props> {
       controlSpecificProps,
       invalid,
       selectSize,
-      selectStyle,
       theme,
       id,
 
@@ -186,7 +191,10 @@ export class CustomSelect extends React.Component<Props> {
       selectedOption,
       invalidText,
       invalidTextColor,
+
       dropdownColor,
+      optionBackgroundColor,
+      hoverOptionBackgroundColor,
       ...props
     } = this.props;
     const errorId = invalid ? `${id}-error-msg` : '';
@@ -200,16 +208,20 @@ export class CustomSelect extends React.Component<Props> {
           aria-describedby={errorId}
           invalid={invalid}
           id={id}
-          selectStyle={selectStyle}
           {...props}
         >
           <SSelect
             components={{
-              IndicatorsContainer: p => (
-                <SIndicatorWrapper
-                  dropdownColor={dropdownColor}
-                  selectStyle={selectStyle}
+              Option: p => (
+                <SOption
+                  optionBackgroundColor={optionBackgroundColor}
+                  hoverOptionBackgroundColor={hoverOptionBackgroundColor}
                 >
+                  <Option {...p} />
+                </SOption>
+              ),
+              IndicatorsContainer: p => (
+                <SIndicatorWrapper dropdownColor={dropdownColor}>
                   <IndicatorsContainer {...p} />
                 </SIndicatorWrapper>
               ),
