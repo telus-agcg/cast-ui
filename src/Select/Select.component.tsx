@@ -117,6 +117,8 @@ const SDiv = styled.div<Props>`
   color: ${(props: Props) => props.theme.reverseText};
   .react-select-component > div {
     min-height: unset;
+    margin-top: 1px;
+    padding-top: 1px;
     border-radius: ${(props: Props) =>
       props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
     border-color: ${(props: Props) =>
@@ -221,6 +223,7 @@ export class CustomSelect extends React.Component<Props> {
             dropdownColor={dropdownColor}
             {...props}
             {...controlSpecificProps}
+            menuIsOpen
           />
           {invalid && (
             <ErrorMessage
