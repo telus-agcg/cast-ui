@@ -27,7 +27,6 @@ export type Props = {
    * @default '80px'
    **/
   height?: string;
-
   /**
    * An array of objects.
    * Each object define properties of a each tab.
@@ -40,9 +39,24 @@ export type Props = {
     label: String;
     active?: boolean;
     to?: any;
-    onClick?: void;
-    children?: any;
+    children?: {
+      label: String;
+      active?: boolean;
+      to?: any;
+    }[];
   }[];
+  /**
+   * Handle tab click events.
+   *
+   * @default void
+   **/
+  onTabClick?(
+    tabLabel: String,
+    isTabActive: boolean,
+    tabTo: any,
+    tabChildren: any,
+    event: React.MouseEvent<HTMLElement>,
+  ): void;
   /**
    * From theme provider
    *
@@ -64,16 +78,41 @@ const STabnav = styled.div`
   border-bottom: ${(props: Props) =>
     props.borderBottom || props.theme.tabnav.borderBottom};
   display: flex;
+  flex-direction: column;
   align-items: center;
+  > * {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+`;
+const SChildren = styled.div`
+  flex-grow: 1;
+`;
+const STab = styled.div`
+  padding: 4px 56px 8px 0;
 `;
 
 export const Tabnav: React.FunctionComponent<Props> = ({
   theme,
   children,
+  tabs,
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <STabnav {...props}>{children}</STabnav>
+    <STabnav {...props}>
+      <SChildren>{children}</SChildren>
+      {tabs && (
+        <div>
+          {tabs.map((tab: any, i: any) => (
+            <STab key={i}>
+              {tab.label}
+              {tab.children && <span>^</span>}
+            </STab>
+          ))}
+        </div>
+      )}
+    </STabnav>
   </ThemeProvider>
 );
 
