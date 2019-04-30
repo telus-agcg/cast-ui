@@ -5,7 +5,7 @@ import { Popover, Button } from '../';
 import { boolean, select } from '@storybook/addon-knobs';
 
 const MyComponent = (props: any) => (
-  <div>
+  <div style={{ padding: '10px', fontFamily: 'Arial, sans-serif' }}>
     This can be a component
     <br />
     or text.
@@ -17,8 +17,8 @@ storiesOf('Popover', module).add(
   () => (
     <Popover
       content={<MyComponent />}
-      isVisible={boolean('isVisible', false)}
-      arrow={boolean('arrow', false)}
+      isVisible={boolean('isVisible', true)}
+      arrow={boolean('arrow', true)}
       size={select('size', ['small', 'regular', 'large'], 'regular')}
       placement={select(
         'placement',
@@ -32,7 +32,7 @@ storiesOf('Popover', module).add(
           'left',
           'right',
         ],
-        'bottom-start',
+        'bottom',
       )}
     >
       <span>
