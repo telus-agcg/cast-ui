@@ -11,21 +11,6 @@ export type OptionType = {
   label: string;
 };
 
-interface AnotherProps {
-  /**
-   * foooooooooooooooo
-   *
-   * @default '';
-   */
-  foo?: string;
-  /**
-   * bar
-   *
-   * @default '';
-   */
-  bar?: string;
-}
-
 // export interface ControlSpecificProps extends SelectBase<OptionType> {
 //   blockOptionHover: boolean;
 //   clearFocusValueOnUpdate: boolean;
@@ -70,9 +55,7 @@ interface AnotherProps {
 //   children: React.ReactElement;
 // }
 
-export interface Props
-  extends React.HTMLAttributes<HTMLDivElement>,
-    AnotherProps {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * From theme provider
    *
