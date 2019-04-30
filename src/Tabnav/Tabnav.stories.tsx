@@ -14,13 +14,24 @@ storiesOf('Tabnav', module).add(
       borderTop={text('borderTop', '')}
       borderBottom={text('borderBottom', '1px solid grey')}
       tabs={[
-        { label: 'Overview', to: '/overview' },
+        { label: 'Overview', active: false, to: '/overview' },
         {
           label: 'Business Plans',
+          active: false,
+          children: [
+            { label: 'Business Overview', to: '/business-plans/overview' },
+            { label: 'Contracts Overview', to: '/business-plans/contracts' },
+          ],
+        },
+        {
+          label: 'Offers',
           active: true,
           children: [
-            { label: 'Business Overview', to: '/overview' },
-            { label: 'Contracts Overview', to: '/overview' },
+            { label: 'Claims', to: '/offers/claims' },
+            { label: 'PQRs', to: '/offers/pqrs' },
+            { label: 'Contracts', to: '/offers/contracts' },
+            { label: 'Competitives', to: '/offers/competitives' },
+            { label: 'Programs', to: '/offers/programs' },
           ],
         },
       ]}

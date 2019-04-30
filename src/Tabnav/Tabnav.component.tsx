@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import { Popover } from '../Popover';
 import { Icon } from 'react-icons-kit';
 import { ic_keyboard_arrow_down as ICKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 
@@ -90,6 +91,7 @@ const STabsnav = styled.div`
   width: 100%;
 `;
 const STab = styled.div`
+  outline: none;
   position: relative;
   padding: ${(props: any) => props.theme.tabnav.tab.padding};
   margin: ${(props: any) => props.theme.tabnav.tab.margin};
@@ -126,6 +128,7 @@ const STab = styled.div`
       props.theme.tabnav[`${props.active ? 'active' : ''}tab`].iconColor};
   }
 `;
+const PopoverContent = () => <div> This pop pop up </div>;
 
 export const Tabnav: React.FunctionComponent<Props> = ({
   theme,
@@ -140,10 +143,19 @@ export const Tabnav: React.FunctionComponent<Props> = ({
       {tabs && (
         <STabsnav>
           {tabs.map((tab: any, i: any) => (
-            <STab key={i} onClick={(e: any) => onTabClick(tab, e)} {...tab}>
-              {tab.label}
-              {tab.children && <Icon size={24} icon={ICKAD} className="icon" />}
-            </STab>
+            <Popover
+              content={<PopoverContent />}
+              arrow={false}
+              placement="bottom-start"
+              key={i}
+            >
+              <STab onClick={(e: any) => onTabClick(tab, e)} {...tab}>
+                {tab.label}
+                {tab.children && (
+                  <Icon size={24} icon={ICKAD} className="icon" />
+                )}
+              </STab>
+            </Popover>
           ))}
         </STabsnav>
       )}
