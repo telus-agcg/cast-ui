@@ -37,11 +37,13 @@ export type Props = {
     active?: boolean;
     disabled?: boolean;
     to?: any;
+    className?: string;
     children?: {
       label: String;
       active?: boolean;
       disabled?: boolean;
       to?: any;
+      className?: string;
     }[];
   }[];
   /**

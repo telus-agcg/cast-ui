@@ -13,7 +13,12 @@ storiesOf('Tabnav', module).add(
       borderTop={text('borderTop', '')}
       borderBottom={text('borderBottom', '1px solid grey')}
       tabs={[
-        { label: 'Overview', active: false, to: '/overview' },
+        {
+          label: 'Overview',
+          active: false,
+          to: '/overview',
+          className: 'overview',
+        },
         {
           label: 'Business Plans',
           active: false,
