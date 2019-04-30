@@ -49,7 +49,7 @@ storiesOf('Tabnav', module).add(
       popoverProps={{ placement: 'bottom-start' }}
       tabsBarProps={{ className: 'tabs-bar' }}
     >
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'baseline' }}>
         <Headline>Agrineed, Inc. (62875)</Headline>
         <Badge>Retailer</Badge>
       </div>
