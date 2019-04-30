@@ -200,6 +200,9 @@ export const defaultTheme = {
     color: defaultColors.primary,
     backgroundColor: defaultColors.white,
   },
+  button: {
+    outlineBackgroundColor: 'none',
+  },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
@@ -399,13 +402,13 @@ export const defaultTheme = {
       padding: '8px 16px',
     },
     sm: {
-      maxWidth: '300px',
+      width: '300px',
     },
     md: {
-      maxWidth: '500px',
+      width: '745px',
     },
     lg: {
-      maxWidth: '800px',
+      width: '1220px',
     },
   },
   textarea: {
@@ -479,6 +482,7 @@ export const defaultTheme = {
     color: defaultColors.black,
     borderRadius: '1px',
     borderColor: defaultColors.lightGray,
+    boxShadow: `0 0 5px ${defaultColors.lightGray}`,
   },
   tooltip: {
     background: defaultColors.primary,
