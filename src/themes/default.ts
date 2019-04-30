@@ -200,6 +200,9 @@ export const defaultTheme = {
     color: defaultColors.primary,
     backgroundColor: defaultColors.white,
   },
+  button: {
+    outlineBackgroundColor: 'none',
+  },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
@@ -479,6 +482,7 @@ export const defaultTheme = {
     color: defaultColors.black,
     borderRadius: '1px',
     borderColor: defaultColors.lightGray,
+    boxShadow: `0 0 5px ${defaultColors.lightGray}`,
   },
   tooltip: {
     background: defaultColors.primary,

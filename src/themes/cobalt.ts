@@ -217,6 +217,9 @@ export const cobaltTheme = {
     color: cobaltColors.black,
     backgroundColor: cobaltColors.white,
   },
+  button: {
+    outlineBackgroundColor: 'white',
+  },
   typography: {
     fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
@@ -498,6 +501,7 @@ export const cobaltTheme = {
     color: cobaltColors.black,
     borderRadius: '1px',
     borderColor: cobaltColors.lightGray,
+    boxShadow: `0 0 5px ${cobaltColors.lightGray}`,
   },
   tooltip: {
     background: cobaltColors.black,
