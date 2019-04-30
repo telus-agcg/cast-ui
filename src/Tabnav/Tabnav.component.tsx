@@ -128,7 +128,24 @@ const STab = styled.div`
       props.theme.tabnav[`${props.active ? 'active' : ''}tab`].iconColor};
   }
 `;
-const PopoverContent = () => <div> This pop pop up </div>;
+const SPopoverContent = styled.div`
+  padding: 24px 12px 12px;
+`;
+
+const PopoverContent = ({ tab, onTabClick }: any) => (
+  <SPopoverContent>
+    {tab.children.length > 0 &&
+      tab.children.map((childTab: any, j: any) => (
+        <div
+          key={j}
+          onClick={(e: any) => onTabClick(childTab, e)}
+          {...childTab}
+        >
+          {childTab.label}
+        </div>
+      ))}
+  </SPopoverContent>
+);
 
 export const Tabnav: React.FunctionComponent<Props> = ({
   theme,
@@ -144,7 +161,13 @@ export const Tabnav: React.FunctionComponent<Props> = ({
         <STabsnav>
           {tabs.map((tab: any, i: any) => (
             <Popover
-              content={<PopoverContent />}
+              content={
+                tab.children ? (
+                  <PopoverContent tab={tab} onTabClick={onTabClick} />
+                ) : (
+                  ''
+                )
+              }
               arrow={false}
               placement="bottom-start"
               key={i}
