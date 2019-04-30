@@ -217,6 +217,9 @@ export const cobaltTheme = {
     color: cobaltColors.black,
     backgroundColor: cobaltColors.white,
   },
+  button: {
+    outlineBackgroundColor: 'white',
+  },
   typography: {
     fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',

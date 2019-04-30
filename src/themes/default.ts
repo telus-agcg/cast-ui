@@ -200,6 +200,9 @@ export const defaultTheme = {
     color: defaultColors.primary,
     backgroundColor: defaultColors.white,
   },
+  button: {
+    outlineBackgroundColor: 'none',
+  },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
