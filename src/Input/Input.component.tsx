@@ -75,7 +75,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    **/
   theme?: any;
   /**
-   * Value of the TextArea
+   * Value of the input
    */
   value?: string;
   /**

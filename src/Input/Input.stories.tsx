@@ -19,6 +19,7 @@ storiesOf('Input', module).add(
       maxLength={number('maxLength', 1000)}
       placeholder={text('placeholder', 'Please enter some text')}
       required={boolean('required', false)}
+      value={text('value', '')}
     />
   ),
   {
