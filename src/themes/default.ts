@@ -399,13 +399,13 @@ export const defaultTheme = {
       padding: '8px 16px',
     },
     sm: {
-      maxWidth: '300px',
+      width: '300px',
     },
     md: {
-      maxWidth: '500px',
+      width: '745px',
     },
     lg: {
-      maxWidth: '800px',
+      width: '1220px',
     },
   },
   textarea: {
