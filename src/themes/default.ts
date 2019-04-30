@@ -479,6 +479,7 @@ export const defaultTheme = {
     color: defaultColors.black,
     borderRadius: '1px',
     borderColor: defaultColors.lightGray,
+    boxShadow: `0 0 5px ${defaultColors.lightGray}`,
   },
   tooltip: {
     background: defaultColors.primary,
