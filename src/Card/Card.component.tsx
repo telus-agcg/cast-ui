@@ -6,7 +6,7 @@ export type Props = {
   /**
    * Select Card Style
    *
-   * @default 'primary'
+   * @default 'default'
    **/
   cardStyle?:
     | 'default'
@@ -104,6 +104,6 @@ export const Card: React.FunctionComponent<Props> = ({
   </ThemeProvider>
 );
 Card.defaultProps = {
-  cardStyle: 'primary',
+  cardStyle: 'default',
   theme: Themes.defaultTheme,
 };

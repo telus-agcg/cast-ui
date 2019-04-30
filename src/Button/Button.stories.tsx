@@ -13,7 +13,7 @@ storiesOf('Button', module).add(
       selected={boolean('selected', false)}
       btnStyle={select(
         'btnStyle',
-        ['success', 'default', 'primary', 'secondary', 'danger', 'warning'],
+        ['default', 'success', 'primary', 'secondary', 'danger', 'warning'],
         'default',
       )}
       btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
@@ -33,12 +33,12 @@ Cast UI custom buttons come with support for multiple sizes, states and semantic
 #### Styles
 Cast UI includes several predefined button styles, each serving its own semantic purpose,customization is fully supported through the use of custom themes.
 
-The predefined styles, accepted by **btnStyle** attribute include
+The predefined styles, accepted by the **btnStyle** attribute, include
+- default
 - primary
 - success
 - warning
 - danger
-- default
 
 #### Outline Buttons
 In the event you need a button but not the background colors they bring, you can set the **outline** attribute to **true** and the button will only have an outline on the border. No background colors.

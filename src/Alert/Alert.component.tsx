@@ -6,7 +6,7 @@ export type Props = {
   /**
    * Select Alert Style
    *
-   * @default 'primary'
+   * @default 'default'
    **/
   alertStyle?:
     | 'default'
@@ -64,6 +64,6 @@ export const Alert: React.FunctionComponent<Props> = ({
 
 Alert.defaultProps = {
   theme: Themes.defaultTheme,
-  alertStyle: 'primary',
+  alertStyle: 'default',
   lightMode: false,
 };

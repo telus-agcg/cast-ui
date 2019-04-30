@@ -12,8 +12,8 @@ storiesOf('DatePicker', module).add(
       placeholder="Select start date"
       datePickerStyle={select(
         'datePickerStyle',
-        ['success', 'default', 'primary', 'success', 'danger', 'warning'],
-        'primary',
+        ['default', 'success', 'primary', 'success', 'danger', 'warning'],
+        'default',
       )}
       datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
       dayPickerProps={{

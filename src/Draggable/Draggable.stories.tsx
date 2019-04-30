@@ -23,8 +23,8 @@ storiesOf('Draggable', module).add(
     <Draggable
       draggableStyle={select(
         'draggableStyle',
-        ['success', 'default', 'primary', 'secondary', 'danger', 'warning'],
-        'primary',
+        ['default', 'success', 'primary', 'secondary', 'danger', 'warning'],
+        'default',
       )}
       borderColor={select(
         'borderColor',
@@ -100,7 +100,7 @@ storiesOf('Draggable', module).add(
             iconSize={20}
             pixelButtonSize={32}
             btnSize="sm"
-            btnStyle="primary"
+            btnStyle="default"
             onClick={() => {}}
           />
         </DraggableParent.ParentRightContent>
@@ -112,7 +112,7 @@ storiesOf('Draggable', module).add(
           iconSize={20}
           pixelButtonSize={32}
           btnSize="sm"
-          btnStyle="primary"
+          btnStyle="default"
           onClick={() => {}}
         />
       </DraggableFooter>

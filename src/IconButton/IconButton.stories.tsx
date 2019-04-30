@@ -16,8 +16,8 @@ storiesOf('IconButton', module).add(
         outline={boolean('outline', false)}
         btnStyle={select(
           'btnStyle',
-          ['success', 'default', 'primary', 'danger', 'warning'],
-          'primary',
+          ['default', 'success', 'primary', 'danger', 'warning'],
+          'default',
         )}
         pixelButtonSize={select('pixelButtonSize', [20, 30, 40, 50, 60], 40)}
         iconSize={select('iconSize', [20, 30, 40, 50, 60], 20)}

@@ -12,7 +12,7 @@ export type Props = {
   /**
    * Set Badge Style
    *
-   * @default 'primary'
+   * @default 'default'
    **/
   badgeStyle?:
     | 'default'
@@ -55,5 +55,5 @@ export const Badge: React.FunctionComponent<Props> = ({
 Badge.defaultProps = {
   theme: Themes.defaultTheme,
   badgeSize: 'md',
-  badgeStyle: 'primary',
+  badgeStyle: 'default',
 };

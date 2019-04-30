@@ -8,7 +8,7 @@ export type DraggableProps = {
   /**
    * Select Draggable style
    *
-   * @default 'primary'
+   * @default 'default'
    **/
   draggableStyle?:
     | 'default'

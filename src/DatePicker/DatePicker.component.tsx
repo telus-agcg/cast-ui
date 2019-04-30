@@ -37,7 +37,7 @@ export type Props = Partial<BlendedProps> & {
   /**
    * Select DatePicker style.
    *
-   * @default 'primary'
+   * @default 'default'
    **/
   datePickerStyle?:
     | 'default'
@@ -218,7 +218,7 @@ export const DatePicker: React.FunctionComponent<Props> = ({
 };
 
 DatePicker.defaultProps = {
-  datePickerStyle: 'primary',
+  datePickerStyle: 'default',
   datePickerSize: 'md',
   theme: Themes.defaultTheme,
 };
