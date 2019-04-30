@@ -73,7 +73,7 @@ export type Props = {
   theme?: any;
 };
 
-const STabBar = styled.div`
+const STabNav = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.fontSize};
   color: ${(props: Props) => props.theme.tabnav.color};
@@ -93,7 +93,7 @@ const SChildren = styled.div`
   display: flex;
   width: 100%;
 `;
-const STabsnav = styled.div`
+const STabsBar = styled.div`
   display: flex;
   align-items: baseline;
   width: 100%;
@@ -182,10 +182,10 @@ export const Tabnav: React.FunctionComponent<Props> = ({
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <STabBar {...props}>
+    <STabNav {...props}>
       <SChildren>{children}</SChildren>
       {tabs && (
-        <STabsnav {...tabsBarProps}>
+        <STabsBar {...tabsBarProps}>
           {tabs.map((tab: any, i: any) => (
             <Popover
               content={
@@ -213,9 +213,9 @@ export const Tabnav: React.FunctionComponent<Props> = ({
               </STab>
             </Popover>
           ))}
-        </STabsnav>
+        </STabsBar>
       )}
-    </STabBar>
+    </STabNav>
   </ThemeProvider>
 );
 
