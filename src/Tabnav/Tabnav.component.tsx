@@ -129,11 +129,26 @@ const STab = styled.div`
   }
 `;
 const SPopoverContent = styled.div`
-  padding: 24px 12px 12px;
+  padding: 8px 0;
+  min-width: 140px;
+  text-align: left;
+  > * {
+    cursor: pointer;
+    text-decoration: none;
+    padding: ${(props: any) => props.theme.tabnav.tabDropdown.padding};
+    color: ${(props: any) => props.theme.tabnav.tabDropdown.color};
+    background: ${(props: any) => props.theme.tabnav.tabDropdown.background};
+    font-family: ${(props: any) => props.theme.typography.fontFamily};
+  }
+  > *:hover {
+    color: ${(props: any) => props.theme.tabnav.tabDropdown.hoverColor};
+    background: ${(props: any) =>
+      props.theme.tabnav.tabDropdown.hoverBackground};
+  }
 `;
 
-const PopoverContent = ({ tab, onTabClick }: any) => (
-  <SPopoverContent>
+const PopoverContent = ({ tab, onTabClick, ...props }: any) => (
+  <SPopoverContent {...props}>
     {tab.children.length > 0 &&
       tab.children.map((childTab: any, j: any) => (
         <div

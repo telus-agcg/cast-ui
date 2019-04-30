@@ -647,6 +647,13 @@ export const defaultTheme = {
       bottomBorderColor: defaultColors.blue,
       iconColor: defaultColors.blue,
     },
+    tabDropdown: {
+      color: defaultColors.primary,
+      background: defaultColors.white,
+      padding: '8px 16px',
+      hoverColor: defaultColors.blue,
+      hoverBackground: defaultColors.lightBackground,
+    },
   },
   sidenav: {
     fontSize: '14px',
