@@ -58,6 +58,12 @@ export type Props = {
    **/
   popoverProps?: Object;
   /**
+   * Override default options for the Tabs' bar.
+   *
+   * @default null
+   **/
+  tabsBarProps?: Object;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -165,16 +171,17 @@ const PopoverContent = ({ tab, onTabClick, ...props }: any) => (
 export const Tabnav: React.FunctionComponent<Props> = ({
   theme,
   children,
-  popoverProps,
   tabs,
   onTabClick = () => {},
+  popoverProps,
+  tabsBarProps,
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
     <STabBar {...props}>
       <SChildren>{children}</SChildren>
       {tabs && (
-        <STabsnav>
+        <STabsnav {...tabsBarProps}>
           {tabs.map((tab: any, i: any) => (
             <Popover
               content={

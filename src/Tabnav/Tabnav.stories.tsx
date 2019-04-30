@@ -36,6 +36,7 @@ storiesOf('Tabnav', module).add(
       ]}
       onTabClick={action('Tab clicked!')}
       popoverProps={{ placement: 'bottom-start' }}
+      tabsBarProps={{ className: 'tabs-bar' }}
     >
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <Headline>Agrineed, Inc. (62875)</Headline>
