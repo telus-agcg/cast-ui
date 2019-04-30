@@ -25,12 +25,6 @@ export type Props = {
    **/
   borderBottom?: string;
   /**
-   * Adjust Tabnav height.
-   *
-   * @default '110px'
-   **/
-  height?: string;
-  /**
    * An array of objects.
    * Each object define properties of a each tab.
    * If an object has property children<Array>, the children
@@ -57,6 +51,13 @@ export type Props = {
    **/
   onTabClick?(tab: any, event: React.MouseEvent<HTMLElement>): void;
   /**
+   * Override default options for the Tabs' Popovers.
+   * See Cast-UI's Popover for options list.
+   *
+   * @default null
+   **/
+  popoverProps?: Object;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -68,7 +69,6 @@ const STabBar = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.fontSize};
   color: ${(props: Props) => props.theme.tabnav.color};
-  height: ${(props: Props) => props.height || props.theme.tabnav.height};
   padding: ${(props: Props) => props.theme.tabnav.padding};
   background: ${(props: Props) =>
     props.background || props.theme.tabnav.background};
@@ -165,6 +165,7 @@ const PopoverContent = ({ tab, onTabClick, ...props }: any) => (
 export const Tabnav: React.FunctionComponent<Props> = ({
   theme,
   children,
+  popoverProps,
   tabs,
   onTabClick = () => {},
   ...props
@@ -186,8 +187,14 @@ export const Tabnav: React.FunctionComponent<Props> = ({
               arrow={false}
               placement="bottom-start"
               key={i}
+              {...popoverProps}
             >
-              <STab onClick={(e: any) => onTabClick(tab, e)} {...tab}>
+              <STab
+                role="tab"
+                tabindex="0"
+                onClick={(e: any) => onTabClick(tab, e)}
+                {...tab}
+              >
                 {tab.label}
                 {tab.children && (
                   <Icon size={24} icon={ICKAD} className="icon" />

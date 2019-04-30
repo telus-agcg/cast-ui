@@ -635,7 +635,6 @@ export const cobaltTheme = {
     color: cobaltColors.black,
   },
   tabnav: {
-    height: '110px',
     background: cobaltColors.primaryExtraLight,
     padding: '0 32px ',
     borderTop: '',

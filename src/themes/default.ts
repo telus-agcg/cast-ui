@@ -618,7 +618,6 @@ export const defaultTheme = {
     color: defaultColors.primary,
   },
   tabnav: {
-    height: '110px',
     background: lighten(defaultColors.blue, 45),
     padding: '0 32px ',
     borderTop: '',

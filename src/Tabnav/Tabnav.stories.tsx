@@ -10,7 +10,6 @@ storiesOf('Tabnav', module).add(
   () => (
     <Tabnav
       background={text('background', '')}
-      height={text('height', '')}
       borderTop={text('borderTop', '')}
       borderBottom={text('borderBottom', '1px solid grey')}
       tabs={[
@@ -36,6 +35,7 @@ storiesOf('Tabnav', module).add(
         },
       ]}
       onTabClick={action('Tab clicked!')}
+      popoverProps={{ placement: 'bottom-start' }}
     >
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <Headline>Agrineed, Inc. (62875)</Headline>
