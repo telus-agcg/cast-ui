@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { SideNavContext } from './context';
 import { Themes } from '../themes';
+import { nameSpace } from '../utils/constants';
 
 export type Props = {
   children?: any;
@@ -27,7 +28,11 @@ export const SideNavItemText: React.FunctionComponent<Props> = ({
   const { theme, ...newProps } = { ...props, isOpen };
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SSideNavItemText role="side-nav-text" {...newProps}>
+      <SSideNavItemText
+        className={`${nameSpace}-sidenav-item-text`}
+        role="side-nav-text"
+        {...newProps}
+      >
         {children}
       </SSideNavItemText>
     </ThemeProvider>

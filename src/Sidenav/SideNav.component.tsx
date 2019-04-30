@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import { nameSpace } from '../utils/constants';
 
 export type Props = {
   /**
@@ -70,13 +71,20 @@ export const SideNav: React.FunctionComponent<Props> = ({
   theme,
   children,
   ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SSideNav role="side-nav" {...props}>
-      {children}
-    </SSideNav>
-  </ThemeProvider>
-);
+}) => {
+  const position = props.top ? 'top' : props.center ? 'center' : 'bottom';
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SSideNav
+        className={`${nameSpace}-sidenav ${nameSpace}-sidenav--${position}`}
+        role="side-nav"
+        {...props}
+      >
+        {children}
+      </SSideNav>
+    </ThemeProvider>
+  );
+};
 
 SideNav.defaultProps = {
   theme: Themes.defaultTheme,
