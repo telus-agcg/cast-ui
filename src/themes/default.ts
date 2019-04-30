@@ -12,6 +12,7 @@ const toggleColors = {
 
 export const defaultColors = {
   blue: '#167BE0',
+  lightBlue: lighten('#167BE0', 25),
   green: '#59C067',
   red: '#D93945',
   yellow: '#FD984E',
@@ -750,6 +751,12 @@ export const defaultTheme = {
     borderColor: defaultColors.lightGray,
   },
   draggable: {
+    borderColor: defaultColors.lightGray,
+  },
+  select: {
+    dropdownColor: defaultColors.blue,
+    optionBackgroundColor: defaultColors.lightGray,
+    hoverOptionBackgroundColor: defaultColors.lightBlue,
     borderColor: defaultColors.lightGray,
   },
 };

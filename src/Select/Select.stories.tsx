@@ -15,6 +15,8 @@ storiesOf('Select', module).add(
         invalid={boolean('invalid', false)}
         invalidText={text('invalidText', 'A valid value is required')}
         invalidTextColor={text('invalidTextColor', '')}
+        borderColor={text('borderColor', '')}
+        borderRadius={text('borderRadius', '')}
         options={[
           { value: 'chocolate', label: 'Chocolate' },
           { value: 'strawberry', label: 'Strawberry' },
