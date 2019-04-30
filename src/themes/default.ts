@@ -621,7 +621,7 @@ export const defaultTheme = {
     borderBottom: '',
     color: defaultColors.primary,
     tab: {
-      padding: '8px 0',
+      padding: '4px 0 4px',
       margin: '0 56px 0 0',
       color: 'inherit',
       fontWeight: 'inherit',
@@ -631,6 +631,7 @@ export const defaultTheme = {
       bottomBorderWidth: '0',
       bottomBorderColor: 'transparent',
       transition: 'opacity 0.15s',
+      iconColor: defaultColors.blue,
     },
     activetab: {
       color: defaultColors.primary,
@@ -640,6 +641,7 @@ export const defaultTheme = {
       opacity: '1',
       bottomBorderWidth: '4px',
       bottomBorderColor: defaultColors.blue,
+      iconColor: defaultColors.blue,
     },
   },
   sidenav: {

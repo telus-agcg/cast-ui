@@ -1,10 +1,12 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import { Icon } from 'react-icons-kit';
+import { ic_keyboard_arrow_down as ICKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 
 export type Props = {
   /**
-   * A CSS color code
+   * The shorthand string for setting element background
    *
    * @default ''
    **/
@@ -24,7 +26,7 @@ export type Props = {
   /**
    * Adjust Tabnav height.
    *
-   * @default '80px'
+   * @default '110px'
    **/
   height?: string;
   /**
@@ -61,7 +63,7 @@ export type Props = {
   theme?: any;
 };
 
-const STabnav = styled.div`
+const STabBar = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.fontSize};
   color: ${(props: Props) => props.theme.tabnav.color};
@@ -76,14 +78,16 @@ const STabnav = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  > * {
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
 `;
 const SChildren = styled.div`
   flex-grow: 1;
+  display: flex;
+  width: 100%;
+`;
+const STabsnav = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
 `;
 const STab = styled.div`
   position: relative;
@@ -117,6 +121,10 @@ const STab = styled.div`
       props.theme.tabnav[`${props.active ? 'active' : ''}tab`]
         .bottomBorderColor};
   }
+  .icon {
+    color: ${(props: any) =>
+      props.theme.tabnav[`${props.active ? 'active' : ''}tab`].iconColor};
+  }
 `;
 
 export const Tabnav: React.FunctionComponent<Props> = ({
@@ -127,19 +135,19 @@ export const Tabnav: React.FunctionComponent<Props> = ({
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <STabnav {...props}>
+    <STabBar {...props}>
       <SChildren>{children}</SChildren>
       {tabs && (
-        <div>
+        <STabsnav>
           {tabs.map((tab: any, i: any) => (
             <STab key={i} onClick={(e: any) => onTabClick(tab, e)} {...tab}>
               {tab.label}
-              {tab.children && <span>^</span>}
+              {tab.children && <Icon size={24} icon={ICKAD} className="icon" />}
             </STab>
           ))}
-        </div>
+        </STabsnav>
       )}
-    </STabnav>
+    </STabBar>
   </ThemeProvider>
 );
 

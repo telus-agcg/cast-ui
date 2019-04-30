@@ -10,6 +10,9 @@ storiesOf('Tabnav', module).add(
   () => (
     <Tabnav
       background={text('background', '')}
+      height={text('height', '')}
+      borderTop={text('borderTop', '')}
+      borderBottom={text('borderBottom', '1px solid grey')}
       tabs={[
         { label: 'Overview', to: '/overview' },
         {
@@ -23,7 +26,7 @@ storiesOf('Tabnav', module).add(
       ]}
       onTabClick={action('Tab clicked!')}
     >
-      <div style={{ display: 'contents' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <Headline>Agrineed, Inc. (62875)</Headline>
         <Badge>Retailer</Badge>
       </div>

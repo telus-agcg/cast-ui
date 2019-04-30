@@ -638,7 +638,7 @@ export const cobaltTheme = {
     borderBottom: '',
     color: cobaltColors.black,
     tab: {
-      padding: '8px 0',
+      padding: '4px 0 4px',
       margin: '0 56px 0 0',
       color: 'inherit',
       fontWeight: 'inherit',
@@ -648,6 +648,7 @@ export const cobaltTheme = {
       bottomBorderWidth: '0',
       bottomBorderColor: 'transparent',
       transition: 'opacity 0.15s',
+      iconColor: cobaltColors.blue,
     },
     activetab: {
       color: cobaltColors.black,
@@ -657,6 +658,7 @@ export const cobaltTheme = {
       opacity: '1',
       bottomBorderWidth: '4px',
       bottomBorderColor: cobaltColors.blue,
+      iconColor: cobaltColors.blue,
     },
   },
   sidenav: {
