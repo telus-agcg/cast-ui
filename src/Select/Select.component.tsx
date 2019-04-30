@@ -316,7 +316,6 @@ export class CustomSelect extends React.Component<Props> {
             dropdownColor={dropdownColor}
             {...props}
             {...controlSpecificProps}
-            menuIsOpen
           />
           {invalid && (
             <ErrorMessage
