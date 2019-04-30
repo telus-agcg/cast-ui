@@ -38,6 +38,12 @@ storiesOf('Tabnav', module).add(
             { label: 'Programs', to: '/offers/programs' },
           ],
         },
+        {
+          label: 'Notes',
+          active: true,
+          to: '/notes',
+          className: 'notes',
+        },
       ]}
       onTabClick={action('Tab clicked!')}
       popoverProps={{ placement: 'bottom-start' }}

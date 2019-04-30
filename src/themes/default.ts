@@ -624,7 +624,7 @@ export const defaultTheme = {
     borderBottom: '',
     color: defaultColors.primary,
     tab: {
-      padding: '4px 0 4px',
+      padding: '4px 0 8px',
       margin: '0 56px 0 0',
       color: 'inherit',
       fontWeight: 'inherit',

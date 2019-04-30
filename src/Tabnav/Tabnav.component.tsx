@@ -95,7 +95,7 @@ const SChildren = styled.div`
 `;
 const STabsnav = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   width: 100%;
 `;
 const STab = styled.div`
@@ -132,6 +132,8 @@ const STab = styled.div`
         .bottomBorderColor};
   }
   .icon {
+    margin-bottom: -6px;
+    margin-right: -5px;
     color: ${(props: any) =>
       props.theme.tabnav[`${props.active ? 'active' : ''}tab`].iconColor};
   }

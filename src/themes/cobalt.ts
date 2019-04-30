@@ -641,7 +641,7 @@ export const cobaltTheme = {
     borderBottom: '',
     color: cobaltColors.black,
     tab: {
-      padding: '4px 0 4px',
+      padding: '4px 0 8px',
       margin: '0 56px 0 0',
       color: 'inherit',
       fontWeight: 'inherit',
