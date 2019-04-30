@@ -729,4 +729,10 @@ export const cobaltTheme = {
   itemContainer: {
     borderColor: cobaltColors.lightGray,
   },
+  select: {
+    dropdownColor: cobaltColors.blue,
+    optionBackgroundColor: cobaltColors.lightGray,
+    hoverOptionBackgroundColor: lighten(cobaltColors.blue, 75),
+    borderColor: cobaltColors.lightGray,
+  },
 };
