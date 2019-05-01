@@ -392,7 +392,7 @@ export const defaultTheme = {
     },
     body: {
       minHeight: '0',
-      backgroundColor: defaultColors.modalBackground,
+      backgroundColor: defaultColors.white,
       borderBottom: defaultColors.lightGray,
       padding: '8px 16px',
     },

@@ -410,7 +410,7 @@ export const cobaltTheme = {
     },
     body: {
       minHeight: '0',
-      backgroundColor: cobaltColors.lightBackground,
+      backgroundColor: cobaltColors.white,
       borderBottom: cobaltColors.lightGray,
       padding: '8px 16px',
       color: cobaltColors.black,
