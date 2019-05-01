@@ -13,8 +13,8 @@ storiesOf('Button', module).add(
       selected={boolean('selected', false)}
       btnStyle={select(
         'btnStyle',
-        ['success', 'default', 'primary', 'secondary', 'danger', 'warning'],
-        'default',
+        ['success', 'primary', 'secondary', 'danger', 'warning'],
+        'primary',
       )}
       btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
       backgroundColor={color('backgroundColor', '')}
