@@ -20,8 +20,8 @@ storiesOf('Panel', module).add(
       bodyBorderColor={text('bodyBorderColor', '#BCC0C3')}
       panelStyle={select(
         'panelStyle',
-        ['success', 'default', 'primary', 'danger', 'warning'],
-        'default',
+        ['success', 'primary', 'danger', 'warning'],
+        'primary',
       )}
     >
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas beatae
