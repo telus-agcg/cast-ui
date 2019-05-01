@@ -8,13 +8,7 @@ export type Props = {
    *
    * @default 'primary'
    **/
-  alertStyle?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'danger';
+  alertStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   /**
    * Toggle Alert Light Mode
    *

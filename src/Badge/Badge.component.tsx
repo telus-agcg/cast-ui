@@ -14,13 +14,7 @@ export type Props = {
    *
    * @default 'primary'
    **/
-  badgeStyle?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'danger';
+  badgeStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   /**
    * From theme provider
    *

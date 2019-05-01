@@ -19,15 +19,9 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Set Button Style
    *
-   * @default 'default'
+   * @default 'primary'
    **/
-  btnStyle?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'danger';
+  btnStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   /**
    * Select Button Size
    *
@@ -71,7 +65,7 @@ const noop = () => {}; // tslint:disable-line
 export class Button extends React.Component<Props, any> {
   static defaultProps = {
     theme: Themes.defaultTheme,
-    btnStyle: 'default',
+    btnStyle: 'primary',
     btnSize: 'md',
   };
   render() {
