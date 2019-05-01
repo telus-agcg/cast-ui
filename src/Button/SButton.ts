@@ -28,6 +28,12 @@ type Props = {
    **/
   btnSize?: 'sm' | 'md' | 'lg';
   /**
+   * Override default background color
+   *
+   * @default ''
+   **/
+  backgroundColor?: string;
+  /**
    * Specify if the button is disabled
    *
    * @default false
@@ -52,6 +58,7 @@ const computeColor: Function = (
   selected: Boolean,
   outline: Boolean,
   btnStyle: string,
+  backgroundColor: string,
   theme: any,
 ) => {
   switch (true) {
@@ -92,7 +99,7 @@ const computeColor: Function = (
           };
         default:
           return {
-            background: 'none',
+            background: backgroundColor || theme.button.outlineBackgroundColor,
             color: theme.styles[btnStyle].flood,
             borderColor: theme.styles[btnStyle].borderColor,
           };
@@ -126,24 +133,28 @@ const SButton = styled.button`
   border-radius: ${(props: Props) =>
     props.theme.common[props.btnSize!].borderRadius};
   background: ${(props: Props) =>
+    props.backgroundColor ||
     computeColor(
       'normal',
       props.selected,
       props.outline,
       props.btnStyle,
+      props.backgroundColor,
       props.theme,
-    ).background}
-  border: 1px solid ${(props: Props) =>
-    computeColor(
-      'normal',
-      props.selected,
-      props.outline,
-      props.btnStyle,
-      props.theme,
-    ).borderColor}
-  padding: ${(props: Props) => props.theme.common[props.btnSize!].padding}
+    ).background};
+  border: 1px solid
+    ${(props: Props) =>
+      computeColor(
+        'normal',
+        props.selected,
+        props.outline,
+        props.btnStyle,
+        props.backgroundColor,
+        props.theme,
+      ).borderColor};
+  padding: ${(props: Props) => props.theme.common[props.btnSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.btnSize!].fontSize}
+  font-size: ${(props: Props) => props.theme.common[props.btnSize!].fontSize};
   font-weight: 600;
   color: ${(props: Props) =>
     computeColor(
@@ -151,15 +162,18 @@ const SButton = styled.button`
       props.selected,
       props.outline,
       props.btnStyle,
+      props.backgroundColor,
       props.theme,
-    ).color}
-  &:hover,&:active {
+    ).color};
+  &:hover,
+  &:active {
     background: ${(props: Props) =>
       computeColor(
         'hover',
         props.selected,
         props.outline,
         props.btnStyle,
+        props.backgroundColor,
         props.theme,
       ).background};
     color: ${(props: Props) =>
@@ -168,16 +182,19 @@ const SButton = styled.button`
         props.selected,
         props.outline,
         props.btnStyle,
+        props.backgroundColor,
         props.theme,
       ).color};
-    border: 1px solid ${(props: Props) =>
-      computeColor(
-        'hover',
-        props.selected,
-        props.outline,
-        props.btnStyle,
-        props.theme,
-      ).borderColor}
+    border: 1px solid
+      ${(props: Props) =>
+        computeColor(
+          'hover',
+          props.selected,
+          props.outline,
+          props.btnStyle,
+          props.backgroundColor,
+          props.theme,
+        ).borderColor};
     cursor: pointer;
   }
   &:disabled {
@@ -187,24 +204,28 @@ const SButton = styled.button`
         props.selected,
         props.outline,
         props.btnStyle,
+        props.backgroundColor,
         props.theme,
-      ).background}
+      ).background};
     color: ${(props: Props) =>
       computeColor(
         'disabled',
         props.selected,
         props.outline,
         props.btnStyle,
+        props.backgroundColor,
         props.theme,
-      ).color}
-    border: 1px solid ${(props: Props) =>
-      computeColor(
-        'disabled',
-        props.selected,
-        props.outline,
-        props.btnStyle,
-        props.theme,
-      ).borderColor}
+      ).color};
+    border: 1px solid
+      ${(props: Props) =>
+        computeColor(
+          'disabled',
+          props.selected,
+          props.outline,
+          props.btnStyle,
+          props.backgroundColor,
+          props.theme,
+        ).borderColor};
     cursor: not-allowed;
   }
 `;

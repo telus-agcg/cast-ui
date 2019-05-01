@@ -217,6 +217,9 @@ export const cobaltTheme = {
     color: cobaltColors.black,
     backgroundColor: cobaltColors.white,
   },
+  button: {
+    outlineBackgroundColor: 'white',
+  },
   typography: {
     fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
@@ -724,6 +727,12 @@ export const cobaltTheme = {
     borderColor: cobaltColors.primary,
   },
   itemContainer: {
+    borderColor: cobaltColors.lightGray,
+  },
+  select: {
+    dropdownColor: cobaltColors.blue,
+    optionBackgroundColor: cobaltColors.lightGray,
+    hoverOptionBackgroundColor: lighten(cobaltColors.blue, 75),
     borderColor: cobaltColors.lightGray,
   },
 };
