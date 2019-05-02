@@ -317,9 +317,10 @@ export const cobaltTheme = {
   checkbox: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: cobaltColors.secondary,
+    borderColor: cobaltColors.primary,
     disabledText: cobaltColors.lt600,
     unselectedColor: cobaltColors.white,
+    selectedColor: cobaltColors.primary,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
     sm: {
