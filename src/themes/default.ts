@@ -316,9 +316,10 @@ export const defaultTheme = {
   checkbox: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: defaultColors.secondary,
+    borderColor: defaultColors.primary,
     disabledText: defaultColors.lt600,
     unselectedColor: defaultColors.white,
+    selectedColor: defaultColors.primary,
     stackedSpacing: '19px',
     inlineSpacing: '20px',
     sm: {
