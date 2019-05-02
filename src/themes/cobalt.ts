@@ -199,16 +199,35 @@ export const cobaltTheme = {
     outlineBackgroundColor: 'white',
   },
   typography: {
-    fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
+    fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
-    fontWeight: 400,
-    lineHeight: '18px',
+    fontWeight: '400',
+    lineHeight: '160%',
     color: cobaltColors.drk800,
     caption: {
-      fontWeight: 300,
-      fontSize: '12px',
-      lineHeight: '18px',
+      10: {
+        fontWeight: '400',
+        fontSize: '10px',
+        lineHeight: '100%',
+      },
+      20: {
+        fontWeight: '400',
+        fontSize: '12px',
+        lineHeight: '100%',
+      },
+    },
+    bodyText: {
+      10: {
+        fontWeight: '400',
+        fontSize: '12px',
+        lineHeight: '100%',
+      },
+      20: {
+        fontWeight: '400',
+        fontSize: '14px',
+        lineHeight: '160%',
+      },
     },
     code: {
       background: cobaltColors.lt200,
@@ -218,26 +237,40 @@ export const cobaltTheme = {
       lineHeight: '140%',
     },
     digits: {
-      fontWeight: 700,
+      fontWeight: '700',
       fontSize: '18px',
     },
     display: {
-      fontWeight: 400,
-      fontSize: '22px',
-      lineHeight: '25px',
+      10: {
+        fontWeight: '400',
+        fontSize: '22px',
+        lineHeight: '125%',
+      },
+      20: {
+        fontWeight: '400',
+        fontSize: '27px',
+        lineHeight: '120%',
+      },
     },
-    headline: {
-      fontWeight: 400,
-      fontSize: '22px',
-      lineHeight: '25px',
+    header: {
+      10: {
+        fontWeight: '700',
+        fontSize: '14px',
+        lineHeight: '160%',
+      },
+      20: {
+        fontWeight: '700',
+        fontSize: '23px',
+        lineHeight: '175%',
+      },
     },
     link: {
-      fontWeight: 500,
+      fontWeight: '500',
       fontSize: '14px',
       color: cobaltColors.primary,
       textDecoration: 'none',
       visited: {
-        color: lighten(cobaltColors.primary, 40),
+        color: cobaltColors.primaryFaded,
         textDecoration: 'underline',
       },
       hover: {
@@ -252,26 +285,32 @@ export const cobaltTheme = {
       lineHeight: '100%',
     },
     sectionHeader: {
-      fontWeight: 500,
+      fontWeight: '500',
       fontSize: '16px',
       borderWidth: '1px',
       borderColor: '#8D9599',
       borderStyle: 'solid',
     },
     subHeading: {
-      fontWeight: 700,
+      fontWeight: '500',
       fontSize: '16px',
-      lineHeight: '19px',
     },
     subTitle: {
-      fontWeight: 300,
+      fontWeight: '300',
       fontSize: '18px',
       lineHeight: '135%',
     },
     title: {
-      fontWeight: 700,
-      fontSize: '18px',
-      lineHeight: '22px',
+      10: {
+        fontWeight: '700',
+        fontSize: '16px',
+        lineHeight: '130%',
+      },
+      20: {
+        fontWeight: '700',
+        fontSize: '18px',
+        lineHeight: '135%',
+      },
     },
   },
   input: {

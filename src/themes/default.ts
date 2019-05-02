@@ -204,7 +204,7 @@ export const defaultTheme = {
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '160%',
-    color: defaultColors.primary,
+    color: defaultColors.drk800,
     caption: {
       10: {
         fontWeight: '400',
@@ -255,12 +255,12 @@ export const defaultTheme = {
     header: {
       10: {
         fontWeight: '700',
-        fontSize: '23px',
+        fontSize: '14px',
         lineHeight: '160%',
       },
       20: {
         fontWeight: '700',
-        fontSize: '14px',
+        fontSize: '23px',
         lineHeight: '175%',
       },
     },
