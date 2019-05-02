@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
+import { FileUpload } from '../';
+
 storiesOf('FileUpload', module).add(
   'FileUpload',
-  () => <div>File Upload comming up!</div>,
+  () => <FileUpload>File Upload comming up!</FileUpload>,
   {
     info: {
       text: `
