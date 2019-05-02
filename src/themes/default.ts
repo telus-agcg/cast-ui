@@ -206,9 +206,28 @@ export const defaultTheme = {
     lineHeight: '160%',
     color: defaultColors.primary,
     caption: {
-      fontWeight: '300',
-      fontSize: '12px',
-      lineHeight: '18px',
+      10: {
+        fontWeight: '400',
+        fontSize: '10px',
+        lineHeight: '100%',
+      },
+      20: {
+        fontWeight: '400',
+        fontSize: '12px',
+        lineHeight: '100%',
+      },
+    },
+    bodyText: {
+      10: {
+        fontWeight: '400',
+        fontSize: '12px',
+        lineHeight: '100%',
+      },
+      20: {
+        fontWeight: '400',
+        fontSize: '14px',
+        lineHeight: '160%',
+      },
     },
     code: {
       background: defaultColors.lt200,
@@ -222,14 +241,28 @@ export const defaultTheme = {
       fontSize: '18px',
     },
     display: {
-      fontWeight: '400',
-      fontSize: '37px',
-      lineHeight: '120%',
+      10: {
+        fontWeight: '400',
+        fontSize: '22px',
+        lineHeight: '125%',
+      },
+      20: {
+        fontWeight: '400',
+        fontSize: '27px',
+        lineHeight: '120%',
+      },
     },
-    headline: {
-      fontWeight: '300',
-      fontSize: '27px',
-      lineHeight: '125%',
+    header: {
+      10: {
+        fontWeight: '700',
+        fontSize: '23px',
+        lineHeight: '160%',
+      },
+      20: {
+        fontWeight: '700',
+        fontSize: '14px',
+        lineHeight: '175%',
+      },
     },
     link: {
       fontWeight: '500',
@@ -237,7 +270,7 @@ export const defaultTheme = {
       color: defaultColors.primary,
       textDecoration: 'none',
       visited: {
-        color: lighten(defaultColors.primary, 40),
+        color: defaultColors.primaryFaded,
         textDecoration: 'underline',
       },
       hover: {
@@ -268,9 +301,16 @@ export const defaultTheme = {
       lineHeight: '135%',
     },
     title: {
-      fontWeight: '500',
-      fontSize: '20px',
-      lineHeight: '130%',
+      10: {
+        fontWeight: '700',
+        fontSize: '16px',
+        lineHeight: '130%',
+      },
+      20: {
+        fontWeight: '700',
+        fontSize: '18px',
+        lineHeight: '135%',
+      },
     },
   },
   input: {

@@ -40,7 +40,7 @@ export * from './ToggleGroup';
 export * from './Tooltip';
 export * from './Typography/Caption';
 export * from './Typography/Display';
-export * from './Typography/Headline';
+export * from './Typography/Header/index';
 export * from './Typography/Link';
 export * from './Typography/SectionHeader';
 export * from './Typography/SubHeading';
