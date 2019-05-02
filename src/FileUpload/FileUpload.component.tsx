@@ -11,6 +11,10 @@ export interface Props {
   theme?: any;
 }
 
+const initialState = {};
+
+type State = Readonly<typeof initialState>;
+
 const SFileUploadContainer = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.fileUpload.fontSize};
@@ -35,22 +39,28 @@ const SDropped = styled.div`
   margin: ${(props: Props) => props.theme.fileUpload.dropped.margin};
 `;
 
-export const FileUpload: React.FunctionComponent<Props> = ({
-  theme,
-  ...props
-}) => {
-  return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SFileUploadContainer {...props}>
-        <SDropZone>Drop files or Browse</SDropZone>
-        <SDropped>Files dropped</SDropped>
-        <SDropped>Files dropped</SDropped>
-        <SDropped>Files dropped</SDropped>
-      </SFileUploadContainer>
-    </ThemeProvider>
-  );
-};
+export class FileUpload extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+  }
+  readonly state: State = initialState;
 
-FileUpload.defaultProps = {
-  theme: Themes.defaultTheme,
-};
+  static defaultProps = {
+    theme: Themes.defaultTheme,
+  };
+
+  render() {
+    const { theme, ...props } = this.props;
+
+    return (
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SFileUploadContainer {...props}>
+          <SDropZone>Drop files or Browse</SDropZone>
+          <SDropped>Files dropped</SDropped>
+          <SDropped>Files dropped</SDropped>
+          <SDropped>Files dropped</SDropped>
+        </SFileUploadContainer>
+      </ThemeProvider>
+    );
+  }
+}

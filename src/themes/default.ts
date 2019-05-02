@@ -777,7 +777,7 @@ export const defaultTheme = {
       borderRadius: '1px',
       textAlign: 'left',
       padding: '16px',
-      margin: '2px 0',
+      margin: '3px 0',
     },
   },
 };
