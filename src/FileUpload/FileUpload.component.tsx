@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
 export interface Props {
@@ -11,13 +11,27 @@ export interface Props {
   theme?: any;
 }
 
+const SFileUploadContainer = styled.div`
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  color: ${(props: Props) => props.theme.fileUpload.color};
+`;
+
+const SFileUpload = styled.div`
+  border: ${(props: Props) => props.theme.fileUpload.border};
+  border-radius: ${(props: Props) => props.theme.fileUpload.borderRadius};
+  text-align: ${(props: Props) => props.theme.fileUpload.textAlign};
+  padding: ${(props: Props) => props.theme.fileUpload.padding};
+`;
+
 export const FileUpload: React.FunctionComponent<Props> = ({
   theme,
   ...props
 }) => {
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <div {...props}>File Upload comming up here!</div>
+      <SFileUploadContainer {...props}>
+        <SFileUpload>File Upload comming up here!</SFileUpload>
+      </SFileUploadContainer>
     </ThemeProvider>
   );
 };

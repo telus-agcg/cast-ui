@@ -760,4 +760,11 @@ export const cobaltTheme = {
     hoverOptionBackgroundColor: lighten(cobaltColors.primary, 75),
     borderColor: cobaltColors.lt800,
   },
+  fileUpload: {
+    color: cobaltColors.drk800,
+    border: `1px dashed ${cobaltColors.lt800}`,
+    borderRadius: '1px',
+    textAlign: 'center',
+    padding: '16px auto',
+  },
 };

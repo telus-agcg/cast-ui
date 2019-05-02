@@ -763,4 +763,11 @@ export const defaultTheme = {
     hoverOptionBackgroundColor: defaultColors.primaryFaded,
     borderColor: defaultColors.secondaryFaded,
   },
+  fileUpload: {
+    color: defaultColors.drk800,
+    border: `1px dashed ${defaultColors.lt800}`,
+    borderRadius: '1px',
+    textAlign: 'center',
+    padding: '16px auto',
+  },
 };
