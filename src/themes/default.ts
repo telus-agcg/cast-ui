@@ -764,10 +764,20 @@ export const defaultTheme = {
     borderColor: defaultColors.secondaryFaded,
   },
   fileUpload: {
-    color: defaultColors.drk800,
-    border: `1px dashed ${defaultColors.lt800}`,
-    borderRadius: '1px',
-    textAlign: 'center',
-    padding: '16px auto',
+    dropZone: {
+      color: defaultColors.lt800,
+      border: `1px dashed ${defaultColors.lt800}`,
+      borderRadius: '1px',
+      textAlign: 'center',
+      padding: '16px',
+    },
+    dropped: {
+      color: defaultColors.drk800,
+      background: defaultColors.lt200,
+      borderRadius: '1px',
+      textAlign: 'left',
+      padding: '16px',
+      margin: '2px 0',
+    },
   },
 };

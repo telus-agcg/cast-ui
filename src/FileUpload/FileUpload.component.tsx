@@ -13,14 +13,26 @@ export interface Props {
 
 const SFileUploadContainer = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  color: ${(props: Props) => props.theme.fileUpload.color};
+  font-size: ${(props: Props) => props.theme.fileUpload.fontSize};
 `;
 
-const SFileUpload = styled.div`
-  border: ${(props: Props) => props.theme.fileUpload.border};
-  border-radius: ${(props: Props) => props.theme.fileUpload.borderRadius};
-  text-align: ${(props: Props) => props.theme.fileUpload.textAlign};
-  padding: ${(props: Props) => props.theme.fileUpload.padding};
+const SDropZone = styled.div`
+  color: ${(props: Props) => props.theme.fileUpload.dropZone.color};
+  border: ${(props: Props) => props.theme.fileUpload.dropZone.border};
+  border-radius: ${(props: Props) =>
+    props.theme.fileUpload.dropZone.borderRadius};
+  text-align: ${(props: Props) => props.theme.fileUpload.dropZone.textAlign};
+  padding: ${(props: Props) => props.theme.fileUpload.dropZone.padding};
+`;
+
+const SDropped = styled.div`
+  color: ${(props: Props) => props.theme.fileUpload.dropped.color};
+  background: ${(props: Props) => props.theme.fileUpload.dropped.background};
+  border-radius: ${(props: Props) =>
+    props.theme.fileUpload.dropped.borderRadius};
+  text-align: ${(props: Props) => props.theme.fileUpload.dropped.textAlign};
+  padding: ${(props: Props) => props.theme.fileUpload.dropped.padding};
+  margin: ${(props: Props) => props.theme.fileUpload.dropped.margin};
 `;
 
 export const FileUpload: React.FunctionComponent<Props> = ({
@@ -30,7 +42,10 @@ export const FileUpload: React.FunctionComponent<Props> = ({
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SFileUploadContainer {...props}>
-        <SFileUpload>File Upload comming up here!</SFileUpload>
+        <SDropZone>Drop files or Browse</SDropZone>
+        <SDropped>Files dropped</SDropped>
+        <SDropped>Files dropped</SDropped>
+        <SDropped>Files dropped</SDropped>
       </SFileUploadContainer>
     </ThemeProvider>
   );

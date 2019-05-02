@@ -761,10 +761,21 @@ export const cobaltTheme = {
     borderColor: cobaltColors.lt800,
   },
   fileUpload: {
-    color: cobaltColors.drk800,
-    border: `1px dashed ${cobaltColors.lt800}`,
-    borderRadius: '1px',
-    textAlign: 'center',
-    padding: '16px auto',
+    fontSize: '14px',
+    dropZone: {
+      color: cobaltColors.secondaryHover,
+      border: `1px dashed ${cobaltColors.lt800}`,
+      borderRadius: '1px',
+      textAlign: 'center',
+      padding: '16px',
+    },
+    dropped: {
+      color: cobaltColors.drk800,
+      background: cobaltColors.lt200,
+      borderRadius: '1px',
+      textAlign: 'left',
+      padding: '16px',
+      margin: '2px 0',
+    },
   },
 };
