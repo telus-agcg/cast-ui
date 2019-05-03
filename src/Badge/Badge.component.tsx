@@ -14,13 +14,13 @@ export type Props = {
    *
    * @default 'primary'
    **/
-  badgeStyle?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'danger';
+  badgeStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+  /**
+   * Toggle Alert Light Mode
+   *
+   * @default false
+   **/
+  lightMode?: boolean;
   /**
    * From theme provider
    *
@@ -31,14 +31,19 @@ export type Props = {
 
 const SBadge = styled.div`
   background: ${(props: Props) =>
-    props.theme.styles[props.badgeStyle!].badgeBackground};
+    props.lightMode
+      ? props.theme.styles[props.badgeStyle!]['light'].badgeBackground
+      : props.theme.styles[props.badgeStyle!].badgeBackground};
   border-radius: ${(props: Props) =>
     props.theme.badge[props.badgeSize!].borderRadius};
-  color: ${(props: Props) => props.theme.styles[props.badgeStyle!].badgeColor};
+  color: ${(props: Props) =>
+    props.lightMode
+      ? props.theme.styles[props.badgeStyle!]['light'].badgeColor
+      : props.theme.styles[props.badgeStyle!].badgeColor};
   display: inline-block;
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.badge[props.badgeSize!].fontSize};
-  font-weight: bold;
+  font-weight: 'bold';
   padding: ${(props: Props) => props.theme.badge[props.badgeSize!].padding};
 `;
 
@@ -56,4 +61,5 @@ Badge.defaultProps = {
   theme: Themes.defaultTheme,
   badgeSize: 'md',
   badgeStyle: 'primary',
+  lightMode: false,
 };

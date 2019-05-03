@@ -4,6 +4,12 @@ import { Themes } from '../../themes';
 
 export type Props = {
   /**
+   * Set Title Size
+   *
+   * @default '10'
+   **/
+  size?: '10' | '20';
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -12,11 +18,14 @@ export type Props = {
 };
 
 const STitle = styled.h1`
-  font-weight: ${(props: Props) => props.theme.typography.title.fontWeight};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.typography.title.fontSize};
   color: ${(props: Props) => props.theme.typography.color}
-  line-height: ${(props: Props) => props.theme.typography.title.lineHeight};
+  font-weight: ${(props: Props) =>
+    props.theme.typography.title[props.size!].fontWeight};
+  font-size: ${(props: Props) =>
+    props.theme.typography.title[props.size!].fontSize};
+  line-height: ${(props: Props) =>
+    props.theme.typography.title[props.size!].lineHeight};
 `;
 
 export const Title: React.FunctionComponent<Props> = ({
@@ -30,4 +39,5 @@ export const Title: React.FunctionComponent<Props> = ({
 );
 Title.defaultProps = {
   theme: Themes.defaultTheme,
+  size: '10',
 };

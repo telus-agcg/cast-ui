@@ -4,6 +4,12 @@ import { Themes } from '../../themes';
 
 export type Props = {
   /**
+   * Set Display Size
+   *
+   * @default '10'
+   **/
+  size?: '10' | '20';
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -12,10 +18,13 @@ export type Props = {
 };
 
 const SDisplay = styled.h1`
-  font-weight: ${(props: Props) => props.theme.typography.display.fontWeight};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.typography.display.fontSize};
-  line-height: ${(props: Props) => props.theme.typography.display.lineHeight};
+  font-weight: ${(props: Props) =>
+    props.theme.typography.display[props.size!].fontWeight};
+  font-size: ${(props: Props) =>
+    props.theme.typography.display[props.size!].fontSize};
+  line-height: ${(props: Props) =>
+    props.theme.typography.display[props.size!].lineHeight};
 `;
 
 export const Display: React.FunctionComponent<Props> = ({
@@ -27,4 +36,7 @@ export const Display: React.FunctionComponent<Props> = ({
     <SDisplay {...props}>{children}</SDisplay>
   </ThemeProvider>
 );
-Display.defaultProps = { theme: Themes.defaultTheme };
+Display.defaultProps = {
+  theme: Themes.defaultTheme,
+  size: '10',
+};

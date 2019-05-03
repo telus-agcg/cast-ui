@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../../themes';
+import { Themes } from '../../themes/index';
 
 export type Props = {
   /**
-   * Set Caption Size
+   * Set Header Size
    *
    * @default '10'
    **/
@@ -17,24 +17,24 @@ export type Props = {
   theme?: any;
 };
 
-const SCaption = styled.p`
+const Sheader = styled.h2`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   color: ${(props: Props) => props.theme.typography.color}
   font-weight: ${(props: Props) =>
-    props.theme.typography.caption[props.size!].fontWeight};
+    props.theme.typography.header[props.size!].fontWeight};
   font-size: ${(props: Props) =>
-    props.theme.typography.caption[props.size!].fontSize};
+    props.theme.typography.header[props.size!].fontSize};
   line-height: ${(props: Props) =>
-    props.theme.typography.caption[props.size!].lineHeight};
+    props.theme.typography.header[props.size!].lineHeight};
 `;
 
-export const Caption: React.FunctionComponent<Props> = ({
+export const Header: React.FunctionComponent<Props> = ({
   theme,
   children,
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SCaption {...props}>{children}</SCaption>
+    <Sheader {...props}>{children}</Sheader>
   </ThemeProvider>
 );
-Caption.defaultProps = { theme: Themes.defaultTheme, size: '10' };
+Header.defaultProps = { theme: Themes.defaultTheme, size: '10' };

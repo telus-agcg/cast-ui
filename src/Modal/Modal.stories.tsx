@@ -12,7 +12,7 @@ const DemoButtons = () => {
       <Button btnSize="md" btnStyle="primary">
         OK
       </Button>
-      <Button btnSize="md" btnStyle="default">
+      <Button btnSize="md" btnStyle="primary">
         Cancel
       </Button>
     </div>

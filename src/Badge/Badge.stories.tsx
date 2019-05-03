@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs/react';
+import { select, boolean } from '@storybook/addon-knobs/react';
 
 import { Badge } from '../';
 
@@ -11,9 +11,10 @@ storiesOf('Badge', module).add(
       badgeSize={select('badgeSize', ['sm', 'md', 'lg'], 'md')}
       badgeStyle={select(
         'badgeStyle',
-        ['success', 'default', 'primary', 'secondary', 'danger', 'warning'],
-        'success',
+        ['success', 'primary', 'secondary', 'danger', 'warning'],
+        'primary',
       )}
+      lightMode={boolean('lightMode', false)}
     >
       123
     </Badge>
