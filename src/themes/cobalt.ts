@@ -768,6 +768,7 @@ export const cobaltTheme = {
       borderRadius: '1px',
       textAlign: 'center',
       padding: '16px',
+      ctaColor: cobaltColors.primary,
     },
     dropped: {
       color: cobaltColors.drk800,

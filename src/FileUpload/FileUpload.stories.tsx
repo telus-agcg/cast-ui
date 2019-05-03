@@ -5,7 +5,9 @@ import { FileUpload } from '../';
 
 storiesOf('FileUpload', module).add(
   'FileUpload',
-  () => <FileUpload>File Upload comming up!</FileUpload>,
+  () => (
+    <FileUpload onFilesAdded={console.log}>File Upload comming up!</FileUpload>
+  ),
   {
     info: {
       text: `

@@ -770,6 +770,7 @@ export const defaultTheme = {
       borderRadius: '1px',
       textAlign: 'center',
       padding: '16px',
+      ctaColor: defaultColors.primary,
     },
     dropped: {
       color: defaultColors.drk800,
