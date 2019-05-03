@@ -88,7 +88,7 @@ export class FileUpload extends React.Component<Props, State> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SFileUploadContainer {...props}>
-          <SDropZone disabled={props.disabled}>
+          <SDropZone>
             Drop files or{' '}
             <span className="fileUploadCTA" onClick={this.openFileDialog}>
               Browse
