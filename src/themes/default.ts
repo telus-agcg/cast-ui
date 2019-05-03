@@ -767,6 +767,7 @@ export const defaultTheme = {
     dropZone: {
       color: defaultColors.lt800,
       border: `1px dashed ${defaultColors.lt800}`,
+      draggingBorder: `1px dashed ${defaultColors.drk400}`,
       borderRadius: '1px',
       textAlign: 'center',
       padding: '16px',

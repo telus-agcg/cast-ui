@@ -765,6 +765,7 @@ export const cobaltTheme = {
     dropZone: {
       color: cobaltColors.secondaryHover,
       border: `1px dashed ${cobaltColors.lt800}`,
+      draggingBorder: `1px dashed ${cobaltColors.drk400}`,
       borderRadius: '1px',
       textAlign: 'center',
       padding: '16px',

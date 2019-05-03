@@ -40,7 +40,10 @@ const SFileUploadContainer = styled.div`
 
 const SDropZone = styled.div`
   color: ${(props: Props) => props.theme.fileUpload.dropZone.color};
-  border: ${(props: Props) => props.theme.fileUpload.dropZone.border};
+  border: ${(props: any) =>
+    props.dragging
+      ? props.theme.fileUpload.dropZone.draggingBorder
+      : props.theme.fileUpload.dropZone.border};
   border-radius: ${(props: Props) =>
     props.theme.fileUpload.dropZone.borderRadius};
   text-align: ${(props: Props) => props.theme.fileUpload.dropZone.textAlign};
