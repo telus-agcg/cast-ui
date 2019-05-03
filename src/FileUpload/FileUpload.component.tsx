@@ -23,7 +23,9 @@ export interface Props {
   theme?: any;
 }
 
-const initialState = {};
+const initialState = {
+  dragging: false,
+};
 
 type State = Readonly<typeof initialState>;
 
@@ -82,13 +84,20 @@ export class FileUpload extends React.Component<Props, State> {
       }
     }
   }
+
   render() {
+    const { dragging } = this.state;
     const { onFilesAdded = () => {}, theme, ...props } = this.props;
+
+    const dropZoneProps = {
+      dragging,
+      disabled: props.disabled,
+    };
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SFileUploadContainer {...props}>
-          <SDropZone>
+          <SDropZone {...dropZoneProps}>
             Drop files or{' '}
             <span className="fileUploadCTA" onClick={this.openFileDialog}>
               Browse
