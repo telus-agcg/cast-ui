@@ -76,8 +76,11 @@ export class FileUpload extends React.Component<Props, State> {
 
   openFileDialog() {
     if (this.props.disabled) return;
-    if (this.fileInputRef !== null)
-      if (this.fileInputRef.current !== null) this.fileInputRef.current.click();
+    if (this.fileInputRef !== null) {
+      if (this.fileInputRef.current !== null) {
+        this.fileInputRef.current.click();
+      }
+    }
   }
   render() {
     const { onFilesAdded = () => {}, theme, ...props } = this.props;
@@ -85,7 +88,7 @@ export class FileUpload extends React.Component<Props, State> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SFileUploadContainer {...props}>
-          <SDropZone>
+          <SDropZone disabled={props.disabled}>
             Drop files or{' '}
             <span className="fileUploadCTA" onClick={this.openFileDialog}>
               Browse
