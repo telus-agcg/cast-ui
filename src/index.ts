@@ -47,4 +47,5 @@ export * from './Typography/Display';
 export * from './Typography/Header/index';
 export * from './Typography/Link';
 export * from './Typography/Title';
-export * from './Typography/BodyText/index';
+export * from './Typography/Digits';
+export * from './Collapse';

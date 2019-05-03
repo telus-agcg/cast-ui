@@ -64,12 +64,6 @@ export type Props = {
    */
   isCollapsed?: boolean;
   /**
-   * Whether the panel is collapsed
-   *
-   *  @default 'false'
-   */
-  localIsCollapsed?: boolean;
-  /**
    * Toggle panel body
    *
    *  @default 'void'
@@ -81,6 +75,12 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * From theme provider
+   *
+   * @default ""
+   **/
+  panelHeaderRef?: any;
 };
 
 const SPanelHeader = styled.div`
@@ -136,6 +136,11 @@ const SCollapseIcon = styled.div`
   background-repeat: no-repeat;
 `;
 
+const initialState = {
+  isCollapsed: false,
+};
+type State = Readonly<typeof initialState>;
+
 export class PanelHeader extends React.Component<Props> {
   static defaultProps = {
     panelStyle: 'default',
@@ -147,8 +152,11 @@ export class PanelHeader extends React.Component<Props> {
     theme: Themes.defaultTheme,
   };
 
+  readonly state: State = initialState;
+  isCollapsed: boolean = false;
+
   render() {
-    const ChevronImage = this.props.localIsCollapsed ? (
+    const ChevronImage = this.props.isCollapsed ? (
       <SExpandIcon />
     ) : (
       <SCollapseIcon />
@@ -156,11 +164,7 @@ export class PanelHeader extends React.Component<Props> {
     const { toggleItem, headerRef, name, title, theme, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SPanelHeader
-          onClick={(e: any) => toggleItem!(e, theme)}
-          ref={headerRef}
-          {...props}
-        >
+        <SPanelHeader onClick={(e: any) => toggleItem!(e, theme)} {...props}>
           {name && <b>{name}:</b>} {title} {props.collapsible && ChevronImage}
         </SPanelHeader>
       </ThemeProvider>
