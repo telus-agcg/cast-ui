@@ -136,12 +136,12 @@ const SInput = styled.input`
       border-style: solid;
       border-color: ${(props: Props) => props.theme.colors.white};
       border-width: ${(props: Props) =>
-    props.cbSize === 'lg' ? '0 4px 4px 0' : '0 3px 3px 0'};
+        props.cbSize === 'lg' ? '0 4px 4px 0' : '0 3px 3px 0'};
       transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       margin-left: ${(props: Props) =>
-    props.cbSize === 'lg' ? '6.5px' : '6px'};
+        props.cbSize === 'lg' ? '6.5px' : '6px'};
     }
     &:checked&:disabled + label:after {
       opacity: 0.5;
@@ -155,10 +155,10 @@ const SInput = styled.input`
       border-style: solid;
       border-color: ${(props: Props) => props.theme.colors.white};
       border-width: ${(props: Props) =>
-    props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
+        props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
       ${(props: Props) => indeterminateCheckboxRules(props.cbSize)}
       margin-left: ${(props: Props) =>
-    props.cbSize === 'lg' ? '6.5px' : '6px'};
+        props.cbSize === 'lg' ? '6.5px' : '6px'};
     }
 `;
 
@@ -180,7 +180,7 @@ export class Checkbox extends React.Component<Props> {
 
   static defaultProps = {
     cbSize: 'md',
-    onChange: () => { },
+    onChange: () => {},
     theme: Themes.defaultTheme,
     indeterminate: false,
   };

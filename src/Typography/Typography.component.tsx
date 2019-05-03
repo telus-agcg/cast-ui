@@ -34,49 +34,49 @@ export const Typography: React.FunctionComponent<Props> = ({
   children,
   theme,
 }) => (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <STypography>
-        <Display>Display</Display>
-        <Header>Header</Header>
-        <Title>Title</Title>
-        <p>
-          Etiam ullamcorper, metus sed luctus auctor, tortor lorem auctor quam, ut
-          condimentum massa tellus at turpis.
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <STypography>
+      <Display>Display</Display>
+      <Header>Header</Header>
+      <Title>Title</Title>
+      <p>
+        Etiam ullamcorper, metus sed luctus auctor, tortor lorem auctor quam, ut
+        condimentum massa tellus at turpis.
       </p>
-        <Caption>Use for hero images and website headers</Caption>
-        <Link solo={true} href="https://www.tkxs.com" target="_blank">
-          Read More
+      <Caption>Use for hero images and website headers</Caption>
+      <Link solo={true} href="https://www.tkxs.com" target="_blank">
+        Read More
       </Link>
-        <br />
-        <p>
-          Lorem ipsum dolor sit amet, consectetur{' '}
-          <Link href="https://theuselessweb.com/" target="_blank">
-            unvisited link in text
+      <br />
+      <p>
+        Lorem ipsum dolor sit amet, consectetur{' '}
+        <Link href="https://theuselessweb.com/" target="_blank">
+          unvisited link in text
         </Link>{' '}
-          over a{' '}
-          <Link href="https://www.tkxs.com" target="_blank">
-            visited link in text
+        over a{' '}
+        <Link href="https://www.tkxs.com" target="_blank">
+          visited link in text
         </Link>{' '}
-          elit.
+        elit.
       </p>
-        <Button btnStyle="primary">Read More Button</Button>
-        <br />
-        <br />
-        <br />
-        <Tooltip content="Tooltip text appears here">
-          <span>
-            <Button btnStyle="primary" outline={true}>
-              Read More
+      <Button btnStyle="primary">Read More Button</Button>
+      <br />
+      <br />
+      <br />
+      <Tooltip content="Tooltip text appears here">
+        <span>
+          <Button btnStyle="primary" outline={true}>
+            Read More
           </Button>
-          </span>
-        </Tooltip>
-        <BodyText>$25,855.90</BodyText>
-        <br />
-        <CopyToClipboard
-          copyContent={sampleCode || ''}
-          background="#F5F7F8"
-          includeCopyButton={true}
-        />
-      </STypography>
-    </ThemeProvider>
-  );
+        </span>
+      </Tooltip>
+      <BodyText>$25,855.90</BodyText>
+      <br />
+      <CopyToClipboard
+        copyContent={sampleCode || ''}
+        background="#F5F7F8"
+        includeCopyButton={true}
+      />
+    </STypography>
+  </ThemeProvider>
+);

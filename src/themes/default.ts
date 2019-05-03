@@ -427,7 +427,7 @@ export const defaultTheme = {
     },
     body: {
       minHeight: '0',
-      backgroundColor: defaultColors.lt200,
+      backgroundColor: defaultColors.white,
       borderBottom: defaultColors.secondaryFaded,
       padding: '8px 16px',
     },

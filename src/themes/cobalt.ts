@@ -428,7 +428,7 @@ export const cobaltTheme = {
     },
     body: {
       minHeight: '0',
-      backgroundColor: cobaltColors.lt200,
+      backgroundColor: cobaltColors.white,
       borderBottom: cobaltColors.lt800,
       padding: '8px 16px',
       color: cobaltColors.drk800,
