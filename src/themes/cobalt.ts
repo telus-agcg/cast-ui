@@ -770,7 +770,7 @@ export const cobaltTheme = {
       padding: '16px',
       ctaColor: cobaltColors.primary,
       background: cobaltColors.white,
-      draggingBackground: cobaltColors.lt600,
+      draggingBackground: cobaltColors.lt400,
     },
     dropped: {
       color: cobaltColors.drk800,
@@ -780,5 +780,12 @@ export const cobaltTheme = {
       padding: '16px',
       margin: '3px 0',
     },
+  },
+  progressBar: {
+    height: '8px',
+    borderRadius: '6px',
+    background: cobaltColors.lt800,
+    progressBackground: cobaltColors.primary,
+    transition: 'width .2s ease-in',
   },
 };

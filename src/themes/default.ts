@@ -772,7 +772,7 @@ export const defaultTheme = {
       padding: '16px',
       ctaColor: defaultColors.primary,
       background: defaultColors.white,
-      draggingBackground: defaultColors.lt600,
+      draggingBackground: defaultColors.lt400,
     },
     dropped: {
       color: defaultColors.drk800,
@@ -782,5 +782,12 @@ export const defaultTheme = {
       padding: '16px',
       margin: '3px 0',
     },
+  },
+  progressBar: {
+    height: '8px',
+    borderRadius: '6px',
+    background: defaultColors.lt800,
+    progressBackground: defaultColors.primary,
+    transition: 'width .2s ease-in',
   },
 };

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import { ProgressBar } from './ProgressBar.component';
 
 export interface Props {
   /**
@@ -170,9 +171,15 @@ export class FileUpload extends React.Component<Props, State> {
               onChange={this.onFilesSelected}
             />
           </SDropZone>
-          <SDropped>Files dropped</SDropped>
-          <SDropped>Files dropped</SDropped>
-          <SDropped>Files dropped</SDropped>
+          <SDropped>
+            Files dropped <ProgressBar percentage={35} />
+          </SDropped>
+          <SDropped>
+            Files dropped <ProgressBar percentage={60} />
+          </SDropped>
+          <SDropped>
+            Files dropped <ProgressBar percentage={80} />
+          </SDropped>
         </SFileUploadContainer>
       </ThemeProvider>
     );
