@@ -771,6 +771,8 @@ export const defaultTheme = {
       textAlign: 'center',
       padding: '16px',
       ctaColor: defaultColors.primary,
+      background: defaultColors.white,
+      draggingBackground: defaultColors.lt600,
     },
     dropped: {
       color: defaultColors.drk800,

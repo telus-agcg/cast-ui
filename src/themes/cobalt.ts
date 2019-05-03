@@ -769,6 +769,8 @@ export const cobaltTheme = {
       textAlign: 'center',
       padding: '16px',
       ctaColor: cobaltColors.primary,
+      background: cobaltColors.white,
+      draggingBackground: cobaltColors.lt600,
     },
     dropped: {
       color: cobaltColors.drk800,

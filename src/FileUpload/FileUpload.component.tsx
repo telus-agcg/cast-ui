@@ -14,7 +14,10 @@ export interface Props {
    *
    * @default void
    * */
-  onFilesAdded?(event: React.ChangeEvent<HTMLInputElement>): void;
+  onFilesAdded?(
+    files: Object[],
+    event: React.ChangeEvent<HTMLInputElement>,
+  ): void;
   /**
    * From theme provider
    *
@@ -41,6 +44,11 @@ const SDropZone = styled.div`
     props.theme.fileUpload.dropZone.borderRadius};
   text-align: ${(props: Props) => props.theme.fileUpload.dropZone.textAlign};
   padding: ${(props: Props) => props.theme.fileUpload.dropZone.padding};
+  background: ${(props: any) =>
+    props.dragging
+      ? props.theme.fileUpload.dropZone.draggingBackground
+      : props.theme.fileUpload.dropZone.background};
+  transition: all 0.2s ease-in-out;
   .fileUploadCTA {
     color: ${(props: Props) => props.theme.fileUpload.dropZone.ctaColor};
     cursor: pointer;
@@ -68,12 +76,17 @@ export class FileUpload extends React.Component<Props, State> {
 
     this.fileInputRef = React.createRef();
     this.openFileDialog = this.openFileDialog.bind(this);
+    this.onFilesSelected = this.onFilesSelected.bind(this);
+    this.onDragOver = this.onDragOver.bind(this);
+    this.onDragLeave = this.onDragLeave.bind(this);
+    this.onDrop = this.onDrop.bind(this);
   }
   readonly state: State = initialState;
 
   static defaultProps = {
     theme: Themes.defaultTheme,
     disabled: false,
+    onFilesAdded: () => {},
   };
 
   openFileDialog() {
@@ -85,9 +98,52 @@ export class FileUpload extends React.Component<Props, State> {
     }
   }
 
+  onDragOver(evt: any) {
+    evt.preventDefault();
+
+    if (this.props.disabled) return;
+
+    this.setState({ dragging: true });
+  }
+
+  onDragLeave() {
+    this.setState({ dragging: false });
+  }
+
+  fileListToArray(list: any) {
+    const array: any = [];
+    for (let i = 0; i < list.length; i += 1) {
+      array.push(list.item(i));
+    }
+    return array;
+  }
+
+  onFilesSelected(event: any) {
+    event.preventDefault();
+    const files = event.target.files;
+    this.filesAdded(files, event);
+  }
+
+  onDrop(event: any) {
+    event.preventDefault();
+    const files = event.dataTransfer.files;
+    this.filesAdded(files, event);
+  }
+
+  filesAdded(files: Object[], event: any) {
+    const { disabled, onFilesAdded } = this.props;
+
+    if (disabled) return;
+    if (onFilesAdded) {
+      const array = this.fileListToArray(files);
+      onFilesAdded(array, event);
+    }
+    this.setState({ dragging: false });
+  }
+
   render() {
     const { dragging } = this.state;
-    const { onFilesAdded = () => {}, theme, ...props } = this.props;
+    const { onFilesAdded, theme, ...props } = this.props;
 
     const dropZoneProps = {
       dragging,
@@ -97,7 +153,12 @@ export class FileUpload extends React.Component<Props, State> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SFileUploadContainer {...props}>
-          <SDropZone {...dropZoneProps}>
+          <SDropZone
+            onDragOver={this.onDragOver}
+            onDragLeave={this.onDragLeave}
+            onDrop={this.onDrop}
+            {...dropZoneProps}
+          >
             Drop files or{' '}
             <span className="fileUploadCTA" onClick={this.openFileDialog}>
               Browse
@@ -106,7 +167,7 @@ export class FileUpload extends React.Component<Props, State> {
               ref={this.fileInputRef}
               type="file"
               multiple
-              onChange={onFilesAdded}
+              onChange={this.onFilesSelected}
             />
           </SDropZone>
           <SDropped>Files dropped</SDropped>
