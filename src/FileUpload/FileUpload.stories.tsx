@@ -13,9 +13,15 @@ storiesOf('FileUpload', module).add(
         onFilesAdded={action('Files added!')}
         disabled={boolean('disabled', false)}
       />
-      <File file={{}} />
-      <File file={{}} />
-      <File file={{}} />
+      <File
+        file={{}}
+        actionable={boolean('actionable(File 1)', false)}
+        uploaded={boolean('uploaded(File 1)', false)}
+        onDelete={action('File deleted!')}
+        onCancel={action('File upload cancelled!')}
+      />
+      <File file={{}} uploaded={true} onDelete={action('File deleted!')} />
+      <File file={{}} onCancel={action('File upload cancelled!')} />
     </div>
   ),
   {

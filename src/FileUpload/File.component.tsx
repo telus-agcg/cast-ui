@@ -32,6 +32,18 @@ export interface Props {
    * */
   uploaded?: boolean;
   /**
+   * Callback returned on cancel file upload
+   *
+   * @default void
+   * */
+  onCancel?(file: Object | File, e: React.MouseEvent<HTMLElement>): void;
+  /**
+   * Callback returned on delete file
+   *
+   * @default void
+   * */
+  onDelete?(file: Object | File, e: React.MouseEvent<HTMLElement>): void;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -95,11 +107,20 @@ export class File extends React.Component<Props, State> {
     actionable: true,
     uploaded: false,
     progressBarProps: {},
+    onDelete: () => {},
+    onCancel: () => {},
     theme: Themes.defaultTheme,
   };
 
   render() {
-    const { progressBarProps, theme, ...props } = this.props;
+    const {
+      actionable,
+      progressBarProps,
+      onCancel = () => {},
+      onDelete = () => {},
+      theme,
+      ...props
+    } = this.props;
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -109,8 +130,23 @@ export class File extends React.Component<Props, State> {
           <div className="file-details">
             <ProgressBar height={'4px'} percentage={80} {...progressBarProps} />
           </div>
+
           <div className="file-actions">
-            <Icon icon={icClose} />
+            {actionable && (
+              <div>
+                {!props.uploaded && (
+                  <Icon
+                    icon={icClose}
+                    onClick={(e: any) => onCancel(props.file, e)}
+                  />
+                )}
+                {props.uploaded && (
+                  <div onClick={(e: any) => onDelete(props.file, e)}>
+                    Delete
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </SFile>
       </ThemeProvider>
