@@ -194,7 +194,15 @@ export class Modal extends React.Component<Props> {
   };
 
   render() {
-    const { theme, onAfterOpen, onAfterClose, ...props } = this.props;
+    const {
+      theme,
+      onAfterOpen,
+      onAfterClose,
+      children,
+      modalTitle,
+      footerContent,
+      ...props
+    } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SReactModal
