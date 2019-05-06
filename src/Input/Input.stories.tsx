@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { number, boolean, select, text } from '@storybook/addon-knobs/react';
+import { action } from '@storybook/addon-actions';
+import { ic_search as icSearch } from 'react-icons-kit/md/ic_search';
 
-import { Input } from '../';
+import { Input, IconButton } from '../';
 
-storiesOf('Input', module).add(
-  'Input',
-  () => (
+storiesOf('Input', module)
+  .add('Plain', () => (
     <Input
       id="myInput"
       type={select('type', ['text', 'number', 'email', 'password'], 'text')}
@@ -20,15 +21,51 @@ storiesOf('Input', module).add(
       placeholder={text('placeholder', 'Please enter some text')}
       required={boolean('required', false)}
       value={text('value', '')}
+      onChange={e => {
+        action('Changed!');
+      }}
     />
-  ),
-  {
-    info: {
-      text: `
+  ))
+  .add(
+    'with Addon',
+    () => {
+      const inputSize = select('inputSize', ['sm', 'md', 'lg'], 'md');
+      return (
+        <Input
+          id="myInput"
+          type={select('type', ['text', 'number', 'email', 'password'], 'text')}
+          autoComplete={select('autoComplete', ['on', 'off'], 'on')}
+          disabled={boolean('disabled', false)}
+          inputSize={inputSize}
+          invalid={boolean('invalid', false)}
+          invalidText={text('invalidText', 'A valid value is required')}
+          invalidTextColor={text('invalidTextColor', '')}
+          maxLength={number('maxLength', 1000)}
+          placeholder={text('placeholder', 'Please enter some text')}
+          required={boolean('required', false)}
+          value={text('value', '')}
+          icon={
+            <IconButton
+              icon={icSearch}
+              rounded={false}
+              btnSize={inputSize}
+              onClick={e => alert('Searching....')}
+            />
+          }
+          iconPosition={select('iconPosition', ['right', 'left'], 'right')}
+          onChange={e => {
+            action('Changed!');
+          }}
+        />
+      );
+    },
+    {
+      info: {
+        text: `
         ### Notes
 
         This is an Input
         `,
+      },
     },
-  },
-);
+  );
