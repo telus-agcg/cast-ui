@@ -5,6 +5,13 @@ import { ProgressBar } from './ProgressBar.component';
 
 export interface Props {
   /**
+   * Override default options for the Progress Bars.
+   * See Cast-UI's ProgressBar for options list.
+   *
+   * @default null
+   **/
+  progressBarProps?: Object;
+  /**
    * Disable the dropzone
    *
    * @default false
@@ -71,6 +78,20 @@ const SDropped = styled.div`
   text-align: ${(props: Props) => props.theme.fileUpload.dropped.textAlign};
   padding: ${(props: Props) => props.theme.fileUpload.dropped.padding};
   margin: ${(props: Props) => props.theme.fileUpload.dropped.margin};
+  display: flex;
+  align-items: center;
+  .file-name {
+    width: 35%;
+  }
+  .file-size {
+    width: 10%;
+  }
+  .file-details {
+    width: 35%;
+  }
+  .file-actions {
+    width: 20%;
+  }
 `;
 
 export class FileUpload extends React.Component<Props, State> {
@@ -88,9 +109,10 @@ export class FileUpload extends React.Component<Props, State> {
   readonly state: State = initialState;
 
   static defaultProps = {
-    theme: Themes.defaultTheme,
+    progressBarProps: {},
     disabled: false,
     onFilesAdded: () => {},
+    theme: Themes.defaultTheme,
   };
 
   openFileDialog() {
@@ -147,7 +169,7 @@ export class FileUpload extends React.Component<Props, State> {
 
   render() {
     const { dragging } = this.state;
-    const { onFilesAdded, theme, ...props } = this.props;
+    const { progressBarProps, onFilesAdded, theme, ...props } = this.props;
 
     const dropZoneProps = {
       dragging,
@@ -175,13 +197,40 @@ export class FileUpload extends React.Component<Props, State> {
             />
           </SDropZone>
           <SDropped>
-            Files dropped <ProgressBar percentage={35} />
+            <div className="file-name">Files dropped</div>
+            <div className="file-size">100mb</div>
+            <div className="file-details">
+              <ProgressBar
+                height={'6px'}
+                percentage={35}
+                {...progressBarProps}
+              />
+            </div>
+            <div className="file-actions">delete</div>
           </SDropped>
           <SDropped>
-            Files dropped <ProgressBar percentage={60} />
+            <div className="file-name">Files dropped</div>
+            <div className="file-size">100mb</div>
+            <div className="file-details">
+              <ProgressBar
+                height={'6px'}
+                percentage={60}
+                {...progressBarProps}
+              />
+            </div>
+            <div className="file-actions">X</div>
           </SDropped>
           <SDropped>
-            Files dropped <ProgressBar percentage={80} />
+            <div className="file-name">Files dropped</div>
+            <div className="file-size">100mb</div>
+            <div className="file-details">
+              <ProgressBar
+                height={'6px'}
+                percentage={80}
+                {...progressBarProps}
+              />
+            </div>
+            <div className="file-actions">X</div>
           </SDropped>
         </SFileUploadContainer>
       </ThemeProvider>

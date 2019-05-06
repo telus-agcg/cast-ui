@@ -4,6 +4,12 @@ import { Themes } from '../themes';
 
 export interface Props {
   /**
+   * Set height of ProgressBar
+   *
+   * @default ''
+   **/
+  height?: String;
+  /**
    * Set default background
    *
    * @default ''
@@ -58,6 +64,7 @@ export const ProgressBar: React.FunctionComponent<Props> = ({
 );
 
 ProgressBar.defaultProps = {
+  height: '',
   background: '',
   progressBackground: '',
   percentage: 0,
