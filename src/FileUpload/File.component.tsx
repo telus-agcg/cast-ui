@@ -49,6 +49,12 @@ export interface Props {
    * */
   uploaded?: boolean;
   /**
+   * Callback returned when file is selected
+   *
+   * @default void
+   * */
+  onSelect?(file: any, e: React.MouseEvent<HTMLElement>): void;
+  /**
    * Callback returned on cancel file upload
    *
    * @default void
@@ -77,19 +83,21 @@ type State = Readonly<typeof initialState>;
 const SFile = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.fileUpload.fontSize};
-  color: ${(props: Props) => props.theme.fileUpload.dropped.color};
-  background: ${(props: Props) => props.theme.fileUpload.dropped.background};
-  border-radius: ${(props: Props) =>
-    props.theme.fileUpload.dropped.borderRadius};
-  text-align: ${(props: Props) => props.theme.fileUpload.dropped.textAlign};
-  padding: ${(props: Props) => props.theme.fileUpload.dropped.padding};
-  margin: ${(props: Props) => props.theme.fileUpload.dropped.margin};
+  color: ${(props: Props) => props.theme.fileUpload.file.defaultColor};
+  background: ${(props: Props) => props.theme.fileUpload.file.background};
+  border-radius: ${(props: Props) => props.theme.fileUpload.file.borderRadius};
+  text-align: ${(props: Props) => props.theme.fileUpload.file.textAlign};
+  padding: ${(props: Props) => props.theme.fileUpload.file.padding};
+  margin: ${(props: Props) => props.theme.fileUpload.file.margin};
   display: flex;
   align-items: center;
   .file-name {
     width: 40%;
     font-size: 14px;
     text-align: left;
+    color: ${(props: Props) =>
+      props.uploaded ? props.theme.fileUpload.file.primaryColor : 'inherit'};
+    cursor: ${(props: Props) => (props.uploaded ? 'pointer' : 'default')};
   }
   .file-size {
     width: 10%;
@@ -107,6 +115,8 @@ const SFile = styled.div`
     font-size: 13px;
     text-align: right;
     padding: 0 4px;
+    color: ${(props: Props) =>
+      props.uploaded ? props.theme.fileUpload.file.dangerColor : 'inherit'};
     > * {
       cursor: pointer;
     }
@@ -125,8 +135,9 @@ export class File extends React.Component<Props, State> {
     actionable: true,
     uploaded: false,
     progressBarProps: {},
-    onDelete: () => {},
+    onSelect: () => {},
     onCancel: () => {},
+    onDelete: () => {},
     theme: Themes.defaultTheme,
   };
 
@@ -146,6 +157,7 @@ export class File extends React.Component<Props, State> {
       fileDetails,
       actionable,
       progressBarProps,
+      onSelect = () => {},
       onCancel = () => {},
       onDelete = () => {},
       theme,
@@ -155,7 +167,13 @@ export class File extends React.Component<Props, State> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SFile {...props}>
-          <div className="file-name">{props.file.name}</div>
+          <div
+            className="file-name"
+            onClick={(e: any) => onSelect(props.file, e)}
+            {...{ uploaded: props.uploaded }}
+          >
+            {props.file.name}
+          </div>
           <div className="file-size">{humanFileSize(props.file.size, 1)}</div>
           <div className="file-details">
             {!props.uploaded && (

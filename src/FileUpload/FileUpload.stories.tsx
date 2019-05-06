@@ -40,8 +40,9 @@ storiesOf('FileUpload', module).add(
         )}
         actionable={boolean('actionable(File 1)', true)}
         uploaded={boolean('uploaded(File 1)', false)}
-        onDelete={action('File deleted!')}
-        onCancel={action('File upload cancelled!')}
+        onSelect={action('File 1 selected!')}
+        onCancel={action('File 1 upload cancelled!')}
+        onDelete={action('File 1 deleted!')}
         progressBarProps={{ percentage: number('percentage(File 1)', 70) }}
       />
       <br />

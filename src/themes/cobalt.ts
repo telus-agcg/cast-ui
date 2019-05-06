@@ -774,8 +774,10 @@ export const cobaltTheme = {
       background: cobaltColors.white,
       draggingBackground: cobaltColors.lt400,
     },
-    dropped: {
-      color: cobaltColors.drk800,
+    file: {
+      defaultColor: cobaltColors.drk800,
+      primaryColor: cobaltColors.primary,
+      dangerColor: cobaltColors.danger,
       background: cobaltColors.lt200,
       borderRadius: '1px',
       textAlign: 'left',

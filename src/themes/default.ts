@@ -776,8 +776,10 @@ export const defaultTheme = {
       background: defaultColors.white,
       draggingBackground: defaultColors.lt400,
     },
-    dropped: {
-      color: defaultColors.drk800,
+    file: {
+      defaultColor: defaultColors.drk800,
+      primaryColor: defaultColors.primary,
+      dangerColor: defaultColors.danger,
       background: defaultColors.lt200,
       borderRadius: '1px',
       textAlign: 'left',
