@@ -5,21 +5,20 @@ import { ic_close as icClose } from 'react-icons-kit/md/ic_close';
 import { Themes } from '../themes';
 import { ProgressBar } from './ProgressBar.component';
 
-interface FileObject {
-  name: string;
-  size: number;
-  type?: string;
-  lastModified?: number;
-  lastModifiedDate?: string;
-  info?: any;
-}
 export interface Props {
   /**
    * Provide file
    *
    * @default null
    **/
-  file: FileObject;
+  file: {
+    name: string;
+    size: number;
+    type?: string;
+    lastModified?: number;
+    lastModifiedDate?: string;
+    info?: any;
+  };
   /**
    * Is file upload to server complete?
    *
@@ -44,13 +43,13 @@ export interface Props {
    *
    * @default void
    * */
-  onCancel?(file: FileObject, e: React.MouseEvent<HTMLElement>): void;
+  onCancel?(file: any, e: React.MouseEvent<HTMLElement>): void;
   /**
    * Callback returned on delete file
    *
    * @default void
    * */
-  onDelete?(file: FileObject, e: React.MouseEvent<HTMLElement>): void;
+  onDelete?(file: any, e: React.MouseEvent<HTMLElement>): void;
   /**
    * From theme provider
    *
@@ -121,15 +120,6 @@ export class File extends React.Component<Props, State> {
   };
 
   render() {
-    const {
-      actionable,
-      progressBarProps,
-      onCancel = () => {},
-      onDelete = () => {},
-      theme,
-      ...props
-    } = this.props;
-
     const humanFileSize = (bytes: number, decimals: number = 2) => {
       if (bytes === 0) return '0 Bytes';
 
@@ -140,6 +130,15 @@ export class File extends React.Component<Props, State> {
 
       return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
     };
+
+    const {
+      actionable,
+      progressBarProps,
+      onCancel = () => {},
+      onDelete = () => {},
+      theme,
+      ...props
+    } = this.props;
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean } from '@storybook/addon-knobs/react';
+import { boolean, text } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
 import { FileUpload, File } from '../';
@@ -30,10 +30,11 @@ storiesOf('FileUpload', module).add(
         onFilesAdded={console.log}
         // onFilesAdded={action('Files added!')}
         disabled={boolean('disabled', false)}
+        info={text('info', 'File size not more than 15MB')}
       />
       <File
         file={sampleFile}
-        actionable={boolean('actionable(File 1)', false)}
+        actionable={boolean('actionable(File 1)', true)}
         uploaded={boolean('uploaded(File 1)', false)}
         onDelete={action('File deleted!')}
         onCancel={action('File upload cancelled!')}

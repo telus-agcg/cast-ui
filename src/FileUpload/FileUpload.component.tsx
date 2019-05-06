@@ -4,6 +4,12 @@ import { Themes } from '../themes';
 
 export interface Props {
   /**
+   * Add info
+   *
+   * @default ''
+   **/
+  info?: JSX.Element | React.Component | React.FunctionComponent | string;
+  /**
    * Disable the dropzone
    *
    * @default false
@@ -58,6 +64,11 @@ const SDropZone = styled.div`
   input {
     display: none;
   }
+  .info {
+    padding: 6px 0 0;
+    font-size: 12px;
+    font-style: italic;
+  }
 `;
 
 export class FileUpload extends React.Component<Props, State> {
@@ -75,6 +86,7 @@ export class FileUpload extends React.Component<Props, State> {
   readonly state: State = initialState;
 
   static defaultProps = {
+    info: '',
     progressBarProps: {},
     disabled: false,
     onFilesAdded: () => {},
@@ -135,7 +147,7 @@ export class FileUpload extends React.Component<Props, State> {
 
   render() {
     const { dragging } = this.state;
-    const { onFilesAdded, theme, ...props } = this.props;
+    const { info, onFilesAdded, theme, ...props } = this.props;
 
     const dropZoneProps = {
       dragging,
@@ -150,10 +162,13 @@ export class FileUpload extends React.Component<Props, State> {
           onDrop={this.onDrop}
           {...dropZoneProps}
         >
-          Drop files or{' '}
-          <span className="fileUploadCTA" onClick={this.openFileDialog}>
-            Browse
-          </span>
+          <div>
+            Drop files or{' '}
+            <span className="fileUploadCTA" onClick={this.openFileDialog}>
+              Browse
+            </span>
+          </div>
+          {info && <div className="info">{info}</div>}
           <input
             ref={this.fileInputRef}
             type="file"
