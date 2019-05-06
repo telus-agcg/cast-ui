@@ -81,16 +81,26 @@ const SDropped = styled.div`
   display: flex;
   align-items: center;
   .file-name {
-    width: 35%;
+    width: 40%;
+    font-size: 14px;
+    text-align: left;
   }
   .file-size {
     width: 10%;
+    font-size: 12px;
+    text-align: right;
   }
   .file-details {
-    width: 35%;
+    width: 40%;
+    font-size: 12px;
+    text-align: left;
+    margin-left: 32px;
   }
   .file-actions {
-    width: 20%;
+    width: 10%;
+    font-size: 13px;
+    text-align: right;
+    padding: 0 4px;
   }
 `;
 
@@ -201,7 +211,7 @@ export class FileUpload extends React.Component<Props, State> {
             <div className="file-size">100mb</div>
             <div className="file-details">
               <ProgressBar
-                height={'6px'}
+                height={'4px'}
                 percentage={35}
                 {...progressBarProps}
               />
@@ -213,7 +223,7 @@ export class FileUpload extends React.Component<Props, State> {
             <div className="file-size">100mb</div>
             <div className="file-details">
               <ProgressBar
-                height={'6px'}
+                height={'4px'}
                 percentage={60}
                 {...progressBarProps}
               />
@@ -225,7 +235,7 @@ export class FileUpload extends React.Component<Props, State> {
             <div className="file-size">100mb</div>
             <div className="file-details">
               <ProgressBar
-                height={'6px'}
+                height={'4px'}
                 percentage={80}
                 {...progressBarProps}
               />
