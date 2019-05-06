@@ -51,6 +51,18 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    **/
   invalidTextColor?: string;
   /**
+   * Specify whether the control shows an icon
+   *
+   * @default null
+   **/
+  icon?: JSX.Element | React.Component | React.FunctionComponent | string;
+  /**
+   * Specify the position of the icon within the control
+   *
+   * @default 'right'
+   */
+  iconPosition?: 'left' | 'right';
+  /**
    * What is the maximum length of the text in the field?
    *
    * @default null
@@ -106,6 +118,25 @@ const SInput = styled.input`
   }
 `;
 
+const SInputWrapper = styled.div`
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  &.input-icon-left {
+    & > span {
+      margin-right: -1px;
+    }
+  }
+  &.input-icon-right {
+    & > span {
+      margin-left: -1px;
+    }
+  }
+`;
+
 export const Input: React.FunctionComponent<Props> = ({
   theme,
   children,
@@ -116,7 +147,10 @@ export const Input: React.FunctionComponent<Props> = ({
   const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : '';
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <>
+      <SInputWrapper
+        className={inputProps.icon && `input-icon-${inputProps.iconPosition}`}
+      >
+        {'left' === inputProps.iconPosition && <span>{inputProps.icon}</span>}
         <SInput
           value={value}
           onChange={onChange}
@@ -124,9 +158,8 @@ export const Input: React.FunctionComponent<Props> = ({
           data-invalid={inputProps.invalid ? '' : undefined}
           aria-invalid={inputProps.invalid ? true : undefined}
           aria-describedby={errorId}
-        >
-          {children}
-        </SInput>
+        />
+        {'right' === inputProps.iconPosition && <span>{inputProps.icon}</span>}
         {inputProps.invalid && (
           <ErrorMessage
             id={errorId}
@@ -134,7 +167,7 @@ export const Input: React.FunctionComponent<Props> = ({
             textColor={inputProps.invalidTextColor || ''}
           />
         )}
-      </>
+      </SInputWrapper>
     </ThemeProvider>
   );
 };
