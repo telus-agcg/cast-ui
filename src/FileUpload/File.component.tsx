@@ -5,13 +5,20 @@ import { ic_close as icClose } from 'react-icons-kit/md/ic_close';
 import { Themes } from '../themes';
 import { ProgressBar } from './ProgressBar.component';
 
+interface FileObject {
+  name: string;
+  size: number;
+  type?: string;
+  lastModified?: number;
+  lastModifiedDate?: string;
+}
 export interface Props {
   /**
    * Provide file
    *
    * @default null
    **/
-  file: File | Object;
+  file: FileObject;
   /**
    * Is file upload to server complete?
    *
@@ -36,13 +43,13 @@ export interface Props {
    *
    * @default void
    * */
-  onCancel?(file: Object | File, e: React.MouseEvent<HTMLElement>): void;
+  onCancel?(file: FileObject, e: React.MouseEvent<HTMLElement>): void;
   /**
    * Callback returned on delete file
    *
    * @default void
    * */
-  onDelete?(file: Object | File, e: React.MouseEvent<HTMLElement>): void;
+  onDelete?(file: FileObject, e: React.MouseEvent<HTMLElement>): void;
   /**
    * From theme provider
    *
@@ -122,11 +129,23 @@ export class File extends React.Component<Props, State> {
       ...props
     } = this.props;
 
+    const humanFileSize = (bytes: number, decimals: number = 2) => {
+      if (bytes === 0) return '0 Bytes';
+
+      const k = 1024;
+      const dm = decimals < 0 ? 0 : decimals;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+      return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+    };
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SFile {...props}>
-          <div className="file-name">Files dropped</div>
-          <div className="file-size">100MB</div>
+          <div className="file-name">{props.file.name}</div>
+          <div className="file-size">{humanFileSize(props.file.size, 1)}</div>
           <div className="file-details">
             <ProgressBar height={'4px'} percentage={80} {...progressBarProps} />
           </div>

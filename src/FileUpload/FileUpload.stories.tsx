@@ -5,23 +5,47 @@ import { action } from '@storybook/addon-actions';
 
 import { FileUpload, File } from '../';
 
+const sampleFile = {
+  name: 'Sample file.yml',
+  size: 9032385,
+  type: 'application/x-yaml',
+};
+const TestAttachmentsComponent = () => {
+  const [files, setFiles] = React.useState([]);
+
+  return (
+    <div>
+      <FileUpload onFilesAdded={(files: any) => setFiles(files)} />
+      {files.map((file: any) => (
+        <File file={file} key={file} />
+      ))}
+    </div>
+  );
+};
 storiesOf('FileUpload', module).add(
   'FileUpload',
   () => (
     <div>
       <FileUpload
-        onFilesAdded={action('Files added!')}
+        onFilesAdded={console.log}
+        // onFilesAdded={action('Files added!')}
         disabled={boolean('disabled', false)}
       />
       <File
-        file={{}}
+        file={sampleFile}
         actionable={boolean('actionable(File 1)', false)}
         uploaded={boolean('uploaded(File 1)', false)}
         onDelete={action('File deleted!')}
         onCancel={action('File upload cancelled!')}
       />
-      <File file={{}} uploaded={true} onDelete={action('File deleted!')} />
-      <File file={{}} onCancel={action('File upload cancelled!')} />
+      <File
+        file={sampleFile}
+        uploaded={true}
+        onDelete={action('File deleted!')}
+      />
+      <File file={sampleFile} onCancel={action('File upload cancelled!')} />
+      <br />
+      <TestAttachmentsComponent />
     </div>
   ),
   {
