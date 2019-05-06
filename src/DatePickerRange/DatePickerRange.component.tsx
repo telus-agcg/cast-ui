@@ -60,14 +60,10 @@ type State = {
 };
 
 const SWrapperComponent = styled.div<any>`
-  margin-top: ${(props: any) =>
-    props.theme.common[props.datePickerSize!].padding.toString().split(' ')[1]};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) =>
     props.theme.common[props.datePickerSize!].fontSize}
   color: ${(props: any) => props.theme.colors.primary};
-  box-shadow: #0000001a 0px 3px 25px;
-  position: ${(props: any) => props.theme.datepicker.position};
   z-index: ${(props: any) => props.theme.datepicker.zIndex};
   input {
     box-sizing: border-box;
@@ -78,7 +74,15 @@ const SWrapperComponent = styled.div<any>`
       props.theme.common[props.datePickerSize!].borderRadius};
     border: 1px solid ${(props: any) => props.theme.colors.lightGray};
   }
-`;
+  .DateInput_input__small {
+    line-height: unset;
+    padding: 11px 11px 9px;
+  }
+  .DateInput_input__focused {
+    border-bottom: ${(props: any) =>
+      props.theme.styles[props.datePickerStyle].borderColor} 2px solid
+  }
+}`;
 
 export class DatePickerRange extends React.PureComponent<Props> {
   static defaultProps = {
@@ -93,6 +97,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
     focusedInput: null,
     onDatesChange: null,
     onFocusChange: null,
+    inputIconPosition: 'after',
     theme: Themes.defaultTheme,
   };
 
@@ -107,15 +112,12 @@ export class DatePickerRange extends React.PureComponent<Props> {
   onDatesChange = (event: dateChangeEvent) =>
     this.props.onDatesChange instanceof Function
       ? this.props.onDatesChange(event)
-      : this.setState(
-          {
-            range: {
-              endDate: event.endDate || this.state.range.endDate,
-              startDate: event.startDate || this.state.range.startDate,
-            },
+      : this.setState({
+          range: {
+            endDate: event.endDate || this.state.range.endDate,
+            startDate: event.startDate || this.state.range.startDate,
           },
-          () => console.log(event),
-        );
+        });
 
   onFocusChange = (input: focusInputs) =>
     this.props.onFocusChange instanceof Function
