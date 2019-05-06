@@ -11,6 +11,7 @@ interface FileObject {
   type?: string;
   lastModified?: number;
   lastModifiedDate?: string;
+  info?: any;
 }
 export interface Props {
   /**
@@ -135,7 +136,6 @@ export class File extends React.Component<Props, State> {
       const k = 1024;
       const dm = decimals < 0 ? 0 : decimals;
       const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
       const i = Math.floor(Math.log(bytes) / Math.log(k));
 
       return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
@@ -147,7 +147,14 @@ export class File extends React.Component<Props, State> {
           <div className="file-name">{props.file.name}</div>
           <div className="file-size">{humanFileSize(props.file.size, 1)}</div>
           <div className="file-details">
-            <ProgressBar height={'4px'} percentage={80} {...progressBarProps} />
+            {!props.uploaded && (
+              <ProgressBar
+                height={'4px'}
+                percentage={80}
+                {...progressBarProps}
+              />
+            )}
+            {props.uploaded && <div> this are file details </div>}
           </div>
 
           <div className="file-actions">

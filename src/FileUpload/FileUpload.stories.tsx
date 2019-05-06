@@ -16,8 +16,8 @@ const TestAttachmentsComponent = () => {
   return (
     <div>
       <FileUpload onFilesAdded={(files: any) => setFiles(files)} />
-      {files.map((file: any) => (
-        <File file={file} key={file} />
+      {files.map((file: any, i: any) => (
+        <File file={file} key={i} />
       ))}
     </div>
   );
@@ -38,12 +38,6 @@ storiesOf('FileUpload', module).add(
         onDelete={action('File deleted!')}
         onCancel={action('File upload cancelled!')}
       />
-      <File
-        file={sampleFile}
-        uploaded={true}
-        onDelete={action('File deleted!')}
-      />
-      <File file={sampleFile} onCancel={action('File upload cancelled!')} />
       <br />
       <TestAttachmentsComponent />
     </div>
