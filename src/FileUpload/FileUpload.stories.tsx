@@ -34,6 +34,10 @@ storiesOf('FileUpload', module).add(
       />
       <File
         file={sampleFile}
+        fileDetails={text(
+          'fileDetails(File 1)',
+          'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM',
+        )}
         actionable={boolean('actionable(File 1)', true)}
         uploaded={boolean('uploaded(File 1)', false)}
         onDelete={action('File deleted!')}

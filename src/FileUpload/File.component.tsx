@@ -20,6 +20,16 @@ export interface Props {
     info?: any;
   };
   /**
+   * File details to be shown when upload is complete
+   *
+   * @default ''
+   **/
+  fileDetails?:
+    | JSX.Element
+    | React.Component
+    | React.FunctionComponent
+    | string;
+  /**
    * Is file upload to server complete?
    *
    * @default true
@@ -111,6 +121,7 @@ export class File extends React.Component<Props, State> {
 
   static defaultProps = {
     file: {},
+    fileDetails: '',
     actionable: true,
     uploaded: false,
     progressBarProps: {},
@@ -132,6 +143,7 @@ export class File extends React.Component<Props, State> {
     };
 
     const {
+      fileDetails,
       actionable,
       progressBarProps,
       onCancel = () => {},
@@ -153,7 +165,7 @@ export class File extends React.Component<Props, State> {
                 {...progressBarProps}
               />
             )}
-            {props.uploaded && <div> this are file details </div>}
+            {props.uploaded && fileDetails && <div> {fileDetails} </div>}
           </div>
 
           <div className="file-actions">

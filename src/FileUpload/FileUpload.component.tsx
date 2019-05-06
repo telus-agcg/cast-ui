@@ -65,7 +65,7 @@ const SDropZone = styled.div`
     display: none;
   }
   .info {
-    padding: 6px 0 0;
+    padding: 4px 0 0;
     font-size: 12px;
     font-style: italic;
   }
