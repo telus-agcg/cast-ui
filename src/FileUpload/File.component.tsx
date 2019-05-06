@@ -13,6 +13,12 @@ export interface Props {
    **/
   file: File | Object;
   /**
+   * Is file upload to server complete?
+   *
+   * @default true
+   * */
+  actionable?: boolean;
+  /**
    * Override default options for the Progress Bars.
    * See Cast-UI's ProgressBar for options list.
    *
@@ -85,6 +91,8 @@ export class File extends React.Component<Props, State> {
   readonly state: State = initialState;
 
   static defaultProps = {
+    file: {},
+    actionable: true,
     uploaded: false,
     progressBarProps: {},
     theme: Themes.defaultTheme,
