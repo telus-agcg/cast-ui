@@ -119,22 +119,12 @@ const SInput = styled.input`
 `;
 
 const SInputWrapper = styled.div`
-  display: inline-flex;
-  outline: red;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -ms-flex-align: stretch;
   align-items: stretch;
-  border: ${(props: Props) => (props.icon ? props.theme.input.border : 'none')};
-  &.input-icon-left,
-  &.input-icon-right {
-    & > span {
-      display: flex;
-      align-items: center;
-      & > * {
-        padding: ${(props: Props) =>
-          props.theme.common[props.inputSize!].padding};
-      }
-    }
-  }
   &.input-icon-left {
     & > span {
       margin-right: -1px;
@@ -157,24 +147,19 @@ export const Input: React.FunctionComponent<Props> = ({
   const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : '';
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <>
-        <SInputWrapper
-          className={inputProps.icon && `input-icon-${inputProps.iconPosition}`}
+      <SInputWrapper
+        className={inputProps.icon && `input-icon-${inputProps.iconPosition}`}
+      >
+        {'left' === inputProps.iconPosition && <span>{inputProps.icon}</span>}
+        <SInput
+          value={value}
+          onChange={onChange}
           {...inputProps}
-        >
-          {'left' === inputProps.iconPosition && <span>{inputProps.icon}</span>}
-          <SInput
-            value={value}
-            onChange={onChange}
-            {...inputProps}
-            data-invalid={inputProps.invalid ? '' : undefined}
-            aria-invalid={inputProps.invalid ? true : undefined}
-            aria-describedby={errorId}
-          />
-          {'right' === inputProps.iconPosition && (
-            <span>{inputProps.icon}</span>
-          )}
-        </SInputWrapper>
+          data-invalid={inputProps.invalid ? '' : undefined}
+          aria-invalid={inputProps.invalid ? true : undefined}
+          aria-describedby={errorId}
+        />
+        {'right' === inputProps.iconPosition && <span>{inputProps.icon}</span>}
         {inputProps.invalid && (
           <ErrorMessage
             id={errorId}
@@ -182,7 +167,7 @@ export const Input: React.FunctionComponent<Props> = ({
             textColor={inputProps.invalidTextColor || ''}
           />
         )}
-      </>
+      </SInputWrapper>
     </ThemeProvider>
   );
 };
