@@ -11,7 +11,7 @@ export interface Props {
    *
    * @default null
    **/
-  file?: File;
+  file: File | Object;
   /**
    * Override default options for the Progress Bars.
    * See Cast-UI's ProgressBar for options list.

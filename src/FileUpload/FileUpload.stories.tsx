@@ -13,9 +13,9 @@ storiesOf('FileUpload', module).add(
         onFilesAdded={action('Files added!')}
         disabled={boolean('disabled', false)}
       />
-      <File />
-      <File />
-      <File />
+      <File file={{}} />
+      <File file={{}} />
+      <File file={{}} />
     </div>
   ),
   {
