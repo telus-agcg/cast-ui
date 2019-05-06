@@ -1,18 +1,22 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean } from '@storybook/addon-knobs/react';
+import { action } from '@storybook/addon-actions';
 
-import { FileUpload } from '../';
+import { FileUpload, File } from '../';
 
 storiesOf('FileUpload', module).add(
   'FileUpload',
   () => (
-    <FileUpload
-      onFilesAdded={console.log}
-      disabled={boolean('disabled', false)}
-    >
-      File Upload comming up!
-    </FileUpload>
+    <div>
+      <FileUpload
+        onFilesAdded={action('Files added!')}
+        disabled={boolean('disabled', false)}
+      />
+      <File />
+      <File />
+      <File />
+    </div>
   ),
   {
     info: {

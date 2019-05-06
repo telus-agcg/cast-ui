@@ -771,6 +771,7 @@ export const defaultTheme = {
       borderRadius: '1px',
       textAlign: 'center',
       padding: '16px',
+      margin: '0 0 16px',
       ctaColor: defaultColors.primary,
       background: defaultColors.white,
       draggingBackground: defaultColors.lt400,

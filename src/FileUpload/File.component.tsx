@@ -1,9 +1,17 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Icon } from 'react-icons-kit';
+import { ic_close as icClose } from 'react-icons-kit/md/ic_close';
 import { Themes } from '../themes';
 import { ProgressBar } from './ProgressBar.component';
 
 export interface Props {
+  /**
+   * Provide file
+   *
+   * @default null
+   **/
+  file?: File;
   /**
    * Override default options for the Progress Bars.
    * See Cast-UI's ProgressBar for options list.
@@ -31,7 +39,9 @@ const initialState = {
 
 type State = Readonly<typeof initialState>;
 
-const SDropped = styled.div`
+const SFile = styled.div`
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.fileUpload.fontSize};
   color: ${(props: Props) => props.theme.fileUpload.dropped.color};
   background: ${(props: Props) => props.theme.fileUpload.dropped.background};
   border-radius: ${(props: Props) =>
@@ -62,11 +72,13 @@ const SDropped = styled.div`
     font-size: 13px;
     text-align: right;
     padding: 0 4px;
+    > * {
+      cursor: pointer;
+    }
   }
 `;
 
-export class FileUpload extends React.Component<Props, State> {
-  private fileInputRef: React.RefObject<HTMLInputElement>;
+export class File extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
   }
@@ -83,14 +95,16 @@ export class FileUpload extends React.Component<Props, State> {
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDropped {...props}>
+        <SFile {...props}>
           <div className="file-name">Files dropped</div>
-          <div className="file-size">100mb</div>
+          <div className="file-size">100MB</div>
           <div className="file-details">
             <ProgressBar height={'4px'} percentage={80} {...progressBarProps} />
           </div>
-          <div className="file-actions">X</div>
-        </SDropped>
+          <div className="file-actions">
+            <Icon icon={icClose} />
+          </div>
+        </SFile>
       </ThemeProvider>
     );
   }

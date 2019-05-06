@@ -769,6 +769,7 @@ export const cobaltTheme = {
       borderRadius: '1px',
       textAlign: 'center',
       padding: '16px',
+      margin: '0 0 16px',
       ctaColor: cobaltColors.primary,
       background: cobaltColors.white,
       draggingBackground: cobaltColors.lt400,

@@ -15,7 +15,7 @@ export interface Props {
    * @default void
    * */
   onFilesAdded?(
-    files: Object[],
+    files: File[],
     event: React.ChangeEvent<HTMLInputElement>,
   ): void;
   /**
@@ -44,6 +44,7 @@ const SDropZone = styled.div`
     props.theme.fileUpload.dropZone.borderRadius};
   text-align: ${(props: Props) => props.theme.fileUpload.dropZone.textAlign};
   padding: ${(props: Props) => props.theme.fileUpload.dropZone.padding};
+  margin: ${(props: Props) => props.theme.fileUpload.dropZone.margin};
   background: ${(props: any) =>
     props.dragging
       ? props.theme.fileUpload.dropZone.draggingBackground
@@ -121,7 +122,7 @@ export class FileUpload extends React.Component<Props, State> {
     this.filesAdded(files, event);
   }
 
-  filesAdded(files: Object[], event: any) {
+  filesAdded(files: File[], event: any) {
     const { disabled, onFilesAdded } = this.props;
 
     if (disabled) return;
