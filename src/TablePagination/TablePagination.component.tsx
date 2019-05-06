@@ -4,7 +4,7 @@ import SPaginationButton from './SPaginationButton';
 import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
 import { Themes } from '../themes';
 
-export type Props = {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the size of the buttons to use
    *
@@ -57,7 +57,7 @@ export type Props = {
    * From table props
    */
   onFetchData?: () => {};
-};
+}
 
 const initialState = {
   visiblePages: [],

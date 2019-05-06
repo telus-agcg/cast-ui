@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, select } from '@storybook/addon-knobs/react';
+import { boolean, select, color } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
 import { Button } from '../';
@@ -13,10 +13,11 @@ storiesOf('Button', module).add(
       selected={boolean('selected', false)}
       btnStyle={select(
         'btnStyle',
-        ['success', 'default', 'primary', 'secondary', 'danger', 'warning'],
-        'default',
+        ['success', 'primary', 'secondary', 'danger', 'warning'],
+        'primary',
       )}
       btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
+      backgroundColor={color('backgroundColor', '')}
       disabled={boolean('disabled', false)}
       onClick={action('Clicked!')}
     >

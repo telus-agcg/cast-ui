@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
+import { action } from '@storybook/addon-actions';
 import { Button } from '../Button';
 
 import { Modal } from '../';
@@ -11,7 +12,7 @@ const DemoButtons = () => {
       <Button btnSize="md" btnStyle="primary">
         OK
       </Button>
-      <Button btnSize="md" btnStyle="default">
+      <Button btnSize="md" btnStyle="primary">
         Cancel
       </Button>
     </div>
@@ -27,6 +28,8 @@ storiesOf('Modal', module).add(
       footerContent={<DemoButtons />}
       modalSize={select('modalSize', ['sm', 'md', 'lg', 'full'], 'md')}
       modalTitle={text('modalTitle', 'red')}
+      onRequestClose={action('onRequestClose')}
+      onTitleClose={action('onTitleClose')}
     >
       <p>Lorem</p>
     </Modal>

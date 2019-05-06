@@ -11,8 +11,8 @@ storiesOf('Card', module).add(
     <Card
       cardStyle={select(
         'cardStyle',
-        ['success', 'primary', 'secondary', 'default', 'danger', 'warning'],
-        'default',
+        ['success', 'primary', 'secondary', 'danger', 'warning'],
+        'primary',
       )}
       highlightBorder={select(
         'highlightBorder',

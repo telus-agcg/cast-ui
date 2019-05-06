@@ -84,7 +84,6 @@ const displayStyleRules: Function = (
 const indeterminateCheckboxRules: Function = (cbSize: string) => {
   const ySize = { lg: -1, md: 1, sm: 3 }[cbSize];
   const xSize = { lg: -1, md: -2, sm: -1 }[cbSize];
-  console.log(ySize);
   const transform = `rotate(90deg) translateX(${xSize}px) translateY(${ySize}px);`;
   return {
     transform,
@@ -112,7 +111,7 @@ const SInput = styled.input`
     display: inline-block;
     width: ${(props: Props) => props.theme.checkbox[props.cbSize!].size};
     height: ${(props: Props) => props.theme.checkbox[props.cbSize!].size};
-    background-clip: content-box;
+    background-clip: padding-box;
     background-color: ${(props: Props) => props.theme.checkbox.unselectedColor};
     border-color: ${(props: Props) => props.theme.checkbox.borderColor};
     border-style: ${(props: Props) => props.theme.checkbox.borderStyle};
@@ -126,6 +125,7 @@ const SInput = styled.input`
     cursor: not-allowed;
   }
   &:checked + label:before,  &:indeterminate + label:before{
+    background-color: ${(props: Props) => props.theme.checkbox.selectedColor};
   }
   &:checked + label:after {
       content: "";
@@ -134,7 +134,7 @@ const SInput = styled.input`
       position: absolute;
       height:  ${(props: Props) => (props.cbSize === 'lg' ? '8px' : '6px')};
       border-style: solid;
-      border-color: ${(props: Props) => props.theme.styles.primary.borderColor};
+      border-color: ${(props: Props) => props.theme.colors.white};
       border-width: ${(props: Props) =>
         props.cbSize === 'lg' ? '0 4px 4px 0' : '0 3px 3px 0'};
       transform: rotate(45deg) translateX(-1px) translateY(-1px);
@@ -153,7 +153,7 @@ const SInput = styled.input`
       position: absolute;
       height:  ${(props: Props) => (props.cbSize === 'lg' ? '8px' : '6px')};
       border-style: solid;
-      border-color: ${(props: Props) => props.theme.styles.primary.borderColor};
+      border-color: ${(props: Props) => props.theme.colors.white};
       border-width: ${(props: Props) =>
         props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
       ${(props: Props) => indeterminateCheckboxRules(props.cbSize)}

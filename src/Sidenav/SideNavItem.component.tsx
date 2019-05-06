@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { SideNavContext } from './context';
 import { Themes } from '../themes';
 import { SideNavItemToggle } from '../Sidenav/SideNavItemToggle.component';
+import { nameSpace } from '../utils/constants';
 
 export type Props = {
   children: any;
@@ -142,6 +143,11 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SSideNavItem
+        className={
+          props.activeSideNavItem
+            ? `${nameSpace}-sidenav-item ${nameSpace}-sidenav-item--active`
+            : `${nameSpace}-sidenav-item`
+        }
         role="side-nav-item"
         {...props}
         onClick={props.disabled ? noop : handleSelect}

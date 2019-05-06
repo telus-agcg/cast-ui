@@ -10,7 +10,7 @@ storiesOf('Alert', module).add(
     <Alert
       alertStyle={select(
         'alertStyle',
-        ['default', 'success', 'primary', 'secondary', 'danger', 'warning'],
+        ['success', 'primary', 'secondary', 'danger', 'warning'],
         'primary',
       )}
       lightMode={boolean('lightMode', false)}

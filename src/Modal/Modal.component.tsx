@@ -53,38 +53,6 @@ export interface Props extends ReactModalProps {
   theme?: any;
 }
 
-const castStyles = {
-  overlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    textAlign: 'center',
-  },
-  content: {
-    top: '40%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -40%)',
-    backgroundColor: '#F9F9F9',
-    border: '',
-    height: 'auto',
-    lineHeight: '20px',
-    position: 'absolute',
-    boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
-    whiteSpace: 'normal',
-    verticalAlign: 'middle',
-    padding: '0',
-    textAlign: 'left',
-    fontSize: '14px',
-    borderRadius: '1px',
-  },
-};
-
 const modalSizeRules: Function = (modalSize: string, theme: any) => {
   switch (modalSize) {
     case 'full':
@@ -149,7 +117,8 @@ const ModalBodyDiv = styled.div`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   position: relative;
   height: 100%;
-  overflow: scroll;
+  overflow-y: ${(props: any) =>
+    props.modalSize === 'full' ? 'scroll' : 'auto'};
   color: ${(props: any) => props.theme.modal.body.color};
 `;
 
@@ -176,21 +145,78 @@ export class Modal extends React.Component<Props> {
     theme: Themes.defaultTheme,
   };
 
+  getModalStyles = () => {
+    return {
+      overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        textAlign: 'center',
+      },
+      content: {
+        top: '40%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -40%)',
+        backgroundColor: this.props.theme.modal.body.backgroundColor,
+        border: '',
+        height: 'auto',
+        lineHeight: '20px',
+        position: 'absolute',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
+        whiteSpace: 'normal',
+        verticalAlign: 'middle',
+        padding: '0',
+        textAlign: 'left',
+        fontSize: '14px',
+        borderRadius: '1px',
+      },
+    };
+  };
+
+  OnAfterOpen = fn => {
+    document.body.style.overflow = 'hidden';
+    if (fn) {
+      fn();
+    }
+  };
+
+  OnAfterClose = fn => {
+    document.body.removeAttribute('style');
+    if (fn) {
+      fn();
+    }
+  };
+
   render() {
-    const { modalTitle, theme, footerContent, children, ...props } = this.props;
+    const { theme, onAfterOpen, onAfterClose, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SReactModal role="dialog" style={castStyles} {...props}>
-          {modalTitle && (
+        <SReactModal
+          role="dialog"
+          isOpen={this.props.isOpen}
+          style={this.getModalStyles()}
+          modalSize={this.props.modalSize || 'md'}
+          appElement={props.appElement || document.getElementById('root')!}
+          onAfterOpen={() => this.OnAfterOpen(onAfterOpen)}
+          onAfterClose={() => this.OnAfterClose(onAfterClose)}
+          {...props}
+        >
+          {this.props.modalTitle && (
             <ModalHeaderDiv>
-              <h5>{modalTitle}</h5>
+              <h5>{this.props.modalTitle}</h5>
               {props.onTitleClose && (
                 <button
                   type="button"
                   aria-label="Close"
                   onClick={props.onTitleClose}
                 >
-                  <span aria-hidden="true">&times;</span>
+                  <span>&times;</span>
                 </button>
               )}
             </ModalHeaderDiv>

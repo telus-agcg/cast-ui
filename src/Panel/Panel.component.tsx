@@ -43,15 +43,9 @@ export type Props = {
   /**
    * Set Panel Style
    *
-   *  @default 'default'
+   *  @default 'primary'
    */
-  panelStyle:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'danger';
+  panelStyle: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   /**
    *  Whether the panel can be collapsed
    *
