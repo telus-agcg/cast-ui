@@ -161,30 +161,26 @@ export class File extends React.Component<Props, State> {
             {!props.uploaded && (
               <ProgressBar
                 height={'4px'}
-                percentage={80}
+                percentage={0}
                 {...progressBarProps}
               />
             )}
             {props.uploaded && fileDetails && <div> {fileDetails} </div>}
           </div>
 
-          <div className="file-actions">
-            {actionable && (
-              <div>
-                {!props.uploaded && (
-                  <Icon
-                    icon={icClose}
-                    onClick={(e: any) => onCancel(props.file, e)}
-                  />
-                )}
-                {props.uploaded && (
-                  <div onClick={(e: any) => onDelete(props.file, e)}>
-                    Delete
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
+          {actionable && (
+            <div className="file-actions">
+              {!props.uploaded && (
+                <Icon
+                  icon={icClose}
+                  onClick={(e: any) => onCancel(props.file, e)}
+                />
+              )}
+              {props.uploaded && (
+                <div onClick={(e: any) => onDelete(props.file, e)}>Delete</div>
+              )}
+            </div>
+          )}
         </SFile>
       </ThemeProvider>
     );

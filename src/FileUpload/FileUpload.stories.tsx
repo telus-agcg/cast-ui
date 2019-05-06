@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, text } from '@storybook/addon-knobs/react';
+import { boolean, text, number } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
 import { FileUpload, File } from '../';
@@ -42,6 +42,7 @@ storiesOf('FileUpload', module).add(
         uploaded={boolean('uploaded(File 1)', false)}
         onDelete={action('File deleted!')}
         onCancel={action('File upload cancelled!')}
+        progressBarProps={{ percentage: number('percentage(File 1)', 70) }}
       />
       <br />
       <TestAttachmentsComponent />
