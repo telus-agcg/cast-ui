@@ -4,9 +4,6 @@ import Tippy, { TippyProps } from '@tippy.js/react';
 import { Themes } from '../themes';
 
 export interface Props extends TippyProps {
-  children: any;
-  usePointer?: boolean;
-  arrow?: boolean;
   theme?: any;
 }
 
@@ -21,6 +18,9 @@ export class Tooltip extends React.Component<Props> {
     arrow: true,
     theme: Themes.defaultTheme,
   };
+  /**
+   * What the reason of this function?
+   */
   contentIsString = () => {
     return typeof this.props.content === 'string';
   };
