@@ -18,6 +18,7 @@ export * from './Checkbox';
 export * from './CopyToClipboard';
 export * from './Card';
 export * from './DatePicker';
+export * from './DatePickerRange';
 export * from './Draggable';
 export * from './Typography/ErrorMessage/index';
 export * from './IconButton';

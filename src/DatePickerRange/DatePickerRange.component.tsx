@@ -6,14 +6,6 @@ import { Moment } from 'moment';
 import { Themes } from '../themes';
 
 type momentDate = Moment | null;
-type pickerSize = 'sm' | 'md' | 'lg';
-type pickerStyle =
-  | 'default'
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'warning'
-  | 'danger';
 type focusInputs = FocusInputs.START_DATE | FocusInputs.END_DATE | null;
 enum FocusInputs {
   START_DATE = 'startDate',
@@ -39,13 +31,19 @@ export interface Props extends DateRangePickerShape {
    *
    * @default 'md'
    **/
-  datePickerSize?: pickerSize;
+  datePickerSize?: 'sm' | 'md' | 'lg';
   /**
    * Select DatePicker style.
    *
    * @default 'primary'
    **/
-  datePickerStyle?: pickerStyle;
+  datePickerStyle?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'danger';
   /**
    * From theme provider
    *
@@ -59,28 +57,33 @@ type State = {
   range: dateChangeEvent;
 };
 
-const SWrapperComponent = styled.div<any>`
-  font-family: ${(props: any) => props.theme.typography.fontFamily};
-  font-size: ${(props: any) =>
+const SWrapperComponent = styled.div<Partial<Props>>`
+  font-family: ${(props: Partial<Props>) => props.theme.typography.fontFamily};
+  font-size: ${(props: Partial<Props>) =>
     props.theme.common[props.datePickerSize!].fontSize}
-  color: ${(props: any) => props.theme.colors.primary};
-  z-index: ${(props: any) => props.theme.datepicker.zIndex};
+  color: ${(props: Partial<Props>) => props.theme.colors.primary};
+  z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
   input {
     box-sizing: border-box;
   }
   .DateRangePickerInput {
-    background: ${(props: any) => props.theme.colors.white};
-    border-radius: ${(props: any) =>
+    background: ${(props: Partial<Props>) => props.theme.colors.white};
+    border-radius: ${(props: Partial<Props>) =>
       props.theme.common[props.datePickerSize!].borderRadius};
-    border: 1px solid ${(props: any) => props.theme.colors.lightGray};
+    border: 1px solid ${(props: Partial<Props>) =>
+      props.theme.colors.lightGray};
   }
   .DateInput_input__small {
     line-height: unset;
     padding: 11px 11px 9px;
   }
   .DateInput_input__focused {
-    border-bottom: ${(props: any) =>
-      props.theme.styles[props.datePickerStyle].borderColor} 2px solid
+    border-bottom: ${(props: Partial<Props>) =>
+      props.theme.styles[props.datePickerStyle!].borderColor} 2px solid
+  }
+  .DayPickerKeyboardShortcuts_show__bottomRight::before {
+    border-right: 33px solid ${(props: Partial<Props>) =>
+      props.theme.styles[props.datePickerStyle!].borderColor};
   }
 }`;
 
@@ -102,7 +105,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
   };
 
   state: State = {
-    focusedInput: FocusInputs.START_DATE,
+    focusedInput: null,
     range: {
       startDate: null,
       endDate: null,

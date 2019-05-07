@@ -61,7 +61,36 @@ type State = {
   date: momentDate;
 };
 
-const SWrapperComponent = styled.div<any>``;
+const SWrapperComponent = styled.div<Partial<Props>>`
+  font-family: ${(props: Partial<Props>) => props.theme.typography.fontFamily};
+  font-size: ${(props: Partial<Props>) =>
+    props.theme.common[props.datePickerSize!].fontSize}
+  color: ${(props: Partial<Props>) => props.theme.colors.primary};
+  z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
+  input {
+    box-sizing: border-box;
+  }
+  .SingleDatePickerInput {
+    background: ${(props: Partial<Props>) => props.theme.colors.white};
+    border-radius: ${(props: Partial<Props>) =>
+      props.theme.common[props.datePickerSize!].borderRadius};
+    border: 1px solid ${(props: Partial<Props>) =>
+      props.theme.colors.lightGray};
+    display: flex;
+  }
+  .DateInput_input__small {
+    line-height: unset;
+    padding: 11px 11px 9px;
+  }
+  .DateInput_input__focused {
+    border-bottom: ${(props: Partial<Props>) =>
+      props.theme.styles[props.datePickerStyle!].borderColor} 2px solid
+  }
+  .DayPickerKeyboardShortcuts_show__bottomRight::before {
+    border-right: 33px solid ${(props: Partial<Props>) =>
+      props.theme.styles[props.datePickerStyle!].borderColor};
+  }
+`;
 
 export class DatePicker extends React.PureComponent<Props> {
   static defaultProps = {

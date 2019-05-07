@@ -1,35 +1,55 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-// import { number, boolean, select, text } from '@storybook/addon-knobs/react';
+import { boolean, select } from '@storybook/addon-knobs/react';
 
 import { DatePicker } from '../';
 
 storiesOf('DatePicker', module).add(
   'DatePicker',
-  () => (
+  () => [
     <DatePicker
-    // placeholder="Select start date"
-    // datePickerStyle={select(
-    //   'datePickerStyle',
-    //   ['success', 'default', 'primary', 'success', 'danger', 'warning'],
-    //   'primary',
-    // )}
-    // // datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
-    // // dayPickerProps={{
-    // //   selectedDays: [
-    // //     new Date('2019-2-5'),
-    // //     { from: new Date('2019-4-5'), to: new Date('2019-4-9') },
-    // //   ],
-    // // }}
-    // disabled={boolean('disabled', false)}
-    // invalid={boolean('invalid', false)}
-    // invalidText={text('invalidText', 'A valid value is required')}
-    // invalidTextColor={text('invalidTextColor', '')}
-    // maxLength={number('maxLength', 1000)}
-    // required={boolean('required', false)}
-    // withoutPicker={boolean('withoutPicker', true)}
-    />
-  ),
+      key="0"
+      showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
+      inputIconPosition={select(
+        'inputIconPosition',
+        ['before', 'after'],
+        'after',
+      )}
+    />,
+    <br key="br0" />,
+    <DatePicker
+      key="1"
+      showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
+      inputIconPosition={select(
+        'inputIconPosition',
+        ['before', 'after'],
+        'after',
+      )}
+      small
+    />,
+    <br key="br1" />,
+    <DatePicker
+      key="2"
+      showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
+      inputIconPosition={select(
+        'inputIconPosition',
+        ['before', 'after'],
+        'after',
+      )}
+      regular
+    />,
+    <br key="br2" />,
+    <DatePicker
+      key="3"
+      showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
+      inputIconPosition={select(
+        'inputIconPosition',
+        ['before', 'after'],
+        'after',
+      )}
+      block
+    />,
+  ],
   {
     info: {
       text: `

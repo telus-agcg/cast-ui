@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { DatePickerRange } from '../DatePickerRange';
+import DatePickerRange from '../DatePickerRange';
 import { boolean, select } from '@storybook/addon-knobs/react';
 
 storiesOf('DatePickerRange', module).add('DatePickerRange', () => [
@@ -33,7 +33,6 @@ storiesOf('DatePickerRange', module).add('DatePickerRange', () => [
       ['before', 'after'],
       'after',
     )}
-    small={boolean('isSmall', false)}
     regular
   />,
   <br key="br2" />,
