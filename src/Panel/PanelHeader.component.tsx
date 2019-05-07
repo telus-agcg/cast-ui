@@ -10,12 +10,6 @@ export type Props = {
    * */
   children?: any;
   /**
-   * The ref of the panel headre
-   *
-   * @default null
-   * */
-  headerRef?: React.RefObject<HTMLDivElement>;
-  /**
    * The name of the panel
    *
    * @default ''
@@ -52,12 +46,6 @@ export type Props = {
    */
   panelStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   /**
-   *  Whether the panel can be collapsed
-   *
-   *  @default 'false'
-   */
-  collapsible?: boolean;
-  /**
    * Whether the panel is collapsed or not
    *
    *  @default 'false'
@@ -75,12 +63,6 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-  /**
-   * From theme provider
-   *
-   * @default ""
-   **/
-  panelHeaderRef?: any;
 };
 
 const SPanelHeader = styled.div`
@@ -95,7 +77,8 @@ const SPanelHeader = styled.div`
     `${props.theme.panel.borderWidth} solid
     ${props.headerBorderColor || props.theme.panel.headerBorderColor}`};
   &:hover {
-    cursor: ${(props: Props) => (props.collapsible ? 'pointer' : 'auto')};
+    cursor: ${(props: Props) =>
+      props.isCollapsed !== undefined ? 'pointer' : 'auto'};
   }
 `;
 
@@ -136,6 +119,13 @@ const SCollapseIcon = styled.div`
   background-repeat: no-repeat;
 `;
 
+const ChevronImage: Function = (isCollapsed: boolean | undefined) => {
+  if (undefined === isCollapsed) {
+    return null;
+  }
+  return isCollapsed ? <SCollapseIcon /> : <SExpandIcon />;
+};
+
 const initialState = {
   isCollapsed: false,
 };
@@ -147,7 +137,6 @@ export class PanelHeader extends React.Component<Props> {
     headerColor: 'primary',
     headerBackgroundColor: 'white',
     headerBorderColor: 'lightGray',
-    collapsible: false,
     toggleItem: () => {},
     theme: Themes.defaultTheme,
   };
@@ -156,16 +145,12 @@ export class PanelHeader extends React.Component<Props> {
   isCollapsed: boolean = false;
 
   render() {
-    const ChevronImage = this.props.isCollapsed ? (
-      <SExpandIcon />
-    ) : (
-      <SCollapseIcon />
-    );
-    const { toggleItem, headerRef, name, title, theme, ...props } = this.props;
+    const { toggleItem, name, title, theme, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SPanelHeader onClick={(e: any) => toggleItem!(e, theme)} {...props}>
-          {name && <b>{name}:</b>} {title} {props.collapsible && ChevronImage}
+          {name && <b>{name}:</b>} {title}{' '}
+          {ChevronImage(this.props.isCollapsed)}
         </SPanelHeader>
       </ThemeProvider>
     );

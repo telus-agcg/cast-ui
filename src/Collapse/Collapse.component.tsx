@@ -128,7 +128,6 @@ export class Collapse extends React.Component<Props, any> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    console.log(this.state.collapseState);
     if (!this.content) return;
 
     if (this.state.collapseState === prevState.collapseState) return;
@@ -181,7 +180,6 @@ export class Collapse extends React.Component<Props, any> {
   };
 
   setCollapsed = () => {
-    console.log('Collapsed');
     if (!this.content) return;
 
     this.setState(
@@ -196,7 +194,6 @@ export class Collapse extends React.Component<Props, any> {
   };
 
   setCollapsing = () => {
-    console.log('Collapsing');
     if (!this.content) return;
 
     const height = this.getHeight();
@@ -222,7 +219,6 @@ export class Collapse extends React.Component<Props, any> {
   };
 
   setExpanding = () => {
-    console.log('Expanding');
     nextFrame(() => {
       if (this.content) {
         const height = this.getHeight();
@@ -241,7 +237,6 @@ export class Collapse extends React.Component<Props, any> {
   };
 
   setExpanded = () => {
-    console.log('Expanded');
     if (!this.content) return;
 
     this.setState(
