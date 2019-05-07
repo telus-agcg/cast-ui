@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { DateRangePicker, DateRangePickerShape } from 'react-dates';
 import uuid from 'uuid';
@@ -6,6 +6,14 @@ import { Moment } from 'moment';
 import { Themes } from '../themes';
 
 type momentDate = Moment | null;
+type pickerSize = 'sm' | 'md' | 'lg';
+type pickerStyle =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'danger';
 type focusInputs = FocusInputs.START_DATE | FocusInputs.END_DATE | null;
 enum FocusInputs {
   START_DATE = 'startDate',
@@ -31,19 +39,13 @@ export interface Props extends DateRangePickerShape {
    *
    * @default 'md'
    **/
-  datePickerSize?: 'sm' | 'md' | 'lg';
+  datePickerSize?: pickerSize;
   /**
    * Select DatePicker style.
    *
    * @default 'primary'
    **/
-  datePickerStyle?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'danger';
+  datePickerStyle?: pickerStyle;
   /**
    * From theme provider
    *

@@ -2,12 +2,6 @@ import * as React from 'react';
 import uuid from 'uuid';
 import styled, { ThemeProvider } from 'styled-components';
 import { SingleDatePicker, SingleDatePickerShape } from 'react-dates';
-// import DayPickerInput from 'react-day-picker/DayPickerInput';
-// import 'react-day-picker/lib/style.css';
-
-// import { DatePickerContext } from './context';
-// import { Props as DatePickerProps } from './props';
-// import { InputForDatePicker } from './InputForDatePicker';
 import { Moment } from 'moment';
 import { Themes } from '../themes';
 
