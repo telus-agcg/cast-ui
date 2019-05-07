@@ -138,6 +138,13 @@ export class DatePicker extends React.PureComponent<Props> {
       focused,
       onDateChange,
       onFocusChange,
+
+      /**
+       * override sizes from react-dates
+       */
+      small,
+      regular,
+      block,
       ...props
     } = this.props;
     return (

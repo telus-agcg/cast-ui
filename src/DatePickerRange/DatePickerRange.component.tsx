@@ -148,6 +148,13 @@ export class DatePickerRange extends React.PureComponent<Props> {
       id,
       datePickerSize,
       datePickerStyle,
+
+      /**
+       * override sizes from react-dates
+       */
+      small,
+      regular,
+      block,
       ...props
     } = this.props;
 
