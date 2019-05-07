@@ -40,17 +40,21 @@ storiesOf('FileUpload', module).add(
       <File
         file={sampleFile}
         fileDetails={text(
-          'fileDetails(File 1)',
+          'fileDetails - (File 1)',
           'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM',
         )}
-        actionable={boolean('actionable(File 1)', true)}
-        uploaded={boolean('uploaded(File 1)', false)}
+        actionable={boolean('actionable - (File 1)', true)}
+        uploaded={boolean('uploaded - (File 1)', false)}
         onSelect={action('File 1 selected!')}
         onCancel={action('File 1 upload cancelled!')}
         onDelete={action('File 1 deleted!')}
-        progressBarProps={{ percentage: number('percentage(File 1)', 70) }}
+        progressBarProps={{ percentage: number('percentage - (File 1)', 70) }}
       />
       <br />
+      <br />
+      <b>
+        <p>Attachments Component Example</p>
+      </b>
       <TestAttachmentsComponent />
     </div>
   ),
@@ -59,7 +63,9 @@ storiesOf('FileUpload', module).add(
       text: `
         ### Notes
         
-        This is a FileUpload Component
+        This is a FileUpload Component. The AJAX library used in parent application 
+        should be responsible for contoling the upload progress(percent) of a file's
+        ProgressBar
         `,
     },
   },
