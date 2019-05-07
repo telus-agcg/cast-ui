@@ -24,46 +24,32 @@ class PanelWithCollapse extends React.Component<Props, State> {
   readonly state: State = initialState;
 
   handleCollapse() {
-    console.log(!this.state.isOpen);
     this.setState(state => ({
       isOpen: !state.isOpen,
     }));
   }
 
   render() {
+    const panelStyle = select(
+      'panelStyle',
+      ['success', 'default', 'primary', 'danger', 'warning'],
+      'default',
+    );
     return (
-      <Panel
-        name={text('Panel Name', 'Catchy Name')}
-        isCollapsed={boolean('isCollapsed', false)}
-        panelStyle={select(
-          'panelStyle',
-          ['success', 'default', 'primary', 'danger', 'warning'],
-          'default',
-        )}
-      >
+      <Panel name={text('Panel Name', 'Catchy Name')} panelStyle={panelStyle}>
         <PanelHeader
-          panelStyle={select(
-            'panelStyle',
-            ['success', 'default', 'primary', 'danger', 'warning'],
-            'default',
-          )}
+          panelStyle={panelStyle}
           headerColor={text('headerColor', 'lightGray')}
           headerBackgroundColor={text('headerBackgroundColor', 'lightGray')}
           headerBorderColor={text('headerBorderColor', 'lightGray')}
-          collapsible={boolean('Collapsible', true)}
           name={text('Panel Name', 'Catchy Name')}
           title={text('Title', 'Catchy title')}
-          panelHeaderRef="panelHeaderRef"
           toggleItem={this.handleCollapse}
           isCollapsed={this.state.isOpen}
         />
         <Collapse isOpen={this.state.isOpen}>
           <PanelBody
-            panelStyle={select(
-              'panelStyle',
-              ['success', 'default', 'primary', 'danger', 'warning'],
-              'default',
-            )}
+            panelStyle={panelStyle}
             noPadding={boolean('noPadding', false)}
             bodyBackgroundColor={text('bodyBackgroundColor', 'lightBackground')}
             bodyBorderColor={text('bodyBorderColor', 'lightGray')}
@@ -84,7 +70,7 @@ class PanelWithCollapse extends React.Component<Props, State> {
 
 storiesOf('Panel', module).add(
   'Panel With Collapse',
-  () => <PanelWithCollapse isOpen={boolean('isOpen', true)} />,
+  () => <PanelWithCollapse isOpen={true} />,
   {
     info: {
       text: `
