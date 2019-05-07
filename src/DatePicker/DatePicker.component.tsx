@@ -67,8 +67,6 @@ const SWrapperComponent = styled.div<Partial<Props>>`
       props.theme.common[props.datePickerSize!].padding}
     border-radius: ${(props: Partial<Props>) =>
       props.theme.common[props.datePickerSize!].borderRadius};
-    border: 1px solid ${(props: Partial<Props>) =>
-      props.theme.colors.lightGray};
   }
   .SingleDatePickerInput {
     background: ${(props: Partial<Props>) => props.theme.colors.white};
@@ -79,8 +77,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     padding: 11px 11px 9px;
   }
   .DateInput_input__focused {
-    border-bottom: ${(props: Partial<Props>) =>
-      props.theme.styles[props.datePickerStyle!].borderColor} 2px solid
+    border-bottom-color: transparent;
   }
   .DayPickerKeyboardShortcuts_show__bottomRight::before {
     border-right: 33px solid ${(props: Partial<Props>) =>

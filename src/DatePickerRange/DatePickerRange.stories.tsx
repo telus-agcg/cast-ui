@@ -12,6 +12,7 @@ storiesOf('DatePickerRange', module).add('DatePickerRange', () => [
       ['before', 'after'],
       'after',
     )}
+    datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
   />,
   <br key="br0" />,
   <DatePickerRange
@@ -22,6 +23,7 @@ storiesOf('DatePickerRange', module).add('DatePickerRange', () => [
       ['before', 'after'],
       'after',
     )}
+    datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
     small
   />,
   <br key="br1" />,
@@ -33,6 +35,7 @@ storiesOf('DatePickerRange', module).add('DatePickerRange', () => [
       ['before', 'after'],
       'after',
     )}
+    datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
     regular
   />,
   <br key="br2" />,
@@ -44,6 +47,7 @@ storiesOf('DatePickerRange', module).add('DatePickerRange', () => [
       ['before', 'after'],
       'after',
     )}
+    datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
     block
   />,
 ]);
