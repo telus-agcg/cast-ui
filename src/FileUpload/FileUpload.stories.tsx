@@ -17,7 +17,12 @@ const TestAttachmentsComponent = () => {
     <div>
       <FileUpload onFilesAdded={(files: any) => setFiles(files)} />
       {files.map((file: any, i: any) => (
-        <File file={file} key={i} />
+        <File
+          file={file}
+          uploaded={true}
+          fileDetails={'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM'}
+          key={i}
+        />
       ))}
     </div>
   );

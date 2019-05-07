@@ -116,7 +116,9 @@ const SFile = styled.div`
     text-align: right;
     padding: 0 4px;
     color: ${(props: Props) =>
-      props.uploaded ? props.theme.fileUpload.file.dangerColor : 'inherit'};
+      props.uploaded
+        ? props.theme.fileUpload.file.dangerColor
+        : props.theme.fileUpload.file.primaryColor};
     > * {
       cursor: pointer;
     }
@@ -153,13 +155,15 @@ export class File extends React.Component<Props, State> {
       return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
     };
 
+    const noop = () => {};
+
     const {
       fileDetails,
       actionable,
       progressBarProps,
-      onSelect = () => {},
-      onCancel = () => {},
-      onDelete = () => {},
+      onSelect = noop,
+      onCancel = noop,
+      onDelete = noop,
       theme,
       ...props
     } = this.props;
@@ -169,8 +173,9 @@ export class File extends React.Component<Props, State> {
         <SFile {...props}>
           <div
             className="file-name"
-            onClick={(e: any) => onSelect(props.file, e)}
-            {...{ uploaded: props.uploaded }}
+            onClick={
+              props.uploaded ? (e: any) => onSelect(props.file, e) : noop
+            }
           >
             {props.file.name}
           </div>
