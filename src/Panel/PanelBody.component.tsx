@@ -12,15 +12,9 @@ export type Props = {
   /**
    * Set PanelBody Style
    *
-   *  @default 'default'
+   *  @default 'primary'
    */
-  panelStyle?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'danger';
+  panelStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   /** Whether the panel has padding or not
    *
    *  @default 'false'
@@ -53,7 +47,6 @@ const SPanelBody = styled.div`
   border: ${(props: Props) =>
     `${props.theme.panel.borderWidth} solid
     ${props.theme.colors[props.bodyBorderColor!] || props.bodyBorderColor}`};
-  border-top: none;
   padding: ${(props: Props) =>
     props.noPadding ? '10px' : props.theme.panel.body.padding};
   overflow: hidden;
@@ -65,7 +58,7 @@ type State = Readonly<typeof initialState>;
 
 export class PanelBody extends React.Component<Props> {
   static defaultProps = {
-    panelStyle: 'default',
+    panelStyle: 'primary',
     theme: Themes.defaultTheme,
   };
 

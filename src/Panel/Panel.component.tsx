@@ -46,25 +46,11 @@ export type Props = {
    */
   panelStyle: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   /**
-   *  Whether the panel can be collapsed
-   *
-   *  @default 'false'
-   */
-  collapsible?: boolean;
-  /**
-   * Whether the panel is collapsed or not
-   *
-   *  @default 'false'
-   */
-  isCollapsed?: boolean;
-  /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
-  bodyRef?: any;
-  headerRef?: any;
 };
 
 const PanelWrapper = styled.div`
@@ -73,9 +59,8 @@ const PanelWrapper = styled.div`
   border-radius: ${(props: Props) => props.theme.borders.radius};
 `;
 
-const initialState = {
-  isCollapsed: false,
-};
+const initialState = {};
+
 type State = Readonly<typeof initialState>;
 
 export class Panel extends React.Component<Props, State> {
@@ -84,7 +69,7 @@ export class Panel extends React.Component<Props, State> {
   }
 
   static defaultProps = {
-    panelStyle: 'default',
+    panelStyle: 'primary',
     noPadding: false,
     theme: Themes.defaultTheme,
   };

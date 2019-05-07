@@ -75,7 +75,8 @@ const SPanelHeader = styled.div`
     props.headerBackgroundColor || props.theme.panel.headerBackgroundColor};
   border: ${(props: Props) =>
     `${props.theme.panel.borderWidth} solid
-    ${props.headerBorderColor || props.theme.panel.headerBorderColor}`};
+		${props.headerBorderColor || props.theme.panel.headerBorderColor}`};
+  border-bottom: none;
   &:hover {
     cursor: ${(props: Props) =>
       props.isCollapsed !== undefined ? 'pointer' : 'auto'};
@@ -133,7 +134,7 @@ type State = Readonly<typeof initialState>;
 
 export class PanelHeader extends React.Component<Props> {
   static defaultProps = {
-    panelStyle: 'default',
+    panelStyle: 'primary',
     headerColor: 'primary',
     headerBackgroundColor: 'white',
     headerBorderColor: 'lightGray',
