@@ -6,7 +6,7 @@ import { DatePicker } from '../';
 
 storiesOf('DatePicker', module).add(
   'DatePicker',
-  () => [
+  () => (
     <DatePicker
       key="0"
       showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
@@ -15,42 +15,14 @@ storiesOf('DatePicker', module).add(
         ['before', 'after'],
         'after',
       )}
-      datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
-    />,
-    <br key="br0" />,
-    <DatePicker
-      key="1"
-      showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
-      inputIconPosition={select(
-        'inputIconPosition',
-        ['before', 'after'],
-        'after',
+      datePickerStyle={select(
+        'datePickerStyle',
+        ['primary', 'secondary', 'success', 'warning', 'danger'],
+        'primary',
       )}
       datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
-    />,
-    <br key="br1" />,
-    <DatePicker
-      key="2"
-      showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
-      inputIconPosition={select(
-        'inputIconPosition',
-        ['before', 'after'],
-        'after',
-      )}
-      datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
-    />,
-    <br key="br2" />,
-    <DatePicker
-      key="3"
-      showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
-      inputIconPosition={select(
-        'inputIconPosition',
-        ['before', 'after'],
-        'after',
-      )}
-      datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
-    />,
-  ],
+    />
+  ),
   {
     info: {
       text: `

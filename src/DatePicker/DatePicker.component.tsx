@@ -59,7 +59,8 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   font-family: ${(props: Partial<Props>) => props.theme.typography.fontFamily};
   font-size: ${(props: Partial<Props>) =>
     props.theme.common[props.datePickerSize!].fontSize}
-  color: ${(props: Partial<Props>) => props.theme.colors.primary};
+  color: ${(props: Partial<Props>) =>
+    props.theme.styles[props.datePickerStyle!].text};
   z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
   input {
     box-sizing: border-box;
