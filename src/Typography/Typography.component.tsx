@@ -2,17 +2,14 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
 import {
-  Headline,
-  SectionHeader,
+  Header,
   Button,
   Tooltip,
   Display,
   Title,
-  SubTitle,
   Caption,
   Link,
-  SubHeading,
-  Digits,
+  BodyText,
 } from '../';
 import CopyToClipboard from '../CopyToClipboard';
 import { sampleCode } from './CodeBlock/CodeBlock.stories';
@@ -39,11 +36,9 @@ export const Typography: React.FunctionComponent<Props> = ({
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
     <STypography>
-      <SectionHeader>Section header</SectionHeader>
       <Display>Display</Display>
-      <Headline>Headline</Headline>
+      <Header>Header</Header>
       <Title>Title</Title>
-      <SubTitle>Etiam mauris tellus</SubTitle>
       <p>
         Etiam ullamcorper, metus sed luctus auctor, tortor lorem auctor quam, ut
         condimentum massa tellus at turpis.
@@ -53,7 +48,6 @@ export const Typography: React.FunctionComponent<Props> = ({
         Read More
       </Link>
       <br />
-      <SubHeading>Subheader</SubHeading>
       <p>
         Lorem ipsum dolor sit amet, consectetur{' '}
         <Link href="https://theuselessweb.com/" target="_blank">
@@ -76,7 +70,7 @@ export const Typography: React.FunctionComponent<Props> = ({
           </Button>
         </span>
       </Tooltip>
-      <Digits>$25,855.90</Digits>
+      <BodyText>$25,855.90</BodyText>
       <br />
       <CopyToClipboard
         copyContent={sampleCode || ''}

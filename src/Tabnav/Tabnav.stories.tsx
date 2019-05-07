@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { text } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
-import { Tabnav, Headline, Badge } from '../';
+import { Tabnav, Header, Badge } from '../';
 
 storiesOf('Tabnav', module).add(
   'Tabnav',
@@ -50,7 +50,7 @@ storiesOf('Tabnav', module).add(
       tabsBarProps={{ className: 'tabs-bar' }}
     >
       <div style={{ display: 'flex', alignItems: 'baseline' }}>
-        <Headline>Agrineed, Inc. (62875)</Headline>
+        <Header>Agrineed, Inc. (62875)</Header>
         <Badge>Retailer</Badge>
       </div>
     </Tabnav>
