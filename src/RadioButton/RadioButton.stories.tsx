@@ -20,6 +20,18 @@ storiesOf('RadioButton', module).add(
       >
         One
       </RadioButton>
+      <br />
+      <br />
+      <br />
+      <RadioButton
+        id="myInput2"
+        disabled={boolean('disabled', false)}
+        rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
+        value="1"
+        displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
+      >
+        One
+      </RadioButton>
     </div>
   ),
   {
