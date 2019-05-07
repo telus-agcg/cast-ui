@@ -62,8 +62,10 @@ export const defaultTheme = {
       alertColor: defaultColors.white,
       alertBackground: defaultColors.primary,
       light: {
-        alertBackground: defaultColors.primaryBackground,
+        alertBackground: defaultColors.primaryFaded,
         alertColor: defaultColors.black,
+        badgeBackground: defaultColors.primaryFaded,
+        badgeColor: defaultColors.black,
       },
       cardTopBorderColor: defaultColors.primary,
     },
@@ -82,8 +84,10 @@ export const defaultTheme = {
       alertColor: defaultColors.black,
       alertBackground: defaultColors.secondary,
       light: {
-        alertBackground: defaultColors.secondaryBackground,
+        alertBackground: defaultColors.secondaryFaded,
         alertColor: defaultColors.black,
+        badgeBackground: defaultColors.secondaryFaded,
+        badgeColor: defaultColors.black,
       },
       cardTopBorderColor: defaultColors.secondary,
     },
@@ -102,8 +106,10 @@ export const defaultTheme = {
       alertColor: defaultColors.white,
       alertBackground: defaultColors.danger,
       light: {
-        alertBackground: defaultColors.dangerBackground,
+        alertBackground: defaultColors.dangerFaded,
         alertColor: defaultColors.black,
+        badgeBackground: defaultColors.dangerFaded,
+        badgeColor: defaultColors.black,
       },
       cardTopBorderColor: defaultColors.danger,
     },
@@ -122,8 +128,10 @@ export const defaultTheme = {
       alertColor: defaultColors.white,
       alertBackground: defaultColors.warning,
       light: {
-        alertBackground: defaultColors.warningBackground,
+        alertBackground: defaultColors.warningFaded,
         alertColor: defaultColors.black,
+        badgeBackground: defaultColors.warningFaded,
+        badgeColor: defaultColors.black,
       },
       cardTopBorderColor: defaultColors.warning,
     },
@@ -142,30 +150,12 @@ export const defaultTheme = {
       alertColor: defaultColors.white,
       alertBackground: defaultColors.success,
       light: {
-        alertBackground: defaultColors.successBackground,
+        alertBackground: defaultColors.successFaded,
         alertColor: defaultColors.black,
+        badgeBackground: defaultColors.successFaded,
+        badgeColor: defaultColors.black,
       },
       cardTopBorderColor: defaultColors.success,
-    },
-    default: {
-      borderColor: defaultColors.secondary,
-      flood: defaultColors.secondary,
-      disabledFlood: defaultColors.secondaryFaded,
-      lightFlood: defaultColors.secondaryFaded,
-      hoverlightFlood: defaultColors.secondaryFaded,
-      text: defaultColors.primary,
-      reverseText: defaultColors.white,
-      hoverFlood: defaultColors.secondaryHover,
-      selectedFlood: defaultColors.secondaryHover,
-      badgeBackground: defaultColors.secondary,
-      badgeColor: defaultColors.black,
-      alertColor: defaultColors.black,
-      alertBackground: defaultColors.secondary,
-      light: {
-        alertBackground: defaultColors.secondaryBackground,
-        alertColor: defaultColors.black,
-      },
-      cardTopBorderColor: defaultColors.secondary,
     },
   },
   pagination: {
@@ -214,11 +204,30 @@ export const defaultTheme = {
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '160%',
-    color: defaultColors.primary,
+    color: defaultColors.drk800,
     caption: {
-      fontWeight: '300',
-      fontSize: '12px',
-      lineHeight: '18px',
+      10: {
+        fontWeight: '400',
+        fontSize: '10px',
+        lineHeight: '100%',
+      },
+      20: {
+        fontWeight: '400',
+        fontSize: '12px',
+        lineHeight: '100%',
+      },
+    },
+    bodyText: {
+      10: {
+        fontWeight: '400',
+        fontSize: '12px',
+        lineHeight: '100%',
+      },
+      20: {
+        fontWeight: '400',
+        fontSize: '14px',
+        lineHeight: '160%',
+      },
     },
     code: {
       background: defaultColors.lt200,
@@ -232,14 +241,28 @@ export const defaultTheme = {
       fontSize: '18px',
     },
     display: {
-      fontWeight: '400',
-      fontSize: '37px',
-      lineHeight: '120%',
+      10: {
+        fontWeight: '400',
+        fontSize: '22px',
+        lineHeight: '125%',
+      },
+      20: {
+        fontWeight: '400',
+        fontSize: '27px',
+        lineHeight: '120%',
+      },
     },
-    headline: {
-      fontWeight: '300',
-      fontSize: '27px',
-      lineHeight: '125%',
+    header: {
+      10: {
+        fontWeight: '700',
+        fontSize: '14px',
+        lineHeight: '160%',
+      },
+      20: {
+        fontWeight: '700',
+        fontSize: '23px',
+        lineHeight: '175%',
+      },
     },
     link: {
       fontWeight: '500',
@@ -247,7 +270,7 @@ export const defaultTheme = {
       color: defaultColors.primary,
       textDecoration: 'none',
       visited: {
-        color: lighten(defaultColors.primary, 40),
+        color: defaultColors.primaryFaded,
         textDecoration: 'underline',
       },
       hover: {
@@ -278,9 +301,16 @@ export const defaultTheme = {
       lineHeight: '135%',
     },
     title: {
-      fontWeight: '500',
-      fontSize: '20px',
-      lineHeight: '130%',
+      10: {
+        fontWeight: '700',
+        fontSize: '16px',
+        lineHeight: '130%',
+      },
+      20: {
+        fontWeight: '700',
+        fontSize: '18px',
+        lineHeight: '135%',
+      },
     },
   },
   input: {
@@ -326,9 +356,10 @@ export const defaultTheme = {
   checkbox: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: defaultColors.secondary,
+    borderColor: defaultColors.primary,
     disabledText: defaultColors.lt600,
     unselectedColor: defaultColors.white,
+    selectedColor: defaultColors.primary,
     stackedSpacing: '19px',
     inlineSpacing: '20px',
     sm: {
@@ -396,7 +427,7 @@ export const defaultTheme = {
     },
     body: {
       minHeight: '0',
-      backgroundColor: defaultColors.lt200,
+      backgroundColor: defaultColors.white,
       borderBottom: defaultColors.secondaryFaded,
       padding: '8px 16px',
     },
