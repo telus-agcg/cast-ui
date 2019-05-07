@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { DateRangePicker, DateRangePickerShape } from 'react-dates';
 import uuid from 'uuid';
 import { Moment } from 'moment';
+import { lighten } from '../utils/colorUtils';
 import { Themes } from '../themes';
 
 type momentDate = Moment | null;
@@ -74,6 +75,19 @@ const SWrapperComponent = styled.div<Partial<Props>>`
       props.theme.common[props.datePickerSize!].borderRadius};
     border: 1px solid ${(props: Partial<Props>) =>
       props.theme.colors.lightGray};
+  }
+  .CalendarDay__hovered_span, .CalendarDay__selected_span {
+    background: ${(props: Partial<Props>) =>
+      lighten(props.theme.styles[props.datePickerStyle!].borderColor, 25)};
+    border-color: ${(props: Partial<Props>) =>
+      lighten(props.theme.styles[props.datePickerStyle!].borderColor, 5)};
+    color: ${(props: Partial<Props>) => props.theme.colors.white}
+  }
+  .CalendarDay__selected {
+    background: ${(props: Partial<Props>) =>
+      props.theme.styles[props.datePickerStyle!].borderColor};
+    border-color: ${(props: Partial<Props>) =>
+      props.theme.styles[props.datePickerStyle!].borderColor};
   }
   .DateInput_input__small {
     line-height: unset;
