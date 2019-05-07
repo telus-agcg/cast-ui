@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Display } from './Display.component';
+import { BodyText } from './BodyText.component';
 import { select } from '@storybook/addon-knobs/react';
 
 storiesOf('Typography', module).add(
-  'Display',
+  'Digits',
   () => (
-    <Display size={select('Display size', ['10', '20'], '10')}>
-      Example Display
-    </Display>
+    <BodyText size={select('Caption size', ['10', '20'], '10')}>
+      Example BodyText
+    </BodyText>
   ),
   {
     info: {
       text: `
         ### Notes
 
-        Documentation and examples for Cast UI Display.
+        Documentation and examples for Cast UI BodyText.
         `,
     },
   },
