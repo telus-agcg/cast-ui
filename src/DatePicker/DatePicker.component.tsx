@@ -84,6 +84,12 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     border-right: 33px solid ${(props: Partial<Props>) =>
       props.theme.styles[props.datePickerStyle!].borderColor};
   }
+  .CalendarDay__selected {
+    background: ${(props: Partial<Props>) =>
+      props.theme.styles[props.datePickerStyle!].borderColor};
+    border-color: ${(props: Partial<Props>) =>
+      props.theme.styles[props.datePickerStyle!].borderColor};
+  }
 `;
 
 export class DatePicker extends React.PureComponent<Props> {
