@@ -63,13 +63,15 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
   input {
     box-sizing: border-box;
-  }
-  .SingleDatePickerInput {
-    background: ${(props: Partial<Props>) => props.theme.colors.white};
+    padding: ${(props: Partial<Props>) =>
+      props.theme.common[props.datePickerSize!].padding}
     border-radius: ${(props: Partial<Props>) =>
       props.theme.common[props.datePickerSize!].borderRadius};
     border: 1px solid ${(props: Partial<Props>) =>
       props.theme.colors.lightGray};
+  }
+  .SingleDatePickerInput {
+    background: ${(props: Partial<Props>) => props.theme.colors.white};
     display: flex;
   }
   .DateInput_input__small {
