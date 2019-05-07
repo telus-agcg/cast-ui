@@ -802,7 +802,7 @@ export const cobaltTheme = {
       margin: '0 0 16px',
       ctaColor: cobaltColors.primary,
       background: cobaltColors.white,
-      draggingBackground: cobaltColors.lt400,
+      draggingBackground: cobaltColors.lt200,
     },
     file: {
       defaultColor: cobaltColors.drk800,

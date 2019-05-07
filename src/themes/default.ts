@@ -805,7 +805,7 @@ export const defaultTheme = {
       margin: '0 0 16px',
       ctaColor: defaultColors.primary,
       background: defaultColors.white,
-      draggingBackground: defaultColors.lt400,
+      draggingBackground: defaultColors.lt200,
     },
     file: {
       defaultColor: defaultColors.drk800,
