@@ -68,7 +68,7 @@ const modalSizeRules: Function = (modalSize: string, theme: any) => {
       };
     default:
       return {
-        width: theme.modal[modalSize || 'md'].width,
+        width: theme.modal[modalSize].width,
       };
   }
 };
@@ -141,6 +141,7 @@ export class Modal extends React.Component<Props> {
   }
 
   static defaultProps = {
+    modalSize: 'md',
     theme: Themes.defaultTheme,
   };
 
@@ -193,7 +194,15 @@ export class Modal extends React.Component<Props> {
   };
 
   render() {
-    const { theme, onAfterOpen, onAfterClose, ...props } = this.props;
+    const {
+      theme,
+      onAfterOpen,
+      onAfterClose,
+      children,
+      modalTitle,
+      footerContent,
+      ...props
+    } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SReactModal
@@ -220,10 +229,10 @@ export class Modal extends React.Component<Props> {
               )}
             </ModalHeaderDiv>
           )}
-          <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
-          {this.props.footerContent && (
-            <ModalFooterDiv modalTitle={this.props.modalTitle}>
-              {this.props.footerContent}
+          <ModalBodyDiv>{children}</ModalBodyDiv>
+          {footerContent && (
+            <ModalFooterDiv modalTitle={modalTitle}>
+              {footerContent}
             </ModalFooterDiv>
           )}
         </SReactModal>
