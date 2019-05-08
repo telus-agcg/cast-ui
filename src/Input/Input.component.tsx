@@ -51,6 +51,18 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    **/
   invalidTextColor?: string;
   /**
+   * Specify whether the control shows an icon
+   *
+   * @default null
+   **/
+  icon?: JSX.Element | React.Component | React.FunctionComponent | string;
+  /**
+   * Specify the position of the icon within the control
+   *
+   * @default 'right'
+   */
+  iconPosition?: 'left' | 'right';
+  /**
    * What is the maximum length of the text in the field?
    *
    * @default null
@@ -86,7 +98,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const SInput = styled.input`
   background: ${(props: Props) => props.theme.input.background}
-  border: ${(props: Props) => props.theme.input.border};
+	border: ${(props: Props) => (props.icon ? 'none' : props.theme.input.border)};
   border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize!].borderRadius};
   padding: ${(props: Props) => props.theme.common[props.inputSize!].padding}
@@ -106,6 +118,35 @@ const SInput = styled.input`
   }
 `;
 
+const SInputWrapper = styled.div`
+  display: inline-flex;
+  outline: red;
+  flex-wrap: wrap;
+  align-items: stretch;
+  border: ${(props: Props) => (props.icon ? props.theme.input.border : 'none')};
+  &.input-icon-left,
+  &.input-icon-right {
+    & > span {
+      display: flex;
+      align-items: center;
+      & > * {
+        padding: ${(props: Props) =>
+          props.theme.common[props.inputSize!].padding};
+      }
+    }
+  }
+  &.input-icon-left {
+    & > span {
+      margin-right: -1px;
+    }
+  }
+  &.input-icon-right {
+    & > span {
+      margin-left: -1px;
+    }
+  }
+`;
+
 export const Input: React.FunctionComponent<Props> = ({
   theme,
   children,
@@ -117,16 +158,23 @@ export const Input: React.FunctionComponent<Props> = ({
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
-        <SInput
-          value={value}
-          onChange={onChange}
+        <SInputWrapper
+          className={inputProps.icon && `input-icon-${inputProps.iconPosition}`}
           {...inputProps}
-          data-invalid={inputProps.invalid ? '' : undefined}
-          aria-invalid={inputProps.invalid ? true : undefined}
-          aria-describedby={errorId}
         >
-          {children}
-        </SInput>
+          {'left' === inputProps.iconPosition && <span>{inputProps.icon}</span>}
+          <SInput
+            value={value}
+            onChange={onChange}
+            {...inputProps}
+            data-invalid={inputProps.invalid ? '' : undefined}
+            aria-invalid={inputProps.invalid ? true : undefined}
+            aria-describedby={errorId}
+          />
+          {'right' === inputProps.iconPosition && (
+            <span>{inputProps.icon}</span>
+          )}
+        </SInputWrapper>
         {inputProps.invalid && (
           <ErrorMessage
             id={errorId}

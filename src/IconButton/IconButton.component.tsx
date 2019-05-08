@@ -47,7 +47,8 @@ const SIconButton = styled(Button)`
   position: relative;
   border-radius: ${(props: any) =>
     props.rounded ? '50%' : props.theme.common[props.btnSize].borderRadius};
-  min-width: ${(props: any) => (props.rounded ? '10px' : '75px')};
+  min-width: ${(props: any) =>
+    props.rounded || !props.rounded ? '10px' : '75px'};
   width: ${(props: any) =>
     props.rounded ? `${props.pixelButtonSize}px` : 'auto'};
   height: ${(props: any) =>
@@ -75,4 +76,5 @@ IconButton.defaultProps = {
   pixelButtonSize: 32,
   iconSize: 24,
   rounded: true,
+  btnSize: 'md',
 };
