@@ -110,4 +110,48 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
         `,
       },
     },
+  )
+  .add(
+    'with Addon Text',
+    () => {
+      const inputSize = select('inputSize', ['sm', 'md', 'lg'], 'md');
+      return (
+        <Input
+          id="myInput"
+          type={select('type', ['text', 'number', 'email', 'password'], 'text')}
+          autoComplete={select('autoComplete', ['on', 'off'], 'on')}
+          disabled={boolean('disabled', false)}
+          inputSize={inputSize}
+          invalid={boolean('invalid', false)}
+          invalidText={text('invalidText', 'A valid value is required')}
+          invalidTextColor={text('invalidTextColor', '')}
+          maxLength={number('maxLength', 1000)}
+          placeholder={text('placeholder', 'Please enter some text')}
+          required={boolean('required', false)}
+          value={text('value', '')}
+          addonText={text('addonText', '$')}
+          addonTextPosition={select(
+            'addonTextPosition',
+            ['right', 'left'],
+            'right',
+          )}
+          onChange={e => {
+            action('Changed!');
+          }}
+        />
+      );
+    },
+    {
+      info: {
+        text: `
+### Notes
+
+The Input component accepts 2 additional props, **addonText** and **addonTextPosition** that allow the Input to prepend or append a *string* or *character set* such as currency codes.
+
+By using the *addonText* prop, the Input component text alignment is shifted to right otherwise it remains left or default.
+
+In this example, the **addonText** is the dollar sign ($).
+        `,
+      },
+    },
   );
