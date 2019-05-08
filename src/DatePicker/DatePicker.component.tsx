@@ -72,6 +72,27 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   .SingleDatePickerInput {
     background: ${(props: Partial<Props>) => props.theme.colors.white};
     display: flex;
+    border: ${(props: Partial<Props>) => props.theme.input.border};
+  }
+  .DateInput {
+    width: 110px;
+  }
+  .DateInput_input {
+    line-height: ${(props: Partial<Props>) =>
+      `${parseInt(props.theme.common[props.datePickerSize!].fontSize, 10) +
+        1}px`};
+    font-size: ${(props: Partial<Props>) =>
+      `${parseInt(props.theme.common[props.datePickerSize!].fontSize, 10) +
+        1}px`};
+    height: 100%;
+  }
+  DateRangePickerInput_arrow_svg {
+    height: ${(props: Partial<Props>) =>
+      `${parseInt(props.theme.common[props.datePickerSize!].fontSize, 10) +
+        2}px`};
+    width: ${(props: Partial<Props>) =>
+      `${parseInt(props.theme.common[props.datePickerSize!].fontSize, 10) +
+        2}px`};
   }
   .DateInput_input__small {
     line-height: unset;
@@ -162,7 +183,6 @@ export class DatePicker extends React.PureComponent<Props> {
           datePickerStyle={datePickerStyle}
         >
           <SingleDatePicker
-            // The next properties have to be overrided by the instance's functions
             id={id!}
             date={date || this.state.date}
             focused={!!focused || !!this.state.focused}
