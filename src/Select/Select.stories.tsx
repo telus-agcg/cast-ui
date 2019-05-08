@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
 
 import { Select } from '../';
+import { action } from '@storybook/addon-actions';
 
 storiesOf('Select', module).add(
   'Select',
@@ -17,6 +18,7 @@ storiesOf('Select', module).add(
         invalidTextColor={text('invalidTextColor', '')}
         borderColor={text('borderColor', '')}
         borderRadius={text('borderRadius', '')}
+        onChange={action('onChange')}
         options={[
           { value: 'chocolate', label: 'Chocolate' },
           { value: 'strawberry', label: 'Strawberry' },
