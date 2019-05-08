@@ -1,5 +1,6 @@
 import * as React from 'react';
 import uuid from 'uuid';
+import ErrorMessage from '../Typography/ErrorMessage/index';
 import styled, { ThemeProvider } from 'styled-components';
 import { SingleDatePicker, SingleDatePickerShape } from 'react-dates';
 import { Moment } from 'moment';
@@ -48,6 +49,22 @@ export interface Props extends SingleDatePickerShape {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Specify whether the control is currently invalid
+   *
+   * @default false
+   **/
+  invalid?: boolean;
+  /**
+   * Provide the text that is displayed when the control is in an invalid state
+   */
+  invalidText?: string;
+  /**
+   * Color of the invalid text
+   *
+   * @default ''
+   **/
+  invalidTextColor?: string;
 }
 
 type State = {
@@ -124,6 +141,9 @@ export class DatePicker extends React.PureComponent<Props> {
     focused: null,
     onDateChange: null,
     onFocusChange: null,
+    invalid: false,
+    invalidText: '',
+    invalidTextColor: '',
     theme: Themes.defaultTheme,
   };
 
@@ -172,8 +192,12 @@ export class DatePicker extends React.PureComponent<Props> {
       small,
       regular,
       block,
+      invalid,
+      invalidText,
+      invalidTextColor,
       ...props
     } = this.props;
+    const errorId = invalid ? `${id}-error-msg` : '';
     return (
       <ThemeProvider theme={theme}>
         <SWrapperComponent
@@ -189,7 +213,17 @@ export class DatePicker extends React.PureComponent<Props> {
             onFocusChange={this.onFocusChange}
             onDateChange={this.onDateChange}
             {...props}
+            data-invalid={invalid ? '' : undefined}
+            aria-invalid={invalid ? true : undefined}
+            aria-describedby={errorId}
           />
+          {invalid && (
+            <ErrorMessage
+              id={errorId}
+              message={invalidText || ''}
+              textColor={invalidTextColor || ''}
+            />
+          )}
         </SWrapperComponent>
       </ThemeProvider>
     );

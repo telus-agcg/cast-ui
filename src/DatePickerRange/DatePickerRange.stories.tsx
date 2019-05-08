@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import DatePickerRange from '../DatePickerRange';
-import { boolean, select } from '@storybook/addon-knobs/react';
+import { boolean, select, text } from '@storybook/addon-knobs/react';
 
 storiesOf('DatePickerRange', module).add('DatePickerRange', () => (
   <DatePickerRange
@@ -18,5 +18,8 @@ storiesOf('DatePickerRange', module).add('DatePickerRange', () => (
       ['primary', 'secondary', 'success', 'warning', 'danger'],
       'primary',
     )}
+    invalid={boolean('invalid', false)}
+    invalidText={text('invalidText', 'A valid value is required')}
+    invalidTextColor={text('invalidTextColor', '')}
   />
 ));
