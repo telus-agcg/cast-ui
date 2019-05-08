@@ -63,6 +63,18 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    */
   iconPosition?: 'left' | 'right';
   /**
+   * Specify whether the control shows an icon
+   *
+   * @default null
+   **/
+  addonText?: string;
+  /**
+   * Specify the position of the icon within the control
+   *
+   * @default 'right'
+   */
+  addonTextPosition?: 'left' | 'right';
+  /**
    * What is the maximum length of the text in the field?
    *
    * @default null
@@ -98,13 +110,19 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const SInput = styled.input`
   background: ${(props: Props) => props.theme.input.background}
-	border: ${(props: Props) => (props.icon ? 'none' : props.theme.input.border)};
+	border: ${(props: Props) =>
+    props.icon || props.addonText ? 'none' : props.theme.input.border};
   border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize!].borderRadius};
-  padding: ${(props: Props) => props.theme.common[props.inputSize!].padding}
+	padding: ${(props: Props) => props.theme.common[props.inputSize!].padding}
+	padding-left: ${(props: Props) =>
+    'left' === props.addonTextPosition ? '0' : 'auto'}
+	padding-right: ${(props: Props) =>
+    'right' === props.addonTextPosition ? '0' : 'auto'}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
+  text-align: ${(props: Props) => (props.addonText ? 'right' : 'auto')};
   &:disabled {
     border: ${props => props.theme.input.disabled.border};
     background: ${props => props.theme.input.disabled.background};
@@ -122,13 +140,21 @@ const SInputWrapper = styled.div`
   display: inline-flex;
   outline: red;
   flex-wrap: wrap;
-  align-items: stretch;
-  border: ${(props: Props) => (props.icon ? props.theme.input.border : 'none')};
+	align-items: stretch;
+	font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
+  color: ${(props: Props) => props.theme.reverseText};
+  border: ${(props: Props) =>
+    props.icon || props.addonText ? props.theme.input.border : 'none'};
   &.input-icon-left,
   &.input-icon-right {
     & > span {
       display: flex;
-      align-items: center;
+			align-items: center;
+			padding: ${(props: Props) =>
+        props.addonText
+          ? props.theme.common[props.inputSize!].padding
+          : 'auto'};
       & > * {
         padding: ${(props: Props) =>
           props.theme.common[props.inputSize!].padding};
@@ -159,10 +185,17 @@ export const Input: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInputWrapper
-          className={inputProps.icon && `input-icon-${inputProps.iconPosition}`}
+          className={
+            (inputProps.icon || inputProps.addonText) &&
+            `input-icon-${inputProps.iconPosition ||
+              inputProps.addonTextPosition}`
+          }
           {...inputProps}
         >
-          {'left' === inputProps.iconPosition && <span>{inputProps.icon}</span>}
+          {('left' === inputProps.iconPosition ||
+            'left' === inputProps.addonTextPosition) && (
+            <span>{inputProps.icon || inputProps.addonText}</span>
+          )}
           <SInput
             value={value}
             onChange={onChange}
@@ -171,8 +204,9 @@ export const Input: React.FunctionComponent<Props> = ({
             aria-invalid={inputProps.invalid ? true : undefined}
             aria-describedby={errorId}
           />
-          {'right' === inputProps.iconPosition && (
-            <span>{inputProps.icon}</span>
+          {('right' === inputProps.iconPosition ||
+            'right' === inputProps.addonTextPosition) && (
+            <span>{inputProps.icon || inputProps.addonText}</span>
           )}
         </SInputWrapper>
         {inputProps.invalid && (
