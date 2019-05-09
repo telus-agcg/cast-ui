@@ -63,7 +63,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default null
    **/
-  selectedOption?: string;
+  selectedOption?: Object | Object[];
   /**
    * Any props that should be passed directly to the third-
    * party react-select control.
