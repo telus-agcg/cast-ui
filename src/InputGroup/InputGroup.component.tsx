@@ -28,7 +28,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const InputGroupWrapper = styled.div`
-  overflow: hidden;
+  padding: 1px;
   border-radius: ${(props: Props) => props.theme.borders.radius};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   color: ${(props: Props) => props.theme.inputGroup.root.color};
