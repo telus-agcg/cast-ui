@@ -149,7 +149,7 @@ const SDiv = styled.div<Props>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
-  .react-select-component > div {
+  .react-select-component > div[class*="-control"] {
     min-height: unset;
     margin-top: 1px;
     padding-top: 1px;
@@ -157,7 +157,7 @@ const SDiv = styled.div<Props>`
       props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
     border-color: ${(props: Props) =>
       props.borderColor || props.theme.select.borderColor || 'inherit'};
-  }
+	}
 `;
 
 const SSelect = styled(Select)`
