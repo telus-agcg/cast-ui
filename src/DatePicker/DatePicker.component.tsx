@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 import styled, { ThemeProvider } from 'styled-components';
 import { SingleDatePicker, SingleDatePickerShape } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 import { Moment } from 'moment';
 import { Themes } from '../themes';
 

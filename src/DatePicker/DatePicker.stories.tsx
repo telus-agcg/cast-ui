@@ -31,7 +31,7 @@ storiesOf('DatePicker', module).add(
       text: `
         ### Notes
 
-        This is a DatePicker, based on [react-day-picker](http://react-day-picker.js.org/).
+        This is a DatePicker, based on [react-dates](http://airbnb.io/react-dates).
         `,
     },
   },
