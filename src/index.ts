@@ -1,3 +1,6 @@
+import 'react-dates/lib/css/_datepicker.css';
+import 'react-dates/initialize';
+
 /**
  * Themes
  */
@@ -15,6 +18,7 @@ export * from './Checkbox';
 export * from './CopyToClipboard';
 export * from './Card';
 export * from './DatePicker';
+export * from './DatePickerRange';
 export * from './Draggable';
 export * from './FileUpload';
 export * from './Typography/ErrorMessage/index';
@@ -44,4 +48,5 @@ export * from './Typography/Display';
 export * from './Typography/Header/index';
 export * from './Typography/Link';
 export * from './Typography/Title';
-export * from './Typography/BodyText/index';
+export * from './Typography/BodyText';
+export * from './Collapse';

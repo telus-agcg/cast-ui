@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs/react';
+import { boolean, select, text } from '@storybook/addon-knobs/react';
 
 import { DatePicker } from '../';
 
@@ -8,20 +8,22 @@ storiesOf('DatePicker', module).add(
   'DatePicker',
   () => (
     <DatePicker
-      id="datepicker"
-      placeholder="Select start date"
+      key="0"
+      showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
+      inputIconPosition={select(
+        'inputIconPosition',
+        ['before', 'after'],
+        'after',
+      )}
       datePickerStyle={select(
         'datePickerStyle',
-        ['success', 'default', 'primary', 'success', 'danger', 'warning'],
+        ['primary', 'secondary', 'success', 'warning', 'danger'],
         'primary',
       )}
       datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
-      dayPickerProps={{
-        selectedDays: [
-          new Date('2019-2-5'),
-          { from: new Date('2019-4-5'), to: new Date('2019-4-9') },
-        ],
-      }}
+      invalid={boolean('invalid', false)}
+      invalidText={text('invalidText', 'A valid value is required')}
+      invalidTextColor={text('invalidTextColor', '')}
     />
   ),
   {
