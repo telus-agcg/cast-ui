@@ -59,7 +59,7 @@ const SDropZone = styled.div`
   transition: all 0.2s ease-in-out;
   .fileUploadCTA {
     color: ${(props: Props) => props.theme.fileUpload.dropZone.ctaColor};
-    cursor: ${(props: Props) => (props.disabled ? 'not-allowed' : 'cursor')};
+    cursor: ${(props: Props) => (props.disabled ? 'not-allowed' : 'pointer')};
     opacity: ${(props: Props) => (props.disabled ? '.6' : '1')};
   }
   input {

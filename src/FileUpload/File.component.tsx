@@ -98,6 +98,7 @@ const SFile = styled.div`
     color: ${(props: Props) =>
       props.uploaded ? props.theme.fileUpload.file.primaryColor : 'inherit'};
     cursor: ${(props: Props) => (props.uploaded ? 'pointer' : 'default')};
+    overflow: hidden;
   }
   .file-size {
     width: 10%;
