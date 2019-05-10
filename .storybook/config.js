@@ -5,6 +5,7 @@ import { withInfo } from '@storybook/addon-info';
 import 'typeface-roboto';
 import { defaultTheme, cobaltTheme } from '../src/themes';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
+import 'react-dates/initialize';
 
 const wInfoStyle = {
   header: {
