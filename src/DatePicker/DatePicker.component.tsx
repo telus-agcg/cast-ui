@@ -79,7 +79,6 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     props.theme.common[props.datePickerSize!].fontSize}
   color: ${(props: Partial<Props>) =>
     props.theme.styles[props.datePickerStyle!].text};
-  z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
   input {
     box-sizing: border-box;
     padding: ${(props: Partial<Props>) =>
@@ -103,6 +102,9 @@ const SWrapperComponent = styled.div<Partial<Props>>`
       `${parseInt(props.theme.common[props.datePickerSize!].fontSize, 10) +
         1}px`};
     height: 100%;
+  }
+  .SingleDatePicker_picker {
+    z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
   }
   DateRangePickerInput_arrow_svg {
     height: ${(props: Partial<Props>) =>
