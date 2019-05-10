@@ -30,8 +30,8 @@ export const BodyText: React.FunctionComponent<Props> = ({
   children,
   ...props
 }) => (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SBodyText {...props}>{children}</SBodyText>
-    </ThemeProvider>
-  );
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SBodyText {...props}>{children}</SBodyText>
+  </ThemeProvider>
+);
 BodyText.defaultProps = { theme: Themes.defaultTheme, size: '10' };

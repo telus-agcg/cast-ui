@@ -428,7 +428,7 @@ export const cobaltTheme = {
     },
     body: {
       minHeight: '0',
-      backgroundColor: cobaltColors.lt200,
+      backgroundColor: cobaltColors.white,
       borderBottom: cobaltColors.lt800,
       padding: '8px 16px',
       color: cobaltColors.drk800,
@@ -584,6 +584,8 @@ export const cobaltTheme = {
     },
   },
   datepicker: {
+    position: 'absolute',
+    zIndex: 99,
     sm: {
       margins: {
         dayPickerWraper: '16px 0',
@@ -789,5 +791,37 @@ export const cobaltTheme = {
     optionBackgroundColor: cobaltColors.lt800,
     hoverOptionBackgroundColor: lighten(cobaltColors.primary, 75),
     borderColor: cobaltColors.lt800,
+  },
+  fileUpload: {
+    fontSize: '14px',
+    dropZone: {
+      color: cobaltColors.secondaryHover,
+      border: `1px dashed ${cobaltColors.lt800}`,
+      draggingBorder: `1px dashed ${cobaltColors.drk400}`,
+      borderRadius: '1px',
+      textAlign: 'center',
+      padding: '16px',
+      margin: '0 0 16px',
+      ctaColor: cobaltColors.primary,
+      background: cobaltColors.white,
+      draggingBackground: cobaltColors.lt200,
+    },
+    file: {
+      defaultColor: cobaltColors.drk800,
+      primaryColor: cobaltColors.primary,
+      dangerColor: cobaltColors.danger,
+      background: cobaltColors.lt200,
+      borderRadius: '1px',
+      textAlign: 'left',
+      padding: '16px',
+      margin: '3px 0',
+    },
+  },
+  progressBar: {
+    height: '8px',
+    borderRadius: '6px',
+    background: cobaltColors.lt800,
+    progressBackground: cobaltColors.primary,
+    transition: 'width .2s ease-in',
   },
 };

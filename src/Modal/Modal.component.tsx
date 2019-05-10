@@ -53,38 +53,6 @@ export interface Props extends ReactModalProps {
   theme?: any;
 }
 
-const castStyles = {
-  overlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    textAlign: 'center',
-  },
-  content: {
-    top: '40%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -40%)',
-    backgroundColor: '#F9F9F9',
-    border: '',
-    height: 'auto',
-    lineHeight: '20px',
-    position: 'absolute',
-    boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
-    whiteSpace: 'normal',
-    verticalAlign: 'middle',
-    padding: '0',
-    textAlign: 'left',
-    fontSize: '14px',
-    borderRadius: '1px',
-  },
-};
-
 const modalSizeRules: Function = (modalSize: string, theme: any) => {
   switch (modalSize) {
     case 'full':
@@ -100,7 +68,7 @@ const modalSizeRules: Function = (modalSize: string, theme: any) => {
       };
     default:
       return {
-        width: theme.modal[modalSize || 'md'].width,
+        width: theme.modal[modalSize].width,
       };
   }
 };
@@ -173,7 +141,42 @@ export class Modal extends React.Component<Props> {
   }
 
   static defaultProps = {
+    modalSize: 'md',
     theme: Themes.defaultTheme,
+  };
+
+  getModalStyles = () => {
+    return {
+      overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        textAlign: 'center',
+      },
+      content: {
+        top: '40%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -40%)',
+        backgroundColor: this.props.theme.modal.body.backgroundColor,
+        border: '',
+        height: 'auto',
+        lineHeight: '20px',
+        position: 'absolute',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
+        whiteSpace: 'normal',
+        verticalAlign: 'middle',
+        padding: '0',
+        textAlign: 'left',
+        fontSize: '14px',
+        borderRadius: '1px',
+      },
+    };
   };
 
   OnAfterOpen = fn => {
@@ -191,13 +194,21 @@ export class Modal extends React.Component<Props> {
   };
 
   render() {
-    const { theme, onAfterOpen, onAfterClose, ...props } = this.props;
+    const {
+      theme,
+      onAfterOpen,
+      onAfterClose,
+      children,
+      modalTitle,
+      footerContent,
+      ...props
+    } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SReactModal
           role="dialog"
           isOpen={this.props.isOpen}
-          style={castStyles}
+          style={this.getModalStyles()}
           modalSize={this.props.modalSize || 'md'}
           appElement={props.appElement || document.getElementById('root')!}
           onAfterOpen={() => this.OnAfterOpen(onAfterOpen)}
@@ -218,10 +229,10 @@ export class Modal extends React.Component<Props> {
               )}
             </ModalHeaderDiv>
           )}
-          <ModalBodyDiv>{this.props.children}</ModalBodyDiv>
-          {this.props.footerContent && (
-            <ModalFooterDiv modalTitle={this.props.modalTitle}>
-              {this.props.footerContent}
+          <ModalBodyDiv>{children}</ModalBodyDiv>
+          {footerContent && (
+            <ModalFooterDiv modalTitle={modalTitle}>
+              {footerContent}
             </ModalFooterDiv>
           )}
         </SReactModal>
