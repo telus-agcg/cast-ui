@@ -54,7 +54,6 @@ export const InputGroup: React.FunctionComponent<Props> = ({
   children,
   label,
   vertical,
-
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>

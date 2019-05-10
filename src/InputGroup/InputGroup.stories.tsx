@@ -31,7 +31,7 @@ storiesOf('InputGroup', module).add(
       >
         <Select
           id="mySelect"
-          disabled={boolean('disabled', false)}
+          isDisabled={boolean('disabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           invalid={boolean('invalid', false)}
           invalidText={text('invalidText', 'A valid value is required')}
