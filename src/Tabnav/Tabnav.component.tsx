@@ -220,8 +220,6 @@ export const Tabnav: React.FunctionComponent<Props> = ({
 );
 
 Tabnav.defaultProps = {
-  borderTop: '',
-  borderBottom: '',
   tabs: [],
   theme: Themes.defaultTheme,
 };

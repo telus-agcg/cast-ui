@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { text } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
 import { Tabnav, Header, Badge } from '../';
@@ -9,9 +8,6 @@ storiesOf('Tabnav', module).add(
   'Tabnav',
   () => (
     <Tabnav
-      background={text('background', '')}
-      borderTop={text('borderTop', '')}
-      borderBottom={text('borderBottom', '1px solid grey')}
       tabs={[
         {
           label: 'Overview',
