@@ -1,5 +1,3 @@
-import 'react-dates/initialize';
-
 /**
  * Themes
  */
