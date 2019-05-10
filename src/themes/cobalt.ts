@@ -199,7 +199,7 @@ export const cobaltTheme = {
     outlineBackgroundColor: 'white',
   },
   typography: {
-    fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
+    fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
     fontWeight: '400',
@@ -655,10 +655,10 @@ export const cobaltTheme = {
     color: cobaltColors.drk800,
   },
   tabnav: {
-    background: cobaltColors.primaryBackground,
-    padding: '0 32px ',
-    borderTop: '',
-    borderBottom: '',
+    background: cobaltColors.highlight200,
+    padding: '0 32px',
+    borderTop: 'none',
+    borderBottom: `1px solid ${cobaltColors.lt800}`,
     color: cobaltColors.drk800,
     tab: {
       padding: '4px 0 8px',
