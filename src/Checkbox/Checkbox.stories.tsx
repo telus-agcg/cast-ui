@@ -16,9 +16,9 @@ storiesOf('Checkbox', module).add(
         disabled={boolean('disabled (checkbox 1)', false)}
         onChange={action('onChange 1')}
         value="1"
-        indeterminate={boolean("indeterminate (checkbox 1)", true)}
+        indeterminate={boolean('indeterminate (checkbox 1)', true)}
         checked={boolean('checked (checkbox 1)', true)}
-				displayStyle={select("displayStyle", ["inline", "stacked"], "inline")}
+        displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
       >
         One
       </Checkbox>
@@ -29,9 +29,9 @@ storiesOf('Checkbox', module).add(
         disabled={boolean('disabled (checkbox 2)', false)}
         onChange={action('onChange 2')}
         value="2"
-        indeterminate={boolean("indeterminate (checkbox 2)", false)}
+        indeterminate={boolean('indeterminate (checkbox 2)', false)}
         checked={boolean('checked (checkbox 2)', true)}
-				displayStyle={select("displayStyle", ["inline", "stacked"], "inline")}
+        displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
       >
         Two
       </Checkbox>

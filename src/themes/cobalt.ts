@@ -199,7 +199,7 @@ export const cobaltTheme = {
     outlineBackgroundColor: 'white',
   },
   typography: {
-    fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
+    fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
     fontWeight: '400',
@@ -584,6 +584,8 @@ export const cobaltTheme = {
     },
   },
   datepicker: {
+    position: 'absolute',
+    zIndex: 99,
     sm: {
       margins: {
         dayPickerWraper: '16px 0',
@@ -653,10 +655,10 @@ export const cobaltTheme = {
     color: cobaltColors.drk800,
   },
   tabnav: {
-    background: cobaltColors.primaryBackground,
-    padding: '0 32px ',
-    borderTop: '',
-    borderBottom: '',
+    background: cobaltColors.highlight200,
+    padding: '0 32px',
+    borderTop: 'none',
+    borderBottom: `1px solid ${cobaltColors.lt800}`,
     color: cobaltColors.drk800,
     tab: {
       padding: '4px 0 8px',
@@ -789,5 +791,37 @@ export const cobaltTheme = {
     optionBackgroundColor: cobaltColors.lt800,
     hoverOptionBackgroundColor: lighten(cobaltColors.primary, 75),
     borderColor: cobaltColors.lt800,
+  },
+  fileUpload: {
+    fontSize: '14px',
+    dropZone: {
+      color: cobaltColors.secondaryHover,
+      border: `1px dashed ${cobaltColors.lt800}`,
+      draggingBorder: `1px dashed ${cobaltColors.drk400}`,
+      borderRadius: '1px',
+      textAlign: 'center',
+      padding: '16px',
+      margin: '0 0 16px',
+      ctaColor: cobaltColors.primary,
+      background: cobaltColors.white,
+      draggingBackground: cobaltColors.lt200,
+    },
+    file: {
+      defaultColor: cobaltColors.drk800,
+      primaryColor: cobaltColors.primary,
+      dangerColor: cobaltColors.danger,
+      background: cobaltColors.lt200,
+      borderRadius: '1px',
+      textAlign: 'left',
+      padding: '16px',
+      margin: '3px 0',
+    },
+  },
+  progressBar: {
+    height: '8px',
+    borderRadius: '6px',
+    background: cobaltColors.lt800,
+    progressBackground: cobaltColors.primary,
+    transition: 'width .2s ease-in',
   },
 };

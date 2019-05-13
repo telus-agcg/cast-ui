@@ -31,11 +31,17 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   id?: string;
   /**
-   * Specify if the tab is disabled
+   * Handle multi-select
    *
    * @default false
    **/
-  disabled?: boolean;
+  isMulti?: boolean;
+  /**
+   * Specify if the control is disabled
+   *
+   * @default false
+   **/
+  isDisabled?: boolean;
   /**
    * Specify whether the control is currently invalid
    *
@@ -43,9 +49,27 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   invalid?: boolean;
   /**
+   * Subscribe to changes in value
+   *
+   * @default null
+   */
+  onChange?: any;
+  /**
+   * Should Menu close on select
+   *
+   * @default true
+   */
+  closeMenuOnSelect?: boolean;
+  /**
    * Provide the text that is displayed when the control is in an invalid state
    */
   invalidText?: string;
+  /**
+   * Placeholder text
+   *
+   * @default null
+   **/
+  placeholder?: string;
   /**
    * Color of the invalid text
    *
@@ -63,7 +87,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default null
    **/
-  selectedOption?: string;
+  selectedOption?: Object | Object[];
   /**
    * Any props that should be passed directly to the third-
    * party react-select control.
@@ -80,6 +104,8 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
     initialTouchY: number;
     inputIsHiddenAfterUpdate: boolean | null;
     instancePrefix: string;
+    isSearchable: boolean;
+    name: string;
     openAfterFocus: boolean;
     scrollToFocusedOptionOnUpdate: boolean;
     userIsDragging: boolean | null;
@@ -149,7 +175,7 @@ const SDiv = styled.div<Props>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
-  .react-select-component > div {
+  .react-select-component > div[class*="-control"] {
     min-height: unset;
     margin-top: 1px;
     padding-top: 1px;
@@ -157,7 +183,7 @@ const SDiv = styled.div<Props>`
       props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
     border-color: ${(props: Props) =>
       props.borderColor || props.theme.select.borderColor || 'inherit'};
-  }
+	}
 `;
 
 const SSelect = styled(Select)`
@@ -205,27 +231,25 @@ export class CustomSelect extends React.Component<Props> {
     selectSize: 'md',
     theme: Themes.defaultTheme,
     invalidText: '',
-    invalidTextColor: '',
     id: uuid.v4(),
     option: {},
-    optionBackgroundColor: '',
-    hoverOptionBackgroundColor: '',
+    closeMenuOnSelect: false,
   };
 
   render() {
     const {
       options,
       controlSpecificProps,
+      closeMenuOnSelect,
       invalid,
       selectSize,
       theme,
       id,
-
-      disabled,
+      isMulti,
+      isDisabled,
       selectedOption,
       invalidText,
       invalidTextColor,
-
       dropdownColor,
       optionBackgroundColor,
       hoverOptionBackgroundColor,
@@ -242,7 +266,6 @@ export class CustomSelect extends React.Component<Props> {
           aria-describedby={errorId}
           invalid={invalid}
           id={id}
-          {...props}
         >
           <SSelect
             components={{
@@ -260,9 +283,10 @@ export class CustomSelect extends React.Component<Props> {
                 </SIndicatorWrapper>
               ),
             }}
-            closeMenuOnSelect={false}
+            closeMenuOnSelect={closeMenuOnSelect}
             className="react-select-component"
-            isDisabled={disabled}
+            isDisabled={isDisabled}
+            isMulti={isMulti}
             value={selectedOption}
             options={options}
             invalid={invalid}

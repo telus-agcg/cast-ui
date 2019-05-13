@@ -202,7 +202,7 @@ export const Tabnav: React.FunctionComponent<Props> = ({
             >
               <STab
                 role="tab"
-                tabindex="0"
+                tabIndex="0"
                 onClick={(e: any) => onTabClick(tab, e)}
                 {...tab}
               >
@@ -220,8 +220,6 @@ export const Tabnav: React.FunctionComponent<Props> = ({
 );
 
 Tabnav.defaultProps = {
-  borderTop: '',
-  borderBottom: '',
   tabs: [],
   theme: Themes.defaultTheme,
 };

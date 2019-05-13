@@ -26,12 +26,12 @@ const config = {
       },
     },
     {
-      file: pkg.main,
+      file: pkg.module,
       format: 'es',
       name: 'castUI',
     },
     {
-      file: pkg.module,
+      file: pkg.main,
       format: 'cjs',
     },
   ],
@@ -41,7 +41,16 @@ const config = {
     peerDepsExternal(),
     localResolve(),
     resolve(),
-    commonjs(),
+    commonjs({
+      namedExports: {
+        'node_modules/react-dates/index.js': [
+          'SingleDatePicker',
+          'SingleDatePickerShape',
+          'DateRangePicker',
+          'DateRangePickerShape',
+        ],
+      },
+    }),
     filesize(),
     typescript({
       typescript: require('typescript'),

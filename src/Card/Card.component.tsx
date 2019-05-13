@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-export type Props = {
+export interface Props {
   /**
    * Select Card Style
    *
@@ -27,7 +27,7 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
 const highlighBorderRules: Function = (
   highlightBorder: string,
