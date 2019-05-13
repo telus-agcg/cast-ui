@@ -33,7 +33,7 @@ export type Props = React.InputHTMLAttributes<HTMLInputElement> & {
    *
    * @default false
    **/
-  disabled: boolean;
+  disabled?: boolean;
   /**
    * Specify the size of the radio button (sm | md | lg)
    *
