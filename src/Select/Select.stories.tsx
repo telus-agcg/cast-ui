@@ -11,7 +11,8 @@ storiesOf('Select', module).add(
     <div>
       <Select
         id="mySelect"
-        disabled={boolean('disabled', false)}
+        isMulti={boolean('isMulti', false)}
+        isDisabled={boolean('isDisabled', false)}
         selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
         invalid={boolean('invalid', false)}
         invalidText={text('invalidText', 'A valid value is required')}
@@ -19,7 +20,7 @@ storiesOf('Select', module).add(
         borderColor={text('borderColor', '')}
         borderRadius={text('borderRadius', '')}
         onChange={action('onChange')}
-        selectedOption={{ value: 'vanilla', label: 'Vanilla' }}
+        closeMenuOnSelect={boolean('closeMenuOnSelect', true)}
         options={[
           { value: 'chocolate', label: 'Chocolate' },
           { value: 'strawberry', label: 'Strawberry' },

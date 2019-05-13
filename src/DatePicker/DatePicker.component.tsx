@@ -4,6 +4,7 @@ import ErrorMessage from '../Typography/ErrorMessage/index';
 import styled, { ThemeProvider } from 'styled-components';
 import { SingleDatePicker, SingleDatePickerShape } from 'react-dates';
 import { Moment } from 'moment';
+import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { Themes } from '../themes';
 
