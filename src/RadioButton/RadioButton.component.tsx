@@ -159,19 +159,25 @@ export class RadioButton extends React.Component<Props> {
     theme: Themes.defaultTheme,
     id: uuid.v4(),
     disabled: false,
+    defaultChecked: false,
   };
 
   state = {
-    checked: this.props.defaultChecked,
+    checked: this.props.checked || this.props.defaultChecked,
   };
 
   onChange = (event: any) => {
-    if (this.props.onChange instanceof Function) {
-      this.props.onChange(this.props.value, this.props.name!, event);
-    } else {
-      this.setState({
-        checked: !this.state.checked,
-      });
+    if (!this.props.disabled) {
+      if (this.props.onChange instanceof Function) {
+        this.props.onChange(this.props.value, this.props.name!, event);
+      } else {
+        this.setState(
+          {
+            checked: !this.state.checked,
+          },
+          () => console.log(this.state, this.props, event),
+        );
+      }
     }
   };
 
@@ -189,6 +195,7 @@ export class RadioButton extends React.Component<Props> {
       onChange,
       ...props
     } = this.props;
+    console.log(this.state.checked);
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv data-radiobutton="" {...props}>
@@ -202,10 +209,8 @@ export class RadioButton extends React.Component<Props> {
             checked={
               onChange instanceof Function ? checked : this.state.checked
             }
-            defaultChecked={
-              onChange instanceof Function ? defaultChecked : this.state.checked
-            }
             onClick={this.onChange}
+            onChange={this.onChange}
           />
           <SLabel htmlFor={this.props.id} rbSize={this.props.rbSize}>
             {children}
