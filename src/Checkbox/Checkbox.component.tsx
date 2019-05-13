@@ -202,7 +202,6 @@ export class Checkbox extends React.Component<Props, State> {
           checked: !prevState.checked,
         }),
         () => {
-          console.log(this.state);
           if (this.props.onChange instanceof Function) {
             this.props.onChange(this.state.checked, this.props.id, event);
           }
