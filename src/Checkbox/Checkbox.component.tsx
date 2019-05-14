@@ -2,6 +2,10 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
+export interface State {
+  checked: boolean;
+}
+
 export type Props = {
   /**
    * Specify the ID of the individual checkbox
@@ -162,7 +166,7 @@ const SInput = styled.input`
     }
 `;
 
-export class Checkbox extends React.Component<Props> {
+export class Checkbox extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
   }
@@ -174,36 +178,71 @@ export class Checkbox extends React.Component<Props> {
     if (prevProps.indeterminate !== this.props.indeterminate) {
       this.input.indeterminate = this.props.indeterminate;
     }
+    return false;
   }
+
+  state = {
+    checked: this.props.checked || !!this.props.defaultChecked,
+  };
 
   input: any;
 
   static defaultProps = {
     cbSize: 'md',
-    onChange: () => {},
     theme: Themes.defaultTheme,
     indeterminate: false,
+    defaultChecked: false,
+    disabled: false,
+  };
+
+  onChange = (event: any) => {
+    if (!this.props.disabled) {
+      this.setState(
+        prevState => ({
+          checked: !prevState.checked,
+        }),
+        () => {
+          if (this.props.onChange instanceof Function) {
+            this.props.onChange(this.state.checked, this.props.id, event);
+          }
+        },
+      );
+    }
   };
 
   render() {
-    const { id, cbSize, onChange, theme, children, ...props } = this.props;
+    const {
+      id,
+      cbSize,
+      onChange,
+      theme,
+      children,
+      checked,
+      defaultChecked,
+      indeterminate,
+      disabled,
+      value,
+      ...props
+    } = this.props;
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv data-checkbox="" id={id} {...props}>
+        <SDiv
+          data-checkbox=""
+          id={`checkbox-wrapper-${id}`}
+          value={value}
+          {...props}
+        >
           <SInput
+            onChange={this.onChange}
+            checked={this.state.checked}
             type="checkbox"
-            onChange={(evt: any) => {
-              onChange!(this.input.checked, id, evt);
-            }}
             ref={el => (this.input = el)}
             id={id}
             cbSize={cbSize}
-            disabled={this.props.disabled}
-            value={this.props.value}
-            checked={this.props.checked}
-            indeterminate={this.props.indeterminate}
-            defaultChecked={this.props.defaultChecked}
+            disabled={disabled}
+            value={value}
+            indeterminate={indeterminate}
           />
           <SLabel htmlFor={id} cbSize={cbSize}>
             {children}
