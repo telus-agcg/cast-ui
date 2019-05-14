@@ -37,7 +37,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default false
    **/
-  disabled: boolean;
+  disabled?: boolean;
   /**
    * Specify the function to fire when the toggle is changed
    *
