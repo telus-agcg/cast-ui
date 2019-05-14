@@ -6,9 +6,9 @@ export type Props = {
   /**
    * Set Header Size
    *
-   * @default '10'
+   * @default 10
    **/
-  size?: '10' | '20';
+  size?: 10 | 20;
   /**
    * From theme provider
    *
@@ -37,4 +37,4 @@ export const Header: React.FunctionComponent<Props> = ({
     <Sheader {...props}>{children}</Sheader>
   </ThemeProvider>
 );
-Header.defaultProps = { theme: Themes.defaultTheme, size: '10' };
+Header.defaultProps = { theme: Themes.defaultTheme, size: 10 };

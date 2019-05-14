@@ -6,9 +6,7 @@ import { select } from '@storybook/addon-knobs/react';
 storiesOf('Typography', module).add(
   'Header',
   () => (
-    <Header size={select('Header size', ['10', '20'], '10')}>
-      Example Header
-    </Header>
+    <Header size={select('Header size', [10, 20], 10)}>Example Header</Header>
   ),
   {
     info: {
