@@ -6,9 +6,9 @@ export type Props = {
   /**
    * Set BodyText Size
    *
-   * @default '10'
+   * @default 10
    **/
-  size?: '10' | '20';
+  size?: 10 | 20;
   /**
    * From theme provider
    *
@@ -34,4 +34,4 @@ export const BodyText: React.FunctionComponent<Props> = ({
     <SBodyText {...props}>{children}</SBodyText>
   </ThemeProvider>
 );
-BodyText.defaultProps = { theme: Themes.defaultTheme, size: '10' };
+BodyText.defaultProps = { theme: Themes.defaultTheme, size: 10 };

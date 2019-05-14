@@ -6,9 +6,9 @@ export type Props = {
   /**
    * Set Display Size
    *
-   * @default '10'
+   * @default 10
    **/
-  size?: '10' | '20';
+  size?: 10 | 20;
   /**
    * From theme provider
    *
@@ -38,5 +38,5 @@ export const Display: React.FunctionComponent<Props> = ({
 );
 Display.defaultProps = {
   theme: Themes.defaultTheme,
-  size: '10',
+  size: 10,
 };
