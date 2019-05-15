@@ -1,15 +1,22 @@
 import * as React from 'react';
+import uuid from 'uuid';
 import styled, { ThemeProvider } from 'styled-components';
+import { Omit } from '../utils/castTypes';
 import { lighten } from '../utils/colorUtils';
 import { Themes } from '../themes';
 
-export type Props = React.InputHTMLAttributes<HTMLInputElement> & {
+type displayStyle = 'inline' | 'stacked';
+type rbSize = 'sm' | 'md' | 'lg';
+type displayType = 'inline-block' | 'block';
+
+export interface Props
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   /**
    * Specify the ID of the individual radio button
    *
    * @default null
    **/
-  id: string;
+  id?: string;
   /**
    * Specify the common name of the group of radio buttons
    *
@@ -39,7 +46,7 @@ export type Props = React.InputHTMLAttributes<HTMLInputElement> & {
    *
    * @default 'md'
    **/
-  rbSize?: 'sm' | 'md' | 'lg';
+  rbSize?: rbSize;
   /**
    * Specify the value of the radio button group when the current button is selected
    **/
@@ -49,29 +56,33 @@ export type Props = React.InputHTMLAttributes<HTMLInputElement> & {
    *
    * @default void
    **/
-  onChange?(
+  onChange?: (
     value: string,
     name: string,
-    event: React.MouseEvent<HTMLElement>,
-  ): void;
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
   /**
    * Specify the display style the radio button will have
    *
    * @default 'stacked'
    **/
-  displayStyle?: 'inline' | 'stacked';
+  displayStyle?: displayStyle;
   /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
-};
+}
 
-const displayStyleRules: Function = (
-  displayStyle: 'inline' | 'stacked',
+const displayStyleRules = (
+  displayStyle: displayStyle,
   theme: any,
-) => {
+): {
+  display: displayType;
+  'padding-right'?: string;
+  'padding-bottom'?: string;
+} => {
   if (displayStyle === 'inline') {
     return {
       display: 'inline-block',
@@ -84,50 +95,58 @@ const displayStyleRules: Function = (
   };
 };
 
-const SDiv: any = styled.div`
+const SDiv = styled.div<Partial<Props>>`
 	cursor: pointer;
   ${(props: any) => displayStyleRules(props.displayStyle, props.theme)}
   }
 `;
 
-const SLabel = styled.label`
+const SLabel = styled.label<Partial<Props>>`
   align-items: center;
   display: inline-flex;
-  font-family: ${(props: any) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.rbSize!].fontSize};
+  font-family: ${(props: Partial<Props>) => props.theme.typography.fontFamily};
+  font-size: ${(props: Partial<Props>) =>
+    props.theme.common[props.rbSize!].fontSize};
 `;
 
-const SInput = styled.input`
+const SInput = styled.input<Partial<Props>>`
   display: none;
   + label:before {
     content: "";
     display: inline-block;
-    width: ${(props: Props) => props.theme.radioButton[props.rbSize!].size};
-    height: ${(props: Props) => props.theme.radioButton[props.rbSize!].size};
+    width: ${(props: Partial<Props>) =>
+      props.theme.radioButton[props.rbSize!].size};
+    height: ${(props: Partial<Props>) =>
+      props.theme.radioButton[props.rbSize!].size};
     background-clip: content-box;
-    background-color: ${(props: Props) =>
+    background-color: ${(props: Partial<Props>) =>
       props.theme.radioButton.unselectedColor};
-    border-color: ${(props: Props) => props.theme.radioButton.borderColor};
-    border-style: ${(props: Props) => props.theme.radioButton.borderStyle};
+    border-color: ${(props: Partial<Props>) =>
+      props.theme.radioButton.borderColor};
+    border-style: ${(props: Partial<Props>) =>
+      props.theme.radioButton.borderStyle};
     border-radius: 50%;
-    border-width ${(props: Props) => props.theme.radioButton.borderWidth};
+    border-width ${(props: Partial<Props>) =>
+      props.theme.radioButton.borderWidth};
     margin-right: 5px;
     padding: 3px;
   }
   &:disabled + label {
-    color: ${(props: Props) => props.theme.radioButton.disabledText};
+    color: ${(props: Partial<Props>) => props.theme.radioButton.disabledText};
     cursor: not-allowed;
   }
   &:disabled + label:before {
-    background-color: ${(props: Props) =>
+    background-color: ${(props: Partial<Props>) =>
       props.theme.input.disabled.background};
-    border-color: ${(props: Props) => props.theme.input.disabled.borderColor};
+    border-color: ${(props: Partial<Props>) =>
+      props.theme.input.disabled.borderColor};
   }
   &:checked + label:before {
-    background-color: ${(props: Props) => props.theme.styles.primary.flood};
+    background-color: ${(props: Partial<Props>) =>
+      props.theme.styles.primary.flood};
   }
   &:disabled:checked + label:before {
-    background-color:  ${(props: Props) =>
+    background-color:  ${(props: Partial<Props>) =>
       lighten(props.theme.styles.primary.flood, 15)};
   }
 `;
@@ -138,7 +157,28 @@ export class RadioButton extends React.Component<Props> {
     displayStyle: 'stacked',
     name: '',
     theme: Themes.defaultTheme,
-    onChange: () => {},
+    id: uuid.v4(),
+    disabled: false,
+    defaultChecked: false,
+  };
+
+  state = {
+    checked: this.props.checked || this.props.defaultChecked,
+  };
+
+  onChange = (event: any) => {
+    if (!this.props.disabled) {
+      if (this.props.onChange instanceof Function) {
+        this.props.onChange(this.props.value, this.props.name!, event);
+      } else {
+        this.setState(
+          {
+            checked: !this.state.checked,
+          },
+          () => console.log(this.state, this.props, event),
+        );
+      }
+    }
   };
 
   render() {
@@ -155,6 +195,7 @@ export class RadioButton extends React.Component<Props> {
       onChange,
       ...props
     } = this.props;
+    console.log(this.state.checked);
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv data-radiobutton="" {...props}>
@@ -165,11 +206,11 @@ export class RadioButton extends React.Component<Props> {
             disabled={disabled}
             id={id}
             value={value}
-            checked={checked}
-            defaultChecked={defaultChecked}
-            onChange={(evt: any) => {
-              onChange!(value, name!, evt);
-            }}
+            checked={
+              onChange instanceof Function ? checked : this.state.checked
+            }
+            onClick={this.onChange}
+            onChange={this.onChange}
           />
           <SLabel htmlFor={this.props.id} rbSize={this.props.rbSize}>
             {children}

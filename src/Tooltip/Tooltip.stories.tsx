@@ -9,7 +9,6 @@ storiesOf('Tooltip', module).add(
   () => (
     <Tooltip
       content={<MyComponent />}
-      isVisible={boolean('isVisible', false)}
       arrow={boolean('arrow', true)}
       size={select('size', ['small', 'regular', 'large'], 'regular')}
       placement={select(
@@ -26,7 +25,7 @@ storiesOf('Tooltip', module).add(
         ],
         'top-start',
       )}
-      trigger="manual"
+      trigger="click"
     >
       <button>This button has a controlled tooltip</button>
     </Tooltip>

@@ -11,11 +11,25 @@ storiesOf('RadioButton', module).add(
     <div>
       <RadioButton
         id="myInput1"
+        name="input1"
         disabled={boolean('disabled', false)}
         rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
         value="1"
         onChange={action('Button 1 changed')}
         checked={boolean('checked', true)}
+        displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
+      >
+        One
+      </RadioButton>
+      <br />
+      <br />
+      <br />
+      <RadioButton
+        id="myInput2"
+        name="input2"
+        disabled={boolean('disabled', false)}
+        rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
+        value="1"
         displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
       >
         One
