@@ -237,6 +237,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
             focusedInput={focusedInput || this.state.focusedInput}
             onFocusChange={this.onFocusChange}
             onDatesChange={this.onDatesChange}
+            showDefaultInputIcon={true}
             {...props}
             data-invalid={invalid ? '' : undefined}
             aria-invalid={invalid ? true : undefined}
