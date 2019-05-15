@@ -214,6 +214,7 @@ export class DatePicker extends React.PureComponent<Props> {
             focused={!!focused || !!this.state.focused}
             onFocusChange={this.onFocusChange}
             onDateChange={this.onDateChange}
+            showDefaultInputIcon={true}
             {...props}
             data-invalid={invalid ? '' : undefined}
             aria-invalid={invalid ? true : undefined}
