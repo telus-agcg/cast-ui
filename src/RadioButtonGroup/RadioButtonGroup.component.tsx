@@ -1,9 +1,11 @@
 import * as React from 'react';
 import RadioButton from '../RadioButton';
+import { Omit } from '../utils/castTypes';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 
-export type Props = {
+export interface Props
+  extends Omit<React.InputHTMLAttributes<HTMLDivElement>, 'onChange'> {
   /**
    * Specify the value of the radio button to select by default
    *
@@ -38,7 +40,7 @@ export type Props = {
    * @default defaultTheme
    **/
   theme: any;
-};
+}
 
 const SDiv = styled.div``;
 
