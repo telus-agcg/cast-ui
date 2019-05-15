@@ -31,7 +31,11 @@ storiesOf('DatePicker', module).add(
       text: `
         ### Notes
 
-        This is a DatePicker, based on [react-dates](http://airbnb.io/react-dates).
+        This is a DatePicker, based on [react-dates](http://airbnb.io/react-dates), which you must install in your app. To initialize, you should include the following line in your app.
+        You'll also need to include moment.js as a dependency.
+
+        import 'react-dates/initialize';
+        import 'react-dates/lib/css/_datepicker.css';
         `,
     },
   },
