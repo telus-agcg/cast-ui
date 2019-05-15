@@ -6,9 +6,9 @@ export type Props = {
   /**
    * Set Caption Size
    *
-   * @default '10'
+   * @default 10
    **/
-  size?: '10' | '20';
+  size?: 10 | 20;
   /**
    * From theme provider
    *
@@ -37,4 +37,4 @@ export const Caption: React.FunctionComponent<Props> = ({
     <SCaption {...props}>{children}</SCaption>
   </ThemeProvider>
 );
-Caption.defaultProps = { theme: Themes.defaultTheme, size: '10' };
+Caption.defaultProps = { theme: Themes.defaultTheme, size: 10 };

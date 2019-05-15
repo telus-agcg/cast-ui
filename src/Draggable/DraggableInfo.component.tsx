@@ -7,7 +7,7 @@ export type Props = Partial<DraggableProps> & {
   /**
    * Set Icon size
    *
-   * @default '10'
+   * @default 10
    **/
   iconSize?: number;
 };

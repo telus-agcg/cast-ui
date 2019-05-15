@@ -27,7 +27,6 @@ storiesOf('Checkbox', module).add(
         cbSize={select('cbSize (checkbox 2)', ['sm', 'md', 'lg'], 'md')}
         defaultChecked={true}
         disabled={boolean('disabled (checkbox 2)', false)}
-        onChange={action('onChange 2')}
         value="2"
         indeterminate={boolean('indeterminate (checkbox 2)', false)}
         checked={boolean('checked (checkbox 2)', true)}

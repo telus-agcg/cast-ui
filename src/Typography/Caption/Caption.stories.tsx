@@ -6,7 +6,7 @@ import { select } from '@storybook/addon-knobs/react';
 storiesOf('Typography', module).add(
   'Caption',
   () => (
-    <Caption size={select('Caption size', ['10', '20'], '10')}>
+    <Caption size={select('Caption size', [10, 20], 10)}>
       Example Caption
     </Caption>
   ),

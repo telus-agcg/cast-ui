@@ -6,7 +6,7 @@ import { select } from '@storybook/addon-knobs/react';
 storiesOf('Typography', module).add(
   'Display',
   () => (
-    <Display size={select('Display size', ['10', '20'], '10')}>
+    <Display size={select('Display size', [10, 20], 10)}>
       Example Display
     </Display>
   ),
