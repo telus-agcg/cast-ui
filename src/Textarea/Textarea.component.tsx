@@ -86,6 +86,8 @@ export interface Props
 }
 
 const STextarea = styled.textarea`
+  width: 100%;
+  box-sizing: border-box;
   background: ${(props: Props) => props.theme.textarea.background}
   border: 1px solid ${(props: Props) => props.theme.textarea.borderColor};
   border-radius: ${(props: Props) =>
