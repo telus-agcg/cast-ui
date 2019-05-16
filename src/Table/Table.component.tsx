@@ -35,6 +35,8 @@ const SWrapperDiv = styled(ReactTable)`
   border: 0;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.table.fontSize};
+  width: 100%;
+  box-sizing: border-box;
 
   .pagination-top,
   .pagination-bottom {

@@ -109,6 +109,8 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const SInput = styled.input`
+  width: 100%;
+  box-sizing: border-box;
   background: ${(props: Props) => props.theme.input.background}
 	border: ${(props: Props) =>
     props.icon || props.addonText ? 'none' : props.theme.input.border};
@@ -137,6 +139,8 @@ const SInput = styled.input`
 `;
 
 const SInputWrapper = styled.div`
+  width: 100%;
+  box-sizing: border-box;
   display: inline-flex;
   outline: red;
   flex-wrap: wrap;
