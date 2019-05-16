@@ -81,6 +81,8 @@ const SCard = styled.div`
   background: ${(props: Props) => props.bgColor || props.theme.card.background};
   box-shadow: ${(props: Props) => props.theme.card.boxShadow};
   border-style: solid;
+  width: 100%;
+  box-sizing: border-box;
 
   ${(props: Props) =>
     highlighBorderRules(props.highlightBorder, props.cardStyle, props.theme)}
