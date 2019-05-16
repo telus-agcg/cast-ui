@@ -559,7 +559,7 @@ export const defaultTheme = {
     header: {
       borderBottomColor: defaultColors.secondaryHover,
       color: defaultColors.primary,
-      fontWeight: 'normal',
+      fontWeight: 'bold',
     },
     row: {
       borderBottomColor: defaultColors.secondaryFaded,

@@ -560,7 +560,7 @@ export const cobaltTheme = {
     header: {
       borderBottomColor: cobaltColors.drk600,
       color: cobaltColors.drk800,
-      fontWeight: 'normal',
+      fontWeight: 'bold',
     },
     row: {
       borderBottomColor: cobaltColors.lt800,
