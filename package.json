@@ -90,6 +90,7 @@
     "prettier": "1.17.0",
     "pretty-quick": "^1.10.0",
     "react": "^16.8.6",
+    "react-dates": "^20.2.0",
     "react-docgen-typescript-loader": "^3.0.1",
     "react-dom": "^16.8.6",
     "react-router-dom": "^4.3.1",
