@@ -563,8 +563,14 @@ export const cobaltTheme = {
       fontWeight: 'bold',
     },
     row: {
-      borderBottomColor: cobaltColors.lt800,
-      hoverColor: cobaltColors.lt800,
+      borderBottomColor: cobaltColors.drk800,
+      highlightColor: cobaltColors.highlight200,
+      hoverColor: cobaltColors.lt200,
+      readonlyColor: cobaltColors.lt200,
+    },
+    column: {
+      highlightColor: cobaltColors.highlight200,
+      readonlyColor: cobaltColors.lt200,
     },
     pagination: {
       padding: '4px 0',

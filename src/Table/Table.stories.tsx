@@ -5,7 +5,6 @@ import { boolean, number, select } from '@storybook/addon-knobs/react';
 import { Table } from './';
 
 import SampleData from './sampleData';
-import ColumnDefs from './sampleColumnDefs';
 
 storiesOf('Table', module).add(
   'Table',
@@ -14,7 +13,65 @@ storiesOf('Table', module).add(
       <div>
         <Table
           data={SampleData.Customers}
-          columns={ColumnDefs}
+          pivotBy={['Id']}
+          columns={[
+            {
+              Header: 'ID',
+              accessor: 'Id',
+            },
+            {
+              Header: 'Company Name',
+              accessor: 'CompanyName',
+            },
+            {
+              id: 'ContactName',
+              Header: 'Contact Name',
+              accessor: 'CompanyName',
+              className: 'table-column-readonly',
+              headerClassName: 'table-column-readonly',
+            },
+            {
+              Header: 'Contact Title',
+              accessor: 'ContactTitle',
+              className: 'table-column-highlight',
+              headerClassName: 'table-column-highlight',
+            },
+            {
+              Header: 'Address',
+              accessor: 'Address',
+            },
+            {
+              Header: 'City',
+              accessor: 'City',
+            },
+            {
+              Header: 'Postal Code',
+              accessor: 'PostalCode',
+            },
+            {
+              Header: 'Country',
+              accessor: 'Country',
+            },
+            {
+              Header: 'Phone',
+              accessor: 'Phone',
+            },
+            {
+              Header: 'Fax',
+              accessor: 'Fax',
+            },
+          ]}
+          getTrProps={(state, rowInfo, column) => {
+            let className;
+            if (rowInfo.row.Id === 'AROUT') {
+              className = 'table-row-readonly';
+            } else if (rowInfo.row.Id === 'BOLID') {
+              className = 'table-row-highlight';
+            }
+            return {
+              className,
+            };
+          }}
           tableSize={select('tableSize', ['sm', 'md', 'lg'], 'md')}
           showPagination={boolean('showPagination', true)}
           showPaginationTop={boolean('showPaginationTop', false)}

@@ -564,6 +564,12 @@ export const defaultTheme = {
     row: {
       borderBottomColor: defaultColors.secondaryFaded,
       hoverColor: defaultColors.secondaryFaded,
+      highlightColor: defaultColors.highlight200,
+      readonlyColor: defaultColors.lt200,
+    },
+    column: {
+      highlightColor: defaultColors.highlight200,
+      readonlyColor: defaultColors.lt200,
     },
     pagination: {
       padding: '4px 0',
