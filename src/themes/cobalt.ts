@@ -563,7 +563,7 @@ export const cobaltTheme = {
       fontWeight: 'bold',
     },
     row: {
-      borderBottomColor: cobaltColors.drk800,
+      borderBottomColor: cobaltColors.drk400,
       highlightColor: cobaltColors.highlight200,
       hoverColor: cobaltColors.lt200,
       readonlyColor: cobaltColors.lt200,
