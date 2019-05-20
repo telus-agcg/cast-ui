@@ -74,9 +74,45 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .rt-tfoot .rt-td {
     padding: ${(props: Props) =>
       props.theme.common[props.tableSize!].tableCellPadding};
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 10px;
+    padding-right: 10px;
     border-right: 0;
+  }
+  &.ReactTable .rt-thead .rt-tr.table-row-readonly,
+  &.ReactTable .rt-tbody .rt-tr.table-row-readonly,
+  &.ReactTable .rt-tfoot .rt-tr.table-row-readonly {
+    background-color: ${(props: Props) => props.theme.table.row.readonlyColor};
+  }
+  &.ReactTable .rt-thead .rt-th.table-column-readonly,
+  &.ReactTable .rt-tbody .rt-td.table-column-readonly,
+  &.ReactTable .rt-tfoot .rt-td.table-column-readonly {
+    background-color: ${(props: Props) =>
+      props.theme.table.column.readonlyColor};
+  }
+  &.ReactTable .rt-thead .rt-tr.table-row-highlight,
+  &.ReactTable .rt-tbody .rt-tr.table-row-highlight,
+  &.ReactTable
+    .rt-tfoot
+    .rt-tr.table-row-highlight
+    &.ReactTable
+    .rt-thead
+    .rt-th.table-column-readonly,
+  &.ReactTable
+    .rt-tbody
+    .rt-tr.table-row-highlight
+    .rt-td.table-column-readonly,
+  &.ReactTable
+    .rt-tfoot
+    .rt-tr.table-row-highlight
+    .rt-td.table-column-readonly {
+    background-color: ${(props: Props) => props.theme.table.row.highlightColor};
+  }
+
+  &.ReactTable .rt-thead .rt-th.table-column-highlight,
+  &.ReactTable .rt-tbody .rt-td.table-column-highlight,
+  &.ReactTable .rt-tfoot .rt-td.table-column-highlight {
+    background-color: ${(props: Props) =>
+      props.theme.table.column.highlightColor};
   }
 
   &.ReactTable .rt-thead .rt-th.-cursor-pointer,
@@ -123,11 +159,28 @@ export class Table extends React.Component<Props> {
   };
 
   render() {
-    const { theme, ...props } = this.props;
+    const { theme, getTrProps, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
           {...props}
+          getTrProps={(state, rowInfo, column) => {
+            let className = '';
+            if (
+              rowInfo.nestingPath.length === 1 &&
+              state.expanded[rowInfo.nestingPath[0]]
+            ) {
+              className = 'table-row-highlight';
+            }
+            const incomingTrProps: any = getTrProps(state, rowInfo, column);
+            if (incomingTrProps && incomingTrProps.className) {
+              className += ` ${incomingTrProps.className}`;
+            }
+            return {
+              ...incomingTrProps,
+              className,
+            };
+          }}
           PaginationComponent={TablePagination}
           nextText="Next >"
           previousText="< Previous"
