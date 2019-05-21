@@ -61,6 +61,8 @@ export const cobaltTheme = {
       badgeColor: cobaltColors.white,
       alertColor: cobaltColors.white,
       alertBackground: cobaltColors.primary,
+      listGroupColor: cobaltColors.white,
+      listGroupBackground: cobaltColors.primary,
       light: {
         alertBackground: cobaltColors.primaryBackground,
         alertColor: cobaltColors.drk800,
@@ -83,6 +85,8 @@ export const cobaltTheme = {
       badgeColor: cobaltColors.drk800,
       alertColor: cobaltColors.drk800,
       alertBackground: cobaltColors.secondary,
+      listGroupColor: cobaltColors.drk800,
+      listGroupBackground: cobaltColors.secondary,
       light: {
         alertBackground: cobaltColors.secondaryBackground,
         alertColor: cobaltColors.drk800,
@@ -105,6 +109,8 @@ export const cobaltTheme = {
       badgeColor: cobaltColors.white,
       alertColor: cobaltColors.white,
       alertBackground: cobaltColors.danger,
+      listGroupColor: cobaltColors.white,
+      listGroupBackground: cobaltColors.danger,
       light: {
         alertBackground: cobaltColors.dangerBackground,
         alertColor: cobaltColors.drk800,
@@ -127,6 +133,8 @@ export const cobaltTheme = {
       badgeColor: cobaltColors.white,
       alertColor: cobaltColors.white,
       alertBackground: cobaltColors.warning,
+      listGroupColor: cobaltColors.white,
+      listGroupBackground: cobaltColors.warning,
       light: {
         alertBackground: cobaltColors.warningBackground,
         alertColor: cobaltColors.drk800,
@@ -149,6 +157,8 @@ export const cobaltTheme = {
       badgeColor: cobaltColors.white,
       alertColor: cobaltColors.white,
       alertBackground: cobaltColors.success,
+      listGroupColor: cobaltColors.white,
+      listGroupBackground: cobaltColors.success,
       light: {
         alertBackground: cobaltColors.successBackground,
         alertColor: cobaltColors.drk800,
