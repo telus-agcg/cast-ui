@@ -8,11 +8,7 @@ storiesOf('List Group', module).add(
   () => (
     <div>
       <ListGroup
-        listGroupStyle={select(
-          'List Group Style',
-          ['primary', 'secondary', 'success', 'warning', 'danger'],
-          'secondary',
-        )}
+        listGroupTheme={select('List Group Theme', ['light', 'dark'], 'light')}
       >
         <ListGroupItem>List Item</ListGroupItem>
         <ListGroupItem>List Item</ListGroupItem>
@@ -22,11 +18,7 @@ storiesOf('List Group', module).add(
         isCollapsed={false}
         collapsible={boolean('collapsible1', true)}
         name="Collapsible List Group"
-        listGroupStyle={select(
-          'List Group Style',
-          ['primary', 'secondary', 'success', 'warning', 'danger'],
-          'primary',
-        )}
+        listGroupTheme={select('List Group Theme', ['light', 'dark'], 'light')}
       >
         <ListGroupItem>List Item</ListGroupItem>
         <ListGroupItem>List Item</ListGroupItem>
@@ -36,10 +28,10 @@ storiesOf('List Group', module).add(
           collapsible={boolean('collapsible2', true)}
           isCollapsed={false}
           name="Nested Collapsible List Group"
-          listGroupStyle={select(
-            'List Group Style',
-            ['primary', 'secondary', 'success', 'warning', 'danger'],
-            'primary',
+          listGroupTheme={select(
+            'List Group Theme',
+            ['light', 'dark'],
+            'light',
           )}
         >
           <ListGroupItem>List Item</ListGroupItem>

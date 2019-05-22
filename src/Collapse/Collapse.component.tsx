@@ -68,7 +68,7 @@ export class Collapse extends React.Component<Props, any> {
 
     const transition = this.props.transition
       ? this.props.transition
-      : 'height 300ms cubic-bezier(0.4, 0, 0.2, 1);';
+      : 'height 300ms cubic-bezier(0.4, 0, 0.2, 1)';
 
     const style = {
       transition,

@@ -427,6 +427,18 @@ export const defaultTheme = {
   label: {
     padding: '9px 8px',
   },
+  listGroup: {
+    theme: {
+      light: {
+        color: defaultColors.drk800,
+        backgroundColor: defaultColors.white,
+      },
+      dark: {
+        color: defaultColors.drk800,
+        backgroundColor: defaultColors.highlight200,
+      },
+    },
+  },
   modal: {
     header: {
       minHeight: '0',

@@ -28,12 +28,13 @@ export type Props = {
    *  @default false
    */
   isCollapsed?: boolean;
+
   /**
-   * Set listgroup Style
+   * Set body background color. A CSS color code or a color defined in theme colors
    *
-   *  @default 'primary'
-   */
-  listGroupStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+   * @default 'light'
+   **/
+  listGroupTheme?: 'light' | 'dark';
   /**
    * From theme provider
    *
@@ -46,6 +47,8 @@ const SListGroup = styled.ul`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.fontSize};
   border-radius: ${(props: Props) => props.theme.borders.radius};
+  background-color: ${(props: Props) =>
+    props.theme.listGroup.theme[props.listGroupTheme!].backgroundColor};
   padding: 0px;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -61,29 +64,32 @@ const SListGroup = styled.ul`
   ul ul ul li {
     padding-left: 120px;
   }
+  .collapse-css-transition li {
+    padding-left: 60px;
+  }
+  .collapse-css-transition ul li {
+    padding-left: 60px;
+  }
+  .collapse-css-transition ul .collapse-css-transition li {
+    padding-left: 90px;
+  }
+  .collapse-css-transition
+    ul
+    .collapse-css-transition
+    ul
+    .collapse-css-transition
+    li {
+    padding-left: 120px;
+  }
 `;
-
-// ${({ collapsible }) =>
-// collapsible &&
-// `
-// .collapse-css-transition li {
-//   padding-left: 60px;
-// }
-// .collapse-css-transition ul li {
-//   padding-left: 60px;
-// }
-// .collapse-css-transition ul .collapse-css-transition li {
-//   padding-left: 90px;
-// }
-// .collapse-css-transition ul .collapse-css-transition ul .collapse-css-transition li {
-//   padding-left: 120px;
-// }
-// `}
 
 const SListHeader = styled.li`
   overflow: hidden;
   height: auto;
   border-bottom: 1px solid ${(props: Props) => props.theme.colors.secondary};
+
+  background-color: ${(props: Props) =>
+    props.theme.listGroup.theme[props.listGroupTheme!].backgroundColor};
 `;
 
 /* tslint:disable:max-line-length */
@@ -133,7 +139,7 @@ const ChevronImage: Function = (isCollapsed: boolean | undefined) => {
 const initialState = {
   isCollapsed: true,
   collapsible: false,
-  listGroupStyle: 'secondary',
+  listGroupTheme: 'light',
 };
 type State = Readonly<typeof initialState>;
 
@@ -144,7 +150,7 @@ export class ListGroup extends React.Component<Props, State> {
     this.state = {
       isCollapsed: false,
       collapsible: false,
-      listGroupStyle: 'primary',
+      listGroupTheme: 'light',
     };
   }
 
@@ -153,7 +159,7 @@ export class ListGroup extends React.Component<Props, State> {
   }
 
   static defaultProps = {
-    listGroupStyle: 'primary',
+    listGroupTheme: 'light',
     collapsible: false,
     isCollapsed: false,
     theme: Themes.defaultTheme,
@@ -168,7 +174,6 @@ export class ListGroup extends React.Component<Props, State> {
       name,
       theme,
       children,
-      listGroupStyle,
       ...props
     } = this.props;
     return (

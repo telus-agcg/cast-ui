@@ -9,18 +9,13 @@ export type Props = {
    * @default null
    * */
   children?: any;
-  /**
-   * Set ListGroupItem Style
-   *
-   *  @default 'primary'
-   */
-  listGroupStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+
   /**
    * Set body background color. A CSS color code or a color defined in theme colors
    *
-   * @default 'lightBackground'
+   * @default 'light'
    **/
-  backgroundColor?: string;
+  listGroupTheme?: 'light' | 'dark';
   /**
    * Set body border color. A CSS color code or a color defined in theme colors
    *
@@ -39,9 +34,6 @@ const SListGroupItem = styled.li`
   overflow: hidden;
   height: auto;
   border-bottom: 1px solid ${(props: Props) => props.theme.colors.secondary};
-  background-color: ${(props: Props) =>
-    props.backgroundColor ||
-    props.theme.styles[props.listGroupStyle!].listGroupBackground};
 `;
 
 const initialState = {};
@@ -49,7 +41,7 @@ type State = Readonly<typeof initialState>;
 
 export class ListGroupItem extends React.Component<Props> {
   static defaultProps = {
-    listGroupStyle: 'primary',
+    listGroupTheme: '',
     theme: Themes.defaultTheme,
   };
 
