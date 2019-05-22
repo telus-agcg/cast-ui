@@ -417,6 +417,18 @@ export const cobaltTheme = {
   label: {
     padding: '9px 8px',
   },
+  listGroup: {
+    theme: {
+      light: {
+        color: cobaltColors.drk800,
+        backgroundColor: cobaltColors.white,
+      },
+      dark: {
+        color: cobaltColors.drk800,
+        backgroundColor: cobaltColors.highlight200,
+      },
+    },
+  },
   modal: {
     header: {
       minHeight: '0',

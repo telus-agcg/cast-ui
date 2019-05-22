@@ -22,6 +22,7 @@ export * from './Typography/ErrorMessage/index';
 export * from './IconButton';
 export * from './Input';
 export * from './InputGroup';
+export * from './ListGroup';
 export * from './Modal';
 export * from './Navbar';
 export * from './Pagination';

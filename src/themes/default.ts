@@ -61,6 +61,8 @@ export const defaultTheme = {
       badgeColor: defaultColors.white,
       alertColor: defaultColors.white,
       alertBackground: defaultColors.primary,
+      listGroupColor: defaultColors.white,
+      listGroupBackground: defaultColors.primary,
       light: {
         alertBackground: defaultColors.primaryFaded,
         alertColor: defaultColors.black,
@@ -83,6 +85,8 @@ export const defaultTheme = {
       badgeColor: defaultColors.black,
       alertColor: defaultColors.black,
       alertBackground: defaultColors.secondary,
+      listGroupColor: defaultColors.black,
+      listGroupBackground: defaultColors.secondary,
       light: {
         alertBackground: defaultColors.secondaryFaded,
         alertColor: defaultColors.black,
@@ -105,6 +109,8 @@ export const defaultTheme = {
       badgeColor: defaultColors.white,
       alertColor: defaultColors.white,
       alertBackground: defaultColors.danger,
+      listGroupColor: defaultColors.white,
+      listGroupBackground: defaultColors.danger,
       light: {
         alertBackground: defaultColors.dangerFaded,
         alertColor: defaultColors.black,
@@ -127,6 +133,8 @@ export const defaultTheme = {
       badgeColor: defaultColors.white,
       alertColor: defaultColors.white,
       alertBackground: defaultColors.warning,
+      listGroupColor: defaultColors.white,
+      listGroupBackground: defaultColors.warning,
       light: {
         alertBackground: defaultColors.warningFaded,
         alertColor: defaultColors.black,
@@ -149,6 +157,8 @@ export const defaultTheme = {
       badgeColor: defaultColors.white,
       alertColor: defaultColors.white,
       alertBackground: defaultColors.success,
+      listGroupColor: defaultColors.white,
+      listGroupBackground: defaultColors.success,
       light: {
         alertBackground: defaultColors.successFaded,
         alertColor: defaultColors.black,
@@ -416,6 +426,18 @@ export const defaultTheme = {
   },
   label: {
     padding: '9px 8px',
+  },
+  listGroup: {
+    theme: {
+      light: {
+        color: defaultColors.drk800,
+        backgroundColor: defaultColors.white,
+      },
+      dark: {
+        color: defaultColors.drk800,
+        backgroundColor: defaultColors.highlight200,
+      },
+    },
   },
   modal: {
     header: {
