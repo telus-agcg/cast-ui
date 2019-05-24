@@ -213,7 +213,7 @@ export const Input: React.FunctionComponent<Props> = ({
             <span>{inputProps.icon || inputProps.addonText}</span>
           )}
         </SInputWrapper>
-        {inputProps.invalid && (
+        {inputProps.invalid && inputProps.invalidText && (
           <ErrorMessage
             id={errorId}
             message={inputProps.invalidText || ''}
