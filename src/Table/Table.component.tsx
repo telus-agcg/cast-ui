@@ -167,6 +167,7 @@ export class Table extends React.Component<Props> {
           getTrProps={(state, rowInfo, column) => {
             let className = '';
             if (
+              rowInfo &&
               rowInfo.nestingPath.length === 1 &&
               state.expanded[rowInfo.nestingPath[0]]
             ) {
