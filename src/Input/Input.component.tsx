@@ -152,6 +152,7 @@ const SInputWrapper = styled.div`
       : props.theme.colors.secondary};
   &.input-icon-left,
   &.input-icon-right {
+    flex-wrap: nowrap;
     & > span {
       display: flex;
 			align-items: center;
