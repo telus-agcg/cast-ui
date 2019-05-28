@@ -146,6 +146,10 @@ const SInputWrapper = styled.div`
   color: ${(props: Props) => props.theme.reverseText};
   border: ${(props: Props) =>
     props.icon || props.addonText ? props.theme.input.border : 'none'};
+  border-color: ${(props: Props) =>
+    (props.icon || props.addonText) && props.invalid
+      ? props.theme.validation.borderColor
+      : props.theme.colors.secondary};
   &.input-icon-left,
   &.input-icon-right {
     & > span {
@@ -190,16 +194,12 @@ export const Input: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInputWrapper
-          className={classNames(
-            [
-              (inputProps.icon || inputProps.addonText) &&
-                `input-icon-${inputProps.iconPosition ||
-                  inputProps.addonTextPosition}`,
-            ],
-            {
-              disabled: inputProps.disabled,
-            },
-          )}
+          className={classNames({
+            disabled: inputProps.disabled,
+            [`input-icon-${inputProps.iconPosition ||
+              inputProps.addonTextPosition}`]:
+              inputProps.icon || inputProps.addonText,
+          })}
           {...inputProps}
         >
           {('left' === inputProps.iconPosition ||
