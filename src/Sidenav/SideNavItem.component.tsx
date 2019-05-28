@@ -2,8 +2,9 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { SideNavContext } from './context';
 import { Themes } from '../themes';
-import { SideNavItemToggle } from '../Sidenav/SideNavItemToggle.component';
+import { SideNavItemToggle } from './SideNavItemToggle.component';
 import { nameSpace } from '../utils/constants';
+import Tooltip from '../Tooltip';
 
 export type Props = {
   children: any;
@@ -140,26 +141,41 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
     }
   };
 
+  const text = Array.isArray(children)
+    ? children.find(child => {
+        return child.props && typeof child.props.children === 'string';
+      })
+    : '';
+
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SSideNavItem
-        className={
-          props.activeSideNavItem
-            ? `${nameSpace}-sidenav-item ${nameSpace}-sidenav-item--active`
-            : `${nameSpace}-sidenav-item`
-        }
-        role="side-nav-item"
-        {...props}
-        onClick={props.disabled ? noop : handleSelect}
+      <Tooltip
+        content={text && text.props.children}
+        isEnabled={!isOpen && text}
+        placement="right"
+        size="regular"
       >
-        {itemChildren}
-        <SideNavItemToggle
-          isToggleVisible={itemSecondaryChildren.length > 0 && isOpen}
-          isToggleOpen={props.activeSideNavItem && isSecondaryNavbarOpen}
-          openContent={props.itemToggleOpenContent || itemToggleOpenContent}
-          closeContent={props.itemToggleCloseContent || itemToggleCloseContent}
-        />
-      </SSideNavItem>
+        <SSideNavItem
+          className={
+            props.activeSideNavItem
+              ? `${nameSpace}-sidenav-item ${nameSpace}-sidenav-item--active`
+              : `${nameSpace}-sidenav-item`
+          }
+          role="side-nav-item"
+          {...props}
+          onClick={props.disabled ? noop : handleSelect}
+        >
+          {itemChildren}
+          <SideNavItemToggle
+            isToggleVisible={itemSecondaryChildren.length > 0 && isOpen}
+            isToggleOpen={props.activeSideNavItem && isSecondaryNavbarOpen}
+            openContent={props.itemToggleOpenContent || itemToggleOpenContent}
+            closeContent={
+              props.itemToggleCloseContent || itemToggleCloseContent
+            }
+          />
+        </SSideNavItem>
+      </Tooltip>
     </ThemeProvider>
   );
 };
