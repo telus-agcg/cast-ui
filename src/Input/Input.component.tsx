@@ -1,6 +1,7 @@
 import * as React from 'react';
-import ErrorMessage from '../Typography/ErrorMessage/index';
+import classNames from 'classnames';
 import styled, { ThemeProvider } from 'styled-components';
+import ErrorMessage from '../Typography/ErrorMessage/index';
 import { Themes } from '../themes';
 
 export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -125,11 +126,6 @@ const SInput = styled.input`
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   text-align: ${(props: Props) => (props.addonText ? 'right' : 'auto')};
-  &:disabled {
-    border: ${props => props.theme.input.disabled.border};
-    background: ${props => props.theme.input.disabled.background};
-    cursor: not-allowed;
-  }
   &[data-invalid] {
     border-color: ${(props: Props) => props.theme.validation.borderColor};
   }
@@ -150,6 +146,10 @@ const SInputWrapper = styled.div`
   color: ${(props: Props) => props.theme.reverseText};
   border: ${(props: Props) =>
     props.icon || props.addonText ? props.theme.input.border : 'none'};
+  border-color: ${(props: Props) =>
+    (props.icon || props.addonText) && props.invalid
+      ? props.theme.validation.borderColor
+      : props.theme.colors.secondary};
   &.input-icon-left,
   &.input-icon-right {
     & > span {
@@ -175,6 +175,11 @@ const SInputWrapper = styled.div`
       margin-left: -1px;
     }
   }
+  &.disabled, &.disabled > input {
+    border: ${props => props.theme.input.disabled.border};
+    background: ${props => props.theme.input.disabled.background};
+    cursor: not-allowed;
+  }
 `;
 
 export const Input: React.FunctionComponent<Props> = ({
@@ -189,11 +194,12 @@ export const Input: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInputWrapper
-          className={
-            (inputProps.icon || inputProps.addonText) &&
-            `input-icon-${inputProps.iconPosition ||
-              inputProps.addonTextPosition}`
-          }
+          className={classNames({
+            disabled: inputProps.disabled,
+            [`input-icon-${inputProps.iconPosition ||
+              inputProps.addonTextPosition}`]:
+              inputProps.icon || inputProps.addonText,
+          })}
           {...inputProps}
         >
           {('left' === inputProps.iconPosition ||
@@ -201,7 +207,7 @@ export const Input: React.FunctionComponent<Props> = ({
             <span>{inputProps.icon || inputProps.addonText}</span>
           )}
           <SInput
-            value={value}
+            value={(value || '').substring(0, inputProps.maxLength)}
             onChange={onChange}
             {...inputProps}
             data-invalid={inputProps.invalid ? '' : undefined}
@@ -213,7 +219,7 @@ export const Input: React.FunctionComponent<Props> = ({
             <span>{inputProps.icon || inputProps.addonText}</span>
           )}
         </SInputWrapper>
-        {inputProps.invalid && (
+        {inputProps.invalid && inputProps.invalidText && (
           <ErrorMessage
             id={errorId}
             message={inputProps.invalidText || ''}

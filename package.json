@@ -40,7 +40,9 @@
   "dependencies": {
     "@tippy.js/react": "^2.1.1",
     "@types/uuid": "^3.4.4",
+    "classnames": "^2.2.6",
     "moment": "^2.24.0",
+    "react-dates": "^20.2.0",
     "react-icons-kit": "^1.2.1",
     "react-modal": "^3.8.1",
     "react-paginate": "^6.2.1",
