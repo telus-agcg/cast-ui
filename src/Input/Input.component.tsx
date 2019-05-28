@@ -208,7 +208,10 @@ export const Input: React.FunctionComponent<Props> = ({
             <span>{inputProps.icon || inputProps.addonText}</span>
           )}
           <SInput
-            value={(value || '').substring(0, inputProps.maxLength)}
+            value={(value ? value.toString() : '').substring(
+              0,
+              inputProps.maxLength,
+            )}
             onChange={onChange}
             {...inputProps}
             data-invalid={inputProps.invalid ? '' : undefined}
