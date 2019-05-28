@@ -111,19 +111,20 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const SInput = styled.input`
   width: 100%;
+  height: ${(props: Props) => props.theme.input[props.inputSize!].height}
   box-sizing: border-box;
   background: ${(props: Props) => props.theme.input.background}
 	border: ${(props: Props) =>
     props.icon || props.addonText ? 'none' : props.theme.input.border};
   border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize!].borderRadius};
-	padding: ${(props: Props) => props.theme.common[props.inputSize!].padding}
+	padding: ${(props: Props) => props.theme.input[props.inputSize!].padding}
 	padding-left: ${(props: Props) =>
     'left' === props.addonTextPosition ? '0' : 'auto'}
 	padding-right: ${(props: Props) =>
     'right' === props.addonTextPosition ? '0' : 'auto'}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
+  font-size: ${(props: Props) => props.theme.input.fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   text-align: ${(props: Props) => (props.addonText ? 'right' : 'auto')};
   &[data-invalid] {

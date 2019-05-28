@@ -317,11 +317,23 @@ export const cobaltTheme = {
     background: cobaltColors.white,
     border: `1px solid ${cobaltColors.secondary}`,
     color: cobaltColors.drk600,
-    padding: '6px 12px',
+    fontSize: '14px',
     placeholderColor: cobaltColors.drk400,
     disabled: {
       background: cobaltColors.lt600,
       border: `1px solid transparent`,
+    },
+    sm: {
+      height: '24px',
+      padding: '4px 7px',
+    },
+    md: {
+      height: '32px',
+      padding: '8px 10px',
+    },
+    lg: {
+      height: '40px',
+      padding: '11px 16px 13px',
     },
   },
   inputGroup: {
