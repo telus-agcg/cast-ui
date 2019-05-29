@@ -327,11 +327,23 @@ export const defaultTheme = {
     background: defaultColors.white,
     border: `1px solid ${defaultColors.secondary}`,
     color: defaultColors.secondaryHover,
-    padding: '.375rem .75rem',
+    fontSize: '14px',
     placeholderColor: defaultColors.drk400,
     disabled: {
       background: defaultColors.lt600,
       border: `1px solid ${defaultColors.lt600}`,
+    },
+    sm: {
+      height: '28px',
+      padding: '.375rem .75rem',
+    },
+    md: {
+      height: '32px',
+      padding: '.375rem .75rem',
+    },
+    lg: {
+      height: '40px',
+      padding: '.375rem .75rem',
     },
   },
   inputGroup: {
