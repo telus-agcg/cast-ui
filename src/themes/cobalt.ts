@@ -188,7 +188,7 @@ export const cobaltTheme = {
     },
   },
   body: {
-    fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
+    fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
     fontSize: '14px',
     fontWeight: 400,
     lineHeight: '18px',
@@ -199,7 +199,7 @@ export const cobaltTheme = {
     outlineBackgroundColor: 'white',
   },
   typography: {
-    fontFamily: 'Gilroy, "Open Sans", arial, sans-serif',
+    fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
     fontWeight: '400',
@@ -207,11 +207,13 @@ export const cobaltTheme = {
     color: cobaltColors.drk800,
     caption: {
       10: {
+        fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '10px',
         lineHeight: '100%',
       },
       20: {
+        fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
@@ -219,11 +221,13 @@ export const cobaltTheme = {
     },
     bodyText: {
       10: {
+        fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
       },
       20: {
+        fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '14px',
         lineHeight: '160%',
@@ -242,11 +246,13 @@ export const cobaltTheme = {
     },
     display: {
       10: {
+        fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '22px',
         lineHeight: '125%',
       },
       20: {
+        fontFamily: '"Gilroy-Light", "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '27px',
         lineHeight: '120%',
@@ -254,11 +260,13 @@ export const cobaltTheme = {
     },
     header: {
       10: {
+        fontFamily: '"Gilroy-Bold", "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '14px',
         lineHeight: '160%',
       },
       20: {
+        fontFamily: '"Gilroy-Bold", "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '23px',
         lineHeight: '175%',
@@ -302,11 +310,13 @@ export const cobaltTheme = {
     },
     title: {
       10: {
+        fontFamily: '"Gilroy-Bold", "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '16px',
         lineHeight: '130%',
       },
       20: {
+        fontFamily: '"Gilroy-Light", "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '18px',
         lineHeight: '135%',

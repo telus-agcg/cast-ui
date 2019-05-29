@@ -18,7 +18,8 @@ export type Props = {
 };
 
 const SDisplay = styled.h1`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-family: ${(props: Props) =>
+    props.theme.typography.display[props.size!].fontFamily};
   font-weight: ${(props: Props) =>
     props.theme.typography.display[props.size!].fontWeight};
   font-size: ${(props: Props) =>

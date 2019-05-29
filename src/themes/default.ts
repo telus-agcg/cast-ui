@@ -217,11 +217,13 @@ export const defaultTheme = {
     color: defaultColors.drk800,
     caption: {
       10: {
+        fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '10px',
         lineHeight: '100%',
       },
       20: {
+        fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
@@ -229,11 +231,13 @@ export const defaultTheme = {
     },
     bodyText: {
       10: {
+        fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
       },
       20: {
+        fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '14px',
         lineHeight: '160%',
@@ -252,11 +256,13 @@ export const defaultTheme = {
     },
     display: {
       10: {
+        fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '22px',
         lineHeight: '125%',
       },
       20: {
+        fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
         fontWeight: '400',
         fontSize: '27px',
         lineHeight: '120%',
@@ -264,11 +270,13 @@ export const defaultTheme = {
     },
     header: {
       10: {
+        fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '14px',
         lineHeight: '160%',
       },
       20: {
+        fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '23px',
         lineHeight: '175%',
@@ -312,11 +320,13 @@ export const defaultTheme = {
     },
     title: {
       10: {
+        fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '16px',
         lineHeight: '130%',
       },
       20: {
+        fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '18px',
         lineHeight: '135%',
