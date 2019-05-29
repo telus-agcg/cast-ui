@@ -178,7 +178,7 @@ const SDiv = styled.div<Props>`
   .react-select-component > div[class*="-control"] {
     min-height: unset;
     margin-top: 1px;
-    padding-top: 1px;
+    padding-top: 3px;
     border-radius: ${(props: Props) =>
       props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
     border-color: ${(props: Props) =>
