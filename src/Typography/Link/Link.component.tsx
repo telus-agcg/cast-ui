@@ -4,6 +4,10 @@ import { Themes } from '../../themes';
 
 export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
   /**
+   * Set an onClick listener
+   **/
+  onClick?(e: React.MouseEvent<HTMLElement>): void;
+  /**
    * Set a target for the Link
    *
    * @default ''
@@ -77,6 +81,7 @@ export const Link: React.FunctionComponent<Props> = ({
       className={`${linkProps.solo && 'solo'} ${className || ''}`}
       href={linkProps.href}
       target={linkProps.target}
+      onClick={linkProps.onClick}
     >
       {children}
     </SLink>
