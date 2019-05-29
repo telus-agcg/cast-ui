@@ -34,6 +34,7 @@ const SLink = styled.a`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.link.fontSize};
   color: ${(props: Props) => props.theme.typography.link.color};
+  cursor: pointer;
   text-decoration: ${(props: Props) =>
     props.theme.typography.link.textDecoration};
   display: inline-block;
@@ -81,4 +82,7 @@ export const Link: React.FunctionComponent<Props> = ({
     </SLink>
   </ThemeProvider>
 );
-Link.defaultProps = { theme: Themes.defaultTheme };
+Link.defaultProps = {
+  href: 'javascript:void(0)',
+  theme: Themes.defaultTheme,
+};
