@@ -2,6 +2,14 @@
 
 - Your contribution here.
 
+# 0.4.0 (2019-05-29)
+
+### Features
+
+- [#267](https://github.com/technekes/cast-ui/pull/267): Adjust font family settings for cast - [@hamholla](https://github.com/hamholla).
+- [#266](https://github.com/technekes/cast-ui/pull/266): Update link/href - [@pinguinjkeke](https://github.com/pinguinjkeke).
+- [#265](https://github.com/technekes/cast-ui/pull/265): Add js void to empty href - [@pinguinjkeke](https://github.com/pinguinjkeke).
+
 # 0.3.9 (2019-05-28)
 
 ### Features

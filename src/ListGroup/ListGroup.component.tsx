@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
-import { Collapse } from '../';
+import { Collapse } from '../Collapse';
 
 export type Props = {
   /**
