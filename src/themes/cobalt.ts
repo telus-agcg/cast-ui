@@ -278,7 +278,7 @@ export const cobaltTheme = {
       color: cobaltColors.primary,
       textDecoration: 'none',
       visited: {
-        color: cobaltColors.primaryFaded,
+        color: cobaltColors.primary,
         textDecoration: 'underline',
       },
       hover: {
@@ -316,7 +316,7 @@ export const cobaltTheme = {
         lineHeight: '130%',
       },
       20: {
-        fontFamily: '"Gilroy-Light", "Open Sans", arial, sans-serif',
+        fontFamily: '"Gilroy-Bold", "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '18px',
         lineHeight: '135%',
@@ -503,9 +503,9 @@ export const cobaltTheme = {
       padding: '30px 30px',
     },
     borderWidth: '1px',
-    headerBorderColor: cobaltColors.lt800,
+    headerBorderColor: cobaltColors.drk400,
     bodyBackgroundColor: cobaltColors.lt200,
-    bodyBorderColor: cobaltColors.lt800,
+    bodyBorderColor: cobaltColors.drk400,
     headerColor: cobaltColors.primary,
     headerBackgroundColor: cobaltColors.white,
   },
