@@ -169,6 +169,13 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default '''
    */
   hoverOptionBackgroundColor?: string;
+
+  /**
+   * Portal the select menu to another element.
+   *
+   * @default ''
+   */
+  menuPortalTarget?: HTMLElement;
 }
 
 const SDiv = styled.div<Props>`
