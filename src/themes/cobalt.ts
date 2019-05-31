@@ -262,13 +262,13 @@ export const cobaltTheme = {
       10: {
         fontFamily: '"Gilroy-Bold", "Open Sans", arial, sans-serif',
         fontWeight: '700',
-        fontSize: '14px',
+        fontSize: '13px',
         lineHeight: '160%',
       },
       20: {
         fontFamily: '"Gilroy-Bold", "Open Sans", arial, sans-serif',
         fontWeight: '700',
-        fontSize: '23px',
+        fontSize: '14px',
         lineHeight: '175%',
       },
     },
