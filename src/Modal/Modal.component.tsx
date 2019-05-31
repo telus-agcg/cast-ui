@@ -64,6 +64,7 @@ const modalSizeRules: Function = (modalSize: string, theme: any) => {
     case modalSize:
       return {
         'max-width': '98%',
+        'max-height': '95%',
         width: theme.modal[modalSize].width,
       };
     default:
@@ -77,7 +78,7 @@ const SReactModal = styled(ReactModal)`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   color: ${(props: any) => props.theme.colors.primary};
   outline: none;
-  ${(props: any) => modalSizeRules(props.modalSize, props.theme)}
+  ${(props: any) => modalSizeRules(props.modalSize, props.theme)};
   display: flex;
   flex-direction: column;
 `;
@@ -87,6 +88,7 @@ const ModalHeaderDiv = styled.div`
   background-color: ${(props: any) => props.theme.modal.header.backgroundColor};
   border-bottom: ${(props: any) =>
     `1px solid ${props.theme.modal.header.borderColor}`};
+  flex-shrink: 0;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   padding: ${(props: any) => props.theme.modal.header.padding};
   h5 {
@@ -123,6 +125,7 @@ const ModalBodyDiv = styled.div`
 `;
 
 const ModalFooterDiv = styled.div`
+  flex-shrink: 0;
   padding: ${(props: any) => props.theme.modal.footer.padding};
   min-height: ${(props: any) => props.theme.modal.footer.minHeight};
   margin-top: ${(props: any) => props.theme.modal.footer.marginTop};
