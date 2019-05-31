@@ -2,6 +2,21 @@
 
 - Your contribution here.
 
+# 0.4.2 (2019-05-31)
+
+### Features
+
+- [#276](https://github.com/technekes/cast-ui/pull/276): Adjusts Header font size - [@pinguinjkeke](https://github.com/hamholla).
+- [#274](https://github.com/technekes/cast-ui/pull/274): Fix scrollable modals - [@pinguinjkeke](https://github.com/hamholla).
+- [#273](https://github.com/technekes/cast-ui/pull/273): Add colors story - [@pinguinjkeke](https://github.com/pinguinjkeke).
+- [#272](https://github.com/technekes/cast-ui/pull/272): Add menuPortalTarget to Select component- [@pinguinjkeke](https://github.com/pinguinjkeke).
+
+# 0.4.1 (2019-05-29)
+
+### Features
+
+- [#269](https://github.com/technekes/cast-ui/pull/269): Cobalt theme updates - [@hamholla](https://github.com/hamholla).
+
 # 0.4.0 (2019-05-29)
 
 ### Features
