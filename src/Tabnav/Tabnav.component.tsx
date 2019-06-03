@@ -157,20 +157,34 @@ const SPopoverContent = styled.div`
   }
 `;
 
+const SPopoverItem = styled.div`
+  opacity: ${(props: any) =>
+    props.disabled
+      ? '.6'
+      : props.theme.tabnav[`${props.active ? 'active' : ''}tab`].opacity};
+`;
+
 const PopoverContent = ({ tab, onTabClick, ...props }: any) => (
   <SPopoverContent {...props}>
     {tab.children.length > 0 &&
       tab.children.map((childTab: any, j: any) => (
-        <div
+        <SPopoverItem
           key={j}
-          onClick={(e: any) => onTabClick(childTab, e)}
+          onClick={(e: any) => handleTabClick(childTab, e, onTabClick)}
           {...childTab}
         >
           {childTab.label}
-        </div>
+        </SPopoverItem>
       ))}
   </SPopoverContent>
 );
+
+const handleTabClick = (tab, e, onTabClick) => {
+  if (tab.disabled) {
+    return;
+  }
+  onTabClick(tab, e);
+};
 
 export const Tabnav: React.FunctionComponent<Props> = ({
   theme,
@@ -203,7 +217,7 @@ export const Tabnav: React.FunctionComponent<Props> = ({
               <STab
                 role="tab"
                 tabIndex="0"
-                onClick={(e: any) => onTabClick(tab, e)}
+                onClick={(e: any) => handleTabClick(tab, e, onTabClick)}
                 {...tab}
               >
                 {tab.label}

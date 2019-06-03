@@ -27,7 +27,7 @@ storiesOf('Tabnav', module).add(
           label: 'Offers',
           active: true,
           children: [
-            { label: 'Claims', to: '/offers/claims' },
+            { label: 'Claims', to: '/offers/claims', disabled: true },
             { label: 'PQRs', to: '/offers/pqrs' },
             { label: 'Contracts', to: '/offers/contracts' },
             { label: 'Competitives', to: '/offers/competitives' },
