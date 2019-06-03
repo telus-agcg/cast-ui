@@ -3,7 +3,7 @@ version: 2
 references:
 
   image_npm: &image_node
-    node:11-alpine
+    node:11
 
   cache_key_npm: &cache_key_npm
     v2-npm-{{ checksum "package-lock.json" }}
