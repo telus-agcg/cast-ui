@@ -1,29 +1,89 @@
 version: 2
+
+references:
+
+  image_npm: &image_node
+    node:11-alpine
+
+  cache_key_npm: &cache_key_npm
+    v2-npm-{{ checksum "package-lock.json" }}
+  cache_key_backup_npm: &cache_key_backup_npm
+    v2-npm-
+  cache_path_npm: &cache_path_npm
+    /usr/src/app/node_modules
+  restore_cache_npm: &restore_cache_npm
+    restore_cache:
+      keys:
+        - *cache_key_npm
+        - *cache_key_backup_npm
+
+  cache_key_git: &cache_key_git
+    v2-git-{{ .Environment.CIRCLE_SHA1 }}
+  cache_key_backup_git: &cache_key_backup_git
+    v2-git-
+  cache_path_git: &cache_path_git
+    /usr/src/app
+  restore_cache_git: &restore_cache_git
+    restore_cache:
+      keys:
+        - *cache_key_git
+        - *cache_key_backup_git
+
 jobs:
-  build:
+  checkout_code:
     docker:
-      - image: technekes/circleci:latest
-
+      - image: *image_node
     working_directory: /usr/src/app
-
     steps:
+      - *restore_cache_git
       - checkout
-      - setup_remote_docker
+      - save_cache:
+          key: *cache_key_git
+          paths:
+            - *cache_path_git
 
+  lint:
+    docker:
+      - image: *image_node
+    working_directory: /usr/src/app
+    steps:
+      - *restore_cache_git
       - run:
-          name: Build the image(s)
-          command: |
-            docker-compose build ci
-
+          name: Install
+          command: npm install
       - run:
-          name: Test and lint
-          command: |
-            docker-compose run ci npm run lint
+          name: Lint
+          command: npm run lint
+      - save_cache:
+          key: *cache_key_npm
+          paths:
+            - *cache_path_npm
 
+  build_and_deploy:
+    docker:
+      - image: *image_node
+    working_directory: /usr/src/app
+    steps:
+      - *restore_cache_git
+      - *restore_cache_npm
+      - run:
+          name: Build
+          command: npm run build
       - run:
           name: Deploy
-          command: |
-            docker-compose run \
-              -e CI_BRANCH=$CIRCLE_BRANCH \
-              -e GH_TOKEN \
-              ci bin/release
+          command: npm run deploy-storybrook
+
+workflows:
+  version: 2
+  lint_and_deploy:
+    jobs:
+      - checkout_code
+      - lint:
+          requires:
+            - checkout_code
+      - deploy:
+          requires:
+            - lint
+          filters:
+            branches:
+              only: /(^env/production)/
