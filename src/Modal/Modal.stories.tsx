@@ -65,8 +65,8 @@ storiesOf('Modal', module)
       >
         {Array(20)
           .fill('')
-          .map(() => (
-            <div>
+          .map((_, index) => (
+            <div key={index}>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Exercitationem, fugit velit. Aliquam autem blanditiis, consequatur
               dolore eius, harum ipsum maxime nam nihil officiis optio, pariatur

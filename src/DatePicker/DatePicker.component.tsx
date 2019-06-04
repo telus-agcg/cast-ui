@@ -207,6 +207,9 @@ export class DatePicker extends React.PureComponent<Props> {
           className={className}
           datePickerSize={datePickerSize}
           datePickerStyle={datePickerStyle}
+          data-invalid={invalid ? '' : undefined}
+          aria-invalid={invalid ? true : undefined}
+          aria-describedby={errorId}
         >
           <SingleDatePicker
             id={id!}
@@ -217,9 +220,6 @@ export class DatePicker extends React.PureComponent<Props> {
             showDefaultInputIcon={true}
             numberOfMonths={1}
             {...props}
-            data-invalid={invalid ? '' : undefined}
-            aria-invalid={invalid ? true : undefined}
-            aria-describedby={errorId}
           />
           {invalid && (
             <ErrorMessage

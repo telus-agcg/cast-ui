@@ -228,6 +228,9 @@ export class DatePickerRange extends React.PureComponent<Props> {
           id={id!}
           datePickerSize={datePickerSize!}
           datePickerStyle={datePickerStyle!}
+          data-invalid={invalid ? '' : undefined}
+          aria-invalid={invalid ? true : undefined}
+          aria-describedby={errorId}
           {...props}
         >
           <DateRangePicker
@@ -239,9 +242,6 @@ export class DatePickerRange extends React.PureComponent<Props> {
             onDatesChange={this.onDatesChange}
             showDefaultInputIcon={true}
             {...props}
-            data-invalid={invalid ? '' : undefined}
-            aria-invalid={invalid ? true : undefined}
-            aria-describedby={errorId}
           />
           {invalid && (
             <ErrorMessage

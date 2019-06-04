@@ -10,19 +10,24 @@ const SPaginate = styled.div`
   .cast-paginate {
     display: inline-block;
     padding-left: 0;
-    font-family: ${(props: Props) => props.theme.typography.fontFamily};
+    font-family: ${(props: Partial<Props>) =>
+      props.theme.typography.fontFamily};
     a {
-      background: ${(props: Props) => props.theme.pagination.background};
-      border: 1px solid ${(props: Props) => props.theme.pagination.borderColor};
-      padding: ${(props: Props) =>
+      background: ${(props: Partial<Props>) =>
+        props.theme.pagination.background};
+      border: 1px solid
+        ${(props: Partial<Props>) => props.theme.pagination.borderColor};
+      padding: ${(props: Partial<Props>) =>
         props.theme.pagination.button.padding[props.btnSize || 'md']};
-      font-family: ${(props: Props) => props.theme.typography.fontFamily};
-      font-size: ${(props: Props) =>
+      font-family: ${(props: Partial<Props>) =>
+        props.theme.typography.fontFamily};
+      font-size: ${(props: Partial<Props>) =>
         props.theme.common[props.btnSize || 'md'].fontSize};
-      font-weight: ${(props: Props) =>
+      font-weight: ${(props: Partial<Props>) =>
         props.theme.pagination.button.fontWeight};
-      color: ${(props: Props) => props.theme.pagination.text};
-      border-radius: ${(props: Props) => props.theme.pagination.borderRadius};
+      color: ${(props: Partial<Props>) => props.theme.pagination.text};
+      border-radius: ${(props: Partial<Props>) =>
+        props.theme.pagination.borderRadius};
       outline: none;
       user-select: none;
       cursor: pointer;
@@ -31,20 +36,22 @@ const SPaginate = styled.div`
       display: inline-block;
     }
     .selected a {
-      font-weight: ${(props: Props) => props.theme.pagination.activeFontWeight};
-      background: ${(props: Props) => props.theme.pagination.activeBackground};
+      font-weight: ${(props: Partial<Props>) =>
+        props.theme.pagination.activeFontWeight};
+      background: ${(props: Partial<Props>) =>
+        props.theme.pagination.activeBackground};
       border: 1px solid;
-      border-color: ${(props: Props) =>
+      border-color: ${(props: Partial<Props>) =>
         props.theme.pagination.activeBorderColor};
-      color: ${(props: Props) => props.theme.pagination.activeText};
+      color: ${(props: Partial<Props>) => props.theme.pagination.activeText};
     }
     .disabled a {
-      background: ${(props: Props) =>
+      background: ${(props: Partial<Props>) =>
         props.theme.pagination.disabledBackground};
       border: 1px solid;
-      border-color: ${(props: Props) =>
+      border-color: ${(props: Partial<Props>) =>
         props.theme.pagination.disabledBorderColor};
-      color: ${(props: Props) => props.theme.pagination.disabledText};
+      color: ${(props: Partial<Props>) => props.theme.pagination.disabledText};
       cursor: not-allowed;
     }
   }
@@ -68,6 +75,7 @@ export type Props = Partial<ReactPaginateProps> &
     */
     btnSize?: 'sm' | 'md' | 'lg';
     pageCount: number;
+    onPageChange: any;
     /* provided from the ThemeProvider
       @default tkxs theme
     */
@@ -90,7 +98,7 @@ const NextLabel = () => (
 export class Pagination extends React.Component<Props> {
   static defaultProps = defaultProps;
   render() {
-    const { theme, ...props } = this.props;
+    const { theme, onPageChange, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SPaginate {...props}>
@@ -106,6 +114,7 @@ export class Pagination extends React.Component<Props> {
             containerClassName={'cast-paginate'}
             previousLabel={<PreviousLabel />}
             nextLabel={<NextLabel />}
+            onPageChange={onPageChange}
             {...props}
           />
         </SPaginate>

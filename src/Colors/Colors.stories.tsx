@@ -8,7 +8,11 @@ import Tooltip from '../Tooltip';
 
 const Color = withTheme<any>(({ theme: { colors } }: any) =>
   Object.keys(colors).map(key => (
-    <Tooltip content={colors[key].toUpperCase()} placement="top-start">
+    <Tooltip
+      key={key}
+      content={colors[key].toUpperCase()}
+      placement="top-start"
+    >
       <div
         key={key}
         style={{ display: 'flex', fontSize: '.8em', marginBottom: 12 }}
@@ -18,11 +22,7 @@ const Color = withTheme<any>(({ theme: { colors } }: any) =>
           <CopyToClipboard
             copyContainerClass="copy-container"
             copyContent={`${key[0].toUpperCase()}${key.substring(1)}`}
-            copyButtonContent={
-              <>
-                <Icon size={16} icon={ICopy} />
-              </>
-            }
+            copyButtonContent={<Icon size={16} icon={ICopy} />}
             copyButtonClass="copy-button"
             fullWidth
             includeCopyButton={true}
