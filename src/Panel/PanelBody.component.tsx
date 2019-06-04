@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled, { withTheme, ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
 
 export type Props = {
   /**
@@ -45,8 +44,9 @@ const SPanelBody = styled.div`
     props.bodyBackgroundColor ||
     props.theme.colors[props.bodyBackgroundColor!]};
   border: ${(props: Props) =>
-    `${props.theme.panel.borderWidth} solid
-    ${props.theme.colors[props.bodyBorderColor!] || props.bodyBorderColor}`};
+    `${props.theme.panel.borderWidth} solid 
+    ${props.bodyBorderColor || props.theme.panel.bodyBorderColor}`};
+
   padding: ${(props: Props) =>
     props.noPadding ? '10px' : props.theme.panel.body.padding};
   overflow: hidden;
@@ -59,7 +59,6 @@ type State = Readonly<typeof initialState>;
 export class PanelBody extends React.Component<Props> {
   static defaultProps = {
     panelStyle: 'primary',
-    theme: Themes.defaultTheme,
   };
 
   readonly state: State = initialState;
