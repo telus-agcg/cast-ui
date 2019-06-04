@@ -71,7 +71,7 @@ jobs:
           command: npm run build
       - run:
           name: Deploy
-          command: npm run deploy-storybrook
+          command: npm run deploy-storybook
 
 workflows:
   version: 2
@@ -81,7 +81,7 @@ workflows:
       - lint:
           requires:
             - checkout_code
-      - deploy:
+      - build_and_deploy:
           requires:
             - lint
           filters:
