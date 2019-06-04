@@ -71,7 +71,7 @@ jobs:
           command: npm run build
       - run:
           name: Deploy
-          command: npm run deploy-storybook
+          command: npm run deploy-storybook && npm publish
 
 workflows:
   version: 2
