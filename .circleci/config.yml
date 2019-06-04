@@ -81,7 +81,7 @@ workflows:
       - lint:
           requires:
             - checkout_code
-      - deploy:
+      - build_and_deploy:
           requires:
             - lint
           filters:
