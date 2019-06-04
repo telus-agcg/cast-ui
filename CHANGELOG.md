@@ -2,6 +2,13 @@
 
 - Your contribution here.
 
+# 0.4.3 (2019-06-04)
+
+### Features
+
+- [#281](https://github.com/technekes/cast-ui/pull/281): Fixes with proptypes and common warnings of types - [@dorokhovich-mikhail](https://github.com/dorokhovich-mikhail).
+- [#280](https://github.com/technekes/cast-ui/pull/280): Fixes disbled links in tabnav - [@hamholla](https://github.com/hamholla).
+
 # 0.4.2 (2019-05-31)
 
 ### Features
