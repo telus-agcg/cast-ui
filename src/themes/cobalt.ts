@@ -830,7 +830,7 @@ export const cobaltTheme = {
     dropdownColor: cobaltColors.primary,
     optionBackgroundColor: cobaltColors.lt800,
     hoverOptionBackgroundColor: lighten(cobaltColors.primary, 75),
-    borderColor: cobaltColors.lt800,
+    borderColor: cobaltColors.secondary,
   },
   fileUpload: {
     fontSize: '14px',

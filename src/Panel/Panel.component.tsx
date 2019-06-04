@@ -80,7 +80,9 @@ export class Panel extends React.Component<Props, State> {
     const { theme, children, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <PanelWrapper panelStyle={props.panelStyle}>{children}</PanelWrapper>
+        <PanelWrapper panelStyle={props.panelStyle} {...props}>
+          {children}
+        </PanelWrapper>
       </ThemeProvider>
     );
   }
