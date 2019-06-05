@@ -47,6 +47,8 @@ storiesOf('Table', module).add(
             {
               Header: 'Postal Code',
               accessor: 'PostalCode',
+              className: 'right-align',
+              headerClassName: 'right-align',
             },
             {
               Header: 'Country',
