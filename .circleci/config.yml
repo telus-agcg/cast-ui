@@ -38,8 +38,8 @@ jobs:
       - *restore_cache_git
       - checkout
       - run:
-        name: npmrc
-        command: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+          name: npmrc
+          command: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
       - save_cache:
           key: *cache_key_git
           paths:
