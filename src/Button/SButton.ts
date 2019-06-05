@@ -130,6 +130,9 @@ const computeColor: Function = (
 
 const SButton = styled.button`
   min-width: 75px;
+  box-sizing: border-box;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.1s;
   border-radius: ${(props: Props) =>
     props.theme.common[props.btnSize!].borderRadius};
   background: ${(props: Props) =>

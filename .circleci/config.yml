@@ -37,6 +37,9 @@ jobs:
     steps:
       - *restore_cache_git
       - checkout
+      - run:
+          name: npmrc
+          command: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
       - save_cache:
           key: *cache_key_git
           paths:
@@ -71,7 +74,7 @@ jobs:
           command: npm run build
       - run:
           name: Deploy
-          command: npm run deploy-storybook
+          command: npm run deploy-storybook && npm publish
 
 workflows:
   version: 2

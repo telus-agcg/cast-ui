@@ -38,6 +38,24 @@ const SWrapperDiv = styled(ReactTable)`
   width: 100%;
   box-sizing: border-box;
 
+  .right-align {
+    text-align: right;
+  }
+
+  .right-align.-sort-asc,
+  .right-align.-sort-desc {
+    .rt-resizable-header-content {
+      margin-right: 20px;
+    }
+  }
+
+  .-sort-asc,
+  .-sort-desc {
+    .rt-resizable-header-content {
+      margin-right: 20px;
+    }
+  }
+
   .pagination-top,
   .pagination-bottom {
     text-align: center;
