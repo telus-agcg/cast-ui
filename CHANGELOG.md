@@ -2,6 +2,14 @@
 
 - Your contribution here.
 
+# 0.4.4 (2019-06-04)
+
+### Features
+
+- [#293](https://github.com/technekes/cast-ui/pull/293): Adds table alignment styling - [@hamholla](https://github.com/hamholla).
+- [#291](https://github.com/technekes/cast-ui/pull/291): Adjusts panel border settings - [@hamholla](https://github.com/hamholla).
+- [#290](https://github.com/technekes/cast-ui/pull/290): Removes NPM Run Command in Development - [@mgeitz](https://github.com/mgeitz).
+
 # 0.4.3 (2019-06-04)
 
 ### Features
