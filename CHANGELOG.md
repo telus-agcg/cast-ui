@@ -2,6 +2,15 @@
 
 - Your contribution here.
 
+# 0.4.5 (2019-06-06)
+
+### Features
+
+- [#304](https://github.com/technekes/cast-ui/pull/304): add disabled prop to link component - [@hamholla](https://github.com/hamholla).
+- [#302](https://github.com/technekes/cast-ui/pull/302): Datepicker styling - [@hamholla](https://github.com/hamholla).
+- [#301](https://github.com/technekes/cast-ui/pull/301): Select updates - [@hamholla](https://github.com/hamholla).
+- [#299](https://github.com/technekes/cast-ui/pull/299): position relative checkbox label- [@hamholla](https://github.com/hamholla).
+
 # 0.4.4 (2019-06-04)
 
 ### Features

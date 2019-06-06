@@ -109,6 +109,9 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     border-color: ${(props: Partial<Props>) =>
       props.theme.styles[props.datePickerStyle!].borderColor};
   }
+  .DateRangePickerInput_calendarIcon {
+    padding: 8px;
+  }
   .DateInput {
     width: 110px;
   }

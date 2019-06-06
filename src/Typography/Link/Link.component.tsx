@@ -20,6 +20,12 @@ export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
    **/
   solo?: boolean;
   /**
+   * Specify if the link is disabled
+   *
+   * @default false
+   **/
+  disabled?: boolean;
+  /**
    * Set a className for the Link
    *
    * @default ''
@@ -68,6 +74,11 @@ const SLink = styled.a`
         props.theme.typography.link.textDecoration};
     }
   }
+  &.disabled {
+    color: ${(props: Props) =>
+      props.theme.typography.link.disabled.color} !important;
+    cursor: not-allowed !important;
+  }
 `;
 
 export const Link: React.FunctionComponent<Props> = ({
@@ -77,17 +88,24 @@ export const Link: React.FunctionComponent<Props> = ({
   ...linkProps
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SLink
-      className={`${linkProps.solo && 'solo'} ${className || ''}`}
-      href={linkProps.href}
-      target={linkProps.target}
-      onClick={linkProps.onClick}
-    >
-      {children}
-    </SLink>
+    {linkProps.disabled ? (
+      <SLink className="disabled" onClick={e => e.preventDefault()}>
+        {children}
+      </SLink>
+    ) : (
+      <SLink
+        className={`${linkProps.solo && 'solo'}  ${className || ''}`}
+        href={linkProps.href}
+        target={linkProps.target}
+        onClick={linkProps.onClick}
+      >
+        {children}
+      </SLink>
+    )}
   </ThemeProvider>
 );
 Link.defaultProps = {
   href: 'javascript:void(0)',
   theme: Themes.defaultTheme,
+  disabled: false,
 };

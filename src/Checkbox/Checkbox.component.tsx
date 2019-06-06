@@ -106,6 +106,7 @@ const SLabel = styled.label`
   display: inline-flex;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.cbSize!].fontSize};
+  position: relative;
 `;
 
 const SInput = styled.input`
