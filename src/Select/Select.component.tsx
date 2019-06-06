@@ -205,6 +205,9 @@ const SSelect = styled(Select)`
   .react-select__placeholder {
     color: ${(props: any) => props.theme.input.placeholderColor};
   }
+  .react-select__menu-list {
+    font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  }
 `;
 
 const SIndicatorWrapper = styled.div<Props>`
