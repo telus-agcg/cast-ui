@@ -199,6 +199,9 @@ const SSelect = styled(Select)`
     background: ${(props: Props) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
   }
+  .react-select__value-container {
+    padding-top: 0px;
+  }
   .react-select__placeholder {
     color: ${(props: any) => props.theme.input.placeholderColor};
   }
