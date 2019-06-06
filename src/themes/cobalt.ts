@@ -277,6 +277,9 @@ export const cobaltTheme = {
       fontSize: '14px',
       color: cobaltColors.primary,
       textDecoration: 'none',
+      disabled: {
+        color: cobaltColors.drk400,
+      },
       visited: {
         color: cobaltColors.primary,
         textDecoration: 'underline',
