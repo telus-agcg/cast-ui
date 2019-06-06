@@ -190,13 +190,20 @@ const SDiv = styled.div<Props>`
       props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
     border-color: ${(props: Props) =>
       props.borderColor || props.theme.select.borderColor || 'inherit'};
-	}
+  }
 `;
 
 const SSelect = styled(Select)`
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
   &:disabled {
     background: ${(props: Props) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
+  }
+  .react-select__value-container {
+    padding-top: 0px;
+  }
+  .react-select__placeholder {
+    color: ${(props: any) => props.theme.input.placeholderColor};
   }
 `;
 
@@ -276,6 +283,7 @@ export class CustomSelect extends React.Component<Props> {
         >
           <SSelect
             components={{
+              IndicatorSeparator: () => null,
               Option: p => (
                 <SOption
                   optionBackgroundColor={optionBackgroundColor}
@@ -292,6 +300,7 @@ export class CustomSelect extends React.Component<Props> {
             }}
             closeMenuOnSelect={closeMenuOnSelect}
             className="react-select-component"
+            classNamePrefix="react-select"
             isDisabled={isDisabled}
             isMulti={isMulti}
             value={selectedOption}
