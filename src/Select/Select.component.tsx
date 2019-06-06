@@ -182,6 +182,7 @@ const SDiv = styled.div<Props>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
+  .
   .react-select-component > div[class*="-control"] {
     min-height: unset;
     margin-top: 1px;
@@ -194,6 +195,7 @@ const SDiv = styled.div<Props>`
 `;
 
 const SSelect = styled(Select)`
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
   &:disabled {
     background: ${(props: Props) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
@@ -276,6 +278,7 @@ export class CustomSelect extends React.Component<Props> {
         >
           <SSelect
             components={{
+              IndicatorSeparator: () => null,
               Option: p => (
                 <SOption
                   optionBackgroundColor={optionBackgroundColor}
