@@ -287,6 +287,9 @@ export const defaultTheme = {
       fontSize: '14px',
       color: defaultColors.primary,
       textDecoration: 'none',
+      disabled: {
+        color: defaultColors.drk400,
+      },
       visited: {
         color: defaultColors.primaryFaded,
         textDecoration: 'underline',
