@@ -148,7 +148,7 @@ export class PanelHeader extends React.Component<Props> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SPanelHeader onClick={(e: any) => toggleItem!(e, theme)} {...props}>
-          {name && <b>{name}:</b>} {title}{' '}
+          {name && <b>{name}{title ? ':' : ''}</b>} {title}{' '}
           {ChevronImage(this.props.isCollapsed)}
         </SPanelHeader>
       </ThemeProvider>
