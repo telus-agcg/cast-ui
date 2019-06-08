@@ -127,6 +127,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
     blur(): void;
     openMenu(focusOption: 'first' | 'last'): void;
     focusValue(direction: 'previous' | 'next'): void;
+    menuPlacement: 'auto' | 'top' | 'bottom';
     // focusOption(direction: FocusDirection): void;
     // setValue: (
     //   newValue: ValueType<OptionType>,
