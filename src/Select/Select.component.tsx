@@ -191,6 +191,7 @@ const SDiv = styled.div<Props>`
     border-color: ${(props: Props) =>
       props.borderColor || props.theme.select.borderColor || 'inherit'};
   }
+
 `;
 
 const SSelect = styled(Select)`
@@ -204,6 +205,12 @@ const SSelect = styled(Select)`
   }
   .react-select__placeholder {
     color: ${(props: any) => props.theme.input.placeholderColor};
+  }
+  .react-select__indicators {
+    padding-top: 2px;
+  }
+  .react-select__control {
+    align-items: flex-start;
   }
 `;
 
