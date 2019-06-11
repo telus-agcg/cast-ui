@@ -81,7 +81,6 @@ const SReactModal = styled(ReactModal)`
   ${(props: any) => modalSizeRules(props.modalSize, props.theme)};
   display: flex;
   flex-direction: column;
-  margin-top: 90px;
 `;
 
 const ModalHeaderDiv = styled.div`
@@ -179,6 +178,7 @@ export class Modal extends React.Component<Props> {
         textAlign: 'left',
         fontSize: '14px',
         borderRadius: '1px',
+        zIndex: this.props.theme.modal.overlay.zIndex,
       },
     };
   };
