@@ -225,7 +225,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
     const errorId = invalid ? `${id}-error-msg` : '';
 
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperComponent
           className={className!}
           id={id!}
