@@ -19,6 +19,7 @@ storiesOf('List Group', module).add(
         collapsible={boolean('collapsible1', true)}
         name="Collapsible List Group"
         listGroupTheme={select('List Group Theme', ['light', 'dark'], 'light')}
+        border={boolean('border1', true)}
         chevronAlignment={select(
           'Chevron Alignment',
           ['right', 'left'],

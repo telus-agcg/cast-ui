@@ -42,11 +42,17 @@ export type Props = {
    **/
   theme?: any;
   /**
-   * From chevron alignment
+   * Chevron alignment
    *
    * @default 'right'
    **/
   chevronAlignment?: 'left' | 'right';
+  /**
+   * Borders?
+   *
+   * @default true
+   **/
+  border?: boolean;
 };
 
 const SListGroup = styled.ul`
@@ -60,6 +66,8 @@ const SListGroup = styled.ul`
   margin-bottom: 0px;
   li {
     padding: 15px 30px;
+    border-bottom: ${(props: any) =>
+      props.border ? `1px solid ${props.theme.colors.secondary}` : ''};
   }
   ul li {
     padding-left: 60px;
@@ -92,13 +100,14 @@ const SListGroup = styled.ul`
 const SListHeader = styled.li<Partial<Props>>`
   overflow: hidden;
   height: auto;
-  border-bottom: 1px solid ${(props: Props) => props.theme.colors.secondary};
+  border-bottom: ${(props: any) =>
+    props.border ? `1px solid ${props.theme.colors.secondary}` : ''};
   background-color: ${(props: Props) =>
     props.theme.listGroup.theme[props.listGroupTheme!].backgroundColor};
   display: flex;
   align-items: center;
   justify-content: ${(props: any) =>
-    props.chevronAlignment == 'right' ? 'space-between' : 'flex-start'};
+    props.chevronAlignment === 'right' ? 'space-between' : 'flex-start'};
 `;
 
 /* tslint:disable:max-line-length */
@@ -118,7 +127,7 @@ const SExpandIcon = styled.div<Partial<Props>>`
   height: 20px;
   background-size: 28px;
   background-repeat: no-repeat;
-  order: ${(props: any) => (props.chevronAlignment == 'right' ? '2' : '1')};
+  order: ${(props: any) => (props.chevronAlignment === 'right' ? '2' : '1')};
 `;
 
 const SCollapseIcon = styled.div<Partial<Props>>`
@@ -136,7 +145,7 @@ const SCollapseIcon = styled.div<Partial<Props>>`
   height: 20px;
   background-size: 28px;
   background-repeat: no-repeat;
-  order: ${(props: any) => (props.chevronAlignment == 'right' ? '2' : '1')};
+  order: ${(props: any) => (props.chevronAlignment === 'right' ? '2' : '1')};
 `;
 
 const SHeaderContent = styled.span`
@@ -162,6 +171,7 @@ const initialState = {
   collapsible: false,
   listGroupTheme: 'light',
   chevronAlignment: 'right',
+  border: true,
 };
 type State = Readonly<typeof initialState>;
 
@@ -174,6 +184,7 @@ export class ListGroup extends React.Component<Props, State> {
       collapsible: false,
       listGroupTheme: 'light',
       chevronAlignment: 'right',
+      border: true,
     };
   }
 
@@ -187,6 +198,7 @@ export class ListGroup extends React.Component<Props, State> {
     isCollapsed: false,
     theme: Themes.defaultTheme,
     chevronAlignment: 'right',
+    border: true,
   };
 
   readonly state: State = initialState;
