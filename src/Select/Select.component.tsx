@@ -177,7 +177,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default ''
    */
-  menuPortalTarget?: Body;
+  menuPortalTarget?: HTMLElement;
 }
 
 const SDiv = styled.div<Props>`
