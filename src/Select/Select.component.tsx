@@ -162,13 +162,13 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * option color representation
    *
-   * @default '''
+   * @default ''
    */
   optionBackgroundColor?: string;
   /**
    * option's hover color representation
    *
-   * @default '''
+   * @default ''
    */
   hoverOptionBackgroundColor?: string;
 
@@ -279,7 +279,6 @@ export class CustomSelect extends React.Component<Props> {
       ...props
     } = this.props;
     const errorId = invalid ? `${id}-error-msg` : '';
-
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
@@ -319,6 +318,13 @@ export class CustomSelect extends React.Component<Props> {
             aria-describedby={errorId}
             selectSize={selectSize}
             dropdownColor={dropdownColor}
+            menuPortalTarget={document.body}
+            styles={{
+              menuPortal: styles => ({
+                ...styles,
+                fontFamily: theme.typography.fontFamily,
+              }),
+            }}
             {...props}
             {...controlSpecificProps}
           />
