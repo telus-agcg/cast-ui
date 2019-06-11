@@ -476,6 +476,9 @@ export const cobaltTheme = {
       borderColor: cobaltColors.lt800,
       padding: '15px',
     },
+    overlay: {
+      zIndex: '999999',
+    },
     sm: {
       width: '300px',
     },
