@@ -66,6 +66,10 @@ const SWrapperDiv = styled(ReactTable)`
     border: 0;
   }
 
+  &.ReactTable .rt-table {
+    padding-bottom: 16px;
+  }
+
   &.ReactTable .rt-thead.-header {
     box-shadow: none;
     color: ${(props: any) => props.theme.table.header.color};
@@ -77,6 +81,8 @@ const SWrapperDiv = styled(ReactTable)`
     border-bottom-width: 2px;
     font-weight: ${(props: any) => props.theme.table.header.fontWeight};
     text-align: left;
+    display: flex;
+    align-items: stretch;
   }
   &.ReactTable .rt-tbody .rt-tr {
     border-bottom-color: ${(props: any) =>
@@ -95,6 +101,8 @@ const SWrapperDiv = styled(ReactTable)`
     padding-left: 10px;
     padding-right: 10px;
     border-right: 0;
+    display: flex;
+    align-items: center;
   }
   &.ReactTable .rt-thead .rt-tr.table-row-readonly,
   &.ReactTable .rt-tbody .rt-tr.table-row-readonly,
