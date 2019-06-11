@@ -94,51 +94,53 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default null
    **/
-  controlSpecificProps?: {
-    blockOptionHover: boolean;
-    clearFocusValueOnUpdate: boolean;
-    commonProps: any;
-    // components: SelectComponents<OptionType>;
-    hasGroups: boolean;
-    initialTouchX: number;
-    initialTouchY: number;
-    inputIsHiddenAfterUpdate: boolean | null;
-    instancePrefix: string;
-    isSearchable: boolean;
-    name: string;
-    openAfterFocus: boolean;
-    scrollToFocusedOptionOnUpdate: boolean;
-    userIsDragging: boolean | null;
-    controlRef: React.Ref<any>;
-    getControlRef: (ref: HTMLElement) => void;
-    focusedOptionRef: React.Ref<any>;
-    getFocusedOptionRef: (ref: HTMLElement) => void;
-    menuListRef: React.Ref<any>;
-    getMenuListRef: (ref: HTMLElement) => void;
-    inputRef: React.Ref<any>;
-    getInputRef: (ref: HTMLElement) => void;
-    // cacheComponents: (components: SelectComponents<OptionType>) => void;
-    onMenuOpen(): void;
-    onMenuClose(): void;
-    // onInputChange(newValue: string, actionMeta: InputActionMeta): void;
-    focusInput(): void;
-    blurInput(): void;
-    focus(): void;
-    blur(): void;
-    openMenu(focusOption: 'first' | 'last'): void;
-    focusValue(direction: 'previous' | 'next'): void;
-    // focusOption(direction: FocusDirection): void;
-    // setValue: (
-    //   newValue: ValueType<OptionType>,
-    //   action: ActionTypes,
-    //   option?: OptionType
-    // ) => void;
-    selectOption: (newValue: OptionType) => void;
-    removeValue: (removedValue: OptionType) => void;
-    clearValue: () => void;
-    popValue: () => void;
-    children: React.ReactElement;
-  };
+  controlSpecificProps?: any;
+  //  {
+  //   blockOptionHover: boolean;
+  //   clearFocusValueOnUpdate: boolean;
+  //   commonProps: any;
+  //   // components: SelectComponents<OptionType>;
+  //   hasGroups: boolean;
+  //   initialTouchX: number;
+  //   initialTouchY: number;
+  //   inputIsHiddenAfterUpdate: boolean | null;
+  //   instancePrefix: string;
+  //   isSearchable: boolean;
+  //   name: string;
+  //   openAfterFocus: boolean;
+  //   scrollToFocusedOptionOnUpdate: boolean;
+  //   userIsDragging: boolean | null;
+  //   controlRef: React.Ref<any>;
+  //   getControlRef: (ref: HTMLElement) => void;
+  //   focusedOptionRef: React.Ref<any>;
+  //   getFocusedOptionRef: (ref: HTMLElement) => void;
+  //   menuListRef: React.Ref<any>;
+  //   getMenuListRef: (ref: HTMLElement) => void;
+  //   inputRef: React.Ref<any>;
+  //   getInputRef: (ref: HTMLElement) => void;
+  //   // cacheComponents: (components: SelectComponents<OptionType>) => void;
+  //   onMenuOpen(): void;
+  //   onMenuClose(): void;
+  //   // onInputChange(newValue: string, actionMeta: InputActionMeta): void;
+  //   focusInput(): void;
+  //   blurInput(): void;
+  //   focus(): void;
+  //   blur(): void;
+  //   openMenu(focusOption: 'first' | 'last'): void;
+  //   focusValue(direction: 'previous' | 'next'): void;
+  //   menuPlacement: 'auto' | 'top' | 'bottom';
+  //   // focusOption(direction: FocusDirection): void;
+  //   // setValue: (
+  //   //   newValue: ValueType<OptionType>,
+  //   //   action: ActionTypes,
+  //   //   option?: OptionType
+  //   // ) => void;
+  //   selectOption: (newValue: OptionType) => void;
+  //   removeValue: (removedValue: OptionType) => void;
+  //   clearValue: () => void;
+  //   popValue: () => void;
+  //   children: React.ReactElement;
+  // };
   /**
    * Color of the input's border
    *
@@ -160,13 +162,13 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * option color representation
    *
-   * @default '''
+   * @default ''
    */
   optionBackgroundColor?: string;
   /**
    * option's hover color representation
    *
-   * @default '''
+   * @default ''
    */
   hoverOptionBackgroundColor?: string;
 
@@ -175,7 +177,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default ''
    */
-  menuPortalTarget?: HTMLElement;
+  menuPortalTarget?: Body;
 }
 
 const SDiv = styled.div<Props>`
@@ -277,7 +279,6 @@ export class CustomSelect extends React.Component<Props> {
       ...props
     } = this.props;
     const errorId = invalid ? `${id}-error-msg` : '';
-
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
@@ -317,6 +318,13 @@ export class CustomSelect extends React.Component<Props> {
             aria-describedby={errorId}
             selectSize={selectSize}
             dropdownColor={dropdownColor}
+            menuPortalTarget={document.body}
+            styles={{
+              menuPortal: styles => ({
+                ...styles,
+                fontFamily: theme.typography.fontFamily,
+              }),
+            }}
             {...props}
             {...controlSpecificProps}
           />
