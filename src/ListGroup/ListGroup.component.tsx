@@ -15,7 +15,7 @@ export type Props = {
    *
    * @default ''
    * */
-  name?: string;
+  name?: any;
   /**
    * Whether the listGroup is collapsible or not
    *
@@ -41,6 +41,18 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Chevron alignment
+   *
+   * @default 'right'
+   **/
+  chevronAlignment?: 'left' | 'right';
+  /**
+   * Borders?
+   *
+   * @default true
+   **/
+  border?: boolean;
 };
 
 const SListGroup = styled.ul`
@@ -54,6 +66,8 @@ const SListGroup = styled.ul`
   margin-bottom: 0px;
   li {
     padding: 15px 30px;
+    border-bottom: ${(props: any) =>
+      props.border ? `1px solid ${props.theme.colors.secondary}` : ''};
   }
   ul li {
     padding-left: 60px;
@@ -83,20 +97,24 @@ const SListGroup = styled.ul`
   }
 `;
 
-const SListHeader = styled.li`
+const SListHeader = styled.li<Partial<Props>>`
   overflow: hidden;
   height: auto;
-  border-bottom: 1px solid ${(props: Props) => props.theme.colors.secondary};
-
+  border-bottom: ${(props: any) =>
+    props.border ? `1px solid ${props.theme.colors.secondary}` : ''};
   background-color: ${(props: Props) =>
     props.theme.listGroup.theme[props.listGroupTheme!].backgroundColor};
+  display: flex;
+  align-items: center;
+  justify-content: ${(props: any) =>
+    props.chevronAlignment === 'right' ? 'space-between' : 'flex-start'};
 `;
 
 /* tslint:disable:max-line-length */
-const SExpandIcon = styled.div`
-  float: right;
+const SExpandIcon = styled.div<Partial<Props>>`
+  float: ${(props: any) => props.chevronAlignment};
   padding: 0;
-  margin: -4px 0 0;
+  margin: -10px 0 0;
   background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
   border: 0;
   -webkit-appearance: none;
@@ -109,12 +127,12 @@ const SExpandIcon = styled.div`
   height: 20px;
   background-size: 28px;
   background-repeat: no-repeat;
+  order: ${(props: any) => (props.chevronAlignment === 'right' ? '2' : '1')};
 `;
 
-const SCollapseIcon = styled.div`
-  float: right;
+const SCollapseIcon = styled.div<Partial<Props>>`
   padding: 0;
-  margin: -4px 0 0;
+  margin: -10px 0 0;
   background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
   border: 0;
   -webkit-appearance: none;
@@ -127,19 +145,33 @@ const SCollapseIcon = styled.div`
   height: 20px;
   background-size: 28px;
   background-repeat: no-repeat;
+  order: ${(props: any) => (props.chevronAlignment === 'right' ? '2' : '1')};
 `;
 
-const ChevronImage: Function = (isCollapsed: boolean | undefined) => {
+const SHeaderContent = styled.span`
+  order: 2;
+`;
+
+const ChevronImage: Function = (
+  isCollapsed: boolean | undefined,
+  chevronAlignment,
+) => {
   if (undefined === isCollapsed) {
     return null;
   }
-  return isCollapsed ? <SCollapseIcon /> : <SExpandIcon />;
+  return isCollapsed ? (
+    <SCollapseIcon chevronAlignment={chevronAlignment} />
+  ) : (
+    <SExpandIcon chevronAlignment={chevronAlignment} />
+  );
 };
 
 const initialState = {
   isCollapsed: true,
   collapsible: false,
   listGroupTheme: 'light',
+  chevronAlignment: 'right',
+  border: true,
 };
 type State = Readonly<typeof initialState>;
 
@@ -151,6 +183,8 @@ export class ListGroup extends React.Component<Props, State> {
       isCollapsed: false,
       collapsible: false,
       listGroupTheme: 'light',
+      chevronAlignment: 'right',
+      border: true,
     };
   }
 
@@ -163,6 +197,8 @@ export class ListGroup extends React.Component<Props, State> {
     collapsible: false,
     isCollapsed: false,
     theme: Themes.defaultTheme,
+    chevronAlignment: 'right',
+    border: true,
   };
 
   readonly state: State = initialState;
@@ -171,6 +207,7 @@ export class ListGroup extends React.Component<Props, State> {
     const {
       collapsible,
       isCollapsed,
+      chevronAlignment,
       name,
       theme,
       children,
@@ -184,8 +221,10 @@ export class ListGroup extends React.Component<Props, State> {
               <SListHeader
                 {...props}
                 onClick={collapsible ? this.toggle : undefined}
+                chevronAlignment={chevronAlignment}
               >
-                {name} {ChevronImage(this.props.isCollapsed)}
+                <SHeaderContent>{name}</SHeaderContent>
+                {ChevronImage(this.state.isCollapsed, chevronAlignment)}
               </SListHeader>
               <Collapse isOpen={this.state.isCollapsed}>{children}</Collapse>
             </React.Fragment>

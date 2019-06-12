@@ -30,10 +30,9 @@ export type Props = {
   theme?: any;
 };
 
-const SListGroupItem = styled.li`
+const SListGroupItem = styled.li<Partial<Props>>`
   overflow: hidden;
   height: auto;
-  border-bottom: 1px solid ${(props: Props) => props.theme.colors.secondary};
 `;
 
 const initialState = {};
