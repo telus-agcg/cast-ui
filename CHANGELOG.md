@@ -2,6 +2,12 @@
 
 - Your contribution here.
 
+# 0.4.9 (2019-12-06)
+
+### Features
+
+- [#329](https://github.com/technekes/cast-ui/pull/329): Correct CI Builds - [@mgeitz](https://github.com/mgeitz).
+
 # 0.4.8 (2019-06-06)
 
 ### Features
