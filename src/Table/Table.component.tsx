@@ -183,6 +183,7 @@ export class Table extends React.Component<Props> {
           minRows={0}
           pageSize={10}
           showPagination={data.length > 0}
+          data={data}
           {...props}
           getTrProps={(state, rowInfo, column) => {
             let className = '';
