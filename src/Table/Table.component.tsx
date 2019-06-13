@@ -181,6 +181,8 @@ export class Table extends React.Component<Props> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
+          minRows={0}
+          pageSize={10}
           {...props}
           getTrProps={(state, rowInfo, column) => {
             let className = '';
