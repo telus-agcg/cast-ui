@@ -37,7 +37,6 @@ const SWrapperDiv = styled(ReactTable)`
   font-size: ${(props: any) => props.theme.table.fontSize};
   width: 100%;
   box-sizing: border-box;
-
   .right-align {
     text-align: right;
   }
@@ -161,6 +160,16 @@ const SWrapperDiv = styled(ReactTable)`
   }
   &.ReactTable .rt-thead .rt-th.-sort-desc {
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
+  }
+  &.ReactTable .rt-noData {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 10px;
+    height: 100px;
+    background-color: ${(props: Props) =>
+      props.theme.colors.secondaryBackground};
   }
 `;
 
