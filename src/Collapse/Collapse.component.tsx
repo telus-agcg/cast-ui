@@ -44,15 +44,9 @@ export class Collapse extends React.Component<Props, any> {
   constructor(props: Props) {
     super(props);
 
-    let collapseState;
-    if (props.isOpen) {
-      collapseState = EXPANDED;
-    }
+    let collapseState = EXPANDED;
     if (props.isCollapsed) {
       collapseState = COLLAPSED;
-    }
-    if (!collapseState) {
-      collapseState = EXPANDED;
     }
 
     this.state = {
