@@ -111,6 +111,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const SInput = styled.input`
   width: 100%;
+  min-width: 0;
   height: ${(props: Props) => props.theme.input[props.inputSize!].height}
   box-sizing: border-box;
   background: ${(props: Props) => props.theme.input.background}
