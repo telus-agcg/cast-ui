@@ -229,10 +229,14 @@ export class Table extends React.Component<Props> {
             };
           }}
           getTdProps={(state, rowInfo, column) => {
+            let className = 'white-space-wrap vertically-align-center';
             const incomingTdProps: any = getTdProps(state, rowInfo, column);
+            if (incomingTdProps && incomingTdProps.className) {
+              className += ` ${incomingTdProps.className}`;
+            }
             return {
-              className: 'white-space-wrap vertically-align-center',
               ...incomingTdProps,
+              className,
             };
           }}
           PaginationComponent={TablePagination}
