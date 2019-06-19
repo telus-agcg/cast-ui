@@ -45,7 +45,7 @@ jobs:
           paths:
             - *cache_path_git
 
-  lint:
+  build_lint:
     docker:
       - image: *image_node
     working_directory: /usr/src/app
@@ -55,6 +55,9 @@ jobs:
           name: Install
           command: npm install
       - run:
+          name: Build
+          command: npm run build
+      - run:
           name: Lint
           command: npm run lint
       - save_cache:
@@ -62,7 +65,7 @@ jobs:
           paths:
             - *cache_path_npm
 
-  build_and_deploy:
+  build_deploy:
     docker:
       - image: *image_node
     working_directory: /usr/src/app
@@ -81,12 +84,12 @@ workflows:
   lint_and_deploy:
     jobs:
       - checkout_code
-      - lint:
+      - build_lint:
           requires:
             - checkout_code
-      - build_and_deploy:
+      - build_deploy:
           requires:
-            - lint
+            - build_lint
           filters:
             branches:
               only: /(^env/production)/

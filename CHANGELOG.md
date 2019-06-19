@@ -2,6 +2,20 @@
 
 - Your contribution here.
 
+# 0.4.9 (2019-12-06)
+
+### Features
+
+- [#329](https://github.com/technekes/cast-ui/pull/329): Correct CI Builds - [@mgeitz](https://github.com/mgeitz).
+
+# 0.4.8 (2019-06-06)
+
+### Features
+
+- [#324](https://github.com/technekes/cast-ui/pull/324): Build All Branches - [@mgeitz](https://github.com/mgeitz).
+- [#323](https://github.com/technekes/cast-ui/pull/323): List Group Updates - [@hamholla](https://github.com/hamholla).
+- [#322](https://github.com/technekes/cast-ui/pull/322): MenuPortal Type change - [@ben-dalton](https://github.com/ben-dalton).
+
 # 0.4.5 (2019-06-06)
 
 ### Features

@@ -484,6 +484,9 @@ export const defaultTheme = {
       borderColor: defaultColors.secondaryFaded,
       padding: '8px 16px',
     },
+    overlay: {
+      zIndex: '999999',
+    },
     sm: {
       width: '300px',
     },

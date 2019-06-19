@@ -178,6 +178,7 @@ export class Modal extends React.Component<Props> {
         textAlign: 'left',
         fontSize: '14px',
         borderRadius: '1px',
+        zIndex: this.props.theme.modal.overlay.zIndex,
       },
     };
   };

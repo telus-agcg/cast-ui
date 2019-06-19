@@ -56,6 +56,8 @@ export type Props = {
    *
    *  @default 'void'
    */
+  collapsedIcon?: React.ReactElement;
+  expandedIcon?: React.ReactElement;
   toggleItem?(event: React.MouseEvent<HTMLElement>, theme: any): void;
   /**
    * From theme provider
@@ -119,11 +121,17 @@ const SCollapseIcon = styled.div`
   background-repeat: no-repeat;
 `;
 
-const ChevronImage: Function = (isCollapsed: boolean | undefined) => {
+const ChevronImage: Function = (
+  isCollapsed: boolean | undefined,
+  collapsedIcon?: any,
+  expandedIcon?: any,
+) => {
   if (undefined === isCollapsed) {
     return null;
   }
-  return isCollapsed ? <SCollapseIcon /> : <SExpandIcon />;
+  return isCollapsed
+    ? collapsedIcon || <SCollapseIcon />
+    : expandedIcon || <SExpandIcon />;
 };
 
 const initialState = {
@@ -144,12 +152,20 @@ export class PanelHeader extends React.Component<Props> {
   isCollapsed: boolean = false;
 
   render() {
-    const { toggleItem, name, title, theme, ...props } = this.props;
+    const {
+      toggleItem,
+      name,
+      title,
+      theme,
+      collapsedIcon,
+      expandedIcon,
+      ...props
+    } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SPanelHeader onClick={(e: any) => toggleItem!(e, theme)} {...props}>
           {name && <b>{name}{title ? ':' : ''}</b>} {title}{' '}
-          {ChevronImage(this.props.isCollapsed)}
+          {ChevronImage(this.props.isCollapsed, collapsedIcon, expandedIcon)}
         </SPanelHeader>
       </ThemeProvider>
     );

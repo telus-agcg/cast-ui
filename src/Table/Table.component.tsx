@@ -1,13 +1,17 @@
 /* tslint:disable:max-line-length */
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import ReactTable, { TableProps, ReactTableDefaults } from 'react-table';
+import ReactTable, {
+  TableProps,
+  ReactTableDefaults,
+  ControlledStateCallbackProps,
+} from 'react-table';
 import { Themes } from '../themes';
 
 import TablePagination from '../TablePagination/TablePagination.component';
 import 'react-table/react-table.css';
 
-export interface Props extends TableProps {
+export interface Props extends TableProps, ControlledStateCallbackProps {
   data: any;
   tableSize?: string;
   /**
@@ -37,7 +41,6 @@ const SWrapperDiv = styled(ReactTable)`
   font-size: ${(props: any) => props.theme.table.fontSize};
   width: 100%;
   box-sizing: border-box;
-
   .right-align {
     text-align: right;
   }
@@ -162,6 +165,16 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .rt-thead .rt-th.-sort-desc {
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
   }
+  &.ReactTable .rt-noData {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 10px;
+    height: 100px;
+    background-color: ${(props: Props) =>
+      props.theme.colors.secondaryBackground};
+  }
 `;
 
 export class Table extends React.Component<Props> {
@@ -177,11 +190,14 @@ export class Table extends React.Component<Props> {
   };
 
   render() {
-    const { theme, getTrProps, ...props } = this.props;
+    const { data, theme, getTrProps, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
-          {...props}
+          minRows={0}
+          pageSize={10}
+          showPagination={data.length > 0}
+          data={data}
           getTrProps={(state, rowInfo, column) => {
             let className = '';
             if (
@@ -203,6 +219,7 @@ export class Table extends React.Component<Props> {
           PaginationComponent={TablePagination}
           nextText="Next >"
           previousText="< Previous"
+          {...props}
         />
       </ThemeProvider>
     );
