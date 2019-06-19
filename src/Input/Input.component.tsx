@@ -156,6 +156,7 @@ const SInputWrapper = styled.div`
   &.input-icon-right {
     flex-wrap: nowrap;
     & > span {
+      background: ${(props: Props) => props.theme.input.background}
       display: flex;
 			align-items: center;
 			padding: ${(props: Props) =>
