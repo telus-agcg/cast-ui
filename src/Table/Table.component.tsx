@@ -175,6 +175,18 @@ const SWrapperDiv = styled(ReactTable)`
     background-color: ${(props: Props) =>
       props.theme.colors.secondaryBackground};
   }
+
+  &.ReactTable .white-space-wrap {
+    white-space: normal;
+  }
+  &.ReactTable .vertically-align-center {
+    display: flex;
+    align-items: center;
+  }
+  &.ReactTable .vertically-align-end {
+    display: flex;
+    align-items: flex-end;
+  }
 `;
 
 export class Table extends React.Component<Props> {
@@ -190,7 +202,7 @@ export class Table extends React.Component<Props> {
   };
 
   render() {
-    const { data, theme, getTrProps, ...props } = this.props;
+    const { data, theme, getTrProps, getTdProps, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
@@ -213,6 +225,17 @@ export class Table extends React.Component<Props> {
             }
             return {
               ...incomingTrProps,
+              className,
+            };
+          }}
+          getTdProps={(state, rowInfo, column) => {
+            let className = 'white-space-wrap vertically-align-center';
+            const incomingTdProps: any = getTdProps(state, rowInfo, column);
+            if (incomingTdProps && incomingTdProps.className) {
+              className += ` ${incomingTdProps.className}`;
+            }
+            return {
+              ...incomingTdProps,
               className,
             };
           }}
