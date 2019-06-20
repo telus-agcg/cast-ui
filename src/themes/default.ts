@@ -849,6 +849,7 @@ export const defaultTheme = {
     optionBackgroundColor: defaultColors.secondaryFaded,
     hoverOptionBackgroundColor: defaultColors.primaryFaded,
     borderColor: defaultColors.secondaryFaded,
+    width: '100%',
   },
   fileUpload: {
     dropZone: {

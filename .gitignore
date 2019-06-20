@@ -5,3 +5,5 @@ lib*
 .awcache
 .rpt2_cache
 .DS_Store
+.idea
+*.iml
