@@ -1,13 +1,17 @@
 /* tslint:disable:max-line-length */
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import ReactTable, { TableProps, ReactTableDefaults } from 'react-table';
+import ReactTable, {
+  TableProps,
+  ReactTableDefaults,
+  ControlledStateCallbackProps,
+} from 'react-table';
 import { Themes } from '../themes';
 
 import TablePagination from '../TablePagination/TablePagination.component';
 import 'react-table/react-table.css';
 
-export interface Props extends TableProps {
+export interface Props extends TableProps, ControlledStateCallbackProps {
   data: any;
   tableSize?: string;
   /**
@@ -171,6 +175,18 @@ const SWrapperDiv = styled(ReactTable)`
     background-color: ${(props: Props) =>
       props.theme.colors.secondaryBackground};
   }
+
+  &.ReactTable .white-space-wrap {
+    white-space: normal;
+  }
+  &.ReactTable .vertically-align-center {
+    display: flex;
+    align-items: center;
+  }
+  &.ReactTable .vertically-align-end {
+    display: flex;
+    align-items: flex-end;
+  }
 `;
 
 export class Table extends React.Component<Props> {
@@ -186,7 +202,7 @@ export class Table extends React.Component<Props> {
   };
 
   render() {
-    const { data, theme, getTrProps, ...props } = this.props;
+    const { data, theme, getTrProps, getTdProps, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
@@ -194,7 +210,6 @@ export class Table extends React.Component<Props> {
           pageSize={10}
           showPagination={data.length > 0}
           data={data}
-          {...props}
           getTrProps={(state, rowInfo, column) => {
             let className = '';
             if (
@@ -213,9 +228,21 @@ export class Table extends React.Component<Props> {
               className,
             };
           }}
+          getTdProps={(state, rowInfo, column) => {
+            let className = 'white-space-wrap vertically-align-center';
+            const incomingTdProps: any = getTdProps(state, rowInfo, column);
+            if (incomingTdProps && incomingTdProps.className) {
+              className += ` ${incomingTdProps.className}`;
+            }
+            return {
+              ...incomingTdProps,
+              className,
+            };
+          }}
           PaginationComponent={TablePagination}
           nextText="Next >"
           previousText="< Previous"
+          {...props}
         />
       </ThemeProvider>
     );
