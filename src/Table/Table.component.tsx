@@ -189,6 +189,11 @@ const SWrapperDiv = styled(ReactTable)`
   }
 `;
 
+const collator = new Intl.Collator(undefined, {
+  numeric: true,
+  sensitivity: 'base',
+});
+
 export class Table extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
@@ -210,6 +215,7 @@ export class Table extends React.Component<Props> {
           pageSize={10}
           showPagination={data.length > 0}
           data={data}
+          defaultSortMethod={collator.compare}
           getTrProps={(state, rowInfo, column) => {
             let className = '';
             if (
