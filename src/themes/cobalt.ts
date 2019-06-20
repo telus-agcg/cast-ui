@@ -837,6 +837,7 @@ export const cobaltTheme = {
     optionBackgroundColor: cobaltColors.lt800,
     hoverOptionBackgroundColor: lighten(cobaltColors.primary, 75),
     borderColor: cobaltColors.secondary,
+    width: '100%',
   },
   fileUpload: {
     fontSize: '14px',
