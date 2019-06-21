@@ -189,6 +189,11 @@ const SWrapperDiv = styled(ReactTable)`
   }
 `;
 
+const collator = new Intl.Collator(undefined, {
+  numeric: true,
+  sensitivity: 'base',
+});
+
 export class Table extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
@@ -199,17 +204,20 @@ export class Table extends React.Component<Props> {
     striped: false,
     tableSize: 'md',
     theme: Themes.defaultTheme,
+    minRows: 0,
+    pageSize: 10,
+    PaginationComponent: TablePagination,
+    nextText: 'Next >',
+    previousText: '< Previous',
   };
-
   render() {
     const { data, theme, getTrProps, getTdProps, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
-          minRows={0}
-          pageSize={10}
           showPagination={data.length > 0}
           data={data}
+          defaultSortMethod={collator.compare}
           getTrProps={(state, rowInfo, column) => {
             let className = '';
             if (
@@ -239,9 +247,6 @@ export class Table extends React.Component<Props> {
               className,
             };
           }}
-          PaginationComponent={TablePagination}
-          nextText="Next >"
-          previousText="< Previous"
           {...props}
         />
       </ThemeProvider>
