@@ -3,6 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { boolean, number, select } from '@storybook/addon-knobs/react';
 
 import { Table } from './';
+import { Input } from '../Input';
+import { Tooltip } from '../Tooltip';
 
 import SampleData from './sampleData';
 
@@ -29,6 +31,33 @@ storiesOf('Table', module).add(
               accessor: 'CompanyName',
               className: 'table-column-readonly',
               headerClassName: 'table-column-readonly',
+            },
+            {
+              id: 'TextInput',
+              Header: 'Text Input',
+              width: 120,
+              Cell: (row: any) => {
+                return (
+                  <Tooltip
+                    content={<div>Input content</div>}
+                    size="regular"
+                    placement="top-start"
+                    a11y={false}
+                  >
+                    <span>
+                      <Input
+                        id={`TextInput`}
+                        addonText="%"
+                        addonTextPosition="right"
+                        value="90"
+                        min={0}
+                        max={100}
+                        onChange={() => {}}
+                      />
+                    </span>
+                  </Tooltip>
+                );
+              },
             },
             {
               Header: 'Contact Title',

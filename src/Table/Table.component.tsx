@@ -99,6 +99,11 @@ const SWrapperDiv = styled(ReactTable)`
     padding-right: 10px;
     border-right: 0;
   }
+  &.ReactTable .rt-thead .rt-th > span,
+  &.ReactTable .rt-tbody .rt-td > span,
+  &.ReactTable .rt-tfoot .rt-td > span {
+    width: 100%;
+  }
   &.ReactTable .rt-thead .rt-tr.table-row-readonly,
   &.ReactTable .rt-tbody .rt-tr.table-row-readonly,
   &.ReactTable .rt-tfoot .rt-tr.table-row-readonly {
