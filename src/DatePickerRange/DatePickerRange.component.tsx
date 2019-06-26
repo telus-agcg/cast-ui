@@ -220,6 +220,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
       invalid,
       invalidText,
       invalidTextColor,
+      disabled,
       ...props
     } = this.props;
     const errorId = invalid ? `${id}-error-msg` : '';
@@ -244,6 +245,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
             onFocusChange={this.onFocusChange}
             onDatesChange={this.onDatesChange}
             showDefaultInputIcon={true}
+            disabled={disabled}
             {...props}
           />
           {invalid && (
