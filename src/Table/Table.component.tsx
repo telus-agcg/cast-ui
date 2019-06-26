@@ -7,32 +7,41 @@ import ReactTable, {
   ControlledStateCallbackProps,
 } from 'react-table';
 import { Themes } from '../themes';
-
+import Icon from 'react-icons-kit';
+import { chevronUp } from 'react-icons-kit/fa/chevronUp';
+import { chevronDown } from 'react-icons-kit/fa/chevronDown';
 import TablePagination from '../TablePagination/TablePagination.component';
 import 'react-table/react-table.css';
 
-export interface Props extends TableProps, ControlledStateCallbackProps {
-  data: any;
-  tableSize?: string;
-  /**
-   * Specify if grid data rows should be striped
-   *
-   * @default false
-   **/
-  striped?: boolean;
-  /**
-   * Specify if table size is adjustable
-   *
-   * @default true
-   **/
-  sizable?: boolean;
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
-}
+export type Props = Partial<TableProps> &
+  Partial<ControlledStateCallbackProps> & {
+    data: any;
+    tableSize?: string;
+    /**
+     * Specify if grid data rows should be striped
+     *
+     * @default false
+     **/
+    striped?: boolean;
+    /**
+     * Specify if table size is adjustable
+     *
+     * @default true
+     **/
+    sizable?: boolean;
+    /**
+     * From theme provider
+     *
+     * @default defaultTheme
+     **/
+    theme?: any;
+  };
+
+const SIcon = styled(Icon)`
+  color: ${(props: any) => props.theme.colors.primary};
+  display: inline-block;
+  margin-right: 15px;
+`;
 
 const SWrapperDiv = styled(ReactTable)`
   background: ${(props: any) => props.theme.input.background};
@@ -93,22 +102,26 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .rt-thead .rt-th,
   &.ReactTable .rt-tbody .rt-td,
   &.ReactTable .rt-tfoot .rt-td {
-    padding: ${(props: Props) =>
+    padding: ${(props: any) =>
       props.theme.common[props.tableSize!].tableCellPadding};
     padding-left: 10px;
     padding-right: 10px;
     border-right: 0;
   }
+  &.ReactTable .rt-thead .rt-th > span,
+  &.ReactTable .rt-tbody .rt-td > span,
+  &.ReactTable .rt-tfoot .rt-td > span {
+    width: 100%;
+  }
   &.ReactTable .rt-thead .rt-tr.table-row-readonly,
   &.ReactTable .rt-tbody .rt-tr.table-row-readonly,
   &.ReactTable .rt-tfoot .rt-tr.table-row-readonly {
-    background-color: ${(props: Props) => props.theme.table.row.readonlyColor};
+    background-color: ${(props: any) => props.theme.table.row.readonlyColor};
   }
   &.ReactTable .rt-thead .rt-th.table-column-readonly,
   &.ReactTable .rt-tbody .rt-td.table-column-readonly,
   &.ReactTable .rt-tfoot .rt-td.table-column-readonly {
-    background-color: ${(props: Props) =>
-      props.theme.table.column.readonlyColor};
+    background-color: ${(props: any) => props.theme.table.column.readonlyColor};
   }
   &.ReactTable .rt-thead .rt-tr.table-row-highlight,
   &.ReactTable .rt-tbody .rt-tr.table-row-highlight,
@@ -126,13 +139,13 @@ const SWrapperDiv = styled(ReactTable)`
     .rt-tfoot
     .rt-tr.table-row-highlight
     .rt-td.table-column-readonly {
-    background-color: ${(props: Props) => props.theme.table.row.highlightColor};
+    background-color: ${(props: any) => props.theme.table.row.highlightColor};
   }
 
   &.ReactTable .rt-thead .rt-th.table-column-highlight,
   &.ReactTable .rt-tbody .rt-td.table-column-highlight,
   &.ReactTable .rt-tfoot .rt-td.table-column-highlight {
-    background-color: ${(props: Props) =>
+    background-color: ${(props: any) =>
       props.theme.table.column.highlightColor};
   }
 
@@ -172,8 +185,7 @@ const SWrapperDiv = styled(ReactTable)`
     justify-content: center;
     top: 10px;
     height: 100px;
-    background-color: ${(props: Props) =>
-      props.theme.colors.secondaryBackground};
+    background-color: ${(props: any) => props.theme.colors.secondaryBackground};
   }
 
   &.ReactTable .white-space-wrap {
@@ -200,7 +212,7 @@ export class Table extends React.Component<Props> {
   }
 
   static defaultProps = {
-    ...ReactTableDefaults,
+    defaultSortMethod: collator.compare,
     striped: false,
     tableSize: 'md',
     theme: Themes.defaultTheme,
@@ -209,15 +221,16 @@ export class Table extends React.Component<Props> {
     PaginationComponent: TablePagination,
     nextText: 'Next >',
     previousText: '< Previous',
+    getTdProps: ReactTableDefaults.getTdProps,
+    getTrProps: ReactTableDefaults.getTrProps,
   };
   render() {
-    const { data, theme, getTrProps, getTdProps, ...props } = this.props;
+    const { data, getTdProps, getTrProps, theme, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
-          showPagination={data.length > 0}
+          {...ReactTableDefaults}
           data={data}
-          defaultSortMethod={collator.compare}
           getTrProps={(state, rowInfo, column) => {
             let className = '';
             if (
@@ -227,7 +240,8 @@ export class Table extends React.Component<Props> {
             ) {
               className = 'table-row-highlight';
             }
-            const incomingTrProps: any = getTrProps(state, rowInfo, column);
+
+            const incomingTrProps: any = getTrProps!(state, rowInfo, column);
             if (incomingTrProps && incomingTrProps.className) {
               className += ` ${incomingTrProps.className}`;
             }
@@ -238,7 +252,7 @@ export class Table extends React.Component<Props> {
           }}
           getTdProps={(state, rowInfo, column) => {
             let className = 'white-space-wrap vertically-align-center';
-            const incomingTdProps: any = getTdProps(state, rowInfo, column);
+            const incomingTdProps: any = getTdProps!(state, rowInfo, column);
             if (incomingTdProps && incomingTdProps.className) {
               className += ` ${incomingTdProps.className}`;
             }
@@ -246,6 +260,19 @@ export class Table extends React.Component<Props> {
               ...incomingTdProps,
               className,
             };
+          }}
+          showPagination={data.length > 0}
+          column={{
+            ...ReactTableDefaults.column,
+            Expander: ({ isExpanded, ...rest }) => (
+              <React.Fragment>
+                {isExpanded ? (
+                  <SIcon icon={chevronUp} />
+                ) : (
+                  <SIcon icon={chevronDown} />
+                )}
+              </React.Fragment>
+            ),
           }}
           {...props}
         />
