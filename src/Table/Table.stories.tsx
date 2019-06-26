@@ -5,7 +5,6 @@ import { boolean, number, select } from '@storybook/addon-knobs/react';
 import { Table } from './';
 import { Input } from '../Input';
 import { Tooltip } from '../Tooltip';
-
 import SampleData from './sampleData';
 
 storiesOf('Table', module).add(
