@@ -338,7 +338,7 @@ export const defaultTheme = {
   },
   input: {
     background: defaultColors.white,
-    border: `1px solid ${defaultColors.secondary}`,
+    border: `1px solid ${defaultColors.secondaryFaded}`,
     color: defaultColors.secondaryHover,
     fontSize: '14px',
     placeholderColor: defaultColors.drk400,
@@ -348,15 +348,15 @@ export const defaultTheme = {
     },
     sm: {
       height: '28px',
-      padding: '.375rem .75rem',
+      padding: '6px 7px',
     },
     md: {
       height: '32px',
-      padding: '.375rem .75rem',
+      padding: '9px 10px 7px 10px',
     },
     lg: {
       height: '40px',
-      padding: '.375rem .75rem',
+      padding: '11px 13px 13px 13px',
     },
   },
   inputGroup: {
@@ -845,11 +845,41 @@ export const defaultTheme = {
     borderColor: defaultColors.secondaryFaded,
   },
   select: {
+    fontSize: '14px',
     dropdownColor: defaultColors.primary,
     optionBackgroundColor: defaultColors.secondaryFaded,
     hoverOptionBackgroundColor: defaultColors.primaryFaded,
     borderColor: defaultColors.secondaryFaded,
     width: '100%',
+    sm: {
+      height: '16px',
+      padding: '5px 7px',
+    },
+    md: {
+      height: '16px',
+      padding: '8px 10px 6px 10px',
+    },
+    lg: {
+      height: '24px',
+      padding: '7px 13px 7px 13px',
+    },
+    multiSelect: {
+      sm: {
+        height: '26px',
+        padding: '0px 10px 0px 10px',
+        labelHeight: '20px',
+      },
+      md: {
+        height: '26px',
+        padding: '2px 10px 2px 10px',
+        labelHeight: '24px',
+      },
+      lg: {
+        height: '28px',
+        padding: '5px 13px 5px 13px',
+        labelHeight: '28px',
+      },
+    },
   },
   fileUpload: {
     dropZone: {

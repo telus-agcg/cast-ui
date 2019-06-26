@@ -838,6 +838,18 @@ export const cobaltTheme = {
     hoverOptionBackgroundColor: lighten(cobaltColors.primary, 75),
     borderColor: cobaltColors.secondary,
     width: '100%',
+    sm: {
+      height: '16px',
+      padding: '5px 7px',
+    },
+    md: {
+      height: '16px',
+      padding: '8px 10px 6px 10px',
+    },
+    lg: {
+      height: '16px',
+      padding: '11px 13px 11px 13px',
+    },
   },
   fileUpload: {
     fontSize: '14px',
