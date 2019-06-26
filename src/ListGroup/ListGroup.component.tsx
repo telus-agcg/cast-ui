@@ -160,9 +160,9 @@ const ChevronImage: Function = (
     return null;
   }
   return isCollapsed ? (
-    <SCollapseIcon chevronAlignment={chevronAlignment} />
-  ) : (
     <SExpandIcon chevronAlignment={chevronAlignment} />
+  ) : (
+    <SCollapseIcon chevronAlignment={chevronAlignment} />
   );
 };
 
@@ -180,7 +180,7 @@ export class ListGroup extends React.Component<Props, State> {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isCollapsed: false,
+      isCollapsed: true,
       collapsible: false,
       listGroupTheme: 'light',
       chevronAlignment: 'right',
