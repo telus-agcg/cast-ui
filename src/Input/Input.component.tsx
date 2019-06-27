@@ -123,7 +123,7 @@ const SInput = styled.input`
 	padding-left: ${(props: Props) =>
     'left' === props.addonTextPosition ? '0' : 'auto'}
 	padding-right: ${(props: Props) =>
-    'right' === props.addonTextPosition ? '0' : 'auto'}
+    'right' === props.addonTextPosition && !props.disabled ? '0' : 'auto'}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.input.fontSize}
   color: ${(props: Props) => props.theme.reverseText};
