@@ -204,8 +204,12 @@ const SSelect = styled(Select)`
   
   .react-select-component {
     font-family: ${(props: Props) => props.theme.typography.fontFamily};
-    // border: ${(props: Props) => props.theme.input.border};    
   }
+  
+  .react-select__control {
+    align-items: flex-start;
+    border: ${(props: Props) => props.theme.input.border};
+  }    
   
   .react-select__value-container {
     box-sizing: content-box;
@@ -215,10 +219,6 @@ const SSelect = styled(Select)`
   
   .react-select__placeholder {
     color: ${(props: any) => props.theme.input.placeholderColor};
-  }
-  
-  .react-select__control {
-    align-items: flex-start;
   }
   
   .react-select__indicators {
@@ -234,7 +234,6 @@ const SSelect = styled(Select)`
       props.theme.select.multiSelect[props.selectSize!].padding};
   
     .react-select__multi-value {
-      // margin: 0 8px 0 0;
       margin: ${(props: Props) =>
         props.theme.select.multiSelect[props.selectSize!].valueMargin};
       padding: 6px 12px;
