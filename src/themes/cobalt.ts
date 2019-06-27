@@ -840,15 +840,41 @@ export const cobaltTheme = {
     width: '100%',
     sm: {
       height: '16px',
-      padding: '5px 7px',
+      padding: '5px 10px',
     },
     md: {
       height: '16px',
-      padding: '8px 10px 6px 10px',
+      padding: '7px 10px',
     },
     lg: {
-      height: '16px',
-      padding: '11px 13px 11px 13px',
+      height: '24px',
+      padding: '7px 13px',
+    },
+    multiSelect: {
+      sm: {
+        height: '26px',
+        padding: '0px 10px',
+        valueMargin: '2px 8px 2px 0',
+        labelHeight: '20px',
+        borderRadius: '4px',
+        indicatorsPosition: '4px',
+      },
+      md: {
+        height: '28px',
+        padding: '2px 10px 0 10px',
+        valueMargin: '0 8px 2px 0',
+        labelHeight: '24px',
+        borderRadius: '4px',
+        indicatorsPosition: '6px',
+      },
+      lg: {
+        height: '33px',
+        padding: '5px 13px 0 13px',
+        valueMargin: '0 8px 5px 0',
+        labelHeight: '28px',
+        borderRadius: '4px',
+        indicatorsPosition: '10px',
+      },
     },
   },
   fileUpload: {
