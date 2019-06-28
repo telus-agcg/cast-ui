@@ -186,9 +186,7 @@ const SDiv = styled.div<Props>`
   color: ${(props: Props) => props.theme.reverseText};
   width: ${(props: Props) => props.theme.select.width};
   .react-select-component > div[class*="-control"] {
-    min-height: unset;
-    margin-top: 1px;
-    padding-top: 1px;
+    min-height: auto;
     border-radius: ${(props: Props) =>
       props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
     border-color: ${(props: Props) =>
@@ -198,21 +196,63 @@ const SDiv = styled.div<Props>`
 
 const SSelect = styled(Select)`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.typography.fontSize}
   &:disabled {
     background: ${(props: Props) => props.theme.input.backgroundDisabled};
     cursor: not-allowed;
   }
-  .react-select__value-container {
-    padding-top: 0px;
+  
+  .react-select-component {
+    font-family: ${(props: Props) => props.theme.typography.fontFamily};
   }
+  
+  .react-select__control {
+    align-items: flex-start;
+    border: ${(props: Props) => props.theme.input.border};
+  }    
+  
+  .react-select__value-container {
+    box-sizing: content-box;
+    height: ${(props: Props) => props.theme.select[props.selectSize!].height};
+    padding: ${(props: Props) => props.theme.select[props.selectSize!].padding};
+  }
+  
   .react-select__placeholder {
     color: ${(props: any) => props.theme.input.placeholderColor};
   }
+  
   .react-select__indicators {
-    padding-top: 2px;
-  }
-  .react-select__control {
-    align-items: flex-start;
+    margin-top: ${(props: Props) =>
+      props.theme.select.multiSelect[props.selectSize!].indicatorsPosition};;
+  }    
+  
+  .react-select__value-container--is-multi {
+    height: auto;
+    min-height: ${(props: Props) =>
+      props.theme.select.multiSelect[props.selectSize!].height};
+    padding: ${(props: Props) =>
+      props.theme.select.multiSelect[props.selectSize!].padding};
+  
+    .react-select__multi-value {
+      margin: ${(props: Props) =>
+        props.theme.select.multiSelect[props.selectSize!].valueMargin};
+      padding: 6px 12px;
+      font-size: 100%;
+      height: ${(props: Props) =>
+        props.theme.select.multiSelect[props.selectSize!].labelHeight};
+      border-radius: ${(props: Props) =>
+        props.theme.select.multiSelect[props.selectSize!].borderRadius};
+      align-items: center;
+      
+      .react-select__multi-value__label {
+        padding: 0 6px 0 0;
+      }
+      
+      .react-select__multi-value__remove {
+        padding: 0;      
+      }
+    }
+    
   }
 `;
 
@@ -247,6 +287,7 @@ const IndicatorsContainer = styled(components.IndicatorsContainer)`
   & > div {
     padding-top: 0;
     padding-bottom: 0;
+  }
 `;
 
 export class CustomSelect extends React.Component<Props> {
