@@ -51,7 +51,8 @@ const SWrapperDiv = styled(ReactTable)`
   width: 100%;
   box-sizing: border-box;
   .right-align {
-    text-align: right;
+    text-align: right; // for blocked elements
+    justify-content: flex-end; // for flex elements
   }
 
   .right-align.-sort-asc,
