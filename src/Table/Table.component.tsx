@@ -50,6 +50,11 @@ const SWrapperDiv = styled(ReactTable)`
   font-size: ${(props: any) => props.theme.table.fontSize};
   width: 100%;
   box-sizing: border-box;
+
+  .word-break {
+    word-break: break-word;
+  }
+
   .right-align {
     text-align: right;
   }
