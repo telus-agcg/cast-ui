@@ -147,6 +147,8 @@ const SInput = styled.input`
       -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       margin-left: ${(props: Props) =>
         props.cbSize === 'lg' ? '6.5px' : '6px'};
+      left: 0;
+      top: 2px;
     }
     &:checked&:disabled + label:after {
       opacity: 0.5;
