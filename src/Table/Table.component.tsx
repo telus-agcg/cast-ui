@@ -192,6 +192,8 @@ const SWrapperDiv = styled(ReactTable)`
     top: 10px;
     height: 100px;
     background-color: ${(props: any) => props.theme.colors.secondaryBackground};
+    transform: none;
+    left: 0;
   }
 
   &.ReactTable .white-space-wrap {
