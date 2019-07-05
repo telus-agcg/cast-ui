@@ -128,6 +128,7 @@ const SInput = styled.input<Partial<Props>>`
     border-radius: 50%;
     border-width ${(props: Partial<Props>) =>
       props.theme.radioButton.borderWidth};
+    cursor: pointer;
     margin-right: 5px;
     padding: 3px;
   }
