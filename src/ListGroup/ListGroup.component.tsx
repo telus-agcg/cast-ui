@@ -103,7 +103,9 @@ const SListHeader = styled.li<Partial<Props>>`
   border-bottom: ${(props: any) =>
     props.border ? `1px solid ${props.theme.colors.secondary}` : ''};
   background-color: ${(props: Props) =>
-    props.theme.listGroup.theme[props.listGroupTheme!].backgroundColor};
+    props.isCollapsed
+      ? props.theme.listGroup.theme[props.listGroupTheme!].backgroundColor
+      : props.theme.colors.highlight200};
   display: flex;
   align-items: center;
   justify-content: ${(props: any) =>
@@ -160,9 +162,9 @@ const ChevronImage: Function = (
     return null;
   }
   return isCollapsed ? (
-    <SCollapseIcon chevronAlignment={chevronAlignment} />
-  ) : (
     <SExpandIcon chevronAlignment={chevronAlignment} />
+  ) : (
+    <SCollapseIcon chevronAlignment={chevronAlignment} />
   );
 };
 
@@ -180,7 +182,7 @@ export class ListGroup extends React.Component<Props, State> {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isCollapsed: false,
+      isCollapsed: true,
       collapsible: false,
       listGroupTheme: 'light',
       chevronAlignment: 'right',
@@ -195,7 +197,7 @@ export class ListGroup extends React.Component<Props, State> {
   static defaultProps = {
     listGroupTheme: 'light',
     collapsible: false,
-    isCollapsed: false,
+    isCollapsed: true,
     theme: Themes.defaultTheme,
     chevronAlignment: 'right',
     border: true,
@@ -219,6 +221,7 @@ export class ListGroup extends React.Component<Props, State> {
           {collapsible ? (
             <React.Fragment>
               <SListHeader
+                isCollapsed={this.state.isCollapsed}
                 {...props}
                 onClick={collapsible ? this.toggle : undefined}
                 chevronAlignment={chevronAlignment}

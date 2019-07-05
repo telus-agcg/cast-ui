@@ -338,7 +338,7 @@ export const defaultTheme = {
   },
   input: {
     background: defaultColors.white,
-    border: `1px solid ${defaultColors.secondary}`,
+    border: `1px solid ${defaultColors.secondaryFaded}`,
     color: defaultColors.secondaryHover,
     fontSize: '14px',
     placeholderColor: defaultColors.drk400,
@@ -348,15 +348,15 @@ export const defaultTheme = {
     },
     sm: {
       height: '28px',
-      padding: '.375rem .75rem',
+      padding: '6px 7px',
     },
     md: {
       height: '32px',
-      padding: '.375rem .75rem',
+      padding: '9px 10px 7px 10px',
     },
     lg: {
       height: '40px',
-      padding: '.375rem .75rem',
+      padding: '11px 13px 13px 13px',
     },
   },
   inputGroup: {
@@ -849,6 +849,45 @@ export const defaultTheme = {
     optionBackgroundColor: defaultColors.secondaryFaded,
     hoverOptionBackgroundColor: defaultColors.primaryFaded,
     borderColor: defaultColors.secondaryFaded,
+    width: '100%',
+    sm: {
+      height: '16px',
+      padding: '5px 10px',
+    },
+    md: {
+      height: '16px',
+      padding: '7px 10px',
+    },
+    lg: {
+      height: '24px',
+      padding: '7px 13px',
+    },
+    multiSelect: {
+      sm: {
+        height: '26px',
+        padding: '0px 10px',
+        valueMargin: '2px 8px 2px 0',
+        labelHeight: '20px',
+        borderRadius: '13px',
+        indicatorsPosition: '4px',
+      },
+      md: {
+        height: '28px',
+        padding: '2px 10px 0 10px',
+        valueMargin: '0 8px 2px 0',
+        labelHeight: '24px',
+        borderRadius: '13px',
+        indicatorsPosition: '6px',
+      },
+      lg: {
+        height: '33px',
+        padding: '5px 13px 0 13px',
+        valueMargin: '0 8px 5px 0',
+        labelHeight: '28px',
+        borderRadius: '13px',
+        indicatorsPosition: '10px',
+      },
+    },
   },
   fileUpload: {
     dropZone: {
