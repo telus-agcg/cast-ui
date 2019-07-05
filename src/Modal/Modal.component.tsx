@@ -149,6 +149,9 @@ export class Modal extends React.Component<Props> {
   };
 
   getModalStyles = () => {
+    const isIE11 =
+      !!window['MSInputMethodContext'] && !!document['documentMode'];
+
     return {
       overlay: {
         position: 'fixed',
@@ -168,7 +171,7 @@ export class Modal extends React.Component<Props> {
         transform: 'translate(-50%, -40%)',
         backgroundColor: this.props.theme.modal.body.backgroundColor,
         border: '',
-        height: 'auto',
+        height: isIE11 ? '50%' : 'auto',
         lineHeight: '20px',
         position: 'absolute',
         boxShadow: '0 4px 16px rgba(0,0,0,0.5)',

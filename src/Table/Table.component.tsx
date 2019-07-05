@@ -50,8 +50,14 @@ const SWrapperDiv = styled(ReactTable)`
   font-size: ${(props: any) => props.theme.table.fontSize};
   width: 100%;
   box-sizing: border-box;
+
+  .word-break {
+    word-break: break-word;
+  }
+
   .right-align {
-    text-align: right;
+    text-align: right; // for blocked elements
+    justify-content: flex-end; // for flex elements
   }
 
   .right-align.-sort-asc,
@@ -186,6 +192,8 @@ const SWrapperDiv = styled(ReactTable)`
     top: 10px;
     height: 100px;
     background-color: ${(props: any) => props.theme.colors.secondaryBackground};
+    transform: none;
+    left: 0;
   }
 
   &.ReactTable .white-space-wrap {
