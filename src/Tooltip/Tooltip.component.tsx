@@ -7,7 +7,34 @@ export interface Props extends TippyProps {
   theme?: any;
 }
 
-const STippy = styled(Tippy)`
+// Tippy temporary fix
+// CCIBI-360, https://github.com/atomiks/tippy.js-react/issues/106
+const TippyProxy = props => {
+  const $this = React.useState({})[0];
+
+  React.useLayoutEffect(() => {
+    // @ts-ignore
+    const { instance } = $this;
+    if (instance.state.isVisible && !instance.state.isEnabled) {
+      instance.enable();
+      instance.hide();
+      instance.disable();
+    }
+  });
+
+  function onCreate(instance) {
+    if (props.onCreate) {
+      props.onCreate(instance);
+    }
+
+    // @ts-ignore
+    $this.instance = instance;
+  }
+
+  return <Tippy {...props} onCreate={onCreate} />;
+};
+
+const STippy = styled(TippyProxy)`
   background: ${(props: Props) => props.theme.tooltip.background};
   border-radius: ${(props: Props) => props.theme.tooltip.borderRadius};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
