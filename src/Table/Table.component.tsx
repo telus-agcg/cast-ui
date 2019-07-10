@@ -233,6 +233,7 @@ export class Table extends React.Component<Props> {
     theme: Themes.defaultTheme,
     minRows: 0,
     pageSize: 10,
+    resizable: false,
     PaginationComponent: TablePagination,
     nextText: 'Next >',
     previousText: '< Previous',
@@ -279,6 +280,7 @@ export class Table extends React.Component<Props> {
           showPagination={data.length > 0}
           column={{
             ...ReactTableDefaults.column,
+            resizable: false,
             Expander: ({ isExpanded, ...rest }) => (
               <React.Fragment>
                 {isExpanded ? (
