@@ -28,7 +28,7 @@ storiesOf('Table', module).add(
               id: 'ContactName',
               Header: 'Contact Name',
               accessor: 'CompanyName',
-              className: 'table-column-readonly',
+              className: 'table-column-readonly white-space-nowrap',
               headerClassName: 'table-column-readonly',
             },
             {
@@ -152,6 +152,14 @@ Based on tests running the [official demo](https://github.com/AdeleD/react-pagin
 Moreover, looking at the tests used by the package, it clearly shows that the intended view for the link should outline +1 of the value of forcePage as evidenced [here](https://github.com/AdeleD/react-paginate/blob/74813adde216ab5337b15556749484b61c9f4500/__tests__/PaginationBoxView-test.js#L756) and [here](https://github.com/AdeleD/react-paginate/blob/74813adde216ab5337b15556749484b61c9f4500/__tests__/PaginationBoxView-test.js#L490)
 
 The same effect is experienced when using **initialPage** props as well.
+
+##### Utility classNames
+| className | Target | Behavior | default |
+|:-------------------------|:--------:|:--------------------------------------:|---------:|
+| white-space-wrap | cell, column | break lines in the cell | yes |
+| white-space-nowrap | cell, column | prevents line break in the cell | no |
+| vertically-align-center | cell, column | vertically align center cell content | yes |
+| vertically-align-end | cell, column | vertically align end cell content | no |
         `,
     },
   },
