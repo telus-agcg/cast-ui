@@ -202,7 +202,7 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .white-space-nowrap {
     white-space: nowrap;
   }
-  &.ReactTable .white-space-nowrap > div {
+  &.ReactTable .white-space-nowrap > * {
     overflow: hidden;
     text-overflow: ellipsis;
   }
