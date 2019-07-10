@@ -199,6 +199,13 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .white-space-wrap {
     white-space: normal;
   }
+  &.ReactTable .white-space-nowrap {
+    white-space: nowrap;
+  }
+  &.ReactTable .white-space-nowrap > div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   &.ReactTable .vertically-align-center {
     display: flex;
     align-items: center;
