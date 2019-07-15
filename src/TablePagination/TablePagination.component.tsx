@@ -52,11 +52,16 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * From table props
    */
-  onPageSizeChange?: () => {};
+  onPageSizeChange?(pageSize: number, page?: number): any;
   /**
    * From table props
    */
   onFetchData?: () => {};
+  showPageSizeOptions?: boolean;
+  pageSize?: number;
+  pageSizeOptions?: [];
+  rowsSelectorText?: string;
+  rowsText?: string;
 }
 
 const initialState = {
@@ -88,6 +93,10 @@ export class TablePagination extends React.Component<Props> {
 
   static defaultProps = {
     theme: Themes.defaultTheme,
+    showPageSizeOptions: false,
+    rowsSelectorText: '',
+    rowsText: '',
+    pageSizeOptions: [5, 10, 20, 25, 50, 100],
   };
 
   componentWillReceiveProps(nextProps: Props) {
@@ -134,12 +143,37 @@ export class TablePagination extends React.Component<Props> {
     this.props.onPageChange!(page - 1);
   }
 
+  renderPageSizeOptions = ({
+    pageSize,
+    pageSizeOptions,
+    rowsSelectorText,
+    onPageSizeChange,
+    rowsText,
+  }) => (
+    <span className="select-wrap -pageSizeOptions">
+      <select
+        aria-label={rowsSelectorText}
+        onChange={e => onPageSizeChange(Number(e.target.value))}
+        value={pageSize}
+      >
+        {pageSizeOptions.map((option, i) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <option key={i} value={option}>
+            {`${option} ${rowsText}`}
+          </option>
+        ))}
+      </select>
+    </span>
+  );
   render() {
     const {
       theme,
       onFetchData,
       onPageSizeChange,
       onPageChange,
+      pageSize,
+      showPageSizeOptions,
+      pageSizeOptions,
       PageButtonComponent = SPaginationButton,
       PageButtonNextPrevComponent = SPaginationButtonNextPrev,
       ...props
@@ -150,6 +184,14 @@ export class TablePagination extends React.Component<Props> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDivPaginationWrapper {...props}>
+          {showPageSizeOptions &&
+            this.renderPageSizeOptions({
+              pageSize,
+              pageSizeOptions,
+              onPageSizeChange,
+              rowsSelectorText: this.props.rowsSelectorText,
+              rowsText: this.props.rowsText,
+            })}
           <SDivPaginationSectionWrapper>
             <PageButtonNextPrevComponent
               btnSize="md"

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { number, select, text } from '@storybook/addon-knobs/react';
+import { number, select, text, boolean } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 import { TablePagination } from '../';
 import SPaginationButton from './SPaginationButton';
@@ -19,6 +19,8 @@ storiesOf('Table', module).add(
         PageButtonComponent={SPaginationButton}
         PageButtonNextPrevComponent={SPaginationButtonNextPrev}
         previousText={text('previousText', 'Previous')}
+        showPageSizeOptions={boolean('showPageSizeOptions', true)}
+        onPageSizeChange={action('Page Size changed')}
       />
     );
   },
