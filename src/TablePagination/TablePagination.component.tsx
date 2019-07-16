@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import SPaginationButton from './SPaginationButton';
 import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
 import { Themes } from '../themes';
+import Select from '../Select/Select.component';
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -59,7 +60,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   onFetchData?: () => {};
   showPageSizeOptions?: boolean;
   pageSize?: number;
-  pageSizeOptions?: [];
+  pageSizeOptions: [];
   rowsSelectorText?: string;
   rowsText?: string;
 }
@@ -77,6 +78,11 @@ const SDivPaginationWrapper = styled.div`
 
 const SDivPaginationSectionWrapper = styled.div`
   display: inline-block;
+`;
+
+const SSpanPageSizeOptionsSelectWrapper = styled.span`
+  display: inline-block;
+  min-width: 120px;
 `;
 
 export class TablePagination extends React.Component<Props> {
@@ -98,6 +104,7 @@ export class TablePagination extends React.Component<Props> {
     rowsSelectorText: '',
     rowsText: '',
     pageSizeOptions: [5, 10, 20, 25, 50, 100],
+    pageSize: 10,
   };
 
   componentWillReceiveProps(nextProps: Props) {
@@ -155,22 +162,35 @@ export class TablePagination extends React.Component<Props> {
     pageSizeOptions,
     rowsSelectorText,
     rowsText,
-  }) => (
-    <span className="select-wrap -pageSizeOptions">
-      <select
-        aria-label={rowsSelectorText}
-        onChange={e => this.changePageSize(Number(e.target.value))}
-        value={pageSize}
-      >
-        {pageSizeOptions.map((option, i) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <option key={i} value={option}>
-            {`${option} ${rowsText}`}
-          </option>
-        ))}
-      </select>
-    </span>
-  );
+  }) => {
+    const options = pageSizeOptions.map((option, i) => ({
+      label: `${option} ${rowsText}`,
+      value: i,
+    }));
+    return (
+      <SSpanPageSizeOptionsSelectWrapper className="select-wrap -pageSizeOptions">
+        <Select
+          id="tablePaginationRows"
+          isMulti={false}
+          isDisabled={this.props.pages <= 0}
+          selectSize="sm"
+          onChange={selectedOption =>
+            this.changePageSize(
+              Number(this.props.pageSizeOptions[selectedOption.value]),
+            )
+          }
+          closeMenuOnSelect={true}
+          options={options}
+          controlSpecificProps={{
+            isSearchable: false,
+            defaultValue: { label: '10 rows', value: 1 },
+            'aria-label': { rowsSelectorText },
+          }}
+        />
+      </SSpanPageSizeOptionsSelectWrapper>
+    );
+  };
+
   render() {
     const {
       theme,
