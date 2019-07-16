@@ -84,6 +84,7 @@ export class TablePagination extends React.Component<Props> {
     super(props);
 
     this.changePage = this.changePage.bind(this);
+    this.changePageSize = this.changePageSize.bind(this);
 
     this.state = {
       visiblePages: this.getVisiblePages(0, props.pages),
@@ -143,17 +144,22 @@ export class TablePagination extends React.Component<Props> {
     this.props.onPageChange!(page - 1);
   }
 
+  changePageSize(pageSize: number, page?: number) {
+    if (this.props.onPageSizeChange) {
+      this.props.onPageSizeChange(pageSize);
+    }
+  }
+
   renderPageSizeOptions = ({
     pageSize,
     pageSizeOptions,
     rowsSelectorText,
-    onPageSizeChange,
     rowsText,
   }) => (
     <span className="select-wrap -pageSizeOptions">
       <select
         aria-label={rowsSelectorText}
-        onChange={e => onPageSizeChange(Number(e.target.value))}
+        onChange={e => this.changePageSize(Number(e.target.value))}
         value={pageSize}
       >
         {pageSizeOptions.map((option, i) => (
@@ -188,7 +194,6 @@ export class TablePagination extends React.Component<Props> {
             this.renderPageSizeOptions({
               pageSize,
               pageSizeOptions,
-              onPageSizeChange,
               rowsSelectorText: this.props.rowsSelectorText,
               rowsText: this.props.rowsText,
             })}
