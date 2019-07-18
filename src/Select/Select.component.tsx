@@ -364,6 +364,7 @@ export class CustomSelect extends React.Component<Props> {
               menuPortal: styles => ({
                 ...styles,
                 fontFamily: theme.typography.fontFamily,
+                zIndex: 9999,
               }),
             }}
             {...props}
