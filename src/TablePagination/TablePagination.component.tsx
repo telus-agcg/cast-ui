@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import SPaginationButton from './SPaginationButton';
 import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
 import { Themes } from '../themes';
+import Select from '../Select/Select.component';
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -52,11 +53,16 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * From table props
    */
-  onPageSizeChange?: () => {};
+  onPageSizeChange?(pageSize: number, page?: number): any;
   /**
    * From table props
    */
   onFetchData?: () => {};
+  showPageSizeOptions?: boolean;
+  pageSize?: number;
+  pageSizeOptions: [];
+  rowsSelectorText?: string;
+  rowsText?: string;
 }
 
 const initialState = {
@@ -74,11 +80,17 @@ const SDivPaginationSectionWrapper = styled.div`
   display: inline-block;
 `;
 
+const SSpanPageSizeOptionsSelectWrapper = styled.span`
+  display: inline-block;
+  min-width: 120px;
+`;
+
 export class TablePagination extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
     this.changePage = this.changePage.bind(this);
+    this.changePageSize = this.changePageSize.bind(this);
 
     this.state = {
       visiblePages: this.getVisiblePages(0, props.pages),
@@ -88,6 +100,11 @@ export class TablePagination extends React.Component<Props> {
 
   static defaultProps = {
     theme: Themes.defaultTheme,
+    showPageSizeOptions: false,
+    rowsSelectorText: '',
+    rowsText: '',
+    pageSizeOptions: [5, 10, 20, 25, 50, 100],
+    pageSize: 10,
   };
 
   componentWillReceiveProps(nextProps: Props) {
@@ -134,12 +151,55 @@ export class TablePagination extends React.Component<Props> {
     this.props.onPageChange!(page - 1);
   }
 
+  changePageSize(pageSize: number, page?: number) {
+    if (this.props.onPageSizeChange) {
+      this.props.onPageSizeChange(pageSize);
+    }
+  }
+
+  renderPageSizeOptions = ({
+    pageSize,
+    pageSizeOptions,
+    rowsSelectorText,
+    rowsText,
+  }) => {
+    const options = pageSizeOptions.map((option, i) => ({
+      label: `${option} ${rowsText}`,
+      value: i,
+    }));
+    return (
+      <SSpanPageSizeOptionsSelectWrapper className="select-wrap -pageSizeOptions">
+        <Select
+          id="tablePaginationRows"
+          isMulti={false}
+          isDisabled={this.props.pages <= 0}
+          selectSize="sm"
+          onChange={selectedOption =>
+            this.changePageSize(
+              Number(this.props.pageSizeOptions[selectedOption.value]),
+            )
+          }
+          closeMenuOnSelect={true}
+          options={options}
+          controlSpecificProps={{
+            isSearchable: false,
+            defaultValue: { label: '10 rows', value: 1 },
+            'aria-label': { rowsSelectorText },
+          }}
+        />
+      </SSpanPageSizeOptionsSelectWrapper>
+    );
+  };
+
   render() {
     const {
       theme,
       onFetchData,
       onPageSizeChange,
       onPageChange,
+      pageSize,
+      showPageSizeOptions,
+      pageSizeOptions,
       PageButtonComponent = SPaginationButton,
       PageButtonNextPrevComponent = SPaginationButtonNextPrev,
       ...props
@@ -150,6 +210,13 @@ export class TablePagination extends React.Component<Props> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDivPaginationWrapper {...props}>
+          {showPageSizeOptions &&
+            this.renderPageSizeOptions({
+              pageSize,
+              pageSizeOptions,
+              rowsSelectorText: this.props.rowsSelectorText,
+              rowsText: this.props.rowsText,
+            })}
           <SDivPaginationSectionWrapper>
             <PageButtonNextPrevComponent
               btnSize="md"

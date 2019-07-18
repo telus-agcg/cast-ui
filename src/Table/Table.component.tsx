@@ -30,6 +30,12 @@ export type Props = Partial<TableProps> &
      **/
     sizable?: boolean;
     /**
+     * Specify if table page size option is available
+     *
+     * @default true
+     **/
+    showPageSizeOptions?: boolean;
+    /**
      * From theme provider
      *
      * @default defaultTheme
@@ -232,13 +238,14 @@ export class Table extends React.Component<Props> {
     tableSize: 'md',
     theme: Themes.defaultTheme,
     minRows: 0,
-    pageSize: 10,
+    defaultPageSize: 10,
     resizable: false,
     PaginationComponent: TablePagination,
     nextText: 'Next >',
     previousText: '< Previous',
     getTdProps: ReactTableDefaults.getTdProps,
     getTrProps: ReactTableDefaults.getTrProps,
+    showPageSizeOptions: true,
   };
   render() {
     const { data, getTdProps, getTrProps, theme, ...props } = this.props;
