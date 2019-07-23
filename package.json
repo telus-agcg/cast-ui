@@ -38,6 +38,7 @@
     "react-dates": "^20.2.0"
   },
   "dependencies": {
+    "@ibm/plex": "^2.0.0",
     "@tippy.js/react": "^2.1.1",
     "@types/uuid": "^3.4.4",
     "classnames": "^2.2.6",

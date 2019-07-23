@@ -15,9 +15,15 @@ const Color = withTheme<any>(({ theme: { colors } }: any) =>
     >
       <div
         key={key}
-        style={{ display: 'flex', fontSize: '.8em', marginBottom: 12 }}
+        style={{
+          display: 'flex',
+          width: '32%',
+          marginBottom: 12,
+          fontSize: '.8em',
+          flexDirection: 'column',
+        }}
       >
-        <div style={{ width: 100, height: 52, backgroundColor: colors[key] }} />
+        <div style={{ height: 52, backgroundColor: colors[key] }} />
         <div style={{ flex: 1 }}>
           <CopyToClipboard
             copyContainerClass="copy-container"
@@ -33,12 +39,27 @@ const Color = withTheme<any>(({ theme: { colors } }: any) =>
   )),
 );
 
-storiesOf('Colors', module).add('Colors', () => <Color />, {
-  info: {
-    text: `
+storiesOf('Colors', module).add(
+  'Colors',
+  () => (
+    <div
+      style={{
+        display: 'flex',
+        width: '100%',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+      }}
+    >
+      <Color />
+    </div>
+  ),
+  {
+    info: {
+      text: `
         ### Notes
 
         This is available colors
         `,
+    },
   },
-});
+);
