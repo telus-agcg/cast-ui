@@ -110,7 +110,13 @@ const SLabel = styled.label`
 `;
 
 const SInput = styled.input`
-  display: none;
+	display: none;
+	& + label{
+		display: block !important;
+		&:before, &:after{
+			display:block;
+		}
+	}
   + label:before {
     content: "";
     display: inline-block;
@@ -166,6 +172,10 @@ const SInput = styled.input`
       ${(props: Props) => indeterminateCheckboxRules(props.cbSize)}
       margin-left: ${(props: Props) =>
         props.cbSize === 'lg' ? '6.5px' : '6px'};
+			transform: rotate(90deg) translateX(50%) translateY(0px);
+			-webkit-transform: rotate(90deg) translateX(50%) translateY(0px);
+			-ms-transform: rotate(90deg) translateX(50%) translateY(0px);
+			top:-1px;
     }
 `;
 
