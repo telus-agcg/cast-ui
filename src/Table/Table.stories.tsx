@@ -5,6 +5,7 @@ import { boolean, number, select } from '@storybook/addon-knobs/react';
 import { Table } from './';
 import { Input } from '../Input';
 import { Tooltip } from '../Tooltip';
+import { Checkbox } from '../Checkbox';
 import SampleData from './sampleData';
 
 storiesOf('Table', module).add(
@@ -89,6 +90,23 @@ storiesOf('Table', module).add(
             {
               Header: 'Fax',
               accessor: 'Fax',
+            },
+            {
+              Header: 'Member',
+              accessor: 'Member',
+              Cell: (row: any) => {
+                return (
+                  <Checkbox
+                    id="myInput2"
+                    cbSize="md"
+                    value="2"
+                    indeterminate={true}
+                    displayStyle="inline"
+                  >
+                    Two
+                  </Checkbox>
+                );
+              },
             },
           ]}
           getTrProps={(state, rowInfo, column) => {
