@@ -624,10 +624,13 @@ export const verdantTheme = {
   },
   table: {
     fontSize: '14px',
+    border: true,
+    bordercolor: verdantColors.lt800,
     header: {
-      borderBottomColor: verdantColors.drk800,
+      borderBottomColor: verdantColors.lt800,
       color: verdantColors.drk800,
       fontWeight: 'bold',
+      backgroundColor: verdantColors.lt200,
     },
     row: {
       borderBottomColor: verdantColors.drk400,
