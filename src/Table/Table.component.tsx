@@ -51,12 +51,11 @@ const SIcon = styled(Icon)`
 
 const SWrapperDiv = styled(ReactTable)`
   background: ${(props: any) => props.theme.input.background};
-  border: 0;
+  border: none !important;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.table.fontSize};
   width: 100%;
   box-sizing: border-box;
-
   .word-break {
     word-break: break-word;
   }
@@ -86,11 +85,8 @@ const SWrapperDiv = styled(ReactTable)`
     padding-top: 20px;
   }
 
-  &.ReactTable {
-    border: ${(props: any) =>
-      props.theme.table.border
-        ? `1px solid, ${props.theme.table.borderColor}`
-        : 'none'};
+  &.ReactTable .rt-table {
+    border: ${(props: any) => props.theme.table.border};
   }
 
   &.ReactTable .rt-thead.-header {
@@ -98,6 +94,7 @@ const SWrapperDiv = styled(ReactTable)`
     color: ${(props: any) => props.theme.table.header.color};
     background-color: ${(props: any) =>
       props.theme.table.header.backgroundColor};
+    padding-top: ${(props: any) => props.theme.table.header.topPadding};
   }
   &.ReactTable .rt-thead .rt-tr {
     border-bottom-color: ${(props: any) =>

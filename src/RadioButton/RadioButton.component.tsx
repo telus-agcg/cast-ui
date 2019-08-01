@@ -172,12 +172,9 @@ export class RadioButton extends React.Component<Props> {
       if (this.props.onChange instanceof Function) {
         this.props.onChange(this.props.value, this.props.name!, event);
       } else {
-        this.setState(
-          {
-            checked: !this.state.checked,
-          },
-          () => console.log(this.state, this.props, event),
-        );
+        this.setState({
+          checked: !this.state.checked,
+        });
       }
     }
   };
@@ -196,7 +193,6 @@ export class RadioButton extends React.Component<Props> {
       onChange,
       ...props
     } = this.props;
-    console.log(this.state.checked);
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv data-radiobutton="" {...props}>
