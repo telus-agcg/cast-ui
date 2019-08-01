@@ -87,12 +87,17 @@ const SWrapperDiv = styled(ReactTable)`
   }
 
   &.ReactTable {
-    border: 0;
+    border: ${(props: any) =>
+      props.theme.table.border
+        ? `1px solid, ${props.theme.table.borderColor}`
+        : 'none'};
   }
 
   &.ReactTable .rt-thead.-header {
     box-shadow: none;
     color: ${(props: any) => props.theme.table.header.color};
+    background-color: ${(props: any) =>
+      props.theme.table.header.backgroundColor};
   }
   &.ReactTable .rt-thead .rt-tr {
     border-bottom-color: ${(props: any) =>
