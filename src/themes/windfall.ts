@@ -208,7 +208,7 @@ export const windfallTheme = {
     },
   },
   body: {
-    fontFamily: '"IBM Plex Sans", sans-serif',
+    fontFamily: '"acumin-pro", sans-serif',
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '18px',
@@ -219,7 +219,7 @@ export const windfallTheme = {
     outlineBackgroundColor: 'white',
   },
   typography: {
-    fontFamily: '"IBM Plex Sans", sans-serif',
+    fontFamily: '"acumin-pro", sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
     fontWeight: '400',
@@ -227,13 +227,13 @@ export const windfallTheme = {
     color: windfallColors.drk800,
     caption: {
       10: {
-        fontFamily: '"IBM Plex Sans", sans-serif',
+        fontFamily: '"acumin-pro", sans-serif',
         fontWeight: '400',
         fontSize: '10px',
         lineHeight: '100%',
       },
       20: {
-        fontFamily: '"IBM Plex Sans", sans-serif',
+        fontFamily: '"acumin-pro", sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
@@ -241,13 +241,13 @@ export const windfallTheme = {
     },
     bodyText: {
       10: {
-        fontFamily: '"IBM Plex Sans", sans-serif',
+        fontFamily: '"acumin-pro", sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
       },
       20: {
-        fontFamily: '"IBM Plex Sans", sans-serif',
+        fontFamily: '"acumin-pro", sans-serif',
         fontWeight: '400',
         fontSize: '14px',
         lineHeight: '160%',
@@ -266,13 +266,13 @@ export const windfallTheme = {
     },
     display: {
       10: {
-        fontFamily: '"IBM Plex Sans", sans-serif',
+        fontFamily: '"acumin-pro", sans-serif',
         fontWeight: '300',
         fontSize: '27px',
         lineHeight: '125%',
       },
       20: {
-        fontFamily: '"IBM Plex Sans", sans-serif',
+        fontFamily: '"acumin-pro", sans-serif',
         fontWeight: '400',
         fontSize: '37px',
         lineHeight: '120%',
@@ -280,13 +280,13 @@ export const windfallTheme = {
     },
     header: {
       10: {
-        fontFamily: '"IBM Plex Sans", sans-serif',
+        fontFamily: '"acumin-pro", sans-serif',
         fontWeight: '700',
         fontSize: '14px',
         lineHeight: '160%',
       },
       20: {
-        fontFamily: '"IBM Plex Sans", sans-serif',
+        fontFamily: '"acumin-pro", sans-serif',
         fontWeight: '500',
         fontSize: '16px',
         lineHeight: '175%',
@@ -333,13 +333,13 @@ export const windfallTheme = {
     },
     title: {
       10: {
-        fontFamily: '"IBM Plex Sans", sans-serif',
+        fontFamily: '"acumin-pro", sans-serif',
         fontWeight: '300',
         fontSize: '18px',
         lineHeight: '130%',
       },
       20: {
-        fontFamily: '"IBM Plex Sans", sans-serif',
+        fontFamily: '"acumin-pro", sans-serif',
         fontWeight: '500',
         fontSize: '20px',
         lineHeight: '135%',
@@ -559,7 +559,8 @@ export const windfallTheme = {
     borderRadius: '1px',
     fontSize: '14px',
     padding: '8px 16px',
-    fontWeight: 'bold',
+    fontWeight: '400',
+    lightFontWeight: '400',
     lineHeight: '18px',
   },
   notification: {
