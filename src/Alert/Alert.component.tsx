@@ -42,7 +42,10 @@ const SAlert = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.alert.fontSize};
   padding: ${(props: Props) => props.theme.alert.padding};
-  font-weight: ${(props: Props) => (props.lightMode ? 'normal' : 'bold')};
+  font-weight: ${(props: Props) =>
+    props.lightMode
+      ? props.theme.alert.lightFontWeight
+      : props.theme.alert.fontWeight};
   line-height: ${(props: Props) => props.theme.alert.lineHeight};
 `;
 

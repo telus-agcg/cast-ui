@@ -560,6 +560,7 @@ export const cobaltTheme = {
     fontSize: '14px',
     padding: '8px 16px',
     fontWeight: 'bold',
+    lightFontWeight: '400',
     lineHeight: '18px',
   },
   notification: {
