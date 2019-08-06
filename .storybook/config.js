@@ -4,7 +4,12 @@ import {withKnobs} from '@storybook/addon-knobs/react';
 import {withInfo} from '@storybook/addon-info';
 import 'typeface-roboto';
 import '../src/utils/static/fonts.css';
-import {defaultTheme, cobaltTheme, verdantTheme} from '../src/themes';
+import {
+  defaultTheme,
+  cobaltTheme,
+  verdantTheme,
+  windfallTheme,
+} from '../src/themes';
 import {withThemesProvider} from 'storybook-addon-styled-component-theme';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -64,7 +69,9 @@ addDecorator (
 
 addDecorator (withKnobs);
 
-addDecorator (withThemesProvider ([defaultTheme, cobaltTheme, verdantTheme]));
+addDecorator (
+  withThemesProvider ([defaultTheme, cobaltTheme, verdantTheme, windfallTheme])
+);
 
 // automatically import all files ending in *.stories.tsx
 const req = require.context ('../src', true, /.stories.tsx$/);
