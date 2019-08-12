@@ -34,7 +34,6 @@ export * from './Select';
 export * from './Sidenav';
 export * from './Spinner';
 export * from './Table';
-export * from './TablePagination';
 export * from './Tabs';
 export * from './Tabnav';
 export * from './Textarea';
