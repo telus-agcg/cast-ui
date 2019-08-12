@@ -103,11 +103,7 @@ export class Collapse extends React.Component<Props, any> {
 
   // Detect a new collapse state from props.isOpen change
   static getDerivedStateFromProps(props: Props, state: State) {
-    const isOpenProps = props.isOpen === props.isOpen;
-    // const isOpen =
-    // state.collapseState === COLLAPSED || state.collapseState === COLLAPSING;
-
-    const expand = isOpenProps && !props.isOpen;
+    const expand = !props.isOpen;
 
     if (expand) {
       return {
