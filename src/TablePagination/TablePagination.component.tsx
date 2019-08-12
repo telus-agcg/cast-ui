@@ -66,9 +66,11 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const initialState = {
+  activePage: 1,
   visiblePages: [],
 };
 type State = {
+  activePage: number;
   visiblePages: number[];
 };
 
@@ -93,6 +95,7 @@ export class TablePagination extends React.Component<Props> {
     this.changePageSize = this.changePageSize.bind(this);
 
     this.state = {
+      activePage: 1,
       visiblePages: this.getVisiblePages(0, props.pages),
     };
   }
@@ -110,6 +113,7 @@ export class TablePagination extends React.Component<Props> {
   componentWillReceiveProps(nextProps: Props) {
     if (this.props.pages !== nextProps.pages) {
       this.setState({
+        activePage: 1,
         visiblePages: this.getVisiblePages(0, nextProps.pages),
       });
     }
@@ -126,25 +130,24 @@ export class TablePagination extends React.Component<Props> {
       return this.filterPages([1, 2, 3, 4, 5, 6], total);
     }
 
-    if (page % 5 >= 0 && page > 4 && page + 2 < total) {
+    if (page % 5 >= 0 && page > 4 && page + 3 < total) {
       return [1, page - 1, page, page + 1, total];
     }
-    if (page % 5 >= 0 && page > 4 && page + 2 >= total) {
+    if (page % 5 >= 0 && page > 4 && page + 3 >= total) {
       return [1, total - 3, total - 2, total - 1, total];
     }
     return [1, 2, 3, 4, 5, total];
   };
 
   changePage(page: number) {
-    const activePage = this.props.page + 1;
-
-    if (page === activePage) {
+    if (page === this.state.activePage) {
       return;
     }
 
     const visiblePages = this.getVisiblePages(page, this.props.pages);
 
     this.setState({
+      activePage: page,
       visiblePages: this.filterPages(visiblePages, this.props.pages),
     });
 
@@ -204,8 +207,7 @@ export class TablePagination extends React.Component<Props> {
       PageButtonNextPrevComponent = SPaginationButtonNextPrev,
       ...props
     } = this.props;
-    const { visiblePages } = this.state;
-    const activePage = this.props.page + 1;
+    const { activePage, visiblePages } = this.state;
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -221,7 +223,6 @@ export class TablePagination extends React.Component<Props> {
             <PageButtonNextPrevComponent
               btnSize="md"
               onClick={() => {
-                if (activePage === 1) return;
                 this.changePage(activePage - 1);
               }}
               disabled={activePage === 1}
@@ -232,15 +233,32 @@ export class TablePagination extends React.Component<Props> {
           <SDivPaginationSectionWrapper>
             {visiblePages.map(
               (page: number, index: number, array: number[]) => {
+                const showPrevNextGap = array[index - 1] + 2 < page;
+                const prevNextGapPageIndex =
+                  index === array.length - 1 ? array[index - 1] + 2 : page - 2;
+
                 return (
-                  <PageButtonComponent
-                    btnSize="md"
-                    key={page}
-                    data-selected={activePage === page ? '' : undefined}
-                    onClick={this.changePage.bind(null, page)}
-                  >
-                    {array[index - 1] + 2 < page ? `...${page}` : page}
-                  </PageButtonComponent>
+                  <span key={page}>
+                    {showPrevNextGap && (
+                      <PageButtonComponent
+                        btnSize="md"
+                        onClick={this.changePage.bind(
+                          null,
+                          prevNextGapPageIndex,
+                        )}
+                      >
+                        ...
+                      </PageButtonComponent>
+                    )}
+
+                    <PageButtonComponent
+                      btnSize="md"
+                      data-selected={activePage === page ? '' : undefined}
+                      onClick={this.changePage.bind(null, page)}
+                    >
+                      {page}
+                    </PageButtonComponent>
+                  </span>
                 );
               },
             )}
@@ -249,7 +267,6 @@ export class TablePagination extends React.Component<Props> {
             <PageButtonNextPrevComponent
               btnSize="md"
               onClick={() => {
-                if (activePage === this.props.pages) return;
                 this.changePage(activePage + 1);
               }}
               disabled={activePage === this.props.pages}

@@ -14,7 +14,7 @@ storiesOf('Table', module).add(
         btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
         nextText={text('nextText', 'Next')}
         onPageChange={action('Page changed!')}
-        pages={number('pages', 10)}
+        pages={number('pages', 50)}
         page={number('page', 0)}
         PageButtonComponent={SPaginationButton}
         PageButtonNextPrevComponent={SPaginationButtonNextPrev}
