@@ -165,12 +165,6 @@ Controlled Pagination's **forcePage** doesn't display the correct page. For exam
 
 It seems that the [react-table](https://github.com/tannerlinsley/react-table) package is built like this by default.
 
-Based on tests running the [official demo](https://github.com/AdeleD/react-paginate#demo), the npm package works the same way as the implementation on here.
-
-Moreover, looking at the tests used by the package, it clearly shows that the intended view for the link should outline +1 of the value of forcePage as evidenced [here](https://github.com/AdeleD/react-paginate/blob/74813adde216ab5337b15556749484b61c9f4500/__tests__/PaginationBoxView-test.js#L756) and [here](https://github.com/AdeleD/react-paginate/blob/74813adde216ab5337b15556749484b61c9f4500/__tests__/PaginationBoxView-test.js#L490)
-
-The same effect is experienced when using **initialPage** props as well.
-
 ##### Utility classNames
 | className | Target | Behavior | default |
 |:-------------------------|:--------:|:--------------------------------------:|---------:|
