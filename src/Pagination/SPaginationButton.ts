@@ -42,11 +42,10 @@ const SPaginationButton = styled.button`
       : props.theme.pagination.background}
   border: 1px solid ${(props: Props) => props.theme.pagination.borderColor};
   padding: ${(props: Props) =>
-    props.theme.table.pagination.button.padding[props.btnSize]}
+    props.theme.pagination.button.padding[props.btnSize]}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.btnSize].fontSize}
-  font-weight: ${(props: Props) =>
-    props.theme.table.pagination.button.fontWeight};
+  font-weight: ${(props: Props) => props.theme.pagination.button.fontWeight};
   color: ${(props: Props) => props.theme.pagination.text};
   outline: none;
   &:hover {
@@ -66,7 +65,7 @@ const SPaginationButton = styled.button`
       props.theme.styles['primary'].borderColor};
     color: ${(props: Props) => props.theme.styles['primary'].text};
     font-weight: ${(props: Props) =>
-      props.theme.table.pagination.button.fontWeightSelected};
+      props.theme.pagination.button.fontWeightSelected};
   }
 `;
 

@@ -1,51 +1,36 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-
-import { Pagination } from '../';
+import { number, select, text, boolean } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
-import { number, select } from '@storybook/addon-knobs';
+import { Pagination } from '../index';
+import SPaginationButton from './SPaginationButton';
+import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
 
 storiesOf('Pagination', module).add(
   'Pagination',
-  () => (
-    <Pagination
-      pageCount={number('pageCount', 10)}
-      btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
-      onPageChange={action('page')}
-    />
-  ),
-  {
-    info: {
-      text: `
-        ### Notes
-        This is a pagination component. Page numbers use an index value (begin at 0).
-
-        #### Uncontrolled Component
-        The component will accept an onPageChange function that will fire when the page changes.
-      `,
-    },
+  () => {
+    return (
+      <Pagination
+        btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
+        nextText={text('nextText', 'Next')}
+        onPageChange={action('Page changed!')}
+        pages={number('pages', 10)}
+        page={number('page', 0)}
+        PageButtonComponent={SPaginationButton}
+        PageButtonNextPrevComponent={SPaginationButtonNextPrev}
+        previousText={text('previousText', 'Previous')}
+        showPageSizeOptions={boolean('showPageSizeOptions', true)}
+        onPageSizeChange={action('Page Size changed')}
+      />
+    );
   },
-);
-
-storiesOf('Pagination', module).add(
-  'Controlled Pagination',
-  () => (
-    <Pagination
-      pageCount={number('pageCount', 10)}
-      btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
-      forcePage={number('forcePage', 4)}
-      onPageChange={action('page change')}
-    />
-  ),
   {
     info: {
       text: `
         ### Notes
-        This is a pagination component. Page numbers use an index value (begin at 0).
 
-        #### Controlled Component
-        To use this as a fully controlled component, provide the prop ${'`forcePage`'}.
-      `,
+        This is a custom pagination control intended for use with various components (such as Table).
+        `,
     },
   },
 );

@@ -1,124 +1,265 @@
 import * as React from 'react';
-import ReactPaginate, { ReactPaginateProps } from 'react-paginate';
-import Icon from 'react-icons-kit';
-import { chevronLeft } from 'react-icons-kit/fa/chevronLeft';
-import { chevronRight } from 'react-icons-kit/fa/chevronRight';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import SPaginationButton from './SPaginationButton';
+import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
+import { Themes } from '../themes/index';
+import Select from '../Select/Select.component';
 
-const SPaginate = styled.div`
-  .cast-paginate {
-    display: inline-block;
-    padding-left: 0;
-    font-family: ${(props: Partial<Props>) =>
-      props.theme.typography.fontFamily};
-    a {
-      background: ${(props: Partial<Props>) =>
-        props.theme.pagination.background};
-      border: 1px solid
-        ${(props: Partial<Props>) => props.theme.pagination.borderColor};
-      padding: ${(props: Partial<Props>) =>
-        props.theme.pagination.button.padding[props.btnSize || 'md']};
-      font-family: ${(props: Partial<Props>) =>
-        props.theme.typography.fontFamily};
-      font-size: ${(props: Partial<Props>) =>
-        props.theme.common[props.btnSize || 'md'].fontSize};
-      font-weight: ${(props: Partial<Props>) =>
-        props.theme.pagination.button.fontWeight};
-      color: ${(props: Partial<Props>) => props.theme.pagination.text};
-      border-radius: ${(props: Partial<Props>) =>
-        props.theme.pagination.borderRadius};
-      outline: none;
-      user-select: none;
-      cursor: pointer;
-    }
-    li {
-      display: inline-block;
-    }
-    .selected a {
-      font-weight: ${(props: Partial<Props>) =>
-        props.theme.pagination.activeFontWeight};
-      background: ${(props: Partial<Props>) =>
-        props.theme.pagination.activeBackground};
-      border: 1px solid;
-      border-color: ${(props: Partial<Props>) =>
-        props.theme.pagination.activeBorderColor};
-      color: ${(props: Partial<Props>) => props.theme.pagination.activeText};
-    }
-    .disabled a {
-      background: ${(props: Partial<Props>) =>
-        props.theme.pagination.disabledBackground};
-      border: 1px solid;
-      border-color: ${(props: Partial<Props>) =>
-        props.theme.pagination.disabledBorderColor};
-      color: ${(props: Partial<Props>) => props.theme.pagination.disabledText};
-      cursor: not-allowed;
-    }
-  }
-`;
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Specify the size of the buttons to use
+   *
+   * @default 'md'
+   **/
+  btnSize: 'sm' | 'md' | 'lg';
+  /**
+   * Specify the text of the next button
+   **/
+  nextText: string;
+  /**
+   * Specify the function to fire when a page is changed
+   **/
+  onPageChange?(page: number): any;
+  /**
+   * Specify the total number of pages
+   **/
+  pages: number;
+  /**
+   * Specify the currently selected page (zero-based)
+   **/
+  page: number;
+  /**
+   * Specify the button definition to use for the individual page buttons
+   **/
+  PageButtonComponent: any;
+  /**
+   * Specify the button definition to use for the previous and next buttons
+   **/
+  PageButtonNextPrevComponent: any;
+  /**
+   * Specify the text of the previous button
+   **/
+  previousText: string;
+  /**
+   * Specify any child objects (if applicable)
+   **/
+  children?: any;
+  /**
+   * From theme provider
+   *
+   * @default defaultTheme
+   **/
+  theme?: any;
+  onPageSizeChange?(pageSize: number, page?: number): any;
+  onFetchData?: () => {};
+  showPageSizeOptions?: boolean;
+  pageSize?: number;
+  pageSizeOptions: [];
+  rowsSelectorText?: string;
+  rowsText?: string;
+}
 
-const defaultProps = {
-  btnSize: 'md' as 'md' | 'lg' | 'sm',
-  containerClassName: 'cast-paginate',
-  compact: false,
-  pageRangeDisplayed: 3,
-  marginPagesDisplayed: 1,
-  theme: Themes.defaultTheme,
+const initialState = {
+  visiblePages: [],
+};
+type State = {
+  visiblePages: number[];
 };
 
-type DefaultProps = Readonly<typeof defaultProps>;
+const SDivPaginationWrapper = styled.div`
+  padding: ${(props: any) => props.theme.pagination.padding};
+`;
 
-export type Props = Partial<ReactPaginateProps> &
-  Partial<DefaultProps> & {
-    /* The size of the clickable links
-      @default 'md'
-    */
-    btnSize?: 'sm' | 'md' | 'lg';
-    pageCount: number;
-    onPageChange: any;
-    /* provided from the ThemeProvider
-      @default tkxs theme
-    */
-    theme?: any;
-  };
+const SDivPaginationSectionWrapper = styled.div`
+  display: inline-block;
+`;
 
-const PreviousLabel = () => (
-  <React.Fragment>
-    <Icon icon={chevronLeft} size={10} />
-    <span style={{ fontWeight: 'bold', marginLeft: '10px' }}>Previous</span>
-  </React.Fragment>
-);
-const NextLabel = () => (
-  <React.Fragment>
-    <span style={{ fontWeight: 'bold', marginRight: '10px' }}>Next</span>
-    <Icon icon={chevronRight} size={10} />
-  </React.Fragment>
-);
+const SSpanPageSizeOptionsSelectWrapper = styled.span`
+  display: inline-block;
+  min-width: 120px;
+`;
 
 export class Pagination extends React.Component<Props> {
-  static defaultProps = defaultProps;
+  constructor(props: Props) {
+    super(props);
+
+    this.changePage = this.changePage.bind(this);
+    this.changePageSize = this.changePageSize.bind(this);
+
+    this.state = {
+      visiblePages: this.getVisiblePages(0, props.pages),
+    };
+  }
+  readonly state: State = initialState;
+
+  static defaultProps = {
+    theme: Themes.defaultTheme,
+    showPageSizeOptions: false,
+    rowsSelectorText: '',
+    rowsText: '',
+    pageSizeOptions: [5, 10, 20, 25, 50, 100],
+    pageSize: 10,
+  };
+
+  componentWillReceiveProps(nextProps: Props) {
+    if (this.props.pages !== nextProps.pages) {
+      this.setState({
+        visiblePages: this.getVisiblePages(0, nextProps.pages),
+      });
+    }
+
+    this.changePage(nextProps.page + 1);
+  }
+
+  filterPages = (visiblePages: number[], totalPages: number) => {
+    return visiblePages.filter((page: number) => page <= totalPages);
+  };
+
+  getVisiblePages = (page: number, total: number) => {
+    if (total < 7) {
+      return this.filterPages([1, 2, 3, 4, 5, 6], total);
+    }
+
+    if (page % 5 >= 0 && page > 4 && page + 2 < total) {
+      return [1, page - 1, page, page + 1, total];
+    }
+    if (page % 5 >= 0 && page > 4 && page + 2 >= total) {
+      return [1, total - 3, total - 2, total - 1, total];
+    }
+    return [1, 2, 3, 4, 5, total];
+  };
+
+  changePage(page: number) {
+    const activePage = this.props.page + 1;
+
+    if (page === activePage) {
+      return;
+    }
+
+    const visiblePages = this.getVisiblePages(page, this.props.pages);
+
+    this.setState({
+      visiblePages: this.filterPages(visiblePages, this.props.pages),
+    });
+
+    this.props.onPageChange!(page - 1);
+  }
+
+  changePageSize(pageSize: number, page?: number) {
+    debugger;
+    if (this.props.onPageSizeChange) {
+      this.props.onPageSizeChange(pageSize);
+    }
+  }
+
+  renderPageSizeOptions = ({
+    pageSize,
+    pageSizeOptions,
+    rowsSelectorText,
+    rowsText,
+  }) => {
+    const options = pageSizeOptions.map((option, i) => ({
+      pageSize: option,
+      label: `${option} ${rowsText}`,
+      value: i,
+    }));
+    const defaultValue = options.find(option => option.pageSize === pageSize);
+    debugger;
+    return (
+      <SSpanPageSizeOptionsSelectWrapper className="select-wrap -pageSizeOptions">
+        <Select
+          id="paginationRows"
+          isMulti={false}
+          isDisabled={this.props.pages <= 0}
+          selectSize="sm"
+          onChange={selectedOption =>
+            this.changePageSize(
+              Number(this.props.pageSizeOptions[selectedOption.value]),
+            )
+          }
+          closeMenuOnSelect={true}
+          options={options}
+          controlSpecificProps={{
+            defaultValue,
+            isSearchable: false,
+            'aria-label': { rowsSelectorText },
+          }}
+        />
+      </SSpanPageSizeOptionsSelectWrapper>
+    );
+  };
+
   render() {
-    const { theme, onPageChange, ...props } = this.props;
+    const {
+      theme,
+      onFetchData,
+      onPageSizeChange,
+      onPageChange,
+      pageSize,
+      showPageSizeOptions,
+      pageSizeOptions,
+      PageButtonComponent = SPaginationButton,
+      PageButtonNextPrevComponent = SPaginationButtonNextPrev,
+      ...props
+    } = this.props;
+    debugger;
+    const { visiblePages } = this.state;
+    const activePage = this.props.page + 1;
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SPaginate {...props}>
-          <ReactPaginate
-            pageCount={this.props.pageCount}
-            pageRangeDisplayed={
-              this.props.pageRangeDisplayed || defaultProps.pageRangeDisplayed
-            }
-            marginPagesDisplayed={
-              this.props.marginPagesDisplayed ||
-              defaultProps.marginPagesDisplayed
-            }
-            containerClassName={'cast-paginate'}
-            previousLabel={<PreviousLabel />}
-            nextLabel={<NextLabel />}
-            onPageChange={onPageChange}
-            {...props}
-          />
-        </SPaginate>
+        <SDivPaginationWrapper {...props}>
+          {showPageSizeOptions &&
+            this.renderPageSizeOptions({
+              pageSize,
+              pageSizeOptions,
+              rowsSelectorText: this.props.rowsSelectorText,
+              rowsText: this.props.rowsText,
+            })}
+          <SDivPaginationSectionWrapper>
+            <PageButtonNextPrevComponent
+              btnSize="md"
+              onClick={() => {
+                if (activePage === 1) return;
+                this.changePage(activePage - 1);
+              }}
+              disabled={activePage === 1}
+            >
+              {this.props.previousText}
+            </PageButtonNextPrevComponent>
+          </SDivPaginationSectionWrapper>
+          <SDivPaginationSectionWrapper>
+            {visiblePages.map(
+              (page: number, index: number, array: number[]) => {
+                return (
+                  <PageButtonComponent
+                    btnSize="md"
+                    key={page}
+                    data-selected={activePage === page ? '' : undefined}
+                    onClick={this.changePage.bind(null, page)}
+                  >
+                    {array[index - 1] + 2 < page ? `...${page}` : page}
+                  </PageButtonComponent>
+                );
+              },
+            )}
+          </SDivPaginationSectionWrapper>
+          <SDivPaginationSectionWrapper>
+            <PageButtonNextPrevComponent
+              btnSize="md"
+              onClick={() => {
+                if (activePage === this.props.pages) return;
+                this.changePage(activePage + 1);
+              }}
+              disabled={activePage === this.props.pages}
+            >
+              {this.props.nextText}
+            </PageButtonNextPrevComponent>
+          </SDivPaginationSectionWrapper>
+        </SDivPaginationWrapper>
       </ThemeProvider>
     );
   }
 }
+
+export default Pagination;

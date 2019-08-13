@@ -10,7 +10,7 @@ import { Themes } from '../themes';
 import Icon from 'react-icons-kit';
 import { chevronUp } from 'react-icons-kit/fa/chevronUp';
 import { chevronDown } from 'react-icons-kit/fa/chevronDown';
-import TablePagination from '../TablePagination/TablePagination.component';
+import Pagination from '../Pagination/Pagination.component';
 import 'react-table/react-table.css';
 
 export type Props = Partial<TableProps> &
@@ -242,7 +242,7 @@ export class Table extends React.Component<Props> {
     minRows: 0,
     defaultPageSize: 10,
     resizable: false,
-    PaginationComponent: TablePagination,
+    PaginationComponent: Pagination,
     nextText: 'Next >',
     previousText: '< Previous',
     getTdProps: ReactTableDefaults.getTdProps,
@@ -251,6 +251,7 @@ export class Table extends React.Component<Props> {
   };
   render() {
     const { data, getTdProps, getTrProps, theme, ...props } = this.props;
+    debugger;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
