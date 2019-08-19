@@ -620,7 +620,7 @@ export const cobaltTheme = {
   },
   validation: {
     borderColor: cobaltColors.danger,
-    color: cobaltColors.drk400,
+    color: cobaltColors.drk800,
     fontSize: '11px',
     fontStyle: 'italic',
     padding: '4px',

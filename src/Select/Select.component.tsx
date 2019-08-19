@@ -190,7 +190,10 @@ const SDiv = styled.div<Props>`
     border-radius: ${(props: Props) =>
       props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
     border-color: ${(props: Props) =>
-      props.borderColor || props.theme.select.borderColor || 'inherit'};
+      props.borderColor ||
+      (props.invalid
+        ? props.theme.validation.borderColor
+        : props.theme.select.borderColor || 'inherit')};
   }
 `;
 

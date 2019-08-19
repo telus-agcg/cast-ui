@@ -619,7 +619,7 @@ export const windfallTheme = {
   },
   validation: {
     borderColor: windfallColors.danger,
-    color: windfallColors.drk400,
+    color: windfallColors.drk800,
     fontSize: '11px',
     fontStyle: 'italic',
     padding: '4px',
