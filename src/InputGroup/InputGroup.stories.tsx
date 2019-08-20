@@ -11,7 +11,6 @@ storiesOf('InputGroup', module).add(
     <div>
       <InputGroup
         label={text('inputLabel', 'This is my label for Input Label')}
-        vertical={boolean('inputVertical', false)}
         inputSize="md"
       >
         <Input
@@ -26,8 +25,8 @@ storiesOf('InputGroup', module).add(
       </InputGroup>
       <InputGroup
         label={text('selectLabel', 'This is my label for Select Component')}
-        vertical={boolean('selectVertical', false)}
         inputSize="md"
+        horizontal={true}
       >
         <Select
           id="mySelect"
