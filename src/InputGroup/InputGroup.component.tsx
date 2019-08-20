@@ -14,11 +14,11 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   inputSize?: 'sm' | 'md' | 'lg';
   /**
-   * Set orientation of inputGroup as vertical
+   * Set orientation of inputGroup as horizontal
    *
    * @default false
    **/
-  vertical?: boolean;
+  horizontal?: boolean;
   /**
    * From theme provider
    *
@@ -33,11 +33,17 @@ const InputGroupWrapper = styled.div`
   color: ${(props: Props) => props.theme.inputGroup.root.color};
   display: ${(props: Props) => props.theme.inputGroup.root.display};
   flex-wrap: ${(props: Props) => props.theme.inputGroup.root.flexWrap};
-  flex-direction: ${(props: Props) => (props.vertical ? 'column' : 'row')};
+  flex-direction: ${(props: Props) => (props.horizontal ? 'row' : 'column')};
+  margin: ${(props: Props) =>
+    props.horizontal ? props.theme.inputGroup.root.horizontalMargin : ''};
   > *:not(:first-child) {
     flex-grow: 1;
   }
+  > :not(label) {
+    width: ${(props: Props) => (props.horizontal ? 'initial' : '100%')};
+  }
 `;
+
 const SLabel = styled.label`
   background: inherit;
   height: auto;
@@ -46,6 +52,8 @@ const SLabel = styled.label`
   font-weight: ${(props: Props) => props.theme.inputGroup.label.fontWeight};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize};
   color: ${(props: Props) => props.theme.body.color};
+  width: ${(props: Props) =>
+    props.horizontal ? props.theme.inputGroup.label.horizontalWidth : '100%'};
 `;
 
 export const InputGroup: React.FunctionComponent<Props> = ({
@@ -53,12 +61,12 @@ export const InputGroup: React.FunctionComponent<Props> = ({
   theme,
   children,
   label,
-  vertical,
+  horizontal,
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <InputGroupWrapper vertical={vertical} label={label} {...props}>
-      <SLabel label={label} inputSize={inputSize}>
+    <InputGroupWrapper horizontal={horizontal} label={label} {...props}>
+      <SLabel label={label} inputSize={inputSize} horizontal={horizontal}>
         {label}
       </SLabel>
       {children}
@@ -67,6 +75,6 @@ export const InputGroup: React.FunctionComponent<Props> = ({
 );
 InputGroup.defaultProps = {
   inputSize: 'md',
-  vertical: false,
+  horizontal: false,
   theme: Themes.defaultTheme,
 };

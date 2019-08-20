@@ -376,10 +376,12 @@ export const cobaltTheme = {
       display: 'flex',
       flexWrap: 'wrap',
       color: cobaltColors.primary,
+      horizontalMargin: '12px 0',
     },
     label: {
       padding: '8px 16px 8px 0',
       fontWeight: 500,
+      horizontalWidth: '300px',
     },
   },
   radioButton: {
@@ -620,7 +622,7 @@ export const cobaltTheme = {
   },
   validation: {
     borderColor: cobaltColors.danger,
-    color: cobaltColors.drk400,
+    color: cobaltColors.drk800,
     fontSize: '11px',
     fontStyle: 'italic',
     padding: '4px',

@@ -375,10 +375,12 @@ export const verdantTheme = {
       display: 'flex',
       flexWrap: 'wrap',
       color: verdantColors.primary,
+      horizontalMargin: '12px 0',
     },
     label: {
       padding: '8px 16px 8px 0',
       fontWeight: 500,
+      horizontalWidth: '300px',
     },
   },
   radioButton: {
@@ -619,7 +621,7 @@ export const verdantTheme = {
   },
   validation: {
     borderColor: verdantColors.danger,
-    color: verdantColors.drk400,
+    color: verdantColors.drk800,
     fontSize: '11px',
     fontStyle: 'italic',
     padding: '4px',
