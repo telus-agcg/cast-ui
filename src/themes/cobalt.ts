@@ -203,10 +203,12 @@ export const cobaltTheme = {
         lg: '5px 10px',
       },
       nextPrevious: {
-        fontWeight: 'bold',
+        fontWeight: 'normal',
       },
     },
+    padding: '4px 0',
   },
+
   body: {
     fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
     fontSize: '14px',
@@ -618,7 +620,7 @@ export const cobaltTheme = {
   },
   validation: {
     borderColor: cobaltColors.danger,
-    color: cobaltColors.drk400,
+    color: cobaltColors.drk800,
     fontSize: '11px',
     fontStyle: 'italic',
     padding: '4px',
@@ -639,22 +641,6 @@ export const cobaltTheme = {
     column: {
       highlightColor: cobaltColors.highlight200,
       readonlyColor: cobaltColors.lt200,
-    },
-    pagination: {
-      padding: '4px 0',
-      button: {
-        disabledText: cobaltColors.lt600,
-        fontWeight: 'normal',
-        fontWeightSelected: 'bold',
-        padding: {
-          sm: '3px 6px',
-          md: '4px 8px',
-          lg: '5px 10px',
-        },
-        nextPrevious: {
-          fontWeight: 'regular',
-        },
-      },
     },
   },
   datepicker: {

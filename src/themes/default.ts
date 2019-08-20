@@ -213,9 +213,10 @@ export const defaultTheme = {
         lg: '5px 10px',
       },
       nextPrevious: {
-        fontWeight: 'bold',
+        fontWeight: 'normal',
       },
     },
+    padding: '4px 0',
   },
   body: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
@@ -626,7 +627,7 @@ export const defaultTheme = {
   },
   validation: {
     borderColor: defaultColors.danger,
-    color: defaultColors.drk400,
+    color: defaultColors.drk800,
     fontSize: '11px',
     fontStyle: 'italic',
     padding: '4px',
@@ -647,22 +648,6 @@ export const defaultTheme = {
     column: {
       highlightColor: defaultColors.highlight200,
       readonlyColor: defaultColors.lt200,
-    },
-    pagination: {
-      padding: '4px 0',
-      button: {
-        disabledText: defaultColors.lt600,
-        fontWeight: 'normal',
-        fontWeightSelected: 'bold',
-        padding: {
-          sm: '3px 6px',
-          md: '4px 8px',
-          lg: '5px 10px',
-        },
-        nextPrevious: {
-          fontWeight: 'bold',
-        },
-      },
     },
   },
   datepicker: {

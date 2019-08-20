@@ -203,9 +203,10 @@ export const windfallTheme = {
         lg: '5px 10px',
       },
       nextPrevious: {
-        fontWeight: 'bold',
+        fontWeight: 'normal',
       },
     },
+    padding: '4px 0',
   },
   body: {
     fontFamily: '"acumin-pro", sans-serif',
@@ -618,7 +619,7 @@ export const windfallTheme = {
   },
   validation: {
     borderColor: windfallColors.danger,
-    color: windfallColors.drk400,
+    color: windfallColors.drk800,
     fontSize: '11px',
     fontStyle: 'italic',
     padding: '4px',
@@ -642,22 +643,6 @@ export const windfallTheme = {
     column: {
       highlightColor: windfallColors.highlight200,
       readonlyColor: windfallColors.lt200,
-    },
-    pagination: {
-      padding: '4px 0',
-      button: {
-        disabledText: windfallColors.lt600,
-        fontWeight: 'normal',
-        fontWeightSelected: 'bold',
-        padding: {
-          sm: '3px 6px',
-          md: '4px 8px',
-          lg: '5px 10px',
-        },
-        nextPrevious: {
-          fontWeight: 'regular',
-        },
-      },
     },
   },
   datepicker: {

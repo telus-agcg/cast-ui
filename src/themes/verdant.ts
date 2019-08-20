@@ -203,9 +203,10 @@ export const verdantTheme = {
         lg: '5px 10px',
       },
       nextPrevious: {
-        fontWeight: 'bold',
+        fontWeight: 'normal',
       },
     },
+    padding: '4px 0',
   },
   body: {
     fontFamily: '"IBM Plex Sans", sans-serif',
@@ -618,7 +619,7 @@ export const verdantTheme = {
   },
   validation: {
     borderColor: verdantColors.danger,
-    color: verdantColors.drk400,
+    color: verdantColors.drk800,
     fontSize: '11px',
     fontStyle: 'italic',
     padding: '4px',
@@ -642,22 +643,6 @@ export const verdantTheme = {
     column: {
       highlightColor: verdantColors.highlight200,
       readonlyColor: verdantColors.lt200,
-    },
-    pagination: {
-      padding: '4px 0',
-      button: {
-        disabledText: verdantColors.lt600,
-        fontWeight: 'normal',
-        fontWeightSelected: 'bold',
-        padding: {
-          sm: '3px 6px',
-          md: '4px 8px',
-          lg: '5px 10px',
-        },
-        nextPrevious: {
-          fontWeight: 'regular',
-        },
-      },
     },
   },
   datepicker: {
