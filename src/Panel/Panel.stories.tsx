@@ -45,7 +45,7 @@ class PanelWithCollapse extends React.Component<Props, State> {
           toggleItem={this.handleCollapse}
           isCollapsed={!this.state.isOpen}
         />
-        <Collapse isCollapsed={!this.state.isOpen}>
+        <Collapse isOpen={this.state.isOpen}>
           <PanelBody
             panelStyle={panelStyle}
             noPadding={boolean('noPadding', false)}
