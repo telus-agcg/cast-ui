@@ -385,10 +385,12 @@ export const defaultTheme = {
       display: 'flex',
       flexWrap: 'wrap',
       color: defaultColors.primary,
+      horizontalMargin: '12px 0',
     },
     label: {
       padding: '8px 16px 8px 0',
       fontWeight: 500,
+      horizontalWidth: '300px',
     },
   },
   radioButton: {
