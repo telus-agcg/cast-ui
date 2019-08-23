@@ -1,28 +1,18 @@
 version: 2
 
 references:
-
-  image_npm: &image_node
-    node:11
-
-  cache_key_npm: &cache_key_npm
-    v2-npm-{{ checksum "package-lock.json" }}
-  cache_key_backup_npm: &cache_key_backup_npm
-    v2-npm-
-  cache_path_npm: &cache_path_npm
-    /usr/src/app/node_modules
+  image_npm: &image_node node:11
+  cache_key_npm: &cache_key_npm v2-npm-{{ checksum "package-lock.json" }}
+  cache_key_backup_npm: &cache_key_backup_npm v2-npm-
+  cache_path_npm: &cache_path_npm /usr/src/app/node_modules
   restore_cache_npm: &restore_cache_npm
     restore_cache:
       keys:
         - *cache_key_npm
         - *cache_key_backup_npm
-
-  cache_key_git: &cache_key_git
-    v2-git-{{ .Environment.CIRCLE_SHA1 }}
-  cache_key_backup_git: &cache_key_backup_git
-    v2-git-
-  cache_path_git: &cache_path_git
-    /usr/src/app
+  cache_key_git: &cache_key_git v2-git-{{ .Environment.CIRCLE_SHA1 }}
+  cache_key_backup_git: &cache_key_backup_git v2-git-
+  cache_path_git: &cache_path_git /usr/src/app
   restore_cache_git: &restore_cache_git
     restore_cache:
       keys:
@@ -73,6 +63,34 @@ jobs:
       - *restore_cache_git
       - *restore_cache_npm
       - run:
+          name: Apt
+          command: |
+            apt-get update && \
+            apt-get install -y jq ruby2.3 && \
+            gem install fury
+      - run:
+          name: Tag Check
+          command: |
+            version=$(jq '.version' package.json | tr -d '"')
+            if [[ $CIRCLE_BRANCH == "env/qa" ]]; then
+              if [[ $version =~ ^[0-9]{1,5}\.[0-9]{1,5}\.[0-9]{1,5}\.beta\.[0-9]{1,5}$ ]]; then
+                echo "Preparing Version ${version} for QA Deployment"
+              else
+                echo " --- ERROR: Version ${version} is invalid for a QA deployment"
+                exit 1
+              fi
+            elif [[ $CIRCLE_BRANCH == "env/production" ]]; then
+              if [[ $version =~ ^[0-9]{1,5}\.[0-9]{1,5}\.[0-9]{1,5}$ ]]; then
+                echo "Preparing Version ${version} for Production Deployment"
+              else
+                echo " --- ERROR: Version ${version} is invalid for a Production deployment"
+                exit 1
+              fi
+            else
+              echo " --- ERROR: ${CIRCLE_BRANCH} cannot be deployed"
+              exit 1
+            fi
+      - run:
           name: Build
           command: npm run build
       - run:
@@ -92,4 +110,4 @@ workflows:
             - build_lint
           filters:
             branches:
-              only: /(^env/production)/
+              only: /(^env/production|^env/qa)/
