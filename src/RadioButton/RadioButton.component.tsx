@@ -95,7 +95,7 @@ const displayStyleRules = (
   };
 };
 
-const SDiv = styled.div<Partial<Props>>`
+const SDiv = styled.div<Partial<Props> & any>`
 	cursor: pointer;
   ${(props: any) => displayStyleRules(props.displayStyle, props.theme)}
   }
@@ -171,7 +171,6 @@ export class RadioButton extends React.Component<Props> {
     if (!this.props.disabled) {
       if (this.props.onChange instanceof Function) {
         this.props.onChange(this.props.value, this.props.name!, event);
-      } else {
         this.setState({
           checked: !this.state.checked,
         });
@@ -193,6 +192,7 @@ export class RadioButton extends React.Component<Props> {
       onChange,
       ...props
     } = this.props;
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv data-radiobutton="" {...props}>
@@ -203,13 +203,10 @@ export class RadioButton extends React.Component<Props> {
             disabled={disabled}
             id={id}
             value={value}
-            checked={
-              onChange instanceof Function ? checked : this.state.checked
-            }
-            onClick={this.onChange}
+            checked={checked}
             onChange={this.onChange}
           />
-          <SLabel htmlFor={this.props.id} rbSize={this.props.rbSize}>
+          <SLabel htmlFor={id} rbSize={this.props.rbSize}>
             {children}
           </SLabel>
         </SDiv>
