@@ -2,7 +2,6 @@ import * as React from 'react';
 import uuid from 'uuid';
 import styled, { ThemeProvider } from 'styled-components';
 import { Omit } from '../utils/castTypes';
-import { lighten } from '../utils/colorUtils';
 import { Themes } from '../themes';
 
 type displayStyle = 'inline' | 'stacked';
@@ -95,7 +94,7 @@ const displayStyleRules = (
   };
 };
 
-const SDiv = styled.div<Partial<Props>>`
+const SDiv = styled.div<Partial<Props> & any>`
 	cursor: pointer;
   ${(props: any) => displayStyleRules(props.displayStyle, props.theme)}
   }
@@ -137,18 +136,20 @@ const SInput = styled.input<Partial<Props>>`
     cursor: not-allowed;
   }
   &:disabled + label:before {
-    background-color: ${(props: Partial<Props>) =>
-      props.theme.input.disabled.background};
     border-color: ${(props: Partial<Props>) =>
-      props.theme.input.disabled.borderColor};
+      props.theme.radioButton.disabledText};
   }
   &:checked + label:before {
+    border-color: ${(props: Partial<Props>) =>
+      props.theme.radioButton.borderColor};
     background-color: ${(props: Partial<Props>) =>
-      props.theme.styles.primary.flood};
+      props.theme.radioButton.borderColor};
   }
   &:disabled:checked + label:before {
+    border-color: ${(props: Partial<Props>) =>
+      props.theme.radioButton.disabledText};
     background-color:  ${(props: Partial<Props>) =>
-      lighten(props.theme.styles.primary.flood, 15)};
+      props.theme.radioButton.disabledText};
   }
 `;
 
@@ -171,7 +172,6 @@ export class RadioButton extends React.Component<Props> {
     if (!this.props.disabled) {
       if (this.props.onChange instanceof Function) {
         this.props.onChange(this.props.value, this.props.name!, event);
-      } else {
         this.setState({
           checked: !this.state.checked,
         });
@@ -193,6 +193,7 @@ export class RadioButton extends React.Component<Props> {
       onChange,
       ...props
     } = this.props;
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv data-radiobutton="" {...props}>
@@ -203,13 +204,10 @@ export class RadioButton extends React.Component<Props> {
             disabled={disabled}
             id={id}
             value={value}
-            checked={
-              onChange instanceof Function ? checked : this.state.checked
-            }
-            onClick={this.onChange}
+            checked={checked}
             onChange={this.onChange}
           />
-          <SLabel htmlFor={this.props.id} rbSize={this.props.rbSize}>
+          <SLabel htmlFor={id} rbSize={this.props.rbSize}>
             {children}
           </SLabel>
         </SDiv>

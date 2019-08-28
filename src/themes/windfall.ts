@@ -386,7 +386,7 @@ export const windfallTheme = {
   radioButton: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: windfallColors.secondary,
+    borderColor: windfallColors.primary,
     disabledText: windfallColors.lt600,
     unselectedColor: windfallColors.white,
     stackedSpacing: '10px',
