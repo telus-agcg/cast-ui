@@ -387,7 +387,7 @@ export const cobaltTheme = {
   radioButton: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: cobaltColors.secondary,
+    borderColor: cobaltColors.primary,
     disabledText: cobaltColors.lt600,
     unselectedColor: cobaltColors.white,
     stackedSpacing: '10px',

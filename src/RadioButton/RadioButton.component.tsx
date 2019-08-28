@@ -2,7 +2,6 @@ import * as React from 'react';
 import uuid from 'uuid';
 import styled, { ThemeProvider } from 'styled-components';
 import { Omit } from '../utils/castTypes';
-import { lighten } from '../utils/colorUtils';
 import { Themes } from '../themes';
 
 type displayStyle = 'inline' | 'stacked';
@@ -138,15 +137,19 @@ const SInput = styled.input<Partial<Props>>`
   }
   &:disabled + label:before {
     border-color: ${(props: Partial<Props>) =>
-      props.theme.input.disabled.borderColor};
+      props.theme.radioButton.disabledText};
   }
   &:checked + label:before {
+    border-color: ${(props: Partial<Props>) =>
+      props.theme.styles.primary.flood};
     background-color: ${(props: Partial<Props>) =>
       props.theme.styles.primary.flood};
   }
   &:disabled:checked + label:before {
+    border-color: ${(props: Partial<Props>) =>
+      props.theme.radioButton.disabledText};
     background-color:  ${(props: Partial<Props>) =>
-      lighten(props.theme.styles.primary.flood, 15)};
+      props.theme.radioButton.disabledText};
   }
 `;
 

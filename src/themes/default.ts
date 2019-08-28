@@ -396,7 +396,7 @@ export const defaultTheme = {
   radioButton: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: defaultColors.secondary,
+    borderColor: defaultColors.primary,
     disabledText: defaultColors.lt600,
     unselectedColor: defaultColors.white,
     stackedSpacing: '10px',
