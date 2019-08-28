@@ -3,42 +3,58 @@ import { storiesOf } from '@storybook/react';
 import { boolean, select } from '@storybook/addon-knobs/react';
 
 import { RadioButton } from '../';
-import { action } from '@storybook/addon-actions';
+// import { action } from '@storybook/addon-actions';
 
-storiesOf('RadioButton', module).add(
-  'RadioButton',
-  () => (
-    <div>
-      <RadioButton
-        id="myInput1"
-        name="input1"
-        disabled={boolean('disabled', false)}
-        rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
-        value="1"
-        onChange={action('Button 1 changed')}
-        checked={boolean('checked', true)}
-        displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
-      >
-        One
-      </RadioButton>
-      <br />
-      <br />
-      <br />
-      <RadioButton
-        id="myInput2"
-        name="input2"
-        disabled={boolean('disabled', false)}
-        rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
-        value="1"
-        displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
-      >
-        One
-      </RadioButton>
-    </div>
-  ),
-  {
-    info: {
-      text: `
+class Component extends React.Component<any, any> {
+  state = {
+    value: 1,
+  };
+
+  onChange = (value: any) => (event: any) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    this.setState({
+      value,
+    });
+  };
+
+  render() {
+    return (
+      <div onClick={this.onChange(this.state.value === 1 ? 2 : 1)}>
+        <RadioButton
+          id="myInput1"
+          name="input1"
+          disabled={boolean('disabled', false)}
+          rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
+          value="1"
+          checked={this.state.value === 1}
+          displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
+        >
+          One
+        </RadioButton>
+        <br />
+        <br />
+        <br />
+        <RadioButton
+          id="myInput2"
+          name="input2"
+          disabled={boolean('disabled', false)}
+          rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
+          value="2"
+          checked={this.state.value === 2}
+          displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
+        >
+          One
+        </RadioButton>
+      </div>
+    );
+  }
+}
+
+storiesOf('RadioButton', module).add('RadioButton', () => <Component />, {
+  info: {
+    text: `
         ### Notes
 
 				The Radio Button component improves the styling, layout and behavior of default radio input HTML element.
@@ -52,6 +68,5 @@ storiesOf('RadioButton', module).add(
 				Alternatively, group radio buttons on the same horizontal row by settings the **displayStyle** prop to **inline**
 
         `,
-    },
   },
-);
+});

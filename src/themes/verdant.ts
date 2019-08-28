@@ -386,7 +386,7 @@ export const verdantTheme = {
   radioButton: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: verdantColors.secondary,
+    borderColor: verdantColors.primary,
     disabledText: verdantColors.lt600,
     unselectedColor: verdantColors.white,
     stackedSpacing: '10px',
