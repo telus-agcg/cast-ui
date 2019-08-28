@@ -137,8 +137,6 @@ const SInput = styled.input<Partial<Props>>`
     cursor: not-allowed;
   }
   &:disabled + label:before {
-    background-color: ${(props: Partial<Props>) =>
-      props.theme.input.disabled.background};
     border-color: ${(props: Partial<Props>) =>
       props.theme.input.disabled.borderColor};
   }
