@@ -141,9 +141,9 @@ const SInput = styled.input<Partial<Props>>`
   }
   &:checked + label:before {
     border-color: ${(props: Partial<Props>) =>
-      props.theme.styles.primary.flood};
+      props.theme.radioButton.borderColor};
     background-color: ${(props: Partial<Props>) =>
-      props.theme.styles.primary.flood};
+      props.theme.radioButton.borderColor};
   }
   &:disabled:checked + label:before {
     border-color: ${(props: Partial<Props>) =>
