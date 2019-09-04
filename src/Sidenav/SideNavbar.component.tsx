@@ -123,73 +123,63 @@ export type Props = {
    * @default '<'
    **/
   itemToggleCloseContent?: JSX.Element | React.Component | string;
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
 };
 
 const SSideNavbar = styled.div`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.sidenav.fontSize};
-  color: ${(props: Props) => props.theme.sidenav.color};
-  height: ${(props: Props) => props.height || props.theme.sidenav.height};
-  padding: ${(props: Props) => props.theme.sidenav.padding};
-  margin: ${(props: Props) => props.theme.sidenav.margin};
-  z-index: ${(props: Props) => props.theme.sidenav.zIndex};
-  background: ${(props: Props) =>
+  font-family: ${(props: any) => props.theme.typography.fontFamily};
+  font-size: ${(props: any) => props.theme.sidenav.fontSize};
+  color: ${(props: any) => props.theme.sidenav.color};
+  height: ${(props: any) => props.height || props.theme.sidenav.height};
+  padding: ${(props: any) => props.theme.sidenav.padding};
+  margin: ${(props: any) => props.theme.sidenav.margin};
+  z-index: ${(props: any) => props.theme.sidenav.zIndex};
+  background: ${(props: any) =>
     props.background || props.theme.sidenav.background};
-  border-left: ${(props: Props) =>
+  border-left: ${(props: any) =>
     props.borderLeft!.toString() || props.theme.sidenav.borderLeft};
-  border-right: ${(props: Props) =>
+  border-right: ${(props: any) =>
     props.borderRight!.toString() || props.theme.sidenav.borderRight};
-  position: ${(props: Props) => props.position || props.theme.sidenav.position};
-  top: ${(props: Props) => props.top || props.theme.sidenav.top};
-  bottom: ${(props: Props) => props.bottom || props.theme.sidenav.bottom};
-  left: ${(props: Props) => props.theme.sidenav.left};
-  right: ${(props: Props) => props.theme.sidenav.right};
-  min-width: ${(props: Props) =>
-    props.width ||
-    (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
-  transition: ${(props: Props) => props.theme.sidenav.transition};
+  position: ${(props: any) => props.position || props.theme.sidenav.position};
+  top: ${(props: any) => props.top || props.theme.sidenav.top};
+  bottom: ${(props: any) => props.bottom || props.theme.sidenav.bottom};
+  left: ${(props: any) => props.theme.sidenav.left};
+  right: ${(props: any) => props.theme.sidenav.right};
+  min-width: ${(props: any) =>
+    props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
+  transition: ${(props: any) => props.theme.sidenav.transition};
   display: flex;
   flex-direction: column;
 `;
 const SSecondarySideNavbar = styled.div`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.sidenav.fontSize};
-  color: ${(props: Props) => props.theme.sidenav.color};
-  height: ${(props: Props) =>
+  font-family: ${(props: any) => props.theme.typography.fontFamily};
+  font-size: ${(props: any) => props.theme.sidenav.fontSize};
+  color: ${(props: any) => props.theme.sidenav.color};
+  height: ${(props: any) =>
     props.secondaryNavbarHeight || props.theme.sidenav.secondaryNavbar.height};
-  padding: ${(props: Props) => props.theme.sidenav.secondaryNavbar.padding};
-  margin: ${(props: Props) => props.theme.sidenav.secondaryNavbar.margin};
-  z-index: ${(props: Props) => props.theme.sidenav.secondaryNavbar.zIndex};
-  background: ${(props: Props) =>
+  padding: ${(props: any) => props.theme.sidenav.secondaryNavbar.padding};
+  margin: ${(props: any) => props.theme.sidenav.secondaryNavbar.margin};
+  z-index: ${(props: any) => props.theme.sidenav.secondaryNavbar.zIndex};
+  background: ${(props: any) =>
     props.secondaryNavbarBackground ||
     props.theme.sidenav.secondaryNavbar.background};
-  border-left: ${(props: Props) =>
+  border-left: ${(props: any) =>
     props.borderLeft || props.theme.sidenav.secondaryNavbar.borderLeft};
-  border-right: ${(props: Props) =>
+  border-right: ${(props: any) =>
     props.borderRight || props.theme.sidenav.secondaryNavbar.borderRight};
-  position: ${(props: Props) =>
+  position: ${(props: any) =>
     props.position || props.theme.sidenav.secondaryNavbar.position};
-  top: ${(props: Props) =>
-    props.top || props.theme.sidenav.secondaryNavbar.top};
-  bottom: ${(props: Props) =>
+  top: ${(props: any) => props.top || props.theme.sidenav.secondaryNavbar.top};
+  bottom: ${(props: any) =>
     props.bottom || props.theme.sidenav.secondaryNavbar.bottom};
-  right: ${(props: Props) => props.theme.sidenav.secondaryNavbar.right};
-  left: ${(props: Props) =>
-    props.width ||
-    (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
-  width: ${(props: Props) =>
+  right: ${(props: any) => props.theme.sidenav.secondaryNavbar.right};
+  left: ${(props: any) =>
+    props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
+  width: ${(props: any) =>
     props.secondaryNavbarWidth ||
     (props.isSecondaryNavbarOpen
       ? props.theme.sidenav.secondaryNavbar.openWidth
       : props.theme.sidenav.secondaryNavbar.width)};
-  transition: ${(props: Props) =>
-    props.theme.sidenav.secondaryNavbar.transition};
+  transition: ${(props: any) => props.theme.sidenav.secondaryNavbar.transition};
   visibility: ${(props: any) =>
     props.isSecondaryNavbarOpen ? 'visible' : 'hidden'};
   display: flex;
@@ -234,7 +224,9 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   });
 
   return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || newProps.theme}>
+    <ThemeProvider
+      theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
+    >
       <SideNavContext.Provider
         value={{
           baseProps: {
@@ -270,7 +262,6 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
 };
 
 SideNavbar.defaultProps = {
-  theme: Themes.defaultTheme,
   isOpen: false,
   width: '',
   borderLeft: '',
