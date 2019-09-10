@@ -127,6 +127,8 @@ export class FileUpload extends React.Component<Props, State> {
     event.preventDefault();
     const files = event.target.files;
     this.filesAdded(files, event);
+    // clear input to allow adding file again
+    event.target.value = '';
   }
 
   onDrop(event: any) {
