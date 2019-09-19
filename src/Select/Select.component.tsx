@@ -300,14 +300,12 @@ export class CustomSelect extends React.Component<Props> {
     invalidText: '',
     id: uuid.v4(),
     option: {},
-    closeMenuOnSelect: false,
   };
 
   render() {
     const {
       options,
       controlSpecificProps,
-      closeMenuOnSelect,
       invalid,
       selectSize,
       theme,
@@ -323,6 +321,10 @@ export class CustomSelect extends React.Component<Props> {
       ...props
     } = this.props;
     const errorId = invalid ? `${id}-error-msg` : '';
+    const closeMenuOnSelect =
+      typeof this.props.closeMenuOnSelect !== 'undefined'
+        ? this.props.closeMenuOnSelect
+        : !isMulti;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
