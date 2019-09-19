@@ -179,7 +179,6 @@ export class Pagination extends React.Component<Props> {
               Number(this.props.pageSizeOptions[selectedOption.value]),
             )
           }
-          closeMenuOnSelect={true}
           options={options}
           controlSpecificProps={{
             defaultValue,

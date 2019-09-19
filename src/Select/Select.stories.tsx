@@ -21,7 +21,6 @@ storiesOf('Select', module)
           borderColor={text('borderColor', '')}
           borderRadius={text('borderRadius', '')}
           onChange={action('onChange')}
-          closeMenuOnSelect={boolean('closeMenuOnSelect', true)}
           options={[
             { value: 'chocolate', label: 'Chocolate' },
             { value: 'strawberry', label: 'Strawberry' },
@@ -65,7 +64,6 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
           borderColor={text('borderColor', '')}
           borderRadius={text('borderRadius', '')}
           onChange={action('onChange')}
-          closeMenuOnSelect={boolean('closeMenuOnSelect', true)}
           options={[
             { value: 'chocolate', label: 'Chocolate' },
             { value: 'strawberry', label: 'Strawberry' },
