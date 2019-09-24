@@ -70,6 +70,7 @@ type State = {
 
 const SDivPaginationWrapper = styled.div`
   padding: ${(props: any) => props.theme.pagination.padding};
+  display: inline-flex;
 `;
 
 const SDivPaginationSectionWrapper = styled.div`
