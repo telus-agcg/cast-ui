@@ -70,6 +70,7 @@ type State = {
 
 const SDivPaginationWrapper = styled.div`
   padding: ${(props: any) => props.theme.pagination.padding};
+  display: inline-flex;
 `;
 
 const SDivPaginationSectionWrapper = styled.div`
@@ -179,7 +180,6 @@ export class Pagination extends React.Component<Props> {
               Number(this.props.pageSizeOptions[selectedOption.value]),
             )
           }
-          closeMenuOnSelect={true}
           options={options}
           controlSpecificProps={{
             defaultValue,

@@ -70,6 +70,12 @@ export interface Props extends DateRangePickerShape {
    * @default ''
    **/
   invalidTextColor?: string;
+  /**
+   * Specify whether the dates can be edited manually
+   *
+   * @default false
+   **/
+  readOnly?: boolean;
 }
 
 type State = {
@@ -166,6 +172,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
     invalidText: '',
     invalidTextColor: '',
     theme: Themes.defaultTheme,
+    readOnly: true,
   };
 
   state: State = {
@@ -221,6 +228,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
       invalidText,
       invalidTextColor,
       disabled,
+      readOnly,
       ...props
     } = this.props;
     const errorId = invalid ? `${id}-error-msg` : '';
@@ -246,6 +254,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
             onDatesChange={this.onDatesChange}
             showDefaultInputIcon={true}
             disabled={disabled}
+            readOnly={readOnly}
             {...props}
           />
           {invalid && (
