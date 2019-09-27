@@ -47,7 +47,7 @@
     "react-icons-kit": "^1.2.1",
     "react-modal": "^3.8.1",
     "react-select": "^2.2.0",
-    "react-table": "^6.8.6",
+    "react-table": "6.8.6",
     "react-tabs": "^3.0.0",
     "uuid": "^3.3.2"
   },
