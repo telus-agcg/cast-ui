@@ -33,6 +33,7 @@ class PanelWithCollapse extends React.Component<Props, State> {
       ['primary', 'secondary', 'success', 'warning', 'danger'],
       'primary',
     );
+    const iconPosition = select('iconPosition', ['left', 'right'], 'right');
     return (
       <Panel name={text('Panel Name', 'Catchy Name')} panelStyle={panelStyle}>
         <PanelHeader
@@ -40,6 +41,7 @@ class PanelWithCollapse extends React.Component<Props, State> {
           headerColor={text('headerColor', 'white')}
           headerBackgroundColor={text('headerBackgroundColor', 'primary')}
           headerBorderColor={text('headerBorderColor', 'primary')}
+          iconPosition={iconPosition}
           name={text('Panel Name', 'Catchy Name')}
           title={text('Title', 'Catchy title')}
           toggleItem={this.handleCollapse}
