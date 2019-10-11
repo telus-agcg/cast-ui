@@ -7,17 +7,42 @@ export enum PositionEnum {
   RIGHT = 'right',
   TOP = 'top',
   BOTTOM = 'bottom',
-}
+};
 
 export enum PositionType {
   ABSOLUTE = 'absolute',
   FIXED = 'fixed',
-}
+};
+
+export enum ToastStyleEnum {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  SUCCESS = 'success',
+  WARNING = 'warning',
+  DANGER = 'danger',
+};
+
+export enum ToastSizeEnum {
+  LARGE = 'lg',
+  SMALL = 'sm',
+};
+
+export enum ToastDurationEnum {
+  SHORT = '5s',
+  LONG = '2.5s',
+};
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   alertProps?: AlertProps;
   position?: string;
-  children: any;
+  children: React.ReactChild;
+  toastStyle?: ToastStyleEnum;
+  size?: ToastSizeEnum;
+  duration?: ToastDurationEnum;
+  close?: React.ReactChild | null;
+  dismiss?: React.ReactChild | null;
+  onClose: (id: string) => void;
+  onDismiss: (id: string) => void;
   /**
    * From theme provider
    *
@@ -56,7 +81,6 @@ const ToastWrapper = styled.div<Partial<Props>>`
 `;
 
 export const Toast = ({ alertProps, theme, children, ...props }: Props) => {
-  console.log(props.position);
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <ToastWrapper {...props}>
@@ -68,4 +92,7 @@ export const Toast = ({ alertProps, theme, children, ...props }: Props) => {
 
 Toast.defaultProps = {
   position: 'top right',
+  toastStyle: ToastStyleEnum.PRIMARY,
+  size: ToastSizeEnum.SMALL,
+  duration: ToastDurationEnum.SHORT,
 };
