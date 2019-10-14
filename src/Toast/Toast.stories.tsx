@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs/react';
+import { select, boolean } from '@storybook/addon-knobs/react';
 import { Toast } from '../Toast';
 
 storiesOf('Toast', module)
@@ -28,6 +28,7 @@ storiesOf('Toast', module)
           ],
           'fixed top left',
         )}
+        active={boolean('active', true)}
       >
         TOASTER
       </Toast>
