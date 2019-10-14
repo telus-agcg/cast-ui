@@ -41,8 +41,8 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   toastStyle?: ToastStyleEnum;
   size?: ToastSizeEnum;
   duration?: ToastDurationEnum;
-  Close?: React.ReactElement;
-  Dismiss?: React.ReactElement;
+  Close?: React.ReactElement | null;
+  Dismiss?: React.ReactElement | null;
   onClose?: (id: string) => void;
   onDismiss?: (id: string) => void;
   active: boolean,
@@ -80,39 +80,90 @@ const ToastWrapper = styled.div<Partial<Props>>`
     PositionType.FIXED};
   left: ${props => getPosition(PositionEnum.LEFT, props)};
   right: ${props => getPosition(PositionEnum.RIGHT, props)};
-  transition: transform 0.3s ease;
+  transition: transform ${props => props.duration} ease;
   &.inactive {
     transform: translateX(${props => hasPosition(PositionEnum.LEFT, props) ? '-999px' : '999px'});
   }
 `;
 
-const CloseComponent = styled(IconButton)<Partial<Props>>``;
-const DismissComponent = styled.span<Partial<Props>>``;
+const AlertWrapper = styled(Alert)<Partial<Props>>`
+  padding: ${props => props.size === ToastSizeEnum.SMALL && '4px 8px'};
+  min-width: 225px;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  ${props => props.size === ToastSizeEnum.LARGE && `
+    min-height: 85px;
+    align-items: flex-start;
+  `}
+`
+
+const CloseComponent = styled(IconButton)<Partial<Props>>`
+  margin: 0 5px;
+  ${props => props.size === ToastSizeEnum.LARGE && `
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: ${props => props.theme.colors.white}
+    &:hover {
+      background-color: transparent;
+      border: none;
+    }
+  `}
+`;
+const DismissComponent = styled.span<Partial<Props>>`
+  display: none;
+  ${props => props.size === ToastSizeEnum.LARGE && `
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    color:  #0072CE;
+    &:hover {
+      cursor: pointer;
+    }
+  `}
+`;
 
 export const Toast = ({
-    alertProps,
-    theme,
-    children,
-    Close,
-    Dismiss,
-    active,
-    className,
-    ...props
-  }: Props) => {
+  alertProps,
+  theme,
+  children,
+  Close,
+  Dismiss,
+  active,
+  className,
+  size,
+  toastStyle,
+  onDismiss,
+  onClose,
+  ...props
+}: Props) => {
+  const onDefaultClick: any = (onDismiss && !onClose)
+    ? onDismiss
+    : (onClose && !onDismiss)
+      ? onClose
+      : undefined
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <ToastWrapper className={!active ? `${className} inactive` : className} active={active} {...props}>
-        <Alert {...alertProps}>
-          {children}
-          {Close === undefined
-            ? <CloseComponent icon={icTimes} />
-            : Close
-          }
-          {Dismiss === undefined
-            ? <DismissComponent>Dismiss</DismissComponent>
-            : Dismiss
-          }
-        </Alert>
+      <ToastWrapper size={size} className={!active ? `${className} inactive` : className} active={active} {...props}>
+        <AlertWrapper lightMode={size === ToastSizeEnum.LARGE} size={size} alertStyle={toastStyle} {...alertProps}>
+          <React.Fragment>
+            {children}
+            {Close === undefined
+              ? <CloseComponent toastStyle={toastStyle} size={size} btnStyle={toastStyle} icon={icTimes} onClick={onDefaultClick || onClose} />
+              : Close
+            }
+            {size === ToastSizeEnum.LARGE && (Dismiss === undefined
+                ? <DismissComponent theme={(outerTheme: any) => outerTheme || theme} toastStyle={toastStyle} size={size} onClick={onDefaultClick || onDismiss}>DISMISS</DismissComponent>
+                : Dismiss
+            )}
+          </React.Fragment>
+        </AlertWrapper>
       </ToastWrapper>
     </ThemeProvider>
   );

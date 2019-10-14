@@ -2,6 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select, boolean } from '@storybook/addon-knobs/react';
 import { Toast } from '../Toast';
+import { ToastSizeEnum, ToastStyleEnum } from './Toast.component';
 
 storiesOf('Toast', module)
   .add('Custom Toast', () => (
@@ -29,6 +30,14 @@ storiesOf('Toast', module)
           'fixed top left',
         )}
         active={boolean('active', true)}
+        size={select('toastSize', [ToastSizeEnum.SMALL, ToastSizeEnum.LARGE], ToastSizeEnum.LARGE)}
+        toastStyle={select('toastStyle', [
+          ToastStyleEnum.PRIMARY,
+          ToastStyleEnum.SECONDARY,
+          ToastStyleEnum.SUCCESS,
+          ToastStyleEnum.WARNING,
+          ToastStyleEnum.DANGER,
+        ], ToastStyleEnum.PRIMARY)}
       >
         TOASTER
       </Toast>
