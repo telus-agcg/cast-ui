@@ -35,17 +35,61 @@ export enum ToastDurationEnum {
 };
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Props for base of Toast
+   */
   alertProps?: AlertProps;
+  /**
+   * Position for separated Toast
+   */
   position?: string;
+  /**
+   * children elements
+   */
   children?: React.ReactElement | string | null;
+  /**
+   * Content if Toast created as object
+   */
   content?: React.ReactElement | string | null;
+  /**
+   * styling for Toast
+   */
   toastStyle?: ToastStyleEnum;
+  /**
+   * size for Toast
+   */
   size?: ToastSizeEnum;
+  /**
+   * duration for hiding and showing toast
+   */
   duration?: ToastDurationEnum;
+  /**
+   * Close component
+   */
   Close?: React.ReactElement | null;
+  /**
+   * Dismiss component
+   */
   Dismiss?: React.ReactElement | null;
+  /**
+   * close handler
+   */
   onClose?: (id: string) => void;
+  /**
+   * dismiss handler
+   */
   onDismiss?: (id: string) => void;
+  /**
+   * Show close component?
+   */
+  closeable?: boolean,
+  /**
+   * Show dismiss component
+   */
+  dismissable?: boolean,
+  /**
+   * is Toast visible
+   */
   active?: boolean,
   /**
    * From theme provider
@@ -143,6 +187,8 @@ export const Toast = ({
   toastStyle,
   onDismiss,
   onClose,
+  closeable,
+  dismissable,
   ...props
 }: Props) => {
   const onDefaultClick: any = (onDismiss && !onClose)
@@ -156,13 +202,13 @@ export const Toast = ({
         <AlertWrapper lightMode={size === ToastSizeEnum.LARGE} size={size} alertStyle={toastStyle} {...alertProps}>
           <React.Fragment>
             {children || content}
-            {Close === undefined
-              ? <CloseComponent toastStyle={toastStyle} size={size} btnStyle={toastStyle} icon={icTimes} onClick={onDefaultClick || onClose} />
-              : Close
+            {closeable
+              && (Close
+                || <CloseComponent toastStyle={toastStyle} size={size} btnStyle={toastStyle} icon={icTimes} onClick={onDefaultClick || onClose} />)
             }
-            {size === ToastSizeEnum.LARGE && (Dismiss === undefined
-                ? <DismissComponent theme={(outerTheme: any) => outerTheme || theme} toastStyle={toastStyle} size={size} onClick={onDefaultClick || onDismiss}>DISMISS</DismissComponent>
-                : Dismiss
+            {size === ToastSizeEnum.LARGE && (dismissable
+              && (Dismiss
+                || <DismissComponent theme={(outerTheme: any) => outerTheme || theme} toastStyle={toastStyle} size={size} onClick={onDefaultClick || onDismiss}>DISMISS</DismissComponent>)
             )}
           </React.Fragment>
         </AlertWrapper>
@@ -178,4 +224,6 @@ Toast.defaultProps = {
   duration: ToastDurationEnum.SHORT,
   active: false,
   className: '',
+  closeable: true,
+  dismissable: true,
 };
