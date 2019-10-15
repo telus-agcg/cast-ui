@@ -82,7 +82,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Show close component?
    */
-  closeable?: boolean,
+  closable?: boolean,
   /**
    * Show dismiss component
    */
@@ -187,7 +187,7 @@ export const Toast = ({
   toastStyle,
   onDismiss,
   onClose,
-  closeable,
+  closable,
   dismissable,
   ...props
 }: Props) => {
@@ -202,7 +202,7 @@ export const Toast = ({
         <AlertWrapper lightMode={size === ToastSizeEnum.LARGE} size={size} alertStyle={toastStyle} {...alertProps}>
           <React.Fragment>
             {children || content}
-            {closeable
+            {closable
               && (Close
                 || <CloseComponent toastStyle={toastStyle} size={size} btnStyle={toastStyle} icon={icTimes} onClick={onDefaultClick || onClose} />)
             }
@@ -224,6 +224,6 @@ Toast.defaultProps = {
   duration: ToastDurationEnum.SHORT,
   active: false,
   className: '',
-  closeable: true,
+  closable: true,
   dismissable: true,
 };

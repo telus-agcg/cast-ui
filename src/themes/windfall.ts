@@ -927,4 +927,12 @@ export const windfallTheme = {
     progressBackground: windfallColors.primary,
     transition: 'width .2s ease-in',
   },
+  toast: {
+    position: {
+      top: '20px',
+      left: '20px',
+      right: '20px',
+      bottom: '20px',
+    },
+  },
 };
