@@ -36,7 +36,7 @@ export class ToastStack extends React.PureComponent<Props> {
         return (
             <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
                 <StackComponent>
-                    {items.map((item, index) => <ToastComponent onClose={this.removePopup(index)} active {...item} />)}
+                    {items.map((item, index) => <ToastComponent active {...item} />)}
                 </StackComponent>
             </ThemeProvider>
         )
