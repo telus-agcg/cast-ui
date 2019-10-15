@@ -1,9 +1,41 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-// import { select, boolean } from '@storybook/addon-knobs/react';
-// import { ToastStack } from '../ToastStack';
+import { ToastSizeEnum, ToastStyleEnum, Props as ToastProps } from '../Toast/Toast.component';
+import { ToastStack } from '../ToastStack';
 
+const toasts: ToastProps[] = [
+  {
+    position: 'fixed top right',
+    size: ToastSizeEnum.SMALL,
+    toastStyle: ToastStyleEnum.PRIMARY,
+    content: 'Toast #1',
+  },
+  {
+    position: 'fixed top right',
+    size: ToastSizeEnum.SMALL,
+    toastStyle: ToastStyleEnum.PRIMARY,
+    content: 'Toast #2',
+  },
+  {
+    position: 'fixed top right',
+    size: ToastSizeEnum.SMALL,
+    toastStyle: ToastStyleEnum.PRIMARY,
+    content: 'Toast #3',
+  },
+  {
+    position: 'fixed top right',
+    size: ToastSizeEnum.SMALL,
+    toastStyle: ToastStyleEnum.PRIMARY,
+    content: 'Toast #4',
+  }
+]
 
 storiesOf('Toast Stack', module)
-  .add('Custom Toast Stack', () => (<div>Custom Toast Stack</div>))
-  .add('Default Toast Stack', () => (<div>Custom Toast Stack</div>));
+  .add(
+    'Custom Toast Stack',
+    () => (
+      <div>
+        <ToastStack items={toasts} />
+      </div>
+    )
+  );

@@ -37,7 +37,8 @@ export enum ToastDurationEnum {
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   alertProps?: AlertProps;
   position?: string;
-  children: React.ReactChild;
+  children?: React.ReactElement | string | null;
+  content?: React.ReactElement | string | null;
   toastStyle?: ToastStyleEnum;
   size?: ToastSizeEnum;
   duration?: ToastDurationEnum;
@@ -45,7 +46,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   Dismiss?: React.ReactElement | null;
   onClose?: (id: string) => void;
   onDismiss?: (id: string) => void;
-  active: boolean,
+  active?: boolean,
   /**
    * From theme provider
    *
@@ -133,6 +134,7 @@ export const Toast = ({
   alertProps,
   theme,
   children,
+  content,
   Close,
   Dismiss,
   active,
@@ -153,7 +155,7 @@ export const Toast = ({
       <ToastWrapper size={size} className={!active ? `${className} inactive` : className} active={active} {...props}>
         <AlertWrapper lightMode={size === ToastSizeEnum.LARGE} size={size} alertStyle={toastStyle} {...alertProps}>
           <React.Fragment>
-            {children}
+            {children || content}
             {Close === undefined
               ? <CloseComponent toastStyle={toastStyle} size={size} btnStyle={toastStyle} icon={icTimes} onClick={onDefaultClick || onClose} />
               : Close
