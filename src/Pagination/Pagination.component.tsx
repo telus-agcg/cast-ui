@@ -106,14 +106,19 @@ export class Pagination extends React.Component<Props> {
   };
 
   componentWillReceiveProps(nextProps: Props) {
-    if (this.props.pages !== nextProps.pages) {
-      this.setState({
-        activePage: 1,
-        visiblePages: this.getVisiblePages(0, nextProps.pages),
-      });
-    }
+    const nextActivePage = nextProps.page + 1;
+    const nextVisiblePages = this.getVisiblePages(
+      nextActivePage,
+      nextProps.pages,
+    );
 
-    this.changePage(nextProps.page + 1);
+    this.setState({
+      activePage: nextActivePage,
+      visiblePages: this.filterPages(nextVisiblePages, nextProps.pages),
+    });
+
+    nextActivePage !== this.state.activePage &&
+      this.props.onPageChange!(nextProps.page);
   }
 
   filterPages = (visiblePages: number[], totalPages: number) => {
