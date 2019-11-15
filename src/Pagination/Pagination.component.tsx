@@ -228,7 +228,7 @@ export class Pagination extends React.Component<Props> {
               onClick={() => {
                 this.changePage(activePage - 1);
               }}
-              disabled={activePage === 1}
+              disabled={activePage === 1 || this.props.pages === 0}
             >
               {this.props.previousText}
             </PageButtonNextPrevComponent>
