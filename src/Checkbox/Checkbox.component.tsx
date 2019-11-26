@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import ErrorMessage from '../Typography/ErrorMessage/index';
 
 export interface State {
   checked: boolean;
@@ -25,13 +26,6 @@ export type Props = {
    * @default false
    **/
   checked?: boolean;
-
-  indeterminate?: boolean;
-  /**
-   * Specify if the default state of the checkbox is checked
-   *
-   * @default false
-   **/
   defaultChecked?: boolean;
   /**
    * Specify if the checkbox should be disabled
@@ -40,33 +34,55 @@ export type Props = {
    **/
   disabled?: boolean;
   /**
-   * Specify the function to fire when the checkbox is changed
-   *
-   * @default void
-   **/
-  onChange?(
-    checked: boolean,
-    id: string,
-    event: React.SyntheticEvent<HTMLElement>,
-  ): void;
-  /**
-   * Specify the value of the checkbox group when the current button is selected
-   *
-   * @default ''
-   **/
-  value: string;
-  /**
    * Specify the display style the radio button will have
    *
    * @default 'stacked'
    **/
   displayStyle?: 'inline' | 'stacked';
   /**
+   * Specify the function to fire when the checkbox is changed
+   *
+   * @default void
+   **/
+  indeterminate?: boolean;
+  /**
+   * Specify if the default state of the checkbox is checked
+   *
+   * @default false
+   **/
+  /**
+   * Specify whether the control is currently invalid
+   *
+   * @default false
+   **/
+  invalid?: boolean;
+  /**
+   * Provide the text that is displayed when the control is in an invalid state
+   */
+  invalidText?: string;
+  /**
+   * Color of the invalid text
+   *
+   * @default ''
+   **/
+  invalidTextColor?: string;
+  onChange?(
+    checked: boolean,
+    id: string,
+    event: React.SyntheticEvent<HTMLElement>,
+  ): void;
+  /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Specify the value of the checkbox group when the current button is selected
+   *
+   * @default ''
+   **/
+  value: string;
 };
 
 const displayStyleRules: Function = (
@@ -124,7 +140,10 @@ const SInput = styled.input`
     height: ${(props: Props) => props.theme.checkbox[props.cbSize!].size};
     background-clip: padding-box;
     background-color: ${(props: Props) => props.theme.checkbox.unselectedColor};
-    border-color: ${(props: Props) => props.theme.checkbox.borderColor};
+    border-color: ${(props: Props) =>
+      props.invalid
+        ? props.theme.validation.borderColor
+        : props.theme.checkbox.borderColor};
     border-style: ${(props: Props) => props.theme.checkbox.borderStyle};
     border-radius: 1px;
     border-width ${(props: Props) => props.theme.checkbox.borderWidth};
@@ -233,34 +252,49 @@ export class Checkbox extends React.Component<Props, State> {
       checked,
       defaultChecked,
       indeterminate,
+      invalid,
+      invalidText,
+      invalidTextColor,
       disabled,
       value,
       ...props
     } = this.props;
-
+    const errorId = invalid ? `${id}-error-msg` : '';
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv
-          data-checkbox=""
-          id={`checkbox-wrapper-${id}`}
-          value={value}
-          {...props}
-        >
-          <SInput
-            onChange={this.onChange}
-            checked={this.state.checked}
-            type="checkbox"
-            ref={el => (this.input = el)}
-            id={id}
-            cbSize={cbSize}
-            disabled={disabled}
+        <>
+          <SDiv
+            data-checkbox=""
+            id={`checkbox-wrapper-${id}`}
             value={value}
-            indeterminate={indeterminate}
-          />
-          <SLabel htmlFor={id} cbSize={cbSize}>
-            {children}
-          </SLabel>
-        </SDiv>
+            {...props}
+          >
+            <SInput
+              onChange={this.onChange}
+              checked={this.state.checked}
+              type="checkbox"
+              ref={el => (this.input = el)}
+              id={id}
+              cbSize={cbSize}
+              disabled={disabled}
+              value={value}
+              indeterminate={indeterminate}
+              invalid={invalid}
+              invalidText={invalidText}
+              invalidTextColor={invalidTextColor}
+            />
+            <SLabel htmlFor={id} cbSize={cbSize}>
+              {children}
+            </SLabel>
+          </SDiv>
+          {invalid && invalidText && (
+            <ErrorMessage
+              id={errorId}
+              message={invalidText || ''}
+              textColor={invalidTextColor || ''}
+            />
+          )}
+        </>
       </ThemeProvider>
     );
   }
