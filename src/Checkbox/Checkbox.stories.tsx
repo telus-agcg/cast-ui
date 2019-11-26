@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, select } from '@storybook/addon-knobs/react';
+import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
 import { Checkbox } from '../';
@@ -12,25 +12,31 @@ storiesOf('Checkbox', module).add(
       <Checkbox
         id="myInput1"
         cbSize={select('cbSize', ['sm', 'md', 'lg'], 'md')}
+        checked={boolean('checked (checkbox 1)', true)}
         defaultChecked={true}
         disabled={boolean('disabled (checkbox 1)', false)}
+        displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
+        indeterminate={boolean('indeterminate (checkbox 1)', true)}
+        invalid={boolean('invalid', false)}
+        invalidText={text('invalidText', 'A valid value is required')}
+        invalidTextColor={text('invalidTextColor', '')}
         onChange={action('onChange 1')}
         value="1"
-        indeterminate={boolean('indeterminate (checkbox 1)', true)}
-        checked={boolean('checked (checkbox 1)', true)}
-        displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
       >
         One
       </Checkbox>
       <Checkbox
         id="myInput2"
         cbSize={select('cbSize (checkbox 2)', ['sm', 'md', 'lg'], 'md')}
+        checked={boolean('checked (checkbox 2)', true)}
         defaultChecked={true}
         disabled={boolean('disabled (checkbox 2)', false)}
-        value="2"
-        indeterminate={boolean('indeterminate (checkbox 2)', false)}
-        checked={boolean('checked (checkbox 2)', true)}
         displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
+        indeterminate={boolean('indeterminate (checkbox 2)', false)}
+        invalid={boolean('invalid', false)}
+        invalidText={text('invalidText', 'A valid value is required')}
+        invalidTextColor={text('invalidTextColor', '')}
+        value="2"
       >
         Two
       </Checkbox>
