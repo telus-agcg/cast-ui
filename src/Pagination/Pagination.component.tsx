@@ -206,7 +206,6 @@ export class Pagination extends React.Component<Props> {
     } = this.props;
 
     const { activePage, visiblePages } = this.state;
-    console.log('    render visible pages ', visiblePages);
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
