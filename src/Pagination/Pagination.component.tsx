@@ -111,9 +111,9 @@ export class Pagination extends React.Component<Props> {
         activePage: 1,
         visiblePages: this.getVisiblePages(0, nextProps.pages),
       });
+    } else {
+      this.changePage(nextProps.page + 1);
     }
-
-    this.changePage(nextProps.page + 1);
   }
 
   filterPages = (visiblePages: number[], totalPages: number) => {
