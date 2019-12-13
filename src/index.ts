@@ -38,7 +38,6 @@ export * from './Tabs';
 export * from './Tabnav';
 export * from './Textarea';
 export * from './Toast';
-export * from './ToastStack';
 export * from './Toggle';
 export * from './ToggleGroup';
 export * from './Tooltip';
