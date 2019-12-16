@@ -53,30 +53,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    */
   duration?: ToastDurationEnum;
   /**
-   * Close component
-   */
-  Close?: React.ReactElement | null;
-  /**
-   * Dismiss component
-   */
-  Dismiss?: React.ReactElement | null;
-  /**
-   * close handler
-   */
-  onClose?: (id: string) => void;
-  /**
-   * dismiss handler
-   */
-  onDismiss?: (id: string) => void;
-  /**
-   * Show close component?
-   */
-  closable?: boolean;
-  /**
-   * Show dismiss component
-   */
-  dismissable?: boolean;
-  /**
    * Toggle Lightmode
    */
   lightmode?: boolean;
@@ -147,15 +123,9 @@ export const Toast = ({
   theme,
   children,
   content,
-  Close,
-  Dismiss,
   active,
   className,
   toastStyle,
-  onDismiss,
-  onClose,
-  closable,
-  dismissable,
   lightmode,
   ...props
 }: Props) => {
