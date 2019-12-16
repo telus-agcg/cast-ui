@@ -1,6 +1,6 @@
 {
   "name": "@tkxs/cast-ui",
-  "version": "1.4.40",
+  "version": "1.5.0",
   "author": "tkxs",
   "description": "React component library for the TKXS design system",
   "license": "MIT",
@@ -21,11 +21,7 @@
     "deploy-storybook": "storybook-to-ghpages --ci",
     "build-and-publish": "npm run build && npm publish"
   },
-  "files": [
-    "lib-umd/*",
-    "lib-esm/*",
-    "lib-cjs/*"
-  ],
+  "files": ["lib-umd/*", "lib-esm/*", "lib-cjs/*"],
   "browser": "lib-umd/index.js",
   "main": "lib-cjs/index.js",
   "module": "lib-esm/index.js",

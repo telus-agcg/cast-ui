@@ -1,8 +1,10 @@
-import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { SideNavContext, propsDeepSearch } from './context';
-import { Themes } from '../themes';
-import { nameSpace } from '../utils/constants';
+import * as React from "react";
+import styled, { ThemeProvider } from "styled-components";
+import { SideNavContext, propsDeepSearch } from "./context";
+import { Themes } from "../themes";
+import { nameSpace } from "../utils/constants";
+import { Icon } from "react-icons-kit";
+import { ic_close } from "react-icons-kit/md/ic_close";
 
 export type Props = {
   /**
@@ -30,6 +32,28 @@ export type Props = {
    **/
   afterToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
   /**
+   * Before Expand/collapse the secondary sidebar
+   *
+   * @default false
+   **/
+  beforeSecondaryToggle?(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ): void;
+  /**
+   * Expand/collapse the secondary sidebar
+   *
+   * @default false
+   **/
+  onSecondaryToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
+  /**
+   * After Expand/collapse the secondary sidebar
+   *
+   * @default false
+   **/
+  afterSecondaryToggle?(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ): void;
+  /**
    * Handle select SideNavItem
    *
    * @default false
@@ -37,7 +61,7 @@ export type Props = {
   onSelect?(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     selectItemPath: any,
-    itemSecondaryChildren: any,
+    itemSecondaryChildren: any
   ): void;
   /**
    * A  CSS color code
@@ -74,7 +98,7 @@ export type Props = {
    *
    * @default ''
    **/
-  position?: 'absolute' | 'sticky' | 'fixed';
+  position?: "absolute" | "sticky" | "fixed";
   /**
    * Set SideNavbar's distance from top of viewport
    *
@@ -181,9 +205,15 @@ const SSecondarySideNavbar = styled.div`
       : props.theme.sidenav.secondaryNavbar.width)};
   transition: ${(props: any) => props.theme.sidenav.secondaryNavbar.transition};
   visibility: ${(props: any) =>
-    props.isSecondaryNavbarOpen ? 'visible' : 'hidden'};
+    props.isSecondaryNavbarOpen ? "visible" : "hidden"};
   display: flex;
   flex-direction: column;
+  .closeIcon {
+    position: absolute;
+    color: black;
+    top: 5px;
+    right: 5px;
+  }
 `;
 
 export const SideNavbar: React.FunctionComponent<Props> = ({
@@ -192,6 +222,9 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   beforeToggle = () => {},
   onToggle = () => {},
   afterToggle = () => {},
+  beforeSecondaryToggle = () => {},
+  onSecondaryToggle = () => {},
+  afterSecondaryToggle = () => {},
   onSelect = () => {},
   itemToggleOpenContent,
   itemToggleCloseContent,
@@ -204,7 +237,14 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
     beforeToggle,
     onToggle,
     afterToggle,
-    isSecondaryNavbarOpen,
+    isSecondaryNavbarOpen
+  };
+
+  const handleClick = async (e: any) => {
+    e.preventDefault();
+    await beforeSecondaryToggle(e);
+    await onSecondaryToggle(e);
+    await afterSecondaryToggle(e);
   };
 
   // Perform deep search through sidenavbar props
@@ -212,14 +252,14 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   // If a child has a SideNav with the 'secondary' prop set to true,
   // its children will automatically be displayed in the secondary SideNavbar
   const activeSideNavItems: any = [];
-  propsDeepSearch(children, 'activeSideNavItem', true, activeSideNavItems);
+  propsDeepSearch(children, "activeSideNavItem", true, activeSideNavItems);
   let activeSideNavItemsChildren: any = [];
   activeSideNavItems.map((child: any) => {
     activeSideNavItemsChildren = [
       ...activeSideNavItemsChildren,
-      ...child.children.filter((child: any) =>
-        child.props ? child.props.secondary : false,
-      ),
+      ...child.children.filter(
+        (child: any) => (child.props ? child.props.secondary : false)
+      )
     ];
   });
 
@@ -238,8 +278,8 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
             itemToggleOpenContent,
             itemToggleCloseContent,
             isSecondaryNavbarOpen,
-            onItemSelect: onSelect,
-          },
+            onItemSelect: onSelect
+          }
         }}
       >
         <SSideNavbar
@@ -254,6 +294,9 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
           role="secondary-side-nav-bar"
           {...newProps}
         >
+          <a onClick={(e: any) => handleClick(e)} href="#">
+            <Icon className={"closeIcon"} icon={ic_close} />
+          </a>
           {activeSideNavItemsChildren}
         </SSecondarySideNavbar>
       </SideNavContext.Provider>
@@ -263,12 +306,12 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
 
 SideNavbar.defaultProps = {
   isOpen: false,
-  width: '',
-  borderLeft: '',
-  borderRight: '',
+  width: "",
+  borderLeft: "",
+  borderRight: "",
   isSecondaryNavbarOpen: false,
-  secondaryNavbarWidth: '',
-  secondaryNavbarHeight: '',
-  itemToggleOpenContent: '',
-  itemToggleCloseContent: '',
+  secondaryNavbarWidth: "",
+  secondaryNavbarHeight: "",
+  itemToggleOpenContent: "",
+  itemToggleCloseContent: ""
 };
