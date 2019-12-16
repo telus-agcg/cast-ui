@@ -1,6 +1,6 @@
-# Next Release
+# 1.5 (2019-12-16)
 
-- Your contribution here.
+- [#560](https://github.com/technekes/cast-ui/pull/560): add secondary nav menu toggle - [@hamholla](https://github.com/hamholla)
 
 # 0.4.9 (2019-12-06)
 
