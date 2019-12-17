@@ -696,8 +696,14 @@ export const defaultTheme = {
     },
   },
   tabs: {
+    color: defaultColors.primary,
+    hoverColor: defaultColors.primaryFaded,
     borderRadius: '0px',
+    bottomBorderWidth: '5px',
+
     fontSize: '14px',
+    padding: '12px',
+    margin: '0',
   },
   copyToClipboard: {
     fontFamily: 'monospace',
