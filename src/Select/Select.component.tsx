@@ -205,6 +205,10 @@ const SSelect = styled(Select)`
     cursor: not-allowed;
   }
   
+  .react-select__control--is-disabled .react-select__indicators {
+    display: none;
+  }
+  
   .react-select-component {
     font-family: ${(props: Props) => props.theme.typography.fontFamily};
   }
