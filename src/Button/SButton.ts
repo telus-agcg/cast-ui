@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 type Props = {
   /**
@@ -15,18 +15,18 @@ type Props = {
    * @default 'default'
    **/
   btnStyle?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'warning'
-    | 'danger';
+    | "default"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "danger";
   /**
    * Select Button Size
    *
    * @default 'md'
    **/
-  btnSize?: 'sm' | 'md' | 'lg';
+  btnSize?: "sm" | "md" | "lg";
   /**
    * Override default background color
    *
@@ -59,77 +59,77 @@ const computeColor: Function = (
   outline: Boolean,
   btnStyle: string,
   backgroundColor: string,
-  theme: any,
+  theme: any
 ) => {
   switch (true) {
     case selected === true:
       switch (btnState) {
-        case 'hover':
+        case "hover":
           return {
             background: theme.styles[btnStyle].hoverFlood,
             color: theme.styles[btnStyle].reverseText,
-            borderColor: theme.styles[btnStyle].hoverFlood,
+            borderColor: theme.styles[btnStyle].hoverFlood
           };
-        case 'disabled':
+        case "disabled":
           return {
             background: theme.colors.disabledText,
             color: theme.styles[btnStyle].reverseText,
-            borderColor: theme.styles[btnStyle].disabledText,
+            borderColor: theme.styles[btnStyle].disabledText
           };
         default:
           return {
             background: theme.styles[btnStyle].selectedFlood,
             color: theme.styles[btnStyle].reverseText,
-            borderColor: theme.styles[btnStyle].borderColor,
+            borderColor: theme.styles[btnStyle].borderColor
           };
       }
     case outline === true:
       switch (btnState) {
-        case 'hover':
+        case "hover":
           return {
             background: theme.styles[btnStyle].selectedFlood,
             color: theme.styles[btnStyle].reverseText,
-            borderColor: theme.styles[btnStyle].borderColor,
+            borderColor: theme.styles[btnStyle].borderColor
           };
-        case 'disabled':
+        case "disabled":
           return {
-            background: 'none',
+            background: "none",
             color: theme.styles[btnStyle].disabledFlood,
-            borderColor: theme.styles[btnStyle].disabledFlood,
+            borderColor: theme.styles[btnStyle].disabledFlood
           };
         default:
           return {
             background: backgroundColor || theme.button.outlineBackgroundColor,
             color: theme.styles[btnStyle].flood,
-            borderColor: theme.styles[btnStyle].borderColor,
+            borderColor: theme.styles[btnStyle].borderColor
           };
       }
     default:
       switch (btnState) {
-        case 'hover':
+        case "hover":
           return {
             background: theme.styles[btnStyle].hoverFlood,
             color: theme.styles[btnStyle].reverseText,
-            borderColor: theme.styles[btnStyle].hoverFlood,
+            borderColor: theme.styles[btnStyle].hoverFlood
           };
-        case 'disabled':
+        case "disabled":
           return {
             background: theme.styles[btnStyle].disabledFlood,
             color: theme.styles[btnStyle].reverseText,
-            borderColor: theme.styles[btnStyle].disabledFlood,
+            borderColor: theme.styles[btnStyle].disabledFlood
           };
         default:
           return {
             background: theme.styles[btnStyle].flood,
             color: theme.styles[btnStyle].reverseText,
-            borderColor: theme.styles[btnStyle].borderColor,
+            borderColor: theme.styles[btnStyle].borderColor
           };
       }
   }
 };
 
 const SButton = styled.button`
-  min-width: 75px;
+  min-width: 96px;
   box-sizing: border-box;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.1s;
@@ -138,22 +138,22 @@ const SButton = styled.button`
   background: ${(props: Props) =>
     props.backgroundColor ||
     computeColor(
-      'normal',
+      "normal",
       props.selected,
       props.outline,
       props.btnStyle,
       props.backgroundColor,
-      props.theme,
+      props.theme
     ).background};
   border: 1px solid
     ${(props: Props) =>
       computeColor(
-        'normal',
+        "normal",
         props.selected,
         props.outline,
         props.btnStyle,
         props.backgroundColor,
-        props.theme,
+        props.theme
       ).borderColor};
   padding: ${(props: Props) => props.theme.common[props.btnSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
@@ -161,73 +161,73 @@ const SButton = styled.button`
   font-weight: 600;
   color: ${(props: Props) =>
     computeColor(
-      'normal',
+      "normal",
       props.selected,
       props.outline,
       props.btnStyle,
       props.backgroundColor,
-      props.theme,
+      props.theme
     ).color};
   &:hover,
   &:active {
     background: ${(props: Props) =>
       computeColor(
-        'hover',
+        "hover",
         props.selected,
         props.outline,
         props.btnStyle,
         props.backgroundColor,
-        props.theme,
+        props.theme
       ).background};
     color: ${(props: Props) =>
       computeColor(
-        'hover',
+        "hover",
         props.selected,
         props.outline,
         props.btnStyle,
         props.backgroundColor,
-        props.theme,
+        props.theme
       ).color};
     border: 1px solid
       ${(props: Props) =>
         computeColor(
-          'hover',
+          "hover",
           props.selected,
           props.outline,
           props.btnStyle,
           props.backgroundColor,
-          props.theme,
+          props.theme
         ).borderColor};
     cursor: pointer;
   }
   &:disabled {
     background: ${(props: Props) =>
       computeColor(
-        'disabled',
+        "disabled",
         props.selected,
         props.outline,
         props.btnStyle,
         props.backgroundColor,
-        props.theme,
+        props.theme
       ).background};
     color: ${(props: Props) =>
       computeColor(
-        'disabled',
+        "disabled",
         props.selected,
         props.outline,
         props.btnStyle,
         props.backgroundColor,
-        props.theme,
+        props.theme
       ).color};
     border: 1px solid
       ${(props: Props) =>
         computeColor(
-          'disabled',
+          "disabled",
           props.selected,
           props.outline,
           props.btnStyle,
           props.backgroundColor,
-          props.theme,
+          props.theme
         ).borderColor};
     cursor: not-allowed;
   }
