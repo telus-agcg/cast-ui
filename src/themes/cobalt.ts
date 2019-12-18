@@ -689,8 +689,14 @@ export const cobaltTheme = {
     },
   },
   tabs: {
+    color: cobaltColors.primary,
+    hoverColor: cobaltColors.primaryFaded,
     borderRadius: '0px',
+    bottomBorderWidth: '4px',
+
     fontSize: '14px',
+    padding: '0 0 4px 0',
+    margin: '12px 12px 0 12px',
   },
   copyToClipboard: {
     fontFamily: 'monospace',
