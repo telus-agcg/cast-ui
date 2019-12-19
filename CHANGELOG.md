@@ -1,3 +1,7 @@
+# Next Release
+
+- [#568](https://github.com/technekes/cast-ui/pull/568): removes chevron from select when disabled - [@hamholla](https://github.com/hamholla)
+
 # 1.5 (2019-12-16)
 
 - [#560](https://github.com/technekes/cast-ui/pull/560): add secondary nav menu toggle - [@hamholla](https://github.com/hamholla)
