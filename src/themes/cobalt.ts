@@ -1,4 +1,5 @@
 import { lighten } from '../utils/colorUtils';
+import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
 
@@ -379,7 +380,7 @@ export const cobaltTheme = {
       horizontalMargin: '12px 0',
     },
     label: {
-      padding: '8px 16px 8px 0',
+      padding: '8px 16px 4px 0',
       fontWeight: 500,
       horizontalWidth: '300px',
     },
@@ -471,10 +472,12 @@ export const cobaltTheme = {
       light: {
         color: cobaltColors.drk800,
         backgroundColor: cobaltColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: cobaltColors.drk800,
         backgroundColor: cobaltColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
@@ -608,7 +611,7 @@ export const cobaltTheme = {
     md: {
       borderRadius: '1px',
       fontSize: '14px',
-      padding: '8px 14px',
+      padding: '8px 16px',
       tableCellPadding: '9px 0',
       inputIconSize: '20px',
     },
@@ -689,8 +692,14 @@ export const cobaltTheme = {
     },
   },
   tabs: {
+    color: cobaltColors.primary,
+    hoverColor: cobaltColors.primaryFaded,
     borderRadius: '0px',
+    bottomBorderWidth: '4px',
+
     fontSize: '14px',
+    padding: '0 0 4px 0',
+    margin: '12px 12px 0 12px',
   },
   copyToClipboard: {
     fontFamily: 'monospace',
