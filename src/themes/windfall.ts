@@ -691,8 +691,14 @@ export const windfallTheme = {
     },
   },
   tabs: {
+    color: windfallColors.primary,
+    hoverColor: windfallColors.primaryFaded,
     borderRadius: '0px',
+    bottomBorderWidth: '5px',
+
     fontSize: '14px',
+    padding: '12px',
+    margin: '0',
   },
   copyToClipboard: {
     fontFamily: 'monospace',
