@@ -129,7 +129,7 @@ const computeColor: Function = (
 };
 
 const SButton = styled.button`
-  min-width: 75px;
+  min-width: 96px;
   box-sizing: border-box;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.1s;

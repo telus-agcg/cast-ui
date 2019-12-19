@@ -480,10 +480,12 @@ export const defaultTheme = {
       light: {
         color: defaultColors.drk800,
         backgroundColor: defaultColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: defaultColors.drk800,
         backgroundColor: defaultColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
@@ -696,8 +698,14 @@ export const defaultTheme = {
     },
   },
   tabs: {
+    color: defaultColors.primary,
+    hoverColor: defaultColors.primaryFaded,
     borderRadius: '0px',
+    bottomBorderWidth: '5px',
+
     fontSize: '14px',
+    padding: '12px',
+    margin: '0',
   },
   copyToClipboard: {
     fontFamily: 'monospace',
