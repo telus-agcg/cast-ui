@@ -1,10 +1,10 @@
-import * as React from "react";
-import ErrorMessage from "../Typography/ErrorMessage/index";
-import Select, { components /*, SelectBase */ } from "react-select";
+import * as React from 'react';
+import ErrorMessage from '../Typography/ErrorMessage/index';
+import Select, { components /*, SelectBase */ } from 'react-select';
 // import { SelectComponents, InputActionMeta, FocusDirection } from 'react-select/types';
-import styled, { ThemeProvider } from "styled-components";
-import { Themes } from "../themes";
-import uuid from "uuid";
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../themes';
+import uuid from 'uuid';
 
 export type OptionType = {
   value: string;
@@ -23,7 +23,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default 'md'
    **/
-  selectSize?: "sm" | "md" | "lg";
+  selectSize?: 'sm' | 'md' | 'lg';
   /**
    * The ID of the control
    *
@@ -180,10 +180,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   menuPortalTarget?: HTMLElement;
 }
 
-const SDiv =
-  styled.div <
-  Props >
-  `
+const SDiv = styled.div<Props>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
@@ -196,7 +193,7 @@ const SDiv =
       props.borderColor ||
       (props.invalid
         ? props.theme.validation.borderColor
-        : props.theme.select.borderColor || "inherit")};
+        : props.theme.select.borderColor || 'inherit')};
   }
 `;
 
@@ -209,7 +206,7 @@ const SSelect = styled(Select)`
   }
   
   .react-select-component {
-    font-family: ${(props: Props) => props.theme.typography.fontFamily};    
+    font-family: ${(props: Props) => props.theme.typography.fontFamily};
   }
   
   .react-select__control {
@@ -228,7 +225,7 @@ const SSelect = styled(Select)`
   }
   
   .react-select__indicators {
-    display: ${(props: Props) => (props.isDisabled ? "none" : "block")};
+    display: ${(props: Props) => (props.isDisabled ? 'none' : 'block')};
     margin-top: ${(props: Props) =>
       props.theme.select.multiSelect[props.selectSize!].indicatorsPosition};
   }    
@@ -263,10 +260,7 @@ const SSelect = styled(Select)`
   }
 `;
 
-const SIndicatorWrapper =
-  styled.div <
-  Props >
-  `
+const SIndicatorWrapper = styled.div<Props>`
   & > div > div {
     color: ${(props: any) =>
       props.dropdownColor || props.theme.select.dropdownColor};
@@ -279,13 +273,9 @@ const SIndicatorWrapper =
     color: ${(props: Props) =>
       props.dropdownColor || props.theme.select.dropdownColor};
   }
-
 `;
 
-const SOption =
-  styled.div <
-  Props >
-  `
+const SOption = styled.div<Props>`
   backgroundcolor: ${(props: Props) =>
     props.optionBackgroundColor || props.theme.select.optionBackgroundColor};
   &:hover {
@@ -306,11 +296,11 @@ const IndicatorsContainer = styled(components.IndicatorsContainer)`
 
 export class CustomSelect extends React.Component<Props> {
   static defaultProps = {
-    selectSize: "md",
+    selectSize: 'md',
     theme: Themes.defaultTheme,
-    invalidText: "",
+    invalidText: '',
     id: uuid.v4(),
-    option: {}
+    option: {},
   };
 
   render() {
@@ -331,9 +321,9 @@ export class CustomSelect extends React.Component<Props> {
       hoverOptionBackgroundColor,
       ...props
     } = this.props;
-    const errorId = invalid ? `${id}-error-msg` : "";
+    const errorId = invalid ? `${id}-error-msg` : '';
     const closeMenuOnSelect =
-      typeof this.props.closeMenuOnSelect !== "undefined"
+      typeof this.props.closeMenuOnSelect !== 'undefined'
         ? this.props.closeMenuOnSelect
         : !isMulti;
     return (
@@ -349,20 +339,22 @@ export class CustomSelect extends React.Component<Props> {
           <SSelect
             components={{
               IndicatorSeparator: () => null,
-              Option: p =>
+              Option: p => (
                 <SOption
                   optionBackgroundColor={optionBackgroundColor}
                   hoverOptionBackgroundColor={hoverOptionBackgroundColor}
                 >
                   <Option {...p} />
-                </SOption>,
-              IndicatorsContainer: p =>
+                </SOption>
+              ),
+              IndicatorsContainer: p => (
                 <SIndicatorWrapper
                   isDisabled={isDisabled}
                   dropdownColor={dropdownColor}
                 >
                   <IndicatorsContainer {...p} />
                 </SIndicatorWrapper>
+              ),
             }}
             closeMenuOnSelect={closeMenuOnSelect}
             className="react-select-component"
@@ -381,18 +373,19 @@ export class CustomSelect extends React.Component<Props> {
               menuPortal: styles => ({
                 ...styles,
                 fontFamily: theme.typography.fontFamily,
-                zIndex: 9999
-              })
+                zIndex: 9999,
+              }),
             }}
             {...props}
             {...controlSpecificProps}
           />
-          {invalid &&
+          {invalid && (
             <ErrorMessage
               id={errorId}
               message={invalidText!}
               textColor={invalidTextColor!}
-            />}
+            />
+          )}
         </SDiv>
       </ThemeProvider>
     );
