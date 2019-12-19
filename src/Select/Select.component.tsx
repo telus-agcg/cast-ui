@@ -225,8 +225,9 @@ const SSelect = styled(Select)`
   }
   
   .react-select__indicators {
+    display: ${(props: Props) => (props.isDisabled ? 'none' : 'block')};
     margin-top: ${(props: Props) =>
-      props.theme.select.multiSelect[props.selectSize!].indicatorsPosition};;
+      props.theme.select.multiSelect[props.selectSize!].indicatorsPosition};
   }    
   
   .react-select__value-container--is-multi {
@@ -347,7 +348,10 @@ export class CustomSelect extends React.Component<Props> {
                 </SOption>
               ),
               IndicatorsContainer: p => (
-                <SIndicatorWrapper dropdownColor={dropdownColor}>
+                <SIndicatorWrapper
+                  isDisabled={isDisabled}
+                  dropdownColor={dropdownColor}
+                >
                   <IndicatorsContainer {...p} />
                 </SIndicatorWrapper>
               ),

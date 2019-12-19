@@ -611,7 +611,7 @@ export const cobaltTheme = {
     md: {
       borderRadius: '1px',
       fontSize: '14px',
-      padding: '8px 14px',
+      padding: '8px 16px',
       tableCellPadding: '9px 0',
       inputIconSize: '20px',
     },
