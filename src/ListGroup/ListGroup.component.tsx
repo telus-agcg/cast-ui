@@ -2,6 +2,9 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import { Collapse } from '../Collapse';
+import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
+import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
+import Icon from 'react-icons-kit';
 
 export type Props = {
   /**
@@ -99,6 +102,7 @@ const SListGroup = styled.ul`
 
 const SListHeader = styled.li<Partial<Props>>`
   overflow: hidden;
+  cursor: pointer;
   height: auto;
   border-bottom: ${(props: any) =>
     props.border ? `1px solid ${props.theme.colors.secondary}` : ''};
@@ -110,46 +114,17 @@ const SListHeader = styled.li<Partial<Props>>`
   align-items: center;
   justify-content: ${(props: any) =>
     props.chevronAlignment === 'right' ? 'space-between' : 'flex-start'};
+  position: relative;
 `;
 
-/* tslint:disable:max-line-length */
-const SExpandIcon = styled.div<Partial<Props>>`
-  float: ${(props: any) => props.chevronAlignment};
-  padding: 0;
-  margin: -10px 0 0;
-  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
-  border: 0;
-  -webkit-appearance: none;
-  text-shadow: none;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
-  outline: none;
-  width: 28px;
-  height: 20px;
-  background-size: 28px;
-  background-repeat: no-repeat;
-  order: ${(props: any) => (props.chevronAlignment === 'right' ? '2' : '1')};
+const SIcon = styled(Icon)<Partial<Props>>`
+  position: absolute;
+  left: ${(props: any) =>
+    props.chevronAlignment === 'right' ? 'initial' : '0'};
+  right: ${(props: any) =>
+    props.chevronAlignment === 'right' ? '0' : 'initial'};
+  color: ${(props: any) => props.theme.colors.primary};
 `;
-
-const SCollapseIcon = styled.div<Partial<Props>>`
-  padding: 0;
-  margin: -10px 0 0;
-  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMzU3YmRmIiBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
-  border: 0;
-  -webkit-appearance: none;
-  text-shadow: none;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
-  outline: none;
-  width: 28px;
-  height: 20px;
-  background-size: 28px;
-  background-repeat: no-repeat;
-  order: ${(props: any) => (props.chevronAlignment === 'right' ? '2' : '1')};
-`;
-
 const SHeaderContent = styled.span`
   order: 2;
 `;
@@ -162,9 +137,9 @@ const ChevronImage: Function = (
     return null;
   }
   return isCollapsed ? (
-    <SExpandIcon chevronAlignment={chevronAlignment} />
+    <SIcon icon={IKAR} size={24} chevronAlignment={chevronAlignment} />
   ) : (
-    <SCollapseIcon chevronAlignment={chevronAlignment} />
+    <SIcon icon={IKAD} size={24} chevronAlignment={chevronAlignment} />
   );
 };
 
@@ -227,7 +202,9 @@ export class ListGroup extends React.Component<Props, State> {
                 chevronAlignment={chevronAlignment}
               >
                 <SHeaderContent>{name}</SHeaderContent>
-                {ChevronImage(this.state.isCollapsed, chevronAlignment)}
+                {ChevronImage(this.state.isCollapsed, chevronAlignment, {
+                  ...props,
+                })}
               </SListHeader>
               <Collapse isOpen={this.state.isCollapsed}>{children}</Collapse>
             </React.Fragment>

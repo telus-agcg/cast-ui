@@ -1,4 +1,5 @@
 import { lighten } from '../utils/colorUtils';
+import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
 
@@ -471,10 +472,12 @@ export const cobaltTheme = {
       light: {
         color: cobaltColors.drk800,
         backgroundColor: cobaltColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: cobaltColors.drk800,
         backgroundColor: cobaltColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
