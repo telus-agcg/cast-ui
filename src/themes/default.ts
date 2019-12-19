@@ -480,10 +480,12 @@ export const defaultTheme = {
       light: {
         color: defaultColors.drk800,
         backgroundColor: defaultColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: defaultColors.drk800,
         backgroundColor: defaultColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
