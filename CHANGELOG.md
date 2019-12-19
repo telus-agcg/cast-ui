@@ -1,5 +1,6 @@
 # Next Release
 
+- [#570](https://github.com/technekes/cast-ui/pull/570): Update padding and min width for buttons - [@hamholla](https://github.com/hamholla)
 - [#568](https://github.com/technekes/cast-ui/pull/568): removes chevron from select when disabled - [@hamholla](https://github.com/hamholla)
 
 # 1.5 (2019-12-16)
