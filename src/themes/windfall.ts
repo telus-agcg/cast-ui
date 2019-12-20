@@ -1,4 +1,5 @@
 import { lighten } from '../utils/colorUtils';
+import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
 
@@ -470,10 +471,12 @@ export const windfallTheme = {
       light: {
         color: windfallColors.drk800,
         backgroundColor: windfallColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: windfallColors.drk800,
         backgroundColor: windfallColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
@@ -691,8 +694,14 @@ export const windfallTheme = {
     },
   },
   tabs: {
+    color: windfallColors.primary,
+    hoverColor: windfallColors.primaryFaded,
     borderRadius: '0px',
+    bottomBorderWidth: '5px',
+
     fontSize: '14px',
+    padding: '12px',
+    margin: '0',
   },
   copyToClipboard: {
     fontFamily: 'monospace',

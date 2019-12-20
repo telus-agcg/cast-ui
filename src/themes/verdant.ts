@@ -1,4 +1,5 @@
 import { lighten } from '../utils/colorUtils';
+import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
 
@@ -470,10 +471,12 @@ export const verdantTheme = {
       light: {
         color: verdantColors.drk800,
         backgroundColor: verdantColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: verdantColors.drk800,
         backgroundColor: verdantColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
@@ -691,8 +694,14 @@ export const verdantTheme = {
     },
   },
   tabs: {
+    color: verdantColors.primary,
+    hoverColor: verdantColors.primaryFaded,
     borderRadius: '0px',
+    bottomBorderWidth: '5px',
+
     fontSize: '14px',
+    padding: '12px',
+    margin: '0',
   },
   copyToClipboard: {
     fontFamily: 'monospace',
