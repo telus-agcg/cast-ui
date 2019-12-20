@@ -97,6 +97,13 @@ const STextarea = styled.textarea`
   font-size: ${(props: Props) =>
     props.theme.common[props.textareaSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
+
+  outline: none !important;
+  &:focus {
+    outline: none !important;
+    border-color: ${(props: Props) => props.theme.colors.primary};
+    box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+  }
   &:disabled {
     border-color: ${props => props.theme.textarea.disabled.borderColor};
     background: ${props => props.theme.textarea.disabled.background};
