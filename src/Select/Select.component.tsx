@@ -212,6 +212,14 @@ const SSelect = styled(Select)`
   .react-select__control {
     align-items: flex-start;
     border: ${(props: Props) => props.theme.input.border};
+    &.react-select__control--is-focused {
+      outline: none !important;
+      &:focus {
+        outline: none !important;
+        border-color: ${(props: Props) => props.theme.colors.primary};
+        box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+      }
+    }
   }    
   
   .react-select__value-container {
