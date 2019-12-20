@@ -1,4 +1,5 @@
 import { lighten } from '../utils/colorUtils';
+import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
 
@@ -485,10 +486,12 @@ export const verdantTheme = {
       light: {
         color: verdantColors.drk800,
         backgroundColor: verdantColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: verdantColors.drk800,
         backgroundColor: verdantColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
