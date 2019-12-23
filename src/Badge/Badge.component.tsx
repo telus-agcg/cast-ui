@@ -43,7 +43,7 @@ const SBadge = styled.div`
   display: inline-block;
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.badge[props.badgeSize!].fontSize};
-  font-weight: 'bold';
+  font-weight: bold;
   padding: ${(props: Props) => props.theme.badge[props.badgeSize!].padding};
 `;
 
