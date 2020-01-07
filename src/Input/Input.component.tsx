@@ -172,8 +172,14 @@ const SInputWrapper = styled.div`
           ? props.theme.common[props.inputSize!].padding
           : 'auto'};
       & > * {
+        height: 100%;
         padding: ${(props: Props) =>
           props.theme.common[props.inputSize!].padding};
+        padding-top: 0;
+        padding-bottom: 0;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
