@@ -168,6 +168,13 @@ const SButton = styled.button`
       props.backgroundColor,
       props.theme,
     ).color};
+
+  outline: none !important;
+  &:focus {
+    outline: none !important;
+    border-color: ${(props: Props) => props.theme.colors.primary};
+    box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+  }
   &:hover,
   &:active {
     background: ${(props: Props) =>
