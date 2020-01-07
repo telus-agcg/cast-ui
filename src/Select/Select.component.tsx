@@ -226,6 +226,11 @@ const SSelect = styled(Select)`
     box-sizing: content-box;
     height: ${(props: Props) => props.theme.select[props.selectSize!].height};
     padding: ${(props: Props) => props.theme.select[props.selectSize!].padding};
+    >div {
+      margin: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
   
   .react-select__placeholder {
