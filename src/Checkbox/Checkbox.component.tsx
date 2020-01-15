@@ -114,7 +114,8 @@ const indeterminateCheckboxRules: Function = (cbSize: string) => {
 
 const SDiv = styled.div`
   cursor: pointer;
-  ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)}
+  line-height: ${(props: Props) => props.theme.checkbox[props.cbSize!].height};
+  ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)};
 `;
 
 const SLabel = styled.label`
@@ -128,7 +129,6 @@ const SLabel = styled.label`
 const SInput = styled.input`
 	display: none;
 	& + label{
-		display: block !important;
 		&:before, &:after{
 			display:block;
 		}
@@ -136,8 +136,8 @@ const SInput = styled.input`
   + label:before {
     content: "";
     display: inline-block;
-    width: ${(props: Props) => props.theme.checkbox[props.cbSize!].size};
-    height: ${(props: Props) => props.theme.checkbox[props.cbSize!].size};
+    width: ${(props: Props) => props.theme.checkbox[props.cbSize!].squareSize};
+    height: ${(props: Props) => props.theme.checkbox[props.cbSize!].squareSize};
     background-clip: padding-box;
     background-color: ${(props: Props) => props.theme.checkbox.unselectedColor};
     border-color: ${(props: Props) =>
@@ -147,6 +147,8 @@ const SInput = styled.input`
     border-style: ${(props: Props) => props.theme.checkbox.borderStyle};
     border-radius: 1px;
     border-width ${(props: Props) => props.theme.checkbox.borderWidth};
+    margin: ${(props: Props) =>
+      props.theme.checkbox[props.cbSize!].squareMargin};
     margin-right: 5px;
     padding: 3px;
   }
@@ -171,9 +173,10 @@ const SInput = styled.input`
       -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       margin-left: ${(props: Props) =>
-        props.cbSize === 'lg' ? '6.5px' : '6px'};
+        props.theme.checkbox[props.cbSize!].marginLeft};
       left: 0;
-      top: 2px;
+      top:${(props: Props) =>
+        props.theme.checkbox[props.cbSize!].checkedTopPosition};;
     }
     &:checked&:disabled + label:after {
       opacity: 0.5;
@@ -188,14 +191,19 @@ const SInput = styled.input`
       border-color: ${(props: Props) => props.theme.colors.white};
       border-width: ${(props: Props) =>
         props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
-      ${(props: Props) => indeterminateCheckboxRules(props.cbSize)}
+      ${(props: Props) => indeterminateCheckboxRules(props.cbSize)};
       margin-left: ${(props: Props) =>
-        props.cbSize === 'lg' ? '6.5px' : '6px'};
+        props.theme.checkbox[props.cbSize!].marginLeft};
 			transform: rotate(90deg) translateX(50%) translateY(0px);
 			-webkit-transform: rotate(90deg) translateX(50%) translateY(0px);
 			-ms-transform: rotate(90deg) translateX(50%) translateY(0px);
-			top:-1px;
+			top:${(props: Props) =>
+        props.theme.checkbox[props.cbSize!].indeterminateTopPosition};;
     }
+    &:disabled + label:before {
+      background-color: ${(props: Props) => props.theme.colors.secondaryFaded};
+      border-color: ${(props: Props) => props.theme.colors.secondaryFaded};
+    }    
 `;
 
 export class Checkbox extends React.Component<Props, State> {
@@ -267,6 +275,7 @@ export class Checkbox extends React.Component<Props, State> {
             data-checkbox=""
             id={`checkbox-wrapper-${id}`}
             value={value}
+            cbSize={cbSize}
             {...props}
           >
             <SInput

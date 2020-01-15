@@ -1,4 +1,5 @@
 import { lighten } from '../utils/colorUtils';
+import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
 
@@ -83,8 +84,8 @@ export const cobaltTheme = {
       reverseText: cobaltColors.white,
       hoverFlood: cobaltColors.secondaryHover,
       selectedFlood: cobaltColors.secondaryHover,
-      badgeBackground: cobaltColors.secondaryFaded,
-      badgeColor: cobaltColors.drk800,
+      badgeBackground: cobaltColors.drk400,
+      badgeColor: cobaltColors.white,
       alertColor: cobaltColors.drk800,
       alertBackground: cobaltColors.secondary,
       notificationColor: cobaltColors.drk800,
@@ -379,7 +380,7 @@ export const cobaltTheme = {
       horizontalMargin: '12px 0',
     },
     label: {
-      padding: '8px 16px 8px 0',
+      padding: '8px 16px 4px 0',
       fontWeight: 500,
       horizontalWidth: '300px',
     },
@@ -412,13 +413,28 @@ export const cobaltTheme = {
     stackedSpacing: '10px',
     inlineSpacing: '20px',
     sm: {
-      size: '6px',
+      height: '28px',
+      squareSize: '6px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '3px',
+      checkedTopPosition: '7px',
+      marginLeft: '4px',
     },
     md: {
-      size: '10px',
+      height: '32px',
+      squareSize: '10px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '5px',
+      checkedTopPosition: '9px',
+      marginLeft: '6px',
     },
     lg: {
-      size: '14px',
+      height: '40px',
+      squareSize: '14px',
+      squareMargin: '8px 0',
+      indeterminateTopPosition: '7px',
+      checkedTopPosition: '11px',
+      marginLeft: '6.5px',
     },
   },
   toggle: {
@@ -471,10 +487,12 @@ export const cobaltTheme = {
       light: {
         color: cobaltColors.drk800,
         backgroundColor: cobaltColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: cobaltColors.drk800,
         backgroundColor: cobaltColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
@@ -608,7 +626,7 @@ export const cobaltTheme = {
     md: {
       borderRadius: '1px',
       fontSize: '14px',
-      padding: '8px 14px',
+      padding: '8px 16px',
       tableCellPadding: '9px 0',
       inputIconSize: '20px',
     },
@@ -629,6 +647,7 @@ export const cobaltTheme = {
   },
   table: {
     fontSize: '14px',
+    border: `1px solid ${cobaltColors.lt800}`,
     header: {
       borderBottomColor: cobaltColors.drk800,
       color: cobaltColors.drk800,

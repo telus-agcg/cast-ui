@@ -212,12 +212,25 @@ const SSelect = styled(Select)`
   .react-select__control {
     align-items: flex-start;
     border: ${(props: Props) => props.theme.input.border};
+    &.react-select__control--is-focused {
+      outline: none !important;
+      &:focus {
+        outline: none !important;
+        border-color: ${(props: Props) => props.theme.colors.primary};
+        box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+      }
+    }
   }    
   
   .react-select__value-container {
     box-sizing: content-box;
     height: ${(props: Props) => props.theme.select[props.selectSize!].height};
     padding: ${(props: Props) => props.theme.select[props.selectSize!].padding};
+    >div {
+      margin: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
   
   .react-select__placeholder {
@@ -225,8 +238,9 @@ const SSelect = styled(Select)`
   }
   
   .react-select__indicators {
+    display: ${(props: Props) => (props.isDisabled ? 'none' : 'block')};
     margin-top: ${(props: Props) =>
-      props.theme.select.multiSelect[props.selectSize!].indicatorsPosition};;
+      props.theme.select.multiSelect[props.selectSize!].indicatorsPosition};
   }    
   
   .react-select__value-container--is-multi {
@@ -347,7 +361,10 @@ export class CustomSelect extends React.Component<Props> {
                 </SOption>
               ),
               IndicatorsContainer: p => (
-                <SIndicatorWrapper dropdownColor={dropdownColor}>
+                <SIndicatorWrapper
+                  isDisabled={isDisabled}
+                  dropdownColor={dropdownColor}
+                >
                   <IndicatorsContainer {...p} />
                 </SIndicatorWrapper>
               ),

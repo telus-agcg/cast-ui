@@ -1,4 +1,5 @@
 import { lighten } from '../utils/colorUtils';
+import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
 
@@ -411,13 +412,28 @@ export const windfallTheme = {
     stackedSpacing: '10px',
     inlineSpacing: '20px',
     sm: {
-      size: '6px',
+      height: '28px',
+      squareSize: '6px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '3px',
+      checkedTopPosition: '7px',
+      marginLeft: '4px',
     },
     md: {
-      size: '10px',
+      height: '32px',
+      squareSize: '10px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '5px',
+      checkedTopPosition: '9px',
+      marginLeft: '6px',
     },
     lg: {
-      size: '14px',
+      height: '40px',
+      squareSize: '14px',
+      squareMargin: '8px 0',
+      indeterminateTopPosition: '7px',
+      checkedTopPosition: '11px',
+      marginLeft: '6.5px',
     },
   },
   toggle: {
@@ -470,10 +486,12 @@ export const windfallTheme = {
       light: {
         color: windfallColors.drk800,
         backgroundColor: windfallColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: windfallColors.drk800,
         backgroundColor: windfallColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },

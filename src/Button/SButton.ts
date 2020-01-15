@@ -129,7 +129,7 @@ const computeColor: Function = (
 };
 
 const SButton = styled.button`
-  min-width: 75px;
+  min-width: 96px;
   box-sizing: border-box;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.1s;
@@ -168,6 +168,13 @@ const SButton = styled.button`
       props.backgroundColor,
       props.theme,
     ).color};
+
+  outline: none !important;
+  &:focus {
+    outline: none !important;
+    border-color: ${(props: Props) => props.theme.colors.primary};
+    box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+  }
   &:hover,
   &:active {
     background: ${(props: Props) =>

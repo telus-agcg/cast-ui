@@ -140,7 +140,6 @@ const SInputWrapper = styled.div`
   width: 100%;
   box-sizing: border-box;
   display: inline-flex;
-  outline: red;
   flex-wrap: wrap;
 	align-items: stretch;
 	font-family: ${(props: Props) => props.theme.typography.fontFamily};
@@ -152,6 +151,15 @@ const SInputWrapper = styled.div`
     (props.icon || props.addonText) && props.invalid
       ? props.theme.validation.borderColor
       : props.theme.colors.secondary};
+  outline: none !important;
+  input {
+    margin-right: 3px;
+  }
+  input:focus {
+    outline: none !important;
+    border-color: ${(props: Props) => props.theme.colors.primary};
+    box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+  }
   &.input-icon-left,
   &.input-icon-right {
     flex-wrap: nowrap;
@@ -164,8 +172,14 @@ const SInputWrapper = styled.div`
           ? props.theme.common[props.inputSize!].padding
           : 'auto'};
       & > * {
+        height: 100%;
         padding: ${(props: Props) =>
           props.theme.common[props.inputSize!].padding};
+        padding-top: 0;
+        padding-bottom: 0;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
