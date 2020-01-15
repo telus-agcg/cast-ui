@@ -167,16 +167,11 @@ const SInputWrapper = styled.div`
       background: ${(props: Props) => props.theme.input.background}
       display: flex;
 			align-items: center;
-			padding: ${(props: Props) =>
-        props.addonText
-          ? props.theme.common[props.inputSize!].padding
-          : 'auto'};
+			padding: 0 8px;
       & > * {
         height: 100%;
-        padding: ${(props: Props) =>
-          props.theme.common[props.inputSize!].padding};
-        padding-top: 0;
-        padding-bottom: 0;
+        padding: 0 8px;
+
         display: flex !important;
         justify-content: center;
         align-items: center;
