@@ -715,7 +715,7 @@ export const cobaltTheme = {
 
     fontSize: '14px',
     padding: '0 0 4px 0',
-    margin: '12px 12px 0 12px',
+    margin: '16px 16px 0 16px',
   },
   copyToClipboard: {
     fontFamily: 'monospace',
