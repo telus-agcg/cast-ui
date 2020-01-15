@@ -364,7 +364,7 @@ export const cobaltTheme = {
       padding: '4px 7px',
     },
     md: {
-      height: '32px',
+      height: '30px',
       padding: '8px 10px',
     },
     lg: {
