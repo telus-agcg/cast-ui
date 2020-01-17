@@ -359,15 +359,15 @@ export const windfallTheme = {
       border: `1px solid transparent`,
     },
     sm: {
-      height: '24px',
+      height: '26px',
       padding: '4px 7px',
     },
     md: {
-      height: '32px',
+      height: '30px',
       padding: '8px 10px',
     },
     lg: {
-      height: '40px',
+      height: '38px',
       padding: '11px 16px 13px',
     },
   },

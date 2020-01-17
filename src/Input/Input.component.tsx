@@ -56,7 +56,12 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    *
    * @default null
    **/
-  icon?: JSX.Element | React.Component | React.FunctionComponent | string;
+  icon?:
+    | JSX.Element
+    | React.Component
+    | React.FunctionComponent
+    | string
+    | null;
   /**
    * Specify the position of the icon within the control
    *
@@ -115,8 +120,7 @@ const SInput = styled.input`
   height: ${(props: Props) => props.theme.input[props.inputSize!].height}
   box-sizing: border-box;
   background: ${(props: Props) => props.theme.input.background}
-	border: ${(props: Props) =>
-    props.icon || props.addonText ? 'none' : props.theme.input.border};
+	border: none;
   border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize!].borderRadius};
 	padding: ${(props: Props) => props.theme.input[props.inputSize!].padding}
@@ -145,15 +149,15 @@ const SInputWrapper = styled.div`
 	font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
-  border: ${(props: Props) =>
-    props.icon || props.addonText ? props.theme.input.border : 'none'};
+  border: ${(props: Props) => props.theme.input.border};
   border-color: ${(props: Props) =>
-    (props.icon || props.addonText) && props.invalid
+    props.invalid
       ? props.theme.validation.borderColor
       : props.theme.colors.secondary};
   outline: none !important;
   input {
-    margin-right: 3px;
+    margin-right: ${(props: Props) =>
+      props.icon || props.addonText ? '3px' : '0'};
   }
   input:focus {
     outline: none !important;
