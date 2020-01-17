@@ -1,3 +1,13 @@
+# 1.5.2 (2019-12-19)
+
+- [#606](https://github.com/technekes/cast-ui/pull/606): Search Box Text is not Vertically Aligned - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+- [#602](https://github.com/technekes/cast-ui/pull/602): Adjust input with addon padding, checkbox alignment - [@hamholla](https://github.com/hamholla)
+- [#601](https://github.com/technekes/cast-ui/pull/601): UX: Tab styles - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+- [#581](https://github.com/technekes/cast-ui/pull/581): Fix font-weight bold for badges - [@tdakhla](https://github.com/tdakhla)
+- [#580](https://github.com/technekes/cast-ui/pull/580): CCIBI-2036 aligned inner input for common select component - [@dorokhovich-mikhail](https://github.com/dorokhovich-mikhail)
+- [#579](https://github.com/technekes/cast-ui/pull/579): CCIBI-2035 added focus state for inputs - [@dorokhovich-mikhail](https://github.com/dorokhovich-mikhail)
+- [#578](https://github.com/technekes/cast-ui/pull/578): Add Table Border - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+
 # 1.5.1 (2019-12-19)
 
 - [#570](https://github.com/technekes/cast-ui/pull/570): Update padding and min width for buttons - [@hamholla](https://github.com/hamholla)
