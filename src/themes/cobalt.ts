@@ -360,15 +360,15 @@ export const cobaltTheme = {
       border: `1px solid transparent`,
     },
     sm: {
-      height: '24px',
+      height: '26px',
       padding: '4px 7px',
     },
     md: {
-      height: '32px',
+      height: '30px',
       padding: '8px 10px',
     },
     lg: {
-      height: '40px',
+      height: '38px',
       padding: '11px 16px 13px',
     },
   },
@@ -413,13 +413,28 @@ export const cobaltTheme = {
     stackedSpacing: '10px',
     inlineSpacing: '20px',
     sm: {
-      size: '6px',
+      height: '28px',
+      squareSize: '6px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '3px',
+      checkedTopPosition: '7px',
+      marginLeft: '4px',
     },
     md: {
-      size: '10px',
+      height: '32px',
+      squareSize: '10px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '5px',
+      checkedTopPosition: '9px',
+      marginLeft: '6px',
     },
     lg: {
-      size: '14px',
+      height: '40px',
+      squareSize: '14px',
+      squareMargin: '8px 0',
+      indeterminateTopPosition: '7px',
+      checkedTopPosition: '11px',
+      marginLeft: '6.5px',
     },
   },
   toggle: {
@@ -632,6 +647,7 @@ export const cobaltTheme = {
   },
   table: {
     fontSize: '14px',
+    border: `1px solid ${cobaltColors.lt800}`,
     header: {
       borderBottomColor: cobaltColors.drk800,
       color: cobaltColors.drk800,
@@ -699,7 +715,7 @@ export const cobaltTheme = {
 
     fontSize: '14px',
     padding: '0 0 4px 0',
-    margin: '12px 12px 0 12px',
+    margin: '16px 16px 0 16px',
   },
   copyToClipboard: {
     fontFamily: 'monospace',

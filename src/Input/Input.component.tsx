@@ -56,7 +56,12 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    *
    * @default null
    **/
-  icon?: JSX.Element | React.Component | React.FunctionComponent | string;
+  icon?:
+    | JSX.Element
+    | React.Component
+    | React.FunctionComponent
+    | string
+    | null;
   /**
    * Specify the position of the icon within the control
    *
@@ -115,8 +120,7 @@ const SInput = styled.input`
   height: ${(props: Props) => props.theme.input[props.inputSize!].height}
   box-sizing: border-box;
   background: ${(props: Props) => props.theme.input.background}
-	border: ${(props: Props) =>
-    props.icon || props.addonText ? 'none' : props.theme.input.border};
+	border: none;
   border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize!].borderRadius};
 	padding: ${(props: Props) => props.theme.input[props.inputSize!].padding}
@@ -140,18 +144,26 @@ const SInputWrapper = styled.div`
   width: 100%;
   box-sizing: border-box;
   display: inline-flex;
-  outline: red;
   flex-wrap: wrap;
 	align-items: stretch;
 	font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
-  border: ${(props: Props) =>
-    props.icon || props.addonText ? props.theme.input.border : 'none'};
+  border: ${(props: Props) => props.theme.input.border};
   border-color: ${(props: Props) =>
-    (props.icon || props.addonText) && props.invalid
+    props.invalid
       ? props.theme.validation.borderColor
       : props.theme.colors.secondary};
+  outline: none !important;
+  input {
+    margin-right: ${(props: Props) =>
+      props.icon || props.addonText ? '3px' : '0'};
+  }
+  input:focus {
+    outline: none !important;
+    border-color: ${(props: Props) => props.theme.colors.primary};
+    box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+  }
   &.input-icon-left,
   &.input-icon-right {
     flex-wrap: nowrap;
@@ -159,13 +171,14 @@ const SInputWrapper = styled.div`
       background: ${(props: Props) => props.theme.input.background}
       display: flex;
 			align-items: center;
-			padding: ${(props: Props) =>
-        props.addonText
-          ? props.theme.common[props.inputSize!].padding
-          : 'auto'};
+			padding: 0 8px;
       & > * {
-        padding: ${(props: Props) =>
-          props.theme.common[props.inputSize!].padding};
+        height: 100%;
+        padding: 0 8px;
+
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
