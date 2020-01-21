@@ -210,7 +210,7 @@ const SSelect = styled(Select)`
   }
   
   .react-select__control {
-    align-items: flex-start;
+    align-items: center;
     border: ${(props: Props) => props.theme.input.border};
     &.react-select__control--is-focused {
       outline: none !important;
