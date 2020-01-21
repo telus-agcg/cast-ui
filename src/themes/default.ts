@@ -368,15 +368,15 @@ export const defaultTheme = {
       border: `1px solid ${defaultColors.lt600}`,
     },
     sm: {
-      height: '28px',
+      height: '26px',
       padding: '6px 7px',
     },
     md: {
-      height: '32px',
+      height: '30px',
       padding: '9px 10px 7px 10px',
     },
     lg: {
-      height: '40px',
+      height: '38px',
       padding: '11px 13px 13px 13px',
     },
   },

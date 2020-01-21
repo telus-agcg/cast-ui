@@ -360,7 +360,7 @@ export const cobaltTheme = {
       border: `1px solid transparent`,
     },
     sm: {
-      height: '24px',
+      height: '26px',
       padding: '4px 7px',
     },
     md: {
@@ -368,7 +368,7 @@ export const cobaltTheme = {
       padding: '8px 10px',
     },
     lg: {
-      height: '40px',
+      height: '38px',
       padding: '11px 16px 13px',
     },
   },

@@ -238,7 +238,7 @@ const SSelect = styled(Select)`
   }
   
   .react-select__indicators {
-    display: ${(props: Props) => (props.isDisabled ? 'none' : 'block')};
+    display: ${(props: Props) => (props.isDisabled ? 'none' : 'flex')};
     margin-top: ${(props: Props) =>
       props.theme.select.multiSelect[props.selectSize!].indicatorsPosition};
   }    
