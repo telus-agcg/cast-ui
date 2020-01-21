@@ -906,7 +906,7 @@ export const defaultTheme = {
         valueMargin: '2px 8px 2px 0',
         labelHeight: '20px',
         borderRadius: '13px',
-        indicatorsPosition: '4px',
+        indicatorsPosition: '0px',
       },
       md: {
         height: '28px',
@@ -914,7 +914,7 @@ export const defaultTheme = {
         valueMargin: '0 8px 2px 0',
         labelHeight: '24px',
         borderRadius: '13px',
-        indicatorsPosition: '6px',
+        indicatorsPosition: '0px',
       },
       lg: {
         height: '33px',
@@ -922,7 +922,7 @@ export const defaultTheme = {
         valueMargin: '0 8px 5px 0',
         labelHeight: '28px',
         borderRadius: '13px',
-        indicatorsPosition: '10px',
+        indicatorsPosition: '0px',
       },
     },
   },

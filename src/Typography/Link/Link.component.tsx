@@ -48,6 +48,7 @@ const SLink = styled.a`
   text-decoration: ${(props: Props) =>
     props.theme.typography.link.textDecoration};
   display: inline-block;
+  outline: none;
   &:hover,
   &:focus {
     color: ${(props: Props) => props.theme.typography.link.hover.color};
