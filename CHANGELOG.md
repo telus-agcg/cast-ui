@@ -1,3 +1,8 @@
+# 1.5.3 (2020-01-21)
+
+- [#612](https://github.com/technekes/cast-ui/pull/612): centers text inside select inputs. - [@hamholla](https://github.com/hamholla)
+- [#610](https://github.com/technekes/cast-ui/pull/610): Fix multiselect indicators position. - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+
 # 1.5.2 (2019-12-19)
 
 - [#606](https://github.com/technekes/cast-ui/pull/606): Search Box Text is not Vertically Aligned - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
