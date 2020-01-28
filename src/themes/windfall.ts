@@ -361,14 +361,17 @@ export const windfallTheme = {
     sm: {
       height: '26px',
       padding: '4px 7px',
+      iconTop: '6px',
     },
     md: {
       height: '30px',
       padding: '8px 10px',
+      iconTop: '7px',
     },
     lg: {
       height: '38px',
       padding: '11px 16px 13px',
+      iconTop: '9px',
     },
   },
   inputGroup: {

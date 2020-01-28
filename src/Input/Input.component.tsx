@@ -142,6 +142,7 @@ const SInput = styled.input`
 
 const SInputWrapper = styled.div`
   width: 100%;
+  position: relative;
   box-sizing: border-box;
   display: inline-flex;
   flex-wrap: wrap;
@@ -156,8 +157,9 @@ const SInputWrapper = styled.div`
       : props.theme.colors.secondary};
   outline: none !important;
   input {
-    margin-right: ${(props: Props) =>
-      props.icon || props.addonText ? '3px' : '0'};
+    text-align: left;
+    margin-right: 0px;
+      
   }
   input:focus {
     outline: none !important;
@@ -168,28 +170,31 @@ const SInputWrapper = styled.div`
   &.input-icon-right {
     flex-wrap: nowrap;
     & > span {
-      background: ${(props: Props) => props.theme.input.background}
-      display: flex;
-			align-items: center;
-			padding: 0 8px;
+      padding: 0px;
+      position: absolute;
       & > * {
         height: 100%;
-        padding: 0 8px;
 
-        display: flex !important;
-        justify-content: center;
-        align-items: center;
       }
     }
   }
   &.input-icon-left {
-    & > span {
-      margin-right: -1px;
+    input {
+      padding-left: 40px;
+    }
+   span {
+      left: 16px;
+      top: ${(props: Props) => props.theme.input[props.inputSize!].iconTop};
     }
   }
   &.input-icon-right {
-    & > span {
-      margin-left: -1px;
+    input {
+      padding-right: 40px;
+    }
+    span {
+      right: 16px;      
+      top: ${(props: Props) => props.theme.input[props.inputSize!].iconTop};
+
     }
   }
   &.disabled, &.disabled > input {
