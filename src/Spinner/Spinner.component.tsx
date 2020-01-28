@@ -86,7 +86,6 @@ export const Spinner: React.FunctionComponent<Props> = ({
   </ThemeProvider>
 );
 Spinner.defaultProps = {
-  borderColor: 'blue',
   borderWidth: 3,
   size: 50,
   animationSpeed: 1,
