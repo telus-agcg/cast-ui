@@ -89,18 +89,25 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     props.theme.common[props.datePickerSize!].fontSize};
   color: ${(props: Partial<Props>) =>
     props.theme.styles[props.datePickerStyle!].text};
+  
   input {
     box-sizing: border-box;
+    font-size: ${(props: Partial<Props>) => props.theme.input.fontSize};
+    height: ${(props: Partial<Props>) =>
+      props.theme.input[props.datePickerSize!].height};
+    line-height: initial;
     padding: ${(props: Partial<Props>) =>
       props.theme.common[props.datePickerSize!].padding}
+    border: none;
     border-radius: ${(props: Partial<Props>) =>
       props.theme.common[props.datePickerSize!].borderRadius};
-  }
-  .DateRangePickerInput {
-    background: ${(props: Partial<Props>) => props.theme.colors.white};
-    border-radius: ${(props: Partial<Props>) =>
-      props.theme.common[props.datePickerSize!].borderRadius};
-    border: ${(props: Partial<Props>) => props.theme.input.border};
+    &[data-invalid] {
+      border-color: ${(props: Partial<Props>) =>
+        props.theme.validation.borderColor};
+    }
+    ::placeholder {
+      color: ${(props: Partial<Props>) => props.theme.input.placeholderColor};
+    }
   }
   .CalendarDay__hovered_span, .CalendarDay__selected_span {
     background: ${(props: Partial<Props>) =>
@@ -116,37 +123,13 @@ const SWrapperComponent = styled.div<Partial<Props>>`
       props.theme.styles[props.datePickerStyle!].borderColor};
   }
   .DateRangePickerInput_calendarIcon {
-    padding: 8px;
+    padding: 0 10px;
   }
   .DateInput {
     width: 110px;
   }
-  .DateInput_input {
-    line-height: ${(props: Partial<Props>) =>
-      `${parseInt(props.theme.common[props.datePickerSize!].fontSize, 10) +
-        1}px`};
-    font-size: ${(props: Partial<Props>) =>
-      `${parseInt(props.theme.common[props.datePickerSize!].fontSize, 10) +
-        1}px`};
-    height: 100%;
-  }
   .DateRangePicker_picker {
     z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
-  }
-  DateRangePickerInput_arrow_svg {
-    height: ${(props: Partial<Props>) =>
-      `${parseInt(props.theme.common[props.datePickerSize!].fontSize, 10) +
-        2}px`};
-    width: ${(props: Partial<Props>) =>
-      `${parseInt(props.theme.common[props.datePickerSize!].fontSize, 10) +
-        2}px`};
-  }
-  .DateInput_input__small {
-    line-height: unset;
-    padding: 11px 11px 9px;
-  }
-  .DateInput_input__focused {
-    border-bottom-color: transparent;
   }
   .DayPickerKeyboardShortcuts_show__bottomRight::before {
     border-right: 33px solid ${(props: Partial<Props>) =>
