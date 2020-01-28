@@ -673,47 +673,7 @@ export const defaultTheme = {
     },
   },
   datepicker: {
-    position: 'absolute',
     zIndex: 99,
-    sm: {
-      margins: {
-        dayPickerWraper: '1rem 0',
-        dayPickerMonth: '1rem 1rem auto',
-        dayPickerCaption: '.3rem auto 2rem',
-      },
-      btnPrev: {
-        left: '2rem',
-      },
-      btnNext: {
-        right: '2.2rem',
-      },
-    },
-    md: {
-      margins: {
-        dayPickerWraper: '1.5rem 0',
-        dayPickerMonth: '1rem 1.5rem auto',
-        dayPickerCaption: '.3rem auto 3rem',
-      },
-      btnPrev: {
-        left: '3rem',
-      },
-      btnNext: {
-        right: '3.2rem',
-      },
-    },
-    lg: {
-      margins: {
-        dayPickerWraper: '1.5rem 0',
-        dayPickerMonth: '1rem 1.5rem auto',
-        dayPickerCaption: '.3rem auto 3rem',
-      },
-      btnPrev: {
-        left: '3rem',
-      },
-      btnNext: {
-        right: '3.2rem',
-      },
-    },
   },
   tabs: {
     color: defaultColors.primary,
