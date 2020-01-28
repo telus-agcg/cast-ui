@@ -671,7 +671,8 @@ export const cobaltTheme = {
     zIndex: 99,
   },
   tabs: {
-    color: cobaltColors.primary,
+    color: cobaltColors.drk800,
+    borderColor: cobaltColors.primary,
     hoverColor: cobaltColors.primaryFaded,
     borderRadius: '0px',
     bottomBorderWidth: '4px',
