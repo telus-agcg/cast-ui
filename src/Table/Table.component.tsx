@@ -41,6 +41,12 @@ export type Props = Partial<TableProps> &
      * @default defaultTheme
      **/
     theme?: any;
+    /**
+     * From theme provider
+     *
+     * @default 'No results found'
+     **/
+    noDataText?: string;
   };
 
 const SIcon = styled(Icon)`
@@ -197,7 +203,7 @@ const SWrapperDiv = styled(ReactTable)`
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 10px;
+    top: 0px;
     height: 100px;
     background-color: ${(props: any) => props.theme.colors.secondaryBackground};
     transform: none;
@@ -248,10 +254,10 @@ export class Table extends React.Component<Props> {
     getTdProps: ReactTableDefaults.getTdProps,
     getTrProps: ReactTableDefaults.getTrProps,
     showPageSizeOptions: true,
+    noDataText: 'No results found',
   };
   render() {
     const { data, getTdProps, getTrProps, theme, ...props } = this.props;
-    debugger;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
