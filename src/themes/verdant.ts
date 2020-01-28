@@ -672,11 +672,11 @@ export const verdantTheme = {
     zIndex: 99,
   },
   tabs: {
-    color: verdantColors.primary,
+    color: verdantColors.drk800,
+    borderColor: verdantColors.primary,
     hoverColor: verdantColors.primaryFaded,
     borderRadius: '0px',
     bottomBorderWidth: '5px',
-
     fontSize: '14px',
     padding: '12px',
     margin: '0',

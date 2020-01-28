@@ -676,11 +676,11 @@ export const defaultTheme = {
     zIndex: 99,
   },
   tabs: {
-    color: defaultColors.primary,
+    color: defaultColors.drk800,
+    borderColor: defaultColors.primary,
     hoverColor: defaultColors.primaryFaded,
     borderRadius: '0px',
     bottomBorderWidth: '5px',
-
     fontSize: '14px',
     padding: '12px',
     margin: '0',

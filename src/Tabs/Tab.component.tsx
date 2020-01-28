@@ -50,9 +50,7 @@ const SReactTab = styled(ReactTabProxy)`
   &:focus, &:hover {
     color: ${(props: Props) => props.theme.tabs.hoverColor};
     border-bottom: ${(props: Props) =>
-      `${props.theme.tabs.bottomBorderWidth} solid ${
-        props.theme.tabs.hoverColor
-      }`};
+      `${props.theme.tabs.bottomBorderWidth} solid ${props.theme.tabs.hoverColor}`};
     outline: none;
     background: ${(props: Props) => props.theme.colors.disabledBackground};
 
@@ -70,7 +68,7 @@ const SReactTab = styled(ReactTabProxy)`
   &[class$="--selected"]\t {
     color: ${(props: Props) => props.theme.tabs.color};
     border-bottom: ${(props: Props) =>
-      `${props.theme.tabs.bottomBorderWidth} solid ${props.theme.tabs.color}`};
+      `${props.theme.tabs.bottomBorderWidth} solid ${props.theme.tabs.borderColor}`};
     font-weight: bold;
   }
 

@@ -672,11 +672,11 @@ export const windfallTheme = {
     zIndex: 99,
   },
   tabs: {
-    color: windfallColors.primary,
+    color: windfallColors.drk800,
+    borderColor: windfallColors.primary,
     hoverColor: windfallColors.primaryFaded,
     borderRadius: '0px',
     bottomBorderWidth: '5px',
-
     fontSize: '14px',
     padding: '12px',
     margin: '0',
