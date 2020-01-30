@@ -101,7 +101,7 @@ export class Pagination extends React.Component<Props> {
     showPageSizeOptions: false,
     rowsSelectorText: '',
     rowsText: '',
-    pageSizeOptions: [5, 10, 20, 25, 50, 100],
+    pageSizeOptions: [10, 20, 50, 100],
     pageSize: 10,
   };
 
