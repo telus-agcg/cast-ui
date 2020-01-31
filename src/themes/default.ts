@@ -228,6 +228,21 @@ export const defaultTheme = {
   },
   button: {
     outlineBackgroundColor: 'none',
+    sm: {
+      fontSize: '11px',
+      padding: '7px 8px',
+      lineHeight: '12px',
+    },
+    md: {
+      fontSize: '14px',
+      padding: '8px 14px',
+      lineHeight: '14px',
+    },
+    lg: {
+      fontSize: '16px',
+      padding: '10px 16px',
+      lineHeight: '18px',
+    },
   },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
