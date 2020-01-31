@@ -155,10 +155,12 @@ const SButton = styled.button`
         props.backgroundColor,
         props.theme,
       ).borderColor};
-  padding: ${(props: Props) => props.theme.common[props.btnSize!].padding};
+  padding: ${(props: Props) => props.theme.button[props.btnSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.btnSize!].fontSize};
+  font-size: ${(props: Props) => props.theme.button[props.btnSize!].fontSize};
   font-weight: 600;
+  line-height: ${(props: Props) =>
+    props.theme.button[props.btnSize!].lineHeight};
   color: ${(props: Props) =>
     computeColor(
       'normal',
