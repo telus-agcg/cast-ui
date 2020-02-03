@@ -218,7 +218,22 @@ export const verdantTheme = {
     backgroundColor: verdantColors.white,
   },
   button: {
-    outlineBackgroundColor: 'white',
+    outlineBackgroundColor: 'none',
+    sm: {
+      fontSize: '11px',
+      padding: '7px 8px',
+      lineHeight: '12px',
+    },
+    md: {
+      fontSize: '14px',
+      padding: '8px 14px',
+      lineHeight: '14px',
+    },
+    lg: {
+      fontSize: '16px',
+      padding: '10px 16px',
+      lineHeight: '18px',
+    },
   },
   typography: {
     fontFamily: '"IBM Plex Sans", sans-serif',
@@ -361,14 +376,17 @@ export const verdantTheme = {
     sm: {
       height: '26px',
       padding: '4px 7px',
+      iconTop: '6px',
     },
     md: {
       height: '30px',
       padding: '8px 10px',
+      iconTop: '7px',
     },
     lg: {
       height: '38px',
       padding: '11px 16px 13px',
+      iconTop: '9px',
     },
   },
   inputGroup: {
@@ -666,54 +684,14 @@ export const verdantTheme = {
     },
   },
   datepicker: {
-    position: 'absolute',
     zIndex: 99,
-    sm: {
-      margins: {
-        dayPickerWraper: '16px 0',
-        dayPickerMonth: '16px 16px auto',
-        dayPickerCaption: '4.8px auto 32px',
-      },
-      btnPrev: {
-        left: '32px',
-      },
-      btnNext: {
-        right: '35.2px',
-      },
-    },
-    md: {
-      margins: {
-        dayPickerWraper: '24px 0',
-        dayPickerMonth: '16px 24px auto',
-        dayPickerCaption: '4.8px auto 48px',
-      },
-      btnPrev: {
-        left: '48px',
-      },
-      btnNext: {
-        right: '51.2px',
-      },
-    },
-    lg: {
-      margins: {
-        dayPickerWraper: '24px 0',
-        dayPickerMonth: '16px 24px auto',
-        dayPickerCaption: '4.8px auto 48px',
-      },
-      btnPrev: {
-        left: '48px',
-      },
-      btnNext: {
-        right: '51.2px',
-      },
-    },
   },
   tabs: {
-    color: verdantColors.primary,
+    color: verdantColors.drk800,
+    borderColor: verdantColors.primary,
     hoverColor: verdantColors.primaryFaded,
     borderRadius: '0px',
     bottomBorderWidth: '5px',
-
     fontSize: '14px',
     padding: '12px',
     margin: '0',

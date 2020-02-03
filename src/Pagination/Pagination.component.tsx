@@ -5,6 +5,8 @@ import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
 import { Themes } from '../themes/index';
 import Select from '../Select/Select.component';
 
+export const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
+
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the size of the buttons to use
@@ -101,7 +103,7 @@ export class Pagination extends React.Component<Props> {
     showPageSizeOptions: false,
     rowsSelectorText: '',
     rowsText: '',
-    pageSizeOptions: [5, 10, 20, 25, 50, 100],
+    pageSizeOptions: PAGE_SIZE_OPTIONS,
     pageSize: 10,
   };
 

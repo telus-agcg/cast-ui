@@ -10,7 +10,9 @@ import { Themes } from '../themes';
 import Icon from 'react-icons-kit';
 import { chevronUp } from 'react-icons-kit/fa/chevronUp';
 import { chevronDown } from 'react-icons-kit/fa/chevronDown';
-import Pagination from '../Pagination/Pagination.component';
+import Pagination, {
+  PAGE_SIZE_OPTIONS,
+} from '../Pagination/Pagination.component';
 import 'react-table/react-table.css';
 
 export type Props = Partial<TableProps> &
@@ -41,6 +43,12 @@ export type Props = Partial<TableProps> &
      * @default defaultTheme
      **/
     theme?: any;
+    /**
+     * From theme provider
+     *
+     * @default 'No results found'
+     **/
+    noDataText?: string;
   };
 
 const SIcon = styled(Icon)`
@@ -197,7 +205,7 @@ const SWrapperDiv = styled(ReactTable)`
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 10px;
+    top: 0px;
     height: 100px;
     background-color: ${(props: any) => props.theme.colors.secondaryBackground};
     transform: none;
@@ -248,10 +256,11 @@ export class Table extends React.Component<Props> {
     getTdProps: ReactTableDefaults.getTdProps,
     getTrProps: ReactTableDefaults.getTrProps,
     showPageSizeOptions: true,
+    noDataText: 'No results found',
+    pageSizeOptions: PAGE_SIZE_OPTIONS,
   };
   render() {
     const { data, getTdProps, getTrProps, theme, ...props } = this.props;
-    debugger;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
