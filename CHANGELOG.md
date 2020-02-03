@@ -1,3 +1,13 @@
+# 1.5.4 (2020-02-03)
+
+- [#626](https://github.com/technekes/cast-ui/pull/626): Button styling - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+- [#625](https://github.com/technekes/cast-ui/pull/625): Table page size options - [@dorokhovich-mikhail](https://github.com/dorokhovich-mikhail)
+- [#622](https://github.com/technekes/cast-ui/pull/622): Update table no data component - [@hamholla](https://github.com/hamholla)
+- [#621](https://github.com/technekes/cast-ui/pull/621): Update spinner default colors - [@hamholla](https://github.com/hamholla)
+- [#620](https://github.com/technekes/cast-ui/pull/620): Update tab colors - [@hamholla](https://github.com/hamholla)
+- [#619](https://github.com/technekes/cast-ui/pull/619): Datepicker styles - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+- [#617](https://github.com/technekes/cast-ui/pull/617): Update input with addon/icon focus state - [@hamholla](https://github.com/hamholla)
+
 # 1.5.3 (2020-01-21)
 
 - [#612](https://github.com/technekes/cast-ui/pull/612): centers text inside select inputs. - [@hamholla](https://github.com/hamholla)
