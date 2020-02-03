@@ -43,6 +43,30 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   isDisabled?: boolean;
   /**
+   * Specify if the selected options are clearable
+   *
+   * @default false
+   **/
+  isClearable?: boolean;
+  /**
+   * Specify action for check events
+   *
+   * @default null
+   **/
+  handleCheck?: any;
+  /**
+   * Specify custom option components
+   *
+   * @default null
+   **/
+  components?: any;
+  /**
+   * Format a group label
+   *
+   * @default null
+   **/
+  formatGroupLabel?: any;
+  /**
    * Specify whether the control is currently invalid
    *
    * @default false
@@ -54,6 +78,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default null
    */
   onChange?: any;
+  /**
+   * Value for a controlled select componenet
+   *
+   * @default undefined
+   */
+  value?: OptionType[];
   /**
    * Should Menu close on select
    *
@@ -82,6 +112,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default null
    **/
   options?: any;
+  /**
+   * Hide selected options
+   *
+   * @default true
+   **/
+  hideSelectedOptions?: boolean;
   /**
    * Specify the control's selected option
    *
@@ -259,6 +295,7 @@ const SSelect = styled(Select)`
         props.theme.select.multiSelect[props.selectSize!].labelHeight};
       border-radius: ${(props: Props) =>
         props.theme.select.multiSelect[props.selectSize!].borderRadius};
+
       align-items: center;
       
       .react-select__multi-value__label {
@@ -266,7 +303,8 @@ const SSelect = styled(Select)`
       }
       
       .react-select__multi-value__remove {
-        padding: 0;      
+        padding: 0;   
+        display: none !important;   
       }
     }
     
@@ -326,6 +364,7 @@ export class CustomSelect extends React.Component<Props> {
       id,
       isMulti,
       isDisabled,
+      isClearable,
       selectedOption,
       invalidText,
       invalidTextColor,
@@ -373,6 +412,7 @@ export class CustomSelect extends React.Component<Props> {
             className="react-select-component"
             classNamePrefix="react-select"
             isDisabled={isDisabled}
+            isClearable={isClearable}
             isMulti={isMulti}
             value={selectedOption}
             options={options}

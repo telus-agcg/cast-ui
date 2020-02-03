@@ -871,6 +871,7 @@ export const cobaltTheme = {
       padding: '7px 13px',
     },
     multiSelect: {
+      backgroundColor: 'red',
       sm: {
         height: '26px',
         padding: '0px 10px',
