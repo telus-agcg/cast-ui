@@ -10,7 +10,9 @@ import { Themes } from '../themes';
 import Icon from 'react-icons-kit';
 import { chevronUp } from 'react-icons-kit/fa/chevronUp';
 import { chevronDown } from 'react-icons-kit/fa/chevronDown';
-import Pagination from '../Pagination/Pagination.component';
+import Pagination, {
+  PAGE_SIZE_OPTIONS,
+} from '../Pagination/Pagination.component';
 import 'react-table/react-table.css';
 
 export type Props = Partial<TableProps> &
@@ -255,6 +257,7 @@ export class Table extends React.Component<Props> {
     getTrProps: ReactTableDefaults.getTrProps,
     showPageSizeOptions: true,
     noDataText: 'No results found',
+    pageSizeOptions: PAGE_SIZE_OPTIONS,
   };
   render() {
     const { data, getTdProps, getTrProps, theme, ...props } = this.props;
