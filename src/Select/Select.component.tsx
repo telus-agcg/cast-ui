@@ -262,6 +262,7 @@ const SSelect = styled(Select)`
       padding-bottom: 0;
     }
   }
+
   
   .react-select__placeholder {
     color: ${(props: any) => props.theme.input.placeholderColor};
@@ -298,7 +299,6 @@ const SSelect = styled(Select)`
       
       .react-select__multi-value__remove {
         padding: 0;   
-        display: none !important;   
       }
     }
     

@@ -11,6 +11,10 @@ const SCheckbox = styled(Checkbox)`
   padding-bottom: 0px;
 `;
 
+const SDiv = styled.div`
+  margin-right: 5px;
+`;
+
 storiesOf('Select', module)
   .add(
     'Select',
@@ -126,12 +130,12 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
     },
   );
 
-const colourOptions = [
+const colorOptions: any[] = [
   { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
   { value: 'blue', label: 'Blue', color: '#0052CC' },
   { value: 'purple', label: 'Purple', color: '#5243AA' },
   { value: 'red', label: 'Red', color: '#FF5630' },
-  { value: 'orange', label: 'Orange', color: '#FF8B00' },
+  { value: 'orange', label: 'Orange', color: '#FF8B00', isDisabled: true },
 ];
 
 const formatGroupLabel = data => (
@@ -154,8 +158,16 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     selectedOptions: [],
   };
 
+  handleOceanClick() {
+    const redOption = colorOptions.find(o => o.value === 'red');
+    redOption.isDisabled = !redOption.isDisabled;
+  }
+
   handleCheck(val) {
-    debugger;
+    if (val === 'ocean') {
+      this.handleOceanClick();
+    }
+
     const isSelectedOption = this.state.selectedOptions.find(
       o => o.value === val,
     );
@@ -165,7 +177,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     } else {
       res = [
         ...this.state.selectedOptions,
-        colourOptions.find(o => o.value === val),
+        colorOptions.find(o => o.value === val),
       ];
     }
     debugger;
@@ -175,6 +187,16 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
   }
 
   handleSelect(e) {
+    const newOceanOption = e.find(o => o.value === 'ocean');
+    const oldOceanOption = this.state.selectedOptions.find(
+      o => o.value === 'ocean',
+    );
+    if (
+      (newOceanOption && !oldOceanOption) ||
+      (!newOceanOption && oldOceanOption)
+    ) {
+      this.handleOceanClick();
+    }
     this.setState(state => ({
       selectedOptions: e,
     }));
@@ -186,9 +208,9 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
       <div>
         {this.state.selectedOptions[this.state.selectedOptions.length - 1]
           .value !== props.data.value ? (
-          <div>{withComma} &#32;</div>
+          <SDiv>{withComma} &#32;</SDiv>
         ) : (
-          <div>{props.data.label}</div>
+          <SDiv>{props.data.label}</SDiv>
         )}
       </div>
     );
@@ -201,6 +223,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
           id={props.value}
           defaultChecked={props.isSelected}
           checked={props.isSelected}
+          disabled={props.isDisabled}
           value={props.value}
           onChange={() => this.handleCheck(props.value)}
         >
@@ -227,8 +250,9 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
         onChange={e => this.handleSelect(e)}
         value={this.state.selectedOptions}
         closeMenuOnSelect={false}
+        optionBackgroundColor={'red'}
         formatGroupLabel={formatGroupLabel}
-        options={colourOptions}
+        options={colorOptions}
       />
     );
   }
