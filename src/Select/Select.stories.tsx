@@ -5,6 +5,11 @@ import { components } from 'react-select';
 import { Select } from '../';
 import { action } from '@storybook/addon-actions';
 import Checkbox from '../Checkbox';
+import styled from 'styled-components';
+
+const SCheckbox = styled(Checkbox)`
+  padding-bottom: 0px;
+`;
 
 storiesOf('Select', module)
   .add(
@@ -129,24 +134,6 @@ const colourOptions = [
   { value: 'orange', label: 'Orange', color: '#FF8B00' },
 ];
 
-const Option = (props: any) => (
-  <components.Option {...props}>
-    <input type="checkbox" checked={props.isSelected} onChange={() => null} />{' '}
-    <Checkbox
-      id={props.value}
-      checked={props.isSelected}
-      value={props.value}
-      onChange={() => null}
-    >
-      <span>{props.data.label}</span>
-    </Checkbox>
-  </components.Option>
-);
-
-const MultiValue = (props: any) => (
-  <components.MultiValue {...props}>{props.data.label}</components.MultiValue>
-);
-
 const formatGroupLabel = data => (
   <div>
     <span>{data.label} </span>
@@ -156,31 +143,81 @@ const formatGroupLabel = data => (
 
 type Props = {};
 
-const initialState = {
-  options: [],
-};
-
-type State = Readonly<typeof initialState>;
+type State = Readonly<any>;
 
 class MultiSelectCheckbox extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
   }
 
-  readonly state: State = initialState;
+  state: State = {
+    selectedOptions: [],
+  };
 
-  handleSelect(e) {
+  handleCheck(val) {
+    debugger;
+    const isSelectedOption = this.state.selectedOptions.find(
+      o => o.value === val,
+    );
+    let res: any[] = [];
+    if (isSelectedOption) {
+      res = this.state.selectedOptions.filter(option => option.value !== val);
+    } else {
+      res = [
+        ...this.state.selectedOptions,
+        colourOptions.find(o => o.value === val),
+      ];
+    }
+    debugger;
     this.setState(state => ({
-      options: e,
+      selectedOptions: res,
     }));
   }
 
+  handleSelect(e) {
+    this.setState(state => ({
+      selectedOptions: e,
+    }));
+  }
+
+  MultiValue = (props: any) => {
+    const withComma = props.data.label + ', ';
+    return (
+      <div>
+        {this.state.selectedOptions[this.state.selectedOptions.length - 1]
+          .value !== props.data.value ? (
+          <div>{withComma} &#32;</div>
+        ) : (
+          <div>{props.data.label}</div>
+        )}
+      </div>
+    );
+  };
+
+  Option = (props: any) => {
+    return (
+      <components.Option {...props}>
+        <SCheckbox
+          id={props.value}
+          defaultChecked={props.isSelected}
+          checked={props.isSelected}
+          value={props.value}
+          onChange={() => this.handleCheck(props.value)}
+        >
+          <span>{props.data.label}</span>
+        </SCheckbox>
+      </components.Option>
+    );
+  };
+
   render() {
+    console.log(this.state.selectedOptions);
+
     return (
       <Select
         id="mySelect"
         isMulti={boolean('isMulti', true)}
-        components={{ Option, MultiValue }}
+        components={{ Option: this.Option, MultiValue: this.MultiValue }}
         isDisabled={boolean('isDisabled', false)}
         selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
         borderColor={text('borderColor', '')}
@@ -188,8 +225,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
         hideSelectedOptions={false}
         isClearable={boolean('isClearable', false)}
         onChange={e => this.handleSelect(e)}
-        handleCheck={this.handleSelect}
-        value={this.state.options}
+        value={this.state.selectedOptions}
         closeMenuOnSelect={false}
         formatGroupLabel={formatGroupLabel}
         options={colourOptions}

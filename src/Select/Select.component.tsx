@@ -49,12 +49,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   isClearable?: boolean;
   /**
-   * Specify action for check events
-   *
-   * @default null
-   **/
-  handleCheck?: any;
-  /**
    * Specify custom option components
    *
    * @default null
@@ -353,6 +347,8 @@ export class CustomSelect extends React.Component<Props> {
     id: uuid.v4(),
     option: {},
   };
+
+  componentDidUpdate(prevProps) {}
 
   render() {
     const {
