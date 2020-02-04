@@ -272,7 +272,7 @@ const SSelect = styled(Select)`
     display: ${(props: Props) => (props.isDisabled ? 'none' : 'flex')};
     margin-top: ${(props: Props) =>
       props.theme.select.multiSelect[props.selectSize!].indicatorsPosition};
-  }    
+  }  
   
   .react-select__value-container--is-multi {
     height: auto;
@@ -300,6 +300,7 @@ const SSelect = styled(Select)`
       .react-select__multi-value__remove {
         padding: 0;   
       }
+
     }
     
   }
@@ -321,10 +322,10 @@ const SIndicatorWrapper = styled.div<Props>`
 `;
 
 const SOption = styled.div<Props>`
-  backgroundcolor: ${(props: Props) =>
+  background-color: ${(props: Props) =>
     props.optionBackgroundColor || props.theme.select.optionBackgroundColor};
   &:hover {
-    backgroundcolor: ${(props: Props) =>
+    background-color: ${(props: Props) =>
       props.hoverOptionBackgroundColor ||
       props.theme.select.hoverOptionBackgroundColor};
   }

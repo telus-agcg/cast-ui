@@ -239,14 +239,12 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     return (
       <Select
         id="mySelect"
-        isMulti={boolean('isMulti', true)}
+        isMulti
         components={{ Option: this.Option, MultiValue: this.MultiValue }}
         isDisabled={boolean('isDisabled', false)}
         selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
-        borderColor={text('borderColor', '')}
-        borderRadius={text('borderRadius', '')}
         hideSelectedOptions={false}
-        isClearable={boolean('isClearable', false)}
+        isClearable={boolean('isClearable', true)}
         onChange={e => this.handleSelect(e)}
         value={this.state.selectedOptions}
         closeMenuOnSelect={false}
