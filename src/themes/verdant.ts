@@ -1,4 +1,3 @@
-import { lighten } from '../utils/colorUtils';
 import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';

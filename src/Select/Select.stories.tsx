@@ -202,7 +202,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
   }
 
   MultiValue = (props: any) => {
-    const withComma = props.data.label + ', ';
+    const withComma = `${props.data.label}, `;
     return (
       <div>
         {this.state.selectedOptions[this.state.selectedOptions.length - 1]
