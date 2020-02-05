@@ -861,8 +861,11 @@ export const defaultTheme = {
   },
   select: {
     dropdownColor: defaultColors.primary,
-    optionBackgroundColor: defaultColors.secondaryFaded,
-    hoverOptionBackgroundColor: defaultColors.primaryFaded,
+    optionBackgroundColor: defaultColors.white,
+    hoverOptionBackgroundColor: defaultColors.lt200,
+    hoverOptionColor: defaultColors.primary,
+    selectedOptionColor: defaultColors.primary,
+    selectedOptionBackgroundColor: defaultColors.white,
     borderColor: defaultColors.secondaryFaded,
     width: '100%',
     sm: {

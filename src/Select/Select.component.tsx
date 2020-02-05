@@ -263,6 +263,10 @@ const SSelect = styled(Select)`
     }
   }
 
+  .react-select__menu, .react-select__menu-list .react-select__option {
+    background-color: ${(props: any) =>
+      props.theme.select.optionBackgroundColor} !important;
+  }
   
   .react-select__placeholder {
     color: ${(props: any) => props.theme.input.placeholderColor};
@@ -322,12 +326,23 @@ const SIndicatorWrapper = styled.div<Props>`
 `;
 
 const SOption = styled.div<Props>`
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.typography.fontSize};
   background-color: ${(props: Props) =>
     props.optionBackgroundColor || props.theme.select.optionBackgroundColor};
   &:hover {
     background-color: ${(props: Props) =>
-      props.hoverOptionBackgroundColor ||
+      props.optionBackgroundColor ||
       props.theme.select.hoverOptionBackgroundColor};
+    color: ${(props: Props) =>
+      props.optionBackgroundColor || props.theme.select.hoverOptionColor};
+  }
+  .react-select__option--is-selected {
+    background-color: ${(props: Props) =>
+      props.optionBackgroundColor ||
+      props.theme.select.selectedOptionBackgroundColor};
+    color: ${(props: Props) =>
+      props.optionBackgroundColor || props.theme.select.selectedOptionColor};
   }
 `;
 
@@ -424,6 +439,21 @@ export class CustomSelect extends React.Component<Props> {
                 ...styles,
                 fontFamily: theme.typography.fontFamily,
                 zIndex: 9999,
+              }),
+              menuList: styles => ({
+                ...styles,
+                backgroundColor: theme.select.optionBackgroundColor,
+              }),
+              option: styles => ({
+                ...styles,
+                backgroundColor: theme.select.optionBackgroundColor,
+                '&:hover': {
+                  backgroundColor: theme.select.hoverOptionBackgroundColor,
+                },
+                '&.react-select__option--is-selected': {
+                  backgroundColor: theme.select.selectedOptionBackgroundColor,
+                  color: theme.select.selectedOptionColor,
+                },
               }),
             }}
             {...props}

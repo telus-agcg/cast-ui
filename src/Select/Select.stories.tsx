@@ -180,7 +180,6 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
         colorOptions.find(o => o.value === val),
       ];
     }
-    debugger;
     this.setState(state => ({
       selectedOptions: res,
     }));
@@ -234,8 +233,6 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
   };
 
   render() {
-    console.log(this.state.selectedOptions);
-
     return (
       <Select
         id="mySelect"
@@ -248,7 +245,6 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
         onChange={e => this.handleSelect(e)}
         value={this.state.selectedOptions}
         closeMenuOnSelect={false}
-        optionBackgroundColor={'red'}
         formatGroupLabel={formatGroupLabel}
         options={colorOptions}
       />

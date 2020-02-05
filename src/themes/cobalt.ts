@@ -1,4 +1,3 @@
-import { lighten } from '../utils/colorUtils';
 import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
@@ -854,8 +853,11 @@ export const cobaltTheme = {
   },
   select: {
     dropdownColor: cobaltColors.primary,
-    optionBackgroundColor: cobaltColors.lt800,
-    hoverOptionBackgroundColor: lighten(cobaltColors.primary, 75),
+    optionBackgroundColor: cobaltColors.white,
+    hoverOptionBackgroundColor: cobaltColors.lt200,
+    hoverOptionColor: cobaltColors.primary,
+    selectedOptionColor: cobaltColors.primary,
+    selectedOptionBackgroundColor: cobaltColors.white,
     borderColor: cobaltColors.secondary,
     width: '100%',
     sm: {
@@ -871,7 +873,6 @@ export const cobaltTheme = {
       padding: '7px 13px',
     },
     multiSelect: {
-      backgroundColor: 'red',
       sm: {
         height: '26px',
         padding: '0px 10px',
