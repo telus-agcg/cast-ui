@@ -4,7 +4,7 @@ import { Themes } from '../themes';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 
 export interface State {
-  checked: boolean;
+  checked: boolean | undefined;
 }
 
 export type Props = {
@@ -219,6 +219,11 @@ export class Checkbox extends React.Component<Props, State> {
   componentDidUpdate(prevProps: Props) {
     if (prevProps.indeterminate !== this.props.indeterminate) {
       this.input.indeterminate = this.props.indeterminate;
+    }
+    if (prevProps.checked !== this.props.checked) {
+      this.setState({
+        checked: this.props.checked,
+      });
     }
     return false;
   }
