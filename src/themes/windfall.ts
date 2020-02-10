@@ -1,4 +1,3 @@
-import { lighten } from '../utils/colorUtils';
 import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
@@ -854,9 +853,12 @@ export const windfallTheme = {
   },
   select: {
     dropdownColor: windfallColors.primary,
-    optionBackgroundColor: windfallColors.lt800,
-    hoverOptionBackgroundColor: lighten(windfallColors.primary, 75),
-    borderColor: windfallColors.secondary,
+    optionBackgroundColor: windfallColors.white,
+    hoverOptionBackgroundColor: windfallColors.lt200,
+    hoverOptionColor: windfallColors.primary,
+    selectedOptionColor: windfallColors.primary,
+    selectedOptionBackgroundColor: windfallColors.white,
+    borderColor: windfallColors.secondaryFaded,
     width: '100%',
     sm: {
       height: '16px',

@@ -43,6 +43,24 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   isDisabled?: boolean;
   /**
+   * Specify if the selected options are clearable
+   *
+   * @default false
+   **/
+  isClearable?: boolean;
+  /**
+   * Specify custom option components
+   *
+   * @default null
+   **/
+  components?: any;
+  /**
+   * Format a group label
+   *
+   * @default null
+   **/
+  formatGroupLabel?: any;
+  /**
    * Specify whether the control is currently invalid
    *
    * @default false
@@ -54,6 +72,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default null
    */
   onChange?: any;
+  /**
+   * Value for a controlled select componenet
+   *
+   * @default undefined
+   */
+  value?: OptionType[];
   /**
    * Should Menu close on select
    *
@@ -82,6 +106,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default null
    **/
   options?: any;
+  /**
+   * Hide selected options
+   *
+   * @default true
+   **/
+  hideSelectedOptions?: boolean;
   /**
    * Specify the control's selected option
    *
@@ -232,6 +262,11 @@ const SSelect = styled(Select)`
       padding-bottom: 0;
     }
   }
+
+  .react-select__menu, .react-select__menu-list .react-select__option {
+    background-color: ${(props: any) =>
+      props.theme.select.optionBackgroundColor} !important;
+  }
   
   .react-select__placeholder {
     color: ${(props: any) => props.theme.input.placeholderColor};
@@ -241,7 +276,7 @@ const SSelect = styled(Select)`
     display: ${(props: Props) => (props.isDisabled ? 'none' : 'flex')};
     margin-top: ${(props: Props) =>
       props.theme.select.multiSelect[props.selectSize!].indicatorsPosition};
-  }    
+  }  
   
   .react-select__value-container--is-multi {
     height: auto;
@@ -259,6 +294,7 @@ const SSelect = styled(Select)`
         props.theme.select.multiSelect[props.selectSize!].labelHeight};
       border-radius: ${(props: Props) =>
         props.theme.select.multiSelect[props.selectSize!].borderRadius};
+
       align-items: center;
       
       .react-select__multi-value__label {
@@ -266,8 +302,9 @@ const SSelect = styled(Select)`
       }
       
       .react-select__multi-value__remove {
-        padding: 0;      
+        padding: 0;   
       }
+
     }
     
   }
@@ -289,12 +326,23 @@ const SIndicatorWrapper = styled.div<Props>`
 `;
 
 const SOption = styled.div<Props>`
-  backgroundcolor: ${(props: Props) =>
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.typography.fontSize};
+  background-color: ${(props: Props) =>
     props.optionBackgroundColor || props.theme.select.optionBackgroundColor};
   &:hover {
-    backgroundcolor: ${(props: Props) =>
-      props.hoverOptionBackgroundColor ||
+    background-color: ${(props: Props) =>
+      props.optionBackgroundColor ||
       props.theme.select.hoverOptionBackgroundColor};
+    color: ${(props: Props) =>
+      props.optionBackgroundColor || props.theme.select.hoverOptionColor};
+  }
+  .react-select__option--is-selected {
+    background-color: ${(props: Props) =>
+      props.optionBackgroundColor ||
+      props.theme.select.selectedOptionBackgroundColor};
+    color: ${(props: Props) =>
+      props.optionBackgroundColor || props.theme.select.selectedOptionColor};
   }
 `;
 
@@ -316,6 +364,8 @@ export class CustomSelect extends React.Component<Props> {
     option: {},
   };
 
+  componentDidUpdate(prevProps) {}
+
   render() {
     const {
       options,
@@ -326,6 +376,7 @@ export class CustomSelect extends React.Component<Props> {
       id,
       isMulti,
       isDisabled,
+      isClearable,
       selectedOption,
       invalidText,
       invalidTextColor,
@@ -373,6 +424,7 @@ export class CustomSelect extends React.Component<Props> {
             className="react-select-component"
             classNamePrefix="react-select"
             isDisabled={isDisabled}
+            isClearable={isClearable}
             isMulti={isMulti}
             value={selectedOption}
             options={options}
@@ -387,6 +439,21 @@ export class CustomSelect extends React.Component<Props> {
                 ...styles,
                 fontFamily: theme.typography.fontFamily,
                 zIndex: 9999,
+              }),
+              menuList: styles => ({
+                ...styles,
+                backgroundColor: theme.select.optionBackgroundColor,
+              }),
+              option: styles => ({
+                ...styles,
+                backgroundColor: theme.select.optionBackgroundColor,
+                '&:hover': {
+                  backgroundColor: theme.select.hoverOptionBackgroundColor,
+                },
+                '&.react-select__option--is-selected': {
+                  backgroundColor: theme.select.selectedOptionBackgroundColor,
+                  color: theme.select.selectedOptionColor,
+                },
               }),
             }}
             {...props}
