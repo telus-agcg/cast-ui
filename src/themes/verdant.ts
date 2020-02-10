@@ -1,4 +1,3 @@
-import { lighten } from '../utils/colorUtils';
 import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
@@ -854,9 +853,12 @@ export const verdantTheme = {
   },
   select: {
     dropdownColor: verdantColors.primary,
-    optionBackgroundColor: verdantColors.lt800,
-    hoverOptionBackgroundColor: lighten(verdantColors.primary, 75),
-    borderColor: verdantColors.secondary,
+    optionBackgroundColor: verdantColors.white,
+    hoverOptionBackgroundColor: verdantColors.lt200,
+    hoverOptionColor: verdantColors.primary,
+    selectedOptionColor: verdantColors.primary,
+    selectedOptionBackgroundColor: verdantColors.white,
+    borderColor: verdantColors.secondaryFaded,
     width: '100%',
     sm: {
       height: '16px',
