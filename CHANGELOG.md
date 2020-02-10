@@ -1,3 +1,7 @@
+# 1.5.5 (2020-02-10)
+
+- [#629](https://github.com/technekes/cast-ui/pull/629): updates cast select theming - [@hamholla](https://github.com/hamholla)
+
 # 1.5.4 (2020-02-03)
 
 - [#626](https://github.com/technekes/cast-ui/pull/626): Button styling - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
