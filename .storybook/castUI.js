@@ -16,7 +16,6 @@ storiesOf('Cast UI', module).add('TKXS Component Library', () => <div />, {
 });
 storiesOf('Cast UI', module)
   .addParameters({
-    title: 'whateber',
     readme: {
       content: Changelog,
     },
