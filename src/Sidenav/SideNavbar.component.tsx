@@ -1,8 +1,10 @@
-import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { SideNavContext, propsDeepSearch } from './context';
-import { Themes } from '../themes';
-import { nameSpace } from '../utils/constants';
+import * as React from "react";
+import styled, { ThemeProvider } from "styled-components";
+import { SideNavContext, propsDeepSearch } from "./context";
+import { Themes } from "../themes";
+import { nameSpace } from "../utils/constants";
+import { Icon } from "react-icons-kit";
+import { ic_close } from "react-icons-kit/md/ic_close";
 
 export type Props = {
   /**
@@ -30,6 +32,28 @@ export type Props = {
    **/
   afterToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
   /**
+   * Before Expand/collapse the secondary sidebar
+   *
+   * @default false
+   **/
+  beforeSecondaryToggle?(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ): void;
+  /**
+   * Expand/collapse the secondary sidebar
+   *
+   * @default false
+   **/
+  onSecondaryToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
+  /**
+   * After Expand/collapse the secondary sidebar
+   *
+   * @default false
+   **/
+  afterSecondaryToggle?(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ): void;
+  /**
    * Handle select SideNavItem
    *
    * @default false
@@ -37,7 +61,7 @@ export type Props = {
   onSelect?(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     selectItemPath: any,
-    itemSecondaryChildren: any,
+    itemSecondaryChildren: any
   ): void;
   /**
    * A  CSS color code
@@ -74,7 +98,7 @@ export type Props = {
    *
    * @default ''
    **/
-  position?: 'absolute' | 'sticky' | 'fixed';
+  position?: "absolute" | "sticky" | "fixed";
   /**
    * Set SideNavbar's distance from top of viewport
    *
@@ -123,77 +147,73 @@ export type Props = {
    * @default '<'
    **/
   itemToggleCloseContent?: JSX.Element | React.Component | string;
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
 };
 
 const SSideNavbar = styled.div`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.sidenav.fontSize};
-  color: ${(props: Props) => props.theme.sidenav.color};
-  height: ${(props: Props) => props.height || props.theme.sidenav.height};
-  padding: ${(props: Props) => props.theme.sidenav.padding};
-  margin: ${(props: Props) => props.theme.sidenav.margin};
-  z-index: ${(props: Props) => props.theme.sidenav.zIndex};
-  background: ${(props: Props) =>
+  font-family: ${(props: any) => props.theme.typography.fontFamily};
+  font-size: ${(props: any) => props.theme.sidenav.fontSize};
+  color: ${(props: any) => props.theme.sidenav.color};
+  height: ${(props: any) => props.height || props.theme.sidenav.height};
+  padding: ${(props: any) => props.theme.sidenav.padding};
+  margin: ${(props: any) => props.theme.sidenav.margin};
+  z-index: ${(props: any) => props.theme.sidenav.zIndex};
+  background: ${(props: any) =>
     props.background || props.theme.sidenav.background};
-  border-left: ${(props: Props) =>
+  border-left: ${(props: any) =>
     props.borderLeft!.toString() || props.theme.sidenav.borderLeft};
-  border-right: ${(props: Props) =>
+  border-right: ${(props: any) =>
     props.borderRight!.toString() || props.theme.sidenav.borderRight};
-  position: ${(props: Props) => props.position || props.theme.sidenav.position};
-  top: ${(props: Props) => props.top || props.theme.sidenav.top};
-  bottom: ${(props: Props) => props.bottom || props.theme.sidenav.bottom};
-  left: ${(props: Props) => props.theme.sidenav.left};
-  right: ${(props: Props) => props.theme.sidenav.right};
-  min-width: ${(props: Props) =>
-    props.width ||
-    (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
-  transition: ${(props: Props) => props.theme.sidenav.transition};
+  position: ${(props: any) => props.position || props.theme.sidenav.position};
+  top: ${(props: any) => props.top || props.theme.sidenav.top};
+  bottom: ${(props: any) => props.bottom || props.theme.sidenav.bottom};
+  left: ${(props: any) => props.theme.sidenav.left};
+  right: ${(props: any) => props.theme.sidenav.right};
+  min-width: ${(props: any) =>
+    props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
+  transition: ${(props: any) => props.theme.sidenav.transition};
   display: flex;
   flex-direction: column;
 `;
 const SSecondarySideNavbar = styled.div`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.sidenav.fontSize};
-  color: ${(props: Props) => props.theme.sidenav.color};
-  height: ${(props: Props) =>
+  font-family: ${(props: any) => props.theme.typography.fontFamily};
+  font-size: ${(props: any) => props.theme.sidenav.fontSize};
+  color: ${(props: any) => props.theme.sidenav.color};
+  height: ${(props: any) =>
     props.secondaryNavbarHeight || props.theme.sidenav.secondaryNavbar.height};
-  padding: ${(props: Props) => props.theme.sidenav.secondaryNavbar.padding};
-  margin: ${(props: Props) => props.theme.sidenav.secondaryNavbar.margin};
-  z-index: ${(props: Props) => props.theme.sidenav.secondaryNavbar.zIndex};
-  background: ${(props: Props) =>
+  padding: ${(props: any) => props.theme.sidenav.secondaryNavbar.padding};
+  margin: ${(props: any) => props.theme.sidenav.secondaryNavbar.margin};
+  z-index: ${(props: any) => props.theme.sidenav.secondaryNavbar.zIndex};
+  background: ${(props: any) =>
     props.secondaryNavbarBackground ||
     props.theme.sidenav.secondaryNavbar.background};
-  border-left: ${(props: Props) =>
+  border-left: ${(props: any) =>
     props.borderLeft || props.theme.sidenav.secondaryNavbar.borderLeft};
-  border-right: ${(props: Props) =>
+  border-right: ${(props: any) =>
     props.borderRight || props.theme.sidenav.secondaryNavbar.borderRight};
-  position: ${(props: Props) =>
+  position: ${(props: any) =>
     props.position || props.theme.sidenav.secondaryNavbar.position};
-  top: ${(props: Props) =>
-    props.top || props.theme.sidenav.secondaryNavbar.top};
-  bottom: ${(props: Props) =>
+  top: ${(props: any) => props.top || props.theme.sidenav.secondaryNavbar.top};
+  bottom: ${(props: any) =>
     props.bottom || props.theme.sidenav.secondaryNavbar.bottom};
-  right: ${(props: Props) => props.theme.sidenav.secondaryNavbar.right};
-  left: ${(props: Props) =>
-    props.width ||
-    (props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width)};
-  width: ${(props: Props) =>
+  right: ${(props: any) => props.theme.sidenav.secondaryNavbar.right};
+  left: ${(props: any) =>
+    props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
+  width: ${(props: any) =>
     props.secondaryNavbarWidth ||
     (props.isSecondaryNavbarOpen
       ? props.theme.sidenav.secondaryNavbar.openWidth
       : props.theme.sidenav.secondaryNavbar.width)};
-  transition: ${(props: Props) =>
-    props.theme.sidenav.secondaryNavbar.transition};
+  transition: ${(props: any) => props.theme.sidenav.secondaryNavbar.transition};
   visibility: ${(props: any) =>
-    props.isSecondaryNavbarOpen ? 'visible' : 'hidden'};
+    props.isSecondaryNavbarOpen ? "visible" : "hidden"};
   display: flex;
   flex-direction: column;
+  .closeIcon {
+    position: absolute;
+    color: black;
+    top: 5px;
+    right: 5px;
+  }
 `;
 
 export const SideNavbar: React.FunctionComponent<Props> = ({
@@ -202,6 +222,9 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   beforeToggle = () => {},
   onToggle = () => {},
   afterToggle = () => {},
+  beforeSecondaryToggle = () => {},
+  onSecondaryToggle = () => {},
+  afterSecondaryToggle = () => {},
   onSelect = () => {},
   itemToggleOpenContent,
   itemToggleCloseContent,
@@ -214,7 +237,14 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
     beforeToggle,
     onToggle,
     afterToggle,
-    isSecondaryNavbarOpen,
+    isSecondaryNavbarOpen
+  };
+
+  const handleClick = async (e: any) => {
+    e.preventDefault();
+    await beforeSecondaryToggle(e);
+    await onSecondaryToggle(e);
+    await afterSecondaryToggle(e);
   };
 
   // Perform deep search through sidenavbar props
@@ -222,19 +252,21 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
   // If a child has a SideNav with the 'secondary' prop set to true,
   // its children will automatically be displayed in the secondary SideNavbar
   const activeSideNavItems: any = [];
-  propsDeepSearch(children, 'activeSideNavItem', true, activeSideNavItems);
+  propsDeepSearch(children, "activeSideNavItem", true, activeSideNavItems);
   let activeSideNavItemsChildren: any = [];
   activeSideNavItems.map((child: any) => {
     activeSideNavItemsChildren = [
       ...activeSideNavItemsChildren,
-      ...child.children.filter((child: any) =>
-        child.props ? child.props.secondary : false,
-      ),
+      ...child.children.filter(
+        (child: any) => (child.props ? child.props.secondary : false)
+      )
     ];
   });
 
   return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || newProps.theme}>
+    <ThemeProvider
+      theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
+    >
       <SideNavContext.Provider
         value={{
           baseProps: {
@@ -246,8 +278,8 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
             itemToggleOpenContent,
             itemToggleCloseContent,
             isSecondaryNavbarOpen,
-            onItemSelect: onSelect,
-          },
+            onItemSelect: onSelect
+          }
         }}
       >
         <SSideNavbar
@@ -262,6 +294,9 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
           role="secondary-side-nav-bar"
           {...newProps}
         >
+          <a onClick={(e: any) => handleClick(e)} href="#">
+            <Icon className={"closeIcon"} icon={ic_close} />
+          </a>
           {activeSideNavItemsChildren}
         </SSecondarySideNavbar>
       </SideNavContext.Provider>
@@ -270,14 +305,13 @@ export const SideNavbar: React.FunctionComponent<Props> = ({
 };
 
 SideNavbar.defaultProps = {
-  theme: Themes.defaultTheme,
   isOpen: false,
-  width: '',
-  borderLeft: '',
-  borderRight: '',
+  width: "",
+  borderLeft: "",
+  borderRight: "",
   isSecondaryNavbarOpen: false,
-  secondaryNavbarWidth: '',
-  secondaryNavbarHeight: '',
-  itemToggleOpenContent: '',
-  itemToggleCloseContent: '',
+  secondaryNavbarWidth: "",
+  secondaryNavbarHeight: "",
+  itemToggleOpenContent: "",
+  itemToggleCloseContent: ""
 };

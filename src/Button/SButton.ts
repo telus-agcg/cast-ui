@@ -129,7 +129,7 @@ const computeColor: Function = (
 };
 
 const SButton = styled.button`
-  min-width: 75px;
+  min-width: 96px;
   box-sizing: border-box;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.1s;
@@ -155,10 +155,12 @@ const SButton = styled.button`
         props.backgroundColor,
         props.theme,
       ).borderColor};
-  padding: ${(props: Props) => props.theme.common[props.btnSize!].padding};
+  padding: ${(props: Props) => props.theme.button[props.btnSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.btnSize!].fontSize};
+  font-size: ${(props: Props) => props.theme.button[props.btnSize!].fontSize};
   font-weight: 600;
+  line-height: ${(props: Props) =>
+    props.theme.button[props.btnSize!].lineHeight};
   color: ${(props: Props) =>
     computeColor(
       'normal',
@@ -168,6 +170,13 @@ const SButton = styled.button`
       props.backgroundColor,
       props.theme,
     ).color};
+
+  outline: none !important;
+  &:focus {
+    outline: none !important;
+    border-color: ${(props: Props) => props.theme.colors.primary};
+    box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+  }
   &:hover,
   &:active {
     background: ${(props: Props) =>

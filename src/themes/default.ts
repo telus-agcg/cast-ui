@@ -228,6 +228,21 @@ export const defaultTheme = {
   },
   button: {
     outlineBackgroundColor: 'none',
+    sm: {
+      fontSize: '11px',
+      padding: '7px 8px',
+      lineHeight: '12px',
+    },
+    md: {
+      fontSize: '14px',
+      padding: '8px 14px',
+      lineHeight: '14px',
+    },
+    lg: {
+      fontSize: '16px',
+      padding: '10px 16px',
+      lineHeight: '18px',
+    },
   },
   typography: {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
@@ -368,16 +383,19 @@ export const defaultTheme = {
       border: `1px solid ${defaultColors.lt600}`,
     },
     sm: {
-      height: '28px',
+      height: '26px',
       padding: '6px 7px',
+      iconTop: '6px',
     },
     md: {
-      height: '32px',
+      height: '30px',
       padding: '9px 10px 7px 10px',
+      iconTop: '7px',
     },
     lg: {
-      height: '40px',
+      height: '38px',
       padding: '11px 13px 13px 13px',
+      iconTop: '9px',
     },
   },
   inputGroup: {
@@ -396,7 +414,7 @@ export const defaultTheme = {
   radioButton: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: defaultColors.secondary,
+    borderColor: defaultColors.primary,
     disabledText: defaultColors.lt600,
     unselectedColor: defaultColors.white,
     stackedSpacing: '10px',
@@ -421,13 +439,28 @@ export const defaultTheme = {
     stackedSpacing: '19px',
     inlineSpacing: '20px',
     sm: {
-      size: '6px',
+      height: '28px',
+      squareSize: '6px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '3px',
+      checkedTopPosition: '7px',
+      marginLeft: '4px',
     },
     md: {
-      size: '10px',
+      height: '32px',
+      squareSize: '10px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '5px',
+      checkedTopPosition: '9px',
+      marginLeft: '6px',
     },
     lg: {
-      size: '14px',
+      height: '40px',
+      squareSize: '14px',
+      squareMargin: '8px 0',
+      indeterminateTopPosition: '7px',
+      checkedTopPosition: '11px',
+      marginLeft: '6.5px',
     },
   },
   toggle: {
@@ -480,10 +513,12 @@ export const defaultTheme = {
       light: {
         color: defaultColors.drk800,
         backgroundColor: defaultColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: defaultColors.drk800,
         backgroundColor: defaultColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
@@ -534,7 +569,7 @@ export const defaultTheme = {
   },
   panel: {
     header: {
-      padding: '14px 16px 14px 30px',
+      padding: '14px 16px',
     },
     body: {
       padding: '30px 30px',
@@ -653,51 +688,17 @@ export const defaultTheme = {
     },
   },
   datepicker: {
-    position: 'absolute',
     zIndex: 99,
-    sm: {
-      margins: {
-        dayPickerWraper: '1rem 0',
-        dayPickerMonth: '1rem 1rem auto',
-        dayPickerCaption: '.3rem auto 2rem',
-      },
-      btnPrev: {
-        left: '2rem',
-      },
-      btnNext: {
-        right: '2.2rem',
-      },
-    },
-    md: {
-      margins: {
-        dayPickerWraper: '1.5rem 0',
-        dayPickerMonth: '1rem 1.5rem auto',
-        dayPickerCaption: '.3rem auto 3rem',
-      },
-      btnPrev: {
-        left: '3rem',
-      },
-      btnNext: {
-        right: '3.2rem',
-      },
-    },
-    lg: {
-      margins: {
-        dayPickerWraper: '1.5rem 0',
-        dayPickerMonth: '1rem 1.5rem auto',
-        dayPickerCaption: '.3rem auto 3rem',
-      },
-      btnPrev: {
-        left: '3rem',
-      },
-      btnNext: {
-        right: '3.2rem',
-      },
-    },
   },
   tabs: {
+    color: defaultColors.drk800,
+    borderColor: defaultColors.primary,
+    hoverColor: defaultColors.primaryFaded,
     borderRadius: '0px',
+    bottomBorderWidth: '5px',
     fontSize: '14px',
+    padding: '12px',
+    margin: '0',
   },
   copyToClipboard: {
     fontFamily: 'monospace',
@@ -860,8 +861,11 @@ export const defaultTheme = {
   },
   select: {
     dropdownColor: defaultColors.primary,
-    optionBackgroundColor: defaultColors.secondaryFaded,
-    hoverOptionBackgroundColor: defaultColors.primaryFaded,
+    optionBackgroundColor: defaultColors.white,
+    hoverOptionBackgroundColor: defaultColors.lt200,
+    hoverOptionColor: defaultColors.primary,
+    selectedOptionColor: defaultColors.primary,
+    selectedOptionBackgroundColor: defaultColors.white,
     borderColor: defaultColors.secondaryFaded,
     width: '100%',
     sm: {
@@ -883,7 +887,7 @@ export const defaultTheme = {
         valueMargin: '2px 8px 2px 0',
         labelHeight: '20px',
         borderRadius: '13px',
-        indicatorsPosition: '4px',
+        indicatorsPosition: '0px',
       },
       md: {
         height: '28px',
@@ -891,7 +895,7 @@ export const defaultTheme = {
         valueMargin: '0 8px 2px 0',
         labelHeight: '24px',
         borderRadius: '13px',
-        indicatorsPosition: '6px',
+        indicatorsPosition: '0px',
       },
       lg: {
         height: '33px',
@@ -899,7 +903,7 @@ export const defaultTheme = {
         valueMargin: '0 8px 5px 0',
         labelHeight: '28px',
         borderRadius: '13px',
-        indicatorsPosition: '10px',
+        indicatorsPosition: '0px',
       },
     },
   },
@@ -933,5 +937,13 @@ export const defaultTheme = {
     background: defaultColors.lt800,
     progressBackground: defaultColors.primary,
     transition: 'width .2s ease-in',
+  },
+  toast: {
+    position: {
+      top: '20px',
+      left: '20px',
+      right: '20px',
+      bottom: '20px',
+    },
   },
 };

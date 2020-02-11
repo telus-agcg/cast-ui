@@ -5,6 +5,8 @@ import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
 import { Themes } from '../themes/index';
 import Select from '../Select/Select.component';
 
+export const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
+
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the size of the buttons to use
@@ -70,6 +72,7 @@ type State = {
 
 const SDivPaginationWrapper = styled.div`
   padding: ${(props: any) => props.theme.pagination.padding};
+  display: inline-flex;
 `;
 
 const SDivPaginationSectionWrapper = styled.div`
@@ -100,7 +103,7 @@ export class Pagination extends React.Component<Props> {
     showPageSizeOptions: false,
     rowsSelectorText: '',
     rowsText: '',
-    pageSizeOptions: [5, 10, 20, 25, 50, 100],
+    pageSizeOptions: PAGE_SIZE_OPTIONS,
     pageSize: 10,
   };
 
@@ -110,9 +113,9 @@ export class Pagination extends React.Component<Props> {
         activePage: 1,
         visiblePages: this.getVisiblePages(0, nextProps.pages),
       });
+    } else {
+      this.changePage(nextProps.page + 1);
     }
-
-    this.changePage(nextProps.page + 1);
   }
 
   filterPages = (visiblePages: number[], totalPages: number) => {
@@ -179,7 +182,6 @@ export class Pagination extends React.Component<Props> {
               Number(this.props.pageSizeOptions[selectedOption.value]),
             )
           }
-          closeMenuOnSelect={true}
           options={options}
           controlSpecificProps={{
             defaultValue,

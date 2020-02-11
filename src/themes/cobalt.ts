@@ -1,4 +1,4 @@
-import { lighten } from '../utils/colorUtils';
+import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
 
@@ -83,8 +83,8 @@ export const cobaltTheme = {
       reverseText: cobaltColors.white,
       hoverFlood: cobaltColors.secondaryHover,
       selectedFlood: cobaltColors.secondaryHover,
-      badgeBackground: cobaltColors.secondaryFaded,
-      badgeColor: cobaltColors.drk800,
+      badgeBackground: cobaltColors.drk400,
+      badgeColor: cobaltColors.white,
       alertColor: cobaltColors.drk800,
       alertBackground: cobaltColors.secondary,
       notificationColor: cobaltColors.drk800,
@@ -218,7 +218,22 @@ export const cobaltTheme = {
     backgroundColor: cobaltColors.white,
   },
   button: {
-    outlineBackgroundColor: 'white',
+    outlineBackgroundColor: 'none',
+    sm: {
+      fontSize: '11px',
+      padding: '7px 8px',
+      lineHeight: '12px',
+    },
+    md: {
+      fontSize: '14px',
+      padding: '8px 14px',
+      lineHeight: '14px',
+    },
+    lg: {
+      fontSize: '16px',
+      padding: '10px 16px',
+      lineHeight: '18px',
+    },
   },
   typography: {
     fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
@@ -359,16 +374,19 @@ export const cobaltTheme = {
       border: `1px solid transparent`,
     },
     sm: {
-      height: '24px',
+      height: '26px',
       padding: '4px 7px',
+      iconTop: '6px',
     },
     md: {
-      height: '32px',
+      height: '30px',
       padding: '8px 10px',
+      iconTop: '7px',
     },
     lg: {
-      height: '40px',
+      height: '38px',
       padding: '11px 16px 13px',
+      iconTop: '9px',
     },
   },
   inputGroup: {
@@ -379,7 +397,7 @@ export const cobaltTheme = {
       horizontalMargin: '12px 0',
     },
     label: {
-      padding: '8px 16px 8px 0',
+      padding: '8px 16px 4px 0',
       fontWeight: 500,
       horizontalWidth: '300px',
     },
@@ -387,7 +405,7 @@ export const cobaltTheme = {
   radioButton: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: cobaltColors.secondary,
+    borderColor: cobaltColors.primary,
     disabledText: cobaltColors.lt600,
     unselectedColor: cobaltColors.white,
     stackedSpacing: '10px',
@@ -412,13 +430,28 @@ export const cobaltTheme = {
     stackedSpacing: '10px',
     inlineSpacing: '20px',
     sm: {
-      size: '6px',
+      height: '28px',
+      squareSize: '6px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '3px',
+      checkedTopPosition: '7px',
+      marginLeft: '4px',
     },
     md: {
-      size: '10px',
+      height: '32px',
+      squareSize: '10px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '5px',
+      checkedTopPosition: '9px',
+      marginLeft: '6px',
     },
     lg: {
-      size: '14px',
+      height: '40px',
+      squareSize: '14px',
+      squareMargin: '8px 0',
+      indeterminateTopPosition: '7px',
+      checkedTopPosition: '11px',
+      marginLeft: '6.5px',
     },
   },
   toggle: {
@@ -471,10 +504,12 @@ export const cobaltTheme = {
       light: {
         color: cobaltColors.drk800,
         backgroundColor: cobaltColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: cobaltColors.drk800,
         backgroundColor: cobaltColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
@@ -527,7 +562,7 @@ export const cobaltTheme = {
   },
   panel: {
     header: {
-      padding: '14px 16px 14px 30px',
+      padding: '14px 16px',
     },
     body: {
       padding: '30px 30px',
@@ -608,7 +643,7 @@ export const cobaltTheme = {
     md: {
       borderRadius: '1px',
       fontSize: '14px',
-      padding: '8px 14px',
+      padding: '8px 16px',
       tableCellPadding: '9px 0',
       inputIconSize: '20px',
     },
@@ -629,6 +664,7 @@ export const cobaltTheme = {
   },
   table: {
     fontSize: '14px',
+    border: `1px solid ${cobaltColors.lt800}`,
     header: {
       borderBottomColor: cobaltColors.drk800,
       color: cobaltColors.drk800,
@@ -646,51 +682,18 @@ export const cobaltTheme = {
     },
   },
   datepicker: {
-    position: 'absolute',
     zIndex: 99,
-    sm: {
-      margins: {
-        dayPickerWraper: '16px 0',
-        dayPickerMonth: '16px 16px auto',
-        dayPickerCaption: '4.8px auto 32px',
-      },
-      btnPrev: {
-        left: '32px',
-      },
-      btnNext: {
-        right: '35.2px',
-      },
-    },
-    md: {
-      margins: {
-        dayPickerWraper: '24px 0',
-        dayPickerMonth: '16px 24px auto',
-        dayPickerCaption: '4.8px auto 48px',
-      },
-      btnPrev: {
-        left: '48px',
-      },
-      btnNext: {
-        right: '51.2px',
-      },
-    },
-    lg: {
-      margins: {
-        dayPickerWraper: '24px 0',
-        dayPickerMonth: '16px 24px auto',
-        dayPickerCaption: '4.8px auto 48px',
-      },
-      btnPrev: {
-        left: '48px',
-      },
-      btnNext: {
-        right: '51.2px',
-      },
-    },
   },
   tabs: {
+    color: cobaltColors.drk800,
+    borderColor: cobaltColors.primary,
+    hoverColor: cobaltColors.primaryFaded,
     borderRadius: '0px',
+    bottomBorderWidth: '4px',
+
     fontSize: '14px',
+    padding: '0 0 4px 0',
+    margin: '16px 16px 0 16px',
   },
   copyToClipboard: {
     fontFamily: 'monospace',
@@ -850,8 +853,11 @@ export const cobaltTheme = {
   },
   select: {
     dropdownColor: cobaltColors.primary,
-    optionBackgroundColor: cobaltColors.lt800,
-    hoverOptionBackgroundColor: lighten(cobaltColors.primary, 75),
+    optionBackgroundColor: cobaltColors.white,
+    hoverOptionBackgroundColor: cobaltColors.lt200,
+    hoverOptionColor: cobaltColors.primary,
+    selectedOptionColor: cobaltColors.primary,
+    selectedOptionBackgroundColor: cobaltColors.white,
     borderColor: cobaltColors.secondary,
     width: '100%',
     sm: {
@@ -873,7 +879,7 @@ export const cobaltTheme = {
         valueMargin: '2px 8px 2px 0',
         labelHeight: '20px',
         borderRadius: '4px',
-        indicatorsPosition: '4px',
+        indicatorsPosition: '0px',
       },
       md: {
         height: '28px',
@@ -881,7 +887,7 @@ export const cobaltTheme = {
         valueMargin: '0 8px 2px 0',
         labelHeight: '24px',
         borderRadius: '4px',
-        indicatorsPosition: '6px',
+        indicatorsPosition: '0px',
       },
       lg: {
         height: '33px',
@@ -889,7 +895,7 @@ export const cobaltTheme = {
         valueMargin: '0 8px 5px 0',
         labelHeight: '28px',
         borderRadius: '4px',
-        indicatorsPosition: '10px',
+        indicatorsPosition: '0px',
       },
     },
   },
@@ -924,5 +930,13 @@ export const cobaltTheme = {
     background: cobaltColors.lt800,
     progressBackground: cobaltColors.primary,
     transition: 'width .2s ease-in',
+  },
+  toast: {
+    position: {
+      top: '20px',
+      left: '20px',
+      right: '20px',
+      bottom: '20px',
+    },
   },
 };

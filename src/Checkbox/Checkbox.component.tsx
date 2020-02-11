@@ -1,9 +1,10 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import ErrorMessage from '../Typography/ErrorMessage/index';
 
 export interface State {
-  checked: boolean;
+  checked: boolean | undefined;
 }
 
 export type Props = {
@@ -25,13 +26,6 @@ export type Props = {
    * @default false
    **/
   checked?: boolean;
-
-  indeterminate?: boolean;
-  /**
-   * Specify if the default state of the checkbox is checked
-   *
-   * @default false
-   **/
   defaultChecked?: boolean;
   /**
    * Specify if the checkbox should be disabled
@@ -40,33 +34,55 @@ export type Props = {
    **/
   disabled?: boolean;
   /**
-   * Specify the function to fire when the checkbox is changed
-   *
-   * @default void
-   **/
-  onChange?(
-    checked: boolean,
-    id: string,
-    event: React.SyntheticEvent<HTMLElement>,
-  ): void;
-  /**
-   * Specify the value of the checkbox group when the current button is selected
-   *
-   * @default ''
-   **/
-  value: string;
-  /**
    * Specify the display style the radio button will have
    *
    * @default 'stacked'
    **/
   displayStyle?: 'inline' | 'stacked';
   /**
+   * Specify the function to fire when the checkbox is changed
+   *
+   * @default void
+   **/
+  indeterminate?: boolean;
+  /**
+   * Specify if the default state of the checkbox is checked
+   *
+   * @default false
+   **/
+  /**
+   * Specify whether the control is currently invalid
+   *
+   * @default false
+   **/
+  invalid?: boolean;
+  /**
+   * Provide the text that is displayed when the control is in an invalid state
+   */
+  invalidText?: string;
+  /**
+   * Color of the invalid text
+   *
+   * @default ''
+   **/
+  invalidTextColor?: string;
+  onChange?(
+    checked: boolean,
+    id: string,
+    event: React.SyntheticEvent<HTMLElement>,
+  ): void;
+  /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Specify the value of the checkbox group when the current button is selected
+   *
+   * @default ''
+   **/
+  value: string;
 };
 
 const displayStyleRules: Function = (
@@ -98,7 +114,10 @@ const indeterminateCheckboxRules: Function = (cbSize: string) => {
 
 const SDiv = styled.div`
   cursor: pointer;
-  ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)}
+  line-height: ${(props: Props) => props.theme.checkbox[props.cbSize!].height};
+  ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)};
+  display: inline-flex;
+  align-items: center;
 `;
 
 const SLabel = styled.label`
@@ -112,7 +131,6 @@ const SLabel = styled.label`
 const SInput = styled.input`
 	display: none;
 	& + label{
-		display: block !important;
 		&:before, &:after{
 			display:block;
 		}
@@ -120,14 +138,19 @@ const SInput = styled.input`
   + label:before {
     content: "";
     display: inline-block;
-    width: ${(props: Props) => props.theme.checkbox[props.cbSize!].size};
-    height: ${(props: Props) => props.theme.checkbox[props.cbSize!].size};
+    width: ${(props: Props) => props.theme.checkbox[props.cbSize!].squareSize};
+    height: ${(props: Props) => props.theme.checkbox[props.cbSize!].squareSize};
     background-clip: padding-box;
     background-color: ${(props: Props) => props.theme.checkbox.unselectedColor};
-    border-color: ${(props: Props) => props.theme.checkbox.borderColor};
+    border-color: ${(props: Props) =>
+      props.invalid
+        ? props.theme.validation.borderColor
+        : props.theme.checkbox.borderColor};
     border-style: ${(props: Props) => props.theme.checkbox.borderStyle};
     border-radius: 1px;
     border-width ${(props: Props) => props.theme.checkbox.borderWidth};
+    margin: ${(props: Props) =>
+      props.theme.checkbox[props.cbSize!].squareMargin};
     margin-right: 5px;
     padding: 3px;
   }
@@ -152,9 +175,10 @@ const SInput = styled.input`
       -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       margin-left: ${(props: Props) =>
-        props.cbSize === 'lg' ? '6.5px' : '6px'};
+        props.theme.checkbox[props.cbSize!].marginLeft};
       left: 0;
-      top: 2px;
+      top:${(props: Props) =>
+        props.theme.checkbox[props.cbSize!].checkedTopPosition};;
     }
     &:checked&:disabled + label:after {
       opacity: 0.5;
@@ -169,14 +193,19 @@ const SInput = styled.input`
       border-color: ${(props: Props) => props.theme.colors.white};
       border-width: ${(props: Props) =>
         props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
-      ${(props: Props) => indeterminateCheckboxRules(props.cbSize)}
+      ${(props: Props) => indeterminateCheckboxRules(props.cbSize)};
       margin-left: ${(props: Props) =>
-        props.cbSize === 'lg' ? '6.5px' : '6px'};
+        props.theme.checkbox[props.cbSize!].marginLeft};
 			transform: rotate(90deg) translateX(50%) translateY(0px);
 			-webkit-transform: rotate(90deg) translateX(50%) translateY(0px);
 			-ms-transform: rotate(90deg) translateX(50%) translateY(0px);
-			top:-1px;
+			top:${(props: Props) =>
+        props.theme.checkbox[props.cbSize!].indeterminateTopPosition};;
     }
+    &:disabled + label:before {
+      background-color: ${(props: Props) => props.theme.colors.secondaryFaded};
+      border-color: ${(props: Props) => props.theme.colors.secondaryFaded};
+    }    
 `;
 
 export class Checkbox extends React.Component<Props, State> {
@@ -190,6 +219,11 @@ export class Checkbox extends React.Component<Props, State> {
   componentDidUpdate(prevProps: Props) {
     if (prevProps.indeterminate !== this.props.indeterminate) {
       this.input.indeterminate = this.props.indeterminate;
+    }
+    if (prevProps.checked !== this.props.checked) {
+      this.setState({
+        checked: this.props.checked,
+      });
     }
     return false;
   }
@@ -233,34 +267,50 @@ export class Checkbox extends React.Component<Props, State> {
       checked,
       defaultChecked,
       indeterminate,
+      invalid,
+      invalidText,
+      invalidTextColor,
       disabled,
       value,
       ...props
     } = this.props;
-
+    const errorId = invalid ? `${id}-error-msg` : '';
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv
-          data-checkbox=""
-          id={`checkbox-wrapper-${id}`}
-          value={value}
-          {...props}
-        >
-          <SInput
-            onChange={this.onChange}
-            checked={this.state.checked}
-            type="checkbox"
-            ref={el => (this.input = el)}
-            id={id}
-            cbSize={cbSize}
-            disabled={disabled}
+        <>
+          <SDiv
+            data-checkbox=""
+            id={`checkbox-wrapper-${id}`}
             value={value}
-            indeterminate={indeterminate}
-          />
-          <SLabel htmlFor={id} cbSize={cbSize}>
-            {children}
-          </SLabel>
-        </SDiv>
+            cbSize={cbSize}
+            {...props}
+          >
+            <SInput
+              onChange={this.onChange}
+              checked={this.state.checked}
+              type="checkbox"
+              ref={el => (this.input = el)}
+              id={id}
+              cbSize={cbSize}
+              disabled={disabled}
+              value={value}
+              indeterminate={indeterminate}
+              invalid={invalid}
+              invalidText={invalidText}
+              invalidTextColor={invalidTextColor}
+            />
+            <SLabel htmlFor={id} cbSize={cbSize}>
+              {children}
+            </SLabel>
+          </SDiv>
+          {invalid && invalidText && (
+            <ErrorMessage
+              id={errorId}
+              message={invalidText || ''}
+              textColor={invalidTextColor || ''}
+            />
+          )}
+        </>
       </ThemeProvider>
     );
   }

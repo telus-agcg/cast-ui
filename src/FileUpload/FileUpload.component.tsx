@@ -115,6 +115,10 @@ export class FileUpload extends React.Component<Props, State> {
     this.setState({ dragging: false });
   }
 
+  onDragEnter(evt: any) {
+    evt.preventDefault();
+  }
+
   fileListToArray(list: any) {
     const array: any = [];
     for (let i = 0; i < list.length; i += 1) {
@@ -127,6 +131,8 @@ export class FileUpload extends React.Component<Props, State> {
     event.preventDefault();
     const files = event.target.files;
     this.filesAdded(files, event);
+    // clear input to allow adding file again
+    event.target.value = '';
   }
 
   onDrop(event: any) {
@@ -158,6 +164,7 @@ export class FileUpload extends React.Component<Props, State> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDropZone
+          onDragEnter={this.onDragEnter}
           onDragOver={this.onDragOver}
           onDragLeave={this.onDragLeave}
           onDrop={this.onDrop}

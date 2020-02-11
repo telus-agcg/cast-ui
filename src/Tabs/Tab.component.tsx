@@ -40,26 +40,17 @@ const SReactTab = styled(ReactTabProxy)`
   bottom: -1px;
   position: relative;
   list-style: none;
-  padding: 12px;
+  padding: ${(props: Props) => props.theme.tabs.padding};
+  margin: ${(props: Props) => props.theme.tabs.margin};
   cursor: pointer;
   border-radius: ${(props: Props) => props.theme.tabs.borderRadius};
   font-size:${(props: Props) => props.theme.tabs.fontSize};
   font-weight: normal;
 
-  &[class$="--selected"]	 {
-    color: ${(props: Props) => props.theme.colors.blue};
-    border-bottom: 5px solid ${(props: Props) => props.theme.colors.blue}
-    font-weight: bold;
-  }
-
-  &[class$="--disabled"] {
-    color: ${(props: Props) => props.theme.colors.gray}
-    cursor: not-allowed;
-  }
-
   &:focus, &:hover {
-    border-bottom: 5px solid ${(props: Props) =>
-      props.theme.colors.disabledBackground};
+    color: ${(props: Props) => props.theme.tabs.hoverColor};
+    border-bottom: ${(props: Props) =>
+      `${props.theme.tabs.bottomBorderWidth} solid ${props.theme.tabs.hoverColor}`};
     outline: none;
     background: ${(props: Props) => props.theme.colors.disabledBackground};
 
@@ -72,6 +63,18 @@ const SReactTab = styled(ReactTabProxy)`
       bottom: 0px;
       background: ${(props: Props) => props.theme.colors.disabledBackground};
     }
+  }
+  
+  &[class$="--selected"]\t {
+    color: ${(props: Props) => props.theme.tabs.color};
+    border-bottom: ${(props: Props) =>
+      `${props.theme.tabs.bottomBorderWidth} solid ${props.theme.tabs.borderColor}`};
+    font-weight: bold;
+  }
+
+  &[class$="--disabled"] {
+    color: ${(props: Props) => props.theme.colors.gray}
+    cursor: not-allowed;
   }
 `;
 

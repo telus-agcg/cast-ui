@@ -10,7 +10,9 @@ import { Themes } from '../themes';
 import Icon from 'react-icons-kit';
 import { chevronUp } from 'react-icons-kit/fa/chevronUp';
 import { chevronDown } from 'react-icons-kit/fa/chevronDown';
-import Pagination from '../Pagination/Pagination.component';
+import Pagination, {
+  PAGE_SIZE_OPTIONS,
+} from '../Pagination/Pagination.component';
 import 'react-table/react-table.css';
 
 export type Props = Partial<TableProps> &
@@ -41,6 +43,12 @@ export type Props = Partial<TableProps> &
      * @default defaultTheme
      **/
     theme?: any;
+    /**
+     * From theme provider
+     *
+     * @default 'No results found'
+     **/
+    noDataText?: string;
   };
 
 const SIcon = styled(Icon)`
@@ -187,17 +195,17 @@ const SWrapperDiv = styled(ReactTable)`
     background-position: right 4px center;
   }
   &.ReactTable .rt-thead .rt-th.-sort-asc {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
   }
   &.ReactTable .rt-thead .rt-th.-sort-desc {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
   }
   &.ReactTable .rt-noData {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 10px;
+    top: 0px;
     height: 100px;
     background-color: ${(props: any) => props.theme.colors.secondaryBackground};
     transform: none;
@@ -248,10 +256,11 @@ export class Table extends React.Component<Props> {
     getTdProps: ReactTableDefaults.getTdProps,
     getTrProps: ReactTableDefaults.getTrProps,
     showPageSizeOptions: true,
+    noDataText: 'No results found',
+    pageSizeOptions: PAGE_SIZE_OPTIONS,
   };
   render() {
     const { data, getTdProps, getTrProps, theme, ...props } = this.props;
-    debugger;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv

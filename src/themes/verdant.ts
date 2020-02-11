@@ -1,4 +1,4 @@
-import { lighten } from '../utils/colorUtils';
+import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
 
@@ -217,7 +217,22 @@ export const verdantTheme = {
     backgroundColor: verdantColors.white,
   },
   button: {
-    outlineBackgroundColor: 'white',
+    outlineBackgroundColor: 'none',
+    sm: {
+      fontSize: '11px',
+      padding: '7px 8px',
+      lineHeight: '12px',
+    },
+    md: {
+      fontSize: '14px',
+      padding: '8px 14px',
+      lineHeight: '14px',
+    },
+    lg: {
+      fontSize: '16px',
+      padding: '10px 16px',
+      lineHeight: '18px',
+    },
   },
   typography: {
     fontFamily: '"IBM Plex Sans", sans-serif',
@@ -358,16 +373,19 @@ export const verdantTheme = {
       border: `1px solid transparent`,
     },
     sm: {
-      height: '24px',
+      height: '26px',
       padding: '4px 7px',
+      iconTop: '6px',
     },
     md: {
-      height: '32px',
+      height: '30px',
       padding: '8px 10px',
+      iconTop: '7px',
     },
     lg: {
-      height: '40px',
+      height: '38px',
       padding: '11px 16px 13px',
+      iconTop: '9px',
     },
   },
   inputGroup: {
@@ -386,7 +404,7 @@ export const verdantTheme = {
   radioButton: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: verdantColors.secondary,
+    borderColor: verdantColors.primary,
     disabledText: verdantColors.lt600,
     unselectedColor: verdantColors.white,
     stackedSpacing: '10px',
@@ -411,13 +429,28 @@ export const verdantTheme = {
     stackedSpacing: '10px',
     inlineSpacing: '20px',
     sm: {
-      size: '6px',
+      height: '28px',
+      squareSize: '6px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '3px',
+      checkedTopPosition: '7px',
+      marginLeft: '4px',
     },
     md: {
-      size: '10px',
+      height: '32px',
+      squareSize: '10px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '5px',
+      checkedTopPosition: '9px',
+      marginLeft: '6px',
     },
     lg: {
-      size: '14px',
+      height: '40px',
+      squareSize: '14px',
+      squareMargin: '8px 0',
+      indeterminateTopPosition: '7px',
+      checkedTopPosition: '11px',
+      marginLeft: '6.5px',
     },
   },
   toggle: {
@@ -470,10 +503,12 @@ export const verdantTheme = {
       light: {
         color: verdantColors.drk800,
         backgroundColor: verdantColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: verdantColors.drk800,
         backgroundColor: verdantColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
@@ -526,7 +561,7 @@ export const verdantTheme = {
   },
   panel: {
     header: {
-      padding: '14px 16px 14px 30px',
+      padding: '14px 16px',
     },
     body: {
       padding: '30px 30px',
@@ -648,51 +683,17 @@ export const verdantTheme = {
     },
   },
   datepicker: {
-    position: 'absolute',
     zIndex: 99,
-    sm: {
-      margins: {
-        dayPickerWraper: '16px 0',
-        dayPickerMonth: '16px 16px auto',
-        dayPickerCaption: '4.8px auto 32px',
-      },
-      btnPrev: {
-        left: '32px',
-      },
-      btnNext: {
-        right: '35.2px',
-      },
-    },
-    md: {
-      margins: {
-        dayPickerWraper: '24px 0',
-        dayPickerMonth: '16px 24px auto',
-        dayPickerCaption: '4.8px auto 48px',
-      },
-      btnPrev: {
-        left: '48px',
-      },
-      btnNext: {
-        right: '51.2px',
-      },
-    },
-    lg: {
-      margins: {
-        dayPickerWraper: '24px 0',
-        dayPickerMonth: '16px 24px auto',
-        dayPickerCaption: '4.8px auto 48px',
-      },
-      btnPrev: {
-        left: '48px',
-      },
-      btnNext: {
-        right: '51.2px',
-      },
-    },
   },
   tabs: {
+    color: verdantColors.drk800,
+    borderColor: verdantColors.primary,
+    hoverColor: verdantColors.primaryFaded,
     borderRadius: '0px',
+    bottomBorderWidth: '5px',
     fontSize: '14px',
+    padding: '12px',
+    margin: '0',
   },
   copyToClipboard: {
     fontFamily: 'monospace',
@@ -852,9 +853,12 @@ export const verdantTheme = {
   },
   select: {
     dropdownColor: verdantColors.primary,
-    optionBackgroundColor: verdantColors.lt800,
-    hoverOptionBackgroundColor: lighten(verdantColors.primary, 75),
-    borderColor: verdantColors.secondary,
+    optionBackgroundColor: verdantColors.white,
+    hoverOptionBackgroundColor: verdantColors.lt200,
+    hoverOptionColor: verdantColors.primary,
+    selectedOptionColor: verdantColors.primary,
+    selectedOptionBackgroundColor: verdantColors.white,
+    borderColor: verdantColors.secondaryFaded,
     width: '100%',
     sm: {
       height: '16px',
@@ -875,7 +879,7 @@ export const verdantTheme = {
         valueMargin: '2px 8px 2px 0',
         labelHeight: '20px',
         borderRadius: '4px',
-        indicatorsPosition: '4px',
+        indicatorsPosition: '0px',
       },
       md: {
         height: '28px',
@@ -883,7 +887,7 @@ export const verdantTheme = {
         valueMargin: '0 8px 2px 0',
         labelHeight: '24px',
         borderRadius: '4px',
-        indicatorsPosition: '6px',
+        indicatorsPosition: '0px',
       },
       lg: {
         height: '33px',
@@ -891,7 +895,7 @@ export const verdantTheme = {
         valueMargin: '0 8px 5px 0',
         labelHeight: '28px',
         borderRadius: '4px',
-        indicatorsPosition: '10px',
+        indicatorsPosition: '0px',
       },
     },
   },
@@ -926,5 +930,13 @@ export const verdantTheme = {
     background: verdantColors.lt800,
     progressBackground: verdantColors.primary,
     transition: 'width .2s ease-in',
+  },
+  toast: {
+    position: {
+      top: '20px',
+      left: '20px',
+      right: '20px',
+      bottom: '20px',
+    },
   },
 };

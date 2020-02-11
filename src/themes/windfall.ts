@@ -1,4 +1,4 @@
-import { lighten } from '../utils/colorUtils';
+import { defaultColors } from './default';
 
 export { ThemeProvider } from 'styled-components';
 
@@ -217,7 +217,22 @@ export const windfallTheme = {
     backgroundColor: windfallColors.white,
   },
   button: {
-    outlineBackgroundColor: 'white',
+    outlineBackgroundColor: 'none',
+    sm: {
+      fontSize: '11px',
+      padding: '7px 8px',
+      lineHeight: '12px',
+    },
+    md: {
+      fontSize: '14px',
+      padding: '8px 14px',
+      lineHeight: '14px',
+    },
+    lg: {
+      fontSize: '16px',
+      padding: '10px 16px',
+      lineHeight: '18px',
+    },
   },
   typography: {
     fontFamily: '"acumin-pro", sans-serif',
@@ -358,16 +373,19 @@ export const windfallTheme = {
       border: `1px solid transparent`,
     },
     sm: {
-      height: '24px',
+      height: '26px',
       padding: '4px 7px',
+      iconTop: '6px',
     },
     md: {
-      height: '32px',
+      height: '30px',
       padding: '8px 10px',
+      iconTop: '7px',
     },
     lg: {
-      height: '40px',
+      height: '38px',
       padding: '11px 16px 13px',
+      iconTop: '9px',
     },
   },
   inputGroup: {
@@ -386,7 +404,7 @@ export const windfallTheme = {
   radioButton: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: windfallColors.secondary,
+    borderColor: windfallColors.primary,
     disabledText: windfallColors.lt600,
     unselectedColor: windfallColors.white,
     stackedSpacing: '10px',
@@ -411,13 +429,28 @@ export const windfallTheme = {
     stackedSpacing: '10px',
     inlineSpacing: '20px',
     sm: {
-      size: '6px',
+      height: '28px',
+      squareSize: '6px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '3px',
+      checkedTopPosition: '7px',
+      marginLeft: '4px',
     },
     md: {
-      size: '10px',
+      height: '32px',
+      squareSize: '10px',
+      squareMargin: '7px 0',
+      indeterminateTopPosition: '5px',
+      checkedTopPosition: '9px',
+      marginLeft: '6px',
     },
     lg: {
-      size: '14px',
+      height: '40px',
+      squareSize: '14px',
+      squareMargin: '8px 0',
+      indeterminateTopPosition: '7px',
+      checkedTopPosition: '11px',
+      marginLeft: '6.5px',
     },
   },
   toggle: {
@@ -470,10 +503,12 @@ export const windfallTheme = {
       light: {
         color: windfallColors.drk800,
         backgroundColor: windfallColors.white,
+        chevronColor: defaultColors.primary,
       },
       dark: {
         color: windfallColors.drk800,
         backgroundColor: windfallColors.highlight200,
+        chevronColor: defaultColors.primary,
       },
     },
   },
@@ -526,7 +561,7 @@ export const windfallTheme = {
   },
   panel: {
     header: {
-      padding: '14px 16px 14px 30px',
+      padding: '14px 16px',
     },
     body: {
       padding: '30px 30px',
@@ -648,51 +683,17 @@ export const windfallTheme = {
     },
   },
   datepicker: {
-    position: 'absolute',
     zIndex: 99,
-    sm: {
-      margins: {
-        dayPickerWraper: '16px 0',
-        dayPickerMonth: '16px 16px auto',
-        dayPickerCaption: '4.8px auto 32px',
-      },
-      btnPrev: {
-        left: '32px',
-      },
-      btnNext: {
-        right: '35.2px',
-      },
-    },
-    md: {
-      margins: {
-        dayPickerWraper: '24px 0',
-        dayPickerMonth: '16px 24px auto',
-        dayPickerCaption: '4.8px auto 48px',
-      },
-      btnPrev: {
-        left: '48px',
-      },
-      btnNext: {
-        right: '51.2px',
-      },
-    },
-    lg: {
-      margins: {
-        dayPickerWraper: '24px 0',
-        dayPickerMonth: '16px 24px auto',
-        dayPickerCaption: '4.8px auto 48px',
-      },
-      btnPrev: {
-        left: '48px',
-      },
-      btnNext: {
-        right: '51.2px',
-      },
-    },
   },
   tabs: {
+    color: windfallColors.drk800,
+    borderColor: windfallColors.primary,
+    hoverColor: windfallColors.primaryFaded,
     borderRadius: '0px',
+    bottomBorderWidth: '5px',
     fontSize: '14px',
+    padding: '12px',
+    margin: '0',
   },
   copyToClipboard: {
     fontFamily: 'monospace',
@@ -852,9 +853,12 @@ export const windfallTheme = {
   },
   select: {
     dropdownColor: windfallColors.primary,
-    optionBackgroundColor: windfallColors.lt800,
-    hoverOptionBackgroundColor: lighten(windfallColors.primary, 75),
-    borderColor: windfallColors.secondary,
+    optionBackgroundColor: windfallColors.white,
+    hoverOptionBackgroundColor: windfallColors.lt200,
+    hoverOptionColor: windfallColors.primary,
+    selectedOptionColor: windfallColors.primary,
+    selectedOptionBackgroundColor: windfallColors.white,
+    borderColor: windfallColors.secondaryFaded,
     width: '100%',
     sm: {
       height: '16px',
@@ -875,7 +879,7 @@ export const windfallTheme = {
         valueMargin: '2px 8px 2px 0',
         labelHeight: '20px',
         borderRadius: '4px',
-        indicatorsPosition: '4px',
+        indicatorsPosition: '0px',
       },
       md: {
         height: '28px',
@@ -883,7 +887,7 @@ export const windfallTheme = {
         valueMargin: '0 8px 2px 0',
         labelHeight: '24px',
         borderRadius: '4px',
-        indicatorsPosition: '6px',
+        indicatorsPosition: '0px',
       },
       lg: {
         height: '33px',
@@ -891,7 +895,7 @@ export const windfallTheme = {
         valueMargin: '0 8px 5px 0',
         labelHeight: '28px',
         borderRadius: '4px',
-        indicatorsPosition: '10px',
+        indicatorsPosition: '0px',
       },
     },
   },
@@ -926,5 +930,13 @@ export const windfallTheme = {
     background: windfallColors.lt800,
     progressBackground: windfallColors.primary,
     transition: 'width .2s ease-in',
+  },
+  toast: {
+    position: {
+      top: '20px',
+      left: '20px',
+      right: '20px',
+      bottom: '20px',
+    },
   },
 };
