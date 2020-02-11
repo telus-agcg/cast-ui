@@ -1,3 +1,7 @@
+# 1.5.6 (2020-02-11)
+
+- [#634](https://github.com/technekes/cast-ui/pull/634): export react-select components - [@ben-dalton](https://github.com/ben-dalton)
+
 # 1.5.5 (2020-02-10)
 
 - [#629](https://github.com/technekes/cast-ui/pull/629): updates cast select theming - [@hamholla](https://github.com/hamholla)
