@@ -260,7 +260,15 @@ export class Table extends React.Component<Props> {
     pageSizeOptions: PAGE_SIZE_OPTIONS,
   };
   render() {
-    const { data, getTdProps, getTrProps, theme, ...props } = this.props;
+    const {
+      data,
+      getTdProps,
+      getTrProps,
+      loading,
+      noDataText,
+      theme,
+      ...props
+    } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
@@ -310,6 +318,8 @@ export class Table extends React.Component<Props> {
               </React.Fragment>
             ),
           }}
+          loading={loading}
+          noDataText={loading ? '' : noDataText}
           {...props}
         />
       </ThemeProvider>
