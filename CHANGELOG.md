@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.7 (2020-02-17)
+
+- [#640](https://github.com/technekes/cast-ui/pull/640): updates cobalt font family - [@hamholla](https://github.com/hamholla)
+- [#639](https://github.com/technekes/cast-ui/pull/639): Prevent showing no data message on load - [@tdakhla](https://github.com/tdakhla)
+- [#636](https://github.com/technekes/cast-ui/pull/634): adds readme addon for md files - [@ben-dalton](https://github.com/ben-dalton)
+
 ## 1.5.6 (2020-02-11)
 
 - [#634](https://github.com/technekes/cast-ui/pull/634): export react-select components - [@ben-dalton](https://github.com/ben-dalton)
