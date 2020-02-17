@@ -1,6 +1,6 @@
 {
   "name": "@tkxs/cast-ui",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "author": "tkxs",
   "description": "React component library for the TKXS design system",
   "license": "MIT",
@@ -52,8 +52,8 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@ibm/plex": "^2.0.0",
     "@babel/core": "^7.1.5",
+    "@ibm/plex": "^2.0.0",
     "@storybook/addon-actions": "5.1.11",
     "@storybook/addon-backgrounds": "5.1.11",
     "@storybook/addon-info": "5.1.11",
@@ -110,6 +110,7 @@
     "shx": "^0.3.2",
     "storybook-addon-jsx": "7.1.2",
     "storybook-addon-styled-component-theme": "1.2.1",
+    "storybook-readme": "^5.0.8",
     "styled-components": "4.2.0",
     "tinycolor2": "^1.4.1",
     "tslint": "^5.11.0",

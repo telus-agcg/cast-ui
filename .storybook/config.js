@@ -1,7 +1,7 @@
-import {configure, addDecorator, addParameters} from '@storybook/react';
-import {create} from '@storybook/theming';
-import {withKnobs} from '@storybook/addon-knobs/react';
-import {withInfo} from '@storybook/addon-info';
+import { configure, addDecorator, addParameters } from '@storybook/react';
+import { create } from '@storybook/theming';
+import { withKnobs } from '@storybook/addon-knobs/react';
+import { withInfo } from '@storybook/addon-info';
 import 'typeface-roboto';
 import '../src/utils/static/fonts.css';
 import {
@@ -10,9 +10,10 @@ import {
   verdantTheme,
   windfallTheme,
 } from '../src/themes';
-import {withThemesProvider} from 'storybook-addon-styled-component-theme';
+import { withThemesProvider } from 'storybook-addon-styled-component-theme';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import { addReadme } from 'storybook-readme';
 
 const wInfoStyle = {
   header: {
@@ -41,43 +42,44 @@ const wInfoStyle = {
   },
 };
 
-addParameters ({
+addParameters({
   backgrounds: [
-    {name: 'Light', value: defaultTheme.colors.white, default: true},
-    {name: 'Dark', value: defaultTheme.colors.gray},
+    { name: 'Light', value: defaultTheme.colors.white, default: true },
+    { name: 'Dark', value: defaultTheme.colors.gray },
   ],
   options: {
-    theme: create ({
+    theme: create({
       base: 'light',
       brandTitle: 'Cast UI',
       brandUrl: 'https://github.com/technekes/cast-ui',
       // To control appearance:
-      brandImage: 'https://cdn2.hubspot.net/hubfs/1976913/TKXS-brand/tkxs-logo.png',
+      brandImage:
+        'https://cdn2.hubspot.net/hubfs/1976913/TKXS-brand/tkxs-logo.png',
     }),
     isFullscreen: false,
     panelPosition: 'right',
   },
 });
 
-addDecorator (
-  withInfo ({
+addDecorator(
+  withInfo({
     inline: true,
     source: true,
     styles: wInfoStyle,
-  })
+  }),
 );
 
-addDecorator (withKnobs);
-
-addDecorator (
-  withThemesProvider ([defaultTheme, cobaltTheme, verdantTheme, windfallTheme])
+addDecorator(withKnobs);
+addDecorator(addReadme);
+addDecorator(
+  withThemesProvider([defaultTheme, cobaltTheme, verdantTheme, windfallTheme]),
 );
 
 // automatically import all files ending in *.stories.tsx
-const req = require.context ('../src', true, /.stories.tsx$/);
-function loadStories () {
-  require ('./castUI');
-  req.keys ().forEach (filename => req (filename));
+const req = require.context('../src', true, /.stories.tsx$/);
+function loadStories() {
+  require('./castUI');
+  req.keys().forEach(filename => req(filename));
 }
 
-configure (loadStories, module);
+configure(loadStories, module);
