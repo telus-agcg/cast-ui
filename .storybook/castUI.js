@@ -1,7 +1,7 @@
 import React from 'react';
-
 import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
+
+import Changelog from '../CHANGELOG.md';
 
 storiesOf('Cast UI', module).add('TKXS Component Library', () => <div />, {
   info: {
@@ -14,3 +14,12 @@ storiesOf('Cast UI', module).add('TKXS Component Library', () => <div />, {
   `,
   },
 });
+storiesOf('Cast UI', module)
+  .addParameters({
+    readme: {
+      content: Changelog,
+    },
+  })
+  .add('Changelog', () => <div />, {
+    info: { disable: true },
+  });
