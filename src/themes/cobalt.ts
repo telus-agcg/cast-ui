@@ -210,7 +210,7 @@ export const cobaltTheme = {
   },
 
   body: {
-    fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
+    fontFamily: 'Roboto, Helvetica, arial, sans-serif',
     fontSize: '14px',
     fontWeight: 400,
     lineHeight: '18px',
@@ -236,7 +236,7 @@ export const cobaltTheme = {
     },
   },
   typography: {
-    fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
+    fontFamily: 'Roboto, Helvetica, arial, sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
     fontWeight: '400',
@@ -244,13 +244,13 @@ export const cobaltTheme = {
     color: cobaltColors.drk800,
     caption: {
       10: {
-        fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '10px',
         lineHeight: '100%',
       },
       20: {
-        fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
@@ -258,13 +258,13 @@ export const cobaltTheme = {
     },
     bodyText: {
       10: {
-        fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
       },
       20: {
-        fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '14px',
         lineHeight: '160%',
@@ -283,13 +283,13 @@ export const cobaltTheme = {
     },
     display: {
       10: {
-        fontFamily: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '22px',
         lineHeight: '125%',
       },
       20: {
-        fontFamily: '"Gilroy-Light", "Open Sans", arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '27px',
         lineHeight: '120%',
