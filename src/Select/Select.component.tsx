@@ -455,6 +455,22 @@ export class CustomSelect extends React.Component<Props> {
                   color: theme.select.selectedOptionColor,
                 },
               }),
+              indicatorSeparator: styles => ({
+                ...styles,
+                display: 'none',
+              }),
+              clearIndicator: styles => ({
+                ...styles,
+                padding: '0px',
+              }),
+              dropdownIndicator: styles => ({
+                ...styles,
+                color: theme.select.dropdownColor,
+                padding: '0px 8px',
+                '&:hover': {
+                  color: theme.select.dropdownColor,
+                },
+              }),
             }}
             {...props}
             {...controlSpecificProps}
