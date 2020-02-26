@@ -6,6 +6,7 @@ import { Select } from '../';
 import { action } from '@storybook/addon-actions';
 import Checkbox from '../Checkbox';
 import styled from 'styled-components';
+import { cobaltTheme } from '../themes';
 
 const SCheckbox = styled(Checkbox)`
   padding-bottom: 0px;
@@ -19,7 +20,7 @@ storiesOf('Select', module)
   .add(
     'Select',
     () => (
-      <div>
+      <>
         <Select
           id="mySelect"
           isMulti={boolean('isMulti', false)}
@@ -37,7 +38,7 @@ storiesOf('Select', module)
             { value: 'vanilla', label: 'Vanilla' },
           ]}
         />
-      </div>
+      </>
     ),
     {
       info: {
@@ -246,6 +247,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
         value={this.state.selectedOptions}
         closeMenuOnSelect={false}
         formatGroupLabel={formatGroupLabel}
+        theme={cobaltTheme}
         options={colorOptions}
       />
     );
