@@ -2,7 +2,7 @@ import * as React from 'react';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 import Select /*, SelectBase */ from 'react-select';
 // import { SelectComponents, InputActionMeta, FocusDirection } from 'react-select/types';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
 
@@ -95,12 +95,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   placeholder?: string;
   /**
-   * Color of the invalid text
-   *
-   * @default ''
-   **/
-  invalidTextColor?: string;
-  /**
    * The list of options available
    *
    * @default null
@@ -171,36 +165,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   //   popValue: () => void;
   //   children: React.ReactElement;
   // };
-  /**
-   * Color of the input's border
-   *
-   * @default: ''
-   */
-  borderColor?: string;
-  /**
-   * Color of the input's radius
-   *
-   * @default: ''
-   */
-  borderRadius?: string;
-  /**
-   * color of the arrow down
-   *
-   * @default ''
-   */
-  dropdownColor?: string;
-  /**
-   * option color representation
-   *
-   * @default ''
-   */
-  optionBackgroundColor?: string;
-  /**
-   * option's hover color representation
-   *
-   * @default ''
-   */
-  hoverOptionBackgroundColor?: string;
 
   /**
    * Portal the select menu to another element.
@@ -209,6 +173,25 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    */
   menuPortalTarget?: HTMLElement;
 }
+
+const SDiv = styled.div<Props>`
+  font-family: ${(props: Props) =>
+    props.theme.typography.fontFamily} !important;
+  font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
+  color: ${(props: Props) => props.theme.reverseText};
+  width: ${(props: Props) => props.theme.select.width};
+  .react-select-component > div[class*="-control"] {
+    min-height: auto;
+    border-radius: ${(props: Props) =>
+      props.theme.select.borderRadius ||
+      props.theme.common[props.selectSize!].borderRadius};
+    border-color: ${(props: Props) =>
+      props.theme.common.borderColor ||
+      (props.invalid
+        ? props.theme.validation.borderColor
+        : props.theme.select.borderColor || 'inherit')};
+  }
+`;
 
 export class CustomSelect extends React.Component<Props> {
   static defaultProps = {
@@ -236,7 +219,6 @@ export class CustomSelect extends React.Component<Props> {
         },
       };
     };
-
     const customStyles = {
       control: styles => ({
         ...styles,
@@ -310,10 +292,6 @@ export class CustomSelect extends React.Component<Props> {
       isClearable,
       selectedOption,
       invalidText,
-      invalidTextColor,
-      dropdownColor,
-      optionBackgroundColor,
-      hoverOptionBackgroundColor,
       ...props
     } = this.props;
     const errorId = invalid ? `${id}-error-msg` : '';
@@ -324,7 +302,14 @@ export class CustomSelect extends React.Component<Props> {
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <>
+        <SDiv
+          className="select-wrapper"
+          selectSize={selectSize}
+          aria-invalid={invalid ? true : undefined}
+          aria-describedby={errorId}
+          invalid={invalid}
+          id={id}
+        >
           <Select
             {...props}
             {...controlSpecificProps}
@@ -340,7 +325,7 @@ export class CustomSelect extends React.Component<Props> {
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
             selectSize={selectSize}
-            dropdownColor={dropdownColor}
+            dropdownColor={theme.primary}
             menuPortalTarget={document.body}
             menuPlacement={'bottom'}
             theme={customTheme}
@@ -350,10 +335,10 @@ export class CustomSelect extends React.Component<Props> {
             <ErrorMessage
               id={errorId}
               message={invalidText!}
-              textColor={invalidTextColor!}
+              textColor={theme.danger}
             />
           )}
-        </>
+        </SDiv>
       </ThemeProvider>
     );
   }

@@ -28,9 +28,6 @@ storiesOf('Select', module)
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           invalid={boolean('invalid', false)}
           invalidText={text('invalidText', 'A valid value is required')}
-          invalidTextColor={text('invalidTextColor', '')}
-          borderColor={text('borderColor', '')}
-          borderRadius={text('borderRadius', '')}
           onChange={action('onChange')}
           options={[
             { value: 'chocolate', label: 'Chocolate' },
@@ -71,9 +68,6 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           invalid={boolean('invalid', false)}
           invalidText={text('invalidText', 'A valid value is required')}
-          invalidTextColor={text('invalidTextColor', '')}
-          borderColor={text('borderColor', '')}
-          borderRadius={text('borderRadius', '')}
           onChange={action('onChange')}
           options={[
             { value: 'chocolate', label: 'Chocolate' },
