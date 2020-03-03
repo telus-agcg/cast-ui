@@ -1,7 +1,6 @@
 import * as React from 'react';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 import Select /*, SelectBase */ from 'react-select';
-// import { SelectComponents, InputActionMeta, FocusDirection } from 'react-select/types';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
@@ -112,6 +111,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default null
    **/
   selectedOption?: Object | Object[];
+
   /**
    * Any props that should be passed directly to the third-
    * party react-select control.
@@ -179,6 +179,35 @@ const SDiv = styled.div<Props>`
   font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   width: ${(props: Props) => props.theme.select.width};
+  .react-select__menu {
+    font-family: ${(props: Props) => props.theme.typography.fontFamily};
+    z-index: 9999;
+    color: ${(props: Props) => props.theme.colors.drk800};   
+    .menuListHeader {
+      padding: 8px 12px;
+      border-bottom: 1px solid ${(props: Props) => props.theme.colors.lt800};
+    }
+     .react-select__menu-list {     
+      font-family: ${(props: Props) => props.theme.typography.fontFamily};
+      color: ${(props: Props) => props.theme.colors.drk800};                  
+     }
+     .react-select__option  {
+      background-color: ${(props: Props) =>
+        props.theme.select.optionBackgroundColor};
+      font-family: ${(props: Props) => props.theme.typography.fontFamily};
+      color: ${(props: Props) => props.theme.colors.drk800};
+      &.react-select__option--is-selected {
+        color: ${(props: Props) => props.theme.select.selectedOptionColor};
+        background-color: ${(props: Props) =>
+          props.theme.select.selectedOptionBackgroundColor} ;        
+      }
+      &:hover {
+        background-color: ${(props: Props) =>
+          props.theme.select.hoverOptionBackgroundColor};
+        color: ${(props: Props) => props.theme.select.hoverOptionColor};
+      }
+    }
+   }    
   .react-select-component {
     .react-select__control {
       min-height: auto;
@@ -191,6 +220,7 @@ const SDiv = styled.div<Props>`
           ? props.theme.validation.borderColor
           : props.theme.select.borderColor || 'inherit')};
       .react-select__value-container {
+        color: ${(props: Props) => props.theme.colors.drk800};
         padding: ${(props: Props) =>
           props.theme.select[props.selectSize!].padding};
         font-family: ${(props: Props) => props.theme.typography.fontFamily};
@@ -220,29 +250,7 @@ const SDiv = styled.div<Props>`
         }
       }
     }
-    .react-select__menu {
-     font-family: ${(props: Props) => props.theme.typography.fontFamily};
-     z-index: 9999;
-      .react-select__menu-list {        
-        .react-select__option  {
-          background-color: ${(props: Props) =>
-            props.theme.select.optionBackgroundColor};
-          font-family: ${(props: Props) => props.theme.typography.fontFamily};
-          color: ${(props: Props) => props.theme.colors.drk800};
-          &.react-select__option--is-selected {
-            color: ${(props: Props) =>
-              props.theme.select.selectedOptionColor}!important;
-            background-color: ${(props: Props) =>
-              props.theme.select.selectedOptionBackgroundColor} !important;
-          }
-          &:hover {
-            background-color: ${(props: Props) =>
-              props.theme.select.hoverOptionBackgroundColor};
-            color: ${(props: Props) => props.theme.select.hoverOptionColor};
-          }
-        }        
-      }
-    }    
+    
   }  
 `;
 
@@ -254,6 +262,7 @@ export class CustomSelect extends React.Component<Props> {
     id: uuid.v4(),
     option: {},
   };
+
   render() {
     const {
       options,
@@ -307,8 +316,6 @@ export class CustomSelect extends React.Component<Props> {
                 : document.querySelector('.select-wrapper')
             }
             menuPlacement={'bottom'}
-            // theme={customTheme}
-            // styles={customStyles}
           />
           {invalid && (
             <ErrorMessage

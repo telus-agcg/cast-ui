@@ -20,7 +20,7 @@ storiesOf('Select', module)
     () => (
       <>
         <Select
-          id="mySelect"
+          id="mySelect1"
           isMulti={boolean('isMulti', false)}
           isDisabled={boolean('isDisabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
@@ -60,7 +60,7 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
     () => (
       <div>
         <Select
-          id="mySelect"
+          id="mySelect2"
           isMulti={boolean('isMulti', true)}
           isDisabled={boolean('isDisabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
@@ -194,6 +194,17 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     }));
   }
 
+  MenuList = (props: any) => {
+    return (
+      <>
+        <div className={'menuListHeader'}>
+          {this.state.selectedOptions.length} items selected
+        </div>
+        {props.children}
+      </>
+    );
+  };
+
   MultiValue = (props: any) => {
     const withComma = `${props.data.label}, `;
     return (
@@ -228,9 +239,13 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
   render() {
     return (
       <Select
-        id="mySelect"
+        id="mySelect3"
         isMulti
-        components={{ Option: this.Option, MultiValue: this.MultiValue }}
+        components={{
+          Option: this.Option,
+          MultiValue: this.MultiValue,
+          MenuList: this.MenuList,
+        }}
         isDisabled={boolean('isDisabled', false)}
         selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
         hideSelectedOptions={false}
