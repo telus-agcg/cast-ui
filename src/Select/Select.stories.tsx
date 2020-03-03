@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
-import { components } from 'react-select';
-import { Select } from '../';
+import { Select, SelectComponents } from '../';
 import { action } from '@storybook/addon-actions';
 import Checkbox from '../Checkbox';
 import styled from 'styled-components';
@@ -19,17 +18,14 @@ storiesOf('Select', module)
   .add(
     'Select',
     () => (
-      <div>
+      <>
         <Select
-          id="mySelect"
+          id="mySelect1"
           isMulti={boolean('isMulti', false)}
           isDisabled={boolean('isDisabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           invalid={boolean('invalid', false)}
           invalidText={text('invalidText', 'A valid value is required')}
-          invalidTextColor={text('invalidTextColor', '')}
-          borderColor={text('borderColor', '')}
-          borderRadius={text('borderRadius', '')}
           onChange={action('onChange')}
           options={[
             { value: 'chocolate', label: 'Chocolate' },
@@ -37,7 +33,7 @@ storiesOf('Select', module)
             { value: 'vanilla', label: 'Vanilla' },
           ]}
         />
-      </div>
+      </>
     ),
     {
       info: {
@@ -64,15 +60,12 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
     () => (
       <div>
         <Select
-          id="mySelect"
+          id="mySelect2"
           isMulti={boolean('isMulti', true)}
           isDisabled={boolean('isDisabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           invalid={boolean('invalid', false)}
           invalidText={text('invalidText', 'A valid value is required')}
-          invalidTextColor={text('invalidTextColor', '')}
-          borderColor={text('borderColor', '')}
-          borderRadius={text('borderRadius', '')}
           onChange={action('onChange')}
           options={[
             { value: 'chocolate', label: 'Chocolate' },
@@ -201,6 +194,17 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     }));
   }
 
+  MenuList = (props: any) => {
+    return (
+      <>
+        <div className={'menuListHeader'}>
+          {this.state.selectedOptions.length} items selected
+        </div>
+        {props.children}
+      </>
+    );
+  };
+
   MultiValue = (props: any) => {
     const withComma = `${props.data.label}, `;
     return (
@@ -217,7 +221,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
 
   Option = (props: any) => {
     return (
-      <components.Option {...props}>
+      <SelectComponents.Option {...props}>
         <SCheckbox
           id={props.value}
           defaultChecked={props.isSelected}
@@ -228,16 +232,20 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
         >
           <span>{props.data.label}</span>
         </SCheckbox>
-      </components.Option>
+      </SelectComponents.Option>
     );
   };
 
   render() {
     return (
       <Select
-        id="mySelect"
+        id="mySelect3"
         isMulti
-        components={{ Option: this.Option, MultiValue: this.MultiValue }}
+        components={{
+          Option: this.Option,
+          MultiValue: this.MultiValue,
+          MenuList: this.MenuList,
+        }}
         isDisabled={boolean('isDisabled', false)}
         selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
         hideSelectedOptions={false}

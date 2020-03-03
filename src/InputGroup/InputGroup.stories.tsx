@@ -34,7 +34,6 @@ storiesOf('InputGroup', module).add(
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           invalid={boolean('invalid', false)}
           invalidText={text('invalidText', 'A valid value is required')}
-          invalidTextColor={text('invalidTextColor', '')}
           options={[
             { value: 'chocolate', label: 'Chocolate' },
             { value: 'strawberry', label: 'Strawberry' },

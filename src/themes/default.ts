@@ -866,19 +866,19 @@ export const defaultTheme = {
     hoverOptionColor: defaultColors.primary,
     selectedOptionColor: defaultColors.primary,
     selectedOptionBackgroundColor: defaultColors.white,
-    borderColor: defaultColors.secondaryFaded,
+    borderColor: defaultColors.secondary,
     width: '100%',
     sm: {
       height: '16px',
-      padding: '5px 10px',
+      padding: '2px 10px',
     },
     md: {
       height: '16px',
-      padding: '7px 10px',
+      padding: '3px 10px 2px',
     },
     lg: {
       height: '24px',
-      padding: '7px 13px',
+      padding: '6px 13px',
     },
     multiSelect: {
       sm: {
