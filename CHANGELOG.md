@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.8 (2020-03-03)
+
+- [#644](https://github.com/technekes/cast-ui/pull/644): updates select styling - also removed the borderColor, borderRadius, dropdownColor, optionBackgroundColor, hoverOptionBackgroundColor props from select - [@hamholla](https://github.com/hamholla)
+
 ## 1.5.7 (2020-02-17)
 
 - [#640](https://github.com/technekes/cast-ui/pull/640): updates cobalt font family - [@hamholla](https://github.com/hamholla)
