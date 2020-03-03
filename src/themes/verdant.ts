@@ -858,19 +858,19 @@ export const verdantTheme = {
     hoverOptionColor: verdantColors.primary,
     selectedOptionColor: verdantColors.primary,
     selectedOptionBackgroundColor: verdantColors.white,
-    borderColor: verdantColors.secondaryFaded,
+    borderColor: verdantColors.secondary,
     width: '100%',
     sm: {
       height: '16px',
-      padding: '5px 10px',
+      padding: '2px 10px',
     },
     md: {
       height: '16px',
-      padding: '7px 10px',
+      padding: '2px 10px 2px',
     },
     lg: {
       height: '24px',
-      padding: '7px 13px',
+      padding: '5px 13px',
     },
     multiSelect: {
       sm: {

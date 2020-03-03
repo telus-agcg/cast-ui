@@ -297,13 +297,13 @@ export const cobaltTheme = {
     },
     header: {
       10: {
-        fontFamily: '"Gilroy-Bold", "Open Sans", arial, sans-serif',
+        fontFamily: '"Gilroy-SemiBold", "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '13px',
         lineHeight: '160%',
       },
       20: {
-        fontFamily: '"Gilroy-Bold", "Open Sans", arial, sans-serif',
+        fontFamily: '"Gilroy-SemiBold", "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '14px',
         lineHeight: '175%',
@@ -350,13 +350,13 @@ export const cobaltTheme = {
     },
     title: {
       10: {
-        fontFamily: '"Gilroy-Bold", "Open Sans", arial, sans-serif',
+        fontFamily: '"Gilroy-SemiBold", "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '16px',
         lineHeight: '130%',
       },
       20: {
-        fontFamily: '"Gilroy-Bold", "Open Sans", arial, sans-serif',
+        fontFamily: '"Gilroy-SemiBold", "Open Sans", arial, sans-serif',
         fontWeight: '700',
         fontSize: '18px',
         lineHeight: '135%',
@@ -862,15 +862,15 @@ export const cobaltTheme = {
     width: '100%',
     sm: {
       height: '16px',
-      padding: '5px 10px',
+      padding: '2px 10px',
     },
     md: {
       height: '16px',
-      padding: '7px 10px',
+      padding: '3px 10px 2px',
     },
     lg: {
       height: '24px',
-      padding: '7px 13px',
+      padding: '6px 13px',
     },
     multiSelect: {
       sm: {

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import ErrorMessage from '../Typography/ErrorMessage/index';
-import Select, { components /*, SelectBase */ } from 'react-select';
-// import { SelectComponents, InputActionMeta, FocusDirection } from 'react-select/types';
+import Select /*, SelectBase */ from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
@@ -95,12 +94,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   placeholder?: string;
   /**
-   * Color of the invalid text
-   *
-   * @default ''
-   **/
-  invalidTextColor?: string;
-  /**
    * The list of options available
    *
    * @default null
@@ -118,6 +111,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default null
    **/
   selectedOption?: Object | Object[];
+
   /**
    * Any props that should be passed directly to the third-
    * party react-select control.
@@ -171,36 +165,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   //   popValue: () => void;
   //   children: React.ReactElement;
   // };
-  /**
-   * Color of the input's border
-   *
-   * @default: ''
-   */
-  borderColor?: string;
-  /**
-   * Color of the input's radius
-   *
-   * @default: ''
-   */
-  borderRadius?: string;
-  /**
-   * color of the arrow down
-   *
-   * @default ''
-   */
-  dropdownColor?: string;
-  /**
-   * option color representation
-   *
-   * @default ''
-   */
-  optionBackgroundColor?: string;
-  /**
-   * option's hover color representation
-   *
-   * @default ''
-   */
-  hoverOptionBackgroundColor?: string;
 
   /**
    * Portal the select menu to another element.
@@ -215,144 +179,79 @@ const SDiv = styled.div<Props>`
   font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   width: ${(props: Props) => props.theme.select.width};
-  .react-select-component > div[class*="-control"] {
-    min-height: auto;
-    border-radius: ${(props: Props) =>
-      props.borderRadius || props.theme.common[props.selectSize!].borderRadius};
-    border-color: ${(props: Props) =>
-      props.borderColor ||
-      (props.invalid
-        ? props.theme.validation.borderColor
-        : props.theme.select.borderColor || 'inherit')};
-  }
-`;
-
-const SSelect = styled(Select)`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.typography.fontSize}
-  &:disabled {
-    background: ${(props: Props) => props.theme.input.backgroundDisabled};
-    cursor: not-allowed;
-  }
-  
-  .react-select-component {
+  .react-select__menu {
     font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  }
-  
-  .react-select__control {
-    align-items: center;
-    border: ${(props: Props) => props.theme.input.border};
-    &.react-select__control--is-focused {
-      outline: none !important;
-      &:focus {
-        outline: none !important;
-        border-color: ${(props: Props) => props.theme.colors.primary};
-        box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+    z-index: 9999;
+    color: ${(props: Props) => props.theme.colors.drk800};   
+    .menuListHeader {
+      padding: 8px 12px;
+      border-bottom: 1px solid ${(props: Props) => props.theme.colors.lt800};
+    }
+     .react-select__menu-list {     
+      font-family: ${(props: Props) => props.theme.typography.fontFamily};
+      color: ${(props: Props) => props.theme.colors.drk800};                  
+     }
+     .react-select__option  {
+      background-color: ${(props: Props) =>
+        props.theme.select.optionBackgroundColor};
+      font-family: ${(props: Props) => props.theme.typography.fontFamily};
+      color: ${(props: Props) => props.theme.colors.drk800};
+      &.react-select__option--is-selected {
+        color: ${(props: Props) => props.theme.select.selectedOptionColor};
+        background-color: ${(props: Props) =>
+          props.theme.select.selectedOptionBackgroundColor} ;        
+      }
+      &:hover {
+        background-color: ${(props: Props) =>
+          props.theme.select.hoverOptionBackgroundColor};
+        color: ${(props: Props) => props.theme.select.hoverOptionColor};
       }
     }
-  }    
-  
-  .react-select__value-container {
-    box-sizing: content-box;
-    height: ${(props: Props) => props.theme.select[props.selectSize!].height};
-    padding: ${(props: Props) => props.theme.select[props.selectSize!].padding};
-    >div {
-      margin: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-  }
-
-  .react-select__menu, .react-select__menu-list .react-select__option {
-    background-color: ${(props: any) =>
-      props.theme.select.optionBackgroundColor} !important;
-  }
-  
-  .react-select__placeholder {
-    color: ${(props: any) => props.theme.input.placeholderColor};
-  }
-  
-  .react-select__indicators {
-    display: ${(props: Props) => (props.isDisabled ? 'none' : 'flex')};
-    margin-top: ${(props: Props) =>
-      props.theme.select.multiSelect[props.selectSize!].indicatorsPosition};
-  }  
-  
-  .react-select__value-container--is-multi {
-    height: auto;
-    min-height: ${(props: Props) =>
-      props.theme.select.multiSelect[props.selectSize!].height};
-    padding: ${(props: Props) =>
-      props.theme.select.multiSelect[props.selectSize!].padding};
-  
-    .react-select__multi-value {
-      margin: ${(props: Props) =>
-        props.theme.select.multiSelect[props.selectSize!].valueMargin};
-      padding: 6px 12px;
-      font-size: 100%;
-      height: ${(props: Props) =>
-        props.theme.select.multiSelect[props.selectSize!].labelHeight};
+   }    
+  .react-select-component {
+    .react-select__control {
+      min-height: auto;
       border-radius: ${(props: Props) =>
-        props.theme.select.multiSelect[props.selectSize!].borderRadius};
-
-      align-items: center;
-      
-      .react-select__multi-value__label {
-        padding: 0 6px 0 0;
+        props.theme.select.borderRadius ||
+        props.theme.common[props.selectSize!].borderRadius};
+      border-color: ${(props: Props) =>
+        props.theme.common.borderColor ||
+        (props.invalid
+          ? props.theme.validation.borderColor
+          : props.theme.select.borderColor || 'inherit')};
+      .react-select__value-container {
+        color: ${(props: Props) => props.theme.colors.drk800};
+        padding: ${(props: Props) =>
+          props.theme.select[props.selectSize!].padding};
+        font-family: ${(props: Props) => props.theme.typography.fontFamily};
+        font-size: ${(props: Props) =>
+          props.theme.common[props.selectSize!].fontSize};
+        .react-select__input {
+          font-family: ${(props: Props) => props.theme.typography.fontFamily};
+          font-size: ${(props: Props) =>
+            props.theme.common[props.selectSize!].fontSize};
+        }    
+      }  
+    }          
+    .react-select__indicators {
+      align-self: center;
+      .react-select__indicator-separator {
+        display: none;
+      }   
+      .react-select__clear-indicator {
+        padding: 0px;
       }
-      
-      .react-select__multi-value__remove {
-        padding: 0;   
+      .react-select__dropdown-indicator {
+        align-self: center;
+        color: ${(props: Props) => props.theme.select.dropdownColor};
+        padding: 0px 8px;
+        &:hover {
+          color: ${(props: Props) => props.theme.select.dropdownColor};
+        }
       }
-
     }
     
-  }
-`;
-
-const SIndicatorWrapper = styled.div<Props>`
-  & > div > div {
-    color: ${(props: any) =>
-      props.dropdownColor || props.theme.select.dropdownColor};
-    &:hover {
-      color: ${(props: Props) =>
-        props.dropdownColor || props.theme.select.dropdownColor};
-    }
-  }
-  & > div > span {
-    color: ${(props: Props) =>
-      props.dropdownColor || props.theme.select.dropdownColor};
-  }
-`;
-
-const SOption = styled.div<Props>`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.typography.fontSize};
-  background-color: ${(props: Props) =>
-    props.optionBackgroundColor || props.theme.select.optionBackgroundColor};
-  &:hover {
-    background-color: ${(props: Props) =>
-      props.optionBackgroundColor ||
-      props.theme.select.hoverOptionBackgroundColor};
-    color: ${(props: Props) =>
-      props.optionBackgroundColor || props.theme.select.hoverOptionColor};
-  }
-  .react-select__option--is-selected {
-    background-color: ${(props: Props) =>
-      props.optionBackgroundColor ||
-      props.theme.select.selectedOptionBackgroundColor};
-    color: ${(props: Props) =>
-      props.optionBackgroundColor || props.theme.select.selectedOptionColor};
-  }
-`;
-
-const Option = styled(components.Option)``;
-
-const IndicatorsContainer = styled(components.IndicatorsContainer)`
-  & > div {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
+  }  
 `;
 
 export class CustomSelect extends React.Component<Props> {
@@ -363,8 +262,6 @@ export class CustomSelect extends React.Component<Props> {
     id: uuid.v4(),
     option: {},
   };
-
-  componentDidUpdate(prevProps) {}
 
   render() {
     const {
@@ -379,10 +276,6 @@ export class CustomSelect extends React.Component<Props> {
       isClearable,
       selectedOption,
       invalidText,
-      invalidTextColor,
-      dropdownColor,
-      optionBackgroundColor,
-      hoverOptionBackgroundColor,
       ...props
     } = this.props;
     const errorId = invalid ? `${id}-error-msg` : '';
@@ -390,6 +283,7 @@ export class CustomSelect extends React.Component<Props> {
       typeof this.props.closeMenuOnSelect !== 'undefined'
         ? this.props.closeMenuOnSelect
         : !isMulti;
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
@@ -400,26 +294,9 @@ export class CustomSelect extends React.Component<Props> {
           invalid={invalid}
           id={id}
         >
-          <SSelect
-            components={{
-              IndicatorSeparator: () => null,
-              Option: p => (
-                <SOption
-                  optionBackgroundColor={optionBackgroundColor}
-                  hoverOptionBackgroundColor={hoverOptionBackgroundColor}
-                >
-                  <Option {...p} />
-                </SOption>
-              ),
-              IndicatorsContainer: p => (
-                <SIndicatorWrapper
-                  isDisabled={isDisabled}
-                  dropdownColor={dropdownColor}
-                >
-                  <IndicatorsContainer {...p} />
-                </SIndicatorWrapper>
-              ),
-            }}
+          <Select
+            {...props}
+            {...controlSpecificProps}
             closeMenuOnSelect={closeMenuOnSelect}
             className="react-select-component"
             classNamePrefix="react-select"
@@ -432,38 +309,19 @@ export class CustomSelect extends React.Component<Props> {
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
             selectSize={selectSize}
-            dropdownColor={dropdownColor}
-            menuPortalTarget={document.body}
-            styles={{
-              menuPortal: styles => ({
-                ...styles,
-                fontFamily: theme.typography.fontFamily,
-                zIndex: 9999,
-              }),
-              menuList: styles => ({
-                ...styles,
-                backgroundColor: theme.select.optionBackgroundColor,
-              }),
-              option: styles => ({
-                ...styles,
-                backgroundColor: theme.select.optionBackgroundColor,
-                '&:hover': {
-                  backgroundColor: theme.select.hoverOptionBackgroundColor,
-                },
-                '&.react-select__option--is-selected': {
-                  backgroundColor: theme.select.selectedOptionBackgroundColor,
-                  color: theme.select.selectedOptionColor,
-                },
-              }),
-            }}
-            {...props}
-            {...controlSpecificProps}
+            dropdownColor={theme.primary}
+            menuPortalTarget={
+              id
+                ? document.getElementById(id)
+                : document.querySelector('.select-wrapper')
+            }
+            menuPlacement={'bottom'}
           />
           {invalid && (
             <ErrorMessage
               id={errorId}
               message={invalidText!}
-              textColor={invalidTextColor!}
+              textColor={theme.danger}
             />
           )}
         </SDiv>
