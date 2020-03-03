@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
-import { components } from 'react-select';
-import { Select } from '../';
+import { Select, SelectComponents } from '../';
 import { action } from '@storybook/addon-actions';
 import Checkbox from '../Checkbox';
 import styled from 'styled-components';
-import { cobaltTheme } from '../themes';
 
 const SCheckbox = styled(Checkbox)`
   padding-bottom: 0px;
@@ -212,7 +210,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
 
   Option = (props: any) => {
     return (
-      <components.Option {...props}>
+      <SelectComponents.Option {...props}>
         <SCheckbox
           id={props.value}
           defaultChecked={props.isSelected}
@@ -223,7 +221,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
         >
           <span>{props.data.label}</span>
         </SCheckbox>
-      </components.Option>
+      </SelectComponents.Option>
     );
   };
 
@@ -241,7 +239,6 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
         value={this.state.selectedOptions}
         closeMenuOnSelect={false}
         formatGroupLabel={formatGroupLabel}
-        theme={cobaltTheme}
         options={colorOptions}
       />
     );

@@ -175,22 +175,75 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const SDiv = styled.div<Props>`
-  font-family: ${(props: Props) =>
-    props.theme.typography.fontFamily} !important;
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   width: ${(props: Props) => props.theme.select.width};
-  .react-select-component > div[class*="-control"] {
-    min-height: auto;
-    border-radius: ${(props: Props) =>
-      props.theme.select.borderRadius ||
-      props.theme.common[props.selectSize!].borderRadius};
-    border-color: ${(props: Props) =>
-      props.theme.common.borderColor ||
-      (props.invalid
-        ? props.theme.validation.borderColor
-        : props.theme.select.borderColor || 'inherit')};
-  }
+  .react-select-component {
+    .react-select__control {
+      min-height: auto;
+      border-radius: ${(props: Props) =>
+        props.theme.select.borderRadius ||
+        props.theme.common[props.selectSize!].borderRadius};
+      border-color: ${(props: Props) =>
+        props.theme.common.borderColor ||
+        (props.invalid
+          ? props.theme.validation.borderColor
+          : props.theme.select.borderColor || 'inherit')};
+      .react-select__value-container {
+        padding: ${(props: Props) =>
+          props.theme.select[props.selectSize!].padding};
+        font-family: ${(props: Props) => props.theme.typography.fontFamily};
+        font-size: ${(props: Props) =>
+          props.theme.common[props.selectSize!].fontSize};
+        .react-select__input {
+          font-family: ${(props: Props) => props.theme.typography.fontFamily};
+          font-size: ${(props: Props) =>
+            props.theme.common[props.selectSize!].fontSize};
+        }    
+      }  
+    }          
+    .react-select__indicators {
+      align-self: center;
+      .react-select__indicator-separator {
+        display: none;
+      }   
+      .react-select__clear-indicator {
+        padding: 0px;
+      }
+      .react-select__dropdown-indicator {
+        align-self: center;
+        color: ${(props: Props) => props.theme.select.dropdownColor};
+        padding: 0px 8px;
+        &:hover {
+          color: ${(props: Props) => props.theme.select.dropdownColor};
+        }
+      }
+    }
+    .react-select__menu {
+     font-family: ${(props: Props) => props.theme.typography.fontFamily};
+     z-index: 9999;
+      .react-select__menu-list {        
+        .react-select__option  {
+          background-color: ${(props: Props) =>
+            props.theme.select.optionBackgroundColor};
+          font-family: ${(props: Props) => props.theme.typography.fontFamily};
+          color: ${(props: Props) => props.theme.colors.drk800};
+          &.react-select__option--is-selected {
+            color: ${(props: Props) =>
+              props.theme.select.selectedOptionColor}!important;
+            background-color: ${(props: Props) =>
+              props.theme.select.selectedOptionBackgroundColor} !important;
+          }
+          &:hover {
+            background-color: ${(props: Props) =>
+              props.theme.select.hoverOptionBackgroundColor};
+            color: ${(props: Props) => props.theme.select.hoverOptionColor};
+          }
+        }        
+      }
+    }    
+  }  
 `;
 
 export class CustomSelect extends React.Component<Props> {
@@ -201,85 +254,7 @@ export class CustomSelect extends React.Component<Props> {
     id: uuid.v4(),
     option: {},
   };
-
-  componentDidUpdate(prevProps) {
-    console.log('Current theme: ', this.props.theme);
-  }
-
   render() {
-    console.log('Current theme: ', this.props.theme);
-
-    const customTheme = rsTheme => {
-      return {
-        ...rsTheme,
-        borderRadius: theme.common[selectSize!].borderRadius,
-        colors: {
-          ...rsTheme.colors,
-          primary: theme.select.selectedOptionColor,
-        },
-      };
-    };
-    const customStyles = {
-      control: styles => ({
-        ...styles,
-        minHeight: theme.select[selectSize!].height,
-      }),
-      input: styles => ({
-        ...styles,
-        fontFamily: theme.typography.fontFamily,
-        fontSize: theme.common[selectSize!].fontSize,
-        borderColor: invalid ? theme.colors.danger : theme.select.borderColor,
-      }),
-      valueContainer: styles => ({
-        ...styles,
-        fontFamily: theme.typography.fontFamily,
-        fontSize: theme.common[selectSize!].fontSize,
-        padding: theme.select[selectSize!].padding,
-      }),
-      menuPortal: styles => ({
-        ...styles,
-        fontFamily: theme.typography.fontFamily,
-        zIndex: 9999,
-      }),
-      menuList: styles => ({
-        ...styles,
-        backgroundColor: theme.select.optionBackgroundColor,
-      }),
-      option: (styles, state) => {
-        return {
-          ...styles,
-          backgroundColor: theme.select.optionBackgroundColor,
-          fontFamily: theme.typography.fontFamily,
-          '&:hover': {
-            backgroundColor: theme.select.hoverOptionBackgroundColor,
-          },
-          color: state.isSelected
-            ? theme.select.selectedOptionColor
-            : theme.colors.drk800,
-        };
-      },
-      indicatorsContainer: styles => ({
-        ...styles,
-        alignSelf: 'center',
-      }),
-      indicatorSeparator: styles => ({
-        ...styles,
-        display: 'none',
-      }),
-      clearIndicator: styles => ({
-        ...styles,
-        padding: '0px',
-      }),
-      dropdownIndicator: styles => ({
-        ...styles,
-        color: theme.select.dropdownColor,
-        padding: '0px 8px',
-        '&:hover': {
-          color: theme.select.dropdownColor,
-        },
-      }),
-    };
-
     const {
       options,
       controlSpecificProps,
@@ -326,10 +301,14 @@ export class CustomSelect extends React.Component<Props> {
             aria-describedby={errorId}
             selectSize={selectSize}
             dropdownColor={theme.primary}
-            menuPortalTarget={document.body}
+            menuPortalTarget={
+              id
+                ? document.getElementById(id)
+                : document.querySelector('.select-wrapper')
+            }
             menuPlacement={'bottom'}
-            theme={customTheme}
-            styles={customStyles}
+            // theme={customTheme}
+            // styles={customStyles}
           />
           {invalid && (
             <ErrorMessage
