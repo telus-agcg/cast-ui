@@ -313,7 +313,7 @@ export class CustomSelect extends React.Component<Props> {
             menuPortalTarget={
               id
                 ? document.getElementById(id)
-                : document.querySelector('.select-wrapper')
+                : document.querySelector('.react-select-component')
             }
             menuPlacement={'bottom'}
           />

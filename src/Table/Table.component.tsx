@@ -89,7 +89,6 @@ const SWrapperDiv = styled(ReactTable)`
 
   .pagination-top,
   .pagination-bottom {
-    text-align: center;
     padding-top: 20px;
   }
 

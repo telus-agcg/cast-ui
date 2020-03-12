@@ -239,7 +239,6 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
   render() {
     return (
       <Select
-        id="mySelect3"
         isMulti
         components={{
           Option: this.Option,
