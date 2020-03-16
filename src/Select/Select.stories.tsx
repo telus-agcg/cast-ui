@@ -67,6 +67,7 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
           invalid={boolean('invalid', false)}
           invalidText={text('invalidText', 'A valid value is required')}
           onChange={action('onChange')}
+          value={[{ value: 'chocolate', label: 'Chocolate' }]}
           options={[
             { value: 'chocolate', label: 'Chocolate' },
             { value: 'strawberry', label: 'Strawberry' },

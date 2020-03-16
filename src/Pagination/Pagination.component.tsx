@@ -176,7 +176,8 @@ export class Pagination extends React.Component<Props> {
       label: `${option} ${rowsText}`,
       value: i,
     }));
-    const defaultValue = options.find(option => option.pageSize === pageSize);
+
+    const selectedOption = options.find(option => option.pageSize === pageSize);
 
     return (
       <SSpanPageSizeOptionsSelectWrapper className="select-wrap -pageSizeOptions">
@@ -185,15 +186,16 @@ export class Pagination extends React.Component<Props> {
           id={uuid.v4()}
           isMulti={false}
           isDisabled={this.props.pages <= 0}
-          selectSize="md"
+          selectSize="sm"
           onChange={selectedOption =>
             this.changePageSize(
               Number(this.props.pageSizeOptions[selectedOption.value]),
             )
           }
           options={options}
+          selectedOption={selectedOption}
           controlSpecificProps={{
-            defaultValue,
+            defaultValue: selectedOption,
             isSearchable: false,
             'aria-label': { rowsSelectorText },
           }}
