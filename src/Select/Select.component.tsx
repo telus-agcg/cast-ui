@@ -295,8 +295,6 @@ export class CustomSelect extends React.Component<Props> {
           id={id}
         >
           <Select
-            {...props}
-            {...controlSpecificProps}
             closeMenuOnSelect={closeMenuOnSelect}
             className="react-select-component"
             classNamePrefix="react-select"
@@ -316,6 +314,8 @@ export class CustomSelect extends React.Component<Props> {
                 : document.querySelector('.react-select-component')
             }
             menuPlacement={'bottom'}
+            {...props}
+            {...controlSpecificProps}
           />
           {invalid && (
             <ErrorMessage

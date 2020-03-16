@@ -16,6 +16,7 @@ storiesOf('Pagination', module).add(
         onPageChange={action('Page changed!')}
         pages={number('pages', 10)}
         page={number('page', 0)}
+        pageSize={select('pageSize', [10, 20, 50, 100], 20)}
         PageButtonComponent={SPaginationButton}
         PageButtonNextPrevComponent={SPaginationButtonNextPrev}
         previousText={text('previousText', 'Previous')}
