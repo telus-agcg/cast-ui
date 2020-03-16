@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.10 (2020-03-16)
+
+- [#658](https://github.com/technekes/cast-ui/pull/658): Fix select component (value property) - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+- [#656](https://github.com/technekes/cast-ui/pull/656): fix pagination component (pageSize property) - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+
 ## 1.5.9 (2020-03-12)
 
 - [#652](https://github.com/technekes/cast-ui/pull/652): updates select styling & pagination styling for tables. - [@hamholla](https://github.com/hamholla)
