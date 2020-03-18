@@ -66,11 +66,7 @@ export type Props = {
    * @default ''
    **/
   invalidTextColor?: string;
-  onChange?(
-    checked: boolean,
-    id: string,
-    event: React.SyntheticEvent<HTMLElement>,
-  ): void;
+  onChange?(checked: boolean, event: React.SyntheticEvent<HTMLElement>): void;
   /**
    * From theme provider
    *
@@ -250,7 +246,7 @@ export class Checkbox extends React.Component<Props, State> {
         }),
         () => {
           if (this.props.onChange instanceof Function) {
-            this.props.onChange(this.state.checked, this.props.id, event);
+            this.props.onChange(this.state.checked, event);
           }
         },
       );
