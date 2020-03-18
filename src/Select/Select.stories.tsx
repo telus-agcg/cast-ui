@@ -20,7 +20,6 @@ storiesOf('Select', module)
     () => (
       <>
         <Select
-          id="mySelect1"
           isMulti={boolean('isMulti', false)}
           isDisabled={boolean('isDisabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
@@ -60,7 +59,6 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
     () => (
       <div>
         <Select
-          id="mySelect2"
           isMulti={boolean('isMulti', true)}
           isDisabled={boolean('isDisabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
