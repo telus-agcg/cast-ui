@@ -259,7 +259,7 @@ export class CustomSelect extends React.Component<Props> {
     selectSize: 'md',
     theme: Themes.defaultTheme,
     invalidText: '',
-    id: uuid.v4(),
+    id: 'select',
     option: {},
   };
 
@@ -283,7 +283,7 @@ export class CustomSelect extends React.Component<Props> {
       typeof this.props.closeMenuOnSelect !== 'undefined'
         ? this.props.closeMenuOnSelect
         : !isMulti;
-
+    const uniqueId = uuid.v4();
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
@@ -292,7 +292,7 @@ export class CustomSelect extends React.Component<Props> {
           aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
           invalid={invalid}
-          id={id}
+          id={uniqueId}
         >
           <Select
             closeMenuOnSelect={closeMenuOnSelect}
@@ -308,11 +308,7 @@ export class CustomSelect extends React.Component<Props> {
             aria-describedby={errorId}
             selectSize={selectSize}
             dropdownColor={theme.primary}
-            menuPortalTarget={
-              id
-                ? document.getElementById(id)
-                : document.querySelector('.react-select-component')
-            }
+            menuPortalTarget={document.getElementById(uniqueId)}
             menuPlacement={'bottom'}
             {...props}
             {...controlSpecificProps}
