@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.11 (2020-03-18)
+
+- [#658](https://github.com/technekes/cast-ui/pull/663): Generate unique id for Select's menuPortalTarget -
+  [@tdakhla](https://github.com/tdakhla)
+- [#656](https://github.com/technekes/cast-ui/pull/664): Remove id from onChange callback - [@tdakhla](https://github.com/tdakhla)
+
 ## 1.5.10 (2020-03-16)
 
 - [#658](https://github.com/technekes/cast-ui/pull/658): Fix select component (value property) - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
