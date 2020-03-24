@@ -31,7 +31,10 @@ export type Props = {
    *  @default false
    */
   isCollapsed?: boolean;
-
+  /**
+   * onToggle function
+   */
+  onToggle?: () => void;
   /**
    * Set body background color. A CSS color code or a color defined in theme colors
    *
@@ -143,42 +146,45 @@ const ChevronImage: Function = (
   );
 };
 
-const initialState = {
-  isCollapsed: true,
-  collapsible: false,
-  listGroupTheme: 'light',
-  chevronAlignment: 'right',
-  border: true,
-};
-type State = Readonly<typeof initialState>;
+// const initialState = {
+//   isCollapsed: true,
+//   collapsible: false,
+//   listGroupTheme: 'light',
+//   chevronAlignment: 'right',
+//   border: true,
+// };
+// type State = Readonly<typeof initialState>;
 
-export class ListGroup extends React.Component<Props, State> {
+export class ListGroup extends React.Component<Props /* , State */> {
   constructor(props: Props) {
     super(props);
     this.toggle = this.toggle.bind(this);
-    this.state = {
-      isCollapsed: true,
-      collapsible: false,
-      listGroupTheme: 'light',
-      chevronAlignment: 'right',
-      border: true,
-    };
+    // this.state = {
+    //   isCollapsed: true,
+    //   collapsible: false,
+    //   listGroupTheme: 'light',
+    //   chevronAlignment: 'right',
+    //   border: true,
+    // };
   }
 
   toggle() {
-    this.setState({ isCollapsed: !this.state.isCollapsed });
+    if (this.props.onToggle instanceof Function) {
+      this.props.onToggle();
+      return;
+    }
+    // this.setState({ isCollapsed: !this.state.isCollapsed });
   }
 
   static defaultProps = {
     listGroupTheme: 'light',
     collapsible: false,
-    isCollapsed: true,
     theme: Themes.defaultTheme,
     chevronAlignment: 'right',
     border: true,
   };
 
-  readonly state: State = initialState;
+  // readonly state: State = initialState;
 
   render() {
     const {
@@ -196,17 +202,17 @@ export class ListGroup extends React.Component<Props, State> {
           {collapsible ? (
             <React.Fragment>
               <SListHeader
-                isCollapsed={this.state.isCollapsed}
-                {...props}
+                isCollapsed={isCollapsed}
                 onClick={collapsible ? this.toggle : undefined}
                 chevronAlignment={chevronAlignment}
+                {...props}
               >
                 <SHeaderContent>{name}</SHeaderContent>
-                {ChevronImage(this.state.isCollapsed, chevronAlignment, {
+                {ChevronImage(isCollapsed, chevronAlignment, {
                   ...props,
                 })}
               </SListHeader>
-              <Collapse isOpen={this.state.isCollapsed}>{children}</Collapse>
+              <Collapse isOpen={isCollapsed}>{children}</Collapse>
             </React.Fragment>
           ) : (
             [children]
