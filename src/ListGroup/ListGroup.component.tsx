@@ -212,7 +212,7 @@ export class ListGroup extends React.Component<Props /* , State */> {
                   ...props,
                 })}
               </SListHeader>
-              <Collapse isOpen={isCollapsed}>{children}</Collapse>
+              <Collapse isOpen={!isCollapsed}>{children}</Collapse>
             </React.Fragment>
           ) : (
             [children]
