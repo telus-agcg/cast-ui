@@ -15,7 +15,6 @@ storiesOf('List Group', module).add(
         <ListGroupItem>List Item</ListGroupItem>
       </ListGroup>
       <ListGroup
-        isCollapsed={boolean('isCollapsed', false)}
         collapsible={boolean('collapsible1', true)}
         name="Collapsible List Group"
         listGroupTheme={select('List Group Theme', ['light', 'dark'], 'light')}

@@ -146,26 +146,26 @@ const ChevronImage: Function = (
   );
 };
 
-// const initialState = {
-//   isCollapsed: true,
-//   collapsible: false,
-//   listGroupTheme: 'light',
-//   chevronAlignment: 'right',
-//   border: true,
-// };
-// type State = Readonly<typeof initialState>;
+const initialState = {
+  isCollapsed: true,
+  collapsible: false,
+  listGroupTheme: 'light',
+  chevronAlignment: 'right',
+  border: true,
+};
+type State = Readonly<typeof initialState>;
 
-export class ListGroup extends React.Component<Props /* , State */> {
+export class ListGroup extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.toggle = this.toggle.bind(this);
-    // this.state = {
-    //   isCollapsed: true,
-    //   collapsible: false,
-    //   listGroupTheme: 'light',
-    //   chevronAlignment: 'right',
-    //   border: true,
-    // };
+    this.state = {
+      isCollapsed: true,
+      collapsible: false,
+      listGroupTheme: 'light',
+      chevronAlignment: 'right',
+      border: true,
+    };
   }
 
   toggle() {
@@ -173,7 +173,9 @@ export class ListGroup extends React.Component<Props /* , State */> {
       this.props.onToggle();
       return;
     }
-    // this.setState({ isCollapsed: !this.state.isCollapsed });
+    if (!('isCollapsed' in this.props)) {
+      this.setState({ isCollapsed: !this.state.isCollapsed });
+    }
   }
 
   static defaultProps = {
@@ -196,13 +198,15 @@ export class ListGroup extends React.Component<Props /* , State */> {
       children,
       ...props
     } = this.props;
+    const _isCollapsed =
+      'isCollapsed' in this.props ? isCollapsed : this.state.isCollapsed;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SListGroup {...props}>
           {collapsible ? (
             <React.Fragment>
               <SListHeader
-                isCollapsed={isCollapsed}
+                isCollapsed={_isCollapsed}
                 onClick={collapsible ? this.toggle : undefined}
                 chevronAlignment={chevronAlignment}
                 {...props}
@@ -212,7 +216,7 @@ export class ListGroup extends React.Component<Props /* , State */> {
                   ...props,
                 })}
               </SListHeader>
-              <Collapse isOpen={!isCollapsed}>{children}</Collapse>
+              <Collapse isOpen={!_isCollapsed}>{children}</Collapse>
             </React.Fragment>
           ) : (
             [children]
