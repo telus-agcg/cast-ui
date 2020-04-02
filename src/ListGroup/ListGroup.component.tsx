@@ -198,25 +198,34 @@ export class ListGroup extends React.Component<Props, State> {
       children,
       ...props
     } = this.props;
-    const _isCollapsed =
-      'isCollapsed' in this.props ? isCollapsed : this.state.isCollapsed;
+    const dependOnProps = 'isCollapsed' in this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SListGroup {...props}>
           {collapsible ? (
             <React.Fragment>
               <SListHeader
-                isCollapsed={_isCollapsed}
+                isCollapsed={
+                  dependOnProps ? isCollapsed : this.state.isCollapsed
+                }
                 onClick={collapsible ? this.toggle : undefined}
                 chevronAlignment={chevronAlignment}
                 {...props}
               >
                 <SHeaderContent>{name}</SHeaderContent>
-                {ChevronImage(isCollapsed, chevronAlignment, {
-                  ...props,
-                })}
+                {ChevronImage(
+                  dependOnProps ? isCollapsed : this.state.isCollapsed,
+                  chevronAlignment,
+                  {
+                    ...props,
+                  },
+                )}
               </SListHeader>
-              <Collapse isOpen={!_isCollapsed}>{children}</Collapse>
+              <Collapse
+                isOpen={dependOnProps ? !isCollapsed : !this.state.isCollapsed}
+              >
+                {children}
+              </Collapse>
             </React.Fragment>
           ) : (
             [children]
