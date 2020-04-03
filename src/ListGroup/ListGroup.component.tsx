@@ -31,7 +31,10 @@ export type Props = {
    *  @default false
    */
   isCollapsed?: boolean;
-
+  /**
+   * onToggle function
+   */
+  onToggle?: () => void;
   /**
    * Set body background color. A CSS color code or a color defined in theme colors
    *
@@ -166,19 +169,24 @@ export class ListGroup extends React.Component<Props, State> {
   }
 
   toggle() {
-    this.setState({ isCollapsed: !this.state.isCollapsed });
+    if (this.props.onToggle instanceof Function) {
+      this.props.onToggle();
+      return;
+    }
+    if (!('isCollapsed' in this.props)) {
+      this.setState({ isCollapsed: !this.state.isCollapsed });
+    }
   }
 
   static defaultProps = {
     listGroupTheme: 'light',
     collapsible: false,
-    isCollapsed: true,
     theme: Themes.defaultTheme,
     chevronAlignment: 'right',
     border: true,
   };
 
-  readonly state: State = initialState;
+  // readonly state: State = initialState;
 
   render() {
     const {
@@ -190,23 +198,34 @@ export class ListGroup extends React.Component<Props, State> {
       children,
       ...props
     } = this.props;
+    const dependOnProps = 'isCollapsed' in this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SListGroup {...props}>
           {collapsible ? (
             <React.Fragment>
               <SListHeader
-                isCollapsed={this.state.isCollapsed}
-                {...props}
+                isCollapsed={
+                  dependOnProps ? isCollapsed : this.state.isCollapsed
+                }
                 onClick={collapsible ? this.toggle : undefined}
                 chevronAlignment={chevronAlignment}
+                {...props}
               >
                 <SHeaderContent>{name}</SHeaderContent>
-                {ChevronImage(this.state.isCollapsed, chevronAlignment, {
-                  ...props,
-                })}
+                {ChevronImage(
+                  dependOnProps ? isCollapsed : this.state.isCollapsed,
+                  chevronAlignment,
+                  {
+                    ...props,
+                  },
+                )}
               </SListHeader>
-              <Collapse isOpen={this.state.isCollapsed}>{children}</Collapse>
+              <Collapse
+                isOpen={dependOnProps ? !isCollapsed : !this.state.isCollapsed}
+              >
+                {children}
+              </Collapse>
             </React.Fragment>
           ) : (
             [children]
