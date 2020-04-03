@@ -43,10 +43,8 @@ export class Collapse extends React.Component<Props, any> {
   constructor(props: Props) {
     super(props);
 
-    const collapseState = EXPANDED;
-
     this.state = {
-      collapseState,
+      collapseState: EXPANDED,
       collapseStyle: {
         height: getCollapseHeight(props),
         visibility: getCollapseVisibility(props),
@@ -88,6 +86,7 @@ export class Collapse extends React.Component<Props, any> {
           <ElementType
             ref={(element: any) => {
               this.content = element;
+              this.handleState(this.content);
             }}
             style={style}
             className={collapseClassName}
@@ -105,24 +104,26 @@ export class Collapse extends React.Component<Props, any> {
   static getDerivedStateFromProps(props: Props, state: State) {
     return {
       hasReversed: props.isOpen
-        ? state.collapseState === EXPANDING
-        : state.collapseState === COLLAPSING,
-      collapseState: props.isOpen ? COLLAPSING : EXPANDING,
+        ? state.collapseState === COLLAPSING
+        : state.collapseState === EXPANDING,
+      collapseState: props.isOpen ? EXPANDING : COLLAPSING,
     };
   }
 
   componentDidMount() {
-    if (this.state.collapseState === EXPANDED) {
-      this.setExpanded();
+    if (this.props.isOpen) {
+      this.setExpanding();
     }
     this.onCallback(this.props.onInit);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    if (!this.content) return;
-
     if (this.state.collapseState === prevState.collapseState) return;
+    // this.handleState(this.content)
+  }
 
+  handleState = content => {
+    if (!content) return;
     switch (this.state.collapseState) {
       case EXPANDING:
         this.setExpanding();
@@ -138,7 +139,7 @@ export class Collapse extends React.Component<Props, any> {
         break;
       // no default
     }
-  }
+  };
 
   onTransitionEnd = ({
     target,
@@ -160,8 +161,6 @@ export class Collapse extends React.Component<Props, any> {
     }
   };
 
-  getHeight = () => `${this.content.scrollHeight}px`;
-
   onCallback = (callback: any) => {
     callback &&
       callback({
@@ -172,30 +171,21 @@ export class Collapse extends React.Component<Props, any> {
 
   setCollapsed = () => {
     if (!this.content) return;
-
-    this.setState(
-      {
-        collapseStyle: {
-          height: getCollapseHeight(this.props),
-          visibility: getCollapseVisibility(this.props),
+    nextFrame(() => {
+      this.setState(
+        {
+          collapseStyle: {
+            height: getCollapseHeight(this.props),
+            visibility: getCollapseVisibility(this.props),
+          },
         },
-      },
-      () => this.onCallback(this.props.onChange),
-    );
+        () => this.onCallback(this.props.onChange),
+      );
+    });
   };
 
   setCollapsing = () => {
     if (!this.content) return;
-
-    const height = this.getHeight();
-
-    this.setState({
-      collapseStyle: {
-        height,
-        visibility: '',
-      },
-    });
-
     nextFrame(() => {
       this.setState(
         {
@@ -212,7 +202,7 @@ export class Collapse extends React.Component<Props, any> {
   setExpanding = () => {
     nextFrame(() => {
       if (this.content) {
-        const height = this.getHeight();
+        const height = getHeight(this.content);
 
         this.setState(
           {
@@ -229,17 +219,22 @@ export class Collapse extends React.Component<Props, any> {
 
   setExpanded = () => {
     if (!this.content) return;
-
-    this.setState(
-      {
-        collapseStyle: {
-          height: '',
-          visibility: '',
+    nextFrame(() => {
+      this.setState(
+        {
+          collapseStyle: {
+            height: '',
+            visibility: '',
+          },
         },
-      },
-      () => this.onCallback(this.props.onChange),
-    );
+        () => this.onCallback(this.props.onChange),
+      );
+    });
   };
+}
+
+function getHeight(content) {
+  return `${content.scrollHeight}px`;
 }
 
 function nextFrame(callback: any) {

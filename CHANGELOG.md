@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.12 (2020-04-02)
+
+- [668](https://github.com/technekes/cast-ui/pull/668): Change Collapse props dependency -
+  [@dorokhovich-mikhail]
+
 ## 1.5.11 (2020-03-18)
 
 - [#658](https://github.com/technekes/cast-ui/pull/663): Generate unique id for Select's menuPortalTarget -
