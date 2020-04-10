@@ -1,8 +1,6 @@
 import * as React from 'react';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 import Select, { Creatable as CreatableSelect } from 'react-select';
-// @ts-ignore
-// import CreatableSelect from 'react-select/creatable';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
