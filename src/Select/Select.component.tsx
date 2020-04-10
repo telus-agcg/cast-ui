@@ -267,6 +267,7 @@ export class CustomSelect extends React.Component<Props> {
     invalidText: '',
     id: 'select',
     option: {},
+    creatable: false,
   };
 
   render() {
