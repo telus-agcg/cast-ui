@@ -1,6 +1,8 @@
 import * as React from 'react';
 import ErrorMessage from '../Typography/ErrorMessage/index';
-import Select /*, SelectBase */ from 'react-select';
+import Select, { Creatable as CreatableSelect } from 'react-select';
+// @ts-ignore
+// import CreatableSelect from 'react-select/creatable';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
@@ -29,6 +31,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default null
    **/
   id?: string;
+  /**
+   * Handle multi-select
+   *
+   * @default false
+   **/
+  creatable?: boolean;
   /**
    * Handle multi-select
    *
@@ -265,6 +273,7 @@ export class CustomSelect extends React.Component<Props> {
 
   render() {
     const {
+      creatable,
       options,
       controlSpecificProps,
       invalid,
@@ -278,6 +287,9 @@ export class CustomSelect extends React.Component<Props> {
       invalidText,
       ...props
     } = this.props;
+    const BaseSelectComponent: React.ElementType = creatable
+      ? CreatableSelect
+      : Select;
     const errorId = invalid ? `${id}-error-msg` : '';
     const closeMenuOnSelect =
       typeof this.props.closeMenuOnSelect !== 'undefined'
@@ -294,7 +306,7 @@ export class CustomSelect extends React.Component<Props> {
           invalid={invalid}
           id={uniqueId}
         >
-          <Select
+          <BaseSelectComponent
             closeMenuOnSelect={closeMenuOnSelect}
             className="react-select-component"
             classNamePrefix="react-select"
