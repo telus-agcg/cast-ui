@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.13 (2020-04-14)
+
+- [672](https://github.com/technekes/cast-ui/pull/672): Select Component to support Creatable -
+  [@dantiff]
+
 ## 1.5.12 (2020-04-02)
 
 - [668](https://github.com/technekes/cast-ui/pull/668): Change Collapse props dependency -
