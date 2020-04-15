@@ -9,6 +9,7 @@ import {
   cobaltTheme,
   verdantTheme,
   windfallTheme,
+  azureTheme,
 } from '../src/themes';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
 import 'react-dates/initialize';
@@ -72,7 +73,13 @@ addDecorator(
 addDecorator(withKnobs);
 addDecorator(addReadme);
 addDecorator(
-  withThemesProvider([defaultTheme, cobaltTheme, verdantTheme, windfallTheme]),
+  withThemesProvider([
+    defaultTheme,
+    azureTheme,
+    cobaltTheme,
+    verdantTheme,
+    windfallTheme,
+  ]),
 );
 
 // automatically import all files ending in *.stories.tsx
