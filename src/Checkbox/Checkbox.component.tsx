@@ -176,9 +176,7 @@ const SInput = styled.input`
       top:${(props: Props) =>
         props.theme.checkbox[props.cbSize!].checkedTopPosition};;
     }
-    &:checked&:disabled + label:after {
-      opacity: 0.5;
-    }
+
     &:indeterminate + label:after {
       content: "";
       padding: 2px;
