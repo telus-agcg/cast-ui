@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.14 (2020-04-15)
+
+- [677](https://github.com/technekes/cast-ui/pull/677): Add Azure theme -
+  [@hamholla]
+
 ## 1.5.13 (2020-04-14)
 
 - [672](https://github.com/technekes/cast-ui/pull/672): Select Component to support Creatable -
