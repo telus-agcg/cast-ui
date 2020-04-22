@@ -120,7 +120,7 @@ const ModalBodyDiv = styled.div`
   position: relative;
   height: 100%;
   overflow-y: ${(props: any) =>
-    props.modalSize === 'full' ? 'scroll' : 'auto'};
+    props.modalSize === 'full' ? 'scroll' : 'visible'};
   color: ${(props: any) => props.theme.modal.body.color};
 `;
 

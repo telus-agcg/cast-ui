@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.15 (2020-04-22)
+
+- [681](https://github.com/technekes/cast-ui/pull/681): Change overflow value to visible as default in ModalBody -
+  [@bankai254](https://github.com/bankai254)
+- [680](https://github.com/technekes/cast-ui/pull/680): Remove non used css from font.css -
+  [@hamholla]
+
 ## 1.5.14 (2020-04-15)
 
 - [677](https://github.com/technekes/cast-ui/pull/677): Add Azure theme -
