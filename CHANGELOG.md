@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.16 (2020-04-23)
+
+- [684](https://github.com/technekes/cast-ui/pull/684): Revert the change made to the Modal Body overflow -
+  [@bankai254](https://github.com/bankai254)
+
 ## 1.5.15 (2020-04-22)
 
 - [681](https://github.com/technekes/cast-ui/pull/681): Change overflow value to visible as default in ModalBody -
