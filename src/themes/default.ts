@@ -227,7 +227,7 @@ export const defaultTheme = {
     backgroundColor: defaultColors.white,
   },
   button: {
-    outlineBackgroundColor: 'none',
+    outlineBackgroundColor: defaultColors.white,
     sm: {
       fontSize: '11px',
       padding: '7px 8px',
@@ -472,12 +472,12 @@ export const defaultTheme = {
       disabled: defaultColors.lt400,
       disabledBorderColor: defaultColors.lt400,
     },
-    inactiveColor: defaultColors.secondary,
-    inactiveBorderColor: defaultColors.secondary,
+    inactiveColor: defaultColors.drk600,
+    inactiveBorderColor: defaultColors.drk600,
     activeColor: defaultColors.primary,
     activeBorderColor: defaultColors.primary,
-    activeDisabledColor: defaultColors.primaryFaded,
-    activeDisabledBorderColor: defaultColors.primaryFaded,
+    activeDisabledColor: defaultColors.drk200,
+    activeDisabledBorderColor: defaultColors.drk200,
     inactiveDisabledColor: defaultColors.drk200,
     inactiveDisabledBorderColor: defaultColors.drk200,
     sm: {
