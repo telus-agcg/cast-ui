@@ -217,7 +217,7 @@ export const verdantTheme = {
     backgroundColor: verdantColors.white,
   },
   button: {
-    outlineBackgroundColor: 'none',
+    outlineBackgroundColor: verdantColors.white,
     sm: {
       fontSize: '11px',
       padding: '7px 8px',
@@ -462,12 +462,12 @@ export const verdantTheme = {
       disabled: verdantColors.lt400,
       disabledBorderColor: verdantColors.lt400,
     },
-    inactiveColor: verdantColors.secondary,
-    inactiveBorderColor: verdantColors.secondary,
+    inactiveColor: verdantColors.drk600,
+    inactiveBorderColor: verdantColors.drk600,
     activeColor: verdantColors.primary,
     activeBorderColor: verdantColors.primary,
-    activeDisabledColor: verdantColors.primaryFaded,
-    activeDisabledBorderColor: verdantColors.primaryFaded,
+    activeDisabledColor: verdantColors.drk200,
+    activeDisabledBorderColor: verdantColors.drk200,
     inactiveDisabledColor: verdantColors.drk200,
     inactiveDisabledBorderColor: verdantColors.drk200,
     sm: {

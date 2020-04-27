@@ -50,7 +50,7 @@ export const cobaltTheme = {
     primary: {
       borderColor: cobaltColors.primary,
       flood: cobaltColors.primary,
-      disabledFlood: cobaltColors.primaryFaded,
+      disabledFlood: cobaltColors.drk200,
       lightFlood: cobaltColors.primaryFaded,
       hoverlightFlood: cobaltColors.primaryFaded,
       text: cobaltColors.primary,
@@ -76,7 +76,7 @@ export const cobaltTheme = {
     secondary: {
       borderColor: cobaltColors.secondary,
       flood: cobaltColors.secondary,
-      disabledFlood: cobaltColors.secondaryFaded,
+      disabledFlood: cobaltColors.drk200,
       lightFlood: cobaltColors.secondaryFaded,
       hoverlightFlood: cobaltColors.secondaryFaded,
       text: cobaltColors.primary,
@@ -102,7 +102,7 @@ export const cobaltTheme = {
     danger: {
       borderColor: cobaltColors.danger,
       flood: cobaltColors.danger,
-      disabledFlood: cobaltColors.dangerFaded,
+      disabledFlood: cobaltColors.drk200,
       lightFlood: cobaltColors.dangerFaded,
       hoverlightFlood: cobaltColors.dangerFaded,
       text: cobaltColors.danger,
@@ -128,7 +128,7 @@ export const cobaltTheme = {
     warning: {
       borderColor: cobaltColors.warning,
       flood: cobaltColors.warning,
-      disabledFlood: cobaltColors.warningFaded,
+      disabledFlood: cobaltColors.drk200,
       lightFlood: cobaltColors.warningFaded,
       hoverlightFlood: cobaltColors.warningFaded,
       text: cobaltColors.warning,
@@ -154,7 +154,7 @@ export const cobaltTheme = {
     success: {
       borderColor: cobaltColors.success,
       flood: cobaltColors.success,
-      disabledFlood: cobaltColors.successFaded,
+      disabledFlood: cobaltColors.drk200,
       lightFlood: cobaltColors.successFaded,
       hoverlightFlood: cobaltColors.successFaded,
       text: cobaltColors.success,
@@ -218,7 +218,7 @@ export const cobaltTheme = {
     backgroundColor: cobaltColors.white,
   },
   button: {
-    outlineBackgroundColor: 'none',
+    outlineBackgroundColor: cobaltColors.white,
     sm: {
       fontSize: '11px',
       padding: '7px 8px',
@@ -463,12 +463,12 @@ export const cobaltTheme = {
       disabled: cobaltColors.lt400,
       disabledBorderColor: cobaltColors.lt400,
     },
-    inactiveColor: cobaltColors.secondary,
-    inactiveBorderColor: cobaltColors.secondary,
+    inactiveColor: cobaltColors.drk600,
+    inactiveBorderColor: cobaltColors.drk600,
     activeColor: cobaltColors.primary,
     activeBorderColor: cobaltColors.primary,
-    activeDisabledColor: cobaltColors.primaryFaded,
-    activeDisabledBorderColor: cobaltColors.primaryFaded,
+    activeDisabledColor: cobaltColors.drk200,
+    activeDisabledBorderColor: cobaltColors.drk200,
     inactiveDisabledColor: cobaltColors.drk200,
     inactiveDisabledBorderColor: cobaltColors.drk200,
     sm: {
