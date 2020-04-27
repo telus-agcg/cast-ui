@@ -217,7 +217,7 @@ export const windfallTheme = {
     backgroundColor: windfallColors.white,
   },
   button: {
-    outlineBackgroundColor: 'none',
+    outlineBackgroundColor: windfallColors.white,
     sm: {
       fontSize: '11px',
       padding: '7px 8px',
@@ -462,12 +462,12 @@ export const windfallTheme = {
       disabled: windfallColors.lt400,
       disabledBorderColor: windfallColors.lt400,
     },
-    inactiveColor: windfallColors.secondary,
-    inactiveBorderColor: windfallColors.secondary,
+    inactiveColor: windfallColors.drk600,
+    inactiveBorderColor: windfallColors.drk600,
     activeColor: windfallColors.primary,
     activeBorderColor: windfallColors.primary,
-    activeDisabledColor: windfallColors.primaryFaded,
-    activeDisabledBorderColor: windfallColors.primaryFaded,
+    activeDisabledColor: windfallColors.drk200,
+    activeDisabledBorderColor: windfallColors.drk200,
     inactiveDisabledColor: windfallColors.drk200,
     inactiveDisabledBorderColor: windfallColors.drk200,
     sm: {

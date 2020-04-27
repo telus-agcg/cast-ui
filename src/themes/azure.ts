@@ -218,7 +218,7 @@ export const azureTheme = {
     backgroundColor: azureColors.white,
   },
   button: {
-    outlineBackgroundColor: 'none',
+    outlineBackgroundColor: azureColors.white,
     sm: {
       fontSize: '11px',
       padding: '7px 8px',
@@ -466,9 +466,9 @@ export const azureTheme = {
     inactiveColor: azureColors.drk600,
     inactiveBorderColor: azureColors.drk600,
     activeColor: azureColors.primary,
-    activeBorderColor: azureColors.drk200,
+    activeBorderColor: azureColors.primary,
     activeDisabledColor: azureColors.drk200,
-    activeDisabledBorderColor: azureColors.primaryFaded,
+    activeDisabledBorderColor: azureColors.drk200,
     inactiveDisabledColor: azureColors.drk200,
     inactiveDisabledBorderColor: azureColors.drk200,
     sm: {

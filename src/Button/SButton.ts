@@ -93,8 +93,8 @@ const computeColor: Function = (
           };
         case 'disabled':
           return {
-            background: 'none',
-            color: theme.styles[btnStyle].disabledFlood,
+            background: theme.styles[btnStyle].disabledFlood,
+            color: theme.styles[btnStyle].reverseText,
             borderColor: theme.styles[btnStyle].disabledFlood,
           };
         default:
