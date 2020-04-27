@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.17 (2020-04-27)
+
+- [688](https://github.com/technekes/cast-ui/pull/688): Update theme styles for buttons and toggles -
+  [@hamholla](https://github.com/hamholla)
+
 ## 1.5.16 (2020-04-23)
 
 - [684](https://github.com/technekes/cast-ui/pull/684): Revert the change made to the Modal Body overflow -
