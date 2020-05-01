@@ -852,7 +852,7 @@ export const verdantTheme = {
     borderColor: verdantColors.lt800,
   },
   select: {
-    dropdownColor: verdantColors.primary,
+    dropdownColor: verdantColors.drk800,
     optionBackgroundColor: verdantColors.white,
     hoverOptionBackgroundColor: verdantColors.lt200,
     hoverOptionColor: verdantColors.primary,

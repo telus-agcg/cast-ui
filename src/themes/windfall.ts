@@ -852,7 +852,7 @@ export const windfallTheme = {
     borderColor: windfallColors.lt800,
   },
   select: {
-    dropdownColor: windfallColors.primary,
+    dropdownColor: windfallColors.drk800,
     optionBackgroundColor: windfallColors.white,
     hoverOptionBackgroundColor: windfallColors.lt200,
     hoverOptionColor: windfallColors.primary,

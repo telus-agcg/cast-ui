@@ -860,7 +860,7 @@ export const defaultTheme = {
     borderColor: defaultColors.secondaryFaded,
   },
   select: {
-    dropdownColor: defaultColors.primary,
+    dropdownColor: defaultColors.drk800,
     optionBackgroundColor: defaultColors.white,
     hoverOptionBackgroundColor: defaultColors.lt200,
     hoverOptionColor: defaultColors.primary,
