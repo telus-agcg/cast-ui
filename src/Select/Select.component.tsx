@@ -185,6 +185,9 @@ const SDiv = styled.div<Props>`
   font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   width: ${(props: Props) => props.theme.select.width};
+  div[aria-invalid] & {
+    border: 1px solid red;
+  }
   .react-select__menu {
     font-family: ${(props: Props) => props.theme.typography.fontFamily};
     z-index: 9999;
