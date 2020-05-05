@@ -852,7 +852,7 @@ export const cobaltTheme = {
     borderColor: cobaltColors.lt800,
   },
   select: {
-    dropdownColor: cobaltColors.primary,
+    dropdownColor: cobaltColors.drk800,
     optionBackgroundColor: cobaltColors.white,
     hoverOptionBackgroundColor: cobaltColors.lt200,
     hoverOptionColor: cobaltColors.primary,
