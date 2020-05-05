@@ -402,7 +402,7 @@ export const defaultTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      color: defaultColors.primary,
+      color: defaultColors.drk800,
       horizontalMargin: '12px 0',
     },
     label: {
