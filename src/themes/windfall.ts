@@ -392,7 +392,7 @@ export const windfallTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      color: windfallColors.primary,
+      color: windfallColors.drk800,
       horizontalMargin: '12px 0',
     },
     label: {

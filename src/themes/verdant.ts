@@ -392,7 +392,7 @@ export const verdantTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      color: verdantColors.primary,
+      color: verdantColors.drk800,
       horizontalMargin: '12px 0',
     },
     label: {

@@ -393,7 +393,7 @@ export const azureTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      color: azureColors.primary,
+      color: azureColors.drk800,
       horizontalMargin: '12px 0',
     },
     label: {
