@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component, ForwardRefExoticComponent } from 'react';
 import uuid from 'uuid';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
@@ -126,7 +126,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   }
 `;
 
-class ReactDatePicker extends React.PureComponent<any> {
+class ReactDatePicker extends Component<Props> {
   static defaultProps = {
     className: '',
     id: uuid.v4(),
@@ -228,4 +228,6 @@ class ReactDatePicker extends React.PureComponent<any> {
     );
   }
 }
-export const DatePicker = withTheme(ReactDatePicker);
+export const DatePicker: ForwardRefExoticComponent<Props> = withTheme(
+  ReactDatePicker,
+);
