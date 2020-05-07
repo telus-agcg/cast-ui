@@ -1,7 +1,7 @@
 import * as React from 'react';
 import uuid from 'uuid';
 import ErrorMessage from '../Typography/ErrorMessage/index';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import { SingleDatePicker, SingleDatePickerShape } from 'react-dates';
 import { Moment } from 'moment';
 import { Themes } from '../themes';
@@ -18,13 +18,13 @@ type pickerStyle =
 type focusInput = boolean | null;
 type focused = { focused: focusInput };
 
-export interface Props extends SingleDatePickerShape {
+export type Props = Partial<SingleDatePickerShape> & {
   /**
    * Set className
    *
    * @default ''
    **/
-  className: string;
+  className?: string;
   /**
    * The ID of the control
    *
@@ -65,7 +65,7 @@ export interface Props extends SingleDatePickerShape {
    * @default ''
    **/
   invalidTextColor?: string;
-}
+};
 
 type State = {
   focused: focusInput;
@@ -126,7 +126,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   }
 `;
 
-export class DatePicker extends React.PureComponent<Props> {
+class ReactDatePicker extends React.PureComponent<any> {
   static defaultProps = {
     className: '',
     id: uuid.v4(),
@@ -158,15 +158,16 @@ export class DatePicker extends React.PureComponent<Props> {
           () => console.log(event),
         );
 
-  onFocusChange = (input: focused) =>
+  onFocusChange = (input: focused) => {
     this.props.onFocusChange instanceof Function
       ? this.props.onFocusChange(input)
-      : this.setState(
-          {
-            focused: input.focused,
-          },
-          () => console.log(input),
-        );
+      : this.setState({
+          focused: input.focused,
+        });
+    document.body.classList.add(
+      `cui-${this.props.theme.name.toLowerCase()}-theme`,
+    );
+  };
 
   render() {
     const {
@@ -227,3 +228,4 @@ export class DatePicker extends React.PureComponent<Props> {
     );
   }
 }
+export const DatePicker = withTheme(ReactDatePicker);
