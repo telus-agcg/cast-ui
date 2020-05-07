@@ -393,7 +393,7 @@ export const cobaltTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      color: cobaltColors.primary,
+      color: cobaltColors.drk800,
       horizontalMargin: '12px 0',
     },
     label: {
