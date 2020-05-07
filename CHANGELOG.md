@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.5.18 (2020-05-07)
+
+- [695](https://github.com/technekes/cast-ui/pull/695): Remove primary styling from input group -
+  [@hamholla](https://github.com/hamholla)
+
+- [694](https://github.com/technekes/cast-ui/pull/694): Handle error styling for select -
+  [@hamholla](https://github.com/hamholla)
+
+- [691](https://github.com/technekes/cast-ui/pull/691): Adjust color for dropdown indicator colors -
+  [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+
 ## 1.5.17 (2020-04-27)
 
 - [688](https://github.com/technekes/cast-ui/pull/688): Update theme styles for buttons and toggles -
