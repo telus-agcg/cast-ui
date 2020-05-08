@@ -1,0 +1,159 @@
+/* Default Theme Styling */
+
+.cui-default-theme .DayPicker {
+  font-family: 'Roboto', 'Open Sans', arial, sans-serif;
+}
+
+.cui-default-theme .DayPicker .CalendarMonth_caption {
+  color: #303e47;
+}
+
+.cui-default-theme .CalendarDay__default {
+  color: #303e47;
+}
+
+.cui-default-theme .CalendarDay__blocked_out_of_range,
+.cui-default-theme .CalendarDay__blocked_out_of_range:active,
+.cui-default-theme .CalendarDay__blocked_out_of_range:hover {
+  color: #c6cacc;
+}
+
+.cui-default-theme .CalendarDay__selected,
+.cui-default-theme .CalendarDay__selected:active,
+.cui-default-theme .CalendarDay__selected:hover {
+  background: #167be0;
+  border: 1px solid #167be0;
+  color: white !important;
+}
+
+.cui-default-theme .DayPickerKeyboardShortcuts_show__bottomRight::before {
+  border-right: 33px solid #167be0;
+}
+
+/* Azure Theme Styling */
+
+.cui-azure-theme .DayPicker {
+  font-family: arial, sans-serif;
+}
+
+.cui-azure-theme .DayPicker .CalendarMonth_caption {
+  color: #303e47;
+}
+
+.cui-azure-theme .CalendarDay__default {
+  color: #303e47;
+}
+
+.cui-azure-theme .CalendarDay__blocked_out_of_range,
+.cui-azure-theme .CalendarDay__blocked_out_of_range:active,
+.cui-azure-theme .CalendarDay__blocked_out_of_range:hover {
+  color: #b2b4b4;
+}
+
+.cui-azure-theme .CalendarDay__selected,
+.cui-azure-theme .CalendarDay__selected:active,
+.cui-azure-theme .CalendarDay__selected:hover {
+  background: #146ab4;
+  border: 1px solid #146ab4;
+  color: white !important;
+}
+
+.cui-azure-theme .DayPickerKeyboardShortcuts_show__bottomRight::before {
+  border-right: 33px solid #146ab4;
+}
+
+/* Cobalt Theme Styling */
+
+.cui-cobalt-theme .DayPicker {
+  font-family: 'Roboto', 'Open Sans', arial, sans-serif;
+}
+
+.cui-cobalt-theme .DayPicker .CalendarMonth_caption {
+  color: #303e47;
+}
+
+.cui-cobalt-theme .CalendarDay__default {
+  color: #303e47;
+}
+
+.cui-cobalt-theme .CalendarDay__blocked_out_of_range,
+.cui-cobalt-theme .CalendarDay__blocked_out_of_range:active,
+.cui-cobalt-theme .CalendarDay__blocked_out_of_range:hover {
+  color: #c6cacc;
+}
+
+.cui-cobalt-theme .CalendarDay__selected,
+.cui-cobalt-theme .CalendarDay__selected:active,
+.cui-cobalt-theme .CalendarDay__selected:hover {
+  background: #0072ce;
+  border: 1px solid #0072ce;
+  color: white !important;
+}
+
+.cui-cobalt-theme .DayPickerKeyboardShortcuts_show__bottomRight::before {
+  border-right: 33px solid #0072ce;
+}
+
+/* Verdant Theme Styling */
+
+.cui-verdant-theme .DayPicker {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.cui-verdant-theme .DayPicker .CalendarMonth_caption {
+  color: #032c3b;
+}
+
+.cui-verdant-theme .CalendarDay__default {
+  color: #032c3b;
+}
+
+.cui-verdant-theme .CalendarDay__blocked_out_of_range,
+.cui-verdant-theme .CalendarDay__blocked_out_of_range:active,
+.cui-verdant-theme .CalendarDay__blocked_out_of_range:hover {
+  color: #c6cacc;
+}
+
+.cui-verdant-theme .CalendarDay__selected,
+.cui-verdant-theme .CalendarDay__selected:active,
+.cui-verdant-theme .CalendarDay__selected:hover {
+  background: #2376a9;
+  border: 1px solid #2376a9;
+  color: white !important;
+}
+
+.cui-verdant-theme .DayPickerKeyboardShortcuts_show__bottomRight::before {
+  border-right: 33px solid #2376a9;
+}
+
+/* Windfall Theme Styling */
+
+.cui-windfall-theme .DayPicker {
+  font-family: 'acumin-pro', sans-serif;
+}
+
+.cui-windfall-theme .DayPicker .CalendarMonth_caption {
+  color: #000000;
+}
+
+.cui-windfall-theme .CalendarDay__default {
+  color: #000000;
+}
+
+.cui-windfall-theme .CalendarDay__blocked_out_of_range,
+.cui-windfall-theme .CalendarDay__blocked_out_of_range:active,
+.cui-windfall-theme .CalendarDay__blocked_out_of_range:hover {
+  color: #c6cacc;
+}
+
+.cui-windfall-theme .CalendarDay__selected,
+.cui-windfall-theme .CalendarDay__selected:active,
+.cui-windfall-theme .CalendarDay__selected:hover {
+  background: #1d7091;
+  border: 1px solid #1d7091;
+  color: white !important;
+}
+
+.cui-windfall-theme .DayPickerKeyboardShortcuts_show__bottomRight::before {
+  border-right: 33px solid #1d7091;
+}
