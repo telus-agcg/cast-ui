@@ -1,6 +1,9 @@
 # Changelog
 
-## 1.5.18 (2020-05-07)
+## 1.5.18 (2020-05-08)
+
+- [697](https://github.com/technekes/cast-ui/pull/697): Add styles to react dates while using withPortal -
+  [@hamholla](https://github.com/hamholla)
 
 - [695](https://github.com/technekes/cast-ui/pull/695): Remove primary styling from input group -
   [@hamholla](https://github.com/hamholla)
