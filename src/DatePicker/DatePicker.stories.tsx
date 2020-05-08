@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, number, select, text } from '@storybook/addon-knobs/react';
-
+import './DatePickerStyles.css';
 import { DatePicker } from '../';
 
 storiesOf('DatePicker', module).add(
@@ -25,6 +25,7 @@ storiesOf('DatePicker', module).add(
       invalidText={text('invalidText', 'A valid value is required')}
       invalidTextColor={text('invalidTextColor', '')}
       numberOfMonths={number('numberOfMonths', 1)}
+      withPortal
     />
   ),
   {

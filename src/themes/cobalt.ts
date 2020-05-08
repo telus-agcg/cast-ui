@@ -393,7 +393,7 @@ export const cobaltTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      color: cobaltColors.primary,
+      color: cobaltColors.drk800,
       horizontalMargin: '12px 0',
     },
     label: {
@@ -852,7 +852,7 @@ export const cobaltTheme = {
     borderColor: cobaltColors.lt800,
   },
   select: {
-    dropdownColor: cobaltColors.primary,
+    dropdownColor: cobaltColors.drk800,
     optionBackgroundColor: cobaltColors.white,
     hoverOptionBackgroundColor: cobaltColors.lt200,
     hoverOptionColor: cobaltColors.primary,
@@ -866,7 +866,7 @@ export const cobaltTheme = {
     },
     md: {
       height: '16px',
-      padding: '3px 10px 2px',
+      padding: '2px 10px 2px',
     },
     lg: {
       height: '24px',

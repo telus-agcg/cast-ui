@@ -402,7 +402,7 @@ export const defaultTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      color: defaultColors.primary,
+      color: defaultColors.drk800,
       horizontalMargin: '12px 0',
     },
     label: {
@@ -860,7 +860,7 @@ export const defaultTheme = {
     borderColor: defaultColors.secondaryFaded,
   },
   select: {
-    dropdownColor: defaultColors.primary,
+    dropdownColor: defaultColors.drk800,
     optionBackgroundColor: defaultColors.white,
     hoverOptionBackgroundColor: defaultColors.lt200,
     hoverOptionColor: defaultColors.primary,

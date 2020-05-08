@@ -393,7 +393,7 @@ export const azureTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      color: azureColors.primary,
+      color: azureColors.drk800,
       horizontalMargin: '12px 0',
     },
     label: {
@@ -852,7 +852,7 @@ export const azureTheme = {
     borderColor: azureColors.lt800,
   },
   select: {
-    dropdownColor: azureColors.primary,
+    dropdownColor: azureColors.drk800,
     optionBackgroundColor: azureColors.white,
     hoverOptionBackgroundColor: azureColors.lt200,
     hoverOptionColor: azureColors.primary,

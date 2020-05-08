@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.5.18 (2020-05-08)
+
+- [697](https://github.com/technekes/cast-ui/pull/697): Add styles to react dates while using withPortal -
+  [@hamholla](https://github.com/hamholla)
+
+- [695](https://github.com/technekes/cast-ui/pull/695): Remove primary styling from input group -
+  [@hamholla](https://github.com/hamholla)
+
+- [694](https://github.com/technekes/cast-ui/pull/694): Handle error styling for select -
+  [@hamholla](https://github.com/hamholla)
+
+- [691](https://github.com/technekes/cast-ui/pull/691): Adjust color for dropdown indicator colors -
+  [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+
 ## 1.5.17 (2020-04-27)
 
 - [688](https://github.com/technekes/cast-ui/pull/688): Update theme styles for buttons and toggles -
@@ -34,9 +48,9 @@
 
 ## 1.5.11 (2020-03-18)
 
-- [#658](https://github.com/technekes/cast-ui/pull/663): Generate unique id for Select's menuPortalTarget -
+- [#663](https://github.com/technekes/cast-ui/pull/663): Generate unique id for Select's menuPortalTarget -
   [@tdakhla](https://github.com/tdakhla)
-- [#656](https://github.com/technekes/cast-ui/pull/664): Remove id from onChange callback - [@tdakhla](https://github.com/tdakhla)
+- [#664](https://github.com/technekes/cast-ui/pull/664): Remove id from onChange callback - [@tdakhla](https://github.com/tdakhla)
 
 ## 1.5.10 (2020-03-16)
 

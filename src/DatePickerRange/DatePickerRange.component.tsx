@@ -131,6 +131,9 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   .DateRangePicker_picker {
     z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
   }
+  .DateRangePickerInput__withBorder {
+    border-color: ${(props: Partial<Props>) => props.theme.select.borderColor}
+  }
   .DayPickerKeyboardShortcuts_show__bottomRight::before {
     border-right: 33px solid ${(props: Partial<Props>) =>
       props.theme.styles[props.datePickerStyle!].borderColor};

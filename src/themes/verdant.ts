@@ -392,7 +392,7 @@ export const verdantTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      color: verdantColors.primary,
+      color: verdantColors.drk800,
       horizontalMargin: '12px 0',
     },
     label: {
@@ -852,7 +852,7 @@ export const verdantTheme = {
     borderColor: verdantColors.lt800,
   },
   select: {
-    dropdownColor: verdantColors.primary,
+    dropdownColor: verdantColors.drk800,
     optionBackgroundColor: verdantColors.white,
     hoverOptionBackgroundColor: verdantColors.lt200,
     hoverOptionColor: verdantColors.primary,
