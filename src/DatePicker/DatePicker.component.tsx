@@ -5,6 +5,7 @@ import styled, { ThemeProvider, withTheme } from 'styled-components';
 import { SingleDatePicker, SingleDatePickerShape } from 'react-dates';
 import { Moment } from 'moment';
 import { Themes } from '../themes';
+import './DatePickerStyles.css';
 
 type momentDate = Moment | null;
 type pickerSize = 'sm' | 'md' | 'lg';
