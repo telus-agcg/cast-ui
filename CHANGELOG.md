@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.19 (2020-05-08)
+
+- [700](https://github.com/technekes/cast-ui/pull/700): Move styles for datepicker to component -
+  [@hamholla](https://github.com/hamholla)
+
 ## 1.5.18 (2020-05-08)
 
 - [697](https://github.com/technekes/cast-ui/pull/697): Add styles to react dates while using withPortal -
