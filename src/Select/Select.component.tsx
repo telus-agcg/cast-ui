@@ -248,12 +248,15 @@ const SDiv = styled.div<Props>`
         display: none;
       }   
       .react-select__clear-indicator {
-        padding: 0px;
+        padding: 0;      
       }
+      .react-select__dropdown-indicator {
+        padding: 0 8px;
+      }
+      .react-select__clear-indicator,
       .react-select__dropdown-indicator {
         align-self: center;
         color: ${(props: Props) => props.theme.select.dropdownColor};
-        padding: 0px 8px;
         &:hover {
           color: ${(props: Props) => props.theme.select.dropdownColor};
         }
