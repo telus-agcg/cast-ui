@@ -239,8 +239,39 @@ const SDiv = styled.div<Props>`
           font-family: ${(props: Props) => props.theme.typography.fontFamily};
           font-size: ${(props: Props) =>
             props.theme.common[props.selectSize!].fontSize};
+        }
+        
+        .react-select__single-value {
+          color: ${(props: Props) => props.theme.colors.drk800};
         }    
       }  
+      
+      .react-select__multi-value {
+        background-color: ${(props: Props) =>
+          props.theme.select.multiSelect.badgeBackgroundColor};
+      }
+      
+      &.react-select__control--is-disabled {
+        border-color: ${(props: Props) =>
+          props.theme.select.disabled.borderColor};
+        background-color: ${(props: Props) =>
+          props.theme.select.disabled.backgroundColor};
+        .react-select__placeholder {
+          color: ${(props: Props) =>
+            props.theme.select.disabled.placeholderColor};
+        }
+        .react-select__single-value {
+          color: ${(props: Props) => props.theme.select.disabled.color};
+        }
+        .react-select__indicator {
+          color: ${(props: Props) =>
+            props.theme.select.disabled.placeholderColor};        
+        }
+        .react-select__multi-value {
+          background-color: ${(props: Props) =>
+            props.theme.select.multiSelect.disabled.badgeBackgroundColor};
+        }
+      }
     }          
     .react-select__indicators {
       align-self: center;

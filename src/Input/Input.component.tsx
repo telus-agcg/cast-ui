@@ -157,9 +157,9 @@ const SInputWrapper = styled.div`
       : props.theme.colors.secondary};
   outline: none !important;
   input {
+    color: ${(props: Props) => props.theme.input.color};
     text-align: left;
     margin-right: 0px;
-      
   }
   input:focus {
     outline: none !important;
@@ -197,10 +197,16 @@ const SInputWrapper = styled.div`
 
     }
   }
-  &.disabled, &.disabled > input {
+  &.disabled {
     border: ${props => props.theme.input.disabled.border};
-    background: ${props => props.theme.input.disabled.background};
-    cursor: not-allowed;
+   
+    & > input {
+      background: ${props => props.theme.input.disabled.background};
+      cursor: not-allowed;
+    }
+    & > span {
+      color: ${props => props.theme.input.disabled.addonTextColor};     
+    }
   }
 `;
 
