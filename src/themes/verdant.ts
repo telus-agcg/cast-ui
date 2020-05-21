@@ -370,7 +370,8 @@ export const verdantTheme = {
     placeholderColor: verdantColors.drk400,
     disabled: {
       background: verdantColors.lt600,
-      border: `1px solid transparent`,
+      border: `1px solid ${verdantColors.lt600}`,
+      addonTextColor: verdantColors.drk400,
     },
     sm: {
       height: '26px',
@@ -852,6 +853,7 @@ export const verdantTheme = {
     borderColor: verdantColors.lt800,
   },
   select: {
+    color: verdantColors.drk800,
     dropdownColor: verdantColors.drk800,
     optionBackgroundColor: verdantColors.white,
     hoverOptionBackgroundColor: verdantColors.lt200,
@@ -860,6 +862,13 @@ export const verdantTheme = {
     selectedOptionBackgroundColor: verdantColors.white,
     borderColor: verdantColors.secondary,
     width: '100%',
+    disabled: {
+      color: verdantColors.drk800,
+      dropdownColor: verdantColors.drk400,
+      borderColor: verdantColors.lt600,
+      backgroundColor: verdantColors.lt600,
+      placeholderColor: verdantColors.drk400,
+    },
     sm: {
       height: '16px',
       padding: '2px 10px',
@@ -873,6 +882,10 @@ export const verdantTheme = {
       padding: '5px 13px',
     },
     multiSelect: {
+      badgeBackgroundColor: verdantColors.lt600,
+      disabled: {
+        badgeBackgroundColor: verdantColors.drk200,
+      },
       sm: {
         height: '26px',
         padding: '0px 10px',
