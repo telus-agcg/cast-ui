@@ -373,12 +373,13 @@ export const defaultTheme = {
   input: {
     background: defaultColors.white,
     border: `1px solid ${defaultColors.secondaryFaded}`,
-    color: defaultColors.secondaryHover,
+    color: defaultColors.drk800,
     fontSize: '14px',
     placeholderColor: defaultColors.drk400,
     disabled: {
       background: defaultColors.lt600,
       border: `1px solid ${defaultColors.lt600}`,
+      addonTextColor: defaultColors.drk400,
     },
     sm: {
       height: '26px',
@@ -858,6 +859,7 @@ export const defaultTheme = {
     borderColor: defaultColors.secondaryFaded,
   },
   select: {
+    color: defaultColors.drk800,
     dropdownColor: defaultColors.drk800,
     optionBackgroundColor: defaultColors.white,
     hoverOptionBackgroundColor: defaultColors.lt200,
@@ -866,6 +868,13 @@ export const defaultTheme = {
     selectedOptionBackgroundColor: defaultColors.white,
     borderColor: defaultColors.secondary,
     width: '100%',
+    disabled: {
+      color: defaultColors.drk800,
+      dropdownColor: defaultColors.drk400,
+      borderColor: defaultColors.lt600,
+      backgroundColor: defaultColors.lt600,
+      placeholderColor: defaultColors.drk400,
+    },
     sm: {
       height: '16px',
       padding: '2px 10px',
@@ -879,6 +888,10 @@ export const defaultTheme = {
       padding: '6px 13px',
     },
     multiSelect: {
+      badgeBackgroundColor: defaultColors.lt600,
+      disabled: {
+        badgeBackgroundColor: defaultColors.drk200,
+      },
       sm: {
         height: '26px',
         padding: '0px 10px',

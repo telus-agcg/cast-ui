@@ -364,12 +364,13 @@ export const cobaltTheme = {
   input: {
     background: cobaltColors.white,
     border: `1px solid ${cobaltColors.secondary}`,
-    color: cobaltColors.drk600,
+    color: cobaltColors.drk800,
     fontSize: '14px',
     placeholderColor: cobaltColors.drk400,
     disabled: {
       background: cobaltColors.lt600,
-      border: `1px solid transparent`,
+      border: `1px solid ${cobaltColors.lt600}`,
+      addonTextColor: cobaltColors.drk400,
     },
     sm: {
       height: '26px',
@@ -850,6 +851,7 @@ export const cobaltTheme = {
     borderColor: cobaltColors.lt800,
   },
   select: {
+    color: cobaltColors.drk800,
     dropdownColor: cobaltColors.drk800,
     optionBackgroundColor: cobaltColors.white,
     hoverOptionBackgroundColor: cobaltColors.lt200,
@@ -858,19 +860,30 @@ export const cobaltTheme = {
     selectedOptionBackgroundColor: cobaltColors.white,
     borderColor: cobaltColors.secondary,
     width: '100%',
+    disabled: {
+      color: cobaltColors.drk800,
+      dropdownColor: cobaltColors.drk400,
+      borderColor: cobaltColors.lt600,
+      backgroundColor: cobaltColors.lt600,
+      placeholderColor: cobaltColors.drk400,
+    },
     sm: {
       height: '16px',
       padding: '2px 10px',
     },
     md: {
       height: '16px',
-      padding: '2px 10px 2px',
+      padding: '3px 10px 2px',
     },
     lg: {
       height: '24px',
       padding: '6px 13px',
     },
     multiSelect: {
+      badgeBackgroundColor: cobaltColors.lt600,
+      disabled: {
+        badgeBackgroundColor: cobaltColors.drk200,
+      },
       sm: {
         height: '26px',
         padding: '0px 10px',

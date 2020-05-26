@@ -364,12 +364,13 @@ export const azureTheme = {
   input: {
     background: azureColors.white,
     border: `1px solid ${azureColors.secondary}`,
-    color: azureColors.drk600,
+    color: azureColors.drk800,
     fontSize: '14px',
     placeholderColor: azureColors.drk400,
     disabled: {
       background: azureColors.lt600,
-      border: `1px solid transparent`,
+      border: `1px solid ${azureColors.lt600}`,
+      addonTextColor: azureColors.drk400,
     },
     sm: {
       height: '26px',
@@ -850,6 +851,7 @@ export const azureTheme = {
     borderColor: azureColors.lt800,
   },
   select: {
+    color: azureColors.drk800,
     dropdownColor: azureColors.drk800,
     optionBackgroundColor: azureColors.white,
     hoverOptionBackgroundColor: azureColors.lt200,
@@ -858,6 +860,13 @@ export const azureTheme = {
     selectedOptionBackgroundColor: azureColors.white,
     borderColor: azureColors.secondary,
     width: '100%',
+    disabled: {
+      color: azureColors.drk800,
+      dropdownColor: azureColors.drk400,
+      borderColor: azureColors.lt600,
+      backgroundColor: azureColors.lt600,
+      placeholderColor: azureColors.drk400,
+    },
     sm: {
       height: '16px',
       padding: '2px 10px',
@@ -871,6 +880,10 @@ export const azureTheme = {
       padding: '6px 13px',
     },
     multiSelect: {
+      badgeBackgroundColor: azureColors.lt600,
+      disabled: {
+        badgeBackgroundColor: azureColors.drk200,
+      },
       sm: {
         height: '26px',
         padding: '0px 10px',
