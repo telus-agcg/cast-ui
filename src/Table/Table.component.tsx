@@ -250,8 +250,6 @@ export class Table extends React.Component<Props> {
     defaultPageSize: 10,
     resizable: false,
     PaginationComponent: Pagination,
-    nextText: 'Next >',
-    previousText: '< Previous',
     getTdProps: ReactTableDefaults.getTdProps,
     getTrProps: ReactTableDefaults.getTrProps,
     showPageSizeOptions: true,
@@ -268,6 +266,9 @@ export class Table extends React.Component<Props> {
       theme,
       ...props
     } = this.props;
+
+    console.log('rowsText = ', this.props.rowsText);
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
@@ -319,6 +320,7 @@ export class Table extends React.Component<Props> {
           }}
           loading={loading}
           noDataText={loading ? '' : noDataText}
+          rowsText={props.rowsText ? props.rowsText : ''}
           {...props}
         />
       </ThemeProvider>
