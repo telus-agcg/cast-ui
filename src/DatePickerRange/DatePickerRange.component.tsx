@@ -157,6 +157,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
     invalid: false,
     invalidText: '',
     invalidTextColor: '',
+    verticalSpacing: 10,
     theme: Themes.defaultTheme,
     readOnly: true,
   };

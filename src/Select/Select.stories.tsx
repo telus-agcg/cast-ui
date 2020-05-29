@@ -23,6 +23,7 @@ storiesOf('Select', module)
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', false)}
           isDisabled={boolean('isDisabled', false)}
+          isClearable={boolean('isClearable', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           invalid={boolean('invalid', false)}
           invalidText={text('invalidText', 'A valid value is required')}

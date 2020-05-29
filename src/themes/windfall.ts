@@ -365,12 +365,13 @@ export const windfallTheme = {
   input: {
     background: windfallColors.white,
     border: `1px solid ${windfallColors.secondary}`,
-    color: windfallColors.drk600,
+    color: windfallColors.drk800,
     fontSize: '14px',
     placeholderColor: windfallColors.drk400,
     disabled: {
       background: windfallColors.lt600,
-      border: `1px solid transparent`,
+      border: `1px solid ${windfallColors.lt600}`,
+      addonTextColor: windfallColors.drk400,
     },
     sm: {
       height: '26px',
@@ -852,6 +853,7 @@ export const windfallTheme = {
     borderColor: windfallColors.lt800,
   },
   select: {
+    color: windfallColors.drk800,
     dropdownColor: windfallColors.drk800,
     optionBackgroundColor: windfallColors.white,
     hoverOptionBackgroundColor: windfallColors.lt200,
@@ -860,6 +862,13 @@ export const windfallTheme = {
     selectedOptionBackgroundColor: windfallColors.white,
     borderColor: windfallColors.secondary,
     width: '100%',
+    disabled: {
+      color: windfallColors.drk800,
+      dropdownColor: windfallColors.drk400,
+      borderColor: windfallColors.lt600,
+      backgroundColor: windfallColors.lt600,
+      placeholderColor: windfallColors.drk400,
+    },
     sm: {
       height: '16px',
       padding: '2px 10px',
@@ -873,6 +882,10 @@ export const windfallTheme = {
       padding: '4px 13px',
     },
     multiSelect: {
+      badgeBackgroundColor: windfallColors.lt600,
+      disabled: {
+        badgeBackgroundColor: windfallColors.drk200,
+      },
       sm: {
         height: '26px',
         padding: '0px 10px',
