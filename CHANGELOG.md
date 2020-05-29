@@ -2,7 +2,7 @@
 
 ## 1.5.20 (2020-05-27)
 
-- [707](https://github.com/technekes/cast-ui/pull/707): Adding prop for adjusting vertical spacing on DatePickerRange(https://github.com/MrMuzik)
+- [707](https://github.com/technekes/cast-ui/pull/707): Adding prop for adjusting vertical spacing on DatePickerRange - [@MrMuzik](https://github.com/MrMuzik)
 - [706](https://github.com/technekes/cast-ui/pull/706): Style for disabled inputs & select - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
 - [704](https://github.com/technekes/cast-ui/pull/704): Clear selection style - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
 
