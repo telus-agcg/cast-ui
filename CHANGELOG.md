@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.21 (2020-06-02)
+
+- [708](https://github.com/technekes/cast-ui/pull/708): Pagination
+  enhancements with breaking changes: [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+  - Pagination property btnSize was removed
+  - Pagination properties previousText/nextText have been replaced with PageButtonFirstLastComponent property
+  - rowsText default value was removed
+
 ## 1.5.20 (2020-05-27)
 
 - [707](https://github.com/technekes/cast-ui/pull/707): Adding prop for adjusting vertical spacing on DatePickerRange - [@MrMuzik](https://github.com/MrMuzik)
