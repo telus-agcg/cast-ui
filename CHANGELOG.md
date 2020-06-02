@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.21 (2020-05-27)
+
+- [707](https://github.com/technekes/cast-ui/pull/707): Adding prop for adjusting vertical spacing on DatePicker - [@MrMuzik](https://github.com/MrMuzik)
+
 ## 1.5.20 (2020-05-27)
 
 - [707](https://github.com/technekes/cast-ui/pull/707): Adding prop for adjusting vertical spacing on DatePickerRange - [@MrMuzik](https://github.com/MrMuzik)
