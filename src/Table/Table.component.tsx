@@ -267,8 +267,6 @@ export class Table extends React.Component<Props> {
       ...props
     } = this.props;
 
-    console.log('rowsText = ', this.props.rowsText);
-
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
