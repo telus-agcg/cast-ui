@@ -95,15 +95,16 @@ const ModalHeaderDiv = styled.div`
     font-size: ${(props: any) => props.theme.modal.header.fontSize};
     color: ${(props: any) => props.theme.modal.header.color};
     padding: 0;
-    margin: 0;
+    margin: 0 50px 0 0;
   }
   button {
-    padding: 1rem 1rem;
-    margin: -2.7rem -1rem -1rem auto;
-    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 15px;
+    line-height: 20px;
     font-weight: 300;
     font-size: 30px;
-    line-height: 1;
     color: ${(props: any) => props.theme.colors.blue};
     background-color: transparent;
     border: 0;
