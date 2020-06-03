@@ -181,32 +181,30 @@ export const cobaltTheme = {
   pagination: {
     text: cobaltColors.drk800,
     fontWeight: 'normal',
+    padding: '4px 0',
     background: cobaltColors.white,
-    borderColor: cobaltColors.white,
+
     activeText: cobaltColors.primary,
     activeFontWeight: 'bold',
     activeBackground: cobaltColors.white,
-    activeBorderColor: cobaltColors.primary,
-    disabledText: cobaltColors.secondaryHover,
+    disabledText: cobaltColors.drk200,
     disabledBackground: cobaltColors.white,
-    disabledBorderColor: cobaltColors.white,
+    hoverTextColor: cobaltColors.primary,
     hoverBackground: cobaltColors.white,
-    hoverBorderColor: cobaltColors.white,
-    borderRadius: '1px',
+    hoverFontWeight: 'bold',
+
     button: {
-      disabledText: cobaltColors.lt600,
+      width: '24px',
+      height: '24px',
       fontWeight: 'normal',
-      fontWeightSelected: 'bold',
-      padding: {
-        sm: '3px 6px',
-        md: '4px 8px',
-        lg: '5px 10px',
-      },
-      nextPrevious: {
-        fontWeight: 'normal',
-      },
+      padding: '3px 3px 4px',
+      borderColor: cobaltColors.white,
+      activeBorderColor: cobaltColors.primary,
+      disabledBorderColor: cobaltColors.white,
+      disabledText: cobaltColors.drk200,
+      hoverBorderColor: cobaltColors.white,
+      hoverBackground: cobaltColors.lt400,
     },
-    padding: '4px 0',
   },
 
   body: {
