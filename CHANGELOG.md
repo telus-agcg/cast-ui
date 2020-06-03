@@ -1,14 +1,6 @@
 # Changelog
 
-<<<<<<< HEAD
-
 ## 1.5.21 (2020-06-02)
-
-=======
-
-## 1.5.21 (2020-06-01)
-
-> > > > > > > afbf4c4f39a01192ad4fd6767d1ae583c0b489e4
 
 - [713](https://github.com/technekes/cast-ui/pull/713): Adding prop for adjusting vertical spacing on DatePicker - [@MrMuzik](https://github.com/MrMuzik)
 - [708](https://github.com/technekes/cast-ui/pull/708): Pagination
