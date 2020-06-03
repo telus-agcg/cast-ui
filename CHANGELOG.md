@@ -2,8 +2,10 @@
 
 ## 1.5.21 (2020-06-02)
 
+- [715](https://github.com/technekes/cast-ui/pull/715): Fix Modal dialog header styles - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+- [713](https://github.com/technekes/cast-ui/pull/713): Adding prop for adjusting vertical spacing on DatePicker - [@MrMuzik](https://github.com/MrMuzik)
 - [708](https://github.com/technekes/cast-ui/pull/708): Pagination
-  enhancements with breaking changes: [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+  enhancements with breaking changes - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
   - Pagination property btnSize was removed
   - Pagination properties previousText/nextText have been replaced with PageButtonFirstLastComponent property
   - rowsText default value was removed

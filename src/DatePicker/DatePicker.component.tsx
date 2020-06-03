@@ -141,6 +141,7 @@ class ReactDatePicker extends Component<Props> {
     invalid: false,
     invalidText: '',
     invalidTextColor: '',
+    verticalSpacing: 10,
     theme: Themes.defaultTheme,
   };
 
