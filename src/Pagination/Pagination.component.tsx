@@ -1,7 +1,10 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import SPaginationButton from './SPaginationButton';
-import SPaginationButtonNextPrev from './SPaginationButtonNextPrev';
+import {
+  PaginationPageButton,
+  PaginationButtonNextPrev,
+  PaginationButtonFirstLast,
+} from './PaginationButtons';
 import { Themes } from '../themes/index';
 import Select from '../Select/Select.component';
 import uuid from 'uuid';
@@ -9,16 +12,6 @@ import uuid from 'uuid';
 export const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Specify the size of the buttons to use
-   *
-   * @default 'md'
-   **/
-  btnSize: 'sm' | 'md' | 'lg';
-  /**
-   * Specify the text of the next button
-   **/
-  nextText: string;
   /**
    * Specify the function to fire when a page is changed
    **/
@@ -34,15 +27,15 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the button definition to use for the individual page buttons
    **/
-  PageButtonComponent: any;
+  PageButtonComponent?: any;
   /**
    * Specify the button definition to use for the previous and next buttons
    **/
-  PageButtonNextPrevComponent: any;
+  PageButtonNextPrevComponent?: any;
   /**
-   * Specify the text of the previous button
+   * Specify the button definition to use for the first and last buttons
    **/
-  previousText: string;
+  PageButtonFirstLastComponent?: any;
   /**
    * Specify any child objects (if applicable)
    **/
@@ -72,7 +65,9 @@ type State = {
 };
 
 const SDivPaginationWrapper = styled.div`
-  padding: ${(props: any) => props.theme.pagination.padding};
+  font-family: ${props => props.theme.typography.fontFamily};
+  font-size: ${props => props.theme.body.fontSize}
+  padding: ${props => props.theme.pagination.padding};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,9 +76,15 @@ const SDivPaginationWrapper = styled.div`
 const SSpanPageSizeOptionsSelectWrapper = styled.div`
   display: flex;
   align-items: center;
-  min-width: 150px;
+  color: ${props => props.theme.pagination.text};
+
+  .select-wrapper {
+    min-width: 80px;
+  }
+
   .showText {
-    margin-right: 8px;
+    margin-left: 8px;
+    white-space: nowrap;
   }
 `;
 
@@ -108,6 +109,7 @@ export class Pagination extends React.Component<Props> {
 
   static defaultProps = {
     theme: Themes.defaultTheme,
+    btnSize: 'md',
     showPageSizeOptions: false,
     rowsSelectorText: '',
     rowsText: '',
@@ -165,12 +167,8 @@ export class Pagination extends React.Component<Props> {
     }
   }
 
-  renderPageSizeOptions = ({
-    pageSize,
-    pageSizeOptions,
-    rowsSelectorText,
-    rowsText,
-  }) => {
+  renderPageSizeOptions = props => {
+    const { pageSize, pageSizeOptions, rowsSelectorText, rowsText } = props;
     const options = pageSizeOptions.map((option, i) => ({
       pageSize: option,
       label: `${option} ${rowsText}`,
@@ -181,12 +179,11 @@ export class Pagination extends React.Component<Props> {
 
     return (
       <SSpanPageSizeOptionsSelectWrapper className="select-wrap -pageSizeOptions">
-        <div className="showText">Show</div>
         <Select
           id={uuid.v4()}
           isMulti={false}
           isDisabled={this.props.pages <= 0}
-          selectSize="sm"
+          selectSize="md"
           onChange={selectedOption =>
             this.changePageSize(
               Number(this.props.pageSizeOptions[selectedOption.value]),
@@ -197,9 +194,10 @@ export class Pagination extends React.Component<Props> {
           controlSpecificProps={{
             defaultValue: selectedOption,
             isSearchable: false,
-            'aria-label': { rowsSelectorText },
+            'aria-label': rowsSelectorText,
           }}
         />
+        <div className="showText">Rows per page</div>
       </SSpanPageSizeOptionsSelectWrapper>
     );
   };
@@ -213,8 +211,9 @@ export class Pagination extends React.Component<Props> {
       pageSize,
       showPageSizeOptions,
       pageSizeOptions,
-      PageButtonComponent = SPaginationButton,
-      PageButtonNextPrevComponent = SPaginationButtonNextPrev,
+      PageButtonComponent = PaginationPageButton,
+      PageButtonNextPrevComponent = PaginationButtonNextPrev,
+      PageButtonFirstLastComponent = PaginationButtonFirstLast,
       ...props
     } = this.props;
 
@@ -222,26 +221,28 @@ export class Pagination extends React.Component<Props> {
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDivPaginationWrapper {...props}>
+        <SDivPaginationWrapper>
           {showPageSizeOptions &&
             this.renderPageSizeOptions({
               pageSize,
               pageSizeOptions,
-              rowsSelectorText: this.props.rowsSelectorText,
-              rowsText: this.props.rowsText,
+              ...props,
             })}
           <SPagninationControls>
-            <div>
-              <PageButtonNextPrevComponent
-                btnSize="md"
-                onClick={() => {
-                  this.changePage(activePage - 1);
-                }}
-                disabled={activePage === 1}
-              >
-                {this.props.previousText}
-              </PageButtonNextPrevComponent>
-            </div>
+            <PageButtonFirstLastComponent
+              disabled={activePage === 1}
+              isForwardDirection={false}
+              onClick={() => {
+                this.changePage(1);
+              }}
+            />
+            <PageButtonNextPrevComponent
+              disabled={activePage === 1}
+              isForwardDirection={false}
+              onClick={() => {
+                this.changePage(activePage - 1);
+              }}
+            />
             <div>
               {visiblePages.map(
                 (page: number, index: number, array: number[]) => {
@@ -277,17 +278,20 @@ export class Pagination extends React.Component<Props> {
                 },
               )}
             </div>
-            <div>
-              <PageButtonNextPrevComponent
-                btnSize="md"
-                onClick={() => {
-                  this.changePage(activePage + 1);
-                }}
-                disabled={activePage === this.props.pages}
-              >
-                {this.props.nextText}
-              </PageButtonNextPrevComponent>
-            </div>
+            <PageButtonNextPrevComponent
+              disabled={activePage === this.props.pages}
+              isForwardDirection={true}
+              onClick={() => {
+                this.changePage(activePage + 1);
+              }}
+            />
+            <PageButtonFirstLastComponent
+              disabled={activePage === this.props.pages}
+              isForwardDirection={true}
+              onClick={() => {
+                this.changePage(this.props.pages);
+              }}
+            />
           </SPagninationControls>
         </SDivPaginationWrapper>
       </ThemeProvider>
