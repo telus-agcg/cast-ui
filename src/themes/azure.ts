@@ -181,32 +181,30 @@ export const azureTheme = {
   pagination: {
     text: azureColors.drk800,
     fontWeight: 'normal',
+    padding: '4px 0',
     background: azureColors.white,
-    borderColor: azureColors.white,
+
     activeText: azureColors.primary,
     activeFontWeight: 'bold',
     activeBackground: azureColors.white,
-    activeBorderColor: azureColors.primary,
     disabledText: azureColors.secondaryHover,
     disabledBackground: azureColors.white,
-    disabledBorderColor: azureColors.white,
+    hoverTextColor: azureColors.primary,
     hoverBackground: azureColors.white,
-    hoverBorderColor: azureColors.white,
-    borderRadius: '1px',
+    hoverFontWeight: 'bold',
+
     button: {
-      disabledText: azureColors.lt600,
+      width: '24px',
+      height: '24px',
       fontWeight: 'normal',
-      fontWeightSelected: 'bold',
-      padding: {
-        sm: '3px 6px',
-        md: '4px 8px',
-        lg: '5px 10px',
-      },
-      nextPrevious: {
-        fontWeight: 'normal',
-      },
+      padding: '3px 3px 4px',
+      borderColor: azureColors.white,
+      activeBorderColor: azureColors.primary,
+      disabledBorderColor: azureColors.white,
+      disabledText: azureColors.lt600,
+      hoverBorderColor: azureColors.white,
+      hoverBackground: azureColors.lt400,
     },
-    padding: '4px 0',
   },
 
   body: {
