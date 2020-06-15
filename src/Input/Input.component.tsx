@@ -115,7 +115,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const SInput = styled.input`
-  width: 100%;
+  flex-grow: 1;
   min-width: 0;
   height: ${(props: Props) => props.theme.input[props.inputSize!].height}
   box-sizing: border-box;
@@ -124,10 +124,6 @@ const SInput = styled.input`
   border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize!].borderRadius};
 	padding: ${(props: Props) => props.theme.input[props.inputSize!].padding}
-	padding-left: ${(props: Props) =>
-    'left' === props.addonTextPosition ? '0' : 'auto'}
-	padding-right: ${(props: Props) =>
-    'right' === props.addonTextPosition && !props.disabled ? '0' : 'auto'}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.input.fontSize}
   color: ${(props: Props) => props.theme.reverseText};
@@ -140,13 +136,21 @@ const SInput = styled.input`
   }
 `;
 
+const SIconWrapper = styled.div`
+  margin: 0 4px;
+`;
+
+const SAddonTextWrapper = styled.div`
+  margin: 0 8px;
+`;
+
 const SInputWrapper = styled.div`
   width: 100%;
   position: relative;
   box-sizing: border-box;
   display: inline-flex;
-  flex-wrap: wrap;
-	align-items: stretch;
+  flex-wrap: nowrap;
+	align-items: center;
 	font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
@@ -163,41 +167,17 @@ const SInputWrapper = styled.div`
   }
   input:focus {
     outline: none !important;
+    border: none;
+    box-shadow: none;
+  }
+  
+  &.focused {
+    outline: none !important;
     border-color: ${(props: Props) => props.theme.colors.primary};
     box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
   }
-  &.input-icon-left,
-  &.input-icon-right {
-    flex-wrap: nowrap;
-    & > span {
-      padding: 0px;
-      position: absolute;
-      & > * {
-        height: 100%;
 
-      }
-    }
-  }
-  &.input-icon-left {
-    input {
-      padding-left: 40px;
-    }
-   span {
-      left: 16px;
-      top: ${(props: Props) => props.theme.input[props.inputSize!].iconTop};
-    }
-  }
-  &.input-icon-right {
-    input {
-      padding-right: 40px;
-    }
-    span {
-      right: 16px;      
-      top: ${(props: Props) => props.theme.input[props.inputSize!].iconTop};
-
-    }
-  }
-  &.disabled {
+  &.disabled, &.disabled > input {
     border: ${props => props.theme.input.disabled.border};
    
     & > input {
@@ -218,21 +198,25 @@ export const Input: React.FunctionComponent<Props> = ({
   ...inputProps
 }) => {
   const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : '';
+
+  const [focused, setFocused] = React.useState(false);
+
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInputWrapper
           className={classNames({
             disabled: inputProps.disabled,
-            [`input-icon-${inputProps.iconPosition ||
-              inputProps.addonTextPosition}`]:
-              inputProps.icon || inputProps.addonText,
+            focused: focused,
+            // [`input-icon-${inputProps.iconPosition || inputProps.addonTextPosition}`]: inputProps.icon || inputProps.addonText,
           })}
           {...inputProps}
         >
-          {('left' === inputProps.iconPosition ||
-            'left' === inputProps.addonTextPosition) && (
-            <span>{inputProps.icon || inputProps.addonText}</span>
+          {'left' === inputProps.iconPosition && inputProps.icon && (
+            <SIconWrapper>{inputProps.icon}</SIconWrapper>
+          )}
+          {'left' === inputProps.addonTextPosition && inputProps.addonText && (
+            <SAddonTextWrapper>{inputProps.addonText}</SAddonTextWrapper>
           )}
           <SInput
             value={(value ? value.toString() : '').substring(
@@ -244,10 +228,16 @@ export const Input: React.FunctionComponent<Props> = ({
             data-invalid={inputProps.invalid ? '' : undefined}
             aria-invalid={inputProps.invalid ? true : undefined}
             aria-describedby={errorId}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
           />
-          {('right' === inputProps.iconPosition ||
-            'right' === inputProps.addonTextPosition) && (
-            <span>{inputProps.icon || inputProps.addonText}</span>
+          {'right' === inputProps.iconPosition && inputProps.icon && (
+            <SIconWrapper>{inputProps.icon}</SIconWrapper>
+          )}
+          {'right' === inputProps.addonTextPosition && inputProps.addonText && (
+            <SAddonTextWrapper className={'addon-text'}>
+              {inputProps.addonText}
+            </SAddonTextWrapper>
           )}
         </SInputWrapper>
         {inputProps.invalid && inputProps.invalidText && (

@@ -4,7 +4,7 @@ import { number, boolean, select, text } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 
 import { Icon } from 'react-icons-kit';
-import { ic_search as icSearch } from 'react-icons-kit/md/ic_search';
+import { ic_search as icSearch } from 'react-icons-kit/md';
 
 import { Input, IconButton } from '../';
 
@@ -91,7 +91,7 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
           placeholder={text('placeholder', 'Please enter some text')}
           required={boolean('required', false)}
           value={text('value', '')}
-          icon={<Icon icon={icSearch} />}
+          icon={<Icon size={20} icon={icSearch} />}
           iconPosition={select('iconPosition', ['right', 'left'], 'right')}
           onChange={e => {
             action('Changed!');
@@ -111,8 +111,36 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
       },
     },
   )
+  .add('with Addon Text', () => {
+    const inputSize = select('inputSize', ['sm', 'md', 'lg'], 'md');
+    return (
+      <Input
+        id="myInput"
+        type={select('type', ['text', 'number', 'email', 'password'], 'text')}
+        autoComplete={select('autoComplete', ['on', 'off'], 'on')}
+        disabled={boolean('disabled', false)}
+        inputSize={inputSize}
+        invalid={boolean('invalid', false)}
+        invalidText={text('invalidText', 'A valid value is required')}
+        invalidTextColor={text('invalidTextColor', '')}
+        maxLength={number('maxLength', 1000)}
+        placeholder={text('placeholder', 'Please enter some text')}
+        required={boolean('required', false)}
+        value={text('value', '')}
+        addonText={text('addonText', '$')}
+        addonTextPosition={select(
+          'addonTextPosition',
+          ['right', 'left'],
+          'right',
+        )}
+        onChange={e => {
+          action('Changed!');
+        }}
+      />
+    );
+  })
   .add(
-    'with Addon Text',
+    'with all options',
     () => {
       const inputSize = select('inputSize', ['sm', 'md', 'lg'], 'md');
       return (
@@ -129,12 +157,20 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
           placeholder={text('placeholder', 'Please enter some text')}
           required={boolean('required', false)}
           value={text('value', '')}
-          addonText={text('addonText', '$')}
+          addonText={text('addonText', '')}
           addonTextPosition={select(
             'addonTextPosition',
             ['right', 'left'],
             'right',
           )}
+          icon={
+            boolean('withIcon', false) ? (
+              <Icon size={20} icon={icSearch} />
+            ) : (
+              undefined
+            )
+          }
+          iconPosition={select('iconPosition', ['right', 'left'], 'right')}
           onChange={e => {
             action('Changed!');
           }}
