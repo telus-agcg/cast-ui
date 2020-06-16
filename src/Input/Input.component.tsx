@@ -281,6 +281,7 @@ export const Input: React.FunctionComponent<Props> = ({
                 // manually trigger onChange event to provide value to parent component
                 // @ts-ignore
                 const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+                  // @ts-ignore
                   window.HTMLInputElement.prototype,
                   'value',
                 ).set;
