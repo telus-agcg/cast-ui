@@ -112,6 +112,8 @@ const SDiv = styled.div`
   cursor: pointer;
   line-height: ${(props: Props) => props.theme.checkbox[props.cbSize!].height};
   ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)};
+  display: inline-flex;
+  align-items: center;
 `;
 
 const SLabel = styled.label`
