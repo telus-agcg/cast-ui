@@ -157,14 +157,16 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
           placeholder={text('placeholder', 'Please enter some text')}
           required={boolean('required', false)}
           value={text('value', '')}
-          addonText={text('addonText', '')}
+          addonText={text('addonText', '$')}
+          highlightFilled={boolean('highlightFilled', true)}
+          isClearable={boolean('isClearable', true)}
           addonTextPosition={select(
             'addonTextPosition',
             ['right', 'left'],
             'right',
           )}
           icon={
-            boolean('withIcon', false) ? (
+            boolean('withIcon', true) ? (
               <Icon size={20} icon={icSearch} />
             ) : (
               undefined
