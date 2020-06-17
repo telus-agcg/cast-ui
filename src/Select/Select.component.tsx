@@ -322,14 +322,20 @@ export class CustomSelect extends React.Component<Props> {
 
   componentDidMount() {
     this.setState({
-      selectValue: this.props.value,
+      selectValue:
+        this.props.value && this.props.value.length === 0
+          ? undefined
+          : this.props.value,
     });
   }
 
   componentDidUpdate(prevProps: Props) {
     if (prevProps.value !== this.props.value) {
       this.setState({
-        selectValue: this.props.value,
+        selectValue:
+          this.props.value && this.props.value.length === 0
+            ? undefined
+            : this.props.value,
       });
     }
   }
@@ -389,7 +395,7 @@ export class CustomSelect extends React.Component<Props> {
             menuPortalTarget={document.getElementById(uniqueId)}
             menuPlacement={'bottom'}
             {...props}
-            value={this.state.selectValue}
+            value={this.props.value}
             onChange={e => {
               this.setState({
                 selectValue: e && (e.value || e.length) ? e : undefined,
