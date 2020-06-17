@@ -213,7 +213,7 @@ const SInputWrapper = styled.div`
     }
   }
   
-  &.filled {
+  &.highlighted {
     background-color: ${props => props.theme.colors.highlight200};
   }
 `;
@@ -254,7 +254,7 @@ export const Input: React.FunctionComponent<Props> = ({
           className={classNames(inputProps.className, {
             disabled,
             focused,
-            filled: highlightFilled && inputValue && inputValue.length > 0,
+            highlighted: highlightFilled && inputValue && inputValue.length > 0,
           })}
         >
           {'left' === iconPosition && icon && (
