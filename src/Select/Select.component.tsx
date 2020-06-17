@@ -323,9 +323,9 @@ export class CustomSelect extends React.Component<Props> {
   componentDidMount() {
     this.setState({
       selectValue:
-        this.props.value && this.props.value.length === 0
-          ? undefined
-          : this.props.value,
+        this.props.value && this.props.value.length > 0
+          ? this.props.value
+          : undefined,
     });
   }
 
@@ -333,9 +333,9 @@ export class CustomSelect extends React.Component<Props> {
     if (prevProps.value !== this.props.value) {
       this.setState({
         selectValue:
-          this.props.value && this.props.value.length === 0
-            ? undefined
-            : this.props.value,
+          this.props.value && this.props.value.length > 0
+            ? this.props.value
+            : undefined,
       });
     }
   }
