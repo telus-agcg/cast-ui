@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
-import { Link, Select, SelectComponents } from '../';
+import { Select, SelectComponents } from '../';
 import { action } from '@storybook/addon-actions';
 import Checkbox from '../Checkbox';
 import styled from 'styled-components';
@@ -14,11 +14,6 @@ const SDiv = styled.div`
   margin-right: 5px;
 `;
 
-const FlexDiv = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 storiesOf('Select', module)
   .add(
     'Select',
@@ -29,7 +24,6 @@ storiesOf('Select', module)
           isMulti={boolean('isMulti', false)}
           isDisabled={boolean('isDisabled', false)}
           isClearable={boolean('isClearable', false)}
-          highlightFilled={boolean('highlightFilled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           invalid={boolean('invalid', false)}
           invalidText={text('invalidText', 'A valid value is required')}
@@ -74,8 +68,7 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
           invalid={boolean('invalid', false)}
           invalidText={text('invalidText', 'A valid value is required')}
           onChange={action('onChange')}
-          isClearable={boolean('isClearable', false)}
-          highlightFilled={boolean('highlightFilled', false)}
+          value={[{ value: 'chocolate', label: 'Chocolate' }]}
           options={[
             { value: 'chocolate', label: 'Chocolate' },
             { value: 'strawberry', label: 'Strawberry' },
@@ -247,30 +240,24 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
 
   render() {
     return (
-      <FlexDiv>
-        <Select
-          creatable={boolean('creatable', true)}
-          isMulti
-          components={{
-            Option: this.Option,
-            MultiValue: this.MultiValue,
-            MenuList: this.MenuList,
-          }}
-          isDisabled={boolean('isDisabled', false)}
-          selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
-          hideSelectedOptions={false}
-          isClearable={boolean('isClearable', false)}
-          highlightFilled={boolean('highlightFilled', false)}
-          onChange={e => this.handleSelect(e)}
-          value={this.state.selectedOptions}
-          closeMenuOnSelect={false}
-          formatGroupLabel={formatGroupLabel}
-          options={colorOptions}
-        />
-        <Link onClick={() => this.setState({ selectedOptions: [] })}>
-          Clear
-        </Link>
-      </FlexDiv>
+      <Select
+        creatable={boolean('creatable', true)}
+        isMulti
+        components={{
+          Option: this.Option,
+          MultiValue: this.MultiValue,
+          MenuList: this.MenuList,
+        }}
+        isDisabled={boolean('isDisabled', false)}
+        selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
+        hideSelectedOptions={false}
+        isClearable={boolean('isClearable', true)}
+        onChange={e => this.handleSelect(e)}
+        value={this.state.selectedOptions}
+        closeMenuOnSelect={false}
+        formatGroupLabel={formatGroupLabel}
+        options={colorOptions}
+      />
     );
   }
 }
