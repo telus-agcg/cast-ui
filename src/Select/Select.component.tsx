@@ -178,12 +178,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default ''
    */
   menuPortalTarget?: HTMLElement;
-  /**
-   * Is the filled element highlighted
-   *
-   * @default false
-   **/
-  highlightFilled?: boolean;
 }
 
 const SDiv = styled.div<Props>`
@@ -300,17 +294,10 @@ const SDiv = styled.div<Props>`
       }
     }
     
-    &.highlighted .react-select__control {
-      background-color: ${props => props.theme.colors.highlight200};
-    }
   }  
 `;
 
 export class CustomSelect extends React.Component<Props> {
-  state = {
-    selectValue: undefined,
-  };
-
   static defaultProps = {
     selectSize: 'md',
     theme: Themes.defaultTheme,
@@ -319,26 +306,6 @@ export class CustomSelect extends React.Component<Props> {
     option: {},
     creatable: false,
   };
-
-  componentDidMount() {
-    this.setState({
-      selectValue:
-        this.props.value && this.props.value.length > 0
-          ? this.props.value
-          : undefined,
-    });
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    if (prevProps.value !== this.props.value) {
-      this.setState({
-        selectValue:
-          this.props.value && this.props.value.length > 0
-            ? this.props.value
-            : undefined,
-      });
-    }
-  }
 
   render() {
     const {
@@ -377,15 +344,12 @@ export class CustomSelect extends React.Component<Props> {
         >
           <BaseSelectComponent
             closeMenuOnSelect={closeMenuOnSelect}
-            className={`react-select-component ${
-              this.props.highlightFilled && this.state.selectValue
-                ? 'highlighted'
-                : ''
-            }`}
+            className="react-select-component"
             classNamePrefix="react-select"
             isDisabled={isDisabled}
             isClearable={isClearable}
             isMulti={isMulti}
+            value={selectedOption}
             options={options}
             invalid={invalid}
             aria-invalid={invalid ? true : undefined}
@@ -395,13 +359,6 @@ export class CustomSelect extends React.Component<Props> {
             menuPortalTarget={document.getElementById(uniqueId)}
             menuPlacement={'bottom'}
             {...props}
-            value={this.props.value}
-            onChange={e => {
-              this.setState({
-                selectValue: e && (e.value || e.length) ? e : undefined,
-              });
-              this.props.onChange(e);
-            }}
             {...controlSpecificProps}
           />
           {invalid && (
