@@ -307,10 +307,6 @@ const SDiv = styled.div<Props>`
 `;
 
 export class CustomSelect extends React.Component<Props> {
-  state = {
-    selectValue: undefined,
-  };
-
   static defaultProps = {
     selectSize: 'md',
     theme: Themes.defaultTheme,
@@ -319,26 +315,6 @@ export class CustomSelect extends React.Component<Props> {
     option: {},
     creatable: false,
   };
-
-  componentDidMount() {
-    this.setState({
-      selectValue:
-        this.props.value && this.props.value.length > 0
-          ? this.props.value
-          : undefined,
-    });
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    if (prevProps.value !== this.props.value) {
-      this.setState({
-        selectValue:
-          this.props.value && this.props.value.length > 0
-            ? this.props.value
-            : undefined,
-      });
-    }
-  }
 
   render() {
     const {
@@ -365,6 +341,11 @@ export class CustomSelect extends React.Component<Props> {
         ? this.props.closeMenuOnSelect
         : !isMulti;
     const uniqueId = uuid.v4();
+
+    const selectValue = this.props.value || this.props.selectedOption;
+    const valueIsNotEmpty: boolean =
+      !!selectValue && (!Array.isArray(selectValue) || selectValue.length > 0);
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
@@ -378,14 +359,13 @@ export class CustomSelect extends React.Component<Props> {
           <BaseSelectComponent
             closeMenuOnSelect={closeMenuOnSelect}
             className={`react-select-component ${
-              this.props.highlightFilled && this.state.selectValue
-                ? 'highlighted'
-                : ''
+              this.props.highlightFilled && valueIsNotEmpty ? 'highlighted' : ''
             }`}
             classNamePrefix="react-select"
             isDisabled={isDisabled}
             isClearable={isClearable}
             isMulti={isMulti}
+            value={selectedOption}
             options={options}
             invalid={invalid}
             aria-invalid={invalid ? true : undefined}
@@ -395,13 +375,6 @@ export class CustomSelect extends React.Component<Props> {
             menuPortalTarget={document.getElementById(uniqueId)}
             menuPlacement={'bottom'}
             {...props}
-            value={this.props.value}
-            onChange={e => {
-              this.setState({
-                selectValue: e && (e.value || e.length) ? e : undefined,
-              });
-              this.props.onChange(e);
-            }}
             {...controlSpecificProps}
           />
           {invalid && (
