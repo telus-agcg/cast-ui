@@ -178,6 +178,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default ''
    */
   menuPortalTarget?: HTMLElement;
+  /**
+   * Is the filled element highlighted
+   *
+   * @default false
+   **/
+  highlightFilled?: boolean;
 }
 
 const SDiv = styled.div<Props>`
@@ -294,6 +300,9 @@ const SDiv = styled.div<Props>`
       }
     }
     
+    &.highlighted .react-select__control {
+      background-color: ${props => props.theme.colors.highlight200};
+    }
   }  
 `;
 
@@ -332,6 +341,11 @@ export class CustomSelect extends React.Component<Props> {
         ? this.props.closeMenuOnSelect
         : !isMulti;
     const uniqueId = uuid.v4();
+
+    const selectValue = this.props.value || this.props.selectedOption;
+    const valueIsNotEmpty: boolean =
+      !!selectValue && (!Array.isArray(selectValue) || selectValue.length > 0);
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
@@ -344,7 +358,9 @@ export class CustomSelect extends React.Component<Props> {
         >
           <BaseSelectComponent
             closeMenuOnSelect={closeMenuOnSelect}
-            className="react-select-component"
+            className={`react-select-component ${
+              this.props.highlightFilled && valueIsNotEmpty ? 'highlighted' : ''
+            }`}
             classNamePrefix="react-select"
             isDisabled={isDisabled}
             isClearable={isClearable}
