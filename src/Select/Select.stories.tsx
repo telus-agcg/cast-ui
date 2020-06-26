@@ -29,6 +29,9 @@ storiesOf('Select', module)
           isMulti={boolean('isMulti', false)}
           isDisabled={boolean('isDisabled', false)}
           isClearable={boolean('isClearable', false)}
+          controlSpecificProps={{
+            isSearchable: boolean('isSearchable', false),
+          }}
           highlightFilled={boolean('highlightFilled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           invalid={boolean('invalid', false)}
