@@ -225,7 +225,8 @@ const SDiv = styled.div<Props>`
    }    
   .react-select-component {
     .react-select__control {
-      min-height: auto;
+      min-height: ${(props: Props) =>
+        props.theme.select[props.selectSize!].height};
       border-radius: ${(props: Props) =>
         props.theme.select.borderRadius ||
         props.theme.common[props.selectSize!].borderRadius};
@@ -358,9 +359,6 @@ export class CustomSelect extends React.Component<Props> {
         >
           <BaseSelectComponent
             closeMenuOnSelect={closeMenuOnSelect}
-            className={`react-select-component ${
-              this.props.highlightFilled && valueIsNotEmpty ? 'highlighted' : ''
-            }`}
             classNamePrefix="react-select"
             isDisabled={isDisabled}
             isClearable={isClearable}
@@ -376,6 +374,9 @@ export class CustomSelect extends React.Component<Props> {
             menuPlacement={'bottom'}
             {...props}
             {...controlSpecificProps}
+            className={`react-select-component ${
+              this.props.highlightFilled && valueIsNotEmpty ? 'highlighted' : ''
+            } ${props.className}`}
           />
           {invalid && (
             <ErrorMessage
