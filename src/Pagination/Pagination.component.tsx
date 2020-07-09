@@ -193,7 +193,6 @@ export class Pagination extends React.Component<Props> {
               Number(this.props.pageSizeOptions[selectedOption.value]),
             )
           }
-          menuPortalTarget={document.body}
           options={options}
           selectedOption={selectedOption}
           controlSpecificProps={{
