@@ -583,7 +583,6 @@ export const defaultTheme = {
   badge: {
     borderRadius: '10px',
     fontSize: '10px',
-    padding: '4px 10px',
     sm: {
       borderRadius: '10px',
       fontSize: '10px',
