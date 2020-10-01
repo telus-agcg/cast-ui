@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import styled, { ThemeProvider } from 'styled-components';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 import { Themes } from '../themes';
+import { components } from 'react-select';
 
 export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
@@ -35,6 +36,12 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    * @default 'md'
    **/
   inputSize?: 'sm' | 'md' | 'lg';
+  /**
+   * Specify if the input is clearable
+   *
+   * @default false
+   **/
+  isClearable?: boolean;
   /**
    * Specify whether the control is currently invalid
    *
@@ -99,6 +106,12 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    **/
   required?: boolean;
   /**
+   * Is the filled input highlighted
+   *
+   * @default false
+   **/
+  highlightFilled?: boolean;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -115,29 +128,55 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const SInput = styled.input`
-  width: 100%;
+  flex-grow: 1;
   min-width: 0;
   height: ${(props: Props) => props.theme.input[props.inputSize!].height}
   box-sizing: border-box;
-  background: ${(props: Props) => props.theme.input.background}
 	border: none;
   border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize!].borderRadius};
 	padding: ${(props: Props) => props.theme.input[props.inputSize!].padding}
-	padding-left: ${(props: Props) =>
-    'left' === props.addonTextPosition ? '0' : 'auto'}
-	padding-right: ${(props: Props) =>
-    'right' === props.addonTextPosition && !props.disabled ? '0' : 'auto'}
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.input.fontSize}
-  color: ${(props: Props) => props.theme.reverseText};
-  text-align: ${(props: Props) => (props.addonText ? 'right' : 'auto')};
+  color: ${(props: Props) => props.theme.input.color};
+  text-align: left;
+  margin-right: 0;
+  background-color: transparent !important;
+  
   &[data-invalid] {
     border-color: ${(props: Props) => props.theme.validation.borderColor};
   }
+  
   ::placeholder {
     color: ${props => props.theme.input.placeholderColor};
   }
+  
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+      // override autofill user-agent styles 
+      transition: background-color 5000s ease-in-out 0s;
+      -webkit-text-fill-color: transparent !important;
+  }
+  
+  &:focus {
+    outline: none !important;
+    border: none;
+    box-shadow: none;
+  }
+  
+`;
+
+const SIconWrapper = styled.div`
+  margin: 0 4px;
+  > * {
+    vertical-align: middle;
+  }
+`;
+
+const SAddonTextWrapper = styled.div`
+  margin: 0 8px;
 `;
 
 const SInputWrapper = styled.div`
@@ -145,8 +184,9 @@ const SInputWrapper = styled.div`
   position: relative;
   box-sizing: border-box;
   display: inline-flex;
-  flex-wrap: wrap;
-	align-items: stretch;
+  flex-wrap: nowrap;
+	align-items: center;
+	background: ${(props: Props) => props.theme.input.background}
 	font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
@@ -156,57 +196,25 @@ const SInputWrapper = styled.div`
       ? props.theme.validation.borderColor
       : props.theme.colors.secondary};
   outline: none !important;
-  input {
-    color: ${(props: Props) => props.theme.input.color};
-    text-align: left;
-    margin-right: 0px;
-  }
-  input:focus {
+
+  &.focused {
     outline: none !important;
     border-color: ${(props: Props) => props.theme.colors.primary};
     box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
   }
-  &.input-icon-left,
-  &.input-icon-right {
-    flex-wrap: nowrap;
-    & > span {
-      padding: 0px;
-      position: absolute;
-      & > * {
-        height: 100%;
 
-      }
-    }
-  }
-  &.input-icon-left {
-    input {
-      padding-left: 40px;
-    }
-   span {
-      left: 16px;
-      top: ${(props: Props) => props.theme.input[props.inputSize!].iconTop};
-    }
-  }
-  &.input-icon-right {
-    input {
-      padding-right: 40px;
-    }
-    span {
-      right: 16px;      
-      top: ${(props: Props) => props.theme.input[props.inputSize!].iconTop};
-
-    }
-  }
-  &.disabled {
+  &.disabled, &.disabled > input {
     border: ${props => props.theme.input.disabled.border};
-   
-    & > input {
-      background: ${props => props.theme.input.disabled.background};
-      cursor: not-allowed;
-    }
-    & > span {
+    background: ${props => props.theme.input.disabled.background};
+    cursor: not-allowed;
+
+    & > div {
       color: ${props => props.theme.input.disabled.addonTextColor};     
     }
+  }
+  
+  &.highlighted {
+    background-color: ${props => props.theme.colors.highlight200};
   }
 `;
 
@@ -217,37 +225,84 @@ export const Input: React.FunctionComponent<Props> = ({
   onChange,
   ...inputProps
 }) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : '';
+  const {
+    disabled,
+    iconPosition,
+    addonTextPosition,
+    addonText,
+    icon,
+    isClearable,
+    highlightFilled,
+  } = inputProps;
+
+  const [focused, setFocused] = React.useState(false);
+
+  const [inputValue, setInputValue] = React.useState(
+    (value || '').substring(0, inputProps.maxLength),
+  );
+  React.useEffect(() => {
+    setInputValue(value || '');
+  }, [value]);
+
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInputWrapper
-          className={classNames({
-            disabled: inputProps.disabled,
-            [`input-icon-${inputProps.iconPosition ||
-              inputProps.addonTextPosition}`]:
-              inputProps.icon || inputProps.addonText,
-          })}
           {...inputProps}
+          className={classNames(inputProps.className, {
+            disabled,
+            focused,
+            highlighted: highlightFilled && inputValue && inputValue.length > 0,
+          })}
         >
-          {('left' === inputProps.iconPosition ||
-            'left' === inputProps.addonTextPosition) && (
-            <span>{inputProps.icon || inputProps.addonText}</span>
+          {'left' === iconPosition && icon && (
+            <SIconWrapper>{icon}</SIconWrapper>
+          )}
+          {'left' === addonTextPosition && addonText && (
+            <SAddonTextWrapper>{addonText}</SAddonTextWrapper>
           )}
           <SInput
-            value={(value ? value.toString() : '').substring(
-              0,
-              inputProps.maxLength,
-            )}
-            onChange={onChange}
+            ref={inputRef}
             {...inputProps}
+            onChange={onChange}
+            value={inputValue}
             data-invalid={inputProps.invalid ? '' : undefined}
             aria-invalid={inputProps.invalid ? true : undefined}
             aria-describedby={errorId}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
           />
-          {('right' === inputProps.iconPosition ||
-            'right' === inputProps.addonTextPosition) && (
-            <span>{inputProps.icon || inputProps.addonText}</span>
+          {isClearable && !disabled && inputValue && (
+            <SIconWrapper
+              onClick={() => {
+                setInputValue('');
+                // manually trigger onChange event to provide value to parent component
+                // @ts-ignore
+                const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+                  // @ts-ignore
+                  window.HTMLInputElement.prototype,
+                  'value',
+                ).set;
+                // @ts-ignore
+                nativeInputValueSetter.call(inputRef.current, '');
+                const e = new Event('input', { bubbles: true });
+                inputRef &&
+                  inputRef.current &&
+                  inputRef.current.dispatchEvent(e);
+              }}
+            >
+              <components.CrossIcon />
+            </SIconWrapper>
+          )}
+          {'right' === iconPosition && icon && (
+            <SIconWrapper>{icon}</SIconWrapper>
+          )}
+          {'right' === addonTextPosition && addonText && (
+            <SAddonTextWrapper className={'addon-text'}>
+              {addonText}
+            </SAddonTextWrapper>
           )}
         </SInputWrapper>
         {inputProps.invalid && inputProps.invalidText && (

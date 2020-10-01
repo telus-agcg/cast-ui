@@ -576,21 +576,20 @@ export const azureTheme = {
   badge: {
     borderRadius: '4px',
     fontSize: '15px',
-    padding: '4px 3px 3px',
     sm: {
       borderRadius: '4px',
       fontSize: '12px',
-      padding: '4px 3px 3px',
+      padding: '4px 8px 3px',
     },
     md: {
       borderRadius: '4px',
       fontSize: '15px',
-      padding: '4px 3px 3px',
+      padding: '4px 8px 3px',
     },
     lg: {
       borderRadius: '4px',
       fontSize: '18px',
-      padding: '4px 3px 3px',
+      padding: '4px 8px 3px',
     },
   },
   alert: {
@@ -868,15 +867,15 @@ export const azureTheme = {
       placeholderColor: azureColors.drk400,
     },
     sm: {
-      height: '16px',
+      height: '28px',
       padding: '2px 10px',
     },
     md: {
-      height: '16px',
+      height: '32px',
       padding: '3px 10px 2px',
     },
     lg: {
-      height: '24px',
+      height: '40px',
       padding: '6px 13px',
     },
     multiSelect: {

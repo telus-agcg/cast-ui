@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.6.00 (2020-10-01)
+
+- [740](https://github.com/technekes/cast-ui/pull/740): Increase badge side padding on all themes - [@hamholla](https://github.com/hamholla)
+- [739](https://github.com/technekes/cast-ui/pull/739): Add Umber Theme to Cast - [@hamholla](https://github.com/hamholla)
+- [723](https://github.com/technekes/cast-ui/pull/723): Use common Select components on Claims/Competitives forms - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+- [722](https://github.com/technekes/cast-ui/pull/722): Setup input icon and addon text as flex element, Added new Input option 'isClearable', Added new Input option 'highlightFilled', Added new Select option 'highlightFilled'- [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)
+
 ## 1.5.21 (2020-06-02)
 
 - [715](https://github.com/technekes/cast-ui/pull/715): Fix Modal dialog header styles - [@andrey-liventsev-ontarget](https://github.com/andrey-liventsev-ontarget)

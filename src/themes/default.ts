@@ -583,7 +583,6 @@ export const defaultTheme = {
   badge: {
     borderRadius: '10px',
     fontSize: '10px',
-    padding: '4px 10px',
     sm: {
       borderRadius: '10px',
       fontSize: '10px',
@@ -876,15 +875,15 @@ export const defaultTheme = {
       placeholderColor: defaultColors.drk400,
     },
     sm: {
-      height: '16px',
+      height: '28px',
       padding: '2px 10px',
     },
     md: {
-      height: '16px',
+      height: '32px',
       padding: '3px 10px 2px',
     },
     lg: {
-      height: '24px',
+      height: '40px',
       padding: '6px 13px',
     },
     multiSelect: {
