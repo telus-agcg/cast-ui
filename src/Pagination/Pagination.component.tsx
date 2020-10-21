@@ -8,9 +8,7 @@ import {
 import { Themes } from '../themes/index';
 import Select from '../Select/Select.component';
 import uuid from 'uuid';
-
 export const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
-
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the function to fire when a page is changed
@@ -54,7 +52,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   rowsSelectorText?: string;
   rowsText?: string;
 }
-
 const initialState = {
   activePage: 1,
   visiblePages: [],
@@ -63,80 +60,68 @@ type State = {
   activePage: number;
   visiblePages: number[];
 };
-
 const SDivPaginationWrapper = styled.div`
-  font-family: ${props => props.theme.typography.fontFamily};
-  font-size: ${props => props.theme.body.fontSize}
-  padding: ${props => props.theme.pagination.padding};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.body.fontSize}
+  padding: ${(props) => props.theme.pagination.padding};
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
-
 const SSpanPageSizeOptionsSelectWrapper = styled.div`
   display: flex;
   align-items: center;
-  color: ${props => props.theme.pagination.text};
-
+  color: ${(props) => props.theme.pagination.text};
   .select-wrapper {
     min-width: 80px;
   }
-
   .showText {
     margin-left: 8px;
     white-space: nowrap;
   }
 `;
-
 const SPagninationControls = styled.div`
   display: flex;
   align-items: center;
 `;
-
 export class Pagination extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-
     this.changePage = this.changePage.bind(this);
     this.changePageSize = this.changePageSize.bind(this);
-
     this.state = {
-      activePage: 1,
+      activePage: props.page,
       visiblePages: this.getVisiblePages(0, props.pages),
     };
   }
   readonly state: State = initialState;
-
   static defaultProps = {
     theme: Themes.defaultTheme,
     btnSize: 'md',
     showPageSizeOptions: false,
     rowsSelectorText: '',
     rowsText: '',
+    page: 1,
     pageSizeOptions: PAGE_SIZE_OPTIONS,
     pageSize: 10,
   };
-
   componentWillReceiveProps(nextProps: Props) {
     if (this.props.pages !== nextProps.pages) {
       this.setState({
-        activePage: 1,
+        activePage: this.props.page,
         visiblePages: this.getVisiblePages(0, nextProps.pages),
       });
     } else {
       this.changePage(nextProps.page + 1);
     }
   }
-
   filterPages = (visiblePages: number[], totalPages: number) => {
     return visiblePages.filter((page: number) => page <= totalPages);
   };
-
   getVisiblePages = (page: number, total: number) => {
     if (total < 7) {
       return this.filterPages([1, 2, 3, 4, 5, 6], total);
     }
-
     if (page % 5 >= 0 && page > 4 && page + 3 < total) {
       return [1, page - 1, page, page + 1, total];
     }
@@ -145,38 +130,32 @@ export class Pagination extends React.Component<Props> {
     }
     return [1, 2, 3, 4, 5, total];
   };
-
   changePage(page: number) {
     if (page === this.state.activePage) {
       return;
     }
-
     const visiblePages = this.getVisiblePages(page, this.props.pages);
-
     this.setState({
       activePage: page,
       visiblePages: this.filterPages(visiblePages, this.props.pages),
     });
-
     this.props.onPageChange!(page - 1);
   }
-
   changePageSize(pageSize: number, page?: number) {
     if (this.props.onPageSizeChange) {
       this.props.onPageSizeChange(pageSize);
     }
   }
-
-  renderPageSizeOptions = props => {
+  renderPageSizeOptions = (props) => {
     const { pageSize, pageSizeOptions, rowsSelectorText, rowsText } = props;
     const options = pageSizeOptions.map((option, i) => ({
       pageSize: option,
       label: `${option} ${rowsText}`,
       value: i,
     }));
-
-    const selectedOption = options.find(option => option.pageSize === pageSize);
-
+    const selectedOption = options.find(
+      (option) => option.pageSize === pageSize,
+    );
     return (
       <SSpanPageSizeOptionsSelectWrapper className="select-wrap -pageSizeOptions">
         <Select
@@ -184,7 +163,7 @@ export class Pagination extends React.Component<Props> {
           isMulti={false}
           isDisabled={this.props.pages <= 0}
           selectSize="md"
-          onChange={selectedOption =>
+          onChange={(selectedOption) =>
             this.changePageSize(
               Number(this.props.pageSizeOptions[selectedOption.value]),
             )
@@ -201,7 +180,6 @@ export class Pagination extends React.Component<Props> {
       </SSpanPageSizeOptionsSelectWrapper>
     );
   };
-
   render() {
     const {
       theme,
@@ -216,9 +194,7 @@ export class Pagination extends React.Component<Props> {
       PageButtonFirstLastComponent = PaginationButtonFirstLast,
       ...props
     } = this.props;
-
     const { activePage, visiblePages } = this.state;
-
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDivPaginationWrapper>
@@ -251,7 +227,6 @@ export class Pagination extends React.Component<Props> {
                     index === array.length - 1
                       ? array[index - 1] + 2
                       : page - 2;
-
                   return (
                     <span key={page}>
                       {showPrevNextGap && (
@@ -265,7 +240,6 @@ export class Pagination extends React.Component<Props> {
                           ...
                         </PageButtonComponent>
                       )}
-
                       <PageButtonComponent
                         btnSize="md"
                         data-selected={activePage === page ? '' : undefined}
@@ -298,5 +272,4 @@ export class Pagination extends React.Component<Props> {
     );
   }
 }
-
 export default Pagination;
