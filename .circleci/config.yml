@@ -66,10 +66,10 @@ jobs:
           name: Build
           command: npm run build
       - run:
-          name: release
+          name: Release
           command: npm run semantic-release || true
       - run:
-          name: Deploy Storybook
+          name: Publish Storybook
           command: npm run deploy-storybook
 
 workflows:
