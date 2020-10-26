@@ -48,7 +48,21 @@ workflows:
   version: 2
   lint_and_deploy:
     jobs:
-      - build
+      docker:
+        - image: *image_node
+      working_directory: /usr/src/app
+      steps:
+        - *restore_cache_git
+        - checkout
+        - run:
+            name: install
+            command: npm install
+        - run:
+            name: Build
+            command: npm run build
+        - run:
+            name: Lint
+            command: npm run lint
 # jobs:
 #   checkout_code:
 #     docker:
