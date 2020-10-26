@@ -20,7 +20,7 @@ references:
         - *cache_key_backup_git
 
 jobs:
-  build:
+  checkout_code:
     docker:
       - image: *image_node
     working_directory: /usr/src/app
@@ -28,7 +28,21 @@ jobs:
       - *restore_cache_git
       - checkout
       - run:
-          name: install
+          name: npmrc
+          command: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+      - save_cache:
+          key: *cache_key_git
+          paths:
+            - *cache_path_git
+
+  build_lint:
+    docker:
+      - image: *image_node
+    working_directory: /usr/src/app
+    steps:
+      - *restore_cache_git
+      - run:
+          name: Install
           command: npm install
       - run:
           name: Build
@@ -36,122 +50,39 @@ jobs:
       - run:
           name: Lint
           command: npm run lint
+      - save_cache:
+          key: *cache_key_npm
+          paths:
+            - *cache_path_npm
+
+  build_deploy:
+    docker:
+      - image: *image_node
+    working_directory: /usr/src/app
+    steps:
+      - *restore_cache_git
+      - *restore_cache_npm
+      - run:
+          name: Build
+          command: npm run build
       - run:
           name: release
           command: npm run semantic-release || true
-      - save_cache:
-          key: *cache_key_git
-          paths:
-            - *cache_path_git
+      - run:
+          name: Deploy Storybook
+          command: npm run deploy-storybook
 
 workflows:
   version: 2
   lint_and_deploy:
     jobs:
-      docker:
-        - image: *image_node
-      working_directory: /usr/src/app
-      steps:
-        - *restore_cache_git
-        - checkout
-        - run:
-            name: install
-            command: npm install
-        - run:
-            name: Build
-            command: npm run build
-        - run:
-            name: Lint
-            command: npm run lint
-# jobs:
-#   checkout_code:
-#     docker:
-#       - image: *image_node
-#     working_directory: /usr/src/app
-#     steps:
-#       - *restore_cache_git
-#       - checkout
-#       - run:
-#           name: npmrc
-#           command: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
-#       - save_cache:
-#           key: *cache_key_git
-#           paths:
-#             - *cache_path_git
-
-#   build_lint:
-#     docker:
-#       - image: *image_node
-#     working_directory: /usr/src/app
-#     steps:
-#       - *restore_cache_git
-#       - run:
-#           name: Install
-#           command: npm install
-#       - run:
-#           name: Build
-#           command: npm run build
-#       - run:
-#           name: Lint
-#           command: npm run lint
-#       - save_cache:
-#           key: *cache_key_npm
-#           paths:
-#             - *cache_path_npm
-
-#   build_deploy:
-#     docker:
-#       - image: *image_node
-#     working_directory: /usr/src/app
-#     steps:
-#       - *restore_cache_git
-#       - *restore_cache_npm
-#       - run:
-#           name: Apt
-#           command: |
-#             apt-get update && \
-#             apt-get install -y jq ruby2.3 && \
-#             gem install fury
-#       - run:
-#           name: Tag Check
-#           command: |
-#             version=$(jq '.version' package.json | tr -d '"')
-#             if [[ $CIRCLE_BRANCH == "master" ]]; then
-#               if [[ $version =~ ^[0-9]{1,5}\.[0-9]{1,5}\.[0-9]{1,5}\.beta\.[0-9]{1,5}$ ]]; then
-#                 echo "Preparing Version ${version} for QA Deployment"
-#               else
-#                 echo " --- ERROR: Version ${version} is invalid for a QA deployment"
-#                 exit 1
-#               fi
-#             elif [[ $CIRCLE_BRANCH == "env/production" ]]; then
-#               if [[ $version =~ ^[0-9]{1,5}\.[0-9]{1,5}\.[0-9]{1,5}$ ]]; then
-#                 echo "Preparing Version ${version} for Production Deployment"
-#               else
-#                 echo " --- ERROR: Version ${version} is invalid for a Production deployment"
-#                 exit 1
-#               fi
-#             else
-#               echo " --- ERROR: ${CIRCLE_BRANCH} cannot be deployed"
-#               exit 1
-#             fi
-#       - run:
-#           name: Build
-#           command: npm run build
-#       - run:
-#           name: Deploy
-#           command: npm run deploy-storybook && npm publish
-
-# workflows:
-#   version: 2
-#   lint_and_deploy:
-#     jobs:
-#       - checkout_code
-#       - build_lint:
-#           requires:
-#             - checkout_code
-#       - build_deploy:
-#           requires:
-#             - build_lint
-#           filters:
-#             branches:
-#               only: /(^env/production|^env/qa)/
+      - checkout_code
+      - build_lint:
+          requires:
+            - checkout_code
+      - build_deploy:
+          requires:
+            - build_lint
+          filters:
+            branches:
+              only: /(^master|^beta)/
