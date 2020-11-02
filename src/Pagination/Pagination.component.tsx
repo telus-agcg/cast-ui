@@ -101,7 +101,7 @@ export class Pagination extends React.Component<Props> {
     this.changePageSize = this.changePageSize.bind(this);
 
     this.state = {
-      activePage: 1,
+      activePage: this.props.page,
       visiblePages: this.getVisiblePages(0, props.pages),
     };
   }
@@ -116,17 +116,6 @@ export class Pagination extends React.Component<Props> {
     pageSizeOptions: PAGE_SIZE_OPTIONS,
     pageSize: 10,
   };
-
-  componentWillReceiveProps(nextProps: Props) {
-    if (this.props.pages !== nextProps.pages) {
-      this.setState({
-        activePage: 1,
-        visiblePages: this.getVisiblePages(0, nextProps.pages),
-      });
-    } else {
-      this.changePage(nextProps.page + 1);
-    }
-  }
 
   filterPages = (visiblePages: number[], totalPages: number) => {
     return visiblePages.filter((page: number) => page <= totalPages);

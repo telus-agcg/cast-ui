@@ -11,7 +11,7 @@ storiesOf('Pagination', module).add(
       <Pagination
         onPageChange={action('Page changed!')}
         pages={number('pages', 10)}
-        page={number('page', 0)}
+        page={number('page', 2)}
         pageSize={select('pageSize', [10, 20, 50, 100], 20)}
         showPageSizeOptions={boolean('showPageSizeOptions', true)}
         onPageSizeChange={action('Page Size changed')}
