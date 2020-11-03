@@ -63,39 +63,14 @@ jobs:
       - *restore_cache_git
       - *restore_cache_npm
       - run:
-          name: Apt
-          command: |
-            apt-get update && \
-            apt-get install -y jq ruby2.3 && \
-            gem install fury
-      - run:
-          name: Tag Check
-          command: |
-            version=$(jq '.version' package.json | tr -d '"')
-            if [[ $CIRCLE_BRANCH == "env/qa" ]]; then
-              if [[ $version =~ ^[0-9]{1,5}\.[0-9]{1,5}\.[0-9]{1,5}\.beta\.[0-9]{1,5}$ ]]; then
-                echo "Preparing Version ${version} for QA Deployment"
-              else
-                echo " --- ERROR: Version ${version} is invalid for a QA deployment"
-                exit 1
-              fi
-            elif [[ $CIRCLE_BRANCH == "env/production" ]]; then
-              if [[ $version =~ ^[0-9]{1,5}\.[0-9]{1,5}\.[0-9]{1,5}$ ]]; then
-                echo "Preparing Version ${version} for Production Deployment"
-              else
-                echo " --- ERROR: Version ${version} is invalid for a Production deployment"
-                exit 1
-              fi
-            else
-              echo " --- ERROR: ${CIRCLE_BRANCH} cannot be deployed"
-              exit 1
-            fi
-      - run:
           name: Build
           command: npm run build
       - run:
-          name: Deploy
-          command: npm run deploy-storybook && npm publish
+          name: Release
+          command: npm run semantic-release || true
+      - run:
+          name: Publish Storybook
+          command: npm run deploy-storybook
 
 workflows:
   version: 2
@@ -110,4 +85,4 @@ workflows:
             - build_lint
           filters:
             branches:
-              only: /(^env/production|^env/qa)/
+              only: /(^master|^beta)/
