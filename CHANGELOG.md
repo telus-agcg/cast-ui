@@ -1,4 +1,4 @@
-## Version bump to 3 a result of inadvertent releases during testing of semantic-release
+## Version bump is a result of inadvertent releases during testing of semantic-release
 
 ## 1.6.00 (2020-10-01)
 
