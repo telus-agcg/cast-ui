@@ -1,3 +1,5 @@
+## Version bump is a result of inadvertent releases during testing of semantic-release
+
 ## 1.6.00 (2020-10-01)
 
 - [740](https://github.com/technekes/cast-ui/pull/740): Increase badge side padding on all themes - [@hamholla](https://github.com/hamholla)
