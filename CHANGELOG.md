@@ -1,3 +1,12 @@
+## [3.2.2](https://github.com/technekes/cast-ui/compare/v3.2.1...v3.2.2) (2020-11-03)
+
+
+### Bug Fixes
+
+* **changelog:** triggers release and explains version bump ([b4e29d0](https://github.com/technekes/cast-ui/commit/b4e29d0bc384b0d36864af593a493c97556b127f))
+* **changelog:** triggers release and explains version bump ([7c89945](https://github.com/technekes/cast-ui/commit/7c899450b64502c9208dd5086c8908912e02ef60))
+* **pagination:** load page from props instead of state ([1c5e53b](https://github.com/technekes/cast-ui/commit/1c5e53b5255da341cdbd0c4f31e2de2da17289ba))
+
 ## Version bump is a result of inadvertent releases during testing of semantic-release
 
 ## 1.6.00 (2020-10-01)
