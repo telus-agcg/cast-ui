@@ -1,3 +1,9 @@
+## [3.2.4](https://github.com/technekes/cast-ui/compare/v3.2.3...v3.2.4) (2020-11-03)
+
+### Bug Fixes
+
+- **pagination:** accept 0-based page prop ([18ed978](https://github.com/technekes/cast-ui/commit/18ed9786be842d92f88c521b0f4694fba817707b))
+
 ## [3.2.3](https://github.com/technekes/cast-ui/compare/v3.2.1...v3.2.3) (2020-11-03)
 
 ### Bug Fixes
