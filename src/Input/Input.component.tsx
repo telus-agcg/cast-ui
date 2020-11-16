@@ -151,6 +151,15 @@ const SInput = styled.input`
     color: ${props => props.theme.input.placeholderColor};
   }
   
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+      // override autofill user-agent styles 
+    -webkit-box-shadow: inset 0 0 0 50px #fff;
+    -webkit-text-fill-color: ${(props: Props) => props.theme.input.color};;
+  }
+  
   &:focus {
     outline: none !important;
     border: none;
