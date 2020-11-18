@@ -1,7 +1,6 @@
 const branch = process.env.CIRCLE_BRANCH;
 
 const config = {
-  ci: false,
   branches: ['master', { name: 'beta', prerelease: true }],
   plugins: [
     '@semantic-release/commit-analyzer',
