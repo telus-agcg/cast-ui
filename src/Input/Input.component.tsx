@@ -156,7 +156,8 @@ const SInput = styled.input`
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
       // override autofill user-agent styles 
-    -webkit-box-shadow: inset 0 0 0 50px #fff;
+    -webkit-box-shadow: ${(props: Props) =>
+      `inset 0 0 0 50px ${props.theme.colors.highlight200}`};
     -webkit-text-fill-color: ${(props: Props) => props.theme.input.color};;
   }
   
