@@ -1,3 +1,12 @@
+## [3.2.5](https://github.com/technekes/cast-ui/compare/v3.2.4...v3.2.5) (2020-12-03)
+
+
+### Bug Fixes
+
+* **Input:** background for autocompleted value ([3a67f2b](https://github.com/technekes/cast-ui/commit/3a67f2b3a28250eafad701fdcd098a444beb5743))
+* **Input:** Input text is invisible if selected using autofill ([#755](https://github.com/technekes/cast-ui/issues/755)) ([85a1e77](https://github.com/technekes/cast-ui/commit/85a1e77a047d46ce6fb1776ab13987b4c3c5c34a))
+* **Input:** Make text invisible if selected using autofill ([#758](https://github.com/technekes/cast-ui/issues/758)) ([f0a80f2](https://github.com/technekes/cast-ui/commit/f0a80f29ebb92f699e3724f0ef58075061fdb14b))
+
 ## [3.2.4](https://github.com/technekes/cast-ui/compare/v3.2.3...v3.2.4) (2020-11-04)
 
 
