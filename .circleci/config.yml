@@ -80,6 +80,9 @@ workflows:
       - build_lint:
           requires:
             - checkout_code
+          filters:
+            branches:
+              ignore: /(^gh-pages)/
       - build_deploy:
           requires:
             - build_lint
