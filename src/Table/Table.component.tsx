@@ -192,12 +192,33 @@ const SWrapperDiv = styled(ReactTable)`
     background-repeat: no-repeat;
     background-size: 18px 18px;
     background-position: right 4px center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
   &.ReactTable .rt-thead .rt-th.-sort-asc {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
+    div,
+    span {
+      ::after {
+        content: '‹';
+        margin-left: 8px;
+        display: inline-block;
+        font-size: 21px;
+        transform: rotate(90deg);
+      }
+    }
   }
   &.ReactTable .rt-thead .rt-th.-sort-desc {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
+    div,
+    span {
+      ::after {
+        content: '›';
+        margin-left: 8px;
+        display: inline-block;
+        font-size: 21px;
+        transform: rotate(90deg);
+      }
+    }
   }
   &.ReactTable .rt-noData {
     width: 100%;
