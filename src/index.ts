@@ -24,6 +24,7 @@ export * from './Input';
 export * from './InputGroup';
 export * from './ListGroup';
 export * from './Modal';
+export * from './MultiSelectCheckbox';
 export * from './Navbar';
 export * from './Pagination';
 export * from './Panel';
