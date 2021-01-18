@@ -51,6 +51,15 @@ export type Props = Partial<TableProps> &
     noDataText?: string;
   };
 
+const blue = '#167BE0';
+const black = '#000000';
+const chevronDownSvg = color =>
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+const chevronUpSvg = color =>
+  `<svg xmlns="http://www.w3.org/2000/svg"   viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg>`;
+const encodedChevronDown = window.btoa(chevronDownSvg(blue));
+const encodedChevronUp = window.btoa(chevronUpSvg(black));
+
 const SIcon = styled(Icon)`
   color: ${(props: any) => props.theme.colors.primary};
   display: inline-block;
@@ -194,10 +203,10 @@ const SWrapperDiv = styled(ReactTable)`
     background-position: right 4px center;
   }
   &.ReactTable .rt-thead .rt-th.-sort-asc {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTUuOTk3IDEzLjM3NGwtNy4wODEgNy4wODFMNyAxOC41NGw4Ljk5Ny04Ljk5OCA5LjAwMyA5LTEuOTE2IDEuOTE2eiIvPjwvc3ZnPg==');
+    background-image: url('data:image/svg+xml;base64, ${encodedChevronUp}');
   }
   &.ReactTable .rt-thead .rt-th.-sort-desc {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
+    background-image: url('data:image/svg+xml;base64, ${encodedChevronDown}');
   }
   &.ReactTable .rt-noData {
     width: 100%;
