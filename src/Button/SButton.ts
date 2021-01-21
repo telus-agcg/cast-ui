@@ -89,7 +89,7 @@ const computeColor: Function = (
           return {
             background: theme.styles[btnStyle].selectedFlood,
             color: theme.styles[btnStyle].reverseText,
-            borderColor: theme.styles[btnStyle].borderColor,
+            borderColor: theme.styles[btnStyle].selectedFlood,
           };
         case 'disabled':
           return {
