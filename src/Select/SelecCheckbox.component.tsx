@@ -1,0 +1,105 @@
+import * as React from 'react';
+import styled from 'styled-components';
+import { SelectComponents } from '..';
+import Checkbox from '../Checkbox';
+import { isEmpty, isArray, isObject } from 'lodash';
+
+interface Props {
+  options: any[];
+  isMulti?: boolean;
+  selectedOptions?: any;
+  updateSelectedOptions: (any) => void;
+}
+
+const SCheckbox = styled(Checkbox)`
+  padding-bottom: 0px;
+`;
+
+const Div = styled.div`
+  margin-right: 5px;
+`;
+
+export const SelectCheckboxProps = (res: Props) => {
+  const { selectedOptions, options, updateSelectedOptions, isMulti } = res;
+
+  const selectMulti = (val, updateSelectedOptions) => {
+    const isSelectedOption = selectedOptions.find(o => o.value === val);
+    let res: any[] = [];
+    if (isSelectedOption) {
+      res = selectedOptions.filter(option => option.value !== val);
+    } else {
+      res = [...selectedOptions, options.find(o => o.value === val)];
+    }
+    updateSelectedOptions(res);
+  };
+
+  const selectSingle = (val, updateSelectedOptions) => {
+    const res: any[] = selectedOptions.filter(option => option.value !== val);
+    updateSelectedOptions(res[0]);
+  };
+
+  const handleCheck = val => {
+    if (isMulti) {
+      selectMulti(val, updateSelectedOptions);
+    } else {
+      selectSingle(val, updateSelectedOptions);
+    }
+  };
+
+  const formatGroupLabel = data => (
+    <div>
+      <span>{data.label} </span>
+      <span>{data.options.length}</span>
+    </div>
+  );
+
+  const components = {
+    Option: (props: any) => {
+      return (
+        <SelectComponents.Option {...props}>
+          <SCheckbox
+            id={props.value}
+            defaultChecked={props.isSelected}
+            checked={props.isSelected}
+            disabled={props.isDisabled}
+            value={props.value}
+            onChange={() => handleCheck(props.value)}
+          >
+            <span>{props.data.label}</span>
+          </SCheckbox>
+        </SelectComponents.Option>
+      );
+    },
+    MultiValue: (props: any) => {
+      const withComma = `${props.data.label}, `;
+
+      const showCommas =
+        isMulti &&
+        selectedOptions &&
+        selectedOptions[selectedOptions.length - 1].value !== props.data.value;
+      return (
+        <div>
+          {showCommas ? (
+            <Div>{withComma} &#32;</Div>
+          ) : (
+            <Div>{props.data.label}</Div>
+          )}
+        </div>
+      );
+    },
+    MenuList: (props: any) => {
+      const selectedCount = isArray(selectedOptions)
+        ? selectedOptions.length
+        : isObject(selectedOptions) && !isEmpty(selectedOptions)
+        ? 1
+        : 0;
+      return (
+        <>
+          <div className={'menuListHeader'}>{selectedCount} items selected</div>
+          {props.children}
+        </>
+      );
+    },
+  };
+  return { components, formatGroupLabel };
+};

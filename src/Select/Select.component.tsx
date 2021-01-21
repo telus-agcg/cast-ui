@@ -1,13 +1,10 @@
 import * as React from 'react';
 import ErrorMessage from '../Typography/ErrorMessage/index';
-import Select, {
-  Creatable as CreatableSelect,
-  components as SelectComponents,
-} from 'react-select';
+import Select, { Creatable as CreatableSelect } from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
-import Checkbox from '../Checkbox';
+import { SelectCheckboxProps } from './SelecCheckbox.component';
 
 export type OptionType = {
   value: string;
@@ -188,12 +185,13 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    **/
   highlightFilled?: boolean;
-}
 
-export interface MultiValueComponentProps {
-  options: any[];
-  selectedOptions: any[];
-  updateSelectedOptions: ([]) => void;
+  /**
+   * Placeholder text
+   *
+   * @default 'default'
+   **/
+  optionType?: 'default' | 'checkbox';
 }
 
 const SDiv = styled.div<Props>`
@@ -317,79 +315,6 @@ const SDiv = styled.div<Props>`
   }  
 `;
 
-const SCheckbox = styled(Checkbox)`
-  padding-bottom: 0px;
-`;
-
-const LabelsWrapper = styled.div`
-  margin-right: 5px;
-`;
-
-export const MultiValueComponents = (res: MultiValueComponentProps) => {
-  const { selectedOptions, options, updateSelectedOptions } = res;
-
-  const handleCheck = val => {
-    const isSelectedOption = selectedOptions.find(o => o.value === val);
-    let res: any[] = [];
-    if (isSelectedOption) {
-      res = selectedOptions.filter(option => option.value !== val);
-    } else {
-      res = [...selectedOptions, options.find(o => o.value === val)];
-    }
-    updateSelectedOptions(res);
-  };
-
-  const formatGroupLabel = data => (
-    <div>
-      <span>{data.label} </span>
-      <span>{data.options.length}</span>
-    </div>
-  );
-
-  const components = {
-    Option: (props: any) => {
-      return (
-        <SelectComponents.Option {...props}>
-          <SCheckbox
-            id={props.value}
-            defaultChecked={props.isSelected}
-            checked={props.isSelected}
-            disabled={props.isDisabled}
-            value={props.value}
-            onChange={() => handleCheck(props.value)}
-          >
-            <span>{props.data.label}</span>
-          </SCheckbox>
-        </SelectComponents.Option>
-      );
-    },
-    MultiValue: (props: any) => {
-      const withComma = `${props.data.label}, `;
-      return (
-        <div>
-          {selectedOptions[selectedOptions.length - 1].value !==
-          props.data.value ? (
-            <LabelsWrapper>{withComma} &#32;</LabelsWrapper>
-          ) : (
-            <LabelsWrapper>{props.data.label}</LabelsWrapper>
-          )}
-        </div>
-      );
-    },
-    MenuList: (props: any) => {
-      return (
-        <>
-          <div className={'menuListHeader'}>
-            {selectedOptions.length} items selected
-          </div>
-          {props.children}
-        </>
-      );
-    },
-  };
-  return { components, formatGroupLabel };
-};
-
 export class CustomSelect extends React.Component<Props> {
   static defaultProps = {
     selectSize: 'md',
@@ -398,6 +323,7 @@ export class CustomSelect extends React.Component<Props> {
     id: 'select',
     option: {},
     creatable: false,
+    optionType: 'default',
   };
 
   render() {
@@ -414,6 +340,7 @@ export class CustomSelect extends React.Component<Props> {
       isClearable,
       selectedOption,
       invalidText,
+      optionType,
       ...props
     } = this.props;
     const BaseSelectComponent: React.ElementType = creatable
@@ -429,6 +356,18 @@ export class CustomSelect extends React.Component<Props> {
     const selectValue = this.props.value || this.props.selectedOption;
     const valueIsNotEmpty: boolean =
       !!selectValue && (!Array.isArray(selectValue) || selectValue.length > 0);
+
+    const selectCheckboxProps =
+      optionType === 'checkbox'
+        ? {
+            ...SelectCheckboxProps({
+              options,
+              isMulti,
+              selectedOptions: this.props.selectedOption,
+              updateSelectedOptions: this.props.onChange,
+            }),
+          }
+        : {};
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -457,6 +396,7 @@ export class CustomSelect extends React.Component<Props> {
             menuPlacement={'bottom'}
             {...props}
             {...controlSpecificProps}
+            {...selectCheckboxProps}
             className={`react-select-component ${
               this.props.highlightFilled && valueIsNotEmpty ? 'highlighted' : ''
             } ${props.className}`}

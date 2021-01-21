@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
-import { Link, Select, MultiValueComponents } from '../';
+import { Link, Select } from '../';
 import { action } from '@storybook/addon-actions';
 import styled from 'styled-components';
+import { isArray } from 'lodash';
 
 const FlexDiv = styled.div`
   display: flex;
@@ -147,30 +148,10 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     selectedOptions: [],
   };
 
-  handleOceanClick() {
-    const redOption = colorOptions.find(o => o.value === 'red');
-    redOption.isDisabled = !redOption.isDisabled;
-  }
-
-  updateSelectedOptions(res: []) {
-    this.setState(state => ({
-      selectedOptions: res,
-    }));
-  }
-
   handleSelect(e) {
-    const newOceanOption = e.find(o => o.value === 'ocean');
-    const oldOceanOption = this.state.selectedOptions.find(
-      o => o.value === 'ocean',
-    );
-    if (
-      (newOceanOption && !oldOceanOption) ||
-      (!newOceanOption && oldOceanOption)
-    ) {
-      this.handleOceanClick();
-    }
+    let selected = isArray(e) ? e : [e];
     this.setState(state => ({
-      selectedOptions: e,
+      selectedOptions: selected,
     }));
   }
 
@@ -179,19 +160,15 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
       <FlexDiv>
         <Select
           creatable={boolean('creatable', true)}
-          isMulti
-          {...MultiValueComponents({
-            options: colorOptions,
-            selectedOptions: this.state.selectedOptions,
-            updateSelectedOptions: this.updateSelectedOptions,
-          })}
+          isMulti={boolean('isMulti', true)}
+          optionType={'checkbox'}
           isDisabled={boolean('isDisabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           hideSelectedOptions={false}
           isClearable={boolean('isClearable', false)}
           highlightFilled={boolean('highlightFilled', false)}
           onChange={e => this.handleSelect(e)}
-          value={this.state.selectedOptions}
+          selectedOption={this.state.selectedOptions}
           closeMenuOnSelect={false}
           options={colorOptions}
         />
