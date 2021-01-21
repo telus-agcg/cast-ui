@@ -149,7 +149,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
   };
 
   handleSelect(e) {
-    let selected = isArray(e) ? e : [e];
+    const selected = isArray(e) ? e : [e];
     this.setState(state => ({
       selectedOptions: selected,
     }));
