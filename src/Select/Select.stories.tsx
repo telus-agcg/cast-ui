@@ -4,7 +4,6 @@ import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { Link, Select } from '../';
 import { action } from '@storybook/addon-actions';
 import styled from 'styled-components';
-import { isArray } from 'lodash';
 
 const FlexDiv = styled.div`
   display: flex;
@@ -149,7 +148,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
   };
 
   handleSelect(e) {
-    const selected = isArray(e) ? e : [e];
+    const selected = Array.isArray(e) ? e : [e];
     this.setState(state => ({
       selectedOptions: selected,
     }));

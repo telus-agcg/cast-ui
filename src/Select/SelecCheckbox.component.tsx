@@ -2,7 +2,17 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { SelectComponents } from '..';
 import Checkbox from '../Checkbox';
-import { isEmpty, isArray, isObject } from 'lodash';
+
+const isObject = val => {
+  if (val === null) {
+    return false;
+  }
+  return typeof val === 'object';
+};
+
+const isEmptyObject = val => {
+  return isObject(val) && Object.keys(val).length === 0;
+};
 
 interface Props {
   options: any[];
@@ -88,9 +98,9 @@ export const SelectCheckboxProps = (res: Props) => {
       );
     },
     MenuList: (props: any) => {
-      const selectedCount = isArray(selectedOptions)
+      const selectedCount = Array.isArray(selectedOptions)
         ? selectedOptions.length
-        : isObject(selectedOptions) && !isEmpty(selectedOptions)
+        : !isEmptyObject(selectedOptions)
         ? 1
         : 0;
       return (
