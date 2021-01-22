@@ -240,12 +240,13 @@ export const Input: React.FunctionComponent<Props> = ({
 
   const [focused, setFocused] = React.useState(false);
 
-  const [inputValue, setInputValue] = React.useState(
-    (value || '').substring(0, inputProps.maxLength),
-  );
-  React.useEffect(() => {
-    setInputValue(value || '');
-  }, [value]);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (inputProps.maxLength && inputProps.maxLength < e.target.value.length) {
+      return;
+    }
+
+    onChange && onChange(e);
+  };
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -255,7 +256,7 @@ export const Input: React.FunctionComponent<Props> = ({
           className={classNames(inputProps.className, {
             disabled,
             focused,
-            highlighted: highlightFilled && inputValue && inputValue.length > 0,
+            highlighted: highlightFilled && value && value.length > 0,
           })}
         >
           {'left' === iconPosition && icon && (
@@ -267,18 +268,17 @@ export const Input: React.FunctionComponent<Props> = ({
           <SInput
             ref={inputRef}
             {...inputProps}
-            onChange={onChange}
-            value={inputValue}
+            onChange={handleChange}
+            value={value}
             data-invalid={inputProps.invalid ? '' : undefined}
             aria-invalid={inputProps.invalid ? true : undefined}
             aria-describedby={errorId}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
           />
-          {isClearable && !disabled && inputValue && (
+          {isClearable && !disabled && value && (
             <SIconWrapper
               onClick={() => {
-                setInputValue('');
                 // manually trigger onChange event to provide value to parent component
                 // @ts-ignore
                 const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
