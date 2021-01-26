@@ -4,7 +4,7 @@ import Select, { Creatable as CreatableSelect } from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
-import { SelectCheckboxProps } from './SelecCheckbox.component';
+import { SelectCheckboxProps } from './SelectCheckbox.component';
 
 export type OptionType = {
   value: string;
@@ -187,7 +187,8 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   highlightFilled?: boolean;
 
   /**
-   * Placeholder text
+   * If default the options will be selected through the list item.
+   * If checkbox the options will be selected through a checkbox.
    *
    * @default 'default'
    **/

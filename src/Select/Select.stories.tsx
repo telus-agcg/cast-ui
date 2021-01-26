@@ -160,7 +160,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
         <Select
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', true)}
-          optionType={'checkbox'}
+          optionType={select('optionType', ['checkbox', 'default'], 'checkbox')}
           isDisabled={boolean('isDisabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           hideSelectedOptions={false}
