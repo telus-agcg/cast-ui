@@ -1,18 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
-import { Link, Select, SelectComponents } from '../';
+import { Link, Select } from '../';
 import { action } from '@storybook/addon-actions';
-import Checkbox from '../Checkbox';
 import styled from 'styled-components';
-
-const SCheckbox = styled(Checkbox)`
-  padding-bottom: 0px;
-`;
-
-const SDiv = styled.div`
-  margin-right: 5px;
-`;
 
 const FlexDiv = styled.div`
   display: flex;
@@ -143,13 +134,6 @@ const colorOptions: any[] = [
   { value: 'orange', label: 'Orange', color: '#FF8B00', isDisabled: true },
 ];
 
-const formatGroupLabel = data => (
-  <div>
-    <span>{data.label} </span>
-    <span>{data.options.length}</span>
-  </div>
-);
-
 type Props = {};
 
 type State = Readonly<any>;
@@ -163,111 +147,28 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     selectedOptions: [],
   };
 
-  handleOceanClick() {
-    const redOption = colorOptions.find(o => o.value === 'red');
-    redOption.isDisabled = !redOption.isDisabled;
-  }
-
-  handleCheck(val) {
-    if (val === 'ocean') {
-      this.handleOceanClick();
-    }
-
-    const isSelectedOption = this.state.selectedOptions.find(
-      o => o.value === val,
-    );
-    let res: any[] = [];
-    if (isSelectedOption) {
-      res = this.state.selectedOptions.filter(option => option.value !== val);
-    } else {
-      res = [
-        ...this.state.selectedOptions,
-        colorOptions.find(o => o.value === val),
-      ];
-    }
-    this.setState(state => ({
-      selectedOptions: res,
-    }));
-  }
-
   handleSelect(e) {
-    const newOceanOption = e.find(o => o.value === 'ocean');
-    const oldOceanOption = this.state.selectedOptions.find(
-      o => o.value === 'ocean',
-    );
-    if (
-      (newOceanOption && !oldOceanOption) ||
-      (!newOceanOption && oldOceanOption)
-    ) {
-      this.handleOceanClick();
-    }
+    const selected = Array.isArray(e) ? e : [e];
     this.setState(state => ({
-      selectedOptions: e,
+      selectedOptions: selected,
     }));
   }
-
-  MenuList = (props: any) => {
-    return (
-      <>
-        <div className={'menuListHeader'}>
-          {this.state.selectedOptions.length} items selected
-        </div>
-        {props.children}
-      </>
-    );
-  };
-
-  MultiValue = (props: any) => {
-    const withComma = `${props.data.label}, `;
-    return (
-      <div>
-        {this.state.selectedOptions[this.state.selectedOptions.length - 1]
-          .value !== props.data.value ? (
-          <SDiv>{withComma} &#32;</SDiv>
-        ) : (
-          <SDiv>{props.data.label}</SDiv>
-        )}
-      </div>
-    );
-  };
-
-  Option = (props: any) => {
-    return (
-      <SelectComponents.Option {...props}>
-        <SCheckbox
-          id={props.value}
-          defaultChecked={props.isSelected}
-          checked={props.isSelected}
-          disabled={props.isDisabled}
-          value={props.value}
-          onChange={() => this.handleCheck(props.value)}
-        >
-          <span>{props.data.label}</span>
-        </SCheckbox>
-      </SelectComponents.Option>
-    );
-  };
 
   render() {
     return (
       <FlexDiv>
         <Select
           creatable={boolean('creatable', true)}
-          isMulti
-          components={{
-            Option: this.Option,
-            MultiValue: this.MultiValue,
-            MenuList: this.MenuList,
-          }}
+          isMulti={boolean('isMulti', true)}
+          optionType={select('optionType', ['checkbox', 'default'], 'checkbox')}
           isDisabled={boolean('isDisabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           hideSelectedOptions={false}
           isClearable={boolean('isClearable', false)}
           highlightFilled={boolean('highlightFilled', false)}
           onChange={e => this.handleSelect(e)}
-          value={this.state.selectedOptions}
+          selectedOption={this.state.selectedOptions}
           closeMenuOnSelect={false}
-          formatGroupLabel={formatGroupLabel}
           options={colorOptions}
         />
         <Link onClick={() => this.setState({ selectedOptions: [] })}>
