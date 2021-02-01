@@ -11,6 +11,7 @@ import {
   windfallTheme,
   azureTheme,
   umberTheme,
+  faluTheme,
 } from '../src/themes';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
 import 'react-dates/initialize';
@@ -81,6 +82,7 @@ addDecorator(
     cobaltTheme,
     verdantTheme,
     windfallTheme,
+    faluTheme,
   ]),
 );
 

@@ -6,7 +6,7 @@ export const defaultColors = {
   white: '#ffffff',
   black: '#000000',
   highlight400: '#E8EEFD',
-  highlight200: '#E8EEFD',
+  highlight200: '#F1F6FF',
   drk800: '#303E47',
   drk600: '#687279',
   drk400: '#A7ADB1',
