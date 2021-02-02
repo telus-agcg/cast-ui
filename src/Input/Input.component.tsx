@@ -192,6 +192,8 @@ const SInputWrapper = styled.div`
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   border: ${(props: Props) => props.theme.input.border};
+  border-radius: ${(props: Props) =>
+    props.theme.common[props.inputSize!].borderRadius};
   border-color: ${(props: Props) =>
     props.invalid
       ? props.theme.validation.borderColor
