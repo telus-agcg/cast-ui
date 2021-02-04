@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Display } from './Display.component';
-import { select } from '@storybook/addon-knobs/react';
+import { select } from '@storybook/addon-knobs';
 
 storiesOf('Typography', module).add(
   'Display',

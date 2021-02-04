@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, select, text } from '@storybook/addon-knobs/react';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import { Link, Select, SelectComponents } from '../';
 import { action } from '@storybook/addon-actions';
 import Checkbox from '../Checkbox';

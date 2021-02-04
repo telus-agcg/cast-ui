@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, select } from '@storybook/addon-knobs/react';
+import { boolean, select } from '@storybook/addon-knobs';
 import { ListGroup, ListGroupItem } from '../';
 
 storiesOf('List Group', module).add(
