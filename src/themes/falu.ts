@@ -342,7 +342,7 @@ export const faluTheme = {
       fontWeight: '500',
       fontSize: '16px',
       borderWidth: '1px',
-      borderColor: '#8D9599',
+      borderColor: faluColors.drk400,
       borderStyle: 'solid',
     },
     subHeading: {
