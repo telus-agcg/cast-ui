@@ -49,27 +49,31 @@ const SReactTab = styled(ReactTabProxy)`
 
   &:focus, &:hover {
     color: ${(props: Props) => props.theme.tabs.hoverColor};
-    border-bottom: ${(props: Props) =>
-      `${props.theme.tabs.bottomBorderWidth} solid ${props.theme.tabs.hoverColor}`};
     outline: none;
     background: ${(props: Props) => props.theme.colors.disabledBackground};
-
     &:after {
       content: "";
       position: absolute;
       height: 5px;
+      width: 100%;
       left: 0;
-      right: 0;
       bottom: 0px;
-      background: ${(props: Props) => props.theme.colors.disabledBackground};
+      background: ${(props: Props) => props.theme.tabs.hoverColor};
     }
   }
   
   &[class$="--selected"]\t {
     color: ${(props: Props) => props.theme.tabs.color};
-    border-bottom: ${(props: Props) =>
-      `${props.theme.tabs.bottomBorderWidth} solid ${props.theme.tabs.borderColor}`};
     font-weight: bold;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 5px;
+      left: 0;
+      bottom: 0px;
+      background: ${(props: Props) => props.theme.tabs.borderColor};
+    }
   }
 
   &[class$="--disabled"] {
