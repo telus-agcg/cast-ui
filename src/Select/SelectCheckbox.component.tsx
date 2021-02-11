@@ -29,6 +29,11 @@ const Div = styled.div`
   margin-right: 5px;
 `;
 
+const MenuItemWrapper = styled.div`
+  max-height: 300px;
+  overflow-y: auto;
+`;
+
 export const SelectCheckboxProps = (res: Props) => {
   const { selectedOptions, options, updateSelectedOptions, isMulti } = res;
 
@@ -104,10 +109,10 @@ export const SelectCheckboxProps = (res: Props) => {
         ? 1
         : 0;
       return (
-        <>
+        <MenuItemWrapper>
           <div className={'menuListHeader'}>{selectedCount} items selected</div>
           {props.children}
-        </>
+        </MenuItemWrapper>
       );
     },
   };
