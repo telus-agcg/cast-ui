@@ -170,7 +170,11 @@ const SInput = styled.input`
 `;
 
 const SIconWrapper = styled.div`
-  margin: 0 4px;
+  margin: 0px;
+  border-radius: 0px;
+  button {
+    border-radius: 0px;
+  }
   > * {
     vertical-align: middle;
   }
