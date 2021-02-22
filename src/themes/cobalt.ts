@@ -716,6 +716,7 @@ export const cobaltTheme = {
     borderTop: '',
     borderBottom: '',
     color: cobaltColors.drk800,
+    brandFont: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
   },
   tabnav: {
     background: cobaltColors.highlight200,
