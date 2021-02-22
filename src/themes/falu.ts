@@ -241,6 +241,7 @@ export const faluTheme = {
     },
   },
   typography: {
+    brandFont: 'Roboto, "Open Sans", arial, sans-serif',
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
