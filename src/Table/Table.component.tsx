@@ -229,6 +229,10 @@ const SWrapperDiv = styled(ReactTable)`
     display: flex;
     align-items: flex-end;
   }
+  &.ReactTable .center-align {
+    text-align: center; // for blocked elements
+    justify-content: center; // for flex elements
+  }
 `;
 
 const collator = new Intl.Collator(undefined, {

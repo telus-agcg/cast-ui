@@ -4,6 +4,7 @@ import Select, { Creatable as CreatableSelect } from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
+import { SelectCheckboxProps } from './SelectCheckbox.component';
 
 export type OptionType = {
   value: string;
@@ -184,6 +185,14 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    **/
   highlightFilled?: boolean;
+
+  /**
+   * If default the options will be selected through the list item.
+   * If checkbox the options will be selected through a checkbox.
+   *
+   * @default 'default'
+   **/
+  optionType?: 'default' | 'checkbox';
 }
 
 const SDiv = styled.div<Props>`
@@ -315,6 +324,7 @@ export class CustomSelect extends React.Component<Props> {
     id: 'select',
     option: {},
     creatable: false,
+    optionType: 'default',
   };
 
   render() {
@@ -331,6 +341,7 @@ export class CustomSelect extends React.Component<Props> {
       isClearable,
       selectedOption,
       invalidText,
+      optionType,
       ...props
     } = this.props;
     const BaseSelectComponent: React.ElementType = creatable
@@ -346,6 +357,18 @@ export class CustomSelect extends React.Component<Props> {
     const selectValue = this.props.value || this.props.selectedOption;
     const valueIsNotEmpty: boolean =
       !!selectValue && (!Array.isArray(selectValue) || selectValue.length > 0);
+
+    const selectCheckboxProps =
+      optionType === 'checkbox'
+        ? {
+            ...SelectCheckboxProps({
+              options,
+              isMulti,
+              selectedOptions: this.props.selectedOption,
+              updateSelectedOptions: this.props.onChange,
+            }),
+          }
+        : {};
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -374,6 +397,7 @@ export class CustomSelect extends React.Component<Props> {
             menuPlacement={'bottom'}
             {...props}
             {...controlSpecificProps}
+            {...selectCheckboxProps}
             className={`react-select-component ${
               this.props.highlightFilled && valueIsNotEmpty ? 'highlighted' : ''
             } ${props.className}`}

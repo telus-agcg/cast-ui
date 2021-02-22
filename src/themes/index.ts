@@ -4,6 +4,7 @@ import { verdantTheme } from './verdant';
 import { windfallTheme } from './windfall';
 import { azureTheme } from './azure';
 import { umberTheme } from './umber';
+import { faluTheme } from './falu';
 
 export const Themes = {
   defaultTheme,
@@ -12,6 +13,7 @@ export const Themes = {
   windfallTheme,
   azureTheme,
   umberTheme,
+  faluTheme,
 };
 
 export * from './default';
@@ -20,4 +22,5 @@ export * from './verdant';
 export * from './windfall';
 export * from './azure';
 export * from './umber';
+export * from './falu';
 export { ThemeProvider } from 'styled-components';
