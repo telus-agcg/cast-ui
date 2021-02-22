@@ -234,6 +234,7 @@ export const cobaltTheme = {
     },
   },
   typography: {
+    brandFont: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
     fontFamily: 'Roboto, Helvetica, arial, sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
@@ -716,7 +717,6 @@ export const cobaltTheme = {
     borderTop: '',
     borderBottom: '',
     color: cobaltColors.drk800,
-    brandFont: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
   },
   tabnav: {
     background: cobaltColors.highlight200,
