@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ErrorMessage from '../Typography/ErrorMessage/index';
-import Select, { Creatable as CreatableSelect } from 'react-select';
+import Select, { Creatable as CreatableSelect, components } from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
@@ -315,6 +315,9 @@ const SDiv = styled.div<Props>`
     }
   }  
 `;
+const SIdWrapper = styled.div`
+  overflow: visible !important;
+`;
 
 export class CustomSelect extends React.Component<Props> {
   static defaultProps = {
@@ -342,6 +345,7 @@ export class CustomSelect extends React.Component<Props> {
       selectedOption,
       invalidText,
       optionType,
+      components: propsComponents,
       ...props
     } = this.props;
     const BaseSelectComponent: React.ElementType = creatable
@@ -369,6 +373,20 @@ export class CustomSelect extends React.Component<Props> {
             }),
           }
         : {};
+
+    const _components = Object.keys(components).reduce((res, key) => {
+      const Component = { ...components, ...propsComponents }[key];
+      res[key] = ({ children, ...rest }) => {
+        return (
+          <SIdWrapper id={`${id}-${key}`}>
+            <Component {...rest}>{children}</Component>
+          </SIdWrapper>
+        );
+      };
+      return res;
+    }, {});
+
+    console.log(components, propsComponents, _components);
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -398,6 +416,7 @@ export class CustomSelect extends React.Component<Props> {
             {...props}
             {...controlSpecificProps}
             {...selectCheckboxProps}
+            components={_components}
             className={`react-select-component ${
               this.props.highlightFilled && valueIsNotEmpty ? 'highlighted' : ''
             } ${props.className}`}
