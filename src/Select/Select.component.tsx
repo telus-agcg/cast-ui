@@ -244,23 +244,27 @@ const SDiv = styled.div<Props>`
         (props.invalid
           ? props.theme.validation.borderColor
           : props.theme.select.borderColor || 'inherit')};
-      .react-select__value-container {
-        color: ${(props: Props) => props.theme.colors.drk800};
-        padding: ${(props: Props) =>
-          props.theme.select[props.selectSize!].padding};
-        font-family: ${(props: Props) => props.theme.typography.fontFamily};
-        font-size: ${(props: Props) =>
-          props.theme.common[props.selectSize!].fontSize};
-        .react-select__input {
+      #select-ValueContainer {
+        min-width: 50%;
+        .react-select__value-container {
+          color: ${(props: Props) => props.theme.colors.drk800};
+          padding: ${(props: Props) =>
+            props.theme.select[props.selectSize!].padding};
           font-family: ${(props: Props) => props.theme.typography.fontFamily};
           font-size: ${(props: Props) =>
             props.theme.common[props.selectSize!].fontSize};
+          .react-select__input {
+            font-family: ${(props: Props) => props.theme.typography.fontFamily};
+            font-size: ${(props: Props) =>
+              props.theme.common[props.selectSize!].fontSize};
+          }
+          
+          .react-select__single-value {
+            color: ${(props: Props) => props.theme.colors.drk800};
+          }    
         }
+      }
         
-        .react-select__single-value {
-          color: ${(props: Props) => props.theme.colors.drk800};
-        }    
-      }  
       
       .react-select__multi-value {
         background-color: ${(props: Props) =>
