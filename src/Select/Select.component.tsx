@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ErrorMessage from '../Typography/ErrorMessage/index';
-import Select, { Creatable as CreatableSelect, components } from 'react-select';
+import Select, { Creatable as CreatableSelect } from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
@@ -244,26 +244,24 @@ const SDiv = styled.div<Props>`
         (props.invalid
           ? props.theme.validation.borderColor
           : props.theme.select.borderColor || 'inherit')};
-      #select-ValueContainer {
-        min-width: 50%;
-        .react-select__value-container {
-          color: ${(props: Props) => props.theme.colors.drk800};
-          padding: ${(props: Props) =>
-            props.theme.select[props.selectSize!].padding};
+      .react-select__value-container {
+        color: ${(props: Props) => props.theme.colors.drk800};
+        padding: ${(props: Props) =>
+          props.theme.select[props.selectSize!].padding};
+        font-family: ${(props: Props) => props.theme.typography.fontFamily};
+        font-size: ${(props: Props) =>
+          props.theme.common[props.selectSize!].fontSize};
+        .react-select__input {
           font-family: ${(props: Props) => props.theme.typography.fontFamily};
           font-size: ${(props: Props) =>
             props.theme.common[props.selectSize!].fontSize};
-          .react-select__input {
-            font-family: ${(props: Props) => props.theme.typography.fontFamily};
-            font-size: ${(props: Props) =>
-              props.theme.common[props.selectSize!].fontSize};
-          }
-          
-          .react-select__single-value {
-            color: ${(props: Props) => props.theme.colors.drk800};
-          }    
         }
+        
+        .react-select__single-value {
+          color: ${(props: Props) => props.theme.colors.drk800};
+        }    
       }
+      
         
       
       .react-select__multi-value {
@@ -318,9 +316,6 @@ const SDiv = styled.div<Props>`
       background-color: ${props => props.theme.colors.highlight200};
     }
   }  
-`;
-const SIdWrapper = styled.div`
-  overflow: visible !important;
 `;
 
 export class CustomSelect extends React.Component<Props> {
@@ -378,20 +373,6 @@ export class CustomSelect extends React.Component<Props> {
           }
         : {};
 
-    const _components = Object.keys(components).reduce((res, key) => {
-      const Component = { ...components, ...propsComponents }[key];
-      res[key] = ({ children, ...rest }) => {
-        return (
-          <SIdWrapper id={`${id}-${key}`}>
-            <Component {...rest}>{children}</Component>
-          </SIdWrapper>
-        );
-      };
-      return res;
-    }, {});
-
-    console.log(components, propsComponents, _components);
-
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
@@ -410,6 +391,8 @@ export class CustomSelect extends React.Component<Props> {
             isMulti={isMulti}
             value={selectedOption}
             options={options}
+            id={id}
+            instanceId={id}
             invalid={invalid}
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
@@ -420,7 +403,6 @@ export class CustomSelect extends React.Component<Props> {
             {...props}
             {...controlSpecificProps}
             {...selectCheckboxProps}
-            components={_components}
             className={`react-select-component ${
               this.props.highlightFilled && valueIsNotEmpty ? 'highlighted' : ''
             } ${props.className}`}
