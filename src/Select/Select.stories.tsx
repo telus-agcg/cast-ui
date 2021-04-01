@@ -17,6 +17,7 @@ storiesOf('Select', module)
       <>
         <Select
           creatable={boolean('creatable', true)}
+          id={'SampleSelect'}
           isMulti={boolean('isMulti', false)}
           isDisabled={boolean('isDisabled', false)}
           isClearable={boolean('isClearable', false)}
@@ -62,6 +63,7 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
       <div>
         <Select
           creatable={boolean('creatable', true)}
+          id={'SampleMultiSelect'}
           isMulti={boolean('isMulti', true)}
           isDisabled={boolean('isDisabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
@@ -158,6 +160,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     return (
       <FlexDiv>
         <Select
+          id={'SampleCheckSelect'}
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', true)}
           optionType={select('optionType', ['checkbox', 'default'], 'checkbox')}
