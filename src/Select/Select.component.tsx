@@ -216,6 +216,7 @@ const SDiv = styled.div<Props>`
       color: ${(props: Props) => props.theme.colors.drk800};                  
      }
      .react-select__option  {
+      padding: 8px 12px;
       background-color: ${(props: Props) =>
         props.theme.select.optionBackgroundColor};
       font-family: ${(props: Props) => props.theme.typography.fontFamily};
@@ -367,12 +368,26 @@ export class CustomSelect extends React.Component<Props> {
             ...SelectCheckboxProps({
               options,
               isMulti,
+              id,
               selectedOptions: this.props.selectedOption,
               updateSelectedOptions: this.props.onChange,
             }),
           }
         : {};
 
+    const DefaultSelectOption = props => {
+      const { innerProps, innerRef } = props;
+      return (
+        <div
+          className={'react-select__option'}
+          ref={innerRef}
+          {...innerProps}
+          id={`${id}-${props.data.label}`}
+        >
+          {props.data.label}
+        </div>
+      );
+    };
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
@@ -392,7 +407,6 @@ export class CustomSelect extends React.Component<Props> {
             value={selectedOption}
             options={options}
             id={id}
-            instanceId={id}
             invalid={invalid}
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
@@ -400,6 +414,9 @@ export class CustomSelect extends React.Component<Props> {
             dropdownColor={theme.primary}
             menuPortalTarget={document.getElementById(uniqueId)}
             menuPlacement={'bottom'}
+            components={
+              optionType === 'default' && { Option: DefaultSelectOption }
+            }
             {...props}
             {...controlSpecificProps}
             {...selectCheckboxProps}

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { SelectComponents } from '..';
+import styled from 'styled-components';
 import Checkbox from '../Checkbox';
 
 const isObject = val => {
@@ -19,6 +19,7 @@ interface Props {
   isMulti?: boolean;
   selectedOptions?: any;
   updateSelectedOptions: (any) => void;
+  id?: string;
 }
 
 const SCheckbox = styled(Checkbox)`
@@ -34,8 +35,12 @@ const MenuItemWrapper = styled.div`
   overflow-y: auto;
 `;
 
+const OptionWrapper = styled.div`
+  width: 100% !important;
+`;
+
 export const SelectCheckboxProps = (res: Props) => {
-  const { selectedOptions, options, updateSelectedOptions, isMulti } = res;
+  const { selectedOptions, options, updateSelectedOptions, isMulti, id } = res;
 
   const selectMulti = (val, updateSelectedOptions) => {
     const isSelectedOption = selectedOptions.find(o => o.value === val);
@@ -67,21 +72,22 @@ export const SelectCheckboxProps = (res: Props) => {
       <span>{data.options.length}</span>
     </div>
   );
-
   const components = {
     Option: (props: any) => {
       return (
         <SelectComponents.Option {...props}>
-          <SCheckbox
-            id={props.value}
-            defaultChecked={props.isSelected}
-            checked={props.isSelected}
-            disabled={props.isDisabled}
-            value={props.value}
-            onChange={() => handleCheck(props.value)}
-          >
-            <span>{props.data.label}</span>
-          </SCheckbox>
+          <OptionWrapper id={`${id}-${props.data.label}`}>
+            <SCheckbox
+              id={props.value}
+              defaultChecked={props.isSelected}
+              checked={props.isSelected}
+              disabled={props.isDisabled}
+              value={props.value}
+              onChange={() => handleCheck(props.value)}
+            >
+              <span>{props.data.label}</span>
+            </SCheckbox>
+          </OptionWrapper>
         </SelectComponents.Option>
       );
     },
