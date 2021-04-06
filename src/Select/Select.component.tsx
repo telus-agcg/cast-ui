@@ -5,6 +5,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
 import { SelectCheckboxProps } from './SelectCheckbox.component';
+import _ from 'lodash';
 
 export type OptionType = {
   value: string;
@@ -216,6 +217,7 @@ const SDiv = styled.div<Props>`
       color: ${(props: Props) => props.theme.colors.drk800};                  
      }
      .react-select__option  {
+      padding: 8px 12px;
       background-color: ${(props: Props) =>
         props.theme.select.optionBackgroundColor};
       font-family: ${(props: Props) => props.theme.typography.fontFamily};
@@ -342,6 +344,7 @@ export class CustomSelect extends React.Component<Props> {
       selectedOption,
       invalidText,
       optionType,
+      components: propsComponents,
       ...props
     } = this.props;
     const BaseSelectComponent: React.ElementType = creatable
@@ -364,11 +367,26 @@ export class CustomSelect extends React.Component<Props> {
             ...SelectCheckboxProps({
               options,
               isMulti,
+              id,
               selectedOptions: this.props.selectedOption,
               updateSelectedOptions: this.props.onChange,
             }),
           }
         : {};
+
+    const DefaultSelectOption = props => {
+      const { innerProps, innerRef } = props;
+      return (
+        <div
+          className={'react-select__option'}
+          ref={innerRef}
+          {...innerProps}
+          id={`${id}-${_.snakeCase(props.data.label)}`}
+        >
+          {props.data.label}
+        </div>
+      );
+    };
 
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -388,6 +406,7 @@ export class CustomSelect extends React.Component<Props> {
             isMulti={isMulti}
             value={selectedOption}
             options={options}
+            id={id}
             invalid={invalid}
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
@@ -395,6 +414,9 @@ export class CustomSelect extends React.Component<Props> {
             dropdownColor={theme.primary}
             menuPortalTarget={document.getElementById(uniqueId)}
             menuPlacement={'bottom'}
+            components={
+              optionType === 'default' && { Option: DefaultSelectOption }
+            }
             {...props}
             {...controlSpecificProps}
             {...selectCheckboxProps}

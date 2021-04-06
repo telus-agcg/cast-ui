@@ -16,6 +16,7 @@ storiesOf('Select', module)
     () => (
       <>
         <Select
+          id={'SampleSelect'}
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', false)}
           isDisabled={boolean('isDisabled', false)}
@@ -29,7 +30,7 @@ storiesOf('Select', module)
           invalidText={text('invalidText', 'A valid value is required')}
           onChange={action('onChange')}
           options={[
-            { value: 'chocolate', label: 'Chocolate' },
+            { value: 'chocolate', label: 'Chocolate River' },
             { value: 'strawberry', label: 'Strawberry' },
             { value: 'vanilla', label: 'Vanilla' },
           ]}
@@ -61,6 +62,7 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
     () => (
       <div>
         <Select
+          id={'SampleMultiSelect'}
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', true)}
           isDisabled={boolean('isDisabled', false)}
@@ -158,6 +160,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     return (
       <FlexDiv>
         <Select
+          id={'SampleCheckSelect'}
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', true)}
           optionType={select('optionType', ['checkbox', 'default'], 'checkbox')}
