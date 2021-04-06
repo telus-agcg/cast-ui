@@ -16,6 +16,7 @@ storiesOf('Select', module)
     () => (
       <>
         <Select
+          id={'SampleSelect'}
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', false)}
           isDisabled={boolean('isDisabled', false)}
@@ -29,7 +30,7 @@ storiesOf('Select', module)
           invalidText={text('invalidText', 'A valid value is required')}
           onChange={action('onChange')}
           options={[
-            { value: 'chocolate', label: 'Chocolate' },
+            { value: 'chocolate', label: 'Chocolate River' },
             { value: 'strawberry', label: 'Strawberry' },
             { value: 'vanilla', label: 'Vanilla' },
           ]}
@@ -61,6 +62,7 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
     () => (
       <div>
         <Select
+          id={'SampleMultiSelect'}
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', true)}
           isDisabled={boolean('isDisabled', false)}
@@ -134,6 +136,25 @@ const colorOptions: any[] = [
   { value: 'orange', label: 'Orange', color: '#FF8B00', isDisabled: true },
 ];
 
+const flavorOptions: any[] = [
+  { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
+  { value: 'blue', label: 'Blue', color: '#0052CC' },
+  { value: 'purple', label: 'Purple', color: '#5243AA' },
+  { value: 'red', label: 'Red', color: '#FF5630' },
+  { value: 'orange', label: 'Orange', color: '#FF8B00', isDisabled: true },
+];
+
+const groupedOptions = [
+  {
+    label: 'Colours',
+    options: colorOptions,
+  },
+  {
+    label: 'Flavours',
+    options: flavorOptions,
+  },
+];
+
 type Props = {};
 
 type State = Readonly<any>;
@@ -147,6 +168,13 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     selectedOptions: [],
   };
 
+  formatGroupLabel = data => (
+    <div>
+      <span>{data.label}</span>
+      <span>{data.options.length}</span>
+    </div>
+  );
+
   handleSelect(e) {
     const selected = Array.isArray(e) ? e : [e];
     this.setState(state => ({
@@ -158,6 +186,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     return (
       <FlexDiv>
         <Select
+          id={'SampleCheckSelect'}
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', true)}
           optionType={select('optionType', ['checkbox', 'default'], 'checkbox')}
@@ -169,7 +198,8 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
           onChange={e => this.handleSelect(e)}
           selectedOption={this.state.selectedOptions}
           closeMenuOnSelect={false}
-          options={colorOptions}
+          options={groupedOptions}
+          formatGroupLabel={this.formatGroupLabel}
         />
         <Link onClick={() => this.setState({ selectedOptions: [] })}>
           Clear
