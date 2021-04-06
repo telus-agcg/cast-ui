@@ -30,7 +30,7 @@ storiesOf('Select', module)
           invalidText={text('invalidText', 'A valid value is required')}
           onChange={action('onChange')}
           options={[
-            { value: 'chocolate', label: 'Chocolate' },
+            { value: 'chocolate', label: 'Chocolate River' },
             { value: 'strawberry', label: 'Strawberry' },
             { value: 'vanilla', label: 'Vanilla' },
           ]}

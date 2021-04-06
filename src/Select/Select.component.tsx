@@ -5,6 +5,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
 import { SelectCheckboxProps } from './SelectCheckbox.component';
+import _ from 'lodash';
 
 export type OptionType = {
   value: string;
@@ -380,7 +381,7 @@ export class CustomSelect extends React.Component<Props> {
           className={'react-select__option'}
           ref={innerRef}
           {...innerProps}
-          id={`${id}-${props.data.label}`}
+          id={`${id}-${_.snakeCase(props.data.label)}`}
         >
           {props.data.label}
         </div>

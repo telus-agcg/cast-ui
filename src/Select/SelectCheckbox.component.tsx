@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Checkbox from '../Checkbox';
+import _ from 'lodash';
 
 const isObject = val => {
   if (val === null) {
@@ -75,7 +76,7 @@ export const SelectCheckboxProps = (res: Props) => {
           className={'react-select__option'}
           ref={props.innerRef}
           {...props.innerProps}
-          id={`${id}-${props.data.label}`}
+          id={`${id}-${_.snakeCase(props.data.label)}`}
         >
           <SCheckbox
             id={props.value}
