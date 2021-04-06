@@ -1,38 +1,16 @@
-# [3.3.0](https://github.com/technekes/cast-ui/compare/v3.2.5...v3.3.0) (2021-02-22)
-
-
-### Bug Fixes
-
-* **button:** fixed shadows and border outline in Button ([4b84aac](https://github.com/technekes/cast-ui/commit/4b84aac2279b66b2b4628d2f14b8a512e18a7915))
-* **ci:** trigger build ([#786](https://github.com/technekes/cast-ui/issues/786)) ([4bdcea1](https://github.com/technekes/cast-ui/commit/4bdcea1078199c7988f98dbc15ff7ed19e7a29f6))
-* **component:** tabs border fix ([f5c31f0](https://github.com/technekes/cast-ui/commit/f5c31f0c8841ca3aa9176200613ce5b8995f11bb))
-* **input:** typing on input jumps to last character fix ([4154235](https://github.com/technekes/cast-ui/commit/41542358c8edbf546c45959bdc38b6e12eb01270))
-* **input.component:** removes margin on button ([5559c36](https://github.com/technekes/cast-ui/commit/5559c36eefb561a97b9dfab4e46ed41cdb27afdd))
-* **panelheader:** rotate panel header chevron ([7963884](https://github.com/technekes/cast-ui/commit/7963884e013adb8e443493645c19723de42cab93))
-* **select checkbox:** fixed maximum menu height for select with checkbox ([#784](https://github.com/technekes/cast-ui/issues/784)) ([1683b5c](https://github.com/technekes/cast-ui/commit/1683b5c1b5338faa3d2f6f32772a457db5311b57))
-
-
-### Features
-
-* **adds a theme:** adds Falu theme to Cast ([d5281d2](https://github.com/technekes/cast-ui/commit/d5281d2f6eaab4b5df3c93665b67ee608a54a35a))
-* **panelheader:** updates panel header chevron styling ([27b7b9e](https://github.com/technekes/cast-ui/commit/27b7b9e79c335ea775c8524b45b83c069a02c420))
-* **select:** checkbox in select field options ([#772](https://github.com/technekes/cast-ui/issues/772)) ([d55c4a6](https://github.com/technekes/cast-ui/commit/d55c4a65aa54d4fc7cc7f032f95226996c6475ea))
-
 ## [3.2.5](https://github.com/technekes/cast-ui/compare/v3.2.4...v3.2.5) (2020-12-03)
 
-
 ### Bug Fixes
 
-* **Input:** background for autocompleted value ([3a67f2b](https://github.com/technekes/cast-ui/commit/3a67f2b3a28250eafad701fdcd098a444beb5743))
-* **Input:** Input text is invisible if selected using autofill ([#755](https://github.com/technekes/cast-ui/issues/755)) ([85a1e77](https://github.com/technekes/cast-ui/commit/85a1e77a047d46ce6fb1776ab13987b4c3c5c34a))
-* **Input:** Make text invisible if selected using autofill ([#758](https://github.com/technekes/cast-ui/issues/758)) ([f0a80f2](https://github.com/technekes/cast-ui/commit/f0a80f29ebb92f699e3724f0ef58075061fdb14b))
+- **Input:** background for autocompleted value ([3a67f2b](https://github.com/technekes/cast-ui/commit/3a67f2b3a28250eafad701fdcd098a444beb5743))
+- **Input:** Input text is invisible if selected using autofill ([#755](https://github.com/technekes/cast-ui/issues/755)) ([85a1e77](https://github.com/technekes/cast-ui/commit/85a1e77a047d46ce6fb1776ab13987b4c3c5c34a))
+- **Input:** Make text invisible if selected using autofill ([#758](https://github.com/technekes/cast-ui/issues/758)) ([f0a80f2](https://github.com/technekes/cast-ui/commit/f0a80f29ebb92f699e3724f0ef58075061fdb14b))
 
 ## [3.2.4](https://github.com/technekes/cast-ui/compare/v3.2.3...v3.2.4) (2020-11-04)
 
-
 ### Bug Fixes
 
-* **pagination:** Accept 0-based page prop ([18ed978](https://github.com/technekes/cast-ui/commit/18ed9786be842d92f88c521b0f4694fba817707b))
+- **pagination:** Accept 0-based page prop ([18ed978](https://github.com/technekes/cast-ui/commit/18ed9786be842d92f88c521b0f4694fba817707b))
 
 ## [3.2.4](https://github.com/technekes/cast-ui/compare/v3.2.3...v3.2.4) (2020-11-03)
 
