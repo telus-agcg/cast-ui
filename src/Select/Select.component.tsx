@@ -262,9 +262,7 @@ const SDiv = styled.div<Props>`
           color: ${(props: Props) => props.theme.colors.drk800};
         }    
       }
-      
-        
-      
+                    
       .react-select__multi-value {
         background-color: ${(props: Props) =>
           props.theme.select.multiSelect.badgeBackgroundColor};
