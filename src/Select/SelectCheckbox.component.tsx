@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { SelectComponents } from '..';
 import Checkbox from '../Checkbox';
 
 const isObject = val => {
@@ -19,6 +18,7 @@ interface Props {
   isMulti?: boolean;
   selectedOptions?: any;
   updateSelectedOptions: (any) => void;
+  id?: string;
 }
 
 const SCheckbox = styled(Checkbox)`
@@ -35,7 +35,7 @@ const MenuItemWrapper = styled.div`
 `;
 
 export const SelectCheckboxProps = (res: Props) => {
-  const { selectedOptions, options, updateSelectedOptions, isMulti } = res;
+  const { selectedOptions, options, updateSelectedOptions, isMulti, id } = res;
 
   const selectMulti = (val, updateSelectedOptions) => {
     const isSelectedOption = selectedOptions.find(o => o.value === val);
@@ -71,7 +71,12 @@ export const SelectCheckboxProps = (res: Props) => {
   const components = {
     Option: (props: any) => {
       return (
-        <SelectComponents.Option {...props}>
+        <div
+          className={'react-select__option'}
+          ref={props.innerRef}
+          {...props.innerProps}
+          id={`${id}-${props.data.label}`}
+        >
           <SCheckbox
             id={props.value}
             defaultChecked={props.isSelected}
@@ -82,7 +87,7 @@ export const SelectCheckboxProps = (res: Props) => {
           >
             <span>{props.data.label}</span>
           </SCheckbox>
-        </SelectComponents.Option>
+        </div>
       );
     },
     MultiValue: (props: any) => {
