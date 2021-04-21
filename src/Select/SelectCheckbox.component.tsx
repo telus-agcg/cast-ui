@@ -46,6 +46,7 @@ export const SelectCheckboxProps = (res: Props) => {
     clearText,
   } = res;
 
+
   const selectMulti = (val, updateSelectedOptions) => {
     const isSelectedOption = selectedOptions.find(o => o.value === val);
     let res: any[] = [];

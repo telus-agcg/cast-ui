@@ -8,6 +8,7 @@ import { SelectCheckboxProps } from './SelectCheckbox.component';
 import _ from 'lodash';
 import { SelectComponents } from '..';
 
+
 export type OptionType = {
   value: string;
   label: string;
@@ -449,6 +450,7 @@ export class CustomSelect extends React.Component<Props> {
                 MultiValueRemove,
                 Option: DefaultSelectOption,
               }
+
             }
             {...props}
             {...controlSpecificProps}
