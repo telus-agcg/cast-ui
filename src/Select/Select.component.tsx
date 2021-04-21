@@ -55,6 +55,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default false
    **/
+  clearText?: any;
+  /**
+   * Specify the clear indciator text
+   *
+   * @default 'clear'
+   **/
   isClearable?: boolean;
   /**
    * Specify custom option components
@@ -347,6 +353,7 @@ export class CustomSelect extends React.Component<Props> {
       isMulti,
       isDisabled,
       isClearable,
+      clearText,
       selectedOption,
       invalidText,
       optionType,
@@ -374,6 +381,7 @@ export class CustomSelect extends React.Component<Props> {
               options,
               isMulti,
               id,
+              clearText,
               selectedOptions: this.props.selectedOption,
               updateSelectedOptions: this.props.onChange,
             }),
@@ -424,6 +432,7 @@ export class CustomSelect extends React.Component<Props> {
             classNamePrefix="react-select"
             isDisabled={isDisabled}
             isClearable={isClearable}
+            clearText={clearText}
             isMulti={isMulti}
             value={selectedOption}
             options={options}
