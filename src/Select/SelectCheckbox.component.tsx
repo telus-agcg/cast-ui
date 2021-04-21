@@ -20,6 +20,7 @@ interface Props {
   selectedOptions?: any;
   updateSelectedOptions: (any) => void;
   id?: string;
+  clearText?: any;
 }
 
 const SCheckbox = styled(Checkbox)`
@@ -36,7 +37,15 @@ const MenuItemWrapper = styled.div`
 `;
 
 export const SelectCheckboxProps = (res: Props) => {
-  const { selectedOptions, options, updateSelectedOptions, isMulti, id } = res;
+  const {
+    selectedOptions,
+    options,
+    updateSelectedOptions,
+    isMulti,
+    id,
+    clearText,
+  } = res;
+
 
   const selectMulti = (val, updateSelectedOptions) => {
     const isSelectedOption = selectedOptions.find(o => o.value === val);
@@ -119,6 +128,17 @@ export const SelectCheckboxProps = (res: Props) => {
           <div className={'menuListHeader'}>{selectedCount} items selected</div>
           {props.children}
         </MenuItemWrapper>
+      );
+    },
+
+    ClearIndicator: props => {
+      const {
+        innerProps: { ref, ...restInnerProps },
+      } = props;
+      return (
+        <div id={`${id}-clear`} {...restInnerProps} ref={ref}>
+          {clearText}
+        </div>
       );
     },
   };

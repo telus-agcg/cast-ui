@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
-import { Link, Select } from '../';
+import { Select } from '../';
 import { action } from '@storybook/addon-actions';
 import styled from 'styled-components';
 
@@ -136,6 +136,25 @@ const colorOptions: any[] = [
   { value: 'orange', label: 'Orange', color: '#FF8B00', isDisabled: true },
 ];
 
+const flavorOptions: any[] = [
+  { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
+  { value: 'blue', label: 'Blue', color: '#0052CC' },
+  { value: 'purple', label: 'Purple', color: '#5243AA' },
+  { value: 'red', label: 'Red', color: '#FF5630' },
+  { value: 'orange', label: 'Orange', color: '#FF8B00', isDisabled: true },
+];
+
+const groupedOptions = [
+  {
+    label: 'Colours',
+    options: colorOptions,
+  },
+  {
+    label: 'Flavours',
+    options: flavorOptions,
+  },
+];
+
 type Props = {};
 
 type State = Readonly<any>;
@@ -148,6 +167,13 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
   state: State = {
     selectedOptions: [],
   };
+
+  formatGroupLabel = data => (
+    <div>
+      <span>{data.label}</span>
+      <span>{data.options.length}</span>
+    </div>
+  );
 
   handleSelect(e) {
     const selected = Array.isArray(e) ? e : [e];
@@ -168,15 +194,17 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           hideSelectedOptions={false}
           isClearable={boolean('isClearable', false)}
+          clearText={'Clear'}
           highlightFilled={boolean('highlightFilled', false)}
           onChange={e => this.handleSelect(e)}
           selectedOption={this.state.selectedOptions}
           closeMenuOnSelect={false}
-          options={colorOptions}
+          options={groupedOptions}
+          formatGroupLabel={this.formatGroupLabel}
         />
-        <Link onClick={() => this.setState({ selectedOptions: [] })}>
+        {/* <Link onClick={() => this.setState({ selectedOptions: [] })}>
           Clear
-        </Link>
+        </Link> */}
       </FlexDiv>
     );
   }
