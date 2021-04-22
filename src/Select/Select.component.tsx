@@ -404,7 +404,6 @@ export class CustomSelect extends React.Component<Props> {
 
     const MultiValueRemove = props => {
       const { innerProps, innerRef } = props;
-
       return (
         <div
           id={`${id}-multi-value_remove-${_.snakeCase(props.data.label)}`}

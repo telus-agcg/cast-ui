@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
-import { Select } from '../';
+import { Link, Select } from '../';
 import { action } from '@storybook/addon-actions';
 import styled from 'styled-components';
 
@@ -194,7 +194,6 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           hideSelectedOptions={false}
           isClearable={boolean('isClearable', false)}
-          clearText={'Clear'}
           highlightFilled={boolean('highlightFilled', false)}
           onChange={e => this.handleSelect(e)}
           selectedOption={this.state.selectedOptions}
@@ -202,9 +201,9 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
           options={groupedOptions}
           formatGroupLabel={this.formatGroupLabel}
         />
-        {/* <Link onClick={() => this.setState({ selectedOptions: [] })}>
+        <Link onClick={() => this.setState({ selectedOptions: [] })}>
           Clear
-        </Link> */}
+        </Link>
       </FlexDiv>
     );
   }
