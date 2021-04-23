@@ -234,6 +234,7 @@ export const cobaltTheme = {
     },
   },
   typography: {
+    brandFont: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
     fontFamily: 'Roboto, Helvetica, arial, sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
