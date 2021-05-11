@@ -240,6 +240,7 @@ export const Input: React.FunctionComponent<Props> = ({
     addonTextPosition,
     addonText,
     icon,
+    id,
     isClearable,
     highlightFilled,
   } = inputProps;
@@ -274,6 +275,7 @@ export const Input: React.FunctionComponent<Props> = ({
           <SInput
             ref={inputRef}
             {...inputProps}
+            id={`${id}-Input`}
             onChange={handleChange}
             value={value}
             data-invalid={inputProps.invalid ? '' : undefined}

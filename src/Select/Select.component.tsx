@@ -435,7 +435,7 @@ export class CustomSelect extends React.Component<Props> {
             isMulti={isMulti}
             value={selectedOption}
             options={options}
-            id={id}
+            id={`${id}-Select`}
             invalid={invalid}
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}

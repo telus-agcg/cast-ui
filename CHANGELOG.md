@@ -1,3 +1,12 @@
+# [3.4.0](https://github.com/technekes/cast-ui/compare/v3.3.0...v3.4.0) (2021-04-23)
+
+
+### Features
+
+* **cobalt theme:** add prop brandTitle to cobalt ([#791](https://github.com/technekes/cast-ui/issues/791)) ([edb3a66](https://github.com/technekes/cast-ui/commit/edb3a66382936c6815203ac2a515196e2c913e8e))
+* **select:** update select ([1dbe3cf](https://github.com/technekes/cast-ui/commit/1dbe3cf115576afbcdd13a1a2edcb25ac21aa46d))
+* **select component:** adds ids to options in Select ([#798](https://github.com/technekes/cast-ui/issues/798)) ([cda6d41](https://github.com/technekes/cast-ui/commit/cda6d414f8cb736253779cf924e72af40c7d8d19))
+
 # [3.3.0](https://github.com/technekes/cast-ui/compare/v3.2.5...v3.3.0) (2021-02-22)
 
 
