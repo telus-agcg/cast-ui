@@ -49,6 +49,12 @@ export type Props = Partial<TableProps> &
      * @default 'No results found'
      **/
     noDataText?: string;
+    /**
+     * From theme provider
+     *
+     * @default 'No results found'
+     **/
+    id?: string;
   };
 
 const SIcon = styled(Icon)`
@@ -260,6 +266,7 @@ export class Table extends React.Component<Props> {
     noDataText: 'No results found',
     pageSizeOptions: PAGE_SIZE_OPTIONS,
   };
+
   render() {
     const {
       data,
@@ -271,12 +278,14 @@ export class Table extends React.Component<Props> {
       ...props
     } = this.props;
 
+    const customProps = { id: props.id };
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
           {...ReactTableDefaults}
           data={data}
-          getTrProps={(state, rowInfo, column) => {
+          getTrProps={(state, rowInfo, column, id) => {
             let className = '';
             if (
               rowInfo &&
@@ -306,6 +315,7 @@ export class Table extends React.Component<Props> {
               className,
             };
           }}
+          getProps={() => customProps}
           showPagination={data.length > 0}
           column={{
             ...ReactTableDefaults.column,

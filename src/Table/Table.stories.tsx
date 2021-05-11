@@ -8,6 +8,8 @@ import { Tooltip } from '../Tooltip';
 import { Checkbox } from '../Checkbox';
 import SampleData from './sampleData';
 
+const testTableId = 'testTableId';
+
 storiesOf('Table', module).add(
   'Table',
   () => {
@@ -15,6 +17,7 @@ storiesOf('Table', module).add(
       <div>
         <Table
           data={SampleData.Customers}
+          id={testTableId}
           pivotBy={['Id']}
           columns={[
             {
@@ -28,7 +31,7 @@ storiesOf('Table', module).add(
             {
               id: 'ContactName',
               Header: 'Contact Name',
-              accessor: 'CompanyName',
+              accessor: 'ContactName',
               className: 'table-column-readonly white-space-nowrap',
               headerClassName: 'table-column-readonly',
             },
@@ -46,7 +49,7 @@ storiesOf('Table', module).add(
                   >
                     <span>
                       <Input
-                        id={`TextInput`}
+                        id={`${testTableId}-${row.index}-${row.column.id}`}
                         addonText="%"
                         addonTextPosition="right"
                         value="90"
@@ -95,9 +98,10 @@ storiesOf('Table', module).add(
               Header: 'Member',
               accessor: 'Member',
               Cell: (row: any) => {
+                console.log(row);
                 return (
                   <Checkbox
-                    id="myInput2"
+                    id={`${testTableId}-${row.index}-${row.column.id}`}
                     cbSize="md"
                     value="2"
                     indeterminate={true}
