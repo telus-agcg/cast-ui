@@ -122,19 +122,18 @@ export const Textarea: React.FunctionComponent<Props> = ({
   children,
   value,
   onChange,
-  id,
   ...textareaProps
 }) => {
   const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';
-
+  const { id } = textareaProps;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <STextarea
-          id={`${id}-Textarea`}
           value={value}
           onChange={onChange}
           {...textareaProps}
+          id={`${id}-Textarea`}
           data-invalid={textareaProps.invalid ? '' : undefined}
           aria-invalid={textareaProps.invalid ? true : undefined}
           aria-describedby={errorId}
