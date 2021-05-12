@@ -395,7 +395,7 @@ export class CustomSelect extends React.Component<Props> {
           className={'react-select__option'}
           ref={innerRef}
           {...innerProps}
-          id={`${id}-${_.snakeCase(props.data.label)}`}
+          id={`${id}-Select-${_.snakeCase(props.data.label)}`}
         >
           {props.data.label}
         </div>
@@ -406,7 +406,9 @@ export class CustomSelect extends React.Component<Props> {
       const { innerProps, innerRef } = props;
       return (
         <div
-          id={`${id}-multi-value_remove-${_.snakeCase(props.data.label)}`}
+          id={`${id}-Select-multi-value_remove-${_.snakeCase(
+            props.data.label,
+          )}`}
           className={'react-select__multi-value__remove'}
           ref={innerRef}
           {...innerProps}

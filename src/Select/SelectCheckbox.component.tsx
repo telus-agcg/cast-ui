@@ -46,7 +46,6 @@ export const SelectCheckboxProps = (res: Props) => {
     clearText,
   } = res;
 
-
   const selectMulti = (val, updateSelectedOptions) => {
     const isSelectedOption = selectedOptions.find(o => o.value === val);
     let res: any[] = [];
@@ -85,7 +84,7 @@ export const SelectCheckboxProps = (res: Props) => {
           className={'react-select__option'}
           ref={props.innerRef}
           {...props.innerProps}
-          id={`${id}-${_.snakeCase(props.data.label)}`}
+          id={`${id}-Select-${_.snakeCase(props.data.label)}`}
         >
           <SCheckbox
             id={props.value}
@@ -136,7 +135,7 @@ export const SelectCheckboxProps = (res: Props) => {
         innerProps: { ref, ...restInnerProps },
       } = props;
       return (
-        <div id={`${id}-clear`} {...restInnerProps} ref={ref}>
+        <div id={`${id}-Select-clear`} {...restInnerProps} ref={ref}>
           {clearText}
         </div>
       );

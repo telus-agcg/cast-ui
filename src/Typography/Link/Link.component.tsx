@@ -4,6 +4,12 @@ import { Themes } from '../../themes';
 
 export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
   /**
+   * The ID of the control
+   *
+   * @default null
+   **/
+  id: string;
+  /**
    * Set an onClick listener
    **/
   onClick?(e: React.MouseEvent<HTMLElement>): void;
@@ -87,24 +93,28 @@ export const Link: React.FunctionComponent<Props> = ({
   children,
   theme,
   ...linkProps
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    {linkProps.disabled ? (
-      <SLink className="disabled" onClick={e => e.preventDefault()}>
-        {children}
-      </SLink>
-    ) : (
-      <SLink
-        className={`${linkProps.solo && 'solo'}  ${className || ''}`}
-        href={linkProps.href}
-        target={linkProps.target}
-        onClick={linkProps.onClick}
-      >
-        {children}
-      </SLink>
-    )}
-  </ThemeProvider>
-);
+}) => {
+  const { id } = linkProps;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      {linkProps.disabled ? (
+        <SLink id={id} className="disabled" onClick={e => e.preventDefault()}>
+          {children}
+        </SLink>
+      ) : (
+        <SLink
+          className={`${linkProps.solo && 'solo'}  ${className || ''}`}
+          href={linkProps.href}
+          target={linkProps.target}
+          onClick={linkProps.onClick}
+          id={id}
+        >
+          {children}
+        </SLink>
+      )}
+    </ThemeProvider>
+  );
+};
 Link.defaultProps = {
   href: 'javascript:void(0)',
   theme: Themes.defaultTheme,
