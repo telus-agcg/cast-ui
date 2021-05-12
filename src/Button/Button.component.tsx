@@ -69,12 +69,20 @@ export class Button extends React.Component<Props, any> {
     btnSize: 'md',
   };
   render() {
-    const { theme, onClick = noop, disabled, children, ...props } = this.props;
+    const {
+      theme,
+      onClick = noop,
+      disabled,
+      children,
+      id,
+      ...props
+    } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SButton
           disabled={disabled}
           onClick={!disabled ? onClick : noop}
+          id={`${id}-Button`}
           {...props}
         >
           {children}
