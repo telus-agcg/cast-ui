@@ -8,7 +8,7 @@ storiesOf('Textarea', module).add(
   'Textarea',
   () => (
     <Textarea
-      id="myTextarea"
+      id={'myTextarea'}
       textareaSize={select('textareaSize', ['sm', 'md', 'lg'], 'md')}
       disabled={boolean('disabled', false)}
       invalid={boolean('invalid', false)}
