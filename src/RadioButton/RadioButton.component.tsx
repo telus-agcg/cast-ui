@@ -202,7 +202,7 @@ export class RadioButton extends React.Component<Props> {
             name={name}
             rbSize={rbSize}
             disabled={disabled}
-            id={id}
+            id={`${id}-RadioButton`}
             value={value}
             checked={checked}
             onChange={this.onChange}

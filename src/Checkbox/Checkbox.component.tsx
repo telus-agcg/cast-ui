@@ -274,7 +274,7 @@ export class Checkbox extends React.Component<Props, State> {
         <>
           <SDiv
             data-checkbox=""
-            id={`checkbox-wrapper-${id}`}
+            id={`${id}-Checkbox`}
             value={value}
             cbSize={cbSize}
             {...props}
