@@ -763,7 +763,7 @@ export const faluTheme = {
   },
   sidenav: {
     fontSize: '14px',
-    color: faluColors.black,
+    color: faluColors.drk800,
     height: '',
     width: '50px',
     openWidth: '220px',
