@@ -1,3 +1,18 @@
+# [3.5.0](https://github.com/technekes/cast-ui/compare/v3.4.0...v3.5.0) (2021-06-18)
+
+
+### Bug Fixes
+
+* **falu:** updating falu sidenav colors from black to drk800 ([e651b1c](https://github.com/technekes/cast-ui/commit/e651b1c0d41db6ecbb523f4e4bd769594149fa6f))
+* **falu.ts and link.component:** fix for link ids and updated Falu sidebar colors ([6ee282d](https://github.com/technekes/cast-ui/commit/6ee282d834d9d844bc588dd004b2f6010dfc19fb))
+
+
+### Features
+
+* adds and updates ids for components ([e2957a5](https://github.com/technekes/cast-ui/commit/e2957a5d770b7f2e17a246b42cf7e18303cb3ea4))
+* update ids for components ([60e5023](https://github.com/technekes/cast-ui/commit/60e5023705a8be191ceb753cede3087f5758c0ee))
+* **table component:** adds id to table component ([48a4f18](https://github.com/technekes/cast-ui/commit/48a4f189ea61b23e6313f19c440df376729d089f))
+
 # [3.4.0](https://github.com/technekes/cast-ui/compare/v3.3.0...v3.4.0) (2021-04-23)
 
 
