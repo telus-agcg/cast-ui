@@ -317,7 +317,6 @@ export const faluTheme = {
     },
     link: {
       fontWeight: '400',
-
       fontSize: '14px',
       color: faluColors.primary,
       textDecoration: 'none',
