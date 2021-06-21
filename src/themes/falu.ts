@@ -673,6 +673,7 @@ export const faluTheme = {
   },
   table: {
     fontSize: '14px',
+    border: `1px solid ${faluColors.lt800}`,
     header: {
       borderBottomColor: faluColors.secondaryHover,
       color: faluColors.drk800,
