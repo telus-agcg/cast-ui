@@ -219,7 +219,7 @@ export const faluTheme = {
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '160%',
-    color: faluColors.primary,
+    color: faluColors.drk800,
     backgroundColor: faluColors.white,
   },
   button: {
