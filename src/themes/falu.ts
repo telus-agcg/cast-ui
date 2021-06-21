@@ -325,8 +325,8 @@ export const faluTheme = {
         color: faluColors.drk400,
       },
       visited: {
-        color: faluColors.primaryFaded,
-        textDecoration: 'underline',
+        color: faluColors.primary,
+        textDecoration: 'none',
       },
       hover: {
         color: faluColors.primaryHover,
