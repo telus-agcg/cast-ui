@@ -325,8 +325,8 @@ export const faluTheme = {
         color: faluColors.drk400,
       },
       visited: {
-        color: faluColors.primaryFaded,
-        textDecoration: 'underline',
+        color: faluColors.primary,
+        textDecoration: 'none',
       },
       hover: {
         color: faluColors.primaryHover,
@@ -673,6 +673,7 @@ export const faluTheme = {
   },
   table: {
     fontSize: '14px',
+    border: `1px solid ${faluColors.lt800}`,
     header: {
       borderBottomColor: faluColors.secondaryHover,
       color: faluColors.drk800,
