@@ -1,3 +1,13 @@
+# [4.0.0](https://github.com/technekes/cast-ui/compare/v3.5.0...v4.0.0) (2021-06-21)
+
+
+* Release (#820) ([ae87e17](https://github.com/technekes/cast-ui/commit/ae87e17f163ea61994a7e168e2ee77221acd888c)), closes [#820](https://github.com/technekes/cast-ui/issues/820) [#816](https://github.com/technekes/cast-ui/issues/816) [#818](https://github.com/technekes/cast-ui/issues/818) [#819](https://github.com/technekes/cast-ui/issues/819)
+
+
+### BREAKING CHANGES
+
+* i need a release
+
 # [3.5.0](https://github.com/technekes/cast-ui/compare/v3.4.0...v3.5.0) (2021-06-18)
 
 
