@@ -29,6 +29,7 @@ export interface Props
    *
    * @default void
    **/
+
   onChange?(
     value: string,
     name: string,
@@ -43,7 +44,6 @@ export interface Props
 }
 
 const SDiv = styled.div``;
-
 const initialState = {
   selected: null,
 };
