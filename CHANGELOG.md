@@ -1,3 +1,21 @@
+# [5.0.0](https://github.com/technekes/cast-ui/compare/v4.0.0...v5.0.0) (2021-06-28)
+
+
+### Bug Fixes
+
+* **falu theme:** add border for falu table ([#818](https://github.com/technekes/cast-ui/issues/818)) ([b38d6f8](https://github.com/technekes/cast-ui/commit/b38d6f87cadfcf5348b2c3a4e67413abdaca42d1))
+* **radio component:** add cursor styling to disabled radio component ([#821](https://github.com/technekes/cast-ui/issues/821)) ([2caf55f](https://github.com/technekes/cast-ui/commit/2caf55fa0e3e4d6bda9fe6490a108362ea30efe8))
+
+
+### Features
+
+* **falu theme:** falu theme update to get new release ([#819](https://github.com/technekes/cast-ui/issues/819)) ([a293e25](https://github.com/technekes/cast-ui/commit/a293e255c4c4dcaed27fa37ff5b7897e707b5c1a))
+
+
+### BREAKING CHANGES
+
+* **falu theme:** i need a release
+
 # [4.0.0](https://github.com/technekes/cast-ui/compare/v3.5.0...v4.0.0) (2021-06-21)
 
 
