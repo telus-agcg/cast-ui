@@ -536,6 +536,7 @@ export const faluTheme = {
       backgroundColor: faluColors.white,
       borderBottom: faluColors.secondaryFaded,
       padding: '8px 16px',
+      color: faluColors.drk800,
     },
     footer: {
       minHeight: '0',
