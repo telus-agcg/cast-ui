@@ -109,15 +109,16 @@ export const PaginationPageButton = styled.button`
   background: ${(props: PaginationPageButtonProps) =>
     props.selected
       ? props.theme.pagination.selectedBackground
-      : props.theme.pagination.background}
-  border: 1px solid ${(props: PaginationPageButtonProps) =>
-    props.theme.pagination.button.borderColor};
+      : props.theme.pagination.background};
+  border: 1px solid
+    ${(props: PaginationPageButtonProps) =>
+      props.theme.pagination.button.borderColor};
   padding: ${(props: PaginationPageButtonProps) =>
-    props.theme.pagination.button.padding[props.btnSize]}
+    props.theme.pagination.button.padding[props.btnSize]};
   font-family: ${(props: PaginationPageButtonProps) =>
     props.theme.typography.fontFamily};
   font-size: ${(props: PaginationPageButtonProps) =>
-    props.theme.common[props.btnSize].fontSize}
+    props.theme.common[props.btnSize].fontSize};
   font-weight: ${(props: PaginationPageButtonProps) =>
     props.theme.pagination.button.fontWeight};
   color: ${(props: PaginationPageButtonProps) => props.theme.pagination.text};
@@ -126,7 +127,7 @@ export const PaginationPageButton = styled.button`
     props.theme.pagination.button.width};
   height: ${(props: PaginationPageButtonProps) =>
     props.theme.pagination.button.height};
-  
+
   &:hover {
     font-weight: ${(props: PaginationPageButtonProps) =>
       props.theme.pagination.hoverFontWeight};
@@ -134,15 +135,17 @@ export const PaginationPageButton = styled.button`
       props.theme.pagination.hoverTextColor};
     background: ${(props: PaginationPageButtonProps) =>
       props.theme.pagination.hoverBackground};
-    border: 1px solid ${(props: PaginationPageButtonProps) =>
-      props.theme.pagination.button.hoverBorderColor};
+    border: 1px solid
+      ${(props: PaginationPageButtonProps) =>
+        props.theme.pagination.button.hoverBorderColor};
     cursor: pointer;
   }
   &:disabled {
     background: ${(props: PaginationPageButtonProps) =>
-      props.theme.pagination.disabledBackground}
-    border: 1px solid ${(props: PaginationPageButtonProps) =>
-      props.theme.pagination.button.disabledBorderColor}
+      props.theme.pagination.disabledBackground};
+    border: 1px solid
+      ${(props: PaginationPageButtonProps) =>
+        props.theme.pagination.button.disabledBorderColor};
     cursor: not-allowed;
   }
   &[data-selected] {
@@ -150,7 +153,8 @@ export const PaginationPageButton = styled.button`
       props.theme.pagination.activeFontWeight};
     color: ${(props: PaginationPageButtonProps) =>
       props.theme.pagination.activeText};
-    border: 1px solid ${(props: PaginationPageButtonProps) =>
-      props.theme.pagination.button.activeBorderColor};
+    border: 1px solid
+      ${(props: PaginationPageButtonProps) =>
+        props.theme.pagination.button.activeBorderColor};
   }
 `;
