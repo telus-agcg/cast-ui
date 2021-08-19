@@ -168,13 +168,13 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     selectedOptions: [],
   };
 
-  formatGroupLabel = (data) => (
+  formatGroupLabel = data => (
     <span>{`${data.options.length} ${data.label}`}</span>
   );
 
   handleSelect(e) {
     const selected = Array.isArray(e) ? e : [e];
-    this.setState((state) => ({
+    this.setState(state => ({
       selectedOptions: selected,
     }));
   }
@@ -192,13 +192,13 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           hideSelectedOptions={false}
           isClearable={boolean('isClearable', false)}
-          onChange={(e) => this.handleSelect(e)}
+          onChange={e => this.handleSelect(e)}
           selectedOption={this.state.selectedOptions}
           closeMenuOnSelect={false}
           options={groupedOptions}
           formatGroupLabel={this.formatGroupLabel}
         />
-        <Link onClick={() => this.setState({ selectedOptions: [] })}>
+        <Link id="link" onClick={() => this.setState({ selectedOptions: [] })}>
           Clear
         </Link>
       </FlexDiv>

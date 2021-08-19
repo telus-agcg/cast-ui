@@ -44,17 +44,30 @@ export const Typography: React.FunctionComponent<Props> = ({
         condimentum massa tellus at turpis.
       </p>
       <Caption>Use for hero images and website headers</Caption>
-      <Link solo={true} href="https://www.tkxs.com" target="_blank">
+      <Link
+        id="typographyLink"
+        solo={true}
+        href="https://www.tkxs.com"
+        target="_blank"
+      >
         Read More
       </Link>
       <br />
       <p>
         Lorem ipsum dolor sit amet, consectetur{' '}
-        <Link href="https://theuselessweb.com/" target="_blank">
+        <Link
+          id="typographyUnvisitedLink"
+          href="https://theuselessweb.com/"
+          target="_blank"
+        >
           unvisited link in text
         </Link>{' '}
         over a{' '}
-        <Link href="https://www.tkxs.com" target="_blank">
+        <Link
+          id="typographyVisitedLink"
+          href="https://www.tkxs.com"
+          target="_blank"
+        >
           visited link in text
         </Link>{' '}
         elit.

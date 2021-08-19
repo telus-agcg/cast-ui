@@ -9,6 +9,7 @@ storiesOf('Typography/Link', module)
     'Standalone',
     () => (
       <Link
+        id="link"
         solo={true}
         href="https://www.tkxs.com"
         target="_blank"
