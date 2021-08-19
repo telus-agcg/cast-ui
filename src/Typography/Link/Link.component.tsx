@@ -8,7 +8,7 @@ export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
    *
    * @default null
    **/
-  id: string;
+  id?: string;
   /**
    * Set an onClick listener
    **/

@@ -219,7 +219,7 @@ export const faluTheme = {
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '160%',
-    color: faluColors.primary,
+    color: faluColors.drk800,
     backgroundColor: faluColors.white,
   },
   button: {
@@ -317,7 +317,6 @@ export const faluTheme = {
     },
     link: {
       fontWeight: '400',
-
       fontSize: '14px',
       color: faluColors.primary,
       textDecoration: 'none',
@@ -325,8 +324,8 @@ export const faluTheme = {
         color: faluColors.drk400,
       },
       visited: {
-        color: faluColors.primaryFaded,
-        textDecoration: 'underline',
+        color: faluColors.primary,
+        textDecoration: 'none',
       },
       hover: {
         color: faluColors.primaryHover,
@@ -414,7 +413,8 @@ export const faluTheme = {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: faluColors.primary,
-    disabledText: faluColors.lt600,
+    disabledRadio: faluColors.drk200,
+    disabledText: faluColors.drk800,
     unselectedColor: faluColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
@@ -432,7 +432,8 @@ export const faluTheme = {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: faluColors.primary,
-    disabledText: faluColors.drk400,
+    disabledCheck: faluColors.drk200,
+    disabledText: faluColors.drk800,
     unselectedColor: faluColors.white,
     selectedColor: faluColors.primary,
     stackedSpacing: '19px',
@@ -535,6 +536,7 @@ export const faluTheme = {
       backgroundColor: faluColors.white,
       borderBottom: faluColors.secondaryFaded,
       padding: '8px 16px',
+      color: faluColors.drk800,
     },
     footer: {
       minHeight: '0',
@@ -671,9 +673,10 @@ export const faluTheme = {
   },
   table: {
     fontSize: '14px',
+    border: `1px solid ${faluColors.lt800}`,
     header: {
       borderBottomColor: faluColors.secondaryHover,
-      color: faluColors.primary,
+      color: faluColors.drk800,
       fontWeight: 'bold',
     },
     row: {
@@ -729,7 +732,7 @@ export const faluTheme = {
     padding: '0 32px ',
     borderTop: '',
     borderBottom: '',
-    color: faluColors.primary,
+    color: faluColors.drk800,
     tab: {
       padding: '4px 0 8px',
       margin: '0 56px 0 0',
@@ -744,8 +747,8 @@ export const faluTheme = {
       iconColor: faluColors.primary,
     },
     activetab: {
-      color: faluColors.primary,
-      fontWeight: 700,
+      color: faluColors.drk800,
+      fontWeight: 500,
       cursor: 'pointer',
       background: 'transparent',
       opacity: '1',
@@ -763,7 +766,7 @@ export const faluTheme = {
   },
   sidenav: {
     fontSize: '14px',
-    color: faluColors.primary,
+    color: faluColors.drk800,
     height: '',
     width: '50px',
     openWidth: '220px',
@@ -819,13 +822,13 @@ export const faluTheme = {
       transition: 'opacity 0.15s',
     },
     activenavItem: {
-      color: faluColors.primary,
+      color: faluColors.danger,
       fontWeight: 700,
       cursor: 'pointer',
       background: faluColors.white,
       opacity: '1',
       leftBorderWidth: '4px',
-      leftBorderColor: faluColors.primary,
+      leftBorderColor: faluColors.danger,
       topNavBorderBottom: `1px solid ${faluColors.lt800}`,
       bottonNavBorderBottom: '',
     },
