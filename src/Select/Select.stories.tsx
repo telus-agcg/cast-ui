@@ -201,7 +201,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
           options={groupedOptions}
           formatGroupLabel={this.formatGroupLabel}
         />
-        <Link onClick={() => this.setState({ selectedOptions: [] })}>
+        <Link id="link" onClick={() => this.setState({ selectedOptions: [] })}>
           Clear
         </Link>
       </FlexDiv>

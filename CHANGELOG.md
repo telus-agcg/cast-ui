@@ -1,90 +1,78 @@
 # [5.0.0](https://github.com/technekes/cast-ui/compare/v4.0.0...v5.0.0) (2021-06-28)
 
-
 ### Bug Fixes
 
-* **falu theme:** add border for falu table ([#818](https://github.com/technekes/cast-ui/issues/818)) ([b38d6f8](https://github.com/technekes/cast-ui/commit/b38d6f87cadfcf5348b2c3a4e67413abdaca42d1))
-* **radio component:** add cursor styling to disabled radio component ([#821](https://github.com/technekes/cast-ui/issues/821)) ([2caf55f](https://github.com/technekes/cast-ui/commit/2caf55fa0e3e4d6bda9fe6490a108362ea30efe8))
-
+- **falu theme:** add border for falu table ([#818](https://github.com/technekes/cast-ui/issues/818)) ([b38d6f8](https://github.com/technekes/cast-ui/commit/b38d6f87cadfcf5348b2c3a4e67413abdaca42d1))
+- **radio component:** add cursor styling to disabled radio component ([#821](https://github.com/technekes/cast-ui/issues/821)) ([2caf55f](https://github.com/technekes/cast-ui/commit/2caf55fa0e3e4d6bda9fe6490a108362ea30efe8))
 
 ### Features
 
-* **falu theme:** falu theme update to get new release ([#819](https://github.com/technekes/cast-ui/issues/819)) ([a293e25](https://github.com/technekes/cast-ui/commit/a293e255c4c4dcaed27fa37ff5b7897e707b5c1a))
-
+- **falu theme:** falu theme update to get new release ([#819](https://github.com/technekes/cast-ui/issues/819)) ([a293e25](https://github.com/technekes/cast-ui/commit/a293e255c4c4dcaed27fa37ff5b7897e707b5c1a))
 
 ### BREAKING CHANGES
 
-* **falu theme:** i need a release
+- **falu theme:** i need a release
 
 # [4.0.0](https://github.com/technekes/cast-ui/compare/v3.5.0...v4.0.0) (2021-06-21)
 
-
-* Release (#820) ([ae87e17](https://github.com/technekes/cast-ui/commit/ae87e17f163ea61994a7e168e2ee77221acd888c)), closes [#820](https://github.com/technekes/cast-ui/issues/820) [#816](https://github.com/technekes/cast-ui/issues/816) [#818](https://github.com/technekes/cast-ui/issues/818) [#819](https://github.com/technekes/cast-ui/issues/819)
-
+- Release (#820) ([ae87e17](https://github.com/technekes/cast-ui/commit/ae87e17f163ea61994a7e168e2ee77221acd888c)), closes [#820](https://github.com/technekes/cast-ui/issues/820) [#816](https://github.com/technekes/cast-ui/issues/816) [#818](https://github.com/technekes/cast-ui/issues/818) [#819](https://github.com/technekes/cast-ui/issues/819)
 
 ### BREAKING CHANGES
 
-* i need a release
+- i need a release
 
 # [3.5.0](https://github.com/technekes/cast-ui/compare/v3.4.0...v3.5.0) (2021-06-18)
 
-
 ### Bug Fixes
 
-* **falu:** updating falu sidenav colors from black to drk800 ([e651b1c](https://github.com/technekes/cast-ui/commit/e651b1c0d41db6ecbb523f4e4bd769594149fa6f))
-* **falu.ts and link.component:** fix for link ids and updated Falu sidebar colors ([6ee282d](https://github.com/technekes/cast-ui/commit/6ee282d834d9d844bc588dd004b2f6010dfc19fb))
-
+- **falu:** updating falu sidenav colors from black to drk800 ([e651b1c](https://github.com/technekes/cast-ui/commit/e651b1c0d41db6ecbb523f4e4bd769594149fa6f))
+- **falu.ts and link.component:** fix for link ids and updated Falu sidebar colors ([6ee282d](https://github.com/technekes/cast-ui/commit/6ee282d834d9d844bc588dd004b2f6010dfc19fb))
 
 ### Features
 
-* adds and updates ids for components ([e2957a5](https://github.com/technekes/cast-ui/commit/e2957a5d770b7f2e17a246b42cf7e18303cb3ea4))
-* update ids for components ([60e5023](https://github.com/technekes/cast-ui/commit/60e5023705a8be191ceb753cede3087f5758c0ee))
-* **table component:** adds id to table component ([48a4f18](https://github.com/technekes/cast-ui/commit/48a4f189ea61b23e6313f19c440df376729d089f))
+- adds and updates ids for components ([e2957a5](https://github.com/technekes/cast-ui/commit/e2957a5d770b7f2e17a246b42cf7e18303cb3ea4))
+- update ids for components ([60e5023](https://github.com/technekes/cast-ui/commit/60e5023705a8be191ceb753cede3087f5758c0ee))
+- **table component:** adds id to table component ([48a4f18](https://github.com/technekes/cast-ui/commit/48a4f189ea61b23e6313f19c440df376729d089f))
 
 # [3.4.0](https://github.com/technekes/cast-ui/compare/v3.3.0...v3.4.0) (2021-04-23)
 
-
 ### Features
 
-* **cobalt theme:** add prop brandTitle to cobalt ([#791](https://github.com/technekes/cast-ui/issues/791)) ([edb3a66](https://github.com/technekes/cast-ui/commit/edb3a66382936c6815203ac2a515196e2c913e8e))
-* **select:** update select ([1dbe3cf](https://github.com/technekes/cast-ui/commit/1dbe3cf115576afbcdd13a1a2edcb25ac21aa46d))
-* **select component:** adds ids to options in Select ([#798](https://github.com/technekes/cast-ui/issues/798)) ([cda6d41](https://github.com/technekes/cast-ui/commit/cda6d414f8cb736253779cf924e72af40c7d8d19))
+- **cobalt theme:** add prop brandTitle to cobalt ([#791](https://github.com/technekes/cast-ui/issues/791)) ([edb3a66](https://github.com/technekes/cast-ui/commit/edb3a66382936c6815203ac2a515196e2c913e8e))
+- **select:** update select ([1dbe3cf](https://github.com/technekes/cast-ui/commit/1dbe3cf115576afbcdd13a1a2edcb25ac21aa46d))
+- **select component:** adds ids to options in Select ([#798](https://github.com/technekes/cast-ui/issues/798)) ([cda6d41](https://github.com/technekes/cast-ui/commit/cda6d414f8cb736253779cf924e72af40c7d8d19))
 
 # [3.3.0](https://github.com/technekes/cast-ui/compare/v3.2.5...v3.3.0) (2021-02-22)
 
-
 ### Bug Fixes
 
-* **button:** fixed shadows and border outline in Button ([4b84aac](https://github.com/technekes/cast-ui/commit/4b84aac2279b66b2b4628d2f14b8a512e18a7915))
-* **ci:** trigger build ([#786](https://github.com/technekes/cast-ui/issues/786)) ([4bdcea1](https://github.com/technekes/cast-ui/commit/4bdcea1078199c7988f98dbc15ff7ed19e7a29f6))
-* **component:** tabs border fix ([f5c31f0](https://github.com/technekes/cast-ui/commit/f5c31f0c8841ca3aa9176200613ce5b8995f11bb))
-* **input:** typing on input jumps to last character fix ([4154235](https://github.com/technekes/cast-ui/commit/41542358c8edbf546c45959bdc38b6e12eb01270))
-* **input.component:** removes margin on button ([5559c36](https://github.com/technekes/cast-ui/commit/5559c36eefb561a97b9dfab4e46ed41cdb27afdd))
-* **panelheader:** rotate panel header chevron ([7963884](https://github.com/technekes/cast-ui/commit/7963884e013adb8e443493645c19723de42cab93))
-* **select checkbox:** fixed maximum menu height for select with checkbox ([#784](https://github.com/technekes/cast-ui/issues/784)) ([1683b5c](https://github.com/technekes/cast-ui/commit/1683b5c1b5338faa3d2f6f32772a457db5311b57))
-
+- **button:** fixed shadows and border outline in Button ([4b84aac](https://github.com/technekes/cast-ui/commit/4b84aac2279b66b2b4628d2f14b8a512e18a7915))
+- **ci:** trigger build ([#786](https://github.com/technekes/cast-ui/issues/786)) ([4bdcea1](https://github.com/technekes/cast-ui/commit/4bdcea1078199c7988f98dbc15ff7ed19e7a29f6))
+- **component:** tabs border fix ([f5c31f0](https://github.com/technekes/cast-ui/commit/f5c31f0c8841ca3aa9176200613ce5b8995f11bb))
+- **input:** typing on input jumps to last character fix ([4154235](https://github.com/technekes/cast-ui/commit/41542358c8edbf546c45959bdc38b6e12eb01270))
+- **input.component:** removes margin on button ([5559c36](https://github.com/technekes/cast-ui/commit/5559c36eefb561a97b9dfab4e46ed41cdb27afdd))
+- **panelheader:** rotate panel header chevron ([7963884](https://github.com/technekes/cast-ui/commit/7963884e013adb8e443493645c19723de42cab93))
+- **select checkbox:** fixed maximum menu height for select with checkbox ([#784](https://github.com/technekes/cast-ui/issues/784)) ([1683b5c](https://github.com/technekes/cast-ui/commit/1683b5c1b5338faa3d2f6f32772a457db5311b57))
 
 ### Features
 
-* **adds a theme:** adds Falu theme to Cast ([d5281d2](https://github.com/technekes/cast-ui/commit/d5281d2f6eaab4b5df3c93665b67ee608a54a35a))
-* **panelheader:** updates panel header chevron styling ([27b7b9e](https://github.com/technekes/cast-ui/commit/27b7b9e79c335ea775c8524b45b83c069a02c420))
-* **select:** checkbox in select field options ([#772](https://github.com/technekes/cast-ui/issues/772)) ([d55c4a6](https://github.com/technekes/cast-ui/commit/d55c4a65aa54d4fc7cc7f032f95226996c6475ea))
+- **adds a theme:** adds Falu theme to Cast ([d5281d2](https://github.com/technekes/cast-ui/commit/d5281d2f6eaab4b5df3c93665b67ee608a54a35a))
+- **panelheader:** updates panel header chevron styling ([27b7b9e](https://github.com/technekes/cast-ui/commit/27b7b9e79c335ea775c8524b45b83c069a02c420))
+- **select:** checkbox in select field options ([#772](https://github.com/technekes/cast-ui/issues/772)) ([d55c4a6](https://github.com/technekes/cast-ui/commit/d55c4a65aa54d4fc7cc7f032f95226996c6475ea))
 
 ## [3.2.5](https://github.com/technekes/cast-ui/compare/v3.2.4...v3.2.5) (2020-12-03)
 
-
 ### Bug Fixes
 
-* **Input:** background for autocompleted value ([3a67f2b](https://github.com/technekes/cast-ui/commit/3a67f2b3a28250eafad701fdcd098a444beb5743))
-* **Input:** Input text is invisible if selected using autofill ([#755](https://github.com/technekes/cast-ui/issues/755)) ([85a1e77](https://github.com/technekes/cast-ui/commit/85a1e77a047d46ce6fb1776ab13987b4c3c5c34a))
-* **Input:** Make text invisible if selected using autofill ([#758](https://github.com/technekes/cast-ui/issues/758)) ([f0a80f2](https://github.com/technekes/cast-ui/commit/f0a80f29ebb92f699e3724f0ef58075061fdb14b))
+- **Input:** background for autocompleted value ([3a67f2b](https://github.com/technekes/cast-ui/commit/3a67f2b3a28250eafad701fdcd098a444beb5743))
+- **Input:** Input text is invisible if selected using autofill ([#755](https://github.com/technekes/cast-ui/issues/755)) ([85a1e77](https://github.com/technekes/cast-ui/commit/85a1e77a047d46ce6fb1776ab13987b4c3c5c34a))
+- **Input:** Make text invisible if selected using autofill ([#758](https://github.com/technekes/cast-ui/issues/758)) ([f0a80f2](https://github.com/technekes/cast-ui/commit/f0a80f29ebb92f699e3724f0ef58075061fdb14b))
 
 ## [3.2.4](https://github.com/technekes/cast-ui/compare/v3.2.3...v3.2.4) (2020-11-04)
 
-
 ### Bug Fixes
 
-* **pagination:** Accept 0-based page prop ([18ed978](https://github.com/technekes/cast-ui/commit/18ed9786be842d92f88c521b0f4694fba817707b))
+- **pagination:** Accept 0-based page prop ([18ed978](https://github.com/technekes/cast-ui/commit/18ed9786be842d92f88c521b0f4694fba817707b))
 
 ## [3.2.4](https://github.com/technekes/cast-ui/compare/v3.2.3...v3.2.4) (2020-11-03)
 

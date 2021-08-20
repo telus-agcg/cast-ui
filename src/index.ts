@@ -14,6 +14,7 @@ export * from './ButtonGroup';
 export * from './Checkbox';
 export * from './CopyToClipboard';
 export * from './Card';
+export * from './DataTable';
 export * from './DatePicker';
 export * from './DatePickerRange';
 export * from './Draggable';
