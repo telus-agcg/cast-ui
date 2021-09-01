@@ -1,15 +1,6 @@
 import * as React from 'react';
-import { Link, Select, SelectComponents } from '../';
-import Checkbox from '../Checkbox';
+import { Link, Select } from '../';
 import styled from 'styled-components';
-
-const SCheckbox = styled(Checkbox)`
-  padding-bottom: 0px;
-`;
-
-const SDiv = styled.div`
-  margin-right: 5px;
-`;
 
 const FlexDiv = styled.div`
   display: flex;
@@ -91,6 +82,12 @@ export default {
     selectedOption: { control: false },
     controlSpecificProps: { control: false },
     menuPortalTarget: { control: false },
+    optionType: {
+      control: {
+        options: ['checkbox', 'default'],
+        type: 'checkbox',
+      },
+    },
   },
 };
 
@@ -190,6 +187,7 @@ MultiSelectWithCheckbox.args = {
   invalidText: 'A valid value is required',
   isClearable: false,
   highlightFilled: false,
+  optionType: 'checkbox',
 };
 
 MultiSelectWithCheckbox.story = {
@@ -222,110 +220,56 @@ const colorOptions: any[] = [
   { value: 'orange', label: 'Orange', color: '#FF8B00', isDisabled: true },
 ];
 
-const formatGroupLabel = data => (
-  <div>
-    <span>{data.label} </span>
-    <span>{data.options.length}</span>
-  </div>
-);
+const flavorOptions: any[] = [
+  { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
+  { value: 'blue', label: 'Blue', color: '#0052CC' },
+  { value: 'purple', label: 'Purple', color: '#5243AA' },
+  { value: 'red', label: 'Red', color: '#FF5630' },
+  { value: 'orange', label: 'Orange', color: '#FF8B00', isDisabled: true },
+];
+
+const groupedOptions = [
+  {
+    label: 'Colours',
+    options: colorOptions,
+  },
+  {
+    label: 'Flavours',
+    options: flavorOptions,
+  },
+];
 
 const MultiSelectCheckbox = args => {
   const [selectedOptions, setSelectedOptions] = React.useState<any[]>([]);
 
-  const handleOceanClick = () => {
-    const redOption = colorOptions.find(o => o.value === 'red');
-    redOption.isDisabled = !redOption.isDisabled;
-  };
-
-  const handleCheck = val => {
-    if (val === 'ocean') {
-      handleOceanClick();
-    }
-
-    const isSelectedOption = selectedOptions.find((o: any) => o.value === val);
-    let res: any[] = [];
-    if (isSelectedOption) {
-      res = selectedOptions.filter((option: any) => option.value !== val);
-    } else {
-      res = [...selectedOptions, colorOptions.find(o => o.value === val)];
-    }
-    setSelectedOptions((state: any) => res);
-  };
-
   const handleSelect = e => {
-    const newOceanOption = e.find(o => o.value === 'ocean');
-    const oldOceanOption = selectedOptions.find(
-      (o: any) => o.value === 'ocean',
-    );
-    if (
-      (newOceanOption && !oldOceanOption) ||
-      (!newOceanOption && oldOceanOption)
-    ) {
-      handleOceanClick();
-    }
-    setSelectedOptions(state => e);
+    const selected = Array.isArray(e) ? e : [e];
+    setSelectedOptions(state => selected);
   };
 
-  const MenuList = (props: any) => {
-    return (
-      <>
-        <div className={'menuListHeader'}>
-          {selectedOptions.length} items selected
-        </div>
-        {props.children}
-      </>
-    );
-  };
-
-  const MultiValue = (props: any) => {
-    const withComma = `${props.data.label}, `;
-    return (
-      <div>
-        {selectedOptions[selectedOptions.length - 1].value !==
-        props.data.value ? (
-          <SDiv>{withComma} &#32;</SDiv>
-        ) : (
-          <SDiv>{props.data.label}</SDiv>
-        )}
-      </div>
-    );
-  };
-
-  const Option = (props: any) => {
-    return (
-      <SelectComponents.Option {...props}>
-        <SCheckbox
-          id={props.value}
-          defaultChecked={props.isSelected}
-          checked={props.isSelected}
-          disabled={props.isDisabled}
-          value={props.value}
-          onChange={() => handleCheck(props.value)}
-        >
-          <span>{props.data.label}</span>
-        </SCheckbox>
-      </SelectComponents.Option>
-    );
-  };
+  const formatGroupLabel = data => (
+    <div>
+      <span>{data.label}</span>
+      <span>{data.options.length}</span>
+    </div>
+  );
 
   return (
     <FlexDiv>
       <Select
+        id={'SampleCheckSelect'}
+        closeMenuOnSelect={false}
+        options={groupedOptions}
+        formatGroupLabel={formatGroupLabel}
         isMulti
-        components={{
-          Option,
-          MultiValue,
-          MenuList,
-        }}
         hideSelectedOptions={false}
         onChange={e => handleSelect(e)}
         value={selectedOptions}
-        closeMenuOnSelect={false}
-        formatGroupLabel={formatGroupLabel}
-        options={colorOptions}
         {...args}
       />
-      <Link onClick={() => setSelectedOptions([])}>Clear</Link>
+      <Link id="link" onClick={() => setSelectedOptions([])}>
+        Clear
+      </Link>
     </FlexDiv>
   );
 };

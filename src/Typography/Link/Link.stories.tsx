@@ -28,6 +28,7 @@ const _Link = args => <Link {...args}>Read More</Link>;
 export const _RegularLink = _Link.bind({});
 
 _RegularLink.args = {
+  id: 'link1',
   href: 'https://www.tkxs.com',
   target: '_blank',
   disabled: false,
@@ -49,6 +50,7 @@ _RegularLink.story = {
 export const _LinkOnClick = _Link.bind({});
 
 _LinkOnClick.args = {
+  id: 'link2',
   disabled: false,
 };
 
@@ -67,7 +69,7 @@ _LinkOnClick.story = {
 export const WithinText = () => (
   <p>
     Lorem ipsum dolor sit amet, consectetur{' '}
-    <Link href="https://www.tkxs.com" target="_blank">
+    <Link id="link3" href="https://www.tkxs.com" target="_blank">
       adipiscing
     </Link>{' '}
     elit.

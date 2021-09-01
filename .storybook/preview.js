@@ -12,6 +12,7 @@ import {
   windfallTheme,
   azureTheme,
   umberTheme,
+  faluTheme,
 } from '../src/themes';
 
 export const decorators = [
@@ -22,6 +23,7 @@ export const decorators = [
     cobaltTheme,
     verdantTheme,
     windfallTheme,
+    faluTheme,
   ]),
 ];
 

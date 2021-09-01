@@ -170,7 +170,11 @@ const SInput = styled.input`
 `;
 
 const SIconWrapper = styled.div`
-  margin: 0 4px;
+  margin: 0px;
+  border-radius: 0px;
+  button {
+    border-radius: 0px;
+  }
   > * {
     vertical-align: middle;
   }
@@ -192,6 +196,8 @@ const SInputWrapper = styled.div`
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
   color: ${(props: Props) => props.theme.reverseText};
   border: ${(props: Props) => props.theme.input.border};
+  border-radius: ${(props: Props) =>
+    props.theme.common[props.inputSize!].borderRadius};
   border-color: ${(props: Props) =>
     props.invalid
       ? props.theme.validation.borderColor
@@ -234,18 +240,20 @@ export const Input: React.FunctionComponent<Props> = ({
     addonTextPosition,
     addonText,
     icon,
+    id,
     isClearable,
     highlightFilled,
   } = inputProps;
 
   const [focused, setFocused] = React.useState(false);
 
-  const [inputValue, setInputValue] = React.useState(
-    (value || '').substring(0, inputProps.maxLength),
-  );
-  React.useEffect(() => {
-    setInputValue(value || '');
-  }, [value]);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (inputProps.maxLength && inputProps.maxLength < e.target.value.length) {
+      return;
+    }
+
+    onChange && onChange(e);
+  };
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -255,7 +263,7 @@ export const Input: React.FunctionComponent<Props> = ({
           className={classNames(inputProps.className, {
             disabled,
             focused,
-            highlighted: highlightFilled && inputValue && inputValue.length > 0,
+            highlighted: highlightFilled && value && value.length > 0,
           })}
         >
           {'left' === iconPosition && icon && (
@@ -267,18 +275,18 @@ export const Input: React.FunctionComponent<Props> = ({
           <SInput
             ref={inputRef}
             {...inputProps}
-            onChange={onChange}
-            value={inputValue}
+            id={`${id}-Input`}
+            onChange={handleChange}
+            value={value}
             data-invalid={inputProps.invalid ? '' : undefined}
             aria-invalid={inputProps.invalid ? true : undefined}
             aria-describedby={errorId}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
           />
-          {isClearable && !disabled && inputValue && (
+          {isClearable && !disabled && value && (
             <SIconWrapper
               onClick={() => {
-                setInputValue('');
                 // manually trigger onChange event to provide value to parent component
                 // @ts-ignore
                 const nativeInputValueSetter = Object.getOwnPropertyDescriptor(

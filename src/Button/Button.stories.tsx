@@ -48,7 +48,11 @@ export default {
   },
 };
 
-export const _Button = args => <Button {...args}>Submit Button</Button>;
+export const _Button = args => (
+  <Button id={'testId'} {...args}>
+    Submit Button
+  </Button>
+);
 
 _Button.args = {
   outline: false,

@@ -197,8 +197,8 @@ const SInput = styled.input`
         props.theme.checkbox[props.cbSize!].indeterminateTopPosition};;
     }
     &:disabled + label:before {
-      background-color: ${(props: Props) => props.theme.colors.secondaryFaded};
-      border-color: ${(props: Props) => props.theme.colors.secondaryFaded};
+      background-color: ${(props: Props) => props.theme.checkbox.disabledCheck};
+      border-color: ${(props: Props) => props.theme.checkbox.disabledCheck};
     }    
 `;
 
@@ -274,7 +274,7 @@ export class Checkbox extends React.Component<Props, State> {
         <>
           <SDiv
             data-checkbox=""
-            id={`checkbox-wrapper-${id}`}
+            id={`${id}-Checkbox`}
             value={value}
             cbSize={cbSize}
             {...props}

@@ -137,7 +137,8 @@ const SInput = styled.input<Partial<Props>>`
   }
   &:disabled + label:before {
     border-color: ${(props: Partial<Props>) =>
-      props.theme.radioButton.disabledText};
+      props.theme.radioButton.disabledRadio};
+    cursor: not-allowed;
   }
   &:checked + label:before {
     border-color: ${(props: Partial<Props>) =>
@@ -147,9 +148,9 @@ const SInput = styled.input<Partial<Props>>`
   }
   &:disabled:checked + label:before {
     border-color: ${(props: Partial<Props>) =>
-      props.theme.radioButton.disabledText};
+      props.theme.radioButton.disabledRadio};
     background-color:  ${(props: Partial<Props>) =>
-      props.theme.radioButton.disabledText};
+      props.theme.radioButton.disabledRadio};
   }
 `;
 

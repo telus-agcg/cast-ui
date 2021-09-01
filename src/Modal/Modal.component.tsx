@@ -76,7 +76,7 @@ const modalSizeRules: Function = (modalSize: string, theme: any) => {
 
 const SReactModal = styled(ReactModal)`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
-  color: ${(props: any) => props.theme.colors.primary};
+  color: ${(props: any) => props.theme.modal.body.color};
   outline: none;
   ${(props: any) => modalSizeRules(props.modalSize, props.theme)};
   display: flex;

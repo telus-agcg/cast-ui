@@ -6,6 +6,8 @@ import { Tooltip } from '../Tooltip';
 import { Checkbox } from '../Checkbox';
 import SampleData from './sampleData';
 
+const testTableId = 'testTableId';
+
 export default {
   title: 'Table',
   component: Table,
@@ -106,6 +108,7 @@ export const _Table = args => {
   return (
     <div>
       <Table
+        id={testTableId}
         data={SampleData.Customers}
         pivotBy={['Id']}
         columns={[
@@ -138,7 +141,7 @@ export const _Table = args => {
                 >
                   <span>
                     <Input
-                      id={`TextInput`}
+                      id={`${testTableId}-${row.index}-${row.column.id}`}
                       addonText="%"
                       addonTextPosition="right"
                       value="90"
@@ -189,7 +192,7 @@ export const _Table = args => {
             Cell: (row: any) => {
               return (
                 <Checkbox
-                  id="myInput2"
+                  id={`${testTableId}-${row.index}-${row.column.id}`}
                   cbSize="md"
                   value="2"
                   indeterminate={true}

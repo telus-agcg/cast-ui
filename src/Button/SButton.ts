@@ -174,8 +174,10 @@ const SButton = styled.button`
   outline: none !important;
   &:focus {
     outline: none !important;
-    border-color: ${(props: Props) => props.theme.colors.primary};
-    box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+    border-color: ${(props: Props) =>
+      props.theme.colors[props.btnStyle || 'primary']};
+    box-shadow: 0 0 3px
+      ${(props: Props) => props.theme.colors[props.btnStyle || 'primary']};
   }
   &:hover,
   &:active {

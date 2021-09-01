@@ -1,6 +1,6 @@
-import ReactTable from 'react-table';
-import treeTableHOC from 'react-table/lib/hoc/treeTable';
-import selectTableHOC from 'react-table/lib/hoc/selectTable';
+import ReactTable from 'react-table-6';
+import treeTableHOC from 'react-table-6/lib/hoc/treeTable';
+import selectTableHOC from 'react-table-6/lib/hoc/selectTable';
 
 import { Table, Props as TableProps } from './Table.component';
 

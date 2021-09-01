@@ -4,6 +4,9 @@ import Select, { Creatable as CreatableSelect } from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
+import { SelectCheckboxProps } from './SelectCheckbox.component';
+import _ from 'lodash';
+import { SelectComponents } from '..';
 
 export type OptionType = {
   value: string;
@@ -51,6 +54,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * Specify if the selected options are clearable
    *
    * @default false
+   **/
+  clearText?: any;
+  /**
+   * Specify the clear indciator text
+   *
+   * @default 'clear'
    **/
   isClearable?: boolean;
   /**
@@ -184,6 +193,14 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    **/
   highlightFilled?: boolean;
+
+  /**
+   * If default the options will be selected through the list item.
+   * If checkbox the options will be selected through a checkbox.
+   *
+   * @default 'default'
+   **/
+  optionType?: 'default' | 'checkbox';
 }
 
 const SDiv = styled.div<Props>`
@@ -207,6 +224,7 @@ const SDiv = styled.div<Props>`
       color: ${(props: Props) => props.theme.colors.drk800};                  
      }
      .react-select__option  {
+      padding: 8px 12px;
       background-color: ${(props: Props) =>
         props.theme.select.optionBackgroundColor};
       font-family: ${(props: Props) => props.theme.typography.fontFamily};
@@ -256,6 +274,11 @@ const SDiv = styled.div<Props>`
       .react-select__multi-value {
         background-color: ${(props: Props) =>
           props.theme.select.multiSelect.badgeBackgroundColor};
+          .react-select__multi-value__remove {
+            div:first-child {
+              display: flex;
+            }
+          }
       }
       
       &.react-select__control--is-disabled {
@@ -315,6 +338,7 @@ export class CustomSelect extends React.Component<Props> {
     id: 'select',
     option: {},
     creatable: false,
+    optionType: 'default',
   };
 
   render() {
@@ -329,8 +353,11 @@ export class CustomSelect extends React.Component<Props> {
       isMulti,
       isDisabled,
       isClearable,
+      clearText,
       selectedOption,
       invalidText,
+      optionType,
+      components: propsComponents,
       ...props
     } = this.props;
     const BaseSelectComponent: React.ElementType = creatable
@@ -347,6 +374,50 @@ export class CustomSelect extends React.Component<Props> {
     const valueIsNotEmpty: boolean =
       !!selectValue && (!Array.isArray(selectValue) || selectValue.length > 0);
 
+    const selectCheckboxProps =
+      optionType === 'checkbox'
+        ? {
+            ...SelectCheckboxProps({
+              options,
+              isMulti,
+              id,
+              clearText,
+              selectedOptions: this.props.selectedOption,
+              updateSelectedOptions: this.props.onChange,
+            }),
+          }
+        : {};
+
+    const DefaultSelectOption = props => {
+      const { innerProps, innerRef } = props;
+      return (
+        <div
+          className={'react-select__option'}
+          ref={innerRef}
+          {...innerProps}
+          id={`${id}-Select-${_.snakeCase(props.data.label)}`}
+        >
+          {props.data.label}
+        </div>
+      );
+    };
+
+    const MultiValueRemove = props => {
+      const { innerProps, innerRef } = props;
+      return (
+        <div
+          id={`${id}-Select-multi-value_remove-${_.snakeCase(
+            props.data.label,
+          )}`}
+          className={'react-select__multi-value__remove'}
+          ref={innerRef}
+          {...innerProps}
+        >
+          <SelectComponents.MultiValueRemove />
+        </div>
+      );
+    };
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
@@ -362,9 +433,11 @@ export class CustomSelect extends React.Component<Props> {
             classNamePrefix="react-select"
             isDisabled={isDisabled}
             isClearable={isClearable}
+            clearText={clearText}
             isMulti={isMulti}
             value={selectedOption}
             options={options}
+            id={`${id}-Select`}
             invalid={invalid}
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
@@ -372,8 +445,15 @@ export class CustomSelect extends React.Component<Props> {
             dropdownColor={theme.primary}
             menuPortalTarget={document.getElementById(uniqueId)}
             menuPlacement={'bottom'}
+            components={
+              optionType === 'default' && {
+                MultiValueRemove,
+                Option: DefaultSelectOption,
+              }
+            }
             {...props}
             {...controlSpecificProps}
+            {...selectCheckboxProps}
             className={`react-select-component ${
               this.props.highlightFilled && valueIsNotEmpty ? 'highlighted' : ''
             } ${props.className}`}

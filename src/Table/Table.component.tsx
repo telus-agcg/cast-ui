@@ -5,7 +5,7 @@ import ReactTable, {
   TableProps,
   ReactTableDefaults,
   ControlledStateCallbackProps,
-} from 'react-table';
+} from 'react-table-6';
 import { Themes } from '../themes';
 import Icon from 'react-icons-kit';
 import { chevronUp } from 'react-icons-kit/fa/chevronUp';
@@ -13,7 +13,7 @@ import { chevronDown } from 'react-icons-kit/fa/chevronDown';
 import Pagination, {
   PAGE_SIZE_OPTIONS,
 } from '../Pagination/Pagination.component';
-import 'react-table/react-table.css';
+import 'react-table-6/react-table.css';
 
 export type Props = Partial<TableProps> &
   Partial<ControlledStateCallbackProps> & {
@@ -49,6 +49,12 @@ export type Props = Partial<TableProps> &
      * @default 'No results found'
      **/
     noDataText?: string;
+    /**
+     * From theme provider
+     *
+     * @default 'No results found'
+     **/
+    id?: string;
   };
 
 const SIcon = styled(Icon)`
@@ -229,6 +235,10 @@ const SWrapperDiv = styled(ReactTable)`
     display: flex;
     align-items: flex-end;
   }
+  &.ReactTable .center-align {
+    text-align: center; // for blocked elements
+    justify-content: center; // for flex elements
+  }
 `;
 
 const collator = new Intl.Collator(undefined, {
@@ -256,6 +266,7 @@ export class Table extends React.Component<Props> {
     noDataText: 'No results found',
     pageSizeOptions: PAGE_SIZE_OPTIONS,
   };
+
   render() {
     const {
       data,
@@ -267,12 +278,14 @@ export class Table extends React.Component<Props> {
       ...props
     } = this.props;
 
+    const customProps = { id: props.id };
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
           {...ReactTableDefaults}
           data={data}
-          getTrProps={(state, rowInfo, column) => {
+          getTrProps={(state, rowInfo, column, id) => {
             let className = '';
             if (
               rowInfo &&
@@ -302,6 +315,7 @@ export class Table extends React.Component<Props> {
               className,
             };
           }}
+          getProps={() => customProps}
           showPagination={data.length > 0}
           column={{
             ...ReactTableDefaults.column,
