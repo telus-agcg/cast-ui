@@ -1,25 +1,85 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { number, select, text, boolean } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import { Pagination } from '../index';
 
-storiesOf('Pagination', module).add(
-  'Pagination',
-  () => {
-    return (
-      <Pagination
-        onPageChange={action('Page changed!')}
-        pages={number('pages', 10)}
-        page={number('page', 3)}
-        pageSize={select('pageSize', [10, 20, 50, 100], 20)}
-        showPageSizeOptions={boolean('showPageSizeOptions', true)}
-        onPageSizeChange={action('Page Size changed')}
-        rowsText={text('rowsText', '')}
-      />
-    );
+export default {
+  title: 'Pagination',
+  component: Pagination,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    onPageChange: {
+      action: {
+        type: 'onPageChange',
+      },
+    },
+    onPageSizeChange: {
+      action: {
+        type: 'onPageSizeChange',
+      },
+    },
+    pages: {
+      control: {
+        type: 'number',
+      },
+    },
+    page: {
+      control: {
+        type: 'number',
+      },
+    },
+    pageSize: {
+      options: [10, 20, 50, 100],
+      control: {
+        type: 'select',
+      },
+    },
+    showPageSizeOptions: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    rowsText: {
+      control: {
+        type: 'text',
+      },
+    },
+    PageButtonComponent: {
+      control: false,
+    },
+    PageButtonNextPrevComponent: {
+      control: false,
+    },
+    PageButtonFirstLastComponent: {
+      control: false,
+    },
+    children: {
+      control: false,
+    },
+    pageSizeOptions: {
+      control: false,
+    },
+    rowsSelectorText: {
+      control: false,
+    },
   },
-  {
+};
+
+export const _Pagination = args => {
+  return <Pagination {...args} />;
+};
+
+_Pagination.args = {
+  pages: 10,
+  page: 3,
+  pageSize: 20,
+  showPageSizeOptions: true,
+};
+
+_Pagination.story = {
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -28,4 +88,4 @@ storiesOf('Pagination', module).add(
         `,
     },
   },
-);
+};

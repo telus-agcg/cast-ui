@@ -1,195 +1,202 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { number, boolean, select, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-
-import { Icon } from 'react-icons-kit';
+import Icon from 'react-icons-kit';
 import { ic_search as icSearch } from 'react-icons-kit/md';
 
 import { Input, IconButton } from '../';
 
-storiesOf('Input', module)
-  .add('Basic', () => (
-    <Input
-      id="myInput"
-      type={select('type', ['text', 'number', 'email', 'password'], 'text')}
-      autoComplete={select('autoComplete', ['on', 'off'], 'on')}
-      disabled={boolean('disabled', false)}
-      inputSize={select('inputSize', ['sm', 'md', 'lg'], 'md')}
-      invalid={boolean('invalid', false)}
-      invalidText={text('invalidText', 'A valid value is required')}
-      invalidTextColor={text('invalidTextColor', '')}
-      maxLength={number('maxLength', 1000)}
-      placeholder={text('placeholder', 'Please enter some text')}
-      required={boolean('required', false)}
-      value={text('value', '')}
-      onChange={e => {
-        action('Changed!');
-      }}
+export default {
+  title: 'Input',
+  component: Input,
+  argTypes: {
+    type: {
+      options: ['text', 'number', 'email', 'password'],
+      control: {
+        type: 'select',
+      },
+    },
+    autoComplete: {
+      options: ['on', 'off'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    inputSize: {
+      options: ['sm', 'md', 'lg'],
+      control: { type: 'inline-radio' },
+    },
+    invalid: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    invalidText: {
+      control: {
+        type: 'text',
+      },
+    },
+    invalidTextColor: {
+      control: {
+        type: 'color',
+      },
+    },
+    maxLength: {
+      type: {
+        control: 'number',
+      },
+    },
+    placeholder: {
+      control: {
+        type: 'text',
+      },
+    },
+    required: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    value: {
+      control: {
+        type: 'text',
+      },
+    },
+    onChange: {
+      action: {
+        type: 'onChange',
+      },
+    },
+    iconPosition: {
+      options: ['right', 'left'],
+      control: {
+        type: 'select',
+      },
+    },
+    addonTextPosition: {
+      options: ['right', 'left'],
+      control: {
+        type: 'select',
+      },
+    },
+    addonText: {
+      control: {
+        type: 'text',
+      },
+    },
+    isClearable: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    highlightFilled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    id: {
+      control: false,
+    },
+    icon: {
+      control: false,
+    },
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+};
+
+const _Input = args => <Input {...args} />;
+
+export const _InputBasic = _Input.bind({});
+_InputBasic.args = {
+  id: 'basic_input',
+  type: 'text',
+  autoComplete: 'on',
+  disabled: false,
+  invalid: false,
+  inputSize: 'md',
+  invalidText: 'A valid value is required',
+  maxLength: 1000,
+  placeholder: 'Please enter some text',
+  required: false,
+};
+
+export const _InputWithIconButton = _Input.bind({});
+_InputWithIconButton.args = {
+  id: 'with_icon_button',
+  type: 'text',
+  autoComplete: 'on',
+  disabled: false,
+  invalid: false,
+  invalidText: 'A valid value is required',
+  maxLength: 1000,
+  inputSize: 'md',
+  placeholder: 'Please enter some text',
+  required: false,
+  iconPosition: 'right',
+  icon: (
+    <IconButton
+      icon={icSearch}
+      rounded={false}
+      btnSize="md"
+      onClick={e => alert('Searching....')}
     />
-  ))
-  .add(
-    'with Icon Button',
-    () => {
-      const inputSize = select('inputSize', ['sm', 'md', 'lg'], 'md');
-      return (
-        <Input
-          id="myInput"
-          type={select('type', ['text', 'number', 'email', 'password'], 'text')}
-          autoComplete={select('autoComplete', ['on', 'off'], 'on')}
-          disabled={boolean('disabled', false)}
-          inputSize={inputSize}
-          invalid={boolean('invalid', false)}
-          invalidText={text('invalidText', 'A valid value is required')}
-          invalidTextColor={text('invalidTextColor', '')}
-          maxLength={number('maxLength', 1000)}
-          placeholder={text('placeholder', 'Please enter some text')}
-          required={boolean('required', false)}
-          value={text('value', '')}
-          icon={
-            <IconButton
-              icon={icSearch}
-              rounded={false}
-              btnSize={inputSize}
-              onClick={e => alert('Searching....')}
-            />
-          }
-          iconPosition={select('iconPosition', ['right', 'left'], 'right')}
-          onChange={e => {
-            action('Changed!');
-          }}
-        />
-      );
-    },
-    {
-      info: {
-        text: `
-### Notes
+  ),
+};
 
-The Input component accepts 2 additional props, **icon** and **iconPosition** that allow the Input to prepend or append a *JSX.Element*, *React.Component*, *React.FunctionComponent* or a *string*.
+export const _InputWithIconButton2 = _Input.bind({});
+_InputWithIconButton2.args = {
+  id: 'with_icon_button',
+  type: 'text',
+  autoComplete: 'on',
+  disabled: false,
+  invalid: false,
+  invalidText: 'A valid value is required',
+  maxLength: 1000,
+  inputSize: 'md',
+  placeholder: 'Please enter some text',
+  required: false,
+  iconPosition: 'right',
+  icon: <Icon size={20} icon={icSearch} />,
+};
 
-In this example, the **icon** is the *Icon* component from [react-icons-kit](https://react-icons-kit.now.sh/)
-        `,
-      },
-    },
-  )
-  .add(
-    'with Icon 2',
-    () => {
-      const inputSize = select('inputSize', ['sm', 'md', 'lg'], 'md');
-      return (
-        <Input
-          id="myInput"
-          type={select('type', ['text', 'number', 'email', 'password'], 'text')}
-          autoComplete={select('autoComplete', ['on', 'off'], 'on')}
-          disabled={boolean('disabled', false)}
-          inputSize={inputSize}
-          invalid={boolean('invalid', false)}
-          invalidText={text('invalidText', 'A valid value is required')}
-          invalidTextColor={text('invalidTextColor', '')}
-          maxLength={number('maxLength', 1000)}
-          placeholder={text('placeholder', 'Please enter some text')}
-          required={boolean('required', false)}
-          value={text('value', '')}
-          icon={<Icon size={20} icon={icSearch} />}
-          iconPosition={select('iconPosition', ['right', 'left'], 'right')}
-          onChange={e => {
-            action('Changed!');
-          }}
-        />
-      );
-    },
-    {
-      info: {
-        text: `
-### Notes
+export const _InputWithAddonText = _Input.bind({});
+_InputWithAddonText.args = {
+  id: 'with_icon_button',
+  type: 'text',
+  autoComplete: 'on',
+  disabled: false,
+  invalid: false,
+  invalidText: 'A valid value is required',
+  maxLength: 1000,
+  inputSize: 'md',
+  placeholder: 'Please enter some text',
+  required: false,
+  addonText: '$',
+  addonTextPosition: 'right',
+};
 
-The Input component accepts 2 additional props, **icon** and **iconPosition** that allow the Input to prepend or append a *JSX.Element*, *React.Component*, *React.FunctionComponent* or a *string*.
-
-In this example, the **icon** is the *Icon* component from [react-icons-kit](https://react-icons-kit.now.sh/)
-        `,
-      },
-    },
-  )
-  .add('with Addon Text', () => {
-    const inputSize = select('inputSize', ['sm', 'md', 'lg'], 'md');
-    return (
-      <Input
-        id="myInput"
-        type={select('type', ['text', 'number', 'email', 'password'], 'text')}
-        autoComplete={select('autoComplete', ['on', 'off'], 'on')}
-        disabled={boolean('disabled', false)}
-        inputSize={inputSize}
-        invalid={boolean('invalid', false)}
-        invalidText={text('invalidText', 'A valid value is required')}
-        invalidTextColor={text('invalidTextColor', '')}
-        maxLength={number('maxLength', 1000)}
-        placeholder={text('placeholder', 'Please enter some text')}
-        required={boolean('required', false)}
-        value={text('value', '')}
-        addonText={text('addonText', '$')}
-        addonTextPosition={select(
-          'addonTextPosition',
-          ['right', 'left'],
-          'right',
-        )}
-        onChange={e => {
-          action('Changed!');
-        }}
-      />
-    );
-  })
-  .add(
-    'with all options',
-    () => {
-      const inputSize = select('inputSize', ['sm', 'md', 'lg'], 'md');
-      return (
-        <Input
-          id="myInput"
-          type={select('type', ['text', 'number', 'email', 'password'], 'text')}
-          autoComplete={select('autoComplete', ['on', 'off'], 'on')}
-          disabled={boolean('disabled', false)}
-          inputSize={inputSize}
-          invalid={boolean('invalid', false)}
-          invalidText={text('invalidText', 'A valid value is required')}
-          invalidTextColor={text('invalidTextColor', '')}
-          maxLength={number('maxLength', 1000)}
-          placeholder={text('placeholder', 'Please enter some text')}
-          required={boolean('required', false)}
-          value={text('value', '')}
-          addonText={text('addonText', '$')}
-          highlightFilled={boolean('highlightFilled', true)}
-          isClearable={boolean('isClearable', true)}
-          addonTextPosition={select(
-            'addonTextPosition',
-            ['right', 'left'],
-            'right',
-          )}
-          icon={
-            boolean('withIcon', true) ? (
-              <Icon size={20} icon={icSearch} />
-            ) : (
-              undefined
-            )
-          }
-          iconPosition={select('iconPosition', ['right', 'left'], 'right')}
-          onChange={e => {
-            action('Changed!');
-          }}
-        />
-      );
-    },
-    {
-      info: {
-        text: `
-### Notes
-
-The Input component accepts 2 additional props, **addonText** and **addonTextPosition** that allow the Input to prepend or append a *string* or *character set* such as currency codes.
-
-By using the *addonText* prop, the Input component text alignment is shifted to right otherwise it remains left or default.
-
-In this example, the **addonText** is the dollar sign ($).
-        `,
-      },
-    },
-  );
+export const _InputWithAllOptions = _Input.bind({});
+_InputWithAllOptions.args = {
+  id: 'with_icon_button',
+  type: 'text',
+  autoComplete: 'on',
+  disabled: false,
+  invalid: false,
+  invalidText: 'A valid value is required',
+  maxLength: 1000,
+  inputSize: 'md',
+  placeholder: 'Please enter some text',
+  required: false,
+  addonText: '$',
+  addonTextPosition: 'right',
+  iconPosition: 'right',
+  icon: <Icon size={20} icon={icSearch} />,
+  isClearable: true,
+  highlightFilled: true,
+};

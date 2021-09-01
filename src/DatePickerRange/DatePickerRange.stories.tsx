@@ -1,25 +1,78 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import DatePickerRange from '../DatePickerRange';
-import { boolean, select, text } from '@storybook/addon-knobs';
 
-storiesOf('DatePickerRange', module).add('DatePickerRange', () => (
-  <DatePickerRange
-    key="0"
-    showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
-    inputIconPosition={select(
-      'inputIconPosition',
-      ['before', 'after'],
-      'after',
-    )}
-    datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
-    datePickerStyle={select(
-      'datePickerStyle',
-      ['primary', 'secondary', 'success', 'warning', 'danger'],
-      'primary',
-    )}
-    invalid={boolean('invalid', false)}
-    invalidText={text('invalidText', 'A valid value is required')}
-    invalidTextColor={text('invalidTextColor', '')}
-  />
-));
+export default {
+  title: 'DatePickerRange',
+  component: DatePickerRange,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    showDefaultInputIcon: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    inputIconPosition: {
+      control: {
+        options: ['before', 'after'],
+        type: 'inline-radio',
+      },
+    },
+    datePickerStyle: {
+      control: {
+        options: ['primary', 'secondary', 'success', 'warning', 'danger'],
+        type: 'select',
+      },
+    },
+    datePickerSize: {
+      control: {
+        options: ['sm', 'md', 'lg'],
+        type: 'inline-radio',
+      },
+    },
+    invalid: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    invalidText: {
+      control: {
+        type: 'text',
+      },
+    },
+    invalidTextColor: {
+      control: {
+        type: 'color',
+      },
+    },
+    className: {
+      control: false,
+    },
+    id: {
+      control: false,
+    },
+    readOnly: {
+      control: false,
+    },
+    onDatesChange: {
+      control: false,
+    },
+    onFocusChange: {
+      control: false,
+    },
+  },
+};
+
+export const _DatePickerRange = args => <DatePickerRange key="0" {...args} />;
+
+_DatePickerRange.args = {
+  showDefaultInputIcon: true,
+  inputIconPosition: 'after',
+  datePickerStyle: 'primary',
+  datePickerSize: 'md',
+  invalid: false,
+  invalidText: 'A valid value is required',
+};

@@ -1,25 +1,40 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { select, boolean } from '@storybook/addon-knobs';
 
 import { Badge } from '../';
 
-storiesOf('Badge', module).add(
-  'Badge',
-  () => (
-    <Badge
-      badgeSize={select('badgeSize', ['sm', 'md', 'lg'], 'md')}
-      badgeStyle={select(
-        'badgeStyle',
-        ['success', 'primary', 'secondary', 'danger', 'warning'],
-        'primary',
-      )}
-      lightMode={boolean('lightMode', false)}
-    >
-      123
-    </Badge>
-  ),
-  {
+export default {
+  title: 'Badge',
+  component: Badge,
+  argTypes: {
+    badgeSize: {
+      options: ['sm', 'md', 'lg'],
+      control: 'inline-radio',
+    },
+    badgeStyle: {
+      options: ['success', 'primary', 'secondary', 'danger', 'warning'],
+      control: 'select',
+    },
+    lightMode: {
+      control: 'boolean',
+    },
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+};
+
+export const _Badge = args => <Badge {...args}>123</Badge>;
+
+_Badge.args = {
+  badgeSize: 'md',
+  badgeStyle: 'primary',
+  lightMode: false,
+};
+
+_Badge.story = {
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -28,4 +43,4 @@ storiesOf('Badge', module).add(
         `,
     },
   },
-);
+};

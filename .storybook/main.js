@@ -1,41 +1,36 @@
 const path = require('path');
 
 module.exports = {
-  stories: ['../src/**/*.stories.@(tsx|js)'],
-  addons: [
-    'storybook-addon-styled-component-theme/dist/register',
-    '@storybook/addon-knobs',
-    '@storybook/addon-viewport/register',
-    '@storybook/addon-actions',
-    'storybook-readme/register',
+  stories: [
+    '../src/**/*.stories.mdx',
+    '../src/**/*.stories.js',
+    '../src/**/*.stories.tsx',
   ],
-  webpackFinal: config => {
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      include: path.resolve(__dirname, '../src'),
-      use: [
-        {
-          loader: require.resolve('awesome-typescript-loader'),
-          options: {
-            useCache: true,
-            forceIsolatedModules: true,
-          },
-        },
-        {
-          loader: require.resolve('react-docgen-typescript-loader'),
-          options: {
-            propFilter: prop => {
-              return (
-                prop.parent == null ||
-                (prop.parent.name.indexOf('HTMLAttributes') < 0 &&
-                  prop.parent.name.indexOf('DOMAttributes') < 0)
-              );
-            },
-          },
-        },
-      ],
-    });
-    config.resolve.extensions.push('.ts', '.tsx');
-    return config;
+  addons: [
+    'storybook-addon-styled-component-theme/dist/preset',
+    '@storybook/addon-viewport',
+    '@storybook/addon-postcss',
+    '@storybook/addon-essentials',
+    '@storybook/addon-controls',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        configureJSX: true,
+        babelOptions: {},
+        sourceLoaderOptions: null,
+        transcludeMarkdown: true,
+      },
+    },
+    '@storybook/addon-actions',
+  ],
+  typescript: {
+    check: true,
+    checkOptions: {},
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: prop =>
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+    },
   },
 };

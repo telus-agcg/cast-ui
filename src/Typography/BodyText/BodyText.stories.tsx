@@ -1,16 +1,32 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { BodyText } from './BodyText.component';
-import { select } from '@storybook/addon-knobs';
 
-storiesOf('Typography', module).add(
-  'Digits',
-  () => (
-    <BodyText size={select('Caption size', [10, 20], 10)}>
-      Example BodyText
-    </BodyText>
-  ),
-  {
+export default {
+  title: 'Typography',
+  component: BodyText,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    size: {
+      control: {
+        type: 'inline-radio',
+        options: [10, 20],
+      },
+    },
+  },
+};
+
+export const Digits = args => <BodyText {...args}>Example BodyText</BodyText>;
+
+Digits.args = {
+  size: 10,
+};
+
+Digits.story = {
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -19,4 +35,4 @@ storiesOf('Typography', module).add(
         `,
     },
   },
-);
+};

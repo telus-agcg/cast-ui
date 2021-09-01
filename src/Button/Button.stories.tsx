@@ -1,31 +1,69 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { boolean, select, color } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 
 import { Button } from '../';
 
-storiesOf('Button', module).add(
-  'Button',
-  () => (
-    <Button
-      id={'testId'}
-      outline={boolean('outline', false)}
-      selected={boolean('selected', false)}
-      btnStyle={select(
-        'btnStyle',
-        ['success', 'primary', 'secondary', 'danger', 'warning'],
-        'primary',
-      )}
-      btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
-      backgroundColor={color('backgroundColor', '')}
-      disabled={boolean('disabled', false)}
-      onClick={action('Clicked!')}
-    >
-      Submit Button
-    </Button>
-  ),
-  {
+export default {
+  title: 'Button',
+  component: Button,
+  argTypes: {
+    outline: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    selected: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    btnStyle: {
+      options: ['success', 'primary', 'secondary', 'danger', 'warning'],
+      control: { type: 'select' },
+    },
+    btnSize: {
+      options: ['sm', 'md', 'lg'],
+      control: {
+        type: 'radio',
+      },
+    },
+    backgroundColor: {
+      control: {
+        type: 'color',
+      },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    onClick: { action: 'onClick' },
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    value: {
+      control: false,
+    },
+  },
+};
+
+export const _Button = args => (
+  <Button id={'testId'} {...args}>
+    Submit Button
+  </Button>
+);
+
+_Button.args = {
+  outline: false,
+  selected: false,
+  btnStyle: 'primary',
+  btnSize: 'md',
+  disabled: false,
+};
+
+_Button.story = {
+  parameters: {
     info: {
       text: `
 ### Notes
@@ -65,4 +103,4 @@ To make the Button look inactive add the standard HTML button **disabled** attri
         `,
     },
   },
-);
+};

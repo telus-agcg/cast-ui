@@ -11,5 +11,4 @@ addons.setConfig({
       'https://cdn2.hubspot.net/hubfs/1976913/TKXS-brand/tkxs-logo.png',
   }),
   isFullscreen: false,
-  panelPosition: 'right',
 });

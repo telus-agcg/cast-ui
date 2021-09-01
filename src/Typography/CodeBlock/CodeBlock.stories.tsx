@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { CopyToClipboard } from '../../CopyToClipboard';
 
@@ -31,12 +30,18 @@ code {
 }
 `;
 
-storiesOf('Typography', module).add(
-  'CodeBlock',
-  () => (
-    <CopyToClipboard copyContent={sampleCode || ''} includeCopyButton={true} />
-  ),
-  {
+export default {
+  title: 'Typography',
+  excludeStories: ['sampleCode'],
+  component: CopyToClipboard,
+};
+
+export const CodeBlock = () => (
+  <CopyToClipboard copyContent={sampleCode || ''} includeCopyButton={true} />
+);
+
+CodeBlock.story = {
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -46,4 +51,4 @@ storiesOf('Typography', module).add(
         `,
     },
   },
-);
+};

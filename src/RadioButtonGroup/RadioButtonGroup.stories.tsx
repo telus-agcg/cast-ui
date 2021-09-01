@@ -1,36 +1,48 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { boolean, select, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import { RadioButtonGroup, RadioButton } from '../';
 
-storiesOf('RadioButton', module).add(
-  'RadioButtonGroup',
-  () => (
-    <RadioButtonGroup
-      name={text('name', 'myRadioButtonGroup')}
-      defaultChecked={text('defaultChecked', '1')}
-      onChange={action('onChange')}
-    >
-      <RadioButton
-        id="myInput1"
-        disabled={boolean('disabled (button 1)', false)}
-        rbSize={select('rbSize (button 1)', ['sm', 'md', 'lg'], 'md')}
-        value="1"
-      >
-        One
-      </RadioButton>
-      <RadioButton
-        id="myInput2"
-        disabled={false}
-        rbSize={select('rbSize (button 2)', ['sm', 'md', 'lg'], 'md')}
-        value="2"
-      >
-        Two
-      </RadioButton>
-    </RadioButtonGroup>
-  ),
-  {
+export default {
+  title: 'RadioButton',
+  component: RadioButtonGroup,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    name: {
+      control: false,
+    },
+    defaultChecked: {
+      control: false,
+    },
+    onChange: {
+      action: 'onChange',
+    },
+    valueChecked: {
+      control: false,
+    },
+  },
+};
+
+export const _RadioButtonGroup = args => (
+  <RadioButtonGroup {...args}>
+    <RadioButton id="myInput1" disabled={false} value="1">
+      One
+    </RadioButton>
+    <RadioButton id="myInput2" disabled={false} value="2">
+      Two
+    </RadioButton>
+  </RadioButtonGroup>
+);
+
+_RadioButtonGroup.args = {
+  name: 'myRadioButtonGroup',
+  defaultChecked: '1',
+};
+
+_RadioButtonGroup.story = {
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -39,4 +51,4 @@ storiesOf('RadioButton', module).add(
         `,
     },
   },
-);
+};
