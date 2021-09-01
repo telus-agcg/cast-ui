@@ -1,23 +1,41 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { text } from '@storybook/addon-knobs';
 
 import { ErrorMessage } from './index';
 import { Input } from '../../Input';
 
-storiesOf('Typography', module).add(
-  'ErrorMessage',
-  () => (
-    <div>
-      <Input id="myInput" type="text" />
-      <ErrorMessage
-        id={text('id', 'some-id-error-msg')}
-        message={text('message', 'This is an error message.')}
-        textColor={text('textColor', '')}
-      />
-    </div>
-  ),
-  {
+export default {
+  title: 'Typography',
+  component: ErrorMessage,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    message: {
+      control: 'text',
+    },
+    textColor: {
+      control: 'color',
+    },
+  },
+};
+
+export const _ErrorMessage = args => (
+  <div>
+    <Input id="myInput" type="text" />
+    <ErrorMessage id="some-id-error-msg" {...args} />
+  </div>
+);
+
+_ErrorMessage.args = {
+  message: 'This is an error message.',
+};
+
+_ErrorMessage.story = {
+  name: 'ErrorMessage',
+
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -26,4 +44,4 @@ storiesOf('Typography', module).add(
         `,
     },
   },
-);
+};

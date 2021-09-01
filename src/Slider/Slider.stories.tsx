@@ -1,20 +1,48 @@
 import * as React from 'react';
 import { Range } from 'react-input-range';
-import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs';
 
 import { Slider } from './';
 
-class Component extends React.Component {
-  state = {
+export default {
+  title: 'Slider',
+  component: Slider,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    minValue: {
+      control: {
+        type: 'select',
+        options: [20, 30, 40, 50, 60, 70],
+      },
+    },
+    maxValue: {
+      control: {
+        type: 'select',
+        options: [120, 130, 140, 150, 160, 170],
+      },
+    },
+    step: {
+      control: {
+        type: 'select',
+        options: [1, 2, 3, 5, 8, 13, 21],
+      },
+    },
+  },
+};
+
+export const _Slider = args => {
+  const [state, setState] = React.useState({
     value: {
       min: 80,
       max: 110,
     },
-  };
+  });
 
-  onChange = (range: Range) => {
-    this.setState({
+  const onChange = (range: Range) => {
+    setState({
       value: {
         min: range.min,
         max: range.max,
@@ -22,17 +50,11 @@ class Component extends React.Component {
     });
   };
 
-  render() {
-    return (
-      <Slider
-        minValue={select('minValue', [20, 30, 40, 50, 60, 70], 50)}
-        maxValue={select('maxValue', [120, 130, 140, 150, 160, 170], 150)}
-        step={select('step', [1, 2, 3, 5, 8, 13, 21], 5)}
-        onChange={this.onChange}
-        value={this.state.value}
-      />
-    );
-  }
-}
+  return <Slider {...args} onChange={onChange} value={state.value} />;
+};
 
-storiesOf('Slider', module).add('Default Slider', () => <Component />);
+_Slider.args = {
+  minValue: 50,
+  maxValue: 150,
+  step: 5,
+};

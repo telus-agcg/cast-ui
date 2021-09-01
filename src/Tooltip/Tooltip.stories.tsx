@@ -1,19 +1,20 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { Tooltip } from '../';
-import { boolean, select } from '@storybook/addon-knobs';
 
-storiesOf('Tooltip', module).add(
-  'Controlled Tooltip',
-  () => (
-    <Tooltip
-      content={<MyComponent />}
-      arrow={boolean('arrow', true)}
-      size={select('size', ['small', 'regular', 'large'], 'regular')}
-      placement={select(
-        'placement',
-        [
+export default {
+  title: 'Tooltip',
+  component: Tooltip,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    placement: {
+      control: {
+        type: 'select',
+        options: [
           'top',
           'top-start',
           'top-end',
@@ -23,14 +24,36 @@ storiesOf('Tooltip', module).add(
           'left',
           'right',
         ],
-        'top-start',
-      )}
-      trigger="click"
-    >
-      <button>This button has a controlled tooltip</button>
-    </Tooltip>
-  ),
-  {
+      },
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: ['small', 'regular', 'large'],
+      },
+    },
+    arrow: {
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
+};
+
+export const ControlledTooltip = args => (
+  <Tooltip content={<MyComponent />} {...args} trigger="click">
+    <button>This button has a controlled tooltip</button>
+  </Tooltip>
+);
+
+ControlledTooltip.args = {
+  arrow: true,
+  size: 'regular',
+  placement: 'bottom',
+};
+
+ControlledTooltip.story = {
+  parameters: {
     info: {
       text: `
       ### Notes
@@ -39,7 +62,7 @@ storiesOf('Tooltip', module).add(
     `,
     },
   },
-);
+};
 
 const MyComponent = (props: any) => (
   <div>This is a component to be rendered in the tooltip</div>

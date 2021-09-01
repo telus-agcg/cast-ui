@@ -1,63 +1,87 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { Link } from './Link.component';
-import { boolean } from '@storybook/addon-knobs';
 
-storiesOf('Typography/Link', module)
-  .add(
-    'Standalone',
-    () => (
-      <Link
-        solo={true}
-        href="https://www.tkxs.com"
-        target="_blank"
-        disabled={boolean('disabled', false)}
-      >
-        Read More
-      </Link>
-    ),
-    {
-      info: {
-        text: `
-        ### Notes
-
-        Documentation and examples for Cast UI Link.
-        `,
+export default {
+  title: 'Typography/Link',
+  component: Link,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
       },
     },
-  )
-  .add(
-    'Within Text',
-    () => (
-      <p>
-        Lorem ipsum dolor sit amet, consectetur{' '}
-        <Link href="https://www.tkxs.com" target="_blank">
-          adipiscing
-        </Link>{' '}
-        elit.
-      </p>
-    ),
-    {
-      info: {
-        text: `
-        ### Notes
-
-        Documentation and examples for Cast UI Link.
-        `,
+    disabled: {
+      control: {
+        type: 'boolean',
       },
     },
-  )
-  .add(
-    'With onClick',
-    () => <Link onClick={action('Reading more')}>Read More</Link>,
-    {
-      info: {
-        text: `
-        ### Notes
-
-        Documentation and examples for Cast UI Link.
-        `,
+    onClick: {
+      action: {
+        type: 'onClick',
       },
     },
-  );
+  },
+};
+
+const _Link = args => <Link {...args}>Read More</Link>;
+
+export const _RegularLink = _Link.bind({});
+
+_RegularLink.args = {
+  href: 'https://www.tkxs.com',
+  target: '_blank',
+  disabled: false,
+  solo: true,
+};
+
+_RegularLink.story = {
+  parameters: {
+    info: {
+      text: `
+      ### Notes
+
+      Documentation and examples for Cast UI Link.
+      `,
+    },
+  },
+};
+
+export const _LinkOnClick = _Link.bind({});
+
+_LinkOnClick.args = {
+  disabled: false,
+};
+
+_LinkOnClick.story = {
+  parameters: {
+    info: {
+      text: `
+      ### Notes
+
+      Documentation and examples for Cast UI Link.
+      `,
+    },
+  },
+};
+
+export const WithinText = () => (
+  <p>
+    Lorem ipsum dolor sit amet, consectetur{' '}
+    <Link href="https://www.tkxs.com" target="_blank">
+      adipiscing
+    </Link>{' '}
+    elit.
+  </p>
+);
+
+WithinText.story = {
+  parameters: {
+    info: {
+      text: `
+      ### Notes
+
+      Documentation and examples for Cast UI Link.
+      `,
+    },
+  },
+};

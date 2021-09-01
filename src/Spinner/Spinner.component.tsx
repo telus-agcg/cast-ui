@@ -48,7 +48,7 @@ export type Props = {
 };
 
 const SSpinner = styled.div`
-  width: ${(props: Props) => `${props.size}px`}
+  width: ${(props: Props) => `${props.size}px`};
   height: ${(props: Props) => `${props.size}px`};
   position: relative;
   margin: auto;
@@ -58,7 +58,7 @@ const SSpinner = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    width: ${(props: Props) => `${props.size}px`}
+    width: ${(props: Props) => `${props.size}px`};
     height: ${(props: Props) => `${props.size}px`};
     margin-top: ${(props: Props) => `-${props.size! / 2}px`};
     margin-left: ${(props: Props) => `-${props.size! / 2}px`};
@@ -73,7 +73,9 @@ const SSpinner = styled.div`
   }
 
   @keyframes spinner {
-    to {transform: rotate(360deg);}
+    to {
+      transform: rotate(360deg);
+    }
   }
 `;
 

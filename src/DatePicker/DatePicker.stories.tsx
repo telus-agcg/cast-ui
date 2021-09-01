@@ -1,33 +1,89 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { DatePicker } from '../';
 
-storiesOf('DatePicker', module).add(
-  'DatePicker',
-  () => (
-    <DatePicker
-      key="0"
-      showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
-      inputIconPosition={select(
-        'inputIconPosition',
-        ['before', 'after'],
-        'after',
-      )}
-      datePickerStyle={select(
-        'datePickerStyle',
-        ['primary', 'secondary', 'success', 'warning', 'danger'],
-        'primary',
-      )}
-      datePickerSize={select('datePickerSize', ['sm', 'md', 'lg'], 'md')}
-      invalid={boolean('invalid', false)}
-      invalidText={text('invalidText', 'A valid value is required')}
-      invalidTextColor={text('invalidTextColor', '')}
-      numberOfMonths={number('numberOfMonths', 1)}
-      withPortal
-    />
-  ),
-  {
+export default {
+  title: 'DatePicker',
+  component: DatePicker,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    showDefaultInputIcon: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    inputIconPosition: {
+      control: {
+        options: ['before', 'after'],
+        type: 'inline-radio',
+      },
+    },
+    datePickerStyle: {
+      control: {
+        options: ['primary', 'secondary', 'success', 'warning', 'danger'],
+        type: 'select',
+      },
+    },
+    datePickerSize: {
+      control: {
+        options: ['sm', 'md', 'lg'],
+        type: 'inline-radio',
+      },
+    },
+    invalid: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    invalidText: {
+      control: {
+        type: 'text',
+      },
+    },
+    invalidTextColor: {
+      control: {
+        type: 'color',
+      },
+    },
+    numberOfMonths: {
+      control: {
+        type: 'number',
+      },
+    },
+    className: {
+      control: false,
+    },
+    wrapperId: {
+      control: false,
+    },
+    onDateChange: {
+      action: {
+        type: 'onDateChange',
+      },
+    },
+    onFocusChange: {
+      control: false,
+    },
+  },
+};
+
+export const _DatePicker = args => <DatePicker key="0" {...args} withPortal />;
+
+_DatePicker.args = {
+  showDefaultInputIcon: true,
+  inputIconPosition: 'after',
+  datePickerStyle: 'primary',
+  datePickerSize: 'md',
+  invalid: false,
+  invalidText: 'A valid value is required',
+  numberOfMonths: 1,
+};
+
+_DatePicker.story = {
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -40,4 +96,4 @@ storiesOf('DatePicker', module).add(
         `,
     },
   },
-);
+};

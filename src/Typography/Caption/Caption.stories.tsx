@@ -1,16 +1,32 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { Caption } from './Caption.component';
-import { select } from '@storybook/addon-knobs';
 
-storiesOf('Typography', module).add(
-  'Caption',
-  () => (
-    <Caption size={select('Caption size', [10, 20], 10)}>
-      Example Caption
-    </Caption>
-  ),
-  {
+export default {
+  title: 'Typography',
+  component: Caption,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    size: {
+      control: {
+        type: 'inline-radio',
+        options: [10, 20],
+      },
+    },
+  },
+};
+
+export const _Caption = args => <Caption {...args}>Example Caption</Caption>;
+
+_Caption.args = {
+  size: 10,
+};
+
+_Caption.story = {
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -19,4 +35,4 @@ storiesOf('Typography', module).add(
         `,
     },
   },
-);
+};

@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { Typography } from './Typography.component';
 
-storiesOf('Typography', module).add(
-  'Typography',
-  () => (
-    <Typography />
-  ),
-  {
+export default {
+  title: 'Typography',
+};
+
+export const _Typography = () => <Typography />;
+
+_Typography.story = {
+  parameters: {
     info: {
-      disable : true,
+      disable: true,
     },
   },
-);
+};

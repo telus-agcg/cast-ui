@@ -1,8 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { boolean, text, number } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-
 import { FileUpload, File } from '../';
 
 const sampleFile = {
@@ -18,47 +14,114 @@ const TestAttachmentsComponent = () => {
       <FileUpload onFilesAdded={(files: any) => setFiles(files)} />
       {files.map((file: any, i: any) => (
         <File
+          key={i}
           file={file}
           uploaded={true}
           fileDetails={'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM'}
-          key={i}
         />
       ))}
     </div>
   );
 };
-storiesOf('FileUpload', module).add(
-  'FileUpload',
-  () => (
-    <div>
-      <FileUpload
-        onFilesAdded={console.log}
-        // onFilesAdded={action('Files added!')}
-        disabled={boolean('disabled', false)}
-        info={text('info', 'File size not more than 15MB')}
-      />
-      <File
-        file={sampleFile}
-        fileDetails={text(
-          'fileDetails - (File 1)',
-          'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM',
-        )}
-        actionable={boolean('actionable - (File 1)', true)}
-        uploaded={boolean('uploaded - (File 1)', false)}
-        onSelect={action('File 1 selected!')}
-        onCancel={action('File 1 upload cancelled!')}
-        onDelete={action('File 1 deleted!')}
-        progressBarProps={{ percentage: number('percentage - (File 1)', 70) }}
-      />
-      <br />
-      <br />
-      <b>
-        <p>Attachments Component Example</p>
-      </b>
-      <TestAttachmentsComponent />
-    </div>
-  ),
-  {
+
+export default {
+  title: 'FileUpload',
+  component: FileUpload,
+  subcomponents: {
+    File,
+  },
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    info: {
+      control: {
+        type: 'text',
+      },
+    },
+    onFilesAdded: {
+      action: {
+        type: 'onFilesAdded',
+      },
+    },
+    fileDetails: {
+      control: {
+        type: 'text',
+      },
+    },
+    actionable: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    uploaded: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    onSelect: {
+      action: {
+        type: 'onSelect',
+      },
+    },
+    onCancel: {
+      action: {
+        type: 'onCancel',
+      },
+    },
+    onDelete: {
+      action: {
+        type: 'onDelete',
+      },
+    },
+    progressBarProps: {
+      control: false,
+    },
+    percentage: {
+      control: {
+        type: 'number',
+      },
+    },
+  },
+};
+
+export const _FileUpload = ({
+  disabled,
+  info,
+  onFilesAdded,
+  percentage,
+  ...args
+}) => (
+  <div>
+    <FileUpload onFilesAdded={onFilesAdded} disabled={disabled} info={info} />
+    <File file={sampleFile} {...args} progressBarProps={{ percentage }} />
+    <br />
+    <br />
+    <b>
+      <p>Attachments Component Example</p>
+    </b>
+    <TestAttachmentsComponent />
+  </div>
+);
+
+_FileUpload.args = {
+  disabled: false,
+  info: 'File size not more than 15MB',
+  actionable: true,
+  uploaded: false,
+  percentage: 70,
+  fileDetails: 'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM',
+};
+
+_FileUpload.story = {
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -69,4 +132,4 @@ storiesOf('FileUpload', module).add(
         `,
     },
   },
-);
+};

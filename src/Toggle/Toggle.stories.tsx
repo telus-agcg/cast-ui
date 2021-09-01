@@ -1,27 +1,66 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { boolean, select } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 
 import { Toggle } from '../';
 
-storiesOf('Toggle', module).add(
-  'Toggle',
-  () => (
-    <div>
-      <Toggle
-        id="toggleId"
-        toggleSize={select('toggleSize', ['sm', 'md', 'lg'], 'md')}
-        checked={boolean('checked', true)}
-        disabled={boolean('disabled', false)}
-        onChange={action('onChange 1')}
-        value="1"
-      >
-        One
-      </Toggle>
-    </div>
-  ),
-  {
+export default {
+  title: 'Toggle',
+  component: Toggle,
+  argTypes: {
+    toggleSize: {
+      control: {
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+      },
+    },
+    checked: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    onChange: {
+      action: 'onChange',
+    },
+    id: {
+      control: false,
+    },
+    defaultChecked: {
+      control: false,
+    },
+    label: {
+      control: false,
+    },
+    value: {
+      control: false,
+    },
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+};
+
+export const _Toggle = args => (
+  <div>
+    <Toggle id="toggleId" {...args} value="1">
+      One
+    </Toggle>
+  </div>
+);
+
+_Toggle.args = {
+  toggleSize: 'md',
+  checked: true,
+  disabled: false,
+};
+
+_Toggle.story = {
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -30,4 +69,4 @@ storiesOf('Toggle', module).add(
         `,
     },
   },
-);
+};

@@ -1,12 +1,32 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { Title } from './Title.component';
-import { select } from '@storybook/addon-knobs';
 
-storiesOf('Typography', module).add(
-  'Title',
-  () => <Title size={select('Header size', [10, 20], 10)}>20px Medium</Title>,
-  {
+export default {
+  title: 'Typography',
+  component: Title,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    size: {
+      control: {
+        type: 'inline-radio',
+        options: [10, 20],
+      },
+    },
+  },
+};
+
+export const _Title = args => <Title {...args}>20px Medium</Title>;
+
+_Title.args = {
+  size: 10,
+};
+
+_Title.story = {
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -15,4 +35,4 @@ storiesOf('Typography', module).add(
         `,
     },
   },
-);
+};

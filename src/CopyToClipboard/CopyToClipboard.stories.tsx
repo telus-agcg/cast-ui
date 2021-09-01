@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { text, boolean } from '@storybook/addon-knobs';
 
 import { CopyToClipboard } from '../';
 
@@ -10,41 +8,93 @@ import { ic_check as icCheck } from 'react-icons-kit/md/ic_check';
 const SecondaryCopyContent = () => <Icon size={16} icon={ICopy} />;
 const SecondaryCopySuccessContent = () => <Icon size={16} icon={icCheck} />;
 
-storiesOf('CopyToClipboard', module).add(
-  'CopyToClipboard',
-  () => (
-    <div>
-      <CopyToClipboard
-        copyContent={text(
-          'Copy Text',
-          `
+export default {
+  title: 'CopyToClipboard',
+  component: CopyToClipboard,
+  argTypes: {
+    copyContent: {
+      control: {
+        type: 'text',
+      },
+    },
+    background: {
+      control: {
+        type: 'color',
+      },
+    },
+    copyContainerClass: {
+      control: false,
+    },
+    fullWidth: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    includeCopyButton: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    copyButtonContent: {
+      control: {
+        type: 'text',
+      },
+    },
+    copyButtonSuccessContent: {
+      control: false,
+    },
+    copyButtonClass: {
+      control: false,
+    },
+    className: {
+      control: false,
+    },
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    copyContent2: {
+      type: 'text',
+    },
+  },
+};
+
+export const _CopyToClipboard = ({ copyContent2, fullWidth, ...args }) => (
+  <div>
+    <CopyToClipboard {...args} fullWidth={fullWidth} />
+    <br />
     <CopyToClipboard
-      copyContent='Some text that is usually copied to clipboard.'
-      copyContainerClass='copy-container'
-      background='#F5F7F8'
-      includeCopyButton={true}
-      copyButtonContent='copy'
-      copyButtonClass='copy-button'
+      copyContent={copyContent2}
+      copyButtonContent={<SecondaryCopyContent />}
+      copyButtonSuccessContent={<SecondaryCopySuccessContent />}
+      fullWidth={fullWidth}
     />
-          `,
-        )}
-        copyContainerClass={text('Copy Container Class', 'copy-container')}
-        background={text('Background', '#F5F7F8')}
-        includeCopyButton={boolean('Include Copy Button', true)}
-        copyButtonContent={text('Copy Button Text', 'copy')}
-        copyButtonClass={text('Copy Button Class', 'copy-button')}
-        fullWidth={boolean('Occupy full width of parent', true)}
-      />
-      <br />
-      <CopyToClipboard
-        copyContent={text('Second Copy Content', 'CBA6697-67895')}
-        copyButtonContent={<SecondaryCopyContent />}
-        copyButtonSuccessContent={<SecondaryCopySuccessContent />}
-        fullWidth={boolean('Second Copy Occupy full width of parent', false)}
-      />
-    </div>
-  ),
-  {
+  </div>
+);
+
+_CopyToClipboard.args = {
+  copyContent: `
+<CopyToClipboard
+copyContent='Some text that is usually copied to clipboard.'
+copyContainerClass='copy-container'
+background='#F5F7F8'
+includeCopyButton={true}
+copyButtonContent='copy'
+copyButtonClass='copy-button'
+/>
+    `,
+  copyContainerClass: 'copy-container',
+  background: '#F5F7F8',
+  includeCopyButton: true,
+  copyButtonContent: 'copy',
+  copyButtonClass: 'copy-button',
+  fullWidth: true,
+  copyContent2: 'CBA6697-67895',
+};
+
+_CopyToClipboard.story = {
+  parameters: {
     info: {
       text: `
         ### Notes
@@ -53,4 +103,4 @@ storiesOf('CopyToClipboard', module).add(
         `,
     },
   },
-);
+};
