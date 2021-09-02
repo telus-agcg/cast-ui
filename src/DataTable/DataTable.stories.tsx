@@ -68,7 +68,7 @@ export default {
   },
 };
 
-const _DataTable = ({ withNestedData = false, ...args }) => {
+const _DataTable = ({ withNestedData = false, data, ...args }) => {
   const columns = [
     {
       Header: 'ID',
@@ -211,7 +211,7 @@ const _DataTable = ({ withNestedData = false, ...args }) => {
       ...rest,
     };
   });
-  return <DataTable id={testTableId} columns={columns} {...args} />;
+  return <DataTable id={testTableId} columns={columns} data={data} {...args} />;
 };
 
 export const RowExpandUsingGroupByIds = _DataTable.bind({});
