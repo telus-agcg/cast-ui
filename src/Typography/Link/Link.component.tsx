@@ -1,5 +1,7 @@
 import * as React from 'react';
+import cn from 'classnames';
 import styled, { ThemeProvider } from 'styled-components';
+
 import { Themes } from '../../themes';
 
 export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
@@ -98,12 +100,16 @@ export const Link: React.FunctionComponent<Props> = ({
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       {linkProps.disabled ? (
-        <SLink id={id} className="disabled" onClick={e => e.preventDefault()}>
+        <SLink
+          id={id}
+          className={cn([className, 'disabled'])}
+          onClick={e => e.preventDefault()}
+        >
           {children}
         </SLink>
       ) : (
         <SLink
-          className={`${linkProps.solo && 'solo'}  ${className || ''}`}
+          className={cn([{ solo: linkProps.solo }, className])}
           href={linkProps.href}
           target={linkProps.target}
           onClick={linkProps.onClick}
