@@ -9,7 +9,6 @@ storiesOf('Typography/Link', module)
     'Standalone',
     () => (
       <Link
-        id="link"
         solo={true}
         href="https://www.tkxs.com"
         target="_blank"
@@ -33,7 +32,7 @@ storiesOf('Typography/Link', module)
     () => (
       <p>
         Lorem ipsum dolor sit amet, consectetur{' '}
-        <Link id="link2" href="https://www.tkxs.com" target="_blank">
+        <Link href="https://www.tkxs.com" target="_blank">
           adipiscing
         </Link>{' '}
         elit.
@@ -51,11 +50,7 @@ storiesOf('Typography/Link', module)
   )
   .add(
     'With onClick',
-    () => (
-      <Link id="link3" onClick={action('Reading more')}>
-        Read More
-      </Link>
-    ),
+    () => <Link onClick={action('Reading more')}>Read More</Link>,
     {
       info: {
         text: `
