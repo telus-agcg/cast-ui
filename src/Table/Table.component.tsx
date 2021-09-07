@@ -5,7 +5,7 @@ import ReactTable, {
   TableProps,
   ReactTableDefaults,
   ControlledStateCallbackProps,
-} from 'react-table-6';
+} from 'react-table';
 import { Themes } from '../themes';
 import Icon from 'react-icons-kit';
 import { chevronUp } from 'react-icons-kit/fa/chevronUp';
@@ -13,7 +13,7 @@ import { chevronDown } from 'react-icons-kit/fa/chevronDown';
 import Pagination, {
   PAGE_SIZE_OPTIONS,
 } from '../Pagination/Pagination.component';
-import 'react-table-6/react-table.css';
+import 'react-table/react-table.css';
 
 export type Props = Partial<TableProps> &
   Partial<ControlledStateCallbackProps> & {
