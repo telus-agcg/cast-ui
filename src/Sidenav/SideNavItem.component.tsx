@@ -151,7 +151,7 @@ export const SideNavItem: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <Tooltip
         content={text && text.props.children}
-        isEnabled={!isOpen && text}
+        isEnabled={!isOpen && text && !props.activeSideNavItem}
         placement="right"
         size="regular"
       >
