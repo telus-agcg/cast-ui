@@ -530,6 +530,7 @@ export const defaultTheme = {
       borderColor: defaultColors.secondaryFaded,
       padding: '16px 16px',
       fontSize: '16px',
+      color: defaultColors.drk800,
     },
     body: {
       minHeight: '0',
