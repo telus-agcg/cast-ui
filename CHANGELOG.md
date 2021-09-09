@@ -1,3 +1,28 @@
+# [6.0.0](https://github.com/technekes/cast-ui/compare/v5.1.0...v6.0.0) (2021-09-09)
+
+
+### Bug Fixes
+
+* **modal:** fixes modal body styling ([fff2010](https://github.com/technekes/cast-ui/commit/fff20105379f8c1f9e4d1c7f255c1af49e89965c))
+* **modal:** overide default body color in the modal component in falu theme ([#834](https://github.com/technekes/cast-ui/issues/834)) ([6af5904](https://github.com/technekes/cast-ui/commit/6af59049da8106ded752b4003860d2533cc304b8))
+* **sidenavitem:** disables side nav tooltip when item is active ([f9fcb13](https://github.com/technekes/cast-ui/commit/f9fcb13fd1e65960d879b57257a66ae59b961ce7))
+
+
+### Features
+
+* **datatable:** new table component based on react-table v7 ([#837](https://github.com/technekes/cast-ui/issues/837)) ([7d31f3f](https://github.com/technekes/cast-ui/commit/7d31f3f85854f3154adcc04c5e9fa153cac31a16))
+
+
+### Reverts
+
+* Revert "feat(datatable): new table component based on react-table v7 (#837)" (#839) ([ea941e6](https://github.com/technekes/cast-ui/commit/ea941e695044a2c780fb7b363eaff7eb8a33261e)), closes [#837](https://github.com/technekes/cast-ui/issues/837) [#839](https://github.com/technekes/cast-ui/issues/839)
+
+
+### BREAKING CHANGES
+
+* **datatable:** imports for react-table package have changed, Table component uses
+react-table-6(v6) while DataTable uses react-table (v7)
+
 # [5.1.0](https://github.com/technekes/cast-ui/compare/v5.0.0...v5.1.0) (2021-06-29)
 
 
