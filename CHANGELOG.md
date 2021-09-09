@@ -1,3 +1,15 @@
+# [5.1.0](https://github.com/technekes/cast-ui/compare/v5.0.0...v5.1.0) (2021-06-29)
+
+
+### Bug Fixes
+
+* **radio button:** radio button group not clicking fix ([2d36c2d](https://github.com/technekes/cast-ui/commit/2d36c2d1a76153cff645b2e67ef69b8a97aad591))
+
+
+### Features
+
+* **radio button group:** kick off release for fix ([6103405](https://github.com/technekes/cast-ui/commit/6103405ab2d3537b60e69820e11055049db95ceb))
+
 # [5.0.0](https://github.com/technekes/cast-ui/compare/v4.0.0...v5.0.0) (2021-06-28)
 
 
