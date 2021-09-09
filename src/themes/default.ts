@@ -530,12 +530,14 @@ export const defaultTheme = {
       borderColor: defaultColors.secondaryFaded,
       padding: '16px 16px',
       fontSize: '16px',
+      color: defaultColors.drk800,
     },
     body: {
       minHeight: '0',
       backgroundColor: defaultColors.white,
       borderBottom: defaultColors.secondaryFaded,
       padding: '8px 16px',
+      color: defaultColors.drk800,
     },
     footer: {
       minHeight: '0',
