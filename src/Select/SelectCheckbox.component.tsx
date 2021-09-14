@@ -44,7 +44,6 @@ export const SelectCheckboxProps = (res: Props) => {
     updateSelectedOptions,
     isMulti,
     id,
-    formatGroupLabel,
     clearText,
     formatGroupLabel,
   } = res;

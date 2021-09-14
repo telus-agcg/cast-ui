@@ -87,7 +87,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    */
   onChange?: any;
   /**
-   * Value for a controlled select componenet
+   * Value for a controlled select component
    *
    * @default undefined
    */
@@ -355,7 +355,6 @@ export class CustomSelect extends React.Component<Props> {
       isClearable,
       formatGroupLabel,
       clearText,
-      formatGroupLabel,
       selectedOption,
       invalidText,
       optionType,
@@ -385,7 +384,6 @@ export class CustomSelect extends React.Component<Props> {
               id,
               formatGroupLabel,
               clearText,
-              formatGroupLabel,
               selectedOptions: this.props.selectedOption,
               updateSelectedOptions: this.props.onChange,
             }),
