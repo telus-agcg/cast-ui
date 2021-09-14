@@ -354,6 +354,7 @@ export class CustomSelect extends React.Component<Props> {
       isDisabled,
       isClearable,
       clearText,
+      formatGroupLabel,
       selectedOption,
       invalidText,
       optionType,
