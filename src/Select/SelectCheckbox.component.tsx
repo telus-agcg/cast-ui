@@ -21,6 +21,7 @@ interface Props {
   updateSelectedOptions: (any) => void;
   id?: string;
   clearText?: any;
+  formatGroupLabel?: any;
 }
 
 const SCheckbox = styled(Checkbox)`
@@ -44,6 +45,7 @@ export const SelectCheckboxProps = (res: Props) => {
     isMulti,
     id,
     clearText,
+    formatGroupLabel,
   } = res;
 
   const selectMulti = (val, updateSelectedOptions) => {
@@ -69,13 +71,6 @@ export const SelectCheckboxProps = (res: Props) => {
       selectSingle(val, updateSelectedOptions);
     }
   };
-
-  const formatGroupLabel = data => (
-    <div>
-      <span>{data.label} </span>
-      <span>{data.options.length}</span>
-    </div>
-  );
 
   const components = {
     Option: (props: any) => {

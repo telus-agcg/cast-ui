@@ -382,6 +382,7 @@ export class CustomSelect extends React.Component<Props> {
               isMulti,
               id,
               clearText,
+              formatGroupLabel,
               selectedOptions: this.props.selectedOption,
               updateSelectedOptions: this.props.onChange,
             }),
