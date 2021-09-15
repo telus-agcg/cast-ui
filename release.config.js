@@ -3,7 +3,7 @@ const branch = process.env.CIRCLE_BRANCH;
 const config = {
   branches: ['master', { name: 'beta', prerelease: true }],
   plugins: [
-    '@semantic-release/commit-analyzer',
+    'commit-analyzer-fail-on-no-release',
     '@semantic-release/release-notes-generator',
     '@semantic-release/npm',
     '@semantic-release/github',
