@@ -102,18 +102,22 @@ squashed, the title of the PR is used as the header.
 
 #### Branches
 
-We currently use two main branches for releases. `master` is the production branch and
-`beta` is a pre-release branch. Commits on these branches will trigger new releases.
+We currently use two main branches for releases:
+
+- `beta` is a pre-release branch
+- `master` is the production branch
+
+Commits on these branches will trigger new releases.
+
 When starting a new feature or bug fix, create a branch from `beta`. This will add your
 work to the collection of work going out in the next release and allow for a beta release
 to be tested by QA and other teams before going out in production.
 
 #### Local Testing
 
-Local testing should still be covered by the developer. Work can be merged to `beta`
-when the developer is confident in the work. To test locally, follow these steps:
+Local testing should be covered by the developer. To test locally, follow these steps:
 
-In cast-ui:
+In `cast-ui`:
 
 1. Branch from `beta`
 2. Make changes
@@ -127,14 +131,22 @@ In project using the package:
 2. `npm install path/to/pacakage.tgz`
 3. Test changes thoroughly
 
-Suggestion: The `.tgz` files create clutter over time. Create a script to create the pack,
+Suggestion: Since the `.tgz` files create clutter over time, create a script to create the pack,
 move it somewhere you can clean up later, and copy the path to your clipboard.
+
+When the developer is confident in the work, the branch can be merged to `beta`.
 
 #### Releases
 
-Features and bug fix commits should be squashed when merged to `beta`. This keeps sanity in
-the versioning. PRs from `beta` to `master` will be merged with a commit, preserving the
-commits.
+When merging to `beta`:
+
+- The feature branch should be squashed with a single commit message that follows the commit conventions above. This helps keeps sanity when looking at the commit history.
+- The single commit should represent the most impactful change. For example, if 3 commits (a `fix`, `feat`, and a `BREAKING CHANGE`) get squashed to one, the prefix should be `BREAKING CHANGE`. Or if 2 commits (a `fix` and `feat`) get squashed, the prefix should be `feat`.
+- If the single commit does not contain a prefix, the build will fail and no beta release will be created.
+
+When merging from `beta` to `master`:
+
+- `beta` should be merged into `master`, not squashed, preserving the commits.
 
 ### Linting
 
