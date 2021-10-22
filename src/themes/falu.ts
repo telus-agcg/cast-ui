@@ -681,7 +681,7 @@ export const faluTheme = {
     },
     row: {
       borderBottomColor: faluColors.secondaryFaded,
-      hoverColor: faluColors.secondaryFaded,
+      hoverColor: faluColors.lt200,
       highlightColor: faluColors.highlight200,
       readonlyColor: faluColors.lt200,
     },
