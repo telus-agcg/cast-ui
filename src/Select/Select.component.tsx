@@ -382,7 +382,6 @@ export class CustomSelect extends React.Component<Props> {
               options,
               isMulti,
               id,
-              formatGroupLabel,
               clearText,
               selectedOptions: this.props.selectedOption,
               updateSelectedOptions: this.props.onChange,
@@ -447,6 +446,7 @@ export class CustomSelect extends React.Component<Props> {
             dropdownColor={theme.primary}
             menuPortalTarget={document.getElementById(uniqueId)}
             menuPlacement={'bottom'}
+            formatGroupLabel={formatGroupLabel}
             components={
               optionType === 'default' && {
                 MultiValueRemove,
