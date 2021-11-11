@@ -868,6 +868,7 @@ export const defaultTheme = {
     hoverOptionBackgroundColor: defaultColors.lt200,
     hoverOptionColor: defaultColors.primary,
     selectedOptionColor: defaultColors.primary,
+
     selectedOptionBackgroundColor: defaultColors.white,
     borderColor: defaultColors.secondary,
     width: '100%',
