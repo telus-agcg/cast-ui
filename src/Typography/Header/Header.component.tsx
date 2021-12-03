@@ -20,7 +20,7 @@ export type Props = {
 const Sheader = styled.h2`
   font-family: ${(props: Props) =>
     props.theme.typography.header[props.size!].fontFamily};
-  color: ${(props: Props) => props.theme.typography.color}
+  color: ${(props: Props) => props.theme.typography.color};
   font-weight: ${(props: Props) =>
     props.theme.typography.header[props.size!].fontWeight};
   font-size: ${(props: Props) =>

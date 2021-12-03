@@ -62,7 +62,7 @@ type State = {
 };
 const SDivPaginationWrapper = styled.div`
   font-family: ${props => props.theme.typography.fontFamily};
-  font-size: ${props => props.theme.body.fontSize}
+  font-size: ${props => props.theme.body.fontSize};
   padding: ${props => props.theme.pagination.padding};
   display: flex;
   align-items: center;

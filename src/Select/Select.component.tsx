@@ -205,7 +205,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 const SDiv = styled.div<Props>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
+  font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
   width: ${(props: Props) => props.theme.select.width};
   div[aria-invalid] & {
