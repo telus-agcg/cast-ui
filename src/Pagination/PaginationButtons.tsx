@@ -109,15 +109,15 @@ export const PaginationPageButton = styled.button`
   background: ${(props: PaginationPageButtonProps) =>
     props.selected
       ? props.theme.pagination.selectedBackground
-      : props.theme.pagination.background}
+      : props.theme.pagination.background};
   border: 1px solid ${(props: PaginationPageButtonProps) =>
     props.theme.pagination.button.borderColor};
   padding: ${(props: PaginationPageButtonProps) =>
-    props.theme.pagination.button.padding[props.btnSize]}
+    props.theme.pagination.button.padding[props.btnSize]};
   font-family: ${(props: PaginationPageButtonProps) =>
     props.theme.typography.fontFamily};
   font-size: ${(props: PaginationPageButtonProps) =>
-    props.theme.common[props.btnSize].fontSize}
+    props.theme.common[props.btnSize].fontSize};
   font-weight: ${(props: PaginationPageButtonProps) =>
     props.theme.pagination.button.fontWeight};
   color: ${(props: PaginationPageButtonProps) => props.theme.pagination.text};
@@ -140,9 +140,9 @@ export const PaginationPageButton = styled.button`
   }
   &:disabled {
     background: ${(props: PaginationPageButtonProps) =>
-      props.theme.pagination.disabledBackground}
+      props.theme.pagination.disabledBackground};
     border: 1px solid ${(props: PaginationPageButtonProps) =>
-      props.theme.pagination.button.disabledBorderColor}
+      props.theme.pagination.button.disabledBorderColor};
     cursor: not-allowed;
   }
   &[data-selected] {

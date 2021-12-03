@@ -88,14 +88,14 @@ export interface Props
 const STextarea = styled.textarea`
   width: 100%;
   box-sizing: border-box;
-  background: ${(props: Props) => props.theme.textarea.background}
+  background: ${(props: Props) => props.theme.textarea.background};
   border: 1px solid ${(props: Props) => props.theme.textarea.borderColor};
   border-radius: ${(props: Props) =>
     props.theme.common[props.textareaSize!].borderRadius};
-  padding: ${(props: Props) => props.theme.common[props.textareaSize!].padding}
+  padding: ${(props: Props) => props.theme.common[props.textareaSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) =>
-    props.theme.common[props.textareaSize!].fontSize}
+    props.theme.common[props.textareaSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
 
   outline: none !important;

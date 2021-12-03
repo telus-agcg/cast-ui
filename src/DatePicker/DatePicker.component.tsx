@@ -76,7 +76,7 @@ type State = {
 const SWrapperComponent = styled.div<Partial<Props>>`
   font-family: ${(props: Partial<Props>) => props.theme.typography.fontFamily};
   font-size: ${(props: Partial<Props>) =>
-    props.theme.common[props.datePickerSize!].fontSize}
+    props.theme.common[props.datePickerSize!].fontSize};
   color: ${(props: Partial<Props>) =>
     props.theme.styles[props.datePickerStyle!].text};
   
@@ -87,7 +87,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
       props.theme.input[props.datePickerSize!].height};
     line-height: initial;
     padding: ${(props: Partial<Props>) =>
-      props.theme.common[props.datePickerSize!].padding}
+      props.theme.common[props.datePickerSize!].padding};
     border: none;
     border-radius: ${(props: Partial<Props>) =>
       props.theme.common[props.datePickerSize!].borderRadius};

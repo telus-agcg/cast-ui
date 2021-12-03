@@ -174,7 +174,7 @@ const SInput = styled.input`
         props.theme.checkbox[props.cbSize!].marginLeft};
       left: 0;
       top:${(props: Props) =>
-        props.theme.checkbox[props.cbSize!].checkedTopPosition};;
+        props.theme.checkbox[props.cbSize!].checkedTopPosition};
     }
 
     &:indeterminate + label:after {
@@ -194,7 +194,7 @@ const SInput = styled.input`
 			-webkit-transform: rotate(90deg) translateX(50%) translateY(0px);
 			-ms-transform: rotate(90deg) translateX(50%) translateY(0px);
 			top:${(props: Props) =>
-        props.theme.checkbox[props.cbSize!].indeterminateTopPosition};;
+        props.theme.checkbox[props.cbSize!].indeterminateTopPosition};
     }
     &:disabled + label:before {
       background-color: ${(props: Props) => props.theme.checkbox.disabledCheck};
