@@ -117,7 +117,9 @@ export const SelectCheckboxProps = (res: Props) => {
         : 0;
       return (
         <MenuItemWrapper>
-          <div className={'menuListHeader'}>{selectedCount} items selected</div>
+          <div className={'menuListHeader'}>{`${selectedCount} item${
+            selectedCount === 1 ? '' : 's'
+          } selected`}</div>
           {props.children}
         </MenuItemWrapper>
       );
