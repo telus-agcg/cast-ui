@@ -53,11 +53,13 @@ export const Alert: React.FunctionComponent<Props> = ({
   children,
   theme,
   ...props
-}) => (
+}) => {
+  return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SAlert {...props}>{children}</SAlert>
     </ThemeProvider>
-  );
+  )
+};
 
 Alert.defaultProps = {
   theme: Themes.defaultTheme,
