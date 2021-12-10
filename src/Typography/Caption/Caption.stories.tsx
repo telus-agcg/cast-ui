@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Caption } from './Caption.component';
 
 export default {
-  title: 'Typography',
+  title: 'Caption',
   component: Caption,
   argTypes: {
     theme: {
@@ -25,14 +25,12 @@ _Caption.args = {
   size: 10,
 };
 
-_Caption.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Caption.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        Documentation and examples for Cast UI Caption.
-        `,
-    },
+      Documentation and examples for Cast UI Caption.
+      `,
   },
 };

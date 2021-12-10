@@ -8,10 +8,8 @@ export default {
 
 export const _Typography = () => <Typography />;
 
-_Typography.story = {
-  parameters: {
-    info: {
-      disable: true,
-    },
+_Typography.parameters = {
+  info: {
+    disable: true,
   },
 };

@@ -93,14 +93,12 @@ copyButtonClass='copy-button'
   copyContent2: 'CBA6697-67895',
 };
 
-_CopyToClipboard.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_CopyToClipboard.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a Copy-To-Clipboard component
-        `,
-    },
+      This is a Copy-To-Clipboard component
+      `,
   },
 };

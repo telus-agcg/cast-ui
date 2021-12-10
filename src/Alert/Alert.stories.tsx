@@ -29,16 +29,14 @@ _Alert.args = {
   lightMode: false,
 };
 
-_Alert.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Alert.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a Alert
+      This is a Alert
 
-        The default theme mode is dark.
-        `,
-    },
+      The default theme mode is dark.
+      `,
   },
 };

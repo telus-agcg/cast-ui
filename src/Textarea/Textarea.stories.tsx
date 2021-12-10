@@ -86,14 +86,12 @@ _Textarea.args = {
   cols: 60,
 };
 
-_Textarea.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Textarea.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a Textarea
-        `,
-    },
+      This is a Textarea
+      `,
   },
 };

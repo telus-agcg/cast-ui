@@ -88,14 +88,12 @@ export const _Tabnav = ({ onTabClick }) => (
   </Tabnav>
 );
 
-_Tabnav.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Tabnav.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a Tabnav
-        `,
-    },
+      This is a Tabnav
+      `,
   },
 };

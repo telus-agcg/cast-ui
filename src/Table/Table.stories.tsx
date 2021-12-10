@@ -240,10 +240,9 @@ _Table.args = {
   sizable: true,
 };
 
-_Table.story = {
-  parameters: {
-    info: {
-      text: `
+_Table.parameters = {
+  info: {
+    text: `
 ### Notes
 
 This is a wrapped version of [react-table](https://github.com/tannerlinsley/react-table)
@@ -267,7 +266,6 @@ It seems that the [react-table](https://github.com/tannerlinsley/react-table) pa
 | white-space-nowrap | cell, column | prevents line break in the cell | no |
 | vertically-align-center | cell, column | vertically align center cell content | yes |
 | vertically-align-end | cell, column | vertically align end cell content | no |
-        `,
-    },
+      `,
   },
 };

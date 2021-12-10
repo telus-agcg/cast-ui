@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Header } from './Header.component';
 
 export default {
-  title: 'Typography',
+  title: 'Header',
   component: Header,
   argTypes: {
     theme: {
@@ -25,14 +25,12 @@ _Header.args = {
   size: 10,
 };
 
-_Header.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Header.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        Documentation and examples for Cast UI Headline.
-        `,
-    },
+      Documentation and examples for Cast UI Headline.
+      `,
   },
 };

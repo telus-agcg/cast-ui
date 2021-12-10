@@ -73,14 +73,12 @@ _Navbar.args = {
   borderBottomColor: 'grey',
 };
 
-_Navbar.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Navbar.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a navbar
-        `,
-    },
+      This is a navbar
+      `,
   },
 };

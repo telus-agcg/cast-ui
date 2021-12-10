@@ -33,14 +33,12 @@ _Badge.args = {
   lightMode: false,
 };
 
-_Badge.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Badge.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a badge
-        `,
-    },
+      This is a badge
+      `,
   },
 };

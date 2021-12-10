@@ -261,14 +261,12 @@ _Draggable.args = {
   draggableItem1: true,
 };
 
-_Draggable.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Draggable.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a Draggable
-        `,
-    },
+      This is a Draggable
+      `,
   },
 };

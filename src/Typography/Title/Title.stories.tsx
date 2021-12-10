@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Title } from './Title.component';
 
 export default {
-  title: 'Typography',
+  title: 'Title',
   component: Title,
   argTypes: {
     theme: {
@@ -25,14 +25,12 @@ _Title.args = {
   size: 10,
 };
 
-_Title.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Title.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        Documentation and examples for Cast UI Title.
-        `,
-    },
+      Documentation and examples for Cast UI Title.
+      `,
   },
 };

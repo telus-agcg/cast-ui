@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from './Link.component';
 
 export default {
-  title: 'Typography/Link',
+  title: 'Link',
   component: Link,
   argTypes: {
     theme: {
@@ -34,15 +34,13 @@ _RegularLink.args = {
   solo: true,
 };
 
-_RegularLink.story = {
-  parameters: {
-    info: {
-      text: `
-      ### Notes
+_RegularLink.parameters = {
+  info: {
+    text: `
+    ### Notes
 
-      Documentation and examples for Cast UI Link.
-      `,
-    },
+    Documentation and examples for Cast UI Link.
+    `,
   },
 };
 
@@ -52,15 +50,13 @@ _LinkOnClick.args = {
   disabled: false,
 };
 
-_LinkOnClick.story = {
-  parameters: {
-    info: {
-      text: `
-      ### Notes
+_LinkOnClick.parameters = {
+  info: {
+    text: `
+    ### Notes
 
-      Documentation and examples for Cast UI Link.
-      `,
-    },
+    Documentation and examples for Cast UI Link.
+    `,
   },
 };
 
@@ -74,14 +70,12 @@ export const WithinText = () => (
   </p>
 );
 
-WithinText.story = {
-  parameters: {
-    info: {
-      text: `
-      ### Notes
+WithinText.parameters = {
+  info: {
+    text: `
+    ### Notes
 
-      Documentation and examples for Cast UI Link.
-      `,
-    },
+    Documentation and examples for Cast UI Link.
+    `,
   },
 };

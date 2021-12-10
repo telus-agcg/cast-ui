@@ -60,14 +60,12 @@ _ButtonGroup.args = {
   mode: 'checkbox',
 };
 
-_ButtonGroup.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
-        This is a ButtonGroup.  Selected values will end up in the
-        ButtonGroup's state.SelectedValues property.
-        `,
-    },
+_ButtonGroup.parameters = {
+  info: {
+    text: `
+      ### Notes
+      This is a ButtonGroup.  Selected values will end up in the
+      ButtonGroup's state.SelectedValues property.
+      `,
   },
 };

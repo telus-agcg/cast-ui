@@ -73,14 +73,12 @@ ControlledPopover.args = {
   placement: 'bottom',
 };
 
-ControlledPopover.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+ControlledPopover.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a Popover, based on [tippy.js](https://atomiks.github.io/tippyjs/).
-        `,
-    },
+      This is a Popover, based on [tippy.js](https://atomiks.github.io/tippyjs/).
+      `,
   },
 };

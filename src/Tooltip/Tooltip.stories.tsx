@@ -52,15 +52,13 @@ ControlledTooltip.args = {
   placement: 'bottom',
 };
 
-ControlledTooltip.story = {
-  parameters: {
-    info: {
-      text: `
-      ### Notes
+ControlledTooltip.parameters = {
+  info: {
+    text: `
+    ### Notes
 
-      This is a Tooltip, based on [tippy.js](https://atomiks.github.io/tippyjs/).
-    `,
-    },
+    This is a Tooltip, based on [tippy.js](https://atomiks.github.io/tippyjs/).
+  `,
   },
 };
 

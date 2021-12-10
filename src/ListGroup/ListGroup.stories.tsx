@@ -110,10 +110,9 @@ _ListGroup.args = {
   isCollapsed: false,
 };
 
-_ListGroup.story = {
-  parameters: {
-    info: {
-      text: `
+_ListGroup.parameters = {
+  info: {
+    text: `
 #### Notes
 
 ##### Collapsible List Group
@@ -121,7 +120,6 @@ A List Group can be made collapsible by including the **collapsible**, **isColla
 
 
 
-        `,
-    },
+      `,
   },
 };

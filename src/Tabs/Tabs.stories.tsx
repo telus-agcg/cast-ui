@@ -100,14 +100,12 @@ _Tabs.args = {
   disabled: true,
 };
 
-_Tabs.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Tabs.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a Tab Set
-        `,
-    },
+      This is a Tab Set
+      `,
   },
 };

@@ -78,14 +78,12 @@ _Pagination.args = {
   showPageSizeOptions: true,
 };
 
-_Pagination.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Pagination.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a custom pagination control intended for use with various components (such as Table).
-        `,
-    },
+      This is a custom pagination control intended for use with various components (such as Table).
+      `,
   },
 };

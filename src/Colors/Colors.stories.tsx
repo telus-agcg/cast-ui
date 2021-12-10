@@ -55,14 +55,12 @@ export const Colors = () => (
   </div>
 );
 
-Colors.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+Colors.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is available colors
-        `,
-    },
+      This is available colors
+      `,
   },
 };

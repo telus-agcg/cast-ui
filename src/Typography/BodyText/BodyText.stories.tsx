@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BodyText } from './BodyText.component';
 
 export default {
-  title: 'Typography',
+  title: 'BodyText',
   component: BodyText,
   argTypes: {
     theme: {
@@ -25,14 +25,12 @@ Digits.args = {
   size: 10,
 };
 
-Digits.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+Digits.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        Documentation and examples for Cast UI BodyText.
-        `,
-    },
+      Documentation and examples for Cast UI BodyText.
+      `,
   },
 };

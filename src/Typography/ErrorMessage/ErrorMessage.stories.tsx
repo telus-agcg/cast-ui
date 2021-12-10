@@ -4,7 +4,7 @@ import { ErrorMessage } from './index';
 import { Input } from '../../Input';
 
 export default {
-  title: 'Typography',
+  title: 'ErrorMessage',
   component: ErrorMessage,
   argTypes: {
     theme: {
@@ -32,16 +32,14 @@ _ErrorMessage.args = {
   message: 'This is an error message.',
 };
 
-_ErrorMessage.story = {
-  name: 'ErrorMessage',
+_ErrorMessage.storyName = 'ErrorMessage';
 
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_ErrorMessage.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is an Error Message
-        `,
-    },
+      This is an Error Message
+      `,
   },
 };

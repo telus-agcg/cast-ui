@@ -6,6 +6,9 @@ const FlexDiv = styled.div`
   display: flex;
   align-items: center;
 `;
+const SLink = styled(Link)`
+  margin-left: 5px;
+`;
 
 export default {
   title: 'Select',
@@ -116,10 +119,9 @@ RegularSelect.args = {
   optionType: 'default',
 };
 
-_Select.story = {
-  parameters: {
-    info: {
-      text: `
+_Select.parameters = {
+  info: {
+    text: `
 ### Notes
 
 This is a Select, based on the [react-select](https://github.com/JedWatson/react-select) library.
@@ -133,8 +135,7 @@ For example, the *selectedOption* prop cannot accept any simple values such as s
 The recommended implementation can be found [here](https://react-select.com/upgrade-guide#simple-value)
 
 Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
-      `,
-    },
+    `,
   },
 };
 
@@ -156,10 +157,9 @@ MultiSelect.args = {
   optionType: 'default',
 };
 
-MultiSelect.story = {
-  parameters: {
-    info: {
-      text: `
+MultiSelect.parameters = {
+  info: {
+    text: `
 ### Notes
 
 This is a MultiSelect, based on the [react-select](https://github.com/JedWatson/react-select) library.
@@ -173,8 +173,7 @@ For example, the *selectedOption* prop cannot accept any simple values such as s
 The recommended implementation can be found [here](https://react-select.com/upgrade-guide#simple-value)
 
 Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
-      `,
-    },
+    `,
   },
 };
 
@@ -194,10 +193,9 @@ MultiSelectWithCheckbox.args = {
   optionType: 'checkbox',
 };
 
-MultiSelectWithCheckbox.story = {
-  parameters: {
-    info: {
-      text: `
+MultiSelectWithCheckbox.parameters = {
+  info: {
+    text: `
 ### Notes
 
 This is a MultiSelect, based on the [react-select](https://github.com/JedWatson/react-select) library.
@@ -211,8 +209,7 @@ For example, the *selectedOption* prop cannot accept any simple values such as s
 The recommended implementation can be found [here](https://react-select.com/upgrade-guide#simple-value)
 
 Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
-      `,
-    },
+    `,
   },
 };
 
@@ -277,13 +274,13 @@ const MultiSelectCheckbox = args => {
       <Select
         id="SampleCheckSelect"
         onChange={e => handleSelect(e)}
-        value={selectedOptions}
+        selectedOption={selectedOptions}
         closeMenuOnSelect={false}
         formatGroupLabel={formatGroupLabel}
         options={groupedOptions}
         {...args}
       />
-      <Link onClick={() => setSelectedOptions([])}>Clear</Link>
+      <SLink onClick={() => setSelectedOptions([])}>Clear</SLink>
     </FlexDiv>
   );
 };

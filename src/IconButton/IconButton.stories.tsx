@@ -86,14 +86,12 @@ _IconButton.args = {
   disabled: false,
 };
 
-_IconButton.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_IconButton.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a IconButton
-        `,
-    },
+      This is a IconButton
+      `,
   },
 };

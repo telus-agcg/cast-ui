@@ -59,14 +59,12 @@ _Toggle.args = {
   disabled: false,
 };
 
-_Toggle.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Toggle.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a Toggle control
-        `,
-    },
+      This is a Toggle control
+      `,
   },
 };

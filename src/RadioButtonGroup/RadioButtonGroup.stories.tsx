@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RadioButtonGroup, RadioButton } from '../';
 
 export default {
-  title: 'RadioButton',
+  title: 'RadioButtonGroup',
   component: RadioButtonGroup,
   argTypes: {
     theme: {
@@ -41,14 +41,12 @@ _RadioButtonGroup.args = {
   defaultChecked: '1',
 };
 
-_RadioButtonGroup.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_RadioButtonGroup.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a RadioButtonGroup control
-        `,
-    },
+      This is a RadioButtonGroup control
+      `,
   },
 };

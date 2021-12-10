@@ -120,16 +120,14 @@ _FileUpload.args = {
   fileDetails: 'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM',
 };
 
-_FileUpload.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
-        
-        This is a FileUpload Component. The AJAX library used in parent application 
-        should be responsible for contoling the upload progress(percent) of a file's
-        ProgressBar
-        `,
-    },
+_FileUpload.parameters = {
+  info: {
+    text: `
+      ### Notes
+      
+      This is a FileUpload Component. The AJAX library used in parent application 
+      should be responsible for contoling the upload progress(percent) of a file's
+      ProgressBar
+      `,
   },
 };

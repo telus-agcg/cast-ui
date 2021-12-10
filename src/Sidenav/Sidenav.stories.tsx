@@ -217,14 +217,12 @@ Sidenav.args = {
   activeSideNavItem2: false,
 };
 
-Sidenav.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+Sidenav.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a sidenav
-        `,
-    },
+      This is a sidenav
+      `,
   },
 };

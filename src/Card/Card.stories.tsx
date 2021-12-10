@@ -49,40 +49,38 @@ _Card.args = {
   highlightBorder: 'top',
 };
 
-_Card.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Card.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        Cards include various options for customizing their backgrounds, borders, and color.
+      Cards include various options for customizing their backgrounds, borders, and color.
 
-        ##### Card Style
-        Use the **cardStyle** prop to set the style of the card
+      ##### Card Style
+      Use the **cardStyle** prop to set the style of the card
 
-        Options include
-        - default (default)
-        - primary
-        - success
-        - warning
-        - danger
+      Options include
+      - default (default)
+      - primary
+      - success
+      - warning
+      - danger
 
-        ##### Background
-        Use the **bgColor** prop to set the background of the card in CSS color format.
+      ##### Background
+      Use the **bgColor** prop to set the background of the card in CSS color format.
 
-        ##### Borders
-        Use the **highlightBorder** prop to select the border
-        that will bear the prominent size and color of the style.
+      ##### Borders
+      Use the **highlightBorder** prop to select the border
+      that will bear the prominent size and color of the style.
 
-        Options include
-        - top (default)
-        - right
-        - left
-        - bottom
-        - all
+      Options include
+      - top (default)
+      - right
+      - left
+      - bottom
+      - all
 
-        When using **all** all the borders will be the same size as defined in your theme.
-        `,
-    },
+      When using **all** all the borders will be the same size as defined in your theme.
+      `,
   },
 };

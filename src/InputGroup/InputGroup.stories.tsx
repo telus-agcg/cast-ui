@@ -91,13 +91,11 @@ InputGroupWithTitle.args = {
   invalidText: 'A valid value is required',
 };
 
-InputGroupWithTitle.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
-        This is a InputGroup
-      `,
-    },
+InputGroupWithTitle.parameters = {
+  info: {
+    text: `
+      ### Notes
+      This is a InputGroup
+    `,
   },
 };

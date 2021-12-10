@@ -62,10 +62,9 @@ _Button.args = {
   disabled: false,
 };
 
-_Button.story = {
-  parameters: {
-    info: {
-      text: `
+_Button.parameters = {
+  info: {
+    text: `
 ### Notes
 
 Cast UI custom buttons come with support for multiple sizes, states and semantic styles ideal for use for action in forms, dialogs and more.
@@ -100,7 +99,6 @@ The active state can also be triggered with the **selected** prop by setting it 
 
 #### Disabled State
 To make the Button look inactive add the standard HTML button **disabled** attribute to the component. The attribute is boolean in nature, therefore it will accept **true** or **false** as values as well.
-        `,
-    },
+      `,
   },
 };

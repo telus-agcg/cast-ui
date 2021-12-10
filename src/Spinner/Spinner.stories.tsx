@@ -51,14 +51,12 @@ _Spinner.args = {
   animationSpeed: 1,
 };
 
-_Spinner.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Spinner.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        This is a spinner
-        `,
-    },
+      This is a spinner
+      `,
   },
 };

@@ -42,15 +42,13 @@ ToggleGroupWithTitle.args = {
   labelSize: 'md',
 };
 
-ToggleGroupWithTitle.story = {
-  name: 'ToggleGroup with Title',
+ToggleGroupWithTitle.storyName = 'ToggleGroup with Title';
 
-  parameters: {
-    info: {
-      text: `
-        ### Notes
-        This is a InputGroup
-      `,
-    },
+ToggleGroupWithTitle.parameters = {
+  info: {
+    text: `
+      ### Notes
+      This is a InputGroup
+    `,
   },
 };

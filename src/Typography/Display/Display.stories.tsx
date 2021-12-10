@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Display } from './Display.component';
 
 export default {
-  title: 'Typography',
+  title: 'Display',
   component: Display,
   argTypes: {
     theme: {
@@ -25,14 +25,12 @@ _Display.args = {
   size: 10,
 };
 
-_Display.story = {
-  parameters: {
-    info: {
-      text: `
-        ### Notes
+_Display.parameters = {
+  info: {
+    text: `
+      ### Notes
 
-        Documentation and examples for Cast UI Display.
-        `,
-    },
+      Documentation and examples for Cast UI Display.
+      `,
   },
 };
