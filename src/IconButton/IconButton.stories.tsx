@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, select } from '@storybook/addon-knobs/react';
+import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
 

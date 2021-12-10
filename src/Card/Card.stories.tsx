@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select, color } from '@storybook/addon-knobs/react';
+import { select, color } from '@storybook/addon-knobs';
 
 import { Card } from '../';
 import Title from '../Typography/Title';
