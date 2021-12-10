@@ -5,7 +5,7 @@ import { ic_search as icSearch } from 'react-icons-kit/md';
 import { Input, IconButton } from '../';
 
 export default {
-  title: 'Input',
+  title: 'Components/Inputs/Input',
   component: Input,
   argTypes: {
     type: {

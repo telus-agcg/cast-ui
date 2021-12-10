@@ -9,7 +9,7 @@ const SecondaryCopyContent = () => <Icon size={16} icon={ICopy} />;
 const SecondaryCopySuccessContent = () => <Icon size={16} icon={icCheck} />;
 
 export default {
-  title: 'CopyToClipboard',
+  title: 'Components/Utility/CopyToClipboard',
   component: CopyToClipboard,
   argTypes: {
     copyContent: {

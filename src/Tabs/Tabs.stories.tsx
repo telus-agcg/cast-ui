@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Tab, TabList, TabPanel, Tabs } from '../';
 
 export default {
-  title: 'Tabs',
+  title: 'Components/Navigation/Tabs',
   component: Tabs,
   subcomponents: {
     Tab,

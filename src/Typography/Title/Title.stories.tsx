@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Title } from './Title.component';
 
 export default {
-  title: 'Title',
+  title: 'Components/Typography/Title',
   component: Title,
   argTypes: {
     theme: {

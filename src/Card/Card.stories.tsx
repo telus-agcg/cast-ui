@@ -4,7 +4,7 @@ import { Card } from '../';
 import Title from '../Typography/Title';
 
 export default {
-  title: 'Card',
+  title: 'Components/Data Display/Card',
   component: Card,
   argTypes: {
     cardStyle: {

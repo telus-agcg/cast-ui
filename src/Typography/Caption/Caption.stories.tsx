@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Caption } from './Caption.component';
 
 export default {
-  title: 'Caption',
+  title: 'Components/Typography/Caption',
   component: Caption,
   argTypes: {
     theme: {

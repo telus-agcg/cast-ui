@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Header } from './Header.component';
 
 export default {
-  title: 'Header',
+  title: 'Components/Typography/Header',
   component: Header,
   argTypes: {
     theme: {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Display } from './Display.component';
 
 export default {
-  title: 'Display',
+  title: 'Components/Typography/Display',
   component: Display,
   argTypes: {
     theme: {

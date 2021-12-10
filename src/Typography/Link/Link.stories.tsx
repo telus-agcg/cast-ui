@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from './Link.component';
 
 export default {
-  title: 'Link',
+  title: 'Components/Typography/Link',
   component: Link,
   argTypes: {
     theme: {

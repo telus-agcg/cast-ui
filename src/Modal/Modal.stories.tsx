@@ -17,7 +17,7 @@ const DemoButtons = () => {
 };
 
 export default {
-  title: 'Modal',
+  title: 'Components/Utility/Modal',
   component: Modal,
   argTypes: {
     theme: {

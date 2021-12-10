@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Collapse } from '../';
 
 export default {
-  title: 'Collapse',
+  title: 'Components/Utility/Collapse',
   component: Collapse,
   argTypes: {
     isOpen: {

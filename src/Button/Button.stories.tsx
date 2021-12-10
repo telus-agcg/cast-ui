@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Button } from '../';
 
 export default {
-  title: 'Button',
+  title: 'Components/Inputs/Button',
   component: Button,
   argTypes: {
     outline: {

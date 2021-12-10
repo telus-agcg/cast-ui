@@ -39,7 +39,7 @@ const Color = withTheme<any>(({ theme: { colors } }: any) =>
 );
 
 export default {
-  title: 'Colors',
+  title: 'Components/Themes/Colors',
 };
 
 export const Colors = () => (

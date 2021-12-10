@@ -11,7 +11,7 @@ const MyComponent = (props: any) => (
 );
 
 export default {
-  title: 'Popover',
+  title: 'Components/Feedback/Popover',
   component: Popover,
   argTypes: {
     theme: {

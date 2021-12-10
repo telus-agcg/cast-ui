@@ -25,7 +25,7 @@ const TestAttachmentsComponent = () => {
 };
 
 export default {
-  title: 'FileUpload',
+  title: 'Components/Inputs/FileUpload',
   component: FileUpload,
   subcomponents: {
     File,

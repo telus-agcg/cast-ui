@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Panel, PanelHeader, PanelBody, Collapse } from '../';
 
 export default {
-  title: 'Panel',
+  title: 'Components/Data Display/Panel',
   component: Panel,
   subcomponents: {
     Panel,

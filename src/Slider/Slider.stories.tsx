@@ -4,7 +4,7 @@ import { Range } from 'react-input-range';
 import { Slider } from './';
 
 export default {
-  title: 'Slider',
+  title: 'Components/Inputs/Slider',
   component: Slider,
   argTypes: {
     theme: {

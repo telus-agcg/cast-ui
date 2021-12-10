@@ -5,7 +5,7 @@ import { userSecret } from 'react-icons-kit/fa/userSecret';
 import { Navbar, Nav } from '../';
 
 export default {
-  title: 'Navbar',
+  title: 'Components/Navigation/Navbar',
   component: Navbar,
   subcomponents: {
     Nav,

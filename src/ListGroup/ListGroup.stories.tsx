@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ListGroup, ListGroupItem } from '../';
 
 export default {
-  title: 'List Group',
+  title: 'Components/Data Display/List Group',
   component: ListGroup,
   subcomponents: {
     ListGroupItem,

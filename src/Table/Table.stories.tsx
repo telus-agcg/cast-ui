@@ -7,7 +7,7 @@ import { Checkbox } from '../Checkbox';
 import SampleData from './sampleData';
 
 export default {
-  title: 'Table',
+  title: 'Components/Data Display/Table',
   component: Table,
   argTypes: {
     theme: {

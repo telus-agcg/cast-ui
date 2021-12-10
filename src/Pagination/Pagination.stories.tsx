@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Pagination } from '../index';
 
 export default {
-  title: 'Pagination',
+  title: 'Components/Navigation/Pagination',
   component: Pagination,
   argTypes: {
     theme: {

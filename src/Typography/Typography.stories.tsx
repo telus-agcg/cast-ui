@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Typography } from './Typography.component';
 
 export default {
-  title: 'Typography',
+  title: 'Components/Typography/Typography',
 };
 
 export const _Typography = () => <Typography />;

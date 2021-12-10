@@ -11,7 +11,7 @@ const SLink = styled(Link)`
 `;
 
 export default {
-  title: 'Select',
+  title: 'Components/Inputs/Select',
   component: Select,
   argTypes: {
     theme: {

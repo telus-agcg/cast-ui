@@ -15,7 +15,7 @@ import {
 } from '../';
 
 export default {
-  title: 'Sidenav',
+  title: 'Components/Navigation/Sidenav',
   component: SideNavbar,
   subcomponents: {
     SideNav,

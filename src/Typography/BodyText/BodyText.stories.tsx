@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BodyText } from './BodyText.component';
 
 export default {
-  title: 'BodyText',
+  title: 'Components/Typography/BodyText',
   component: BodyText,
   argTypes: {
     theme: {

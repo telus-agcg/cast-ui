@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Badge } from '../';
 
 export default {
-  title: 'Badge',
+  title: 'Components/Data Display/Badge',
   component: Badge,
   argTypes: {
     badgeSize: {

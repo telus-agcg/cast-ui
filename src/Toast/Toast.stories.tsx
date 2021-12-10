@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Toast } from '../Toast';
 
 export default {
-  title: 'Toast',
+  title: 'Components/Feedback/Toast',
   component: Toast,
   argTypes: {
     position: {

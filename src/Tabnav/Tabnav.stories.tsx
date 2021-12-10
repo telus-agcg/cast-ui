@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Tabnav, Header, Badge } from '../';
 
 export default {
-  title: 'Tabnav',
+  title: 'Components/Navigation/Tabnav',
   component: Tabnav,
   subcomponents: {
     Header,
