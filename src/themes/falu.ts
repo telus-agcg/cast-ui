@@ -218,7 +218,7 @@ export const faluTheme = {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     fontSize: '14px',
     fontWeight: '400',
-    lineHeight: '160%',
+    lineHeight: '18px',
     color: faluColors.drk800,
     backgroundColor: faluColors.white,
   },
