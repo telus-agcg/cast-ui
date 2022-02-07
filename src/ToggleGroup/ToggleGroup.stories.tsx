@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ToggleGroup, Toggle } from '../';
 
 export default {
-  title: 'Components/Inputs/ToggleGroup',
+  title: 'Components/Inputs',
   component: ToggleGroup,
   argTypes: {
     theme: {
@@ -30,21 +30,19 @@ export default {
   },
 };
 
-export const ToggleGroupWithTitle = args => (
+export const _ToggleGroup = args => (
   <ToggleGroup {...args}>
     <Toggle toggleSize={'md'} checked={true} disabled={false} value="1" />
   </ToggleGroup>
 );
 
-ToggleGroupWithTitle.args = {
+_ToggleGroup.args = {
   label: 'This is my label',
   vertical: false,
   labelSize: 'md',
 };
 
-ToggleGroupWithTitle.storyName = 'ToggleGroup with Title';
-
-ToggleGroupWithTitle.parameters = {
+_ToggleGroup.parameters = {
   info: {
     text: `
       ### Notes

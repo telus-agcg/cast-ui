@@ -4,7 +4,7 @@ import { InputGroup, Input } from '../';
 import Select from '../Select';
 
 export default {
-  title: 'Components/Inputs/InputGroup',
+  title: 'Components/Inputs',
   component: InputGroup,
   argTypes: {
     label: {
@@ -47,7 +47,7 @@ export default {
   },
 };
 
-export const InputGroupWithTitle = ({
+export const _InputGroup = ({
   label,
   isDisabled,
   selectSize,
@@ -83,7 +83,7 @@ export const InputGroupWithTitle = ({
   </div>
 );
 
-InputGroupWithTitle.args = {
+_InputGroup.args = {
   label: 'Input Group label',
   isDisabled: false,
   selectSize: 'md',
@@ -91,7 +91,7 @@ InputGroupWithTitle.args = {
   invalidText: 'A valid value is required',
 };
 
-InputGroupWithTitle.parameters = {
+_InputGroup.parameters = {
   info: {
     text: `
       ### Notes

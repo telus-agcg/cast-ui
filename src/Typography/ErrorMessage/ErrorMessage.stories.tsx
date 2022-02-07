@@ -4,7 +4,7 @@ import { ErrorMessage } from './index';
 import { Input } from '../../Input';
 
 export default {
-  title: 'Components/Typography/ErrorMessage',
+  title: 'Components/Feedback/ErrorMessage',
   component: ErrorMessage,
   argTypes: {
     theme: {
@@ -30,6 +30,7 @@ export const _ErrorMessage = args => (
 
 _ErrorMessage.args = {
   message: 'This is an error message.',
+  textColor: '#fa1a1a',
 };
 
 _ErrorMessage.storyName = 'ErrorMessage';

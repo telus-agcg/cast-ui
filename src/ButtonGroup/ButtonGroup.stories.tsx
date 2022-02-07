@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Button, ButtonGroup } from '../';
 
 export default {
-  title: 'Components/Inputs/ButtonGroup',
+  title: 'Components/Inputs',
   component: ButtonGroup,
   argTypes: {
     role: {

@@ -31,7 +31,7 @@ code {
 `;
 
 export default {
-  title: 'Components/Typography/CodeBlock',
+  title: 'Components/Typography',
   excludeStories: ['sampleCode'],
   component: CopyToClipboard,
 };

@@ -11,7 +11,7 @@ const MyComponent = (props: any) => (
 );
 
 export default {
-  title: 'Components/Feedback/Popover',
+  title: 'Components/Data Display/Popover',
   component: Popover,
   argTypes: {
     theme: {
@@ -56,7 +56,7 @@ export default {
   },
 };
 
-export const ControlledPopover = args => (
+export const _Popover = args => (
   <Popover content={<MyComponent />} {...args}>
     <span>
       <Button btnSize="md" btnStyle="primary" onClick={() => null}>
@@ -66,14 +66,14 @@ export const ControlledPopover = args => (
   </Popover>
 );
 
-ControlledPopover.args = {
+_Popover.args = {
   isVisible: true,
   arrow: true,
   size: 'regular',
   placement: 'bottom',
 };
 
-ControlledPopover.parameters = {
+_Popover.parameters = {
   info: {
     text: `
       ### Notes

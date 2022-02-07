@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BodyText } from './BodyText.component';
 
 export default {
-  title: 'Components/Typography/BodyText',
+  title: 'Components/Typography',
   component: BodyText,
   argTypes: {
     theme: {
@@ -19,13 +19,15 @@ export default {
   },
 };
 
-export const Digits = args => <BodyText {...args}>Example BodyText</BodyText>;
+export const _BodyText = args => (
+  <BodyText {...args}>Example BodyText</BodyText>
+);
 
-Digits.args = {
+_BodyText.args = {
   size: 10,
 };
 
-Digits.parameters = {
+_BodyText.parameters = {
   info: {
     text: `
       ### Notes

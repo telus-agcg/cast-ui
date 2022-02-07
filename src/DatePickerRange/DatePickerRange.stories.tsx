@@ -2,7 +2,7 @@ import * as React from 'react';
 import DatePickerRange from '../DatePickerRange';
 
 export default {
-  title: 'Components/Inputs/DatePickerRange',
+  title: 'Components/Inputs',
   component: DatePickerRange,
   argTypes: {
     theme: {

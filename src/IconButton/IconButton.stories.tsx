@@ -4,7 +4,7 @@ import { ic_add as icAdd } from 'react-icons-kit/md/ic_add';
 import { IconButton } from '../';
 
 export default {
-  title: 'Components/Inputs/IconButton',
+  title: 'Components/Inputs',
   component: IconButton,
   argTypes: {
     rounded: {

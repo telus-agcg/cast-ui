@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Tooltip } from '../';
 
 export default {
-  title: 'Components/Feedback/Tooltip',
+  title: 'Components/Data Display/Tooltip',
   component: Tooltip,
   argTypes: {
     theme: {
@@ -40,19 +40,19 @@ export default {
   },
 };
 
-export const ControlledTooltip = args => (
+export const _Tooltip = args => (
   <Tooltip content={<MyComponent />} {...args} trigger="click">
     <button>This button has a controlled tooltip</button>
   </Tooltip>
 );
 
-ControlledTooltip.args = {
+_Tooltip.args = {
   arrow: true,
   size: 'regular',
   placement: 'bottom',
 };
 
-ControlledTooltip.parameters = {
+_Tooltip.parameters = {
   info: {
     text: `
     ### Notes
