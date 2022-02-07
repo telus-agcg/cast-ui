@@ -46,6 +46,14 @@ export default {
       control: false,
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The Radio Button component improves the styling, layout and behavior of default radio input HTML element.',
+      },
+    },
+  },
 };
 
 export const _RadioButton = args => {
@@ -66,23 +74,4 @@ _RadioButton.args = {
   rbSize: 'md',
   checked: true,
   displayStyle: 'inline',
-};
-
-_RadioButton.parameters = {
-  info: {
-    text: `
-        ### Notes
-
-                The Radio Button component improves the styling, layout and behavior of default radio input HTML element.
-
-        ##### Disabled
-        Disabled radio buttons are supported. The disabled attribute will apply a lighter color to help indicate the input’s state.
-
-        ##### Display Style
-                By default, any number of radio buttons that are immediate sibling will be *vertically stacked* and appropriately spaced.
-                
-                Alternatively, group radio buttons on the same horizontal row by settings the **displayStyle** prop to **inline**
-
-        `,
-  },
 };

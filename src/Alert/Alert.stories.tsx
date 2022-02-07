@@ -18,6 +18,13 @@ export default {
       },
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: 'The default theme mode, for an Alert is dark.',
+      },
+    },
+  },
 };
 
 export const _Alert = args => (
@@ -27,16 +34,4 @@ export const _Alert = args => (
 _Alert.args = {
   alertStyle: 'danger',
   lightMode: false,
-};
-
-_Alert.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a Alert
-
-      The default theme mode is dark.
-      `,
-  },
 };

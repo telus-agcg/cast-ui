@@ -50,13 +50,3 @@ _Spinner.args = {
   borderWidth: 3,
   animationSpeed: 1,
 };
-
-_Spinner.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a spinner
-      `,
-  },
-};

@@ -216,13 +216,3 @@ Sidenav.args = {
   activeSideNavItem: true,
   activeSideNavItem2: false,
 };
-
-Sidenav.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a sidenav
-      `,
-  },
-};

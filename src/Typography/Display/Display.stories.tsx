@@ -24,13 +24,3 @@ export const _Display = args => <Display {...args}>Example Display</Display>;
 _Display.args = {
   size: 10,
 };
-
-_Display.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      Documentation and examples for Cast UI Display.
-      `,
-  },
-};

@@ -24,13 +24,3 @@ export const _Title = args => <Title {...args}>20px Medium</Title>;
 _Title.args = {
   size: 10,
 };
-
-_Title.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      Documentation and examples for Cast UI Title.
-      `,
-  },
-};

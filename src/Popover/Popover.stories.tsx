@@ -54,6 +54,14 @@ export default {
       control: false,
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'This Popover is based on [tippy.js](https://atomiks.github.io/tippyjs/)',
+      },
+    },
+  },
 };
 
 export const _Popover = args => (
@@ -71,14 +79,4 @@ _Popover.args = {
   arrow: true,
   size: 'regular',
   placement: 'bottom',
-};
-
-_Popover.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a Popover, based on [tippy.js](https://atomiks.github.io/tippyjs/).
-      `,
-  },
 };

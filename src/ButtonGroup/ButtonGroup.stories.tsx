@@ -59,13 +59,3 @@ _ButtonGroup.args = {
   role: 'group',
   mode: 'checkbox',
 };
-
-_ButtonGroup.parameters = {
-  info: {
-    text: `
-      ### Notes
-      This is a ButtonGroup.  Selected values will end up in the
-      ButtonGroup's state.SelectedValues property.
-      `,
-  },
-};

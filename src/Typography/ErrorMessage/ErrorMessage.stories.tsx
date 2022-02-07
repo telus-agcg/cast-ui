@@ -34,13 +34,3 @@ _ErrorMessage.args = {
 };
 
 _ErrorMessage.storyName = 'ErrorMessage';
-
-_ErrorMessage.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is an Error Message
-      `,
-  },
-};

@@ -99,13 +99,3 @@ _Tabs.args = {
   tabTitle3: 'Tab Page 03',
   disabled: true,
 };
-
-_Tabs.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a Tab Set
-      `,
-  },
-};

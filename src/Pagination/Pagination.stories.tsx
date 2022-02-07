@@ -65,6 +65,14 @@ export default {
       control: false,
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'This is a custom pagination control intended for use with various components (such as Table).',
+      },
+    },
+  },
 };
 
 export const _Pagination = args => {
@@ -76,14 +84,4 @@ _Pagination.args = {
   page: 3,
   pageSize: 20,
   showPageSizeOptions: true,
-};
-
-_Pagination.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a custom pagination control intended for use with various components (such as Table).
-      `,
-  },
 };

@@ -9,6 +9,19 @@ const FlexDiv = styled.div`
 const SLink = styled(Link)`
   margin-left: 5px;
 `;
+const description = `
+This is a Select, based on the [react-select](https://github.com/JedWatson/react-select) library.
+
+###### Important
+
+The version of **react-select** used is **version 2** and it introduces a number of changes from version 1.
+
+For example, the *selectedOption* prop cannot accept any simple values such as strings.
+
+The recommended implementation can be found [here](https://react-select.com/upgrade-guide#simple-value)
+
+Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
+    `;
 
 export default {
   title: 'Components/Inputs/Select',
@@ -92,6 +105,13 @@ export default {
     controlSpecificProps: { control: false },
     menuPortalTarget: { control: false },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
 };
 
 const _Select = args => (
@@ -119,26 +139,6 @@ RegularSelect.args = {
   optionType: 'default',
 };
 
-_Select.parameters = {
-  info: {
-    text: `
-### Notes
-
-This is a Select, based on the [react-select](https://github.com/JedWatson/react-select) library.
-
-###### Important
-
-The version of **react-select** used is **version 2** and it introduces a number of changes from version 1.
-
-For example, the *selectedOption* prop cannot accept any simple values such as strings.
-
-The recommended implementation can be found [here](https://react-select.com/upgrade-guide#simple-value)
-
-Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
-    `,
-  },
-};
-
 export const MultiSelect = _Select.bind({});
 MultiSelect.args = {
   creatable: true,
@@ -157,26 +157,6 @@ MultiSelect.args = {
   optionType: 'default',
 };
 
-MultiSelect.parameters = {
-  info: {
-    text: `
-### Notes
-
-This is a MultiSelect, based on the [react-select](https://github.com/JedWatson/react-select) library.
-
-###### Important
-
-The version of **react-select** used is **version 2** and it introduces a number of changes from version 1.
-
-For example, the *selectedOption* prop cannot accept any simple values such as strings.
-
-The recommended implementation can be found [here](https://react-select.com/upgrade-guide#simple-value)
-
-Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
-    `,
-  },
-};
-
 export const MultiSelectWithCheckbox = args => (
   <MultiSelectCheckbox id="SampleCheckSelect" {...args} />
 );
@@ -191,26 +171,6 @@ MultiSelectWithCheckbox.args = {
   highlightFilled: false,
   hideSelectedOptions: false,
   optionType: 'checkbox',
-};
-
-MultiSelectWithCheckbox.parameters = {
-  info: {
-    text: `
-### Notes
-
-This is a MultiSelect, based on the [react-select](https://github.com/JedWatson/react-select) library.
-
-###### Important
-
-The version of **react-select** used is **version 2** and it introduces a number of changes from version 1.
-
-For example, the *selectedOption* prop cannot accept any simple values such as strings.
-
-The recommended implementation can be found [here](https://react-select.com/upgrade-guide#simple-value)
-
-Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
-    `,
-  },
 };
 
 const colorOptions: any[] = [

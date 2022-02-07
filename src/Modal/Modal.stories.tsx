@@ -61,6 +61,14 @@ export default {
       control: false,
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'This Modal is based on the [react-modal](https://www.npmjs.com/package/react-modal) component.',
+      },
+    },
+  },
 };
 
 const _Modal = ({ children, isOpen, modalTitle, ...args }) => (
@@ -83,22 +91,6 @@ _ModalBasic.args = {
   children: <p>Lorem</p>,
 };
 
-_ModalBasic.parameters = {
-  info: {
-    text: `
-    ### Notes
-    This is a Modal, based on the react-modal component.
-    To open or close the modal, change the 'isOpen' prop.
-    To set the width of the modal, change the 'modalSize' props to either
-    - *sm* 300px
-    - *md* 500px (default)
-    - *lg* 800px
-    In addition of the string options under *footerContent*,
-    you can pass a component instead of any of those.
-  `,
-  },
-};
-
 export const _ModalScrollable = _Modal.bind({});
 _ModalScrollable.args = {
   isOpen: false,
@@ -114,20 +106,4 @@ _ModalScrollable.args = {
         repellat soluta suscipit tempora ut?
       </div>
     )),
-};
-
-_ModalScrollable.parameters = {
-  info: {
-    text: `
-    ### Notes
-    This is a Modal, based on the react-modal component.
-    To open or close the modal, change the 'isOpen' prop.
-    To set the width of the modal, change the 'modalSize' props to either
-    - *sm* 300px
-    - *md* 500px (default)
-    - *lg* 800px
-    In addition of the string options under *footerContent*,
-    you can pass a component instead of any of those.
-  `,
-  },
 };

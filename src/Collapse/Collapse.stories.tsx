@@ -53,13 +53,3 @@ _Collapse.args = {
   isOpen: true,
   transition: 'height 300ms cubic-bezier(0.4, 0, 0.2, 1)',
 };
-
-_Collapse.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a Collapse
-      `,
-  },
-};

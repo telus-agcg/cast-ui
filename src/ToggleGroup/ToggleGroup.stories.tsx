@@ -41,12 +41,3 @@ _ToggleGroup.args = {
   vertical: false,
   labelSize: 'md',
 };
-
-_ToggleGroup.parameters = {
-  info: {
-    text: `
-      ### Notes
-      This is a InputGroup
-    `,
-  },
-};

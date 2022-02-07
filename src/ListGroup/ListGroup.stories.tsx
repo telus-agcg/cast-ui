@@ -109,17 +109,3 @@ _ListGroup.args = {
   listGroupTheme2: 'light',
   isCollapsed: false,
 };
-
-_ListGroup.parameters = {
-  info: {
-    text: `
-#### Notes
-
-##### Collapsible List Group
-A List Group can be made collapsible by including the **collapsible**, **isCollapsed**, and **name** props. 
-
-
-
-      `,
-  },
-};

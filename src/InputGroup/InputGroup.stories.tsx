@@ -90,12 +90,3 @@ _InputGroup.args = {
   invalid: false,
   invalidText: 'A valid value is required',
 };
-
-_InputGroup.parameters = {
-  info: {
-    text: `
-      ### Notes
-      This is a InputGroup
-    `,
-  },
-};

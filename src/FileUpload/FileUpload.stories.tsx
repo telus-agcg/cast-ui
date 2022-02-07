@@ -24,6 +24,11 @@ const TestAttachmentsComponent = () => {
   );
 };
 
+const description = `
+This is a FileUpload Component. 
+The AJAX library used in parent application 
+should be responsible for controlling the upload progress(percent) of a file's ProgressBar`;
+
 export default {
   title: 'Components/Inputs',
   component: FileUpload,
@@ -90,6 +95,13 @@ export default {
       },
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
 };
 
 export const _FileUpload = ({
@@ -118,16 +130,4 @@ _FileUpload.args = {
   uploaded: false,
   percentage: 70,
   fileDetails: 'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM',
-};
-
-_FileUpload.parameters = {
-  info: {
-    text: `
-      ### Notes
-      
-      This is a FileUpload Component. The AJAX library used in parent application 
-      should be responsible for contoling the upload progress(percent) of a file's
-      ProgressBar
-      `,
-  },
 };

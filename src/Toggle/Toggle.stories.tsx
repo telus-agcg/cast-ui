@@ -58,13 +58,3 @@ _Toggle.args = {
   checked: true,
   disabled: false,
 };
-
-_Toggle.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a Toggle control
-      `,
-  },
-};

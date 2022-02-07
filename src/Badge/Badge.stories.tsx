@@ -32,13 +32,3 @@ _Badge.args = {
   badgeStyle: 'primary',
   lightMode: false,
 };
-
-_Badge.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a badge
-      `,
-  },
-};

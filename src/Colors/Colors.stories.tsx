@@ -40,6 +40,13 @@ const Color = withTheme<any>(({ theme: { colors } }: any) =>
 
 export default {
   title: 'Components/Themes/Colors',
+  parameters: {
+    docs: {
+      description: {
+        component: 'These are the available colors',
+      },
+    },
+  },
 };
 
 export const Colors = () => (
@@ -54,13 +61,3 @@ export const Colors = () => (
     <Color />
   </div>
 );
-
-Colors.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is available colors
-      `,
-  },
-};

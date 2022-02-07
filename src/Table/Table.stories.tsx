@@ -6,6 +6,30 @@ import { Tooltip } from '../Tooltip';
 import { Checkbox } from '../Checkbox';
 import SampleData from './sampleData';
 
+const componentDescription = `
+This is a wrapped version of [react-table](https://github.com/tannerlinsley/react-table)
+
+It uses the *SelectTable* HOC for the checkbox column.
+
+It uses the Popover component for the row controls on the right most column.
+
+All the options available to react-table can be passed directly from the component.
+
+##### Important note on Pagination
+
+Controlled Pagination's **forcePage** doesn't display the correct page. For example, if "4" is passed into the prop, "5" displays.
+
+It seems that the [react-table](https://github.com/tannerlinsley/react-table) package is built like this by default.
+
+##### Utility classNames
+| className | Target | Behavior | default |
+|:-------------------------|:--------:|:--------------------------------------:|---------:|
+| white-space-wrap | cell, column | break lines in the cell | yes |
+| white-space-nowrap | cell, column | prevents line break in the cell | no |
+| vertically-align-center | cell, column | vertically align center cell content | yes |
+| vertically-align-end | cell, column | vertically align end cell content | no |
+      `;
+
 export default {
   title: 'Components/Data Display/Table',
   component: Table,
@@ -98,6 +122,13 @@ export default {
     },
     onSortedChange: {
       action: 'onSortedChange',
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: componentDescription,
+      },
     },
   },
 };
@@ -238,34 +269,4 @@ _Table.args = {
   multiSort: true,
   striped: true,
   sizable: true,
-};
-
-_Table.parameters = {
-  info: {
-    text: `
-### Notes
-
-This is a wrapped version of [react-table](https://github.com/tannerlinsley/react-table)
-
-It uses the *SelectTable* HOC for the checkbox column.
-
-It uses the Popover component for the row controls on the right most column.
-
-All the options available to react-table can be passed directly from the component.
-
-##### Important note on Pagination
-
-Controlled Pagination's **forcePage** doesn't display the correct page. For example, if "4" is passed into the prop, "5" displays.
-
-It seems that the [react-table](https://github.com/tannerlinsley/react-table) package is built like this by default.
-
-##### Utility classNames
-| className | Target | Behavior | default |
-|:-------------------------|:--------:|:--------------------------------------:|---------:|
-| white-space-wrap | cell, column | break lines in the cell | yes |
-| white-space-nowrap | cell, column | prevents line break in the cell | no |
-| vertically-align-center | cell, column | vertically align center cell content | yes |
-| vertically-align-end | cell, column | vertically align end cell content | no |
-      `,
-  },
 };

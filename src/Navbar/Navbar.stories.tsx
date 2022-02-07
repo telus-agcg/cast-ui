@@ -72,13 +72,3 @@ _Navbar.args = {
   height: 80,
   borderBottomColor: 'grey',
 };
-
-_Navbar.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a navbar
-      `,
-  },
-};

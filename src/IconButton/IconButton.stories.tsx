@@ -85,13 +85,3 @@ _IconButton.args = {
   iconSize: 20,
   disabled: false,
 };
-
-_IconButton.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a IconButton
-      `,
-  },
-};

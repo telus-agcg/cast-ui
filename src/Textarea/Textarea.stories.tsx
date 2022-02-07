@@ -85,13 +85,3 @@ _Textarea.args = {
   rows: 8,
   cols: 60,
 };
-
-_Textarea.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a Textarea
-      `,
-  },
-};

@@ -34,19 +34,16 @@ export default {
   title: 'Components/Typography',
   excludeStories: ['sampleCode'],
   component: CopyToClipboard,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The CopyToClipboard component is used here to display a code block.',
+      },
+    },
+  },
 };
 
 export const CodeBlock = () => (
   <CopyToClipboard copyContent={sampleCode || ''} includeCopyButton={true} />
 );
-
-CodeBlock.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      The [CopyToClipboard](http://localhost:6006/?path=/story/copytoclipboard--copytoclipboard)
-      component can be used to display a code block.
-      `,
-  },
-};

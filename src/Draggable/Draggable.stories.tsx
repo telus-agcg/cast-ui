@@ -260,13 +260,3 @@ _Draggable.args = {
   showItemHandle: true,
   draggableItem1: true,
 };
-
-_Draggable.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a Draggable
-      `,
-  },
-};

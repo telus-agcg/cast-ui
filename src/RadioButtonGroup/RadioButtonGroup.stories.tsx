@@ -40,13 +40,3 @@ _RadioButtonGroup.args = {
   name: 'myRadioButtonGroup',
   defaultChecked: '1',
 };
-
-_RadioButtonGroup.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      This is a RadioButtonGroup control
-      `,
-  },
-};

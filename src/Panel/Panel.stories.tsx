@@ -156,21 +156,6 @@ _PlainPanel.args = {
   noPadding: false,
 };
 
-_PlainPanel.parameters = {
-  info: {
-    text: `
-#### Notes
-#### Panel
-The Panel component is can be composed of 3 components, **Panel** , **PanelHeader** and **PanelBody**.
-It not necessary to include the **PanelHeader**.
-
-##### Basic Panel
-
-By default the Panel, all it does is apply some basic border and padding to contain some content.
-            `,
-  },
-};
-
 export const _PanelWithHeader = _Panel.bind({});
 _PanelWithHeader.args = {
   name: 'Blood Group',
@@ -181,31 +166,6 @@ _PanelWithHeader.args = {
   withCollapse: false,
   headerBackgroundColor: 'secondary',
   noPadding: false,
-};
-
-_PanelWithHeader.parameters = {
-  info: {
-    text: `
-#### Notes
-##### Panel with Heading
-Easily add a heading container to your panel with the **PanelHeader** component. It accepts *title* and *name* props that are used to compose the label shown with the *name* emboldened.
-
-##### Contextual alternatives
-Like other components, easily make a panel more meaningful to a particular context by chaginng between the following *panelStyle* s
-
-- primary (default)
-- secondary
-- success
-- warning
-- danger
-
-The **PanelHeader** also supports the application of custom text, border and background colors via the *headerColor*, *headerBackgroundColor* and *headerBorderColor* respectively. 
-
-The **PanelBody** also supports the application of custom border and background colors via the *bodyBackgroundColor* and *bodyBorderColor* respectively. 
-
-These props accept CSS color codes or theme color declarations.				
-`,
-  },
 };
 
 export const _PanelCollapsible = _Panel.bind({});
@@ -220,19 +180,4 @@ _PanelCollapsible.args = {
   headerBackgroundColor: 'secondary',
   noPadding: false,
   iconPosition: 'right',
-};
-
-_PanelCollapsible.parameters = {
-  info: {
-    text: `
-#### Notes
-
-##### Collapsible Panel
-A panel can be made collapsible by including all 3 components under the Panel component hierarchy and wrapping the **PanelBody** or any content with the **Collapse** component.
-
-The collapsability of the **PanelBody** can be controlled by managing the **Collapse** component *isOpen* and the **PanelHeader** *isCollapsed* states through their props. This behaviour can be greatly enhanced by passing the state management event to the **PanelHeader** *toogleItem* prop. By doing so, the **PanelHeader** chevron direction will also be appropriately displayed.
-
-
-        `,
-  },
 };

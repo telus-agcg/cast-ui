@@ -34,30 +34,10 @@ _RegularLink.args = {
   solo: true,
 };
 
-_RegularLink.parameters = {
-  info: {
-    text: `
-    ### Notes
-
-    Documentation and examples for Cast UI Link.
-    `,
-  },
-};
-
 export const _LinkOnClick = _Link.bind({});
 
 _LinkOnClick.args = {
   disabled: false,
-};
-
-_LinkOnClick.parameters = {
-  info: {
-    text: `
-    ### Notes
-
-    Documentation and examples for Cast UI Link.
-    `,
-  },
 };
 
 export const WithinText = () => (
@@ -69,13 +49,3 @@ export const WithinText = () => (
     elit.
   </p>
 );
-
-WithinText.parameters = {
-  info: {
-    text: `
-    ### Notes
-
-    Documentation and examples for Cast UI Link.
-    `,
-  },
-};

@@ -38,6 +38,14 @@ export default {
       },
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'This Tooltip is based on [tippy.js](https://atomiks.github.io/tippyjs/).',
+      },
+    },
+  },
 };
 
 export const _Tooltip = args => (
@@ -50,16 +58,6 @@ _Tooltip.args = {
   arrow: true,
   size: 'regular',
   placement: 'bottom',
-};
-
-_Tooltip.parameters = {
-  info: {
-    text: `
-    ### Notes
-
-    This is a Tooltip, based on [tippy.js](https://atomiks.github.io/tippyjs/).
-  `,
-  },
 };
 
 const MyComponent = (props: any) => (

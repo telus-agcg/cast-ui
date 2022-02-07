@@ -26,13 +26,3 @@ export const _BodyText = args => (
 _BodyText.args = {
   size: 10,
 };
-
-_BodyText.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-      Documentation and examples for Cast UI BodyText.
-      `,
-  },
-};

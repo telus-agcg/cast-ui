@@ -49,6 +49,14 @@ export default {
       control: false,
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The Checkbox component improves the styling, layout and behavior of default checkbox input HTML element.',
+      },
+    },
+  },
 };
 
 const _Checkbox = args => (
@@ -81,23 +89,4 @@ _Determinate.args = {
   invalid: false,
   invalidText: 'A valid value is required',
   defaultChecked: true,
-};
-
-_Checkbox.parameters = {
-  info: {
-    text: `
-      ### Notes
-
-              The Checkbox component improves the styling, layout and behavior of default checkbox input HTML element.
-
-      ##### Disabled
-      Disabled checkbox are supported. The disabled attribute will apply a lighter color to help indicate the input’s state.
-
-      ##### Display Style
-              By default, any number of checkboxes that are immediate sibling will be *vertically stacked* and appropriately spaced.
-
-              Alternatively, group checkboxes on the same horizontal row by settings the **displayStyle** prop to **inline**
-
-    `,
-  },
 };
