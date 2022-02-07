@@ -13,4 +13,5 @@ addons.setConfig({
   isFullscreen: false,
   showPanel: true,
   panelPosition: 'bottom',
+  isToolshown: true,
 });
