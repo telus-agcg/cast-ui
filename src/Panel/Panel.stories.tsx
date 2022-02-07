@@ -116,6 +116,7 @@ const _Panel = ({
           headerBorderColor={headerBorderColor}
           headerBackgroundColor={headerBackgroundColor}
           iconPosition={iconPosition}
+          isCollapsed={isOpen}
         />
       )}
       {withCollapse ? (
