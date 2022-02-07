@@ -105,6 +105,14 @@ const _Panel = ({
   isOpen,
   ...args
 }) => {
+  const [openPanel, setOpenPanel] = React.useState(false);
+
+  React.useEffect(() => {
+    setOpenPanel(isOpen);
+  }, [isOpen]);
+
+  const handleTogglePanel = () => setOpenPanel(!openPanel);
+
   return (
     <Panel name={name} panelStyle={panelStyle}>
       {withHeader && (
@@ -116,11 +124,12 @@ const _Panel = ({
           headerBorderColor={headerBorderColor}
           headerBackgroundColor={headerBackgroundColor}
           iconPosition={iconPosition}
-          isCollapsed={isOpen}
+          isCollapsed={openPanel}
+          toggleItem={handleTogglePanel}
         />
       )}
       {withCollapse ? (
-        <Collapse isOpen={isOpen}>
+        <Collapse isOpen={openPanel}>
           <PanelBody {...args} panelStyle={panelStyle}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
             beatae nostrum quo fuga iste reprehenderit ab fugit, soluta ea!

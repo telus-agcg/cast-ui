@@ -3,13 +3,13 @@ import { Button } from '../Button';
 
 import { Modal } from '../';
 
-const DemoButtons = () => {
+const DemoButtons = props => {
   return (
     <div>
-      <Button btnSize="md" btnStyle="primary">
+      <Button btnSize="md" btnStyle="primary" onClick={props.handleCloseModal}>
         OK
       </Button>
-      <Button btnSize="md" btnStyle="primary">
+      <Button btnSize="md" btnStyle="primary" onClick={props.handleCloseModal}>
         Cancel
       </Button>
     </div>
@@ -17,7 +17,7 @@ const DemoButtons = () => {
 };
 
 export default {
-  title: 'Components/Utility/Modal',
+  title: 'Components/Data Display/Modal',
   component: Modal,
   argTypes: {
     theme: {
@@ -71,17 +71,31 @@ export default {
   },
 };
 
-const _Modal = ({ children, isOpen, modalTitle, ...args }) => (
-  <Modal
-    id="myModal"
-    footerContent={<DemoButtons />}
-    isOpen={isOpen}
-    modalTitle={modalTitle}
-    {...args}
-  >
-    {children}
-  </Modal>
-);
+const _Modal = ({ children, isOpen, modalTitle, ...args }) => {
+  const [openModal, setOpenModal] = React.useState(false);
+
+  React.useEffect(() => {
+    setOpenModal(isOpen);
+  }, [isOpen]);
+
+  const handleToggleModal = () => setOpenModal(!openModal);
+
+  return (
+    <>
+      <Button onClick={handleToggleModal}>Open Modal</Button>
+      <Modal
+        id="myModal"
+        footerContent={<DemoButtons handleCloseModal={handleToggleModal} />}
+        isOpen={openModal}
+        modalTitle={modalTitle}
+        {...args}
+        onTitleClose={handleToggleModal}
+      >
+        {children}
+      </Modal>
+    </>
+  );
+};
 
 export const _ModalBasic = _Modal.bind({});
 _ModalBasic.args = {

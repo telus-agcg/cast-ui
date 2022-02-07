@@ -45,13 +45,29 @@ export default {
   },
 };
 
-export const _Toggle = args => (
-  <div>
-    <Toggle id="toggleId" {...args} value="1">
-      One
-    </Toggle>
-  </div>
-);
+export const _Toggle = ({ checked, ...args }) => {
+  const [toggle, setToggle] = React.useState(false);
+
+  React.useEffect(() => {
+    setToggle(checked);
+  }, [checked]);
+
+  const handleToggle = () => setToggle(!toggle);
+
+  return (
+    <div>
+      <Toggle
+        id="toggleId"
+        {...args}
+        checked={toggle}
+        onChange={handleToggle}
+        value="1"
+      >
+        One
+      </Toggle>
+    </div>
+  );
+};
 
 _Toggle.args = {
   toggleSize: 'md',
