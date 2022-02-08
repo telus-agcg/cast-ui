@@ -35,6 +35,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   PageButtonFirstLastComponent?: any;
   /**
+   * Select Button Size
+   *
+   * @default 'md'
+   **/
+  btnSize?: 'sm' | 'md' | 'lg';
+  /**
    * Specify any child objects (if applicable)
    **/
   children?: any;
@@ -190,6 +196,7 @@ export class Pagination extends React.Component<Props> {
       PageButtonComponent = PaginationPageButton,
       PageButtonNextPrevComponent = PaginationButtonNextPrev,
       PageButtonFirstLastComponent = PaginationButtonFirstLast,
+      btnSize,
       ...props
     } = this.props;
     const { activePage, visiblePages } = this.state;
@@ -229,7 +236,8 @@ export class Pagination extends React.Component<Props> {
                     <span key={page}>
                       {showPrevNextGap && (
                         <PageButtonComponent
-                          btnSize="md"
+                          type="button"
+                          btnSize={btnSize}
                           onClick={this.changePage.bind(
                             null,
                             prevNextGapPageIndex,
@@ -239,7 +247,8 @@ export class Pagination extends React.Component<Props> {
                         </PageButtonComponent>
                       )}
                       <PageButtonComponent
-                        btnSize="md"
+                        type="button"
+                        btnSize={btnSize}
                         data-selected={activePage === page ? '' : undefined}
                         onClick={this.changePage.bind(null, page)}
                       >
