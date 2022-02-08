@@ -220,7 +220,7 @@ export const defaultTheme = {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     fontSize: '14px',
     fontWeight: '400',
-    lineHeight: '160%',
+    lineHeight: '18px',
     color: defaultColors.primary,
     backgroundColor: defaultColors.white,
   },

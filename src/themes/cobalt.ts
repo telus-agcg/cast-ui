@@ -210,7 +210,7 @@ export const cobaltTheme = {
   body: {
     fontFamily: 'Roboto, Helvetica, arial, sans-serif',
     fontSize: '14px',
-    fontWeight: 400,
+    fontWeight: '400',
     lineHeight: '18px',
     color: cobaltColors.drk800,
     backgroundColor: cobaltColors.white,

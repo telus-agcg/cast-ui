@@ -210,7 +210,7 @@ export const azureTheme = {
   body: {
     fontFamily: 'arial, sans-serif',
     fontSize: '14px',
-    fontWeight: 400,
+    fontWeight: '400',
     lineHeight: '18px',
     color: azureColors.drk800,
     backgroundColor: azureColors.white,
