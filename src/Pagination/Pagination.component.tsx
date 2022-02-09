@@ -237,7 +237,7 @@ export class Pagination extends React.Component<Props> {
                       {showPrevNextGap && (
                         <PageButtonComponent
                           type="button"
-                          btnSize={btnSize}
+                          btnSize="md"
                           onClick={this.changePage.bind(
                             null,
                             prevNextGapPageIndex,
@@ -248,7 +248,7 @@ export class Pagination extends React.Component<Props> {
                       )}
                       <PageButtonComponent
                         type="button"
-                        btnSize={btnSize}
+                        btnSize="md"
                         data-selected={activePage === page ? '' : undefined}
                         onClick={this.changePage.bind(null, page)}
                       >
