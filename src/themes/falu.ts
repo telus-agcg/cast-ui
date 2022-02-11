@@ -218,7 +218,7 @@ export const faluTheme = {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     fontSize: '14px',
     fontWeight: '400',
-    lineHeight: '160%',
+    lineHeight: '18px',
     color: faluColors.drk800,
     backgroundColor: faluColors.white,
   },
@@ -681,7 +681,7 @@ export const faluTheme = {
     },
     row: {
       borderBottomColor: faluColors.secondaryFaded,
-      hoverColor: faluColors.secondaryFaded,
+      hoverColor: faluColors.lt200,
       highlightColor: faluColors.highlight200,
       readonlyColor: faluColors.lt200,
     },

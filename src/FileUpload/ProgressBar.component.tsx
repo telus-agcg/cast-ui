@@ -46,8 +46,8 @@ const SProgressBar = styled.div`
     background: ${(props: any) =>
       props.progressBackground || props.theme.progressBar.progressBackground};
     transition: ${(props: any) => props.theme.progressBar.transition};
-    width: ${(props: any) => `${props.percentage}%`}
-        max-width: 100%;
+    width: ${(props: any) => `${props.percentage}%`};
+    max-width: 100%;
     border-radius: inherit;
     height: 100%;
   }

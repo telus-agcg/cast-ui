@@ -21,7 +21,7 @@ const SBodyText = styled.p`
   font-weight: ${(props: Props) => props.theme.typography.bodyText.fontWeight};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.bodyText.fontSize};
-  color: ${(props: Props) => props.theme.typography.color}
+  color: ${(props: Props) => props.theme.typography.color};
   line-height: ${(props: Props) => props.theme.typography.bodyText.lineHeight};
 `;
 

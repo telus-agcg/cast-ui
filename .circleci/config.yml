@@ -67,7 +67,7 @@ jobs:
           command: npm run build
       - run:
           name: Release
-          command: npm run semantic-release || true
+          command: npm run semantic-release
       - run:
           name: Publish Storybook
           command: npm run deploy-storybook

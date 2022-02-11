@@ -20,7 +20,7 @@ export type Props = {
 const STitle = styled.h1`
   font-family: ${(props: Props) =>
     props.theme.typography.title[props.size!].fontFamily};
-  color: ${(props: Props) => props.theme.typography.color}
+  color: ${(props: Props) => props.theme.typography.color};
   font-weight: ${(props: Props) =>
     props.theme.typography.title[props.size!].fontWeight};
   font-size: ${(props: Props) =>

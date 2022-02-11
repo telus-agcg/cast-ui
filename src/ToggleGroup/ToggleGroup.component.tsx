@@ -33,7 +33,7 @@ const ToggleGroupWrapper = styled.div`
   display: ${(props: Props) => props.theme.inputGroup.root.display};
   flex-wrap: ${(props: Props) => props.theme.inputGroup.root.flexWrap};
   flex-direction: ${(props: Props) => (props.vertical ? 'column' : 'row')};
-  align-items: ${(props: Props) => (props.vertical ? 'flex-start' : 'center')}
+  align-items: ${(props: Props) => (props.vertical ? 'flex-start' : 'center')};
   > *:not(:first-child) {
     flex-grow: 1;
   }

@@ -220,7 +220,7 @@ export const defaultTheme = {
     fontFamily: 'Roboto, "Open Sans", arial, sans-serif',
     fontSize: '14px',
     fontWeight: '400',
-    lineHeight: '160%',
+    lineHeight: '18px',
     color: defaultColors.primary,
     backgroundColor: defaultColors.white,
   },
@@ -868,6 +868,7 @@ export const defaultTheme = {
     hoverOptionBackgroundColor: defaultColors.lt200,
     hoverOptionColor: defaultColors.primary,
     selectedOptionColor: defaultColors.primary,
+
     selectedOptionBackgroundColor: defaultColors.white,
     borderColor: defaultColors.secondary,
     width: '100%',

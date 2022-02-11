@@ -130,14 +130,14 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 const SInput = styled.input`
   flex-grow: 1;
   min-width: 0;
-  height: ${(props: Props) => props.theme.input[props.inputSize!].height}
+  height: ${(props: Props) => props.theme.input[props.inputSize!].height};
   box-sizing: border-box;
 	border: none;
   border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize!].borderRadius};
-	padding: ${(props: Props) => props.theme.input[props.inputSize!].padding}
+	padding: ${(props: Props) => props.theme.input[props.inputSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.input.fontSize}
+  font-size: ${(props: Props) => props.theme.input.fontSize};
   color: ${(props: Props) => props.theme.input.color};
   text-align: left;
   margin-right: 0;
@@ -158,7 +158,7 @@ const SInput = styled.input`
       // override autofill user-agent styles 
     -webkit-box-shadow: ${(props: Props) =>
       `inset 0 0 0 50px ${props.theme.colors.highlight200}`};
-    -webkit-text-fill-color: ${(props: Props) => props.theme.input.color};;
+    -webkit-text-fill-color: ${(props: Props) => props.theme.input.color};
   }
   
   &:focus {
@@ -191,9 +191,9 @@ const SInputWrapper = styled.div`
   display: inline-flex;
   flex-wrap: nowrap;
 	align-items: center;
-	background: ${(props: Props) => props.theme.input.background}
+	background: ${(props: Props) => props.theme.input.background};
 	font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize}
+  font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
   border: ${(props: Props) => props.theme.input.border};
   border-radius: ${(props: Props) =>

@@ -87,7 +87,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    */
   onChange?: any;
   /**
-   * Value for a controlled select componenet
+   * Value for a controlled select component
    *
    * @default undefined
    */
@@ -205,7 +205,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 const SDiv = styled.div<Props>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize}
+  font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
   width: ${(props: Props) => props.theme.select.width};
   div[aria-invalid] & {
@@ -353,6 +353,7 @@ export class CustomSelect extends React.Component<Props> {
       isMulti,
       isDisabled,
       isClearable,
+      formatGroupLabel,
       clearText,
       selectedOption,
       invalidText,
@@ -445,6 +446,7 @@ export class CustomSelect extends React.Component<Props> {
             dropdownColor={theme.primary}
             menuPortalTarget={document.getElementById(uniqueId)}
             menuPlacement={'bottom'}
+            formatGroupLabel={formatGroupLabel}
             components={
               optionType === 'default' && {
                 MultiValueRemove,

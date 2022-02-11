@@ -97,7 +97,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
       props.theme.input[props.datePickerSize!].height};
     line-height: initial;
     padding: ${(props: Partial<Props>) =>
-      props.theme.common[props.datePickerSize!].padding}
+      props.theme.common[props.datePickerSize!].padding};
     border: none;
     border-radius: ${(props: Partial<Props>) =>
       props.theme.common[props.datePickerSize!].borderRadius};

@@ -70,13 +70,6 @@ export const SelectCheckboxProps = (res: Props) => {
     }
   };
 
-  const formatGroupLabel = data => (
-    <div>
-      <span>{data.label} </span>
-      <span>{data.options.length}</span>
-    </div>
-  );
-
   const components = {
     Option: (props: any) => {
       return (
@@ -124,7 +117,9 @@ export const SelectCheckboxProps = (res: Props) => {
         : 0;
       return (
         <MenuItemWrapper>
-          <div className={'menuListHeader'}>{selectedCount} items selected</div>
+          <div className={'menuListHeader'}>{`${selectedCount} item${
+            selectedCount === 1 ? '' : 's'
+          } selected`}</div>
           {props.children}
         </MenuItemWrapper>
       );
@@ -141,5 +136,5 @@ export const SelectCheckboxProps = (res: Props) => {
       );
     },
   };
-  return { components, formatGroupLabel };
+  return { components };
 };

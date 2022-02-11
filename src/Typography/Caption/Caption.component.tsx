@@ -20,7 +20,7 @@ export type Props = {
 const SCaption = styled.p`
   font-family: ${(props: Props) =>
     props.theme.typography.caption[props.size!].fontFamily};
-  color: ${(props: Props) => props.theme.typography.color}
+  color: ${(props: Props) => props.theme.typography.color};
   font-weight: ${(props: Props) =>
     props.theme.typography.caption[props.size!].fontWeight};
   font-size: ${(props: Props) =>

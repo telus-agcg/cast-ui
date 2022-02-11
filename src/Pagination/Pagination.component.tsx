@@ -35,6 +35,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    **/
   PageButtonFirstLastComponent?: any;
   /**
+   * Select Button Size
+   *
+   * @default 'md'
+   **/
+  btnSize?: 'sm' | 'md' | 'lg';
+  /**
    * Specify any child objects (if applicable)
    **/
   children?: any;
@@ -62,7 +68,7 @@ type State = {
 };
 const SDivPaginationWrapper = styled.div`
   font-family: ${props => props.theme.typography.fontFamily};
-  font-size: ${props => props.theme.body.fontSize}
+  font-size: ${props => props.theme.body.fontSize};
   padding: ${props => props.theme.pagination.padding};
   display: flex;
   align-items: center;
@@ -190,6 +196,7 @@ export class Pagination extends React.Component<Props> {
       PageButtonComponent = PaginationPageButton,
       PageButtonNextPrevComponent = PaginationButtonNextPrev,
       PageButtonFirstLastComponent = PaginationButtonFirstLast,
+      btnSize,
       ...props
     } = this.props;
     const { activePage, visiblePages } = this.state;
@@ -229,6 +236,7 @@ export class Pagination extends React.Component<Props> {
                     <span key={page}>
                       {showPrevNextGap && (
                         <PageButtonComponent
+                          type="button"
                           btnSize="md"
                           onClick={this.changePage.bind(
                             null,
@@ -239,6 +247,7 @@ export class Pagination extends React.Component<Props> {
                         </PageButtonComponent>
                       )}
                       <PageButtonComponent
+                        type="button"
                         btnSize="md"
                         data-selected={activePage === page ? '' : undefined}
                         onClick={this.changePage.bind(null, page)}

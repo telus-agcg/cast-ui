@@ -210,7 +210,7 @@ export const umberTheme = {
   body: {
     fontFamily: 'Roboto, Helvetica, arial, sans-serif',
     fontSize: '14px',
-    fontWeight: 400,
+    fontWeight: '400',
     lineHeight: '18px',
     color: umberColors.drk800,
     backgroundColor: umberColors.white,
