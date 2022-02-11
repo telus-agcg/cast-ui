@@ -1,3 +1,23 @@
+## [6.0.1](https://github.com/technekes/cast-ui/compare/v6.0.0...v6.0.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* **alert:** fix formatting on export ([c6e9a6f](https://github.com/technekes/cast-ui/commit/c6e9a6fa8d182f2bbddedd041de0fece11474016))
+* **alert:** format return of component ([2fb47ce](https://github.com/technekes/cast-ui/commit/2fb47ceedd9d3686c731e122d5692872ea053410))
+* **config:** remove semicolon ([6b313ed](https://github.com/technekes/cast-ui/commit/6b313eded7f0945275077f2858f6be7c0c4dd31d))
+* **falu theme:** changed the hover style of table rows in the falu theme ([#853](https://github.com/technekes/cast-ui/issues/853)) ([c24e6f8](https://github.com/technekes/cast-ui/commit/c24e6f8276c3bd2cb20b53b188b6f6331786a859))
+* **pagination:** add type button to button components ([0e1999f](https://github.com/technekes/cast-ui/commit/0e1999f822ff139d41b1b3984a0d97519bcdf2bb))
+* **pagination:** add type button to button components ([4c47029](https://github.com/technekes/cast-ui/commit/4c470291d1c95f35ca344454b690235939269422))
+* **select.component:** run release ([#847](https://github.com/technekes/cast-ui/issues/847)) ([a6f9156](https://github.com/technekes/cast-ui/commit/a6f91568c2bfa32659413f3e52ac93beb52c9b9f))
+* **themes:** consistent 18px line height ([f114425](https://github.com/technekes/cast-ui/commit/f114425fe7486f70363448c4f5b6fd924eb582f3))
+* Only singular case one item ([86e31df](https://github.com/technekes/cast-ui/commit/86e31df15acd76d7d839c713cc97c2d42e863fb9))
+* remove space from gitignore ([623589a](https://github.com/technekes/cast-ui/commit/623589afe5f2a1b8e662e78a12e34d94669de6d5))
+* **readme:** update readme with release info ([fbbe91b](https://github.com/technekes/cast-ui/commit/fbbe91bdcc82b2fba669c1c3ecd9b28bcb4eda40))
+* **select.component:** fix for formatGroupLabel ([#848](https://github.com/technekes/cast-ui/issues/848)) ([dcfa461](https://github.com/technekes/cast-ui/commit/dcfa461a76dfed61e1a586b18e8da2a30979dd4f))
+* **selectcheckbox.component:** run beta release ([#846](https://github.com/technekes/cast-ui/issues/846)) ([db90109](https://github.com/technekes/cast-ui/commit/db90109a75a7d78884ec16822ad4721b7f3a7dea))
+* **trigger build:** trigger beta ([01a1c3f](https://github.com/technekes/cast-ui/commit/01a1c3f96e57a654e81283cb098100bf3014e6f2))
+
 # [6.0.0](https://github.com/technekes/cast-ui/compare/v5.1.0...v6.0.0) (2021-09-09)
 
 
