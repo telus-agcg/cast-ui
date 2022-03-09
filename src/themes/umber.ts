@@ -406,7 +406,7 @@ export const umberTheme = {
     borderStyle: 'solid',
     borderColor: umberColors.primary,
     disabledRadio: umberColors.drk200,
-    disabledText: umberColors.drk800,
+    disabledText: umberColors.drk600,
     unselectedColor: umberColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',

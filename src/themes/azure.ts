@@ -406,7 +406,7 @@ export const azureTheme = {
     borderStyle: 'solid',
     borderColor: azureColors.primary,
     disabledRadio: azureColors.drk200,
-    disabledText: azureColors.drk800,
+    disabledText: azureColors.drk600,
     unselectedColor: azureColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
