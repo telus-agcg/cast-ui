@@ -414,7 +414,7 @@ export const faluTheme = {
     borderStyle: 'solid',
     borderColor: faluColors.primary,
     disabledRadio: faluColors.drk200,
-    disabledText: faluColors.drk800,
+    disabledText: faluColors.drk600,
     unselectedColor: faluColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',

@@ -405,7 +405,7 @@ export const verdantTheme = {
     borderStyle: 'solid',
     borderColor: verdantColors.primary,
     disabledRadio: verdantColors.drk200,
-    disabledText: verdantColors.lt600,
+    disabledText: verdantColors.drk600,
     unselectedColor: verdantColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',

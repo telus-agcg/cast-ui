@@ -415,7 +415,7 @@ export const defaultTheme = {
     borderStyle: 'solid',
     borderColor: defaultColors.primary,
     disabledRadio: defaultColors.drk200,
-    disabledText: defaultColors.lt600,
+    disabledText: defaultColors.drk600,
     unselectedColor: defaultColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
