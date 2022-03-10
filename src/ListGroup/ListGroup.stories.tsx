@@ -10,9 +10,9 @@ storiesOf('List Group', module).add(
       <ListGroup
         listGroupTheme={select('List Group Theme', ['light', 'dark'], 'light')}
       >
-        <ListGroupItem>List Item</ListGroupItem>
-        <ListGroupItem>List Item</ListGroupItem>
-        <ListGroupItem>List Item</ListGroupItem>
+        <ListGroupItem data-testid="list-item-1">List Item 1</ListGroupItem>
+        <ListGroupItem data-testid="list-item-2">List Item 2</ListGroupItem>
+        <ListGroupItem data-testid="list-item-3">List Item 3</ListGroupItem>
       </ListGroup>
       <ListGroup
         collapsible={boolean('collapsible1', true)}
@@ -25,10 +25,18 @@ storiesOf('List Group', module).add(
           'right',
         )}
       >
-        <ListGroupItem>List Item</ListGroupItem>
-        <ListGroupItem>List Item</ListGroupItem>
-        <ListGroupItem>List Item</ListGroupItem>
-        <ListGroupItem>List Item</ListGroupItem>
+        <ListGroupItem data-testid="collapsible-list-item-1">
+          List Item
+        </ListGroupItem>
+        <ListGroupItem data-testid="collapsible-list-item-2">
+          List Item
+        </ListGroupItem>
+        <ListGroupItem data-testid="collapsible-list-item-3">
+          List Item
+        </ListGroupItem>
+        <ListGroupItem data-testid="collapsible-list-item-4">
+          List Item
+        </ListGroupItem>
         <ListGroup
           collapsible={boolean('collapsible2', true)}
           isCollapsed={boolean('isCollapsed2', false)}
@@ -39,9 +47,15 @@ storiesOf('List Group', module).add(
             'light',
           )}
         >
-          <ListGroupItem>List Item</ListGroupItem>
-          <ListGroupItem>List Item</ListGroupItem>
-          <ListGroupItem>List Item</ListGroupItem>
+          <ListGroupItem data-testid="collapsible-nested-list-item-1">
+            List Item
+          </ListGroupItem>
+          <ListGroupItem data-testid="collapsible-nested-list-item-2">
+            List Item
+          </ListGroupItem>
+          <ListGroupItem data-testid="collapsible-nested-list-item-3">
+            List Item
+          </ListGroupItem>
         </ListGroup>
       </ListGroup>
     </div>

@@ -6,6 +6,7 @@ import { boolean, select, text } from '@storybook/addon-knobs/react';
 storiesOf('DatePickerRange', module).add('DatePickerRange', () => (
   <DatePickerRange
     key="0"
+    data-testid="pick-range"
     showDefaultInputIcon={boolean('showDefaultInputIcon', true)}
     inputIconPosition={select(
       'inputIconPosition',

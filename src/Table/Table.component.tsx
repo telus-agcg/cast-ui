@@ -302,6 +302,7 @@ export class Table extends React.Component<Props> {
             return {
               ...incomingTrProps,
               className,
+              id: `${props.id}-row-${rowInfo.viewIndex}`,
             };
           }}
           getTdProps={(state, rowInfo, column) => {
@@ -321,13 +322,13 @@ export class Table extends React.Component<Props> {
             ...ReactTableDefaults.column,
             resizable: false,
             Expander: ({ isExpanded, ...rest }) => (
-              <React.Fragment>
+              <>
                 {isExpanded ? (
-                  <SIcon icon={chevronUp} />
+                  <SIcon data-testid="collapser" icon={chevronUp} />
                 ) : (
-                  <SIcon icon={chevronDown} />
+                  <SIcon data-testid="expander" icon={chevronDown} />
                 )}
-              </React.Fragment>
+              </>
             ),
           }}
           loading={loading}

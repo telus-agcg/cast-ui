@@ -79,7 +79,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     props.theme.common[props.datePickerSize!].fontSize};
   color: ${(props: Partial<Props>) =>
     props.theme.styles[props.datePickerStyle!].text};
-  
+
   input {
     box-sizing: border-box;
     font-size: ${(props: Partial<Props>) => props.theme.input.fontSize};
@@ -116,8 +116,9 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
   }
   .DayPickerKeyboardShortcuts_show__bottomRight::before {
-    border-right: 33px solid ${(props: Partial<Props>) =>
-      props.theme.styles[props.datePickerStyle!].borderColor};
+    border-right: 33px solid
+      ${(props: Partial<Props>) =>
+        props.theme.styles[props.datePickerStyle!].borderColor};
   }
   .CalendarDay__selected {
     background: ${(props: Partial<Props>) =>
@@ -207,6 +208,7 @@ class ReactDatePicker extends Component<Props> {
           data-invalid={invalid ? '' : undefined}
           aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
+          data-testid="datepicker"
         >
           <SingleDatePicker
             id={id!}

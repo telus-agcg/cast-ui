@@ -74,6 +74,7 @@ export const SelectCheckboxProps = (res: Props) => {
     Option: (props: any) => {
       return (
         <div
+          data-testid={`select-option-${_.snakeCase(props.data.label)}`}
           className={'react-select__option'}
           ref={props.innerRef}
           {...props.innerProps}

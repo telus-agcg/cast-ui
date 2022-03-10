@@ -4,11 +4,11 @@ import { boolean, number, select } from '@storybook/addon-knobs/react';
 
 import { Table } from './';
 import { Input } from '../Input';
-import { Tooltip } from '../Tooltip';
 import { Checkbox } from '../Checkbox';
 import SampleData from './sampleData';
+import { action } from '@storybook/addon-actions';
 
-const testTableId = 'testTableId';
+const testTableId = 'testTable';
 
 storiesOf('Table', module).add(
   'Table',
@@ -18,7 +18,8 @@ storiesOf('Table', module).add(
         <Table
           data={SampleData.Customers}
           id={testTableId}
-          pivotBy={['Id']}
+          // @ts-ignore
+          pivotBy={select('pivotBy', [['Id'], ['ContactName']], ['Id'])}
           columns={[
             {
               Header: 'ID',
@@ -41,24 +42,19 @@ storiesOf('Table', module).add(
               width: 120,
               Cell: (row: any) => {
                 return (
-                  <Tooltip
-                    content={<div>Input content</div>}
-                    size="regular"
-                    placement="top-start"
-                    a11y={false}
-                  >
-                    <span>
-                      <Input
-                        id={`${testTableId}-${row.index}-${row.column.id}`}
-                        addonText="%"
-                        addonTextPosition="right"
-                        value="90"
-                        min={0}
-                        max={100}
-                        onChange={() => {}}
-                      />
-                    </span>
-                  </Tooltip>
+                  <Input
+                    data-testid={'text-input'}
+                    addonText="%"
+                    addonTextPosition="right"
+                    value="90"
+                    min={0}
+                    max={100}
+                    onChange={action(
+                      `Row ${testTableId}-${row.index}-${
+                        row.column.id
+                      } input triggered`,
+                    )}
+                  />
                 );
               },
             },
@@ -77,10 +73,17 @@ storiesOf('Table', module).add(
               accessor: 'City',
             },
             {
+              id: 'PostalCode',
               Header: 'Postal Code',
-              accessor: 'PostalCode',
               className: 'right-align',
               headerClassName: 'right-align',
+              Cell: (row: any) => {
+                return (
+                  <div data-testid={'postal-code'}>
+                    {row.original.PostalCode}
+                  </div>
+                );
+              },
             },
             {
               Header: 'Country',

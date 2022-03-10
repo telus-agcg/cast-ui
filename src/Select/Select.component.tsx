@@ -7,6 +7,7 @@ import uuid from 'uuid';
 import { SelectCheckboxProps } from './SelectCheckbox.component';
 import _ from 'lodash';
 import { SelectComponents } from '..';
+import { getDataProps } from '../utils/common';
 
 export type OptionType = {
   value: string;
@@ -205,7 +206,8 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 const SDiv = styled.div<Props>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.selectSize!].fontSize};
+  font-size: ${(props: Props) =>
+    props.theme.common[props.selectSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
   width: ${(props: Props) => props.theme.select.width};
   div[aria-invalid] & {
@@ -214,16 +216,16 @@ const SDiv = styled.div<Props>`
   .react-select__menu {
     font-family: ${(props: Props) => props.theme.typography.fontFamily};
     z-index: 9999;
-    color: ${(props: Props) => props.theme.colors.drk800};   
+    color: ${(props: Props) => props.theme.colors.drk800};
     .menuListHeader {
       padding: 8px 12px;
       border-bottom: 1px solid ${(props: Props) => props.theme.colors.lt800};
     }
-     .react-select__menu-list {     
+    .react-select__menu-list {
       font-family: ${(props: Props) => props.theme.typography.fontFamily};
-      color: ${(props: Props) => props.theme.colors.drk800};                  
-     }
-     .react-select__option  {
+      color: ${(props: Props) => props.theme.colors.drk800};
+    }
+    .react-select__option {
       padding: 8px 12px;
       background-color: ${(props: Props) =>
         props.theme.select.optionBackgroundColor};
@@ -232,7 +234,7 @@ const SDiv = styled.div<Props>`
       &.react-select__option--is-selected {
         color: ${(props: Props) => props.theme.select.selectedOptionColor};
         background-color: ${(props: Props) =>
-          props.theme.select.selectedOptionBackgroundColor} ;        
+          props.theme.select.selectedOptionBackgroundColor};
       }
       &:hover {
         background-color: ${(props: Props) =>
@@ -240,7 +242,7 @@ const SDiv = styled.div<Props>`
         color: ${(props: Props) => props.theme.select.hoverOptionColor};
       }
     }
-   }    
+  }
   .react-select-component {
     .react-select__control {
       min-height: ${(props: Props) =>
@@ -265,22 +267,22 @@ const SDiv = styled.div<Props>`
           font-size: ${(props: Props) =>
             props.theme.common[props.selectSize!].fontSize};
         }
-        
+
         .react-select__single-value {
           color: ${(props: Props) => props.theme.colors.drk800};
-        }    
-      }  
-      
+        }
+      }
+
       .react-select__multi-value {
         background-color: ${(props: Props) =>
           props.theme.select.multiSelect.badgeBackgroundColor};
-          .react-select__multi-value__remove {
-            div:first-child {
-              display: flex;
-            }
+        .react-select__multi-value__remove {
+          div:first-child {
+            display: flex;
           }
+        }
       }
-      
+
       &.react-select__control--is-disabled {
         border-color: ${(props: Props) =>
           props.theme.select.disabled.borderColor};
@@ -295,21 +297,21 @@ const SDiv = styled.div<Props>`
         }
         .react-select__indicator {
           color: ${(props: Props) =>
-            props.theme.select.disabled.placeholderColor};        
+            props.theme.select.disabled.placeholderColor};
         }
         .react-select__multi-value {
           background-color: ${(props: Props) =>
             props.theme.select.multiSelect.disabled.badgeBackgroundColor};
         }
       }
-    }          
+    }
     .react-select__indicators {
       align-self: center;
       .react-select__indicator-separator {
         display: none;
-      }   
+      }
       .react-select__clear-indicator {
-        padding: 0;      
+        padding: 0;
       }
       .react-select__dropdown-indicator {
         padding: 0 8px;
@@ -323,11 +325,11 @@ const SDiv = styled.div<Props>`
         }
       }
     }
-    
+
     &.highlighted .react-select__control {
       background-color: ${props => props.theme.colors.highlight200};
     }
-  }  
+  }
 `;
 
 export class CustomSelect extends React.Component<Props> {
@@ -393,6 +395,7 @@ export class CustomSelect extends React.Component<Props> {
       const { innerProps, innerRef } = props;
       return (
         <div
+          data-testid={`select-option-${_.snakeCase(props.data.label)}`}
           className={'react-select__option'}
           ref={innerRef}
           {...innerProps}
@@ -407,6 +410,7 @@ export class CustomSelect extends React.Component<Props> {
       const { innerProps, innerRef } = props;
       return (
         <div
+          data-testid={`select-option-remove-${_.snakeCase(props.data.label)}`}
           id={`${id}-Select-multi-value_remove-${_.snakeCase(
             props.data.label,
           )}`}
@@ -419,9 +423,11 @@ export class CustomSelect extends React.Component<Props> {
       );
     };
 
+    const dataProps = getDataProps(this.props);
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDiv
+          {...dataProps}
           className="select-wrapper"
           selectSize={selectSize}
           aria-invalid={invalid ? true : undefined}
@@ -438,7 +444,7 @@ export class CustomSelect extends React.Component<Props> {
             isMulti={isMulti}
             value={selectedOption}
             options={options}
-            id={`${id}-Select`}
+            id={id}
             invalid={invalid}
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}

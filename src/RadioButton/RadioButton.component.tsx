@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import styled, { ThemeProvider } from 'styled-components';
 import { Omit } from '../utils/castTypes';
 import { Themes } from '../themes';
+import { getDataProps } from '../utils/common';
 
 type displayStyle = 'inline' | 'stacked';
 type rbSize = 'sm' | 'md' | 'lg';
@@ -185,6 +186,7 @@ export class RadioButton extends React.Component<Props> {
       name,
       rbSize,
       disabled,
+      displayStyle,
       id,
       value,
       checked,
@@ -194,10 +196,10 @@ export class RadioButton extends React.Component<Props> {
       onChange,
       ...props
     } = this.props;
-
+    const dataProps: any = getDataProps(props);
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv data-radiobutton="" {...props}>
+        <SDiv displayStyle={displayStyle} theme={theme}>
           <SInput
             type="radio"
             name={name}
@@ -207,6 +209,7 @@ export class RadioButton extends React.Component<Props> {
             value={value}
             checked={checked}
             onChange={this.onChange}
+            {...dataProps}
           />
           <SLabel htmlFor={id} rbSize={this.props.rbSize}>
             {children}

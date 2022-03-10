@@ -17,6 +17,7 @@ storiesOf('Select', module)
       <>
         <Select
           id={'SampleSelect'}
+          data-testid="single-select"
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', false)}
           isDisabled={boolean('isDisabled', false)}
@@ -63,6 +64,7 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
       <div>
         <Select
           id={'SampleMultiSelect'}
+          data-testid="multi-select"
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', true)}
           isDisabled={boolean('isDisabled', false)}
@@ -146,11 +148,11 @@ const flavorOptions: any[] = [
 
 const groupedOptions = [
   {
-    label: 'Colours',
+    label: 'Colors',
     options: colorOptions,
   },
   {
-    label: 'Flavours',
+    label: 'Flavors',
     options: flavorOptions,
   },
 ];
@@ -169,10 +171,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
   };
 
   formatGroupLabel = data => (
-    <div>
-      <span>{data.label}</span>
-      <span>{data.options.length}</span>
-    </div>
+    <span>{`${data.options.length} ${data.label}`}</span>
   );
 
   handleSelect(e) {
@@ -187,6 +186,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
       <FlexDiv>
         <Select
           id={'SampleCheckSelect'}
+          data-testid="multi-checkbox-select"
           creatable={boolean('creatable', true)}
           isMulti={boolean('isMulti', true)}
           optionType={select('optionType', ['checkbox', 'default'], 'checkbox')}

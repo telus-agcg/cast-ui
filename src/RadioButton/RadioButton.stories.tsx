@@ -24,6 +24,7 @@ class Component extends React.Component<any, any> {
       <div onClick={this.onChange(this.state.value === 1 ? 2 : 1)}>
         <RadioButton
           id="myInput1"
+          data-testid="input1-radio-button"
           name="input1"
           disabled={boolean('disabled', false)}
           rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
@@ -38,6 +39,7 @@ class Component extends React.Component<any, any> {
         <br />
         <RadioButton
           id="myInput2"
+          data-testid="input2-radio-button"
           name="input2"
           disabled={boolean('disabled', false)}
           rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}

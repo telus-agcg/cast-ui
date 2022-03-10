@@ -13,6 +13,7 @@ storiesOf('Typography/Link', module)
         href="https://www.tkxs.com"
         target="_blank"
         disabled={boolean('disabled', false)}
+        data-testid="link-standalone"
       >
         Read More
       </Link>
@@ -32,7 +33,11 @@ storiesOf('Typography/Link', module)
     () => (
       <p>
         Lorem ipsum dolor sit amet, consectetur{' '}
-        <Link href="https://www.tkxs.com" target="_blank">
+        <Link
+          data-testid="link-within-text"
+          href="https://www.tkxs.com"
+          target="_blank"
+        >
           adipiscing
         </Link>{' '}
         elit.
@@ -50,7 +55,11 @@ storiesOf('Typography/Link', module)
   )
   .add(
     'With onClick',
-    () => <Link onClick={action('Reading more')}>Read More</Link>,
+    () => (
+      <Link data-testid="link-with-onclick" onClick={action('Reading more')}>
+        Read More
+      </Link>
+    ),
     {
       info: {
         text: `

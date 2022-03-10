@@ -233,7 +233,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
           {...props}
         >
           <DateRangePicker
-            // The next properties have to be overrided by the instance's functions
+            // The next properties have to be overridden by the instance's functions
             startDate={startDate || this.state.range.startDate}
             endDate={endDate || this.state.range.endDate}
             focusedInput={focusedInput || this.state.focusedInput}
@@ -242,6 +242,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
             showDefaultInputIcon={true}
             disabled={disabled}
             readOnly={readOnly}
+            data-testid="abc"
             {...props}
           />
           {invalid && (
