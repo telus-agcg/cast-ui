@@ -242,7 +242,6 @@ export class DatePickerRange extends React.PureComponent<Props> {
             showDefaultInputIcon={true}
             disabled={disabled}
             readOnly={readOnly}
-            data-testid="abc"
             {...props}
           />
           {invalid && (
