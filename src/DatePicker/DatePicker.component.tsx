@@ -208,7 +208,6 @@ class ReactDatePicker extends Component<Props> {
           data-invalid={invalid ? '' : undefined}
           aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
-          data-testid="datepicker"
         >
           <SingleDatePicker
             id={id!}
