@@ -10,11 +10,13 @@ storiesOf('InputGroup', module).add(
   () => (
     <div>
       <InputGroup
+        data-testid="input-group"
         label={text('inputLabel', 'This is my label for Input Label')}
         inputSize="md"
       >
         <Input
           id="myInput"
+          data-testid="input-group-input"
           inputSize="md"
           type="text"
           disabled={false}
@@ -30,6 +32,7 @@ storiesOf('InputGroup', module).add(
       >
         <Select
           id="mySelect"
+          data-testid="input-group-select"
           isDisabled={boolean('disabled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           invalid={boolean('invalid', false)}

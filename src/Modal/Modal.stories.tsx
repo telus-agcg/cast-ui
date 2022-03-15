@@ -10,10 +10,10 @@ const DemoButtons = () => {
   return (
     <div>
       <Button btnSize="md" btnStyle="primary">
-        OK
+        Cancel
       </Button>
       <Button btnSize="md" btnStyle="primary">
-        Cancel
+        OK
       </Button>
     </div>
   );
@@ -28,7 +28,7 @@ storiesOf('Modal', module)
         id="myModal"
         footerContent={<DemoButtons />}
         modalSize={select('modalSize', ['sm', 'md', 'lg', 'full'], 'md')}
-        modalTitle={text('modalTitle', 'red')}
+        modalTitle={text('modalTitle', 'Test Modal')}
         onRequestClose={action('onRequestClose')}
         onTitleClose={action('onTitleClose')}
       >
@@ -59,7 +59,7 @@ storiesOf('Modal', module)
         id="myModal"
         footerContent={<DemoButtons />}
         modalSize={select('modalSize', ['sm', 'md', 'lg', 'full'], 'md')}
-        modalTitle={text('modalTitle', 'red')}
+        modalTitle={text('modalTitle', 'Scrollable Modal')}
         onRequestClose={action('onRequestClose')}
         onTitleClose={action('onTitleClose')}
       >

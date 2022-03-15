@@ -90,9 +90,7 @@ export class RadioButtonGroup extends React.Component<Props, State> {
     const { theme, onChange, children, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv data-radiobutton="" {...props}>
-          {this.getRadioButtons()}
-        </SDiv>
+        <SDiv {...props}>{this.getRadioButtons()}</SDiv>
       </ThemeProvider>
     );
   }

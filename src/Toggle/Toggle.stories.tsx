@@ -11,6 +11,7 @@ storiesOf('Toggle', module).add(
     <div>
       <Toggle
         id="toggleId"
+        data-testid="toggle"
         toggleSize={select('toggleSize', ['sm', 'md', 'lg'], 'md')}
         checked={boolean('checked', true)}
         disabled={boolean('disabled', false)}

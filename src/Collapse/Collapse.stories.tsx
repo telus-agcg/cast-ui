@@ -8,6 +8,7 @@ storiesOf('Collapse', module).add(
   'Collapse',
   () => (
     <Collapse
+      data-testid="lorem-collapse"
       isOpen={boolean('isOpen', true)}
       transition={text(
         'transition',

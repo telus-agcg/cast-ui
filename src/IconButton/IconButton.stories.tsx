@@ -11,6 +11,7 @@ storiesOf('IconButton', module).add(
   () => (
     <div>
       <IconButton
+        data-testid="test-button"
         icon={icAdd}
         rounded={boolean('rounded', true)}
         outline={boolean('outline', false)}

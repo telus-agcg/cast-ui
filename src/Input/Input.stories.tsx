@@ -12,6 +12,7 @@ storiesOf('Input', module)
   .add('Basic', () => (
     <Input
       id="myInput"
+      data-testid="basic-input"
       type={select('type', ['text', 'number', 'email', 'password'], 'text')}
       autoComplete={select('autoComplete', ['on', 'off'], 'on')}
       disabled={boolean('disabled', false)}
@@ -35,6 +36,7 @@ storiesOf('Input', module)
       return (
         <Input
           id="myInput"
+          data-testid="input-with-icon-button"
           type={select('type', ['text', 'number', 'email', 'password'], 'text')}
           autoComplete={select('autoComplete', ['on', 'off'], 'on')}
           disabled={boolean('disabled', false)}
@@ -80,6 +82,7 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
       return (
         <Input
           id="myInput"
+          data-testid="input-with-icon-2"
           type={select('type', ['text', 'number', 'email', 'password'], 'text')}
           autoComplete={select('autoComplete', ['on', 'off'], 'on')}
           disabled={boolean('disabled', false)}
@@ -116,6 +119,7 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
     return (
       <Input
         id="myInput"
+        data-testid="input-with-addon-text"
         type={select('type', ['text', 'number', 'email', 'password'], 'text')}
         autoComplete={select('autoComplete', ['on', 'off'], 'on')}
         disabled={boolean('disabled', false)}
@@ -146,6 +150,7 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
       return (
         <Input
           id="myInput"
+          data-testid="input-with-all-options"
           type={select('type', ['text', 'number', 'email', 'password'], 'text')}
           autoComplete={select('autoComplete', ['on', 'off'], 'on')}
           disabled={boolean('disabled', false)}

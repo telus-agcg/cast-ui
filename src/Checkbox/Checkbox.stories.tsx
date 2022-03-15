@@ -13,6 +13,7 @@ storiesOf('Checkbox', module).add(
         id="myInput1"
         cbSize={select('cbSize', ['sm', 'md', 'lg'], 'md')}
         checked={boolean('checked (checkbox 1)', true)}
+        data-testid="checkbox-1"
         defaultChecked={true}
         disabled={boolean('disabled (checkbox 1)', false)}
         displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
@@ -29,6 +30,7 @@ storiesOf('Checkbox', module).add(
         id="myInput2"
         cbSize={select('cbSize (checkbox 2)', ['sm', 'md', 'lg'], 'md')}
         checked={boolean('checked (checkbox 2)', true)}
+        data-testid="checkbox-2"
         defaultChecked={true}
         disabled={boolean('disabled (checkbox 2)', false)}
         displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}

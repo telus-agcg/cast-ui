@@ -14,6 +14,7 @@ storiesOf('ButtonGroup', module).add(
       <Button
         btnStyle="primary"
         btnSize="md"
+        data-testid="button-1"
         value="1"
         onClick={() => console.log('Button 1')}
       >
@@ -22,6 +23,7 @@ storiesOf('ButtonGroup', module).add(
       <Button
         btnStyle="primary"
         btnSize="md"
+        data-testid="button-2"
         value="2"
         onClick={() => console.log('Button 2')}
       >
@@ -30,6 +32,7 @@ storiesOf('ButtonGroup', module).add(
       <Button
         btnStyle="primary"
         btnSize="md"
+        data-testid="button-3"
         value="3"
         onClick={() => console.log('Button 3')}
       >

@@ -19,6 +19,7 @@ storiesOf('Button', module).add(
       )}
       btnSize={select('btnSize', ['sm', 'md', 'lg'], 'md')}
       backgroundColor={color('backgroundColor', '')}
+      data-testid="submit"
       disabled={boolean('disabled', false)}
       onClick={action('Clicked!')}
     >

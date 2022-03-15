@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { getDataProps } from '../utils/common';
 import { Themes } from '../themes';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 
@@ -255,20 +256,18 @@ export class Checkbox extends React.Component<Props, State> {
     const {
       id,
       cbSize,
-      onChange,
       theme,
       children,
-      checked,
-      defaultChecked,
+      displayStyle,
       indeterminate,
       invalid,
       invalidText,
       invalidTextColor,
       disabled,
       value,
-      ...props
     } = this.props;
     const errorId = invalid ? `${id}-error-msg` : '';
+    const dataProps = getDataProps(this.props);
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <>
@@ -277,9 +276,10 @@ export class Checkbox extends React.Component<Props, State> {
             id={`${id}-Checkbox`}
             value={value}
             cbSize={cbSize}
-            {...props}
+            displayStyle={displayStyle}
           >
             <SInput
+              {...dataProps}
               onChange={this.onChange}
               checked={this.state.checked}
               type="checkbox"

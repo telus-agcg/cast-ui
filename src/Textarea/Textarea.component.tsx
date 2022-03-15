@@ -125,7 +125,6 @@ export const Textarea: React.FunctionComponent<Props> = ({
   ...textareaProps
 }) => {
   const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';
-  const { id } = textareaProps;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
@@ -133,7 +132,6 @@ export const Textarea: React.FunctionComponent<Props> = ({
           value={value}
           onChange={onChange}
           {...textareaProps}
-          id={`${id}-Textarea`}
           data-invalid={textareaProps.invalid ? '' : undefined}
           aria-invalid={textareaProps.invalid ? true : undefined}
           aria-describedby={errorId}
