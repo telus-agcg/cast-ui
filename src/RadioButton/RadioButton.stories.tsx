@@ -25,7 +25,7 @@ class Component extends React.Component<any, any> {
         <RadioButton
           id="myInput1"
           data-testid="input1-radio-button"
-          name="input1"
+          name="radio-buttons"
           disabled={boolean('disabled', false)}
           rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
           value="1"
@@ -40,14 +40,14 @@ class Component extends React.Component<any, any> {
         <RadioButton
           id="myInput2"
           data-testid="input2-radio-button"
-          name="input2"
+          name="radio-buttons"
           disabled={boolean('disabled', false)}
           rbSize={select('rbSize', ['sm', 'md', 'lg'], 'md')}
           value="2"
           checked={this.state.value === 2}
           displayStyle={select('displayStyle', ['inline', 'stacked'], 'inline')}
         >
-          One
+          Two
         </RadioButton>
       </div>
     );

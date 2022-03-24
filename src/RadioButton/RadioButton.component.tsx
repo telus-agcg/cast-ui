@@ -199,7 +199,7 @@ export class RadioButton extends React.Component<Props> {
     const dataProps: any = getDataProps(props);
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv displayStyle={displayStyle} theme={theme}>
+        <SDiv {...dataProps} displayStyle={displayStyle} theme={theme}>
           <SInput
             type="radio"
             name={name}
@@ -209,7 +209,6 @@ export class RadioButton extends React.Component<Props> {
             value={value}
             checked={checked}
             onChange={this.onChange}
-            {...dataProps}
           />
           <SLabel htmlFor={id} rbSize={this.props.rbSize}>
             {children}
