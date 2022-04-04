@@ -372,7 +372,7 @@ export const defaultTheme = {
   },
   input: {
     background: defaultColors.white,
-    border: `1px solid ${defaultColors.secondaryFaded}`,
+    border: `1px solid ${defaultColors.drk400}`,
     color: defaultColors.drk800,
     fontSize: '14px',
     placeholderColor: defaultColors.drk400,
@@ -674,12 +674,12 @@ export const defaultTheme = {
   table: {
     fontSize: '14px',
     header: {
-      borderBottomColor: defaultColors.secondaryHover,
+      borderBottomColor: defaultColors.drk800,
       color: defaultColors.primary,
       fontWeight: 'bold',
     },
     row: {
-      borderBottomColor: defaultColors.secondaryFaded,
+      borderBottomColor: defaultColors.lt800,
       hoverColor: defaultColors.secondaryFaded,
       highlightColor: defaultColors.highlight200,
       readonlyColor: defaultColors.lt200,
@@ -868,9 +868,9 @@ export const defaultTheme = {
     hoverOptionBackgroundColor: defaultColors.lt200,
     hoverOptionColor: defaultColors.primary,
     selectedOptionColor: defaultColors.primary,
-
     selectedOptionBackgroundColor: defaultColors.white,
-    borderColor: defaultColors.secondary,
+    borderColor: defaultColors.drk400,
+    placeholderColor: defaultColors.drk400,
     width: '100%',
     disabled: {
       color: defaultColors.drk800,

@@ -671,7 +671,7 @@ export const umberTheme = {
       fontWeight: 'bold',
     },
     row: {
-      borderBottomColor: umberColors.drk400,
+      borderBottomColor: umberColors.lt800,
       highlightColor: umberColors.highlight200,
       hoverColor: umberColors.lt200,
       readonlyColor: umberColors.lt200,
@@ -859,7 +859,8 @@ export const umberTheme = {
     hoverOptionColor: umberColors.primary,
     selectedOptionColor: umberColors.primary,
     selectedOptionBackgroundColor: umberColors.white,
-    borderColor: umberColors.secondary,
+    borderColor: umberColors.drk400,
+    placeholderColor: umberColors.drk400,
     width: '100%',
     disabled: {
       color: umberColors.drk800,
