@@ -371,7 +371,7 @@ export const faluTheme = {
   },
   input: {
     background: faluColors.white,
-    border: `1px solid ${faluColors.secondaryFaded}`,
+    border: `1px solid ${faluColors.drk400}`,
     color: faluColors.drk800,
     fontSize: '14px',
     placeholderColor: faluColors.drk400,
@@ -675,12 +675,12 @@ export const faluTheme = {
     fontSize: '14px',
     border: `1px solid ${faluColors.lt800}`,
     header: {
-      borderBottomColor: faluColors.secondaryHover,
+      borderBottomColor: faluColors.drk800,
       color: faluColors.drk800,
       fontWeight: 'bold',
     },
     row: {
-      borderBottomColor: faluColors.secondaryFaded,
+      borderBottomColor: faluColors.lt800,
       hoverColor: faluColors.lt200,
       highlightColor: faluColors.highlight200,
       readonlyColor: faluColors.lt200,
@@ -870,7 +870,8 @@ export const faluTheme = {
     hoverOptionColor: faluColors.primary,
     selectedOptionColor: faluColors.primary,
     selectedOptionBackgroundColor: faluColors.white,
-    borderColor: faluColors.secondary,
+    borderColor: faluColors.drk400,
+    placeholderColor: faluColors.drk400,
     width: '100%',
     disabled: {
       color: faluColors.drk800,

@@ -363,7 +363,7 @@ export const azureTheme = {
   },
   input: {
     background: azureColors.white,
-    border: `1px solid ${azureColors.secondary}`,
+    border: `1px solid ${azureColors.drk400}`,
     color: azureColors.drk800,
     fontSize: '14px',
     placeholderColor: azureColors.drk400,
@@ -671,7 +671,7 @@ export const azureTheme = {
       fontWeight: 'bold',
     },
     row: {
-      borderBottomColor: azureColors.drk400,
+      borderBottomColor: azureColors.lt800,
       highlightColor: azureColors.highlight200,
       hoverColor: azureColors.lt200,
       readonlyColor: azureColors.lt200,
@@ -859,7 +859,8 @@ export const azureTheme = {
     hoverOptionColor: azureColors.primary,
     selectedOptionColor: azureColors.primary,
     selectedOptionBackgroundColor: azureColors.white,
-    borderColor: azureColors.secondary,
+    borderColor: azureColors.drk400,
+    placeholderColor: azureColors.drk400,
     width: '100%',
     disabled: {
       color: azureColors.drk800,
