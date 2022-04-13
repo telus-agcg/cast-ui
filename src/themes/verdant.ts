@@ -516,7 +516,7 @@ export const verdantTheme = {
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: verdantColors.white,
+      backgroundColor: verdantColors.lt200,
       borderColor: verdantColors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -531,7 +531,7 @@ export const verdantTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: verdantColors.white,
+      backgroundColor: verdantColors.lt200,
       borderColor: verdantColors.lt800,
       padding: '15px',
     },

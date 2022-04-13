@@ -516,7 +516,7 @@ export const windfallTheme = {
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: windfallColors.white,
+      backgroundColor: windfallColors.lt200,
       borderColor: windfallColors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -531,7 +531,7 @@ export const windfallTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: windfallColors.white,
+      backgroundColor: windfallColors.lt200,
       borderColor: windfallColors.lt800,
       padding: '15px',
     },

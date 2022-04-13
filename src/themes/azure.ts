@@ -517,7 +517,7 @@ export const azureTheme = {
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: azureColors.white,
+      backgroundColor: azureColors.lt200,
       borderColor: azureColors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -532,7 +532,7 @@ export const azureTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: azureColors.white,
+      backgroundColor: azureColors.lt200,
       borderColor: azureColors.lt800,
       padding: '15px',
     },
