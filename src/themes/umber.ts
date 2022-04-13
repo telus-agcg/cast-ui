@@ -517,7 +517,7 @@ export const umberTheme = {
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: umberColors.white,
+      backgroundColor: umberColors.lt200,
       borderColor: umberColors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -532,7 +532,7 @@ export const umberTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: umberColors.white,
+      backgroundColor: umberColors.lt200,
       borderColor: umberColors.lt800,
       padding: '15px',
     },

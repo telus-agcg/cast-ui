@@ -525,7 +525,7 @@ export const faluTheme = {
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: faluColors.white,
+      backgroundColor: faluColors.lt200,
       borderColor: faluColors.secondaryFaded,
       padding: '16px 16px',
       fontSize: '16px',
@@ -540,7 +540,7 @@ export const faluTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: faluColors.white,
+      backgroundColor: faluColors.lt200,
       borderColor: faluColors.secondaryFaded,
       padding: '8px 16px',
     },
