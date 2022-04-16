@@ -304,6 +304,18 @@ const SDiv = styled.div<Props>`
             props.theme.select.multiSelect.disabled.badgeBackgroundColor};
         }
       }
+
+      &.react-select__control--is-focused {
+        border-color: ${(props: Props) =>
+          props.invalid
+            ? props.theme.validation.borderColor
+            : props.theme.colors.primary};
+        box-shadow: 0 0 3px
+          ${(props: Props) =>
+            props.invalid
+              ? props.theme.validation.borderColor
+              : props.theme.colors.primary};
+      }
     }
     .react-select__indicators {
       align-self: center;
@@ -327,7 +339,7 @@ const SDiv = styled.div<Props>`
     }
 
     &.highlighted .react-select__control {
-      background-color: ${props => props.theme.colors.highlight200};
+      background-color: ${(props) => props.theme.colors.highlight200};
     }
   }
 `;
@@ -391,7 +403,7 @@ export class CustomSelect extends React.Component<Props> {
           }
         : {};
 
-    const DefaultSelectOption = props => {
+    const DefaultSelectOption = (props) => {
       const { innerProps, innerRef } = props;
       return (
         <div
@@ -406,7 +418,7 @@ export class CustomSelect extends React.Component<Props> {
       );
     };
 
-    const MultiValueRemove = props => {
+    const MultiValueRemove = (props) => {
       const { innerProps, innerRef } = props;
       return (
         <div
