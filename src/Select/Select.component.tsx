@@ -379,8 +379,6 @@ export class CustomSelect extends React.Component<Props> {
         : !isMulti;
     const uniqueId = uuid.v4();
 
-    const selectValue = this.props.value || this.props.selectedOption;
-
     const selectCheckboxProps =
       optionType === 'checkbox'
         ? {
