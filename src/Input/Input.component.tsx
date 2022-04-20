@@ -133,8 +133,6 @@ const SInput = styled.input`
   height: ${(props: Props) => props.theme.input[props.inputSize!].height};
   box-sizing: border-box;
   border: none;
-  border-radius: ${(props: Props) =>
-    props.theme.common[props.inputSize!].borderRadius};
   padding: ${(props: Props) => props.theme.input[props.inputSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.input.fontSize};
@@ -143,12 +141,8 @@ const SInput = styled.input`
   margin-right: 0;
   background-color: transparent !important;
 
-  &[data-invalid] {
-    border-color: ${(props: Props) => props.theme.validation.borderColor};
-  }
-
   ::placeholder {
-    color: ${props => props.theme.input.placeholderColor};
+    color: ${(props) => props.theme.input.placeholderColor};
   }
 
   &:-webkit-autofill,
@@ -163,7 +157,6 @@ const SInput = styled.input`
 
   &:focus {
     outline: none !important;
-    border: none;
     box-shadow: none;
   }
 `;
@@ -205,8 +198,15 @@ const SInputWrapper = styled.div<Partial<Props>>`
 
   &.focused {
     outline: none !important;
-    border-color: ${(props: Props) => props.theme.colors.primary};
-    box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+    border-color: ${(props: Props) =>
+      props.invalid
+        ? props.theme.validation.borderColor
+        : props.theme.colors.primary};
+    box-shadow: 0 0 3px
+      ${(props: Props) =>
+        props.invalid
+          ? props.theme.validation.borderColor
+          : props.theme.colors.primary};
   }
 
   &.disabled,
@@ -262,6 +262,7 @@ export const Input: React.FunctionComponent<Props> = ({
         <SInputWrapper
           theme={theme}
           inputSize={inputSize}
+          invalid={invalid}
           className={classNames(inputProps.className, {
             disabled,
             focused,
