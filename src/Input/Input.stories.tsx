@@ -24,7 +24,7 @@ storiesOf('Input', module)
       placeholder={text('placeholder', 'Please enter some text')}
       required={boolean('required', false)}
       value={text('value', '')}
-      onChange={e => {
+      onChange={(e) => {
         action('Changed!');
       }}
     />
@@ -53,11 +53,11 @@ storiesOf('Input', module)
               icon={icSearch}
               rounded={false}
               btnSize={inputSize}
-              onClick={e => alert('Searching....')}
+              onClick={(e) => alert('Searching....')}
             />
           }
           iconPosition={select('iconPosition', ['right', 'left'], 'right')}
-          onChange={e => {
+          onChange={(e) => {
             action('Changed!');
           }}
         />
@@ -96,7 +96,7 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
           value={text('value', '')}
           icon={<Icon size={20} icon={icSearch} />}
           iconPosition={select('iconPosition', ['right', 'left'], 'right')}
-          onChange={e => {
+          onChange={(e) => {
             action('Changed!');
           }}
         />
@@ -137,7 +137,7 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
           ['right', 'left'],
           'right',
         )}
-        onChange={e => {
+        onChange={(e) => {
           action('Changed!');
         }}
       />
@@ -163,7 +163,6 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
           required={boolean('required', false)}
           value={text('value', '')}
           addonText={text('addonText', '$')}
-          highlightFilled={boolean('highlightFilled', true)}
           isClearable={boolean('isClearable', true)}
           addonTextPosition={select(
             'addonTextPosition',
@@ -173,12 +172,10 @@ In this example, the **icon** is the *Icon* component from [react-icons-kit](htt
           icon={
             boolean('withIcon', true) ? (
               <Icon size={20} icon={icSearch} />
-            ) : (
-              undefined
-            )
+            ) : undefined
           }
           iconPosition={select('iconPosition', ['right', 'left'], 'right')}
-          onChange={e => {
+          onChange={(e) => {
             action('Changed!');
           }}
         />

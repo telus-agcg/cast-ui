@@ -188,12 +188,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default ''
    */
   menuPortalTarget?: HTMLElement;
-  /**
-   * Is the filled element highlighted
-   *
-   * @default false
-   **/
-  highlightFilled?: boolean;
 
   /**
    * If default the options will be selected through the list item.
@@ -474,9 +468,7 @@ export class CustomSelect extends React.Component<Props> {
             {...props}
             {...controlSpecificProps}
             {...selectCheckboxProps}
-            className={`react-select-component ${
-              this.props.highlightFilled && valueIsNotEmpty ? 'highlighted' : ''
-            } ${props.className}`}
+            className={`react-select-component ${props.className}`}
           />
           {invalid && (
             <ErrorMessage
