@@ -380,8 +380,6 @@ export class CustomSelect extends React.Component<Props> {
     const uniqueId = uuid.v4();
 
     const selectValue = this.props.value || this.props.selectedOption;
-    const valueIsNotEmpty: boolean =
-      !!selectValue && (!Array.isArray(selectValue) || selectValue.length > 0);
 
     const selectCheckboxProps =
       optionType === 'checkbox'
