@@ -106,12 +106,6 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    **/
   required?: boolean;
   /**
-   * Is the filled input highlighted
-   *
-   * @default false
-   **/
-  highlightFilled?: boolean;
-  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -219,10 +213,6 @@ const SInputWrapper = styled.div<Partial<Props>>`
       color: ${(props: Props) => props.theme.input.disabled.addonTextColor};
     }
   }
-
-  &.highlighted {
-    background-color: ${(props: Props) => props.theme.colors.highlight200};
-  }
 `;
 
 export const Input: React.FunctionComponent<Props> = ({
@@ -243,7 +233,6 @@ export const Input: React.FunctionComponent<Props> = ({
     addonText,
     icon,
     isClearable,
-    highlightFilled,
   } = inputProps;
 
   const [focused, setFocused] = React.useState(false);
@@ -266,7 +255,6 @@ export const Input: React.FunctionComponent<Props> = ({
           className={classNames(inputProps.className, {
             disabled,
             focused,
-            highlighted: highlightFilled && value && value.length > 0,
           })}
         >
           {'left' === iconPosition && icon && (

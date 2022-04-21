@@ -25,7 +25,6 @@ storiesOf('Select', module)
           controlSpecificProps={{
             isSearchable: boolean('isSearchable', false),
           }}
-          highlightFilled={boolean('highlightFilled', false)}
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           invalid={boolean('invalid', false)}
           invalidText={text('invalidText', 'A valid value is required')}
@@ -73,7 +72,6 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
           invalidText={text('invalidText', 'A valid value is required')}
           onChange={action('onChange')}
           isClearable={boolean('isClearable', false)}
-          highlightFilled={boolean('highlightFilled', false)}
           options={[
             { value: 'chocolate', label: 'Chocolate' },
             { value: 'strawberry', label: 'Strawberry' },
@@ -170,13 +168,13 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
     selectedOptions: [],
   };
 
-  formatGroupLabel = data => (
+  formatGroupLabel = (data) => (
     <span>{`${data.options.length} ${data.label}`}</span>
   );
 
   handleSelect(e) {
     const selected = Array.isArray(e) ? e : [e];
-    this.setState(state => ({
+    this.setState((state) => ({
       selectedOptions: selected,
     }));
   }
@@ -194,8 +192,7 @@ class MultiSelectCheckbox extends React.Component<Props, State> {
           selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
           hideSelectedOptions={false}
           isClearable={boolean('isClearable', false)}
-          highlightFilled={boolean('highlightFilled', false)}
-          onChange={e => this.handleSelect(e)}
+          onChange={(e) => this.handleSelect(e)}
           selectedOption={this.state.selectedOptions}
           closeMenuOnSelect={false}
           options={groupedOptions}
