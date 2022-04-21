@@ -882,9 +882,12 @@ export const verdantTheme = {
       padding: '5px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: verdantColors.lt600,
-      disabled: {
-        badgeBackgroundColor: verdantColors.drk200,
+      badge: {
+        backgroundColor: verdantColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: verdantColors.drk200,
+        },
       },
       sm: {
         height: '26px',

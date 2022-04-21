@@ -882,9 +882,12 @@ export const windfallTheme = {
       padding: '4px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: windfallColors.lt600,
-      disabled: {
-        badgeBackgroundColor: windfallColors.drk200,
+      badge: {
+        backgroundColor: windfallColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: windfallColors.drk200,
+        },
       },
       sm: {
         height: '26px',

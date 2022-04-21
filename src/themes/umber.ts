@@ -882,9 +882,12 @@ export const umberTheme = {
       padding: '6px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: umberColors.lt600,
-      disabled: {
-        badgeBackgroundColor: umberColors.drk200,
+      badge: {
+        backgroundColor: umberColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: umberColors.drk200,
+        },
       },
       sm: {
         height: '26px',

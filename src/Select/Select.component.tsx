@@ -269,11 +269,20 @@ const SDiv = styled.div<Props>`
 
       .react-select__multi-value {
         background-color: ${(props: Props) =>
-          props.theme.select.multiSelect.badgeBackgroundColor};
+          props.theme.select.multiSelect.badge.backgroundColor};
+        border-radius: ${(props: Props) =>
+          props.theme.select.multiSelect.badge.borderRadius};
         .react-select__multi-value__remove {
+          color: ${(props: Props) => props.theme.colors.primary};
           div:first-child {
             display: flex;
           }
+        }
+        .react-select__multi-value__remove:hover {
+          background-color: ${(props: Props) =>
+            props.theme.select.multiSelect.badge.backgroundColor};
+          border-radius: ${(props: Props) =>
+            props.theme.select.multiSelect.badge.backgroundColor};
         }
       }
 
@@ -295,7 +304,7 @@ const SDiv = styled.div<Props>`
         }
         .react-select__multi-value {
           background-color: ${(props: Props) =>
-            props.theme.select.multiSelect.disabled.badgeBackgroundColor};
+            props.theme.select.multiSelect.badge.disabled.backgroundColor};
         }
       }
 

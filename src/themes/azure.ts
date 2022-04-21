@@ -882,9 +882,12 @@ export const azureTheme = {
       padding: '6px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: azureColors.lt600,
-      disabled: {
-        badgeBackgroundColor: azureColors.drk200,
+      badge: {
+        backgroundColor: azureColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: azureColors.drk200,
+        },
       },
       sm: {
         height: '26px',

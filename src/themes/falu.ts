@@ -893,16 +893,19 @@ export const faluTheme = {
       padding: '6px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: faluColors.lt600,
-      disabled: {
-        badgeBackgroundColor: faluColors.drk200,
+      badge: {
+        backgroundColor: faluColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: faluColors.drk200,
+        },
       },
       sm: {
         height: '26px',
         padding: '0px 10px',
         valueMargin: '2px 8px 2px 0',
         labelHeight: '20px',
-        borderRadius: '13px',
+        borderRadius: '4px',
         indicatorsPosition: '0px',
       },
       md: {
@@ -910,7 +913,7 @@ export const faluTheme = {
         padding: '2px 10px 0 10px',
         valueMargin: '0 8px 2px 0',
         labelHeight: '24px',
-        borderRadius: '13px',
+        borderRadius: '4px',
         indicatorsPosition: '0px',
       },
       lg: {
@@ -918,7 +921,7 @@ export const faluTheme = {
         padding: '5px 13px 0 13px',
         valueMargin: '0 8px 5px 0',
         labelHeight: '28px',
-        borderRadius: '13px',
+        borderRadius: '4px',
         indicatorsPosition: '0px',
       },
     },
