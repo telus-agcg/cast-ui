@@ -565,11 +565,9 @@ export const cobaltTheme = {
   panel: {
     header: {
       padding: '14px 16px',
-      borderColor: '',
     },
     body: {
       padding: '30px 30px',
-      backgroundColor: '',
     },
     borderWidth: '1px',
     headerBorderColor: cobaltColors.drk400,
