@@ -327,17 +327,24 @@ const SDiv = styled.div<Props>`
         display: none;
       }
       .react-select__clear-indicator {
+        color: ${(props: Props) => props.theme.colors.primary};
         padding: 0;
+        &:hover {
+          color: ${(props: Props) => props.theme.colors.primary};
+        }
       }
       .react-select__dropdown-indicator {
+        color: ${(props: Props) => props.theme.select.dropdownColor};
         padding: 0 8px;
+        &:hover {
+          color: ${(props: Props) => props.theme.select.dropdownColor};
+        }
       }
       .react-select__clear-indicator,
       .react-select__dropdown-indicator {
         align-self: center;
-        color: ${(props: Props) => props.theme.select.dropdownColor};
         &:hover {
-          color: ${(props: Props) => props.theme.select.dropdownColor};
+          cursor: pointer;
         }
       }
     }
