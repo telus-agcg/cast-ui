@@ -282,7 +282,8 @@ const SDiv = styled.div<Props>`
           background-color: ${(props: Props) =>
             props.theme.select.multiSelect.badge.backgroundColor};
           border-radius: ${(props: Props) =>
-            props.theme.select.multiSelect.badge.backgroundColor};
+            props.theme.select.multiSelect.badge.borderRadius};
+          cursor: pointer;
         }
       }
 
