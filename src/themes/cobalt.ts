@@ -883,9 +883,12 @@ export const cobaltTheme = {
       padding: '6px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: cobaltColors.lt600,
-      disabled: {
-        badgeBackgroundColor: cobaltColors.drk200,
+      badge: {
+        backgroundColor: cobaltColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: cobaltColors.drk200,
+        },
       },
       sm: {
         height: '26px',
