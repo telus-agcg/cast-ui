@@ -372,7 +372,9 @@ export const defaultTheme = {
   },
   input: {
     background: defaultColors.white,
-    border: `1px solid ${defaultColors.drk400}`,
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: defaultColors.drk400,
     color: defaultColors.drk800,
     fontSize: '14px',
     placeholderColor: defaultColors.drk400,

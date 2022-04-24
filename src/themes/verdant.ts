@@ -362,7 +362,9 @@ export const verdantTheme = {
   },
   input: {
     background: verdantColors.white,
-    border: `1px solid ${verdantColors.drk400}`,
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: verdantColors.drk400,
     color: verdantColors.drk600,
     fontSize: '14px',
     placeholderColor: verdantColors.drk400,

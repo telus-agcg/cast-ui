@@ -363,7 +363,9 @@ export const umberTheme = {
   },
   input: {
     background: umberColors.white,
-    border: `1px solid ${umberColors.drk400}`,
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: umberColors.drk400,
     color: umberColors.drk800,
     fontSize: '14px',
     placeholderColor: umberColors.drk400,
