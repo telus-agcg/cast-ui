@@ -38,8 +38,8 @@ export const colors = {
 };
 
 export const theme = {
-  name: 'Verdant',
   colors,
+  name: 'Verdant',
   borders: {
     radius: '1px',
     radiusSm: '3.2px',

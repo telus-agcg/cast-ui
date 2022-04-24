@@ -38,8 +38,8 @@ export const colors = {
 };
 
 export const theme = {
-  name: 'umber',
   colors,
+  name: 'umber',
   borders: {
     radius: '1px',
     radiusSm: '3.2px',

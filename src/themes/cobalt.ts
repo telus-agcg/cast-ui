@@ -38,8 +38,8 @@ export const colors = {
 };
 
 export const theme = {
-  name: 'Cobalt',
   colors,
+  name: 'Cobalt',
   borders: {
     radius: '1px',
     radiusSm: '3.2px',

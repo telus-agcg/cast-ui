@@ -38,8 +38,8 @@ export const colors = {
 };
 
 export const theme = {
-  name: 'Default',
   colors,
+  name: 'Default',
   borders: {
     radius: '1px',
     radiusSm: '.2rem',

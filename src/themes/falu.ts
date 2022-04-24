@@ -36,8 +36,8 @@ export const colors = {
 };
 
 export const theme = {
-  name: 'Falu',
   colors,
+  name: 'Falu',
   borders: {
     radius: '1px',
     radiusSm: '.2rem',
