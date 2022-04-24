@@ -1,10 +1,10 @@
-import { defaultTheme } from './default';
-import { cobaltTheme } from './cobalt';
-import { verdantTheme } from './verdant';
-import { windfallTheme } from './windfall';
-import { azureTheme } from './azure';
-import { umberTheme } from './umber';
-import { faluTheme } from './falu';
+import { colors as defaultColors, theme as defaultTheme } from './default';
+import { colors as cobaltColors, theme as cobaltTheme } from './cobalt';
+import { colors as verdantColors, theme as verdantTheme } from './verdant';
+import { colors as windfallColors, theme as windfallTheme } from './windfall';
+import { colors as azureColors, theme as azureTheme } from './azure';
+import { colors as umberColors, theme as umberTheme } from './umber';
+import { colors as faluColors, theme as faluTheme } from './falu';
 
 export const Themes = {
   defaultTheme,
@@ -16,11 +16,11 @@ export const Themes = {
   faluTheme,
 };
 
-export * from './default';
-export * from './cobalt';
-export * from './verdant';
-export * from './windfall';
-export * from './azure';
-export * from './umber';
-export * from './falu';
+export { defaultColors, defaultTheme };
+export { azureColors, azureTheme };
+export { cobaltColors, cobaltTheme };
+export { faluColors, faluTheme };
+export { umberColors, umberTheme };
+export { verdantColors, verdantTheme };
+export { windfallColors, windfallTheme };
 export { ThemeProvider } from 'styled-components';
