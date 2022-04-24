@@ -265,6 +265,10 @@ const SDiv = styled.div<Props>`
         .react-select__single-value {
           color: ${(props: Props) => props.theme.colors.drk800};
         }
+
+        .react-select__placeholder {
+          color: ${(props: Props) => props.theme.select.placeholderColor};
+        }
       }
 
       .react-select__multi-value {
