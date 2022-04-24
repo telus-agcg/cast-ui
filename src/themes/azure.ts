@@ -39,7 +39,7 @@ export const colors = {
 
 export const theme = {
   name: 'Azure',
-  colors: colors,
+  colors,
   borders: {
     radius: '1px',
     radiusSm: '3.2px',

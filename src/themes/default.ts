@@ -39,7 +39,7 @@ export const colors = {
 
 export const theme = {
   name: 'Default',
-  colors: colors,
+  colors,
   borders: {
     radius: '1px',
     radiusSm: '.2rem',
