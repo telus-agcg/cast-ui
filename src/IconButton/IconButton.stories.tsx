@@ -73,7 +73,7 @@ export default {
 
 export const _IconButton = args => (
   <div>
-    <IconButton icon={icAdd} {...args} />
+    <IconButton data-testid="icon-button" icon={icAdd} {...args} />
   </div>
 );
 

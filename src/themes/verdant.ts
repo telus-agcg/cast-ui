@@ -362,7 +362,7 @@ export const verdantTheme = {
   },
   input: {
     background: verdantColors.white,
-    border: `1px solid ${verdantColors.secondary}`,
+    border: `1px solid ${verdantColors.drk400}`,
     color: verdantColors.drk600,
     fontSize: '14px',
     placeholderColor: verdantColors.drk400,
@@ -405,7 +405,7 @@ export const verdantTheme = {
     borderStyle: 'solid',
     borderColor: verdantColors.primary,
     disabledRadio: verdantColors.drk200,
-    disabledText: verdantColors.lt600,
+    disabledText: verdantColors.drk600,
     unselectedColor: verdantColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
@@ -516,7 +516,7 @@ export const verdantTheme = {
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: verdantColors.white,
+      backgroundColor: verdantColors.lt200,
       borderColor: verdantColors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -531,7 +531,7 @@ export const verdantTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: verdantColors.white,
+      backgroundColor: verdantColors.lt200,
       borderColor: verdantColors.lt800,
       padding: '15px',
     },
@@ -665,14 +665,14 @@ export const verdantTheme = {
     fontSize: '14px',
     border: `1px solid ${verdantColors.lt800}`,
     header: {
-      borderBottomColor: verdantColors.lt800,
+      borderBottomColor: verdantColors.drk800,
       color: verdantColors.drk800,
       fontWeight: 'bold',
       backgroundColor: verdantColors.lt200,
       topPadding: '10px',
     },
     row: {
-      borderBottomColor: verdantColors.drk400,
+      borderBottomColor: verdantColors.lt800,
       highlightColor: verdantColors.highlight200,
       hoverColor: verdantColors.lt200,
       readonlyColor: verdantColors.lt200,
@@ -859,7 +859,8 @@ export const verdantTheme = {
     hoverOptionColor: verdantColors.primary,
     selectedOptionColor: verdantColors.primary,
     selectedOptionBackgroundColor: verdantColors.white,
-    borderColor: verdantColors.secondary,
+    borderColor: verdantColors.drk400,
+    placeholderColor: verdantColors.drk400,
     width: '100%',
     disabled: {
       color: verdantColors.drk800,
@@ -881,9 +882,12 @@ export const verdantTheme = {
       padding: '5px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: verdantColors.lt600,
-      disabled: {
-        badgeBackgroundColor: verdantColors.drk200,
+      badge: {
+        backgroundColor: verdantColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: verdantColors.drk200,
+        },
       },
       sm: {
         height: '26px',

@@ -60,7 +60,7 @@ export default {
 };
 
 export const _Button = args => (
-  <Button id={'testId'} {...args}>
+  <Button id={'testId'} data-testid="submit" {...args}>
     Submit Button
   </Button>
 );

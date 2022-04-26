@@ -372,7 +372,7 @@ export const defaultTheme = {
   },
   input: {
     background: defaultColors.white,
-    border: `1px solid ${defaultColors.secondaryFaded}`,
+    border: `1px solid ${defaultColors.drk400}`,
     color: defaultColors.drk800,
     fontSize: '14px',
     placeholderColor: defaultColors.drk400,
@@ -383,17 +383,17 @@ export const defaultTheme = {
     },
     sm: {
       height: '26px',
-      padding: '6px 7px',
+      padding: '4px 7px',
       iconTop: '6px',
     },
     md: {
       height: '30px',
-      padding: '9px 10px 7px 10px',
+      padding: '8px 10px',
       iconTop: '7px',
     },
     lg: {
       height: '38px',
-      padding: '11px 13px 13px 13px',
+      padding: '11px 16px 13px',
       iconTop: '9px',
     },
   },
@@ -415,7 +415,7 @@ export const defaultTheme = {
     borderStyle: 'solid',
     borderColor: defaultColors.primary,
     disabledRadio: defaultColors.drk200,
-    disabledText: defaultColors.lt600,
+    disabledText: defaultColors.drk600,
     unselectedColor: defaultColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
@@ -674,12 +674,12 @@ export const defaultTheme = {
   table: {
     fontSize: '14px',
     header: {
-      borderBottomColor: defaultColors.secondaryHover,
+      borderBottomColor: defaultColors.drk800,
       color: defaultColors.primary,
       fontWeight: 'bold',
     },
     row: {
-      borderBottomColor: defaultColors.secondaryFaded,
+      borderBottomColor: defaultColors.lt800,
       hoverColor: defaultColors.secondaryFaded,
       highlightColor: defaultColors.highlight200,
       readonlyColor: defaultColors.lt200,
@@ -868,9 +868,9 @@ export const defaultTheme = {
     hoverOptionBackgroundColor: defaultColors.lt200,
     hoverOptionColor: defaultColors.primary,
     selectedOptionColor: defaultColors.primary,
-
     selectedOptionBackgroundColor: defaultColors.white,
-    borderColor: defaultColors.secondary,
+    borderColor: defaultColors.drk400,
+    placeholderColor: defaultColors.drk400,
     width: '100%',
     disabled: {
       color: defaultColors.drk800,
@@ -892,16 +892,19 @@ export const defaultTheme = {
       padding: '6px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: defaultColors.lt600,
-      disabled: {
-        badgeBackgroundColor: defaultColors.drk200,
+      badge: {
+        backgroundColor: defaultColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: defaultColors.drk200,
+        },
       },
       sm: {
         height: '26px',
         padding: '0px 10px',
         valueMargin: '2px 8px 2px 0',
         labelHeight: '20px',
-        borderRadius: '13px',
+        borderRadius: '4px',
         indicatorsPosition: '0px',
       },
       md: {
@@ -909,7 +912,7 @@ export const defaultTheme = {
         padding: '2px 10px 0 10px',
         valueMargin: '0 8px 2px 0',
         labelHeight: '24px',
-        borderRadius: '13px',
+        borderRadius: '4px',
         indicatorsPosition: '0px',
       },
       lg: {
@@ -917,7 +920,7 @@ export const defaultTheme = {
         padding: '5px 13px 0 13px',
         valueMargin: '0 8px 5px 0',
         labelHeight: '28px',
-        borderRadius: '13px',
+        borderRadius: '4px',
         indicatorsPosition: '0px',
       },
     },

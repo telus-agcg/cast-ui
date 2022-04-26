@@ -92,25 +92,32 @@ const STextarea = styled.textarea`
   border: 1px solid ${(props: Props) => props.theme.textarea.borderColor};
   border-radius: ${(props: Props) =>
     props.theme.common[props.textareaSize!].borderRadius};
+  border-color: ${(props: Props) =>
+    props.invalid
+      ? props.theme.validation.borderColor
+      : props.theme.colors.secondary};
   padding: ${(props: Props) => props.theme.common[props.textareaSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) =>
     props.theme.common[props.textareaSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
-
   outline: none !important;
   &:focus {
     outline: none !important;
-    border-color: ${(props: Props) => props.theme.colors.primary};
-    box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+    border-color: ${(props: Props) =>
+      props.invalid
+        ? props.theme.validation.borderColor
+        : props.theme.colors.primary};
+    box-shadow: 0 0 3px
+      ${(props: Props) =>
+        props.invalid
+          ? props.theme.validation.borderColor
+          : props.theme.colors.primary};
   }
   &:disabled {
     border-color: ${props => props.theme.textarea.disabled.borderColor};
     background: ${props => props.theme.textarea.disabled.background};
     cursor: not-allowed;
-  }
-  &[data-invalid] {
-    border-color: ${(props: Props) => props.theme.validation.borderColor};
   }
   ::placeholder {
     color: ${props => props.theme.textarea.placeholderColor};
@@ -125,7 +132,6 @@ export const Textarea: React.FunctionComponent<Props> = ({
   ...textareaProps
 }) => {
   const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';
-  const { id } = textareaProps;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
@@ -133,7 +139,6 @@ export const Textarea: React.FunctionComponent<Props> = ({
           value={value}
           onChange={onChange}
           {...textareaProps}
-          id={`${id}-Textarea`}
           data-invalid={textareaProps.invalid ? '' : undefined}
           aria-invalid={textareaProps.invalid ? true : undefined}
           aria-describedby={errorId}

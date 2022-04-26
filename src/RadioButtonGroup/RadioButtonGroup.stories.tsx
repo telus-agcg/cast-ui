@@ -27,10 +27,20 @@ export default {
 
 export const _RadioButtonGroup = args => (
   <RadioButtonGroup {...args}>
-    <RadioButton id="myInput1" disabled={false} value="1">
+    <RadioButton
+      id="myInput1"
+      data-testid="input1-radio-button"
+      disabled={false}
+      value="1"
+    >
       One
     </RadioButton>
-    <RadioButton id="myInput2" disabled={false} value="2">
+    <RadioButton
+      id="myInput2"
+      data-testid="input2-radio-button"
+      disabled={false}
+      value="2"
+    >
       Two
     </RadioButton>
   </RadioButtonGroup>

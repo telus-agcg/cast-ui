@@ -116,13 +116,14 @@ export default {
 
 const _Select = args => (
   <>
-    <Select id={'SampleSelect'} {...args} />
+    <Select id={'SampleSelect'} data-testid={args.dataTestId} {...args} />
   </>
 );
 
 export const RegularSelect = _Select.bind({});
 RegularSelect.args = {
   creatable: true,
+  dataTestId: 'single-select',
   isMulti: false,
   isDisabled: false,
   isClearable: false,
@@ -142,6 +143,7 @@ RegularSelect.args = {
 export const MultiSelect = _Select.bind({});
 MultiSelect.args = {
   creatable: true,
+  dataTestId: 'multi-select',
   isMulti: true,
   isDisabled: false,
   selectSize: 'md',
@@ -191,11 +193,11 @@ const flavorOptions: any[] = [
 
 const groupedOptions = [
   {
-    label: 'Colours',
+    label: 'Colors',
     options: colorOptions,
   },
   {
-    label: 'Flavours',
+    label: 'Flavors',
     options: flavorOptions,
   },
 ];
@@ -233,6 +235,7 @@ const MultiSelectCheckbox = args => {
     <FlexDiv>
       <Select
         id="SampleCheckSelect"
+        data-testid={'multi-select-checkbox'}
         onChange={e => handleSelect(e)}
         selectedOption={selectedOptions}
         closeMenuOnSelect={false}

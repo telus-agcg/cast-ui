@@ -1,8 +1,10 @@
 import * as React from 'react';
+import _ from 'lodash';
 import cn from 'classnames';
 import styled, { ThemeProvider } from 'styled-components';
 
 import { Themes } from '../../themes';
+import { getDataProps } from '../../utils/common';
 
 export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
   /**
@@ -97,10 +99,12 @@ export const Link: React.FunctionComponent<Props> = ({
   ...linkProps
 }) => {
   const { id } = linkProps;
+  const dataProps: any = getDataProps(linkProps);
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       {linkProps.disabled ? (
         <SLink
+          {...dataProps}
           id={id}
           className={cn([className, 'disabled'])}
           onClick={e => e.preventDefault()}
@@ -109,11 +113,12 @@ export const Link: React.FunctionComponent<Props> = ({
         </SLink>
       ) : (
         <SLink
+          {...dataProps}
+          id={id}
           className={cn([{ solo: linkProps.solo }, className])}
+          onClick={linkProps.onClick}
           href={linkProps.href}
           target={linkProps.target}
-          onClick={linkProps.onClick}
-          id={id}
         >
           {children}
         </SLink>

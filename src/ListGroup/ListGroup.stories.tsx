@@ -71,9 +71,9 @@ export const _ListGroup = ({
 }) => (
   <div>
     <ListGroup listGroupTheme={listGroupTheme}>
-      <ListGroupItem>List Item</ListGroupItem>
-      <ListGroupItem>List Item</ListGroupItem>
-      <ListGroupItem>List Item</ListGroupItem>
+      <ListGroupItem data-testid="list-item-1">List Item</ListGroupItem>
+      <ListGroupItem data-testid="list-item-2">List Item</ListGroupItem>
+      <ListGroupItem data-testid="list-item-3">List Item</ListGroupItem>
     </ListGroup>
     <ListGroup
       collapsible={collapsible}
@@ -82,19 +82,33 @@ export const _ListGroup = ({
       border={border}
       chevronAlignment={chevronAlignment}
     >
-      <ListGroupItem>List Item</ListGroupItem>
-      <ListGroupItem>List Item</ListGroupItem>
-      <ListGroupItem>List Item</ListGroupItem>
-      <ListGroupItem>List Item</ListGroupItem>
+      <ListGroupItem data-testid="collapsible-list-item-1">
+        List Item
+      </ListGroupItem>
+      <ListGroupItem data-testid="collapsible-list-item-2">
+        List Item
+      </ListGroupItem>
+      <ListGroupItem data-testid="collapsible-list-item-3">
+        List Item
+      </ListGroupItem>
+      <ListGroupItem data-testid="collapsible-list-item-4">
+        List Item
+      </ListGroupItem>
       <ListGroup
         collapsible={collapsible2}
         isCollapsed={isCollapsed}
         name="Nested Collapsible List Group"
         listGroupTheme={listGroupTheme2}
       >
-        <ListGroupItem>List Item</ListGroupItem>
-        <ListGroupItem>List Item</ListGroupItem>
-        <ListGroupItem>List Item</ListGroupItem>
+        <ListGroupItem data-testid="collapsible-nested-list-item-1">
+          List Item
+        </ListGroupItem>
+        <ListGroupItem data-testid="collapsible-nested-list-item-2">
+          List Item
+        </ListGroupItem>
+        <ListGroupItem data-testid="collapsible-nested-list-item-3">
+          List Item
+        </ListGroupItem>
       </ListGroup>
     </ListGroup>
   </div>

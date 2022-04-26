@@ -371,7 +371,7 @@ export const faluTheme = {
   },
   input: {
     background: faluColors.white,
-    border: `1px solid ${faluColors.secondaryFaded}`,
+    border: `1px solid ${faluColors.drk400}`,
     color: faluColors.drk800,
     fontSize: '14px',
     placeholderColor: faluColors.drk400,
@@ -382,17 +382,17 @@ export const faluTheme = {
     },
     sm: {
       height: '26px',
-      padding: '6px 7px',
+      padding: '4px 7px',
       iconTop: '6px',
     },
     md: {
       height: '30px',
-      padding: '9px 10px 7px 10px',
+      padding: '8px 10px',
       iconTop: '7px',
     },
     lg: {
       height: '38px',
-      padding: '11px 13px 13px 13px',
+      padding: '11px 16px 13px',
       iconTop: '9px',
     },
   },
@@ -414,7 +414,7 @@ export const faluTheme = {
     borderStyle: 'solid',
     borderColor: faluColors.primary,
     disabledRadio: faluColors.drk200,
-    disabledText: faluColors.drk800,
+    disabledText: faluColors.drk600,
     unselectedColor: faluColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
@@ -525,7 +525,7 @@ export const faluTheme = {
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: faluColors.white,
+      backgroundColor: faluColors.lt200,
       borderColor: faluColors.secondaryFaded,
       padding: '16px 16px',
       fontSize: '16px',
@@ -540,7 +540,7 @@ export const faluTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: faluColors.white,
+      backgroundColor: faluColors.lt200,
       borderColor: faluColors.secondaryFaded,
       padding: '8px 16px',
     },
@@ -675,12 +675,12 @@ export const faluTheme = {
     fontSize: '14px',
     border: `1px solid ${faluColors.lt800}`,
     header: {
-      borderBottomColor: faluColors.secondaryHover,
+      borderBottomColor: faluColors.drk800,
       color: faluColors.drk800,
       fontWeight: 'bold',
     },
     row: {
-      borderBottomColor: faluColors.secondaryFaded,
+      borderBottomColor: faluColors.lt800,
       hoverColor: faluColors.lt200,
       highlightColor: faluColors.highlight200,
       readonlyColor: faluColors.lt200,
@@ -870,7 +870,8 @@ export const faluTheme = {
     hoverOptionColor: faluColors.primary,
     selectedOptionColor: faluColors.primary,
     selectedOptionBackgroundColor: faluColors.white,
-    borderColor: faluColors.secondary,
+    borderColor: faluColors.drk400,
+    placeholderColor: faluColors.drk400,
     width: '100%',
     disabled: {
       color: faluColors.drk800,
@@ -892,16 +893,19 @@ export const faluTheme = {
       padding: '6px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: faluColors.lt600,
-      disabled: {
-        badgeBackgroundColor: faluColors.drk200,
+      badge: {
+        backgroundColor: faluColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: faluColors.drk200,
+        },
       },
       sm: {
         height: '26px',
         padding: '0px 10px',
         valueMargin: '2px 8px 2px 0',
         labelHeight: '20px',
-        borderRadius: '13px',
+        borderRadius: '4px',
         indicatorsPosition: '0px',
       },
       md: {
@@ -909,7 +913,7 @@ export const faluTheme = {
         padding: '2px 10px 0 10px',
         valueMargin: '0 8px 2px 0',
         labelHeight: '24px',
-        borderRadius: '13px',
+        borderRadius: '4px',
         indicatorsPosition: '0px',
       },
       lg: {
@@ -917,7 +921,7 @@ export const faluTheme = {
         padding: '5px 13px 0 13px',
         valueMargin: '0 8px 5px 0',
         labelHeight: '28px',
-        borderRadius: '13px',
+        borderRadius: '4px',
         indicatorsPosition: '0px',
       },
     },

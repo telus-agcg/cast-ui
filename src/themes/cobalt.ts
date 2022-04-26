@@ -364,7 +364,7 @@ export const cobaltTheme = {
   },
   input: {
     background: cobaltColors.white,
-    border: `1px solid ${cobaltColors.secondary}`,
+    border: `1px solid ${cobaltColors.drk400}`,
     color: cobaltColors.drk800,
     fontSize: '14px',
     placeholderColor: cobaltColors.drk400,
@@ -406,8 +406,8 @@ export const cobaltTheme = {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: cobaltColors.primary,
-    disabledRadio: cobaltColors.lt600,
-    disabledText: cobaltColors.drk800,
+    disabledRadio: cobaltColors.drk200,
+    disabledText: cobaltColors.drk600,
     unselectedColor: cobaltColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
@@ -672,7 +672,7 @@ export const cobaltTheme = {
       fontWeight: 'bold',
     },
     row: {
-      borderBottomColor: cobaltColors.drk400,
+      borderBottomColor: cobaltColors.lt800,
       highlightColor: cobaltColors.highlight200,
       hoverColor: cobaltColors.lt200,
       readonlyColor: cobaltColors.lt200,
@@ -860,7 +860,8 @@ export const cobaltTheme = {
     hoverOptionColor: cobaltColors.primary,
     selectedOptionColor: cobaltColors.primary,
     selectedOptionBackgroundColor: cobaltColors.white,
-    borderColor: cobaltColors.secondary,
+    borderColor: cobaltColors.drk400,
+    placeholderColor: cobaltColors.drk400,
     width: '100%',
     disabled: {
       color: cobaltColors.drk800,
@@ -882,9 +883,12 @@ export const cobaltTheme = {
       padding: '6px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: cobaltColors.lt600,
-      disabled: {
-        badgeBackgroundColor: cobaltColors.drk200,
+      badge: {
+        backgroundColor: cobaltColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: cobaltColors.drk200,
+        },
       },
       sm: {
         height: '26px',

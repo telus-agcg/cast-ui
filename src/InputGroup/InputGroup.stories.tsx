@@ -55,9 +55,10 @@ export const _InputGroup = ({
   invalidText,
 }) => (
   <div>
-    <InputGroup label={label} inputSize="md">
+    <InputGroup data-testid="input1-group" label={label} inputSize="md">
       <Input
         id="myInput"
+        data-testid="input1-group-select"
         inputSize="md"
         type="text"
         disabled={false}
@@ -66,9 +67,15 @@ export const _InputGroup = ({
         maxLength={1000}
       />
     </InputGroup>
-    <InputGroup label={label} inputSize="md" horizontal={true}>
+    <InputGroup
+      data-testid="input2-group"
+      label={label}
+      inputSize="md"
+      horizontal={true}
+    >
       <Select
         id="mySelect"
+        data-testid="input2-group-select"
         isDisabled={isDisabled}
         selectSize={selectSize}
         invalid={invalid}

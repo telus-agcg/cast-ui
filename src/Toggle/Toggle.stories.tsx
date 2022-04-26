@@ -59,6 +59,7 @@ export const _Toggle = ({ checked, ...args }) => {
       <Toggle
         id="toggleId"
         {...args}
+        data-testid="toggle"
         checked={toggle}
         onChange={handleToggle}
         value="1"

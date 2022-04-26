@@ -39,7 +39,7 @@ export default {
 };
 
 export const _Collapse = args => (
-  <Collapse {...args}>
+  <Collapse data-testid="lorem-collapse" {...args}>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

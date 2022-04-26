@@ -61,7 +61,7 @@ export default {
 
 const _Checkbox = args => (
   <div>
-    <Checkbox id="myInput1" value="1" {...args}>
+    <Checkbox id="myInput1" value="1" data-testid="checkbox-1" {...args}>
       One
     </Checkbox>
   </div>

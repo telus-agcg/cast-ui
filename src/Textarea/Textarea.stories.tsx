@@ -71,7 +71,9 @@ export default {
   },
 };
 
-export const _Textarea = args => <Textarea id="myTextarea" {...args} />;
+export const _Textarea = args => (
+  <Textarea id="myTextarea" data-testid="textarea" {...args} />
+);
 
 _Textarea.args = {
   textareaSize: 'md',

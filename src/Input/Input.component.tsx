@@ -11,7 +11,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    *
    * @default null
    **/
-  id: string;
+  id?: string;
   /**
    * Type of input (text, number, email, etc)
    *
@@ -106,12 +106,6 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    **/
   required?: boolean;
   /**
-   * Is the filled input highlighted
-   *
-   * @default false
-   **/
-  highlightFilled?: boolean;
-  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -132,41 +126,33 @@ const SInput = styled.input`
   min-width: 0;
   height: ${(props: Props) => props.theme.input[props.inputSize!].height};
   box-sizing: border-box;
-	border: none;
-  border-radius: ${(props: Props) =>
-    props.theme.common[props.inputSize!].borderRadius};
-	padding: ${(props: Props) => props.theme.input[props.inputSize!].padding};
+  border: none;
+  padding: ${(props: Props) => props.theme.input[props.inputSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.input.fontSize};
   color: ${(props: Props) => props.theme.input.color};
   text-align: left;
   margin-right: 0;
   background-color: transparent !important;
-  
-  &[data-invalid] {
-    border-color: ${(props: Props) => props.theme.validation.borderColor};
-  }
-  
+
   ::placeholder {
     color: ${props => props.theme.input.placeholderColor};
   }
-  
+
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-      // override autofill user-agent styles 
+    // override autofill user-agent styles
     -webkit-box-shadow: ${(props: Props) =>
       `inset 0 0 0 50px ${props.theme.colors.highlight200}`};
     -webkit-text-fill-color: ${(props: Props) => props.theme.input.color};
   }
-  
+
   &:focus {
     outline: none !important;
-    border: none;
     box-shadow: none;
   }
-  
 `;
 
 const SIconWrapper = styled.div`
@@ -184,15 +170,15 @@ const SAddonTextWrapper = styled.div`
   margin: 0 8px;
 `;
 
-const SInputWrapper = styled.div`
+const SInputWrapper = styled.div<Partial<Props>>`
   width: 100%;
   position: relative;
   box-sizing: border-box;
   display: inline-flex;
   flex-wrap: nowrap;
-	align-items: center;
-	background: ${(props: Props) => props.theme.input.background};
-	font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  align-items: center;
+  background: ${(props: Props) => props.theme.input.background};
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
   border: ${(props: Props) => props.theme.input.border};
@@ -206,22 +192,26 @@ const SInputWrapper = styled.div`
 
   &.focused {
     outline: none !important;
-    border-color: ${(props: Props) => props.theme.colors.primary};
-    box-shadow: 0 0 3px ${(props: Props) => props.theme.colors.primary};
+    border-color: ${(props: Props) =>
+      props.invalid
+        ? props.theme.validation.borderColor
+        : props.theme.colors.primary};
+    box-shadow: 0 0 3px
+      ${(props: Props) =>
+        props.invalid
+          ? props.theme.validation.borderColor
+          : props.theme.colors.primary};
   }
 
-  &.disabled, &.disabled > input {
-    border: ${props => props.theme.input.disabled.border};
-    background: ${props => props.theme.input.disabled.background};
+  &.disabled,
+  &.disabled > input {
+    border: ${(props: Props) => props.theme.input.disabled.border};
+    background: ${(props: Props) => props.theme.input.disabled.background};
     cursor: not-allowed;
 
     & > div {
-      color: ${props => props.theme.input.disabled.addonTextColor};     
+      color: ${(props: Props) => props.theme.input.disabled.addonTextColor};
     }
-  }
-  
-  &.highlighted {
-    background-color: ${props => props.theme.colors.highlight200};
   }
 `;
 
@@ -237,12 +227,12 @@ export const Input: React.FunctionComponent<Props> = ({
   const {
     disabled,
     iconPosition,
+    inputSize,
+    invalid,
     addonTextPosition,
     addonText,
     icon,
-    id,
     isClearable,
-    highlightFilled,
   } = inputProps;
 
   const [focused, setFocused] = React.useState(false);
@@ -259,11 +249,12 @@ export const Input: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInputWrapper
-          {...inputProps}
+          theme={theme}
+          inputSize={inputSize}
+          invalid={invalid}
           className={classNames(inputProps.className, {
             disabled,
             focused,
-            highlighted: highlightFilled && value && value.length > 0,
           })}
         >
           {'left' === iconPosition && icon && (
@@ -275,11 +266,10 @@ export const Input: React.FunctionComponent<Props> = ({
           <SInput
             ref={inputRef}
             {...inputProps}
-            id={`${id}-Input`}
             onChange={handleChange}
             value={value}
-            data-invalid={inputProps.invalid ? '' : undefined}
-            aria-invalid={inputProps.invalid ? true : undefined}
+            data-invalid={invalid ? '' : undefined}
+            aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
@@ -314,7 +304,7 @@ export const Input: React.FunctionComponent<Props> = ({
             </SAddonTextWrapper>
           )}
         </SInputWrapper>
-        {inputProps.invalid && inputProps.invalidText && (
+        {invalid && inputProps.invalidText && (
           <ErrorMessage
             id={errorId}
             message={inputProps.invalidText || ''}

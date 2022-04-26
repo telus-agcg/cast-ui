@@ -4,6 +4,7 @@ import { Themes } from '../themes';
 import { Popover } from '../Popover';
 import Icon from 'react-icons-kit';
 import { ic_keyboard_arrow_down as ICKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
+import _ from 'lodash';
 
 export type Props = {
   /**
@@ -38,12 +39,14 @@ export type Props = {
     disabled?: boolean;
     to?: any;
     className?: string;
+    'data-testid'?: string;
     children?: {
       label: String;
       active?: boolean;
       disabled?: boolean;
       to?: any;
       className?: string;
+      'data-testid'?: string;
     }[];
   }[];
   /**
@@ -171,6 +174,7 @@ const PopoverContent = ({ tab, onTabClick, ...props }: any) => (
         <SPopoverItem
           key={j}
           onClick={(e: any) => handleTabClick(childTab, e, onTabClick)}
+          data-testid={_.kebabCase(childTab.label)}
           {...childTab}
         >
           {childTab.label}
@@ -218,6 +222,7 @@ export const Tabnav: React.FunctionComponent<Props> = ({
                 role="tab"
                 tabIndex="0"
                 onClick={(e: any) => handleTabClick(tab, e, onTabClick)}
+                data-testid={_.kebabCase(tab.label)}
                 {...tab}
               >
                 {tab.label}

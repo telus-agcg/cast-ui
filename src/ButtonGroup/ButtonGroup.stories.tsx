@@ -32,6 +32,7 @@ export const _ButtonGroup = args => (
       btnStyle="primary"
       btnSize="md"
       value="1"
+      data-testid="button-1"
       onClick={() => console.log('Button 1')}
     >
       One
@@ -40,6 +41,7 @@ export const _ButtonGroup = args => (
       btnStyle="primary"
       btnSize="md"
       value="2"
+      data-testid="button-2"
       onClick={() => console.log('Button 2')}
     >
       Two
@@ -48,6 +50,7 @@ export const _ButtonGroup = args => (
       btnStyle="primary"
       btnSize="md"
       value="3"
+      data-testid="button-3"
       onClick={() => console.log('Button 3')}
     >
       Three

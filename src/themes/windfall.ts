@@ -362,7 +362,7 @@ export const windfallTheme = {
   },
   input: {
     background: windfallColors.white,
-    border: `1px solid ${windfallColors.secondary}`,
+    border: `1px solid ${windfallColors.drk400}`,
     color: windfallColors.drk800,
     fontSize: '14px',
     placeholderColor: windfallColors.drk400,
@@ -404,8 +404,8 @@ export const windfallTheme = {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: windfallColors.primary,
-    disabledText: windfallColors.drk800,
-    disabledRadio: windfallColors.lt600,
+    disabledRadio: windfallColors.drk200,
+    disabledText: windfallColors.drk600,
     unselectedColor: windfallColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
@@ -516,7 +516,7 @@ export const windfallTheme = {
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: windfallColors.white,
+      backgroundColor: windfallColors.lt200,
       borderColor: windfallColors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -531,7 +531,7 @@ export const windfallTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: windfallColors.white,
+      backgroundColor: windfallColors.lt200,
       borderColor: windfallColors.lt800,
       padding: '15px',
     },
@@ -665,14 +665,14 @@ export const windfallTheme = {
     fontSize: '14px',
     border: `1px solid ${windfallColors.lt800}`,
     header: {
-      borderBottomColor: windfallColors.lt800,
+      borderBottomColor: windfallColors.drk800,
       color: windfallColors.drk800,
       fontWeight: 'bold',
       backgroundColor: windfallColors.highlight200,
       topPadding: '10px',
     },
     row: {
-      borderBottomColor: windfallColors.drk400,
+      borderBottomColor: windfallColors.lt800,
       highlightColor: windfallColors.highlight200,
       hoverColor: windfallColors.lt200,
       readonlyColor: windfallColors.lt200,
@@ -859,7 +859,8 @@ export const windfallTheme = {
     hoverOptionColor: windfallColors.primary,
     selectedOptionColor: windfallColors.primary,
     selectedOptionBackgroundColor: windfallColors.white,
-    borderColor: windfallColors.secondary,
+    borderColor: windfallColors.drk400,
+    placeholderColor: windfallColors.drk400,
     width: '100%',
     disabled: {
       color: windfallColors.drk800,
@@ -881,9 +882,12 @@ export const windfallTheme = {
       padding: '4px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: windfallColors.lt600,
-      disabled: {
-        badgeBackgroundColor: windfallColors.drk200,
+      badge: {
+        backgroundColor: windfallColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: windfallColors.drk200,
+        },
       },
       sm: {
         height: '26px',

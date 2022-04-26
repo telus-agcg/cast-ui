@@ -110,11 +110,12 @@ export default {
   },
 };
 
-const _Input = args => <Input {...args} />;
+const _Input = args => <Input data-testid={args.dataTestId} {...args} />;
 
 export const _InputBasic = _Input.bind({});
 _InputBasic.args = {
   id: 'basic_input',
+  dataTestId: 'basic-input',
   type: 'text',
   autoComplete: 'on',
   disabled: false,
@@ -128,7 +129,8 @@ _InputBasic.args = {
 
 export const _InputWithIconButton = _Input.bind({});
 _InputWithIconButton.args = {
-  id: 'with_icon_button',
+  id: 'input_with_icon_button',
+  dataTestId: 'input-with-icon-button1',
   type: 'text',
   autoComplete: 'on',
   disabled: false,
@@ -151,7 +153,8 @@ _InputWithIconButton.args = {
 
 export const _InputWithIconButton2 = _Input.bind({});
 _InputWithIconButton2.args = {
-  id: 'with_icon_button',
+  id: 'input_with_icon_button2',
+  dataTestId: 'input-with-icon-button',
   type: 'text',
   autoComplete: 'on',
   disabled: false,
@@ -167,7 +170,8 @@ _InputWithIconButton2.args = {
 
 export const _InputWithAddonText = _Input.bind({});
 _InputWithAddonText.args = {
-  id: 'with_icon_button',
+  id: 'input_with_addon_text',
+  dataTestId: 'input-with-addon-text',
   type: 'text',
   autoComplete: 'on',
   disabled: false,
@@ -183,7 +187,8 @@ _InputWithAddonText.args = {
 
 export const _InputWithAllOptions = _Input.bind({});
 _InputWithAllOptions.args = {
-  id: 'with_icon_button',
+  id: 'input_with_all_options',
+  dataTestId: 'input-with-all-options',
   type: 'text',
   autoComplete: 'on',
   disabled: false,

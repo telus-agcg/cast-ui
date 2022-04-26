@@ -2,9 +2,10 @@ import * as React from 'react';
 
 import { Table } from './';
 import { Input } from '../Input';
-import { Tooltip } from '../Tooltip';
 import { Checkbox } from '../Checkbox';
 import SampleData from './sampleData';
+
+const testTableId = 'testTable';
 
 const componentDescription = `
 This is a wrapped version of [react-table](https://github.com/tannerlinsley/react-table)
@@ -137,7 +138,7 @@ export const _Table = args => {
   return (
     <div>
       <Table
-        id="testTableId"
+        id={testTableId}
         data={SampleData.Customers}
         pivotBy={['Id']}
         columns={[
@@ -162,24 +163,16 @@ export const _Table = args => {
             width: 120,
             Cell: (row: any) => {
               return (
-                <Tooltip
-                  content={<div>Input content</div>}
-                  size="regular"
-                  placement="top-start"
-                  a11y={false}
-                >
-                  <span>
-                    <Input
-                      id={`TextInput`}
-                      addonText="%"
-                      addonTextPosition="right"
-                      value="90"
-                      min={0}
-                      max={100}
-                      onChange={() => {}}
-                    />
-                  </span>
-                </Tooltip>
+                <Input
+                  id={`TextInput`}
+                  data-testid={'text-input'}
+                  addonText="%"
+                  addonTextPosition="right"
+                  value="90"
+                  min={0}
+                  max={100}
+                  onChange={() => {}}
+                />
               );
             },
           },
@@ -198,10 +191,15 @@ export const _Table = args => {
             accessor: 'City',
           },
           {
+            id: 'PostalCode',
             Header: 'Postal Code',
-            accessor: 'PostalCode',
             className: 'right-align',
             headerClassName: 'right-align',
+            Cell: (row: any) => {
+              return (
+                <div data-testid={'postal-code'}>{row.original.PostalCode}</div>
+              );
+            },
           },
           {
             Header: 'Country',
@@ -221,7 +219,7 @@ export const _Table = args => {
             Cell: (row: any) => {
               return (
                 <Checkbox
-                  id="myInput2"
+                  id={`${testTableId}-${row.index}-${row.column.id}`}
                   cbSize="md"
                   value="2"
                   indeterminate={true}

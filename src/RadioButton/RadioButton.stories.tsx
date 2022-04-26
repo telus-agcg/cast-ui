@@ -59,10 +59,22 @@ export default {
 export const _RadioButton = args => {
   return (
     <div>
-      <RadioButton id="myInput1" name="input1" value={1} {...args}>
+      <RadioButton
+        id="myInput1"
+        data-testid="input1-radio-button"
+        name="radio-buttons"
+        value={1}
+        {...args}
+      >
         One
       </RadioButton>
-      <RadioButton id="myInput1" name="input1" value={2} {...args}>
+      <RadioButton
+        id="myInput2"
+        data-testid="input2-radio-button"
+        name="radio-buttons"
+        value={2}
+        {...args}
+      >
         Two
       </RadioButton>
     </div>

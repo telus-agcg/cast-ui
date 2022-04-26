@@ -363,7 +363,7 @@ export const azureTheme = {
   },
   input: {
     background: azureColors.white,
-    border: `1px solid ${azureColors.secondary}`,
+    border: `1px solid ${azureColors.drk400}`,
     color: azureColors.drk800,
     fontSize: '14px',
     placeholderColor: azureColors.drk400,
@@ -375,17 +375,17 @@ export const azureTheme = {
     sm: {
       height: '26px',
       padding: '4px 7px',
-      iconTop: '0px',
+      iconTop: '6px',
     },
     md: {
       height: '30px',
       padding: '8px 10px',
-      iconTop: '0px',
+      iconTop: '7px',
     },
     lg: {
       height: '38px',
       padding: '11px 16px 13px',
-      iconTop: '0px',
+      iconTop: '9px',
     },
   },
   inputGroup: {
@@ -406,7 +406,7 @@ export const azureTheme = {
     borderStyle: 'solid',
     borderColor: azureColors.primary,
     disabledRadio: azureColors.drk200,
-    disabledText: azureColors.drk800,
+    disabledText: azureColors.drk600,
     unselectedColor: azureColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
@@ -517,7 +517,7 @@ export const azureTheme = {
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: azureColors.white,
+      backgroundColor: azureColors.lt200,
       borderColor: azureColors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -532,7 +532,7 @@ export const azureTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: azureColors.white,
+      backgroundColor: azureColors.lt200,
       borderColor: azureColors.lt800,
       padding: '15px',
     },
@@ -671,7 +671,7 @@ export const azureTheme = {
       fontWeight: 'bold',
     },
     row: {
-      borderBottomColor: azureColors.drk400,
+      borderBottomColor: azureColors.lt800,
       highlightColor: azureColors.highlight200,
       hoverColor: azureColors.lt200,
       readonlyColor: azureColors.lt200,
@@ -859,7 +859,8 @@ export const azureTheme = {
     hoverOptionColor: azureColors.primary,
     selectedOptionColor: azureColors.primary,
     selectedOptionBackgroundColor: azureColors.white,
-    borderColor: azureColors.secondary,
+    borderColor: azureColors.drk400,
+    placeholderColor: azureColors.drk400,
     width: '100%',
     disabled: {
       color: azureColors.drk800,
@@ -881,9 +882,12 @@ export const azureTheme = {
       padding: '6px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: azureColors.lt600,
-      disabled: {
-        badgeBackgroundColor: azureColors.drk200,
+      badge: {
+        backgroundColor: azureColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: azureColors.drk200,
+        },
       },
       sm: {
         height: '26px',

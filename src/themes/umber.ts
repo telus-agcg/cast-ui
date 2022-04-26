@@ -375,17 +375,17 @@ export const umberTheme = {
     sm: {
       height: '26px',
       padding: '4px 7px',
-      iconTop: '0px',
+      iconTop: '6px',
     },
     md: {
       height: '30px',
       padding: '8px 10px',
-      iconTop: '0px',
+      iconTop: '7px',
     },
     lg: {
       height: '38px',
       padding: '11px 16px 13px',
-      iconTop: '0px',
+      iconTop: '9px',
     },
   },
   inputGroup: {
@@ -406,7 +406,7 @@ export const umberTheme = {
     borderStyle: 'solid',
     borderColor: umberColors.primary,
     disabledRadio: umberColors.drk200,
-    disabledText: umberColors.drk800,
+    disabledText: umberColors.drk600,
     unselectedColor: umberColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
@@ -517,7 +517,7 @@ export const umberTheme = {
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: umberColors.white,
+      backgroundColor: umberColors.lt200,
       borderColor: umberColors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -532,7 +532,7 @@ export const umberTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: umberColors.white,
+      backgroundColor: umberColors.lt200,
       borderColor: umberColors.lt800,
       padding: '15px',
     },
@@ -671,7 +671,7 @@ export const umberTheme = {
       fontWeight: 'bold',
     },
     row: {
-      borderBottomColor: umberColors.drk400,
+      borderBottomColor: umberColors.lt800,
       highlightColor: umberColors.highlight200,
       hoverColor: umberColors.lt200,
       readonlyColor: umberColors.lt200,
@@ -859,7 +859,8 @@ export const umberTheme = {
     hoverOptionColor: umberColors.primary,
     selectedOptionColor: umberColors.primary,
     selectedOptionBackgroundColor: umberColors.white,
-    borderColor: umberColors.secondary,
+    borderColor: umberColors.drk400,
+    placeholderColor: umberColors.drk400,
     width: '100%',
     disabled: {
       color: umberColors.drk800,
@@ -881,9 +882,12 @@ export const umberTheme = {
       padding: '6px 13px',
     },
     multiSelect: {
-      badgeBackgroundColor: umberColors.lt600,
-      disabled: {
-        badgeBackgroundColor: umberColors.drk200,
+      badge: {
+        backgroundColor: umberColors.lt600,
+        borderRadius: '10px',
+        disabled: {
+          backgroundColor: umberColors.drk200,
+        },
       },
       sm: {
         height: '26px',
