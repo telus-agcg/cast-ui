@@ -39,14 +39,14 @@ _RegularLink.args = {
   dataTestId: 'link-standalone',
 };
 
-export const _LinkOnClick = _Link.bind({});
+export const _ButtonLink = _Link.bind({});
 
-_LinkOnClick.args = {
+_ButtonLink.args = {
   disabled: false,
   dataTestId: 'link-with-onclick',
 };
 
-export const WithinText = () => (
+export const LinkWithinText = () => (
   <p>
     Lorem ipsum dolor sit amet, consectetur{' '}
     <Link
