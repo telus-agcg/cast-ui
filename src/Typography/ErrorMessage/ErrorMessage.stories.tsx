@@ -4,7 +4,7 @@ import { ErrorMessage } from './index';
 import { Input } from '../../Input';
 
 export default {
-  title: 'Components/Feedback/ErrorMessage',
+  title: 'Components/Typography/ErrorMessage',
   component: ErrorMessage,
   argTypes: {
     theme: {

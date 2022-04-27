@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ToggleGroup, Toggle } from '../';
 
 export default {
-  title: 'Components/Inputs',
+  title: 'Components/Data Entry',
   component: ToggleGroup,
   argTypes: {
     theme: {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RadioButtonGroup, RadioButton } from '../';
 
 export default {
-  title: 'Components/Inputs',
+  title: 'Components/Data Entry',
   component: RadioButtonGroup,
   argTypes: {
     theme: {

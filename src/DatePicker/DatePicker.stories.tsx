@@ -10,7 +10,7 @@ import 'react-dates/lib/css/_datepicker.css';
 `;
 
 export default {
-  title: 'Components/Inputs',
+  title: 'Components/Data Entry',
   component: DatePicker,
   argTypes: {
     theme: {

@@ -30,7 +30,7 @@ The AJAX library used in parent application
 should be responsible for controlling the upload progress(percent) of a file's ProgressBar`;
 
 export default {
-  title: 'Components/Inputs',
+  title: 'Components/Data Entry',
   component: FileUpload,
   subcomponents: {
     File,

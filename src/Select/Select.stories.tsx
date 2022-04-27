@@ -24,7 +24,7 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
     `;
 
 export default {
-  title: 'Components/Inputs/Select',
+  title: 'Components/Data Entry/Select',
   component: Select,
   argTypes: {
     theme: {

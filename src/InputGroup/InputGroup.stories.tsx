@@ -4,7 +4,7 @@ import { InputGroup, Input } from '../';
 import Select from '../Select';
 
 export default {
-  title: 'Components/Inputs',
+  title: 'Components/Data Entry',
   component: InputGroup,
   argTypes: {
     label: {
@@ -55,10 +55,10 @@ export const _InputGroup = ({
   invalidText,
 }) => (
   <div>
-    <InputGroup data-testid="input1-group" label={label} inputSize="md">
+    <InputGroup data-testid="input-group1" label={label} inputSize="md">
       <Input
-        id="myInput"
-        data-testid="input1-group-select"
+        id="my_input"
+        data-testid="my-input"
         inputSize="md"
         type="text"
         disabled={false}
@@ -68,14 +68,14 @@ export const _InputGroup = ({
       />
     </InputGroup>
     <InputGroup
-      data-testid="input2-group"
+      data-testid="input-group2"
       label={label}
       inputSize="md"
       horizontal={true}
     >
       <Select
-        id="mySelect"
-        data-testid="input2-group-select"
+        id="my_select"
+        data-testid="my-select"
         isDisabled={isDisabled}
         selectSize={selectSize}
         invalid={invalid}

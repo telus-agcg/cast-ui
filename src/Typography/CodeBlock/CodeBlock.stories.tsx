@@ -31,7 +31,7 @@ code {
 `;
 
 export default {
-  title: 'Components/Typography',
+  title: 'Components/General',
   excludeStories: ['sampleCode'],
   component: CopyToClipboard,
   parameters: {

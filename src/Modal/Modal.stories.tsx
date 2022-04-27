@@ -17,7 +17,7 @@ const DemoButtons = props => {
 };
 
 export default {
-  title: 'Components/Data Display/Modal',
+  title: 'Components/Feedback/Modal',
   component: Modal,
   argTypes: {
     theme: {
@@ -97,16 +97,16 @@ const _Modal = ({ children, isOpen, modalTitle, ...args }) => {
   );
 };
 
-export const _ModalBasic = _Modal.bind({});
-_ModalBasic.args = {
+export const _BasicModal = _Modal.bind({});
+_BasicModal.args = {
   isOpen: false,
   modalSize: 'md',
   modalTitle: 'Basic Modal',
   children: <p>Lorem</p>,
 };
 
-export const _ModalScrollable = _Modal.bind({});
-_ModalScrollable.args = {
+export const _ScrollableModal = _Modal.bind({});
+_ScrollableModal.args = {
   isOpen: false,
   modalSize: 'md',
   modalTitle: 'Scrollable Modal',

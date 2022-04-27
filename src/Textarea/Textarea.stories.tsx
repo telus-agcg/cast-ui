@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Textarea } from '../';
 
 export default {
-  title: 'Components/Inputs/Textarea',
+  title: 'Components/Data Entry/Textarea',
   component: Textarea,
   argTypes: {
     theme: {

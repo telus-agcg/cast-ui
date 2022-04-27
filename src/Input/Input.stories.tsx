@@ -5,7 +5,7 @@ import { ic_search as icSearch } from 'react-icons-kit/md';
 import { Input, IconButton } from '../';
 
 export default {
-  title: 'Components/Inputs/Input',
+  title: 'Components/Data Entry/Input',
   component: Input,
   argTypes: {
     type: {
@@ -112,8 +112,8 @@ export default {
 
 const _Input = args => <Input data-testid={args.dataTestId} {...args} />;
 
-export const _InputBasic = _Input.bind({});
-_InputBasic.args = {
+export const _BasicInput = _Input.bind({});
+_BasicInput.args = {
   id: 'basic_input',
   dataTestId: 'basic-input',
   type: 'text',
@@ -130,7 +130,7 @@ _InputBasic.args = {
 export const _InputWithIconButton = _Input.bind({});
 _InputWithIconButton.args = {
   id: 'input_with_icon_button',
-  dataTestId: 'input-with-icon-button1',
+  dataTestId: 'input-with-icon-button',
   type: 'text',
   autoComplete: 'on',
   disabled: false,
@@ -151,10 +151,10 @@ _InputWithIconButton.args = {
   ),
 };
 
-export const _InputWithIconButton2 = _Input.bind({});
-_InputWithIconButton2.args = {
-  id: 'input_with_icon_button2',
-  dataTestId: 'input-with-icon-button',
+export const _InputWithIcon = _Input.bind({});
+_InputWithIcon.args = {
+  id: 'input_with_icon',
+  dataTestId: 'input-with-icon',
   type: 'text',
   autoComplete: 'on',
   disabled: false,

@@ -14,7 +14,7 @@ import {
 } from '../';
 
 export default {
-  title: 'Components/Utility/Draggable',
+  title: 'Components/Data Display/Draggable',
   component: Draggable,
   subcomponents: {
     DraggableParent,

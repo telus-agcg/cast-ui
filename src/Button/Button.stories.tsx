@@ -7,7 +7,7 @@ Cast UI custom buttons come with support for multiple sizes, states and semantic
       `;
 
 export default {
-  title: 'Components/Inputs/Button',
+  title: 'Components/General/Button',
   component: Button,
   argTypes: {
     outline: {

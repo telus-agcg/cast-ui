@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Tooltip } from '../';
 
 export default {
-  title: 'Components/Data Display/Tooltip',
+  title: 'Components/Feedback/Tooltip',
   component: Tooltip,
   argTypes: {
     theme: {

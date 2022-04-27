@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Checkbox } from '../';
 
 export default {
-  title: 'Components/Inputs/Checkbox',
+  title: 'Components/Data Entry/Checkbox',
   component: Checkbox,
   argTypes: {
     cbSize: {

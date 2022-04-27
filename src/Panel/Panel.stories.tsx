@@ -166,8 +166,8 @@ _PlainPanel.args = {
   noPadding: false,
 };
 
-export const _PanelWithHeader = _Panel.bind({});
-_PanelWithHeader.args = {
+export const _BasicPanel = _Panel.bind({});
+_BasicPanel.args = {
   name: 'Blood Group',
   title: 'B- type',
   panelStyle: 'primary',
@@ -178,8 +178,8 @@ _PanelWithHeader.args = {
   noPadding: false,
 };
 
-export const _PanelCollapsible = _Panel.bind({});
-_PanelCollapsible.args = {
+export const _CollapsiblePanel = _Panel.bind({});
+_CollapsiblePanel.args = {
   name: 'Blood Group',
   title: 'O+ type',
   panelStyle: 'primary',
