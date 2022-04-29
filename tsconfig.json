@@ -28,11 +28,7 @@
   "linterOptions": {
     "exclude": ["*.json", "**/*.json"]
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "src/themes/Theme.stories.mdx"
-  ],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
   "exclude": [
     "node_modules",
     "dist",
