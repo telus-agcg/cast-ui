@@ -364,7 +364,9 @@ export const cobaltTheme = {
   },
   input: {
     background: cobaltColors.white,
-    border: `1px solid ${cobaltColors.drk400}`,
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: cobaltColors.drk400,
     color: cobaltColors.drk800,
     fontSize: '14px',
     placeholderColor: cobaltColors.drk400,

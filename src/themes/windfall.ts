@@ -362,7 +362,9 @@ export const windfallTheme = {
   },
   input: {
     background: windfallColors.white,
-    border: `1px solid ${windfallColors.drk400}`,
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: windfallColors.drk400,
     color: windfallColors.drk800,
     fontSize: '14px',
     placeholderColor: windfallColors.drk400,

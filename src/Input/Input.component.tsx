@@ -181,13 +181,16 @@ const SInputWrapper = styled.div<Partial<Props>>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
-  border: ${(props: Props) => props.theme.input.border};
+  border: ${(props: Props) =>
+    `${props.theme.input.borderWidth} 
+     ${props.theme.input.borderStyle} 
+     ${
+       props.invalid
+         ? props.theme.validation.borderColor
+         : props.theme.input.borderColor
+     }`};
   border-radius: ${(props: Props) =>
     props.theme.common[props.inputSize!].borderRadius};
-  border-color: ${(props: Props) =>
-    props.invalid
-      ? props.theme.validation.borderColor
-      : props.theme.colors.secondary};
   outline: none !important;
 
   &.focused {

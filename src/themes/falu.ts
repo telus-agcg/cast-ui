@@ -371,7 +371,9 @@ export const faluTheme = {
   },
   input: {
     background: faluColors.white,
-    border: `1px solid ${faluColors.drk400}`,
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: faluColors.drk400,
     color: faluColors.drk800,
     fontSize: '14px',
     placeholderColor: faluColors.drk400,

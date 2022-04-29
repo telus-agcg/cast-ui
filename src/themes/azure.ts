@@ -363,7 +363,9 @@ export const azureTheme = {
   },
   input: {
     background: azureColors.white,
-    border: `1px solid ${azureColors.drk400}`,
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: azureColors.drk400,
     color: azureColors.drk800,
     fontSize: '14px',
     placeholderColor: azureColors.drk400,
