@@ -2,8 +2,19 @@ import * as React from 'react';
 
 import { RadioButton } from '../';
 
+const description = `
+The Radio Button component improves the styling, layout and behavior of default radio input HTML element.
+
+###### Disabled
+Disabled radio buttons are supported. The disabled attribute will apply a lighter color to help indicate the input’s state.
+
+###### Display Style
+By default, any number of radio buttons that are immediate sibling will be *vertically stacked* and appropriately spaced.
+Alternatively, group radio buttons on the same horizontal row by settings the **displayStyle** prop to **inline**
+`;
+
 export default {
-  title: 'Components/Data Entry',
+  title: 'Components/Interactions/Radio Button',
   component: RadioButton,
   argTypes: {
     theme: {
@@ -49,8 +60,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component:
-          'The Radio Button component improves the styling, layout and behavior of default radio input HTML element.',
+        component: description,
       },
     },
   },

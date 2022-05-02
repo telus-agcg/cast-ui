@@ -29,9 +29,9 @@ const _Link = args => (
   </Link>
 );
 
-export const _RegularLink = _Link.bind({});
+export const _Regular = _Link.bind({});
 
-_RegularLink.args = {
+_Regular.args = {
   href: 'https://www.tkxs.com',
   target: '_blank',
   disabled: false,
@@ -39,14 +39,14 @@ _RegularLink.args = {
   dataTestId: 'link-standalone',
 };
 
-export const _ButtonLink = _Link.bind({});
+export const _WithOnclick = _Link.bind({});
 
-_ButtonLink.args = {
+_WithOnclick.args = {
   disabled: false,
   dataTestId: 'link-with-onclick',
 };
 
-export const LinkWithinText = () => (
+export const WithinText = () => (
   <p>
     Lorem ipsum dolor sit amet, consectetur{' '}
     <Link

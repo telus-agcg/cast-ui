@@ -16,7 +16,7 @@ It uses the Popover component for the row controls on the right most column.
 
 All the options available to react-table can be passed directly from the component.
 
-##### Important note on Pagination
+###### Note on Pagination
 
 Controlled Pagination's **forcePage** doesn't display the correct page. For example, if "4" is passed into the prop, "5" displays.
 

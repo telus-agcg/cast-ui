@@ -4,7 +4,7 @@ import { InputGroup, Input } from '../';
 import Select from '../Select';
 
 export default {
-  title: 'Components/Data Entry',
+  title: 'Components/Interactions/Input',
   component: InputGroup,
   argTypes: {
     label: {

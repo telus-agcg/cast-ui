@@ -4,8 +4,19 @@ import { ic_search as icSearch } from 'react-icons-kit/md';
 
 import { Input, IconButton } from '../';
 
+const description = `
+###### With Icon
+The Input component accepts 2 additional props, **icon** and **iconPosition** that allow the Input to prepend or append a *JSX.Element*, *React.Component*, *React.FunctionComponent* or a *string*.
+In this example, the **icon** is the *Icon* component from [react-icons-kit](https://react-icons-kit.now.sh/)
+
+###### With Text
+The Input component accepts 2 additional props, **addonText** and **addonTextPosition** that allow the Input to prepend or append a *string* or *character set* such as currency codes.
+By using the *addonText* prop, the Input component text alignment is shifted to right otherwise it remains left or default.
+In this example, the **addonText** is the dollar sign ($).
+`;
+
 export default {
-  title: 'Components/Data Entry/Input',
+  title: 'Components/Interactions/Input',
   component: Input,
   argTypes: {
     type: {
@@ -108,12 +119,19 @@ export default {
       },
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
 };
 
 const _Input = args => <Input data-testid={args.dataTestId} {...args} />;
 
-export const _BasicInput = _Input.bind({});
-_BasicInput.args = {
+export const _Regular = _Input.bind({});
+_Regular.args = {
   id: 'basic_input',
   dataTestId: 'basic-input',
   type: 'text',
@@ -127,32 +145,8 @@ _BasicInput.args = {
   required: false,
 };
 
-export const _InputWithIconButton = _Input.bind({});
-_InputWithIconButton.args = {
-  id: 'input_with_icon_button',
-  dataTestId: 'input-with-icon-button',
-  type: 'text',
-  autoComplete: 'on',
-  disabled: false,
-  invalid: false,
-  invalidText: 'A valid value is required',
-  maxLength: 1000,
-  inputSize: 'md',
-  placeholder: 'Please enter some text',
-  required: false,
-  iconPosition: 'right',
-  icon: (
-    <IconButton
-      icon={icSearch}
-      rounded={false}
-      btnSize="md"
-      onClick={e => alert('Searching....')}
-    />
-  ),
-};
-
-export const _InputWithIcon = _Input.bind({});
-_InputWithIcon.args = {
+export const _WithIcon = _Input.bind({});
+_WithIcon.args = {
   id: 'input_with_icon',
   dataTestId: 'input-with-icon',
   type: 'text',
@@ -168,8 +162,8 @@ _InputWithIcon.args = {
   icon: <Icon size={20} icon={icSearch} />,
 };
 
-export const _InputWithAddonText = _Input.bind({});
-_InputWithAddonText.args = {
+export const _WithAddonText = _Input.bind({});
+_WithAddonText.args = {
   id: 'input_with_addon_text',
   dataTestId: 'input-with-addon-text',
   type: 'text',
@@ -204,4 +198,28 @@ _InputWithAllOptions.args = {
   icon: <Icon size={20} icon={icSearch} />,
   isClearable: true,
   highlightFilled: true,
+};
+
+export const _WithIconButton = _Input.bind({});
+_WithIconButton.args = {
+  id: 'input_with_icon_button',
+  dataTestId: 'input-with-icon-button',
+  type: 'text',
+  autoComplete: 'on',
+  disabled: false,
+  invalid: false,
+  invalidText: 'A valid value is required',
+  maxLength: 1000,
+  inputSize: 'md',
+  placeholder: 'Please enter some text',
+  required: false,
+  iconPosition: 'right',
+  icon: (
+    <IconButton
+      icon={icSearch}
+      rounded={false}
+      btnSize="md"
+      onClick={e => alert('Searching....')}
+    />
+  ),
 };

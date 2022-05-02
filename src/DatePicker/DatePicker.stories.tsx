@@ -5,12 +5,12 @@ const descriptionComponent = `
 This is a DatePicker, based on [react-dates](http://airbnb.io/react-dates), which you must install in your app. To initialize, you should include the following line in your app.
 You'll also need to include moment.js as a dependency.
 
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
+<code style="margin-bottom: 5px">import 'react-dates/initialize';</code><br>
+<code>import 'react-dates/lib/css/_datepicker.css';</code>
 `;
 
 export default {
-  title: 'Components/Data Entry',
+  title: 'Components/Interactions/Date Picker',
   component: DatePicker,
   argTypes: {
     theme: {

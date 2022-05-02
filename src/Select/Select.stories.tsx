@@ -13,18 +13,14 @@ const description = `
 This is a Select, based on the [react-select](https://github.com/JedWatson/react-select) library.
 
 ###### Important
-
 The version of **react-select** used is **version 2** and it introduces a number of changes from version 1.
-
 For example, the *selectedOption* prop cannot accept any simple values such as strings.
-
 The recommended implementation can be found [here](https://react-select.com/upgrade-guide#simple-value)
-
 Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
     `;
 
 export default {
-  title: 'Components/Data Entry/Select',
+  title: 'Components/Interactions/Select',
   component: Select,
   argTypes: {
     theme: {
@@ -120,8 +116,8 @@ const _Select = args => (
   </>
 );
 
-export const RegularSelect = _Select.bind({});
-RegularSelect.args = {
+export const Regular = _Select.bind({});
+Regular.args = {
   creatable: true,
   dataTestId: 'single-select',
   isMulti: false,

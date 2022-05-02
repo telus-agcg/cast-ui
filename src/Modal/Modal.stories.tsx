@@ -3,6 +3,17 @@ import { Button } from '../Button';
 
 import { Modal } from '../';
 
+const description = `
+This Modal is based on the [react-modal](https://www.npmjs.com/package/react-modal) component.
+To open or close the modal, change the <code>isOpen</code> prop.
+To set the width of the modal, change the <code>modalSize</code> props to either
+- *sm* 300px
+- *md* 500px (default)
+- *lg* 800px
+In addition of the string options under *footerContent*,
+you can pass a component instead of any of those.
+`;
+
 const DemoButtons = props => {
   return (
     <div>
@@ -17,7 +28,7 @@ const DemoButtons = props => {
 };
 
 export default {
-  title: 'Components/Feedback/Modal',
+  title: 'Components/Data Display/Modal',
   component: Modal,
   argTypes: {
     theme: {
@@ -64,8 +75,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component:
-          'This Modal is based on the [react-modal](https://www.npmjs.com/package/react-modal) component.',
+        component: description,
       },
     },
   },
@@ -97,16 +107,16 @@ const _Modal = ({ children, isOpen, modalTitle, ...args }) => {
   );
 };
 
-export const _BasicModal = _Modal.bind({});
-_BasicModal.args = {
+export const _Regular = _Modal.bind({});
+_Regular.args = {
   isOpen: false,
   modalSize: 'md',
-  modalTitle: 'Basic Modal',
+  modalTitle: 'Regular Modal',
   children: <p>Lorem</p>,
 };
 
-export const _ScrollableModal = _Modal.bind({});
-_ScrollableModal.args = {
+export const _Scrollable = _Modal.bind({});
+_Scrollable.args = {
   isOpen: false,
   modalSize: 'md',
   modalTitle: 'Scrollable Modal',

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Toggle } from '../';
 
 export default {
-  title: 'Components/Data Entry/Toggle',
+  title: 'Components/Interactions/Toggle',
   component: Toggle,
   argTypes: {
     toggleSize: {

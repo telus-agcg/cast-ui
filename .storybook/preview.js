@@ -29,6 +29,13 @@ export const decorators = [
 
 export const parameters = {
   controls: { expanded: true },
+  options: {
+    storySort: {
+      method: 'alphabetical',
+      includeName: true,
+      locales: 'en-US',
+    },
+  },
   viewport: {
     viewports: INITIAL_VIEWPORTS,
   },
