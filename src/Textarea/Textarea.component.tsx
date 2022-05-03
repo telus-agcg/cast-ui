@@ -115,12 +115,12 @@ const STextarea = styled.textarea`
           : props.theme.colors.primary};
   }
   &:disabled {
-    border-color: ${(props) => props.theme.textarea.disabled.borderColor};
-    background: ${(props) => props.theme.textarea.disabled.background};
+    border-color: ${props => props.theme.textarea.disabled.borderColor};
+    background: ${props => props.theme.textarea.disabled.background};
     cursor: not-allowed;
   }
   ::placeholder {
-    color: ${(props) => props.theme.textarea.placeholderColor};
+    color: ${props => props.theme.textarea.placeholderColor};
   }
 `;
 
