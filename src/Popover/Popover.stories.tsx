@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { Popover, Button } from '../';
-import { boolean, select } from '@storybook/addon-knobs';
 
 const MyComponent = (props: any) => (
   <div style={{ padding: '10px', fontFamily: 'Arial, sans-serif' }}>
@@ -12,17 +10,35 @@ const MyComponent = (props: any) => (
   </div>
 );
 
-storiesOf('Popover', module).add(
-  'Controlled Popover',
-  () => (
-    <Popover
-      content={<MyComponent />}
-      isVisible={boolean('isVisible', true)}
-      arrow={boolean('arrow', true)}
-      size={select('size', ['small', 'regular', 'large'], 'regular')}
-      placement={select(
-        'placement',
-        [
+export default {
+  title: 'Components/Data Display/Popover',
+  component: Popover,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    isVisible: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    arrow: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: ['small', 'regular', 'large'],
+      },
+    },
+    placement: {
+      control: {
+        type: 'select',
+        options: [
           'top',
           'top-start',
           'top-end',
@@ -32,23 +48,35 @@ storiesOf('Popover', module).add(
           'left',
           'right',
         ],
-        'bottom',
-      )}
-    >
-      <span>
-        <Button btnSize="md" btnStyle="primary" onClick={() => null}>
-          This button has a controlled popover
-        </Button>
-      </span>
-    </Popover>
-  ),
-  {
-    info: {
-      text: `
-        ### Notes
-
-        This is a Popover, based on [tippy.js](https://atomiks.github.io/tippyjs/).
-        `,
+      },
+    },
+    children: {
+      control: false,
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'This Popover is based on [tippy.js](https://atomiks.github.io/tippyjs/)',
+      },
+    },
+  },
+};
+
+export const _Popover = args => (
+  <Popover content={<MyComponent />} {...args}>
+    <span>
+      <Button btnSize="md" btnStyle="primary" onClick={() => null}>
+        This button has a controlled popover
+      </Button>
+    </span>
+  </Popover>
 );
+
+_Popover.args = {
+  isVisible: true,
+  arrow: true,
+  size: 'regular',
+  placement: 'bottom',
+};

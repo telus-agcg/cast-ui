@@ -73,7 +73,9 @@ const SSpinner = styled.div`
   }
 
   @keyframes spinner {
-    to {transform: rotate(360deg);}
+    to {
+      transform: rotate(360deg);
+    }
   }
 `;
 

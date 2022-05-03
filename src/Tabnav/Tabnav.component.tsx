@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import { Popover } from '../Popover';
-import { Icon } from 'react-icons-kit';
+import Icon from 'react-icons-kit';
 import { ic_keyboard_arrow_down as ICKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 import _ from 'lodash';
 
