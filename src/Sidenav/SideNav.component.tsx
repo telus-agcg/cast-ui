@@ -59,7 +59,7 @@ const SSideNav = styled.nav`
       props.theme.sidenav[`${props.secondary ? 'activeSec' : 'active'}navItem`]
         .fontWeight};
   }
-  > *:not(:last-child) {
+  > * {
     border-bottom: ${(props: Props) =>
       (props.top || props.center) && !props.secondary
         ? props.theme.sidenav.navItem.topNavBorderBottom
