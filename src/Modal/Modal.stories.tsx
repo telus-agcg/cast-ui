@@ -1,133 +1,93 @@
 import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import { boolean, select, text } from '@storybook/addon-knobs/react';
+import { action } from '@storybook/addon-actions';
 import { Button } from '../Button';
 
 import { Modal } from '../';
 
-const description = `
-This Modal is based on the [react-modal](https://www.npmjs.com/package/react-modal) component.
-To open or close the modal, change the <code>isOpen</code> prop.
-To set the width of the modal, change the <code>modalSize</code> props to either
-- *sm* 300px
-- *md* 500px (default)
-- *lg* 800px
-In addition of the string options under *footerContent*,
-you can pass a component instead of any of those.
-`;
-
-const DemoButtons = props => {
+const DemoButtons = () => {
   return (
     <div>
-      <Button btnSize="md" btnStyle="primary" onClick={props.handleCloseModal}>
-        OK
-      </Button>
-      <Button btnSize="md" btnStyle="primary" onClick={props.handleCloseModal}>
+      <Button btnSize="md" btnStyle="primary">
         Cancel
+      </Button>
+      <Button btnSize="md" btnStyle="primary">
+        OK
       </Button>
     </div>
   );
 };
 
-export default {
-  title: 'Components/Data Display/Modal',
-  component: Modal,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    isOpen: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    modalSize: {
-      options: ['sm', 'md', 'lg', 'full'],
-      control: {
-        type: 'select',
-      },
-    },
-    modalTitle: {
-      control: {
-        type: 'text',
-      },
-    },
-    onRequestClose: {
-      action: {
-        type: 'onRequestClose',
-      },
-    },
-    onTitleClose: {
-      action: {
-        type: 'onTitleClose',
-      },
-    },
-    children: {
-      control: false,
-    },
-    id: {
-      control: false,
-    },
-    footerContent: {
-      control: false,
-    },
-  },
-  parameters: {
-    docs: {
-      description: {
-        component: description,
-      },
-    },
-  },
-};
-
-const _Modal = ({ children, isOpen, modalTitle, ...args }) => {
-  const [openModal, setOpenModal] = React.useState(false);
-
-  React.useEffect(() => {
-    setOpenModal(isOpen);
-  }, [isOpen]);
-
-  const handleToggleModal = () => setOpenModal(!openModal);
-
-  return (
-    <>
-      <Button onClick={handleToggleModal}>Open Modal</Button>
+storiesOf('Modal', module)
+  .add(
+    'Modal',
+    () => (
       <Modal
+        isOpen={boolean('isOpen', true)}
         id="myModal"
-        footerContent={<DemoButtons handleCloseModal={handleToggleModal} />}
-        isOpen={openModal}
-        modalTitle={modalTitle}
-        {...args}
-        onTitleClose={handleToggleModal}
+        footerContent={<DemoButtons />}
+        modalSize={select('modalSize', ['sm', 'md', 'lg', 'full'], 'md')}
+        modalTitle={text('modalTitle', 'Test Modal')}
+        onRequestClose={action('onRequestClose')}
+        onTitleClose={action('onTitleClose')}
       >
-        {children}
+        <p>Lorem</p>
       </Modal>
-    </>
+    ),
+    {
+      info: {
+        text: `
+        ### Notes
+        This is a Modal, based on the react-modal component.
+        To open or close the modal, change the 'isOpen' prop.
+        To set the width of the modal, change the 'modalSize' props to either
+        - *sm* 300px
+        - *md* 500px (default)
+        - *lg* 800px
+        In addition of the string options under *footerContent*,
+        you can pass a component instead of any of those.
+      `,
+      },
+    },
+  )
+  .add(
+    'Scrollable',
+    () => (
+      <Modal
+        isOpen={boolean('isOpen', true)}
+        id="myModal"
+        footerContent={<DemoButtons />}
+        modalSize={select('modalSize', ['sm', 'md', 'lg', 'full'], 'md')}
+        modalTitle={text('modalTitle', 'Scrollable Modal')}
+        onRequestClose={action('onRequestClose')}
+        onTitleClose={action('onTitleClose')}
+      >
+        {Array(20)
+          .fill('')
+          .map((_, index) => (
+            <div key={index}>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Exercitationem, fugit velit. Aliquam autem blanditiis, consequatur
+              dolore eius, harum ipsum maxime nam nihil officiis optio, pariatur
+              repellat soluta suscipit tempora ut?
+            </div>
+          ))}
+      </Modal>
+    ),
+    {
+      info: {
+        text: `
+        ### Notes
+        This is a Modal, based on the react-modal component.
+        To open or close the modal, change the 'isOpen' prop.
+        To set the width of the modal, change the 'modalSize' props to either
+        - *sm* 300px
+        - *md* 500px (default)
+        - *lg* 800px
+        In addition of the string options under *footerContent*,
+        you can pass a component instead of any of those.
+      `,
+      },
+    },
   );
-};
-
-export const _Regular = _Modal.bind({});
-_Regular.args = {
-  isOpen: false,
-  modalSize: 'md',
-  modalTitle: 'Regular Modal',
-  children: <p>Lorem</p>,
-};
-
-export const _Scrollable = _Modal.bind({});
-_Scrollable.args = {
-  isOpen: false,
-  modalSize: 'md',
-  modalTitle: 'Scrollable Modal',
-  children: Array(20)
-    .fill('')
-    .map((_, index) => (
-      <div key={index}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Exercitationem, fugit velit. Aliquam autem blanditiis, consequatur
-        dolore eius, harum ipsum maxime nam nihil officiis optio, pariatur
-        repellat soluta suscipit tempora ut?
-      </div>
-    )),
-};

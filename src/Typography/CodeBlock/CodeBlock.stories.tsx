@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { storiesOf } from '@storybook/react';
 
 import { CopyToClipboard } from '../../CopyToClipboard';
 
@@ -30,20 +31,19 @@ code {
 }
 `;
 
-export default {
-  title: 'Components/Typography',
-  excludeStories: ['sampleCode'],
-  component: CopyToClipboard,
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'The CopyToClipboard component is used here to display a code block.',
-      },
+storiesOf('Typography', module).add(
+  'CodeBlock',
+  () => (
+    <CopyToClipboard copyContent={sampleCode || ''} includeCopyButton={true} />
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        The [CopyToClipboard](http://localhost:6006/?path=/story/copytoclipboard--copytoclipboard)
+        component can be used to display a code block.
+        `,
     },
   },
-};
-
-export const CodeBlock = () => (
-  <CopyToClipboard copyContent={sampleCode || ''} includeCopyButton={true} />
 );

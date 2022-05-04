@@ -215,6 +215,7 @@ export class Modal extends React.Component<Props> {
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SReactModal
           role="dialog"
+          isOpen={this.props.isOpen}
           style={this.getModalStyles()}
           modalSize={this.props.modalSize || 'md'}
           appElement={props.appElement || document.getElementById('root')!}
