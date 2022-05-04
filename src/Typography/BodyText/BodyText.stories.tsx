@@ -1,28 +1,22 @@
 import * as React from 'react';
+import { storiesOf } from '@storybook/react';
 import { BodyText } from './BodyText.component';
+import { select } from '@storybook/addon-knobs/react';
 
-export default {
-  title: 'Components/Typography',
-  component: BodyText,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    size: {
-      control: {
-        type: 'inline-radio',
-        options: [10, 20],
-      },
+storiesOf('Typography', module).add(
+  'Digits',
+  () => (
+    <BodyText size={select('Caption size', [10, 20], 10)}>
+      Example BodyText
+    </BodyText>
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        Documentation and examples for Cast UI BodyText.
+        `,
     },
   },
-};
-
-export const _BodyText = args => (
-  <BodyText {...args}>Example BodyText</BodyText>
 );
-
-_BodyText.args = {
-  size: 10,
-};

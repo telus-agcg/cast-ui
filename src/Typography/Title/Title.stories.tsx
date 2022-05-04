@@ -1,26 +1,18 @@
 import * as React from 'react';
+import { storiesOf } from '@storybook/react';
 import { Title } from './Title.component';
+import { select } from '@storybook/addon-knobs/react';
 
-export default {
-  title: 'Components/Typography/Title',
-  component: Title,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    size: {
-      control: {
-        type: 'inline-radio',
-        options: [10, 20],
-      },
+storiesOf('Typography', module).add(
+  'Title',
+  () => <Title size={select('Header size', [10, 20], 10)}>20px Medium</Title>,
+  {
+    info: {
+      text: `
+        ### Notes
+
+        Documentation and examples for Cast UI Title.
+        `,
     },
   },
-};
-
-export const _Title = args => <Title {...args}>20px Medium</Title>;
-
-_Title.args = {
-  size: 10,
-};
+);

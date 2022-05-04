@@ -1,136 +1,59 @@
 import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import { boolean, select, text } from '@storybook/addon-knobs/react';
 
 import { Panel, PanelHeader, PanelBody, Collapse } from '../';
 
-export default {
-  title: 'Components/Data Display/Panel',
-  component: Panel,
-  subcomponents: {
-    Panel,
-    PanelHeader,
-    PanelBody,
-    Collapse,
-  },
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    panelStyle: {
-      options: ['success', 'primary', 'secondary', 'danger', 'warning'],
-      control: {
-        type: 'select',
-      },
-    },
-    noPadding: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    name: {
-      control: {
-        type: 'text',
-      },
-    },
-    bodyBackgroundColor: {
-      control: {
-        type: 'color',
-      },
-    },
-    bodyBorderColor: {
-      control: {
-        type: 'color',
-      },
-    },
-    headerColor: {
-      control: {
-        type: 'color',
-      },
-    },
-    headerBackgroundColor: {
-      control: {
-        type: 'color',
-      },
-    },
-    headerBorderColor: {
-      control: {
-        type: 'color',
-      },
-    },
-    withHeader: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    isOpen: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    toggleItem: {
-      action: {
-        type: 'clicked',
-      },
-    },
-    withCollapse: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    children: {
-      control: false,
-    },
-    iconPosition: {
-      options: ['right', 'left'],
-      control: {
-        type: 'inline-radio',
-      },
-    },
-  },
+type Props = {};
+
+const initialState = {
+  isOpen: true,
 };
 
-const _Panel = ({
-  name,
-  title,
-  panelStyle,
-  withHeader,
-  headerColor,
-  headerBackgroundColor,
-  headerBorderColor,
-  iconPosition,
-  toggleItem,
-  isCollapsed,
-  withCollapse,
-  isOpen,
-  ...args
-}) => {
-  const [openPanel, setOpenPanel] = React.useState(false);
+type State = Readonly<typeof initialState>;
 
-  React.useEffect(() => {
-    setOpenPanel(isOpen);
-  }, [isOpen]);
+class PanelWithCollapse extends React.Component<Props, State> {
+  constructor(props: any) {
+    super(props);
 
-  const handleTogglePanel = () => setOpenPanel(!openPanel);
+    this.handleCollapse = this.handleCollapse.bind(this);
+  }
 
-  return (
-    <Panel name={name} panelStyle={panelStyle}>
-      {withHeader && (
+  readonly state: State = initialState;
+
+  handleCollapse() {
+    this.setState(state => ({
+      isOpen: !state.isOpen,
+    }));
+  }
+
+  render() {
+    const panelStyle = select(
+      'panelStyle',
+      ['primary', 'secondary', 'success', 'warning', 'danger'],
+      'primary',
+    );
+    const iconPosition = select('iconPosition', ['left', 'right'], 'right');
+    return (
+      <Panel name={text('Panel Name', 'Catchy Name')} panelStyle={panelStyle}>
         <PanelHeader
-          name={name}
-          title={title}
           panelStyle={panelStyle}
-          headerColor={headerColor}
-          headerBorderColor={headerBorderColor}
-          headerBackgroundColor={headerBackgroundColor}
+          headerColor={text('headerColor', 'white')}
+          headerBackgroundColor={text('headerBackgroundColor', 'primary')}
+          headerBorderColor={text('headerBorderColor', 'primary')}
           iconPosition={iconPosition}
-          isCollapsed={openPanel}
-          toggleItem={handleTogglePanel}
+          name={text('Panel Name', 'Catchy Name')}
+          title={text('Title', 'Catchy title')}
+          toggleItem={this.handleCollapse}
+          isCollapsed={!this.state.isOpen}
         />
-      )}
-      {withCollapse ? (
-        <Collapse isOpen={openPanel}>
-          <PanelBody {...args} panelStyle={panelStyle}>
+        <Collapse isOpen={this.state.isOpen}>
+          <PanelBody
+            panelStyle={panelStyle}
+            noPadding={boolean('noPadding', false)}
+            bodyBackgroundColor={text('bodyBackgroundColor', 'lightBackground')}
+            bodyBorderColor={text('bodyBorderColor', 'lightGray')}
+          >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
             beatae nostrum quo fuga iste reprehenderit ab fugit, soluta ea!
             Culpa, dignissimos dolores! Delectus fugiat numquam doloremque
@@ -140,54 +63,125 @@ const _Panel = ({
             porro aperiam eveniet tempore ea? Quidem, at harum!
           </PanelBody>
         </Collapse>
-      ) : (
-        <PanelBody {...args} panelStyle={panelStyle}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-          beatae nostrum quo fuga iste reprehenderit ab fugit, soluta ea! Culpa,
-          dignissimos dolores! Delectus fugiat numquam doloremque consequuntur
-          tempora ipsam excepturi. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Saepe, reiciendis culpa incidunt corporis dolorem
-          eum ullam totam cum iusto voluptate, maxime modi porro aperiam eveniet
-          tempore ea? Quidem, at harum!
-        </PanelBody>
-      )}
-    </Panel>
-  );
-};
+      </Panel>
+    );
+  }
+}
 
-export const _Regular = _Panel.bind({});
-_Regular.args = {
-  name: 'Blood Group',
-  title: 'A- type',
-  panelStyle: 'primary',
-  headerColor: 'white',
-  withHeader: false,
-  withCollapse: false,
-  noPadding: false,
-};
+storiesOf('Panel', module)
+  .add(
+    'Plain',
+    () => {
+      const panelStyle = select(
+        'panelStyle',
+        ['success', 'primary', 'danger', 'warning'],
+        'primary',
+      );
+      return (
+        <Panel name={text('Panel Name', 'Catchy Name')} panelStyle={panelStyle}>
+          <PanelBody
+            panelStyle={panelStyle}
+            noPadding={boolean('noPadding', false)}
+            bodyBackgroundColor={text('bodyBackgroundColor', 'lightBackground')}
+            bodyBorderColor={text('bodyBorderColor', 'lightGray')}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+            beatae nostrum quo fuga iste reprehenderit ab fugit, soluta ea!
+            Culpa, dignissimos dolores! Delectus fugiat numquam doloremque
+            consequuntur tempora ipsam excepturi. Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Saepe, reiciendis culpa incidunt
+            corporis dolorem eum ullam totam cum iusto voluptate, maxime modi
+            porro aperiam eveniet tempore ea? Quidem, at harum!
+          </PanelBody>
+        </Panel>
+      );
+    },
+    {
+      info: {
+        text: `
+#### Notes
+#### Panel
+The Panel component is can be composed of 3 components, **Panel** , **PanelHeader** and **PanelBody**.
+It not necessary to include the **PanelHeader**.
 
-export const _WithHeader = _Panel.bind({});
-_WithHeader.args = {
-  name: 'Blood Group',
-  title: 'B- type',
-  panelStyle: 'primary',
-  headerColor: 'white',
-  withHeader: true,
-  withCollapse: false,
-  headerBackgroundColor: 'secondary',
-  noPadding: false,
-};
+##### Basic Panel
 
-export const _Collapsible = _Panel.bind({});
-_Collapsible.args = {
-  name: 'Blood Group',
-  title: 'O+ type',
-  panelStyle: 'primary',
-  headerColor: 'white',
-  withHeader: true,
-  withCollapse: true,
-  isOpen: true,
-  headerBackgroundColor: 'secondary',
-  noPadding: false,
-  iconPosition: 'right',
-};
+By default the Panel, all it does is apply some basic border and padding to contain some content.
+				`,
+      },
+    },
+  )
+  .add(
+    'with Header',
+    () => {
+      const panelStyle = select(
+        'panelStyle',
+        ['success', 'primary', 'danger', 'warning'],
+        'primary',
+      );
+      return (
+        <Panel name={text('Panel Name', 'Catchy Name')} panelStyle={panelStyle}>
+          <PanelHeader
+            panelStyle={panelStyle}
+            headerColor={text('headerColor', 'white')}
+            headerBackgroundColor={text('headerBackgroundColor', 'primary')}
+            headerBorderColor={text('headerBorderColor', 'primary')}
+            name={text('Panel Name', 'Catchy Name')}
+            title={text('Title', 'Catchy title')}
+          />
+          <PanelBody
+            panelStyle={panelStyle}
+            noPadding={boolean('noPadding', false)}
+            bodyBackgroundColor={text('bodyBackgroundColor', 'lightBackground')}
+            bodyBorderColor={text('bodyBorderColor', 'lightGray')}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+            beatae nostrum quo fuga iste reprehenderit ab fugit, soluta ea!
+            Culpa, dignissimos dolores! Delectus fugiat numquam doloremque
+            consequuntur tempora ipsam excepturi. Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Saepe, reiciendis culpa incidunt
+            corporis dolorem eum ullam totam cum iusto voluptate, maxime modi
+            porro aperiam eveniet tempore ea? Quidem, at harum!
+          </PanelBody>
+        </Panel>
+      );
+    },
+    {
+      info: {
+        text: `
+#### Notes
+##### Panel with Heading
+Easily add a heading container to your panel with the **PanelHeader** component. It accepts *title* and *name* props that are used to compose the label shown with the *name* emboldened.
+
+##### Contextual alternatives
+Like other components, easily make a panel more meaningful to a particular context by chaginng between the following *panelStyle* s
+
+- primary (default)
+- secondary
+- success
+- warning
+- danger
+
+The **PanelHeader** also supports the application of custom text, border and background colors via the *headerColor*, *headerBackgroundColor* and *headerBorderColor* respectively. 
+
+The **PanelBody** also supports the application of custom border and background colors via the *bodyBackgroundColor* and *bodyBorderColor* respectively. 
+
+These props accept CSS color codes or theme color declarations.				
+`,
+      },
+    },
+  )
+  .add('Collapsible', () => <PanelWithCollapse /*isCollapsed={true}*/ />, {
+    info: {
+      text: `
+#### Notes
+
+##### Collapsible Panel
+A panel can be made collapsible by including all 3 components under the Panel component hierarchy and wrapping the **PanelBody** or any content with the **Collapse** component.
+
+The collapsability of the **PanelBody** can be controlled by managing the **Collapse** component *isOpen* and the **PanelHeader** *isCollapsed* states through their props. This behaviour can be greatly enhanced by passing the state management event to the **PanelHeader** *toogleItem* prop. By doing so, the **PanelHeader** chevron direction will also be appropriately displayed.
+
+
+        `,
+    },
+  });

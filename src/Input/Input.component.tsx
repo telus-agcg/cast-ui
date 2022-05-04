@@ -136,7 +136,7 @@ const SInput = styled.input`
   background-color: transparent !important;
 
   ::placeholder {
-    color: ${props => props.theme.input.placeholderColor};
+    color: ${(props) => props.theme.input.placeholderColor};
   }
 
   &:-webkit-autofill,

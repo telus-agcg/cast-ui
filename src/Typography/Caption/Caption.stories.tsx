@@ -1,26 +1,22 @@
 import * as React from 'react';
+import { storiesOf } from '@storybook/react';
 import { Caption } from './Caption.component';
+import { select } from '@storybook/addon-knobs/react';
 
-export default {
-  title: 'Components/Typography/Caption',
-  component: Caption,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    size: {
-      control: {
-        type: 'inline-radio',
-        options: [10, 20],
-      },
+storiesOf('Typography', module).add(
+  'Caption',
+  () => (
+    <Caption size={select('Caption size', [10, 20], 10)}>
+      Example Caption
+    </Caption>
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        Documentation and examples for Cast UI Caption.
+        `,
     },
   },
-};
-
-export const _Caption = args => <Caption {...args}>Example Caption</Caption>;
-
-_Caption.args = {
-  size: 10,
-};
+);
