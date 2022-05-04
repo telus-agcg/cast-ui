@@ -1,87 +1,31 @@
 import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import { number, select, text, boolean } from '@storybook/addon-knobs/react';
+import { action } from '@storybook/addon-actions';
 import { Pagination } from '../index';
 
-export default {
-  title: 'Components/Navigation/Pagination',
-  component: Pagination,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    onPageChange: {
-      action: {
-        type: 'onPageChange',
-      },
-    },
-    onPageSizeChange: {
-      action: {
-        type: 'onPageSizeChange',
-      },
-    },
-    pages: {
-      control: {
-        type: 'number',
-      },
-    },
-    page: {
-      control: {
-        type: 'number',
-      },
-    },
-    pageSize: {
-      options: [10, 20, 50, 100],
-      control: {
-        type: 'select',
-      },
-    },
-    showPageSizeOptions: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    rowsText: {
-      control: {
-        type: 'text',
-      },
-    },
-    PageButtonComponent: {
-      control: false,
-    },
-    PageButtonNextPrevComponent: {
-      control: false,
-    },
-    PageButtonFirstLastComponent: {
-      control: false,
-    },
-    children: {
-      control: false,
-    },
-    pageSizeOptions: {
-      control: false,
-    },
-    rowsSelectorText: {
-      control: false,
+storiesOf('Pagination', module).add(
+  'Pagination',
+  () => {
+    return (
+      <Pagination
+        onPageChange={action('Page changed!')}
+        pages={number('pages', 10)}
+        page={number('page', 3)}
+        pageSize={select('pageSize', [10, 20, 50, 100], 20)}
+        showPageSizeOptions={boolean('showPageSizeOptions', true)}
+        onPageSizeChange={action('Page Size changed')}
+        rowsText={text('rowsText', '')}
+      />
+    );
+  },
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is a custom pagination control intended for use with various components (such as Table).
+        `,
     },
   },
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'This is a custom pagination control intended for use with various components (such as Table).',
-      },
-    },
-  },
-};
-
-export const _Pagination = args => {
-  return <Pagination {...args} />;
-};
-
-_Pagination.args = {
-  pages: 10,
-  page: 3,
-  pageSize: 20,
-  showPageSizeOptions: true,
-};
+);
