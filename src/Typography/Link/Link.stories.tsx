@@ -1,61 +1,72 @@
 import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { Link } from './Link.component';
+import { boolean } from '@storybook/addon-knobs/react';
 
-export default {
-  title: 'Components/Navigation/Link',
-  component: Link,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
+storiesOf('Typography/Link', module)
+  .add(
+    'Standalone',
+    () => (
+      <Link
+        solo={true}
+        href="https://www.tkxs.com"
+        target="_blank"
+        disabled={boolean('disabled', false)}
+        data-testid="link-standalone"
+      >
+        Read More
+      </Link>
+    ),
+    {
+      info: {
+        text: `
+        ### Notes
+
+        Documentation and examples for Cast UI Link.
+        `,
       },
     },
-    disabled: {
-      control: {
-        type: 'boolean',
+  )
+  .add(
+    'Within Text',
+    () => (
+      <p>
+        Lorem ipsum dolor sit amet, consectetur{' '}
+        <Link
+          data-testid="link-within-text"
+          href="https://www.tkxs.com"
+          target="_blank"
+        >
+          adipiscing
+        </Link>{' '}
+        elit.
+      </p>
+    ),
+    {
+      info: {
+        text: `
+        ### Notes
+
+        Documentation and examples for Cast UI Link.
+        `,
       },
     },
-    onClick: {
-      action: {
-        type: 'onClick',
+  )
+  .add(
+    'With onClick',
+    () => (
+      <Link data-testid="link-with-onclick" onClick={action('Reading more')}>
+        Read More
+      </Link>
+    ),
+    {
+      info: {
+        text: `
+        ### Notes
+
+        Documentation and examples for Cast UI Link.
+        `,
       },
     },
-  },
-};
-
-const _Link = args => (
-  <Link data-testid={args.dataTestId} {...args}>
-    Read More
-  </Link>
-);
-
-export const _Regular = _Link.bind({});
-
-_Regular.args = {
-  href: 'https://www.tkxs.com',
-  target: '_blank',
-  disabled: false,
-  solo: true,
-  dataTestId: 'link-standalone',
-};
-
-export const _WithOnclick = _Link.bind({});
-
-_WithOnclick.args = {
-  disabled: false,
-  dataTestId: 'link-with-onclick',
-};
-
-export const WithinText = () => (
-  <p>
-    Lorem ipsum dolor sit amet, consectetur{' '}
-    <Link
-      data-testid="link-within-text"
-      href="https://www.tkxs.com"
-      target="_blank"
-    >
-      adipiscing
-    </Link>{' '}
-    elit.
-  </p>
-);
+  );

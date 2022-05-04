@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from 'react-icons-kit';
 import { ic_content_copy as ICopy } from 'react-icons-kit/md/ic_content_copy';
+import { storiesOf } from '@storybook/react';
 import { withTheme } from 'styled-components';
 import { CopyToClipboard } from '../CopyToClipboard';
 import Tooltip from '../Tooltip';
@@ -38,26 +39,27 @@ const Color = withTheme<any>(({ theme: { colors } }: any) =>
   )),
 );
 
-export default {
-  title: 'Components/Typography/Colors',
-  parameters: {
-    docs: {
-      description: {
-        component: 'These are the available colors',
-      },
+storiesOf('Colors', module).add(
+  'Colors',
+  () => (
+    <div
+      style={{
+        display: 'flex',
+        width: '100%',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+      }}
+    >
+      <Color />
+    </div>
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        This is available colors
+        `,
     },
   },
-};
-
-export const Colors = () => (
-  <div
-    style={{
-      display: 'flex',
-      width: '100%',
-      flexWrap: 'wrap',
-      justifyContent: 'space-between',
-    }}
-  >
-    <Color />
-  </div>
 );

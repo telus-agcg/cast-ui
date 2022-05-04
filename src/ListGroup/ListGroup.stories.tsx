@@ -1,125 +1,76 @@
 import * as React from 'react';
+import { storiesOf } from '@storybook/react';
+import { boolean, select } from '@storybook/addon-knobs/react';
 import { ListGroup, ListGroupItem } from '../';
 
-export default {
-  title: 'Components/Data Display/List Group',
-  component: ListGroup,
-  subcomponents: {
-    ListGroupItem,
-  },
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    listGroupTheme: {
-      options: ['light', 'dark'],
-      control: {
-        type: 'inline-radio',
-      },
-    },
-    collapsible: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    border: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    chevronAlignment: {
-      options: ['right', 'left'],
-      control: {
-        type: 'inline-radio',
-      },
-    },
-    isCollapsed: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    children: {
-      control: false,
-    },
-    name: {
-      control: false,
-    },
-    onToggle: {
-      action: {
-        type: 'onToggle',
-      },
-    },
-    listGroupTheme2: {
-      options: ['light', 'dark'],
-      control: {
-        type: 'inline-radio',
-      },
-    },
-  },
-};
-
-export const _ListGroup = ({
-  collapsible,
-  listGroupTheme,
-  border,
-  chevronAlignment,
-  collapsible2,
-  listGroupTheme2,
-  isCollapsed,
-}) => (
-  <div>
-    <ListGroup listGroupTheme={listGroupTheme}>
-      <ListGroupItem data-testid="list-item-1">List Item</ListGroupItem>
-      <ListGroupItem data-testid="list-item-2">List Item</ListGroupItem>
-      <ListGroupItem data-testid="list-item-3">List Item</ListGroupItem>
-    </ListGroup>
-    <ListGroup
-      collapsible={collapsible}
-      name="Collapsible List Group"
-      listGroupTheme={listGroupTheme}
-      border={border}
-      chevronAlignment={chevronAlignment}
-    >
-      <ListGroupItem data-testid="collapsible-list-item-1">
-        List Item
-      </ListGroupItem>
-      <ListGroupItem data-testid="collapsible-list-item-2">
-        List Item
-      </ListGroupItem>
-      <ListGroupItem data-testid="collapsible-list-item-3">
-        List Item
-      </ListGroupItem>
-      <ListGroupItem data-testid="collapsible-list-item-4">
-        List Item
-      </ListGroupItem>
+storiesOf('List Group', module).add(
+  'List Group',
+  () => (
+    <div>
       <ListGroup
-        collapsible={collapsible2}
-        isCollapsed={isCollapsed}
-        name="Nested Collapsible List Group"
-        listGroupTheme={listGroupTheme2}
+        listGroupTheme={select('List Group Theme', ['light', 'dark'], 'light')}
       >
-        <ListGroupItem data-testid="collapsible-nested-list-item-1">
-          List Item
-        </ListGroupItem>
-        <ListGroupItem data-testid="collapsible-nested-list-item-2">
-          List Item
-        </ListGroupItem>
-        <ListGroupItem data-testid="collapsible-nested-list-item-3">
-          List Item
-        </ListGroupItem>
+        <ListGroupItem data-testid="list-item-1">List Item 1</ListGroupItem>
+        <ListGroupItem data-testid="list-item-2">List Item 2</ListGroupItem>
+        <ListGroupItem data-testid="list-item-3">List Item 3</ListGroupItem>
       </ListGroup>
-    </ListGroup>
-  </div>
-);
+      <ListGroup
+        collapsible={boolean('collapsible1', true)}
+        name="Collapsible List Group"
+        listGroupTheme={select('List Group Theme', ['light', 'dark'], 'light')}
+        border={boolean('border1', true)}
+        chevronAlignment={select(
+          'Chevron Alignment',
+          ['right', 'left'],
+          'right',
+        )}
+      >
+        <ListGroupItem data-testid="collapsible-list-item-1">
+          List Item
+        </ListGroupItem>
+        <ListGroupItem data-testid="collapsible-list-item-2">
+          List Item
+        </ListGroupItem>
+        <ListGroupItem data-testid="collapsible-list-item-3">
+          List Item
+        </ListGroupItem>
+        <ListGroupItem data-testid="collapsible-list-item-4">
+          List Item
+        </ListGroupItem>
+        <ListGroup
+          collapsible={boolean('collapsible2', true)}
+          isCollapsed={boolean('isCollapsed2', false)}
+          name="Nested Collapsible List Group"
+          listGroupTheme={select(
+            'List Group Theme',
+            ['light', 'dark'],
+            'light',
+          )}
+        >
+          <ListGroupItem data-testid="collapsible-nested-list-item-1">
+            List Item
+          </ListGroupItem>
+          <ListGroupItem data-testid="collapsible-nested-list-item-2">
+            List Item
+          </ListGroupItem>
+          <ListGroupItem data-testid="collapsible-nested-list-item-3">
+            List Item
+          </ListGroupItem>
+        </ListGroup>
+      </ListGroup>
+    </div>
+  ),
+  {
+    info: {
+      text: `
+#### Notes
 
-_ListGroup.args = {
-  collapsible: true,
-  listGroupTheme: 'light',
-  border: true,
-  chevronAlignment: 'right',
-  collapsible2: true,
-  listGroupTheme2: 'light',
-  isCollapsed: false,
-};
+##### Collapsible List Group
+A List Group can be made collapsible by including the **collapsible**, **isCollapsed**, and **name** props. 
+
+
+
+        `,
+    },
+  },
+);

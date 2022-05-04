@@ -1,26 +1,20 @@
 import * as React from 'react';
+import { storiesOf } from '@storybook/react';
 import { Header } from './Header.component';
+import { select } from '@storybook/addon-knobs/react';
 
-export default {
-  title: 'Components/Typography/Header',
-  component: Header,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    size: {
-      control: {
-        type: 'inline-radio',
-        options: [10, 20],
-      },
+storiesOf('Typography', module).add(
+  'Header',
+  () => (
+    <Header size={select('Header size', [10, 20], 10)}>Example Header</Header>
+  ),
+  {
+    info: {
+      text: `
+        ### Notes
+
+        Documentation and examples for Cast UI Headline.
+        `,
     },
   },
-};
-
-export const _Header = args => <Header {...args}>Example Header</Header>;
-
-_Header.args = {
-  size: 10,
-};
+);
