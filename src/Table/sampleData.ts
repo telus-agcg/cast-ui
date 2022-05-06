@@ -440,6 +440,7 @@ const data = {
       Address: '8 Johnstown Road',
       City: 'Cork',
       Region: 'Co. Cork',
+      PostalCode: '90210',
       Country: 'Ireland',
       Phone: '2967 542',
       Fax: '2967 3333',
