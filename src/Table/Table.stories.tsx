@@ -80,7 +80,7 @@ storiesOf('Table', module).add(
               Cell: (row: any) => {
                 return (
                   <div data-testid={'postal-code'}>
-                    {row.original.PostalCode}
+                    {row.original && row.original.PostalCode}
                   </div>
                 );
               },
@@ -101,7 +101,6 @@ storiesOf('Table', module).add(
               Header: 'Member',
               accessor: 'Member',
               Cell: (row: any) => {
-                console.log(row);
                 return (
                   <Checkbox
                     id={`${testTableId}-${row.index}-${row.column.id}`}
