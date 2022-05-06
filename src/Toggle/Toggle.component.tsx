@@ -58,7 +58,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   theme?: any;
 }
 
-const getCSSCalc: (str: string) => string = str => `calc(100% - ${str})`;
+const getCSSCalc: (str: string) => string = (str) => `calc(100% - ${str})`;
 
 const SDiv = styled.div`
   input[type='checkbox'] {
@@ -69,7 +69,7 @@ const SDiv = styled.div`
   }
 
   label {
-    cursor: pointer;
+    cursor: ${(props: Props) => (props.disabled ? 'not-allowed' : 'pointer')};
     text-indent: -9999px;
     width: ${(props: Props) =>
       props.theme.toggle[props.toggleSize!].backgroundWidth};
@@ -149,7 +149,7 @@ export class Toggle extends React.Component<Props> {
     id: uuid.v4(),
   };
 
-  onChange = event =>
+  onChange = (event) =>
     this.props.onChange
       ? this.props.onChange(event)
       : alert(`Toggle with id ${this.props.id} was clicked!`);
