@@ -17,8 +17,8 @@ import {
 
 export const decorators = [
   withThemesProvider([
-    azureTheme,
     defaultTheme,
+    azureTheme,
     cobaltTheme,
     faluTheme,
     umberTheme,
@@ -34,6 +34,7 @@ export const parameters = {
       method: 'alphabetical',
       includeName: true,
       locales: 'en-US',
+      order: ['Intro'],
     },
   },
   viewport: {
