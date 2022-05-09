@@ -11,7 +11,6 @@ module.exports = {
     '@storybook/addon-viewport',
     '@storybook/addon-postcss',
     '@storybook/addon-essentials',
-    '@storybook/addon-controls',
     {
       name: '@storybook/addon-docs',
       options: {
@@ -22,6 +21,7 @@ module.exports = {
       },
     },
     '@storybook/addon-actions',
+    '@storybook/addon-controls',
   ],
   typescript: {
     check: true,
