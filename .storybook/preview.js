@@ -28,6 +28,13 @@ export const decorators = [
 ];
 
 export const parameters = {
+  a11y: {
+    // element: '#root',
+    // axe-core configurationOptions (https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#parameters-1)
+    config: {},
+    // axe-core optionsParameter (https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter)
+    options: {},
+  },
   controls: { expanded: true },
   options: {
     storySort: {
