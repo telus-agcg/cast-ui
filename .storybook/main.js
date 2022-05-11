@@ -7,11 +7,11 @@ module.exports = {
     '../src/**/*.stories.tsx',
   ],
   addons: [
+    '@storybook/addon-controls',
+    '@storybook/addon-essentials',
     'storybook-addon-styled-component-theme/dist/preset',
     '@storybook/addon-viewport',
     '@storybook/addon-postcss',
-    '@storybook/addon-essentials',
-    '@storybook/addon-controls',
     {
       name: '@storybook/addon-docs',
       options: {
