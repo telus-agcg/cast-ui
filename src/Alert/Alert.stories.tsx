@@ -32,6 +32,6 @@ export const _Alert = args => (
 );
 
 _Alert.args = {
-  alertStyle: 'danger',
+  alertStyle: 'primary',
   lightMode: false,
 };
