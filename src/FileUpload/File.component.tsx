@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Icon } from 'react-icons-kit';
+import Icon from 'react-icons-kit';
 import { ic_close as icClose } from 'react-icons-kit/md/ic_close';
 import { Themes } from '../themes';
 import { ProgressBar } from './ProgressBar.component';
