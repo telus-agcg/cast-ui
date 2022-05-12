@@ -1,19 +1,20 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { Tooltip } from '../';
-import { boolean, select } from '@storybook/addon-knobs';
 
-storiesOf('Tooltip', module).add(
-  'Controlled Tooltip',
-  () => (
-    <Tooltip
-      content={<MyComponent />}
-      arrow={boolean('arrow', true)}
-      size={select('size', ['small', 'regular', 'large'], 'regular')}
-      placement={select(
-        'placement',
-        [
+export default {
+  title: 'Components/Data Display/Tooltip',
+  component: Tooltip,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    placement: {
+      control: {
+        type: 'select',
+        options: [
           'top',
           'top-start',
           'top-end',
@@ -23,23 +24,41 @@ storiesOf('Tooltip', module).add(
           'left',
           'right',
         ],
-        'top-start',
-      )}
-      trigger="click"
-    >
-      <button>This button has a controlled tooltip</button>
-    </Tooltip>
-  ),
-  {
-    info: {
-      text: `
-      ### Notes
-
-      This is a Tooltip, based on [tippy.js](https://atomiks.github.io/tippyjs/).
-    `,
+      },
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: ['small', 'regular', 'large'],
+      },
+    },
+    arrow: {
+      control: {
+        type: 'boolean',
+      },
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'This Tooltip is based on [tippy.js](https://atomiks.github.io/tippyjs/).',
+      },
+    },
+  },
+};
+
+export const _Tooltip = args => (
+  <Tooltip content={<MyComponent />} {...args} trigger="click">
+    <button>This button has a controlled tooltip</button>
+  </Tooltip>
 );
+
+_Tooltip.args = {
+  arrow: true,
+  size: 'regular',
+  placement: 'bottom',
+};
 
 const MyComponent = (props: any) => (
   <div>This is a component to be rendered in the tooltip</div>

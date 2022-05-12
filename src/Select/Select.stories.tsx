@@ -1,132 +1,175 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { Link, Select } from '../';
-import { action } from '@storybook/addon-actions';
 import styled from 'styled-components';
 
 const FlexDiv = styled.div`
   display: flex;
   align-items: center;
 `;
-
-storiesOf('Select', module)
-  .add(
-    'Select',
-    () => (
-      <>
-        <Select
-          id={'SampleSelect'}
-          data-testid="single-select"
-          creatable={boolean('creatable', true)}
-          isMulti={boolean('isMulti', false)}
-          isDisabled={boolean('isDisabled', false)}
-          isClearable={boolean('isClearable', false)}
-          controlSpecificProps={{
-            isSearchable: boolean('isSearchable', false),
-          }}
-          selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
-          invalid={boolean('invalid', false)}
-          invalidText={text('invalidText', 'A valid value is required')}
-          onChange={action('onChange')}
-          options={[
-            { value: 'chocolate', label: 'Chocolate River' },
-            { value: 'strawberry', label: 'Strawberry' },
-            { value: 'vanilla', label: 'Vanilla' },
-          ]}
-        />
-      </>
-    ),
-    {
-      info: {
-        text: `
-### Notes
-
+const SLink = styled(Link)`
+  margin-left: 5px;
+`;
+const description = `
 This is a Select, based on the [react-select](https://github.com/JedWatson/react-select) library.
 
 ###### Important
-
 The version of **react-select** used is **version 2** and it introduces a number of changes from version 1.
-
 For example, the *selectedOption* prop cannot accept any simple values such as strings.
-
 The recommended implementation can be found [here](https://react-select.com/upgrade-guide#simple-value)
-
 Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
-        `,
+    `;
+
+export default {
+  title: 'Components/Interactions/Select',
+  component: Select,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
       },
     },
-  )
-  .add(
-    'Multiselect',
-    () => (
-      <div>
-        <Select
-          id={'SampleMultiSelect'}
-          data-testid="multi-select"
-          creatable={boolean('creatable', true)}
-          isMulti={boolean('isMulti', true)}
-          isDisabled={boolean('isDisabled', false)}
-          selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
-          invalid={boolean('invalid', false)}
-          invalidText={text('invalidText', 'A valid value is required')}
-          onChange={action('onChange')}
-          isClearable={boolean('isClearable', false)}
-          options={[
-            { value: 'chocolate', label: 'Chocolate' },
-            { value: 'strawberry', label: 'Strawberry' },
-            { value: 'vanilla', label: 'Vanilla' },
-          ]}
-        />
-      </div>
-    ),
-    {
-      info: {
-        text: `
-### Notes
-
-This is a MultiSelect, based on the [react-select](https://github.com/JedWatson/react-select) library.
-
-###### Important
-
-The version of **react-select** used is **version 2** and it introduces a number of changes from version 1.
-
-For example, the *selectedOption* prop cannot accept any simple values such as strings.
-
-The recommended implementation can be found [here](https://react-select.com/upgrade-guide#simple-value)
-
-Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
-        `,
+    creatable: {
+      control: {
+        type: 'boolean',
       },
     },
-  )
-  .add(
-    'Multiselect Checkbox',
-    () => (
-      <div>
-        <MultiSelectCheckbox />
-      </div>
-    ),
-    {
-      info: {
-        text: `
-### Notes
-
-This is a MultiSelect, based on the [react-select](https://github.com/JedWatson/react-select) library.
-
-###### Important
-
-The version of **react-select** used is **version 2** and it introduces a number of changes from version 1.
-
-For example, the *selectedOption* prop cannot accept any simple values such as strings.
-
-The recommended implementation can be found [here](https://react-select.com/upgrade-guide#simple-value)
-
-Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
-        `,
+    isMulti: {
+      control: {
+        type: 'boolean',
       },
     },
-  );
+    isDisabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    isClearable: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    isSearchable: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    highlightFilled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    invalid: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    selectSize: {
+      control: {
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+      },
+    },
+    optionType: {
+      control: {
+        type: 'select',
+        options: ['checkbox', 'default'],
+      },
+    },
+    invalidText: {
+      control: {
+        type: 'text',
+      },
+    },
+    onChange: {
+      action: {
+        type: 'onChange',
+      },
+    },
+    options: {
+      control: false,
+    },
+    id: {
+      control: false,
+    },
+    components: { control: false },
+    formatGroupLabel: { control: false },
+    value: { control: false },
+    closeMenuOnSelect: { control: false },
+    placeholder: { control: false },
+    hideSelectedOptions: { control: false },
+    selectedOption: { control: false },
+    controlSpecificProps: { control: false },
+    menuPortalTarget: { control: false },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
+};
+
+const _Select = args => (
+  <>
+    <Select id={'SampleSelect'} data-testid={args.dataTestId} {...args} />
+  </>
+);
+
+export const Regular = _Select.bind({});
+Regular.args = {
+  creatable: true,
+  dataTestId: 'single-select',
+  isMulti: false,
+  isDisabled: false,
+  isClearable: false,
+  isSearchable: false,
+  highlightFilled: false,
+  selectSize: 'md',
+  invalid: false,
+  invalidText: 'A valid value is required',
+  options: [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+  ],
+  optionType: 'default',
+};
+
+export const MultiSelect = _Select.bind({});
+MultiSelect.args = {
+  creatable: true,
+  dataTestId: 'multi-select',
+  isMulti: true,
+  isDisabled: false,
+  selectSize: 'md',
+  invalid: false,
+  invalidText: 'A valid value is required',
+  isClearable: false,
+  highlightFilled: false,
+  options: [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+  ],
+  optionType: 'default',
+};
+
+export const MultiSelectWithCheckbox = args => (
+  <MultiSelectCheckbox id="SampleCheckSelect" {...args} />
+);
+MultiSelectWithCheckbox.args = {
+  creatable: true,
+  isDisabled: false,
+  isMulti: true,
+  selectSize: 'md',
+  invalid: false,
+  invalidText: 'A valid value is required',
+  isClearable: false,
+  highlightFilled: false,
+  hideSelectedOptions: false,
+  optionType: 'checkbox',
+};
 
 const colorOptions: any[] = [
   { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
@@ -155,53 +198,48 @@ const groupedOptions = [
   },
 ];
 
-type Props = {};
+const MultiSelectCheckbox = args => {
+  const [selectedOptions, setSelectedOptions] = React.useState<any[]>([]);
 
-type State = Readonly<any>;
-
-class MultiSelectCheckbox extends React.Component<Props, State> {
-  constructor(props: any) {
-    super(props);
-  }
-
-  state: State = {
-    selectedOptions: [],
+  const handleOceanClick = () => {
+    const redOption = colorOptions.find(o => o.value === 'red');
+    redOption.isDisabled = !redOption.isDisabled;
   };
 
-  formatGroupLabel = data => (
-    <span>{`${data.options.length} ${data.label}`}</span>
+  const handleSelect = e => {
+    const newOceanOption = e.find(o => o.value === 'ocean');
+    const oldOceanOption = selectedOptions.find(
+      (o: any) => o.value === 'ocean',
+    );
+    if (
+      (newOceanOption && !oldOceanOption) ||
+      (!newOceanOption && oldOceanOption)
+    ) {
+      handleOceanClick();
+    }
+    setSelectedOptions(state => e);
+  };
+
+  const formatGroupLabel = data => (
+    <div>
+      <span>{data.label}</span>
+      <span>{data.options.length}</span>
+    </div>
   );
 
-  handleSelect(e) {
-    const selected = Array.isArray(e) ? e : [e];
-    this.setState(state => ({
-      selectedOptions: selected,
-    }));
-  }
-
-  render() {
-    return (
-      <FlexDiv>
-        <Select
-          id={'SampleCheckSelect'}
-          data-testid="multi-checkbox-select"
-          creatable={boolean('creatable', true)}
-          isMulti={boolean('isMulti', true)}
-          optionType={select('optionType', ['checkbox', 'default'], 'checkbox')}
-          isDisabled={boolean('isDisabled', false)}
-          selectSize={select('selectSize', ['sm', 'md', 'lg'], 'md')}
-          hideSelectedOptions={false}
-          isClearable={boolean('isClearable', false)}
-          onChange={e => this.handleSelect(e)}
-          selectedOption={this.state.selectedOptions}
-          closeMenuOnSelect={false}
-          options={groupedOptions}
-          formatGroupLabel={this.formatGroupLabel}
-        />
-        <Link id="link" onClick={() => this.setState({ selectedOptions: [] })}>
-          Clear
-        </Link>
-      </FlexDiv>
-    );
-  }
-}
+  return (
+    <FlexDiv>
+      <Select
+        id="SampleCheckSelect"
+        data-testid={'multi-select-checkbox'}
+        onChange={e => handleSelect(e)}
+        selectedOption={selectedOptions}
+        closeMenuOnSelect={false}
+        formatGroupLabel={formatGroupLabel}
+        options={groupedOptions}
+        {...args}
+      />
+      <SLink onClick={() => setSelectedOptions([])}>Clear</SLink>
+    </FlexDiv>
+  );
+};

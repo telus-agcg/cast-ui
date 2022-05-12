@@ -354,7 +354,7 @@ const SDiv = styled.div<Props>`
     }
 
     &.highlighted .react-select__control {
-      background-color: ${(props) => props.theme.colors.highlight200};
+      background-color: ${props => props.theme.colors.highlight200};
     }
   }
 `;
@@ -414,7 +414,7 @@ export class CustomSelect extends React.Component<Props> {
           }
         : {};
 
-    const DefaultSelectOption = (props) => {
+    const DefaultSelectOption = props => {
       const { innerProps, innerRef } = props;
       return (
         <div
@@ -429,7 +429,7 @@ export class CustomSelect extends React.Component<Props> {
       );
     };
 
-    const MultiValueRemove = (props) => {
+    const MultiValueRemove = props => {
       const { innerProps, innerRef } = props;
       return (
         <div

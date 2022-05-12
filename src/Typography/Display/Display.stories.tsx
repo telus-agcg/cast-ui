@@ -1,22 +1,26 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { Display } from './Display.component';
-import { select } from '@storybook/addon-knobs/react';
 
-storiesOf('Typography', module).add(
-  'Display',
-  () => (
-    <Display size={select('Display size', [10, 20], 10)}>
-      Example Display
-    </Display>
-  ),
-  {
-    info: {
-      text: `
-        ### Notes
-
-        Documentation and examples for Cast UI Display.
-        `,
+export default {
+  title: 'Components/Typography/Display',
+  component: Display,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    size: {
+      control: {
+        type: 'inline-radio',
+        options: [10, 20],
+      },
     },
   },
-);
+};
+
+export const _Display = args => <Display {...args}>Example Display</Display>;
+
+_Display.args = {
+  size: 10,
+};

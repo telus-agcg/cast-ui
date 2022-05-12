@@ -277,6 +277,7 @@ export class Checkbox extends React.Component<Props, State> {
             value={value}
             cbSize={cbSize}
             displayStyle={displayStyle}
+            theme={theme}
           >
             <SInput
               {...dataProps}
