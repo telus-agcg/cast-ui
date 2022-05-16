@@ -27,6 +27,12 @@ export type Props = {
    * @default false
    **/
   checked?: boolean;
+  /**
+   * Set className
+   *
+   * @default ''
+   **/
+  className?: string;
   defaultChecked?: boolean;
   /**
    * Specify if the checkbox should be disabled
@@ -256,6 +262,7 @@ export class Checkbox extends React.Component<Props, State> {
     const {
       id,
       cbSize,
+      className,
       theme,
       children,
       displayStyle,
@@ -278,6 +285,7 @@ export class Checkbox extends React.Component<Props, State> {
             cbSize={cbSize}
             displayStyle={displayStyle}
             theme={theme}
+            className={className}
           >
             <SInput
               {...dataProps}
