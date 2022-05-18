@@ -12,6 +12,12 @@ type displayType = 'inline-block' | 'block';
 export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   /**
+   * Set the className option
+   *
+   * @default ''
+   **/
+  className?: string;
+  /**
    * Specify the ID of the individual radio button
    *
    * @default null
@@ -183,6 +189,7 @@ export class RadioButton extends React.Component<Props> {
 
   render() {
     const {
+      className,
       name,
       rbSize,
       disabled,
@@ -199,7 +206,12 @@ export class RadioButton extends React.Component<Props> {
     const dataProps: any = getDataProps(props);
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv {...dataProps} displayStyle={displayStyle} theme={theme}>
+        <SDiv
+          {...dataProps}
+          className={className}
+          displayStyle={displayStyle}
+          theme={theme}
+        >
           <SInput
             type="radio"
             name={name}
