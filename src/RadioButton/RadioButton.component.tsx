@@ -75,7 +75,7 @@ export interface Props
   onClick?: (
     value: string,
     name: string,
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.MouseEvent<HTMLInputElement>,
   ) => void;
   /**
    * Specify the display style the radio button will have
