@@ -68,6 +68,12 @@ export interface Props
     event: React.ChangeEvent<HTMLInputElement>,
   ) => void;
   /**
+   * Specify the function to fire when the radiobutton is clicked
+   *
+   * @default void
+   **/
+  onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
+  /**
    * Specify the display style the radio button will have
    *
    * @default 'stacked'
@@ -201,6 +207,7 @@ export class RadioButton extends React.Component<Props> {
       theme,
       children,
       onChange,
+      onClick,
       ...props
     } = this.props;
     const dataProps: any = getDataProps(props);
@@ -210,6 +217,7 @@ export class RadioButton extends React.Component<Props> {
           {...dataProps}
           className={className}
           displayStyle={displayStyle}
+          onClick={onClick}
           theme={theme}
         >
           <SInput
