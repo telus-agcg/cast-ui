@@ -730,7 +730,7 @@ export const faluTheme = {
     color: faluColors.primary,
   },
   tabnav: {
-    background: faluColors.primaryBackground,
+    background: faluColors.lt200,
     padding: '0 32px ',
     borderTop: '',
     borderBottom: '',
