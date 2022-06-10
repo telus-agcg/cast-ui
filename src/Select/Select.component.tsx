@@ -293,7 +293,6 @@ const SDiv = styled.div<Props>`
       }
 
       &.react-select__control--is-disabled {
-        cursor: not-allowed;
         border-color: ${(props: Props) =>
           props.theme.select.disabled.borderColor};
         background-color: ${(props: Props) =>
