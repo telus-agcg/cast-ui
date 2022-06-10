@@ -69,7 +69,7 @@ const SDiv = styled.div`
   }
 
   label {
-    cursor: pointer;
+    cursor: ${(props: Props) => (props.disabled ? 'not-allowed' : 'pointer')};
     text-indent: -9999px;
     width: ${(props: Props) =>
       props.theme.toggle[props.toggleSize!].backgroundWidth};
