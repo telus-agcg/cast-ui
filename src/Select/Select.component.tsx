@@ -204,6 +204,7 @@ const SDiv = styled.div<Props>`
     props.theme.common[props.selectSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
   width: ${(props: Props) => props.theme.select.width};
+  cursor: ${(props: Props) => (props.isDisabled ? 'not-allowed' : 'auto')};
   div[aria-invalid] & {
     border: 1px solid red;
   }
@@ -292,6 +293,7 @@ const SDiv = styled.div<Props>`
       }
 
       &.react-select__control--is-disabled {
+        cursor: not-allowed;
         border-color: ${(props: Props) =>
           props.theme.select.disabled.borderColor};
         background-color: ${(props: Props) =>
@@ -457,6 +459,7 @@ export class CustomSelect extends React.Component<Props> {
           aria-describedby={errorId}
           invalid={invalid}
           id={uniqueId}
+          isDisabled={isDisabled}
         >
           <BaseSelectComponent
             closeMenuOnSelect={closeMenuOnSelect}
