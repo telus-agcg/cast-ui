@@ -16,12 +16,6 @@ export interface Props {
    */
   message: string;
   /**
-   * Text color
-   *
-   * @default ''
-   */
-  textColor?: string;
-  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -30,10 +24,11 @@ export interface Props {
 }
 
 const SErrorDiv = styled.div`
-  color: ${(props: Props) => props.textColor || props.theme.validation.color};
+  color: ${(props: Props) => props.theme.validation.color};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.validation.fontSize};
   font-style: ${(props: Props) => props.theme.validation.fontStyle};
+  line-height: ${(props: Props) => props.theme.validation.lineHeight};
   padding: ${(props: Props) => props.theme.validation.padding};
 `;
 

@@ -662,6 +662,7 @@ export const umberTheme = {
     color: umberColors.drk800,
     fontSize: '11px',
     fontStyle: 'italic',
+    lineHeight: '13px',
     padding: '4px',
   },
   table: {
