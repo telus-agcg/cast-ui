@@ -15,9 +15,6 @@ export default {
     message: {
       control: 'text',
     },
-    textColor: {
-      control: 'color',
-    },
   },
 };
 
@@ -30,7 +27,6 @@ export const _ErrorMessage = args => (
 
 _ErrorMessage.args = {
   message: 'This is an error message.',
-  textColor: '#fa1a1a',
 };
 
 _ErrorMessage.storyName = 'ErrorMessage';

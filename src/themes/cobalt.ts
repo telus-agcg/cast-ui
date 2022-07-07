@@ -663,6 +663,7 @@ export const cobaltTheme = {
     color: cobaltColors.drk800,
     fontSize: '11px',
     fontStyle: 'italic',
+    lineHeight: '13px',
     padding: '4px',
   },
   table: {
