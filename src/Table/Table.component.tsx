@@ -216,7 +216,9 @@ const SWrapperDiv = styled(ReactTable)`
     transform: none;
     left: 0;
   }
-
+  .rt-thead{
+    font-size: 16px;
+  }
   &.ReactTable .white-space-wrap {
     white-space: normal;
   }
