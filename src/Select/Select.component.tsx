@@ -233,7 +233,7 @@ const SDiv = styled.div<Props>`
       }
       &:hover {
         background-color: ${(props: Props) =>
-          props.theme.select.selectNavigationBackgroundColor};
+          props.theme.select.searchOptionBackgroundColor};
         color: ${(props: Props) => props.theme.select.hoverOptionColor};
       }
     }
