@@ -672,6 +672,7 @@ export const windfallTheme = {
       fontWeight: 'bold',
       backgroundColor: windfallColors.highlight200,
       topPadding: '10px',
+      fontSize: '16px',
     },
     row: {
       borderBottomColor: windfallColors.lt800,
