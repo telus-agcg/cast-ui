@@ -858,7 +858,7 @@ export const verdantTheme = {
     color: verdantColors.drk800,
     dropdownColor: verdantColors.drk800,
     optionBackgroundColor: verdantColors.white,
-    hoverOptionBackgroundColor: verdantColors.lt200,
+    searchOptionBackgroundColor: verdantColors.lt200,
     hoverOptionColor: verdantColors.primary,
     selectedOptionColor: verdantColors.primary,
     selectedOptionBackgroundColor: verdantColors.white,

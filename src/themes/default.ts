@@ -868,7 +868,7 @@ export const defaultTheme = {
     color: defaultColors.drk800,
     dropdownColor: defaultColors.drk800,
     optionBackgroundColor: defaultColors.white,
-    hoverOptionBackgroundColor: defaultColors.lt200,
+    searchOptionBackgroundColor: defaultColors.lt200,
     hoverOptionColor: defaultColors.primary,
     selectedOptionColor: defaultColors.primary,
     selectedOptionBackgroundColor: defaultColors.white,

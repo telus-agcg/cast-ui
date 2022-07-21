@@ -857,7 +857,7 @@ export const windfallTheme = {
     color: windfallColors.drk800,
     dropdownColor: windfallColors.drk800,
     optionBackgroundColor: windfallColors.white,
-    hoverOptionBackgroundColor: windfallColors.lt200,
+    searchOptionBackgroundColor: windfallColors.lt200,
     hoverOptionColor: windfallColors.primary,
     selectedOptionColor: windfallColors.primary,
     selectedOptionBackgroundColor: windfallColors.white,

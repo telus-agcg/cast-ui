@@ -858,7 +858,7 @@ export const umberTheme = {
     color: umberColors.drk800,
     dropdownColor: umberColors.drk800,
     optionBackgroundColor: umberColors.white,
-    hoverOptionBackgroundColor: umberColors.lt200,
+    searchOptionBackgroundColor: umberColors.lt200,
     hoverOptionColor: umberColors.primary,
     selectedOptionColor: umberColors.primary,
     selectedOptionBackgroundColor: umberColors.white,

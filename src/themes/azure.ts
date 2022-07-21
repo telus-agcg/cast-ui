@@ -858,7 +858,7 @@ export const azureTheme = {
     color: azureColors.drk800,
     dropdownColor: azureColors.drk800,
     optionBackgroundColor: azureColors.white,
-    hoverOptionBackgroundColor: azureColors.lt200,
+    searchOptionBackgroundColor: azureColors.lt200,
     hoverOptionColor: azureColors.primary,
     selectedOptionColor: azureColors.primary,
     selectedOptionBackgroundColor: azureColors.white,

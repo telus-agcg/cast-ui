@@ -869,7 +869,7 @@ export const faluTheme = {
     color: faluColors.drk800,
     dropdownColor: faluColors.drk800,
     optionBackgroundColor: faluColors.white,
-    hoverOptionBackgroundColor: faluColors.lt200,
+    searchOptionBackgroundColor: faluColors.lt200,
     hoverOptionColor: faluColors.primary,
     selectedOptionColor: faluColors.primary,
     selectedOptionBackgroundColor: faluColors.white,
