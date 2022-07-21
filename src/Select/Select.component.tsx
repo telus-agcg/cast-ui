@@ -416,11 +416,17 @@ export class CustomSelect extends React.Component<Props> {
         : {};
 
     const DefaultSelectOption = props => {
-      const { innerProps, innerRef } = props;
+      const { innerProps, innerRef, isFocused } = props;
       return (
         <div
           data-testid={`select-option-${_.snakeCase(props.data.label)}`}
           className={'react-select__option'}
+          style={{
+            backgroundColor: isFocused
+              ? theme.select.hoverOptionBackgroundColor
+              : undefined,
+            color: isFocused ? theme.select.hoverOptionColor : undefined,
+          }}
           ref={innerRef}
           {...innerProps}
           id={`${id}-Select-${_.snakeCase(props.data.label)}`}
