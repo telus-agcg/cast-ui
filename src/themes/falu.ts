@@ -681,6 +681,7 @@ export const faluTheme = {
       borderBottomColor: faluColors.drk800,
       color: faluColors.drk800,
       fontWeight: 'bold',
+      fontSize: '16px',
     },
     row: {
       borderBottomColor: faluColors.lt800,
