@@ -672,6 +672,7 @@ export const azureTheme = {
       borderBottomColor: azureColors.drk800,
       color: azureColors.drk800,
       fontWeight: 'bold',
+      fontSize: '16px',
     },
     row: {
       borderBottomColor: azureColors.lt800,

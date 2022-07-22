@@ -222,6 +222,10 @@ const SWrapperDiv = styled(ReactTable)`
     left: 0;
   }
 
+  .rt-thead {
+    font-size: ${(props: any) => props.theme.table.header.fontSize};
+  }
+
   &.ReactTable .white-space-wrap {
     white-space: normal;
   }

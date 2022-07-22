@@ -673,6 +673,7 @@ export const verdantTheme = {
       fontWeight: 'bold',
       backgroundColor: verdantColors.lt200,
       topPadding: '10px',
+      fontSize: '16px',
     },
     row: {
       borderBottomColor: verdantColors.lt800,

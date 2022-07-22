@@ -673,6 +673,7 @@ export const cobaltTheme = {
       borderBottomColor: cobaltColors.drk800,
       color: cobaltColors.drk800,
       fontWeight: 'bold',
+      fontSize: '16px',
     },
     row: {
       borderBottomColor: cobaltColors.lt800,

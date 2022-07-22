@@ -680,6 +680,7 @@ export const defaultTheme = {
       borderBottomColor: defaultColors.drk800,
       color: defaultColors.primary,
       fontWeight: 'bold',
+      fontSize: '16px',
     },
     row: {
       borderBottomColor: defaultColors.lt800,

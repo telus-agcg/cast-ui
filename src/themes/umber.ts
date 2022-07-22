@@ -672,6 +672,7 @@ export const umberTheme = {
       borderBottomColor: umberColors.drk800,
       color: umberColors.drk800,
       fontWeight: 'bold',
+      fontSize: '16px',
     },
     row: {
       borderBottomColor: umberColors.lt800,
