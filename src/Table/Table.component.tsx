@@ -186,6 +186,11 @@ const SWrapperDiv = styled(ReactTable)`
     outline: none;
   }
 
+  &.ReactTable .rt-thead .rt-th.right-align.-sort-asc,
+  &.ReactTable .rt-thead .rt-th.right-align.-sort-desc {
+    padding-right: 24px;
+  }
+
   &.ReactTable .-cursor-pointer {
     cursor: pointer;
   }
