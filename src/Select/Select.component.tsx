@@ -233,8 +233,8 @@ const SDiv = styled.div<Props>`
       }
       &:hover {
         background-color: ${(props: Props) =>
-          props.theme.select.searchOptionBackgroundColor};
-        color: ${(props: Props) => props.theme.select.hoverOptionColor};
+          props.theme.select.highlightOptionBackgroundColor};
+        color: ${(props: Props) => props.theme.select.highlightOptionColor};
       }
     }
   }
@@ -423,9 +423,9 @@ export class CustomSelect extends React.Component<Props> {
           className={'react-select__option'}
           style={{
             backgroundColor: isFocused
-              ? theme.select.searchOptionBackgroundColor
+              ? theme.select.highlightOptionBackgroundColor
               : undefined,
-            color: isFocused ? theme.select.hoverOptionColor : undefined,
+            color: isFocused ? theme.select.highlightOptionColor : undefined,
           }}
           ref={innerRef}
           {...innerProps}
