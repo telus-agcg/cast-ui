@@ -679,6 +679,10 @@ export const azureTheme = {
       highlightColor: azureColors.highlight200,
       hoverColor: azureColors.lt200,
       readonlyColor: azureColors.lt200,
+      groupedHeader: {
+        fontSize: '15px',
+        fontWeight: 'bold',
+      },
     },
     column: {
       highlightColor: azureColors.highlight200,

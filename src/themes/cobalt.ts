@@ -680,6 +680,10 @@ export const cobaltTheme = {
       highlightColor: cobaltColors.highlight200,
       hoverColor: cobaltColors.lt200,
       readonlyColor: cobaltColors.lt200,
+      groupedHeader: {
+        fontSize: '15px',
+        fontWeight: 'bold',
+      },
     },
     column: {
       highlightColor: cobaltColors.highlight200,

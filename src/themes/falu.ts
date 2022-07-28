@@ -688,6 +688,10 @@ export const faluTheme = {
       hoverColor: faluColors.lt200,
       highlightColor: faluColors.highlight200,
       readonlyColor: faluColors.lt200,
+      groupedHeader: {
+        fontSize: '15px',
+        fontWeight: 'bold',
+      },
     },
     column: {
       highlightColor: faluColors.highlight200,

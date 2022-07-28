@@ -679,6 +679,10 @@ export const windfallTheme = {
       highlightColor: windfallColors.highlight200,
       hoverColor: windfallColors.lt200,
       readonlyColor: windfallColors.lt200,
+      groupedHeader: {
+        fontSize: '15px',
+        fontWeight: 'bold',
+      },
     },
     column: {
       highlightColor: windfallColors.highlight200,

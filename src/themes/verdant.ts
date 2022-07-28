@@ -680,6 +680,10 @@ export const verdantTheme = {
       highlightColor: verdantColors.highlight200,
       hoverColor: verdantColors.lt200,
       readonlyColor: verdantColors.lt200,
+      groupedHeader: {
+        fontSize: '15px',
+        fontWeight: 'bold',
+      },
     },
     column: {
       highlightColor: verdantColors.highlight200,
