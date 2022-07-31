@@ -68,7 +68,7 @@ export const faluTheme = {
         alertBackground: faluColors.primaryBackground,
         notificationColor: faluColors.drk800,
         notificationBackground: faluColors.primaryFaded,
-        badgeBackground: faluColors.primaryFaded,
+        badgeBackground: faluColors.primaryBackground,
         badgeColor: faluColors.drk800,
       },
       cardTopBorderColor: faluColors.primary,
@@ -587,21 +587,21 @@ export const faluTheme = {
   },
   badge: {
     borderRadius: '4px',
-    fontSize: '10px',
+    fontSize: '15px',
     sm: {
       borderRadius: '4px',
-      fontSize: '10px',
-      padding: '4px 6px',
+      fontSize: '12px',
+      padding: '4px 8px 3px',
     },
     md: {
       borderRadius: '4px',
-      fontSize: '12px',
-      padding: '4px 6px',
+      fontSize: '15px',
+      padding: '4px 8px 3px',
     },
     lg: {
       borderRadius: '4px',
-      fontSize: '14px',
-      padding: '4px 6px',
+      fontSize: '18px',
+      padding: '4px 8px 3px',
     },
   },
   alert: {
