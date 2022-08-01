@@ -96,7 +96,7 @@ export const faluTheme = {
         alertBackground: faluColors.secondaryBackground,
         notificationColor: faluColors.drk800,
         notificationBackground: faluColors.secondaryBackground,
-        badgeBackground: faluColors.secondaryHover,
+        badgeBackground: faluColors.secondaryBackground,
         badgeColor: faluColors.drk800,
       },
       cardTopBorderColor: faluColors.secondary,
