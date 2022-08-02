@@ -199,7 +199,7 @@ const SWrapperDiv = styled(ReactTable)`
     border: 0;
   }
 
-  &.ReactTable .rt-tbody > .rt-tr-group > .rt-tr {
+  &.ReactTable .rt-tbody > .rt-tr-group > .rt-tr > h2 {
     font-size: ${(props: any) => props.theme.table.row.groupedHeader.fontSize};
     font-weight: ${(props: any) =>
       props.theme.table.row.groupedHeader.fontWeight};
