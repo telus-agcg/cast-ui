@@ -687,6 +687,10 @@ export const defaultTheme = {
       hoverColor: defaultColors.secondaryFaded,
       highlightColor: defaultColors.highlight200,
       readonlyColor: defaultColors.lt200,
+      groupedHeader: {
+        fontSize: '15px',
+        fontWeight: 'bold',
+      },
     },
     column: {
       highlightColor: defaultColors.highlight200,

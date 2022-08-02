@@ -679,6 +679,10 @@ export const umberTheme = {
       highlightColor: umberColors.highlight200,
       hoverColor: umberColors.lt200,
       readonlyColor: umberColors.lt200,
+      groupedHeader: {
+        fontSize: '15px',
+        fontWeight: 'bold',
+      },
     },
     column: {
       highlightColor: umberColors.highlight200,
