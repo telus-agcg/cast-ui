@@ -263,6 +263,15 @@ const collator = new Intl.Collator(undefined, {
   sensitivity: 'base',
 });
 
+export const rowExpander = ({ isExpanded, ...rest }) => (
+  <>
+    {isExpanded ? (
+      <SIcon data-testid="collapser" icon={chevronUp} />
+    ) : (
+      <SIcon data-testid="expander" icon={chevronDown} />
+    )}
+  </>
+);
 export class Table extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
@@ -338,15 +347,7 @@ export class Table extends React.Component<Props> {
           column={{
             ...ReactTableDefaults.column,
             resizable: false,
-            Expander: ({ isExpanded, ...rest }) => (
-              <>
-                {isExpanded ? (
-                  <SIcon data-testid="collapser" icon={chevronUp} />
-                ) : (
-                  <SIcon data-testid="expander" icon={chevronDown} />
-                )}
-              </>
-            ),
+            Expander: rowExpander,
           }}
           loading={loading}
           noDataText={loading ? '' : noDataText}
