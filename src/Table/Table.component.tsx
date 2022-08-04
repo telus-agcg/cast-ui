@@ -201,6 +201,9 @@ const SWrapperDiv = styled(ReactTable)`
 
   &.ReactTable .rt-td.rt-expandable + .rt-td:not(.rt-expandable) {
     font-size: ${(props: any) => props.theme.table.row.groupedHeader.fontSize};
+  }
+
+  .pivotCell.rt-expandable ~ .rt-td {
     font-weight: ${(props: any) =>
       props.theme.table.row.groupedHeader.fontWeight};
   }

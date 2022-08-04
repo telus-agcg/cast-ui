@@ -287,6 +287,7 @@ export const _TableGrouped = args => {
             Expander: rowExpander,
             accessor: 'Id',
             width: 50,
+            className: 'pivotCell',
           },
           {
             Header: 'ID',
