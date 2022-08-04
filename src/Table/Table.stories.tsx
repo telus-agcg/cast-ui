@@ -141,6 +141,145 @@ export const _Table = args => {
       <Table
         id={testTableId}
         data={SampleData.Customers}
+        columns={[
+          {
+            Header: 'ID',
+            id: 'ID',
+            accessor: val => val.Id,
+            width: 90,
+          },
+          {
+            Header: 'Company Name',
+            accessor: 'CompanyName',
+            width: 130,
+          },
+          {
+            id: 'ContactName',
+            Header: 'Contact Name',
+            accessor: 'ContactName',
+            className: 'table-column-readonly white-space-nowrap',
+            headerClassName: 'table-column-readonly',
+            width: 130,
+          },
+          {
+            id: 'TextInput',
+            Header: 'Text Input',
+            width: 120,
+            Cell: (row: any) => {
+              return (
+                <Input
+                  id={`TextInput`}
+                  data-testid={'text-input'}
+                  addonText="%"
+                  addonTextPosition="right"
+                  value="90"
+                  min={0}
+                  max={100}
+                  onChange={() => {}}
+                />
+              );
+            },
+          },
+          {
+            Header: 'Contact Title',
+            accessor: 'ContactTitle',
+            className: 'table-column-highlight',
+            headerClassName: 'table-column-highlight',
+            width: 130,
+          },
+          {
+            Header: 'Address',
+            accessor: 'Address',
+          },
+          {
+            Header: 'City',
+            accessor: 'City',
+          },
+          {
+            id: 'PostalCode',
+            Header: 'Postal Code',
+            className: 'right-align',
+            headerClassName: 'right-align',
+            Cell: (row: any) => {
+              return (
+                <div data-testid={'postal-code'}>{row.original.PostalCode}</div>
+              );
+            },
+          },
+          {
+            Header: 'Country',
+            accessor: 'Country',
+          },
+          {
+            Header: 'Phone',
+            accessor: 'Phone',
+          },
+          {
+            Header: 'Fax',
+            accessor: 'Fax',
+          },
+          {
+            Header: 'Member',
+            accessor: 'Member',
+            Cell: (row: any) => {
+              return (
+                <Checkbox
+                  id={`${testTableId}-${row.index}-${row.column.id}`}
+                  cbSize="md"
+                  value="2"
+                  indeterminate={true}
+                  displayStyle="inline"
+                >
+                  Two
+                </Checkbox>
+              );
+            },
+          },
+        ]}
+        getTrProps={(state, rowInfo, column) => {
+          let className;
+          if (rowInfo.row.Id === 'AROUT') {
+            className = 'table-row-readonly';
+          } else if (rowInfo.row.Id === 'BOLID') {
+            className = 'table-row-highlight';
+          }
+          return {
+            className,
+          };
+        }}
+        pageSizeOptions={[5, 10, 25, 50, 100]}
+        {...args}
+      />
+    </div>
+  );
+};
+
+_Table.args = {
+  tableSize: 'md',
+  showPagination: true,
+  showPaginationTop: false,
+  showPaginationBottom: true,
+  showPageSizeOptions: true,
+  defaultPageSize: 10,
+  showPageJump: true,
+  collapseOnSortingChange: true,
+  collapseOnPageChange: true,
+  collapseOnDataChange: true,
+  freezeWhenExpanded: true,
+  filterable: false,
+  resizable: true,
+  sortable: true,
+  multiSort: true,
+  striped: true,
+  sizable: true,
+};
+
+export const _TableGrouped = args => {
+  return (
+    <div>
+      <Table
+        id={testTableId}
+        data={SampleData.Customers}
         pivotBy={['Id']}
         columns={[
           {
@@ -261,7 +400,7 @@ export const _Table = args => {
   );
 };
 
-_Table.args = {
+_TableGrouped.args = {
   tableSize: 'md',
   showPagination: true,
   showPaginationTop: false,
