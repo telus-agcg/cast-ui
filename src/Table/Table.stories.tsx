@@ -282,22 +282,26 @@ export const _TableTest = args => {
             PivotValue: () => <div />,
             Expander: rowExpander,
             accessor: 'Id',
+            width: 50,
           },
           {
             Header: 'ID',
             id: 'ID',
             accessor: val => val.Id,
+            width: 90,
           },
           {
             Header: 'Company Name',
             accessor: 'CompanyName',
+            width: 130,
           },
           {
             id: 'ContactName',
             Header: 'Contact Name',
-            accessor: 'CompanyName',
+            accessor: 'ContactName',
             className: 'table-column-readonly white-space-nowrap',
             headerClassName: 'table-column-readonly',
+            width: 130,
           },
           {
             id: 'TextInput',
@@ -323,6 +327,7 @@ export const _TableTest = args => {
             accessor: 'ContactTitle',
             className: 'table-column-highlight',
             headerClassName: 'table-column-highlight',
+            width: 130,
           },
           {
             Header: 'Address',

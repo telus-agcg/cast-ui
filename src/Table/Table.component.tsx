@@ -199,9 +199,7 @@ const SWrapperDiv = styled(ReactTable)`
     border: 0;
   }
 
-  &.ReactTable
-    .rt-td.expandRowColumn.rt-expandable
-    + .rt-td:not(.rt-expandable) {
+  &.ReactTable .rt-td.rt-expandable + .rt-td:not(.rt-expandable) {
     font-size: ${(props: any) => props.theme.table.row.groupedHeader.fontSize};
     font-weight: ${(props: any) =>
       props.theme.table.row.groupedHeader.fontWeight};
