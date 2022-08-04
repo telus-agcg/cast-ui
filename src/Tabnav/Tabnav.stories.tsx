@@ -124,7 +124,7 @@ export const _TabnavWithHeader = ({ onTabClick }) => (
   >
     <div style={{ display: 'flex', alignItems: 'baseline' }}>
       <Header>Agrineed, Inc. (62875)</Header>
-      <Badge style={{ marginLeft: '10px' }}>Retailer</Badge>
+      <Badge>Retailer</Badge>
     </div>
   </Tabnav>
 );
