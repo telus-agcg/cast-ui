@@ -199,7 +199,7 @@ const SWrapperDiv = styled(ReactTable)`
     border: 0;
   }
 
-  &.ReactTable .rt-tbody > .rt-tr-group > .rt-tr {
+  &.ReactTable .rt-td.rt-expandable + .rt-td:not(.rt-expandable) {
     font-size: ${(props: any) => props.theme.table.row.groupedHeader.fontSize};
     font-weight: ${(props: any) =>
       props.theme.table.row.groupedHeader.fontWeight};
@@ -261,6 +261,15 @@ const collator = new Intl.Collator(undefined, {
   sensitivity: 'base',
 });
 
+export const rowExpander = ({ isExpanded, ...rest }) => (
+  <>
+    {isExpanded ? (
+      <SIcon data-testid="collapser" icon={chevronUp} />
+    ) : (
+      <SIcon data-testid="expander" icon={chevronDown} />
+    )}
+  </>
+);
 export class Table extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
@@ -336,15 +345,7 @@ export class Table extends React.Component<Props> {
           column={{
             ...ReactTableDefaults.column,
             resizable: false,
-            Expander: ({ isExpanded, ...rest }) => (
-              <>
-                {isExpanded ? (
-                  <SIcon data-testid="collapser" icon={chevronUp} />
-                ) : (
-                  <SIcon data-testid="expander" icon={chevronDown} />
-                )}
-              </>
-            ),
+            Expander: rowExpander,
           }}
           loading={loading}
           noDataText={loading ? '' : noDataText}
