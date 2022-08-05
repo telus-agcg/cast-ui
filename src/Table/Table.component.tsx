@@ -124,8 +124,8 @@ const SWrapperDiv = styled(ReactTable)`
     border-bottom-width: 1px;
   }
 
-  &.ReactTable .rt-tbody .rt-tr-group:last-child {
-    border: none;
+  &.ReactTable .rt-table {
+    border-bottom: none;
   }
 
   &.ReactTable .rt-tbody .rt-tr:hover {
