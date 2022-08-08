@@ -124,8 +124,8 @@ const SWrapperDiv = styled(ReactTable)`
     border-bottom-width: 1px;
   }
 
-  &.ReactTable .rt-table {
-    border-bottom: none;
+  &.ReactTable .rt-tbody .rt-tr-group:last-child .rt-tr {
+    border: none;
   }
 
   &.ReactTable .rt-tbody .rt-tr:hover {
@@ -297,6 +297,7 @@ export class Table extends React.Component<Props> {
   };
 
   render() {
+    console.log(this.props.theme);
     const {
       data,
       getTdProps,

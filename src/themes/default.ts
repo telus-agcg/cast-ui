@@ -676,6 +676,7 @@ export const defaultTheme = {
   },
   table: {
     fontSize: '14px',
+    border: `1px solid ${defaultColors.lt800}`,
     header: {
       borderBottomColor: defaultColors.drk800,
       color: defaultColors.primary,
