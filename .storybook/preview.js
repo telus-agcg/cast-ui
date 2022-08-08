@@ -8,23 +8,12 @@ import '../src/utils/static/fonts.css';
 import {
   defaultTheme,
   cobaltTheme,
-  verdantTheme,
-  windfallTheme,
   azureTheme,
-  umberTheme,
   faluTheme,
 } from '../src/themes';
 
 export const decorators = [
-  withThemesProvider([
-    defaultTheme,
-    azureTheme,
-    cobaltTheme,
-    faluTheme,
-    umberTheme,
-    verdantTheme,
-    windfallTheme,
-  ]),
+  withThemesProvider([cobaltTheme, faluTheme, azureTheme, defaultTheme]),
 ];
 
 export const parameters = {
