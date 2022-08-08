@@ -297,7 +297,6 @@ export class Table extends React.Component<Props> {
   };
 
   render() {
-    console.log(this.props.theme);
     const {
       data,
       getTdProps,
