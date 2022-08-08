@@ -123,6 +123,11 @@ const SWrapperDiv = styled(ReactTable)`
     border-bottom-style: solid;
     border-bottom-width: 1px;
   }
+
+  &.ReactTable .rt-tbody .rt-tr-group:last-child .rt-tr {
+    border: none;
+  }
+
   &.ReactTable .rt-tbody .rt-tr:hover {
     background-color: ${(props: any) => props.theme.table.row.hoverColor};
   }
