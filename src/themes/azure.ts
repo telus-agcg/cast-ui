@@ -349,7 +349,7 @@ export const azureTheme = {
     title: {
       10: {
         fontFamily: 'arial, sans-serif',
-        fontWeight: '400',
+        fontWeight: '700',
         fontSize: '18px',
         lineHeight: '130%',
       },
