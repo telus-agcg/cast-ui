@@ -2,9 +2,13 @@ import 'typeface-roboto';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import 'react-dates/initialize';
-import { withThemesProvider } from 'storybook-addon-styled-component-theme';
+import { withThemes } from '@react-theming/storybook-addon';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import '../src/utils/static/fonts.css';
+
+import { ThemeProvider } from 'styled-components';
+import { addDecorator } from '@storybook/react';
+
 import {
   defaultTheme,
   cobaltTheme,
@@ -12,9 +16,9 @@ import {
   faluTheme,
 } from '../src/themes';
 
-export const decorators = [
-  withThemesProvider([cobaltTheme, faluTheme, azureTheme, defaultTheme]),
-];
+addDecorator(
+  withThemes(ThemeProvider, [defaultTheme, azureTheme, cobaltTheme, faluTheme]),
+);
 
 export const parameters = {
   a11y: {
