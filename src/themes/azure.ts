@@ -1,5 +1,4 @@
 import { defaultColors } from './default';
-
 export { ThemeProvider } from 'styled-components';
 
 export const azureColors = {
@@ -187,7 +186,7 @@ export const azureTheme = {
     activeText: azureColors.primary,
     activeFontWeight: 'bold',
     activeBackground: azureColors.white,
-    disabledText: azureColors.secondaryHover,
+    disabledText: azureColors.drk200,
     disabledBackground: azureColors.white,
     hoverTextColor: azureColors.primary,
     hoverBackground: azureColors.white,
@@ -201,22 +200,22 @@ export const azureTheme = {
       borderColor: azureColors.white,
       activeBorderColor: azureColors.primary,
       disabledBorderColor: azureColors.white,
-      disabledText: azureColors.lt600,
+      disabledText: azureColors.drk200,
       hoverBorderColor: azureColors.white,
       hoverBackground: azureColors.lt400,
     },
   },
 
   body: {
-    fontFamily: 'arial, sans-serif',
+    fontFamily: 'Roboto, Helvetica, arial, sans-serif',
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '18px',
     color: azureColors.drk800,
-    backgroundColor: azureColors.white,
+    backgroundColor: defaultColors.white,
   },
   button: {
-    outlineBackgroundColor: azureColors.white,
+    outlineBackgroundColor: defaultColors.white,
     sm: {
       fontSize: '11px',
       padding: '7px 8px',
@@ -234,21 +233,21 @@ export const azureTheme = {
     },
   },
   typography: {
-    fontFamily: 'arial, sans-serif',
+    fontFamily: 'Roboto, Helvetica, arial, sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '160%',
-    color: azureColors.drk800,
+    color: defaultColors.drk800,
     caption: {
       10: {
-        fontFamily: 'arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '10px',
         lineHeight: '100%',
       },
       20: {
-        fontFamily: 'arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
@@ -256,20 +255,20 @@ export const azureTheme = {
     },
     bodyText: {
       10: {
-        fontFamily: 'arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
       },
       20: {
-        fontFamily: 'arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '14px',
         lineHeight: '160%',
       },
     },
     code: {
-      background: azureColors.lt200,
+      background: defaultColors.lt200,
       fontFamily:
         '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
       fontSize: '95%',
@@ -281,29 +280,29 @@ export const azureTheme = {
     },
     display: {
       10: {
-        fontFamily: 'arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
-        fontSize: '27px',
+        fontSize: '22px',
         lineHeight: '125%',
       },
       20: {
-        fontFamily: 'arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
-        fontSize: '37px',
+        fontSize: '27px',
         lineHeight: '120%',
       },
     },
     header: {
       10: {
-        fontFamily: 'arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '700',
-        fontSize: '14px',
-        lineHeight: '175%',
+        fontSize: '13px',
+        lineHeight: '160%',
       },
       20: {
-        fontFamily: 'arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '400',
-        fontSize: '16px',
+        fontSize: '14px',
         lineHeight: '175%',
       },
     },
@@ -348,21 +347,21 @@ export const azureTheme = {
     },
     title: {
       10: {
-        fontFamily: 'arial, sans-serif',
-        fontWeight: '400',
-        fontSize: '18px',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+        fontWeight: '700',
+        fontSize: '16px',
         lineHeight: '130%',
       },
       20: {
-        fontFamily: 'arial, sans-serif',
+        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
         fontWeight: '700',
-        fontSize: '20px',
+        fontSize: '18px',
         lineHeight: '135%',
       },
     },
   },
   input: {
-    background: azureColors.white,
+    background: defaultColors.white,
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: azureColors.drk400,
@@ -394,7 +393,7 @@ export const azureTheme = {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      color: azureColors.drk800,
+      color: defaultColors.drk800,
       horizontalMargin: '12px 0',
     },
     label: {
