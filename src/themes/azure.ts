@@ -41,10 +41,8 @@ export const azureThemeOverrides = {
   name: 'Azure',
   colors: azureColors,
   borders: {
-    radius: '1px',
     radiusSm: '3.2px',
     radiusLg: '4.8px',
-    width: '1px',
   },
   styles: {
     primary: {
