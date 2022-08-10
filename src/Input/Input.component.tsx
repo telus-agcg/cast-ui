@@ -248,6 +248,12 @@ export const Input: React.FunctionComponent<Props> = ({
     onChange && onChange(e);
   };
 
+  Input.defaultProps = {
+    theme: Themes.defaultTheme,
+    inputSize: 'md',
+    type: 'text',
+  };
+
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
@@ -317,10 +323,4 @@ export const Input: React.FunctionComponent<Props> = ({
       </>
     </ThemeProvider>
   );
-};
-
-Input.defaultProps = {
-  theme: Themes.defaultTheme,
-  inputSize: 'md',
-  type: 'text',
 };
