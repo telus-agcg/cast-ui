@@ -190,7 +190,9 @@ const SInputWrapper = styled.div<Partial<Props>>`
          : props.theme.input.borderColor
      }`};
   border-radius: ${(props: Props) =>
+    props.theme.common.borderRadius ||
     props.theme.common[props.inputSize!].borderRadius};
+
   outline: none !important;
 
   &.focused {
@@ -246,12 +248,6 @@ export const Input: React.FunctionComponent<Props> = ({
     }
 
     onChange && onChange(e);
-  };
-
-  Input.defaultProps = {
-    theme: Themes.defaultTheme,
-    inputSize: 'md',
-    type: 'text',
   };
 
   return (
@@ -323,4 +319,9 @@ export const Input: React.FunctionComponent<Props> = ({
       </>
     </ThemeProvider>
   );
+};
+
+Input.defaultProps = {
+  inputSize: 'md',
+  type: 'text',
 };

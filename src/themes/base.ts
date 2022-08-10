@@ -596,6 +596,7 @@ export const buildTheme = colors => ({
     borderRadius: '1px',
   },
   common: {
+    borderRadius: '1px',
     sm: {
       borderRadius: '1px',
       fontSize: '11px',
