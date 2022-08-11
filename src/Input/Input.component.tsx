@@ -231,7 +231,6 @@ export const Input: React.FunctionComponent<Props> = ({
   const {
     disabled,
     iconPosition,
-    inputSize,
     invalid,
     addonTextPosition,
     addonText,
