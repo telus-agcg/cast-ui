@@ -254,13 +254,13 @@ export const Input: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInputWrapper
-          theme={theme}
           inputSize={inputSize}
           invalid={invalid}
           className={classNames(inputProps.className, {
             disabled,
             focused,
           })}
+          {...inputProps}
         >
           {'left' === iconPosition && icon && (
             <SIconWrapper>{icon}</SIconWrapper>
@@ -324,4 +324,5 @@ export const Input: React.FunctionComponent<Props> = ({
 Input.defaultProps = {
   inputSize: 'md',
   type: 'text',
+  theme: Themes.defaultTheme,
 };
