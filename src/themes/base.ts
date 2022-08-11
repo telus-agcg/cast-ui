@@ -604,7 +604,7 @@ export const buildTheme = colors => ({
       inputIconSize: '14px',
     },
     md: {
-      borderRadius: '20px',
+      borderRadius: '1px',
       fontSize: '14px',
       padding: '8px 16px',
       tableCellPadding: '9px 0',
