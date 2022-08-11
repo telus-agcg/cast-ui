@@ -596,7 +596,6 @@ export const buildTheme = colors => ({
     borderRadius: '1px',
   },
   common: {
-    borderRadius: '1px',
     sm: {
       borderRadius: '1px',
       fontSize: '11px',
@@ -605,7 +604,7 @@ export const buildTheme = colors => ({
       inputIconSize: '14px',
     },
     md: {
-      borderRadius: '1px',
+      borderRadius: '20px',
       fontSize: '14px',
       padding: '8px 16px',
       tableCellPadding: '9px 0',

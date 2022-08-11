@@ -190,7 +190,6 @@ const SInputWrapper = styled.div<Partial<Props>>`
          : props.theme.input.borderColor
      }`};
   border-radius: ${(props: Props) =>
-    props.theme.common.borderRadius ||
     props.theme.common[props.inputSize!].borderRadius};
 
   outline: none !important;
@@ -254,8 +253,6 @@ export const Input: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInputWrapper
-          inputSize={inputSize}
-          invalid={invalid}
           className={classNames(inputProps.className, {
             disabled,
             focused,
