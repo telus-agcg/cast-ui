@@ -54,7 +54,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   onFetchData?: () => {};
   showPageSizeOptions?: boolean;
   pageSize?: number;
-  pageSizeOptions: [];
+  pageSizeOptions: [] | number[];
   rowsSelectorText?: string;
   rowsText?: string;
 }
