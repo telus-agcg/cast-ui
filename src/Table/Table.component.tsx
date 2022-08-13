@@ -268,7 +268,7 @@ const collator = new Intl.Collator(undefined, {
   sensitivity: 'base',
 });
 
-export const rowExpander = ({ isExpanded, ...rest }) => (
+export const TableRowExpander = ({ isExpanded, ...rest }) => (
   <>
     {isExpanded ? (
       <HoverIcon icon={IKAD} size={24} />
@@ -353,7 +353,7 @@ export class Table extends React.Component<Props> {
           column={{
             ...ReactTableDefaults.column,
             resizable: false,
-            Expander: rowExpander,
+            Expander: TableRowExpander,
           }}
           loading={loading}
           noDataText={loading ? '' : noDataText}

@@ -4,7 +4,6 @@ import { Table } from './';
 import { Input } from '../Input';
 import { Checkbox } from '../Checkbox';
 import SampleData from './sampleData';
-import { rowExpander } from './Table.component';
 
 const testTableId = 'testTable';
 
@@ -284,7 +283,6 @@ export const _TableGrouped = args => {
         columns={[
           {
             PivotValue: () => <div />,
-            Expander: rowExpander,
             accessor: 'Id',
             width: 50,
           },
