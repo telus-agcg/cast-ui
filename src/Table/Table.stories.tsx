@@ -139,23 +139,23 @@ export const _Table = args => {
     <div>
       <Table
         id={testTableId}
-        data={SampleData.Customers}
+        data={SampleData.customers}
         columns={[
           {
             Header: 'ID',
-            id: 'ID',
-            accessor: val => val.Id,
+            id: 'id',
+            accessor: val => val.id,
             width: 90,
           },
           {
             Header: 'Company Name',
-            accessor: 'CompanyName',
+            accessor: 'companyName',
             width: 130,
           },
           {
-            id: 'ContactName',
+            id: 'contactName',
             Header: 'Contact Name',
-            accessor: 'ContactName',
+            accessor: 'contactName',
             className: 'table-column-readonly white-space-nowrap',
             headerClassName: 'table-column-readonly',
             width: 130,
@@ -181,45 +181,45 @@ export const _Table = args => {
           },
           {
             Header: 'Contact Title',
-            accessor: 'ContactTitle',
+            accessor: 'contactTitle',
             className: 'table-column-highlight',
             headerClassName: 'table-column-highlight',
             width: 130,
           },
           {
             Header: 'Address',
-            accessor: 'Address',
+            accessor: 'address',
           },
           {
             Header: 'City',
-            accessor: 'City',
+            accessor: 'city',
           },
           {
-            id: 'PostalCode',
+            id: 'postalCode',
             Header: 'Postal Code',
             className: 'right-align',
             headerClassName: 'right-align',
             Cell: (row: any) => {
               return (
-                <div data-testid={'postal-code'}>{row.original.PostalCode}</div>
+                <div data-testid={'postal-code'}>{row.original.postalCode}</div>
               );
             },
           },
           {
             Header: 'Country',
-            accessor: 'Country',
+            accessor: 'country',
           },
           {
             Header: 'Phone',
-            accessor: 'Phone',
+            accessor: 'phone',
           },
           {
             Header: 'Fax',
-            accessor: 'Fax',
+            accessor: 'fax',
           },
           {
             Header: 'Member',
-            accessor: 'Member',
+            accessor: 'member',
             Cell: (row: any) => {
               return (
                 <Checkbox
@@ -237,9 +237,9 @@ export const _Table = args => {
         ]}
         getTrProps={(state, rowInfo, column) => {
           let className;
-          if (rowInfo.row.Id === 'AROUT') {
+          if (rowInfo.row.id === 'AROUT') {
             className = 'table-row-readonly';
-          } else if (rowInfo.row.Id === 'BOLID') {
+          } else if (rowInfo.row.id === 'BOLID') {
             className = 'table-row-highlight';
           }
           return {
@@ -273,124 +273,39 @@ _Table.args = {
   sizable: true,
 };
 
-export const _TableGrouped = args => {
+export const _TableWithGroupedRows = args => {
   return (
     <div>
       <Table
         id={testTableId}
-        data={SampleData.Customers}
-        pivotBy={['Id']}
+        data={SampleData.fruit}
+        pivotBy={['type']}
         columns={[
           {
             PivotValue: () => <div />,
-            accessor: 'Id',
+            accessor: 'type',
             width: 50,
           },
           {
-            Header: 'ID',
-            id: 'ID',
-            accessor: val => val.Id,
-            width: 90,
+            Header: 'Name',
+            id: 'name',
+            accessor: val => val.name,
+            Aggregated: (row: any) => row.row.type,
+            width: 150,
           },
           {
-            Header: 'Company Name',
-            accessor: 'CompanyName',
-            width: 130,
+            Header: 'Color',
+            accessor: 'color',
+            Aggregated: () => <></>,
+            width: 150,
           },
           {
-            id: 'ContactName',
-            Header: 'Contact Name',
-            accessor: 'ContactName',
-            className: 'table-column-readonly white-space-nowrap',
-            headerClassName: 'table-column-readonly',
-            width: 130,
-          },
-          {
-            id: 'TextInput',
-            Header: 'Text Input',
-            width: 120,
-            Cell: (row: any) => {
-              return (
-                <Input
-                  id={`TextInput`}
-                  data-testid={'text-input'}
-                  addonText="%"
-                  addonTextPosition="right"
-                  value="90"
-                  min={0}
-                  max={100}
-                  onChange={() => {}}
-                />
-              );
-            },
-          },
-          {
-            Header: 'Contact Title',
-            accessor: 'ContactTitle',
-            className: 'table-column-highlight',
-            headerClassName: 'table-column-highlight',
-            width: 130,
-          },
-          {
-            Header: 'Address',
-            accessor: 'Address',
-          },
-          {
-            Header: 'City',
-            accessor: 'City',
-          },
-          {
-            id: 'PostalCode',
-            Header: 'Postal Code',
-            className: 'right-align',
-            headerClassName: 'right-align',
-            Cell: (row: any) => {
-              return (
-                <div data-testid={'postal-code'}>{row.original.PostalCode}</div>
-              );
-            },
-          },
-          {
-            Header: 'Country',
-            accessor: 'Country',
-          },
-          {
-            Header: 'Phone',
-            accessor: 'Phone',
-          },
-          {
-            Header: 'Fax',
-            accessor: 'Fax',
-          },
-          {
-            Header: 'Member',
-            accessor: 'Member',
-            Cell: (row: any) => {
-              return (
-                <Checkbox
-                  id={`${testTableId}-${row.index}-${row.column.id}`}
-                  cbSize="md"
-                  value="2"
-                  indeterminate={true}
-                  displayStyle="inline"
-                >
-                  Two
-                </Checkbox>
-              );
-            },
+            Header: 'Weight',
+            accessor: 'weight',
+            Aggregated: () => <></>,
+            width: 150,
           },
         ]}
-        getTrProps={(state, rowInfo, column) => {
-          let className;
-          if (rowInfo.row.Id === 'AROUT') {
-            className = 'table-row-readonly';
-          } else if (rowInfo.row.Id === 'BOLID') {
-            className = 'table-row-highlight';
-          }
-          return {
-            className,
-          };
-        }}
         pageSizeOptions={[5, 10, 25, 50, 100]}
         {...args}
       />
@@ -398,7 +313,7 @@ export const _TableGrouped = args => {
   );
 };
 
-_TableGrouped.args = {
+_TableWithGroupedRows.args = {
   tableSize: 'md',
   showPagination: true,
   showPaginationTop: false,
