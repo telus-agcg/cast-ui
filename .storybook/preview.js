@@ -14,6 +14,14 @@ import {
 
 export const decorators = [
   withThemesProvider([cobaltTheme, faluTheme, azureTheme, defaultTheme]),
+  Story => {
+    // TODO: Figure out how to switch the theme
+    return (
+      <div style={defaultTheme.body}>
+        <Story />
+      </div>
+    );
+  },
 ];
 
 export const parameters = {
