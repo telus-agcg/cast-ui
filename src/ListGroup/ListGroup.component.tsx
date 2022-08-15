@@ -147,7 +147,7 @@ const ChevronImage: Function = (
   return isCollapsed ? (
     <HoverIcon icon={IKAR} size={24} chevronAlignment={chevronAlignment} />
   ) : (
-    <HoverIcon icon={IKAR} size={24} chevronAlignment={chevronAlignment} />
+    <HoverIcon icon={IKAD} size={24} chevronAlignment={chevronAlignment} />
   );
 };
 
