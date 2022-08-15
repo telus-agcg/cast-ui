@@ -100,6 +100,7 @@ const STabsBar = styled.div`
   display: flex;
   align-items: baseline;
   width: 100%;
+  padding: 5px 0px;
 `;
 const STab = styled.div`
   outline: none;
@@ -117,29 +118,21 @@ const STab = styled.div`
       : props.theme.tabnav[`${props.active ? 'active' : ''}tab`].cursor};
   background: ${(props: any) =>
     props.theme.tabnav[`${props.active ? 'active' : ''}tab`].background};
+  border-radius: 20px;
   opacity: ${(props: any) =>
     props.disabled
       ? '.6'
       : props.theme.tabnav[`${props.active ? 'active' : ''}tab`].opacity};
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: ${(props: any) =>
-      props.theme.tabnav[`${props.active ? 'active' : ''}tab`]
-        .bottomBorderWidth};
-    background-color: ${(props: any) =>
-      props.theme.tabnav[`${props.active ? 'active' : ''}tab`]
-        .bottomBorderColor};
-  }
   .icon {
     margin-bottom: -6px;
     margin-right: -5px;
     color: ${(props: any) =>
       props.theme.tabnav[`${props.active ? 'active' : ''}tab`].iconColor};
   }
+  &:hover {
+    background-color: ${(props: any) => props.theme.colors.primaryFaded};
+  }
+  transition: all 0.3s;
 `;
 const SPopoverContent = styled.div`
   padding: 8px 0;
