@@ -8,8 +8,8 @@ import ReactTable, {
 } from 'react-table';
 import { Themes } from '../themes';
 import Icon from 'react-icons-kit';
-import { chevronUp } from 'react-icons-kit/fa/chevronUp';
-import { chevronDown } from 'react-icons-kit/fa/chevronDown';
+import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
+import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
 import Pagination, {
   PAGE_SIZE_OPTIONS,
 } from '../Pagination/Pagination.component';
@@ -57,10 +57,12 @@ export type Props = Partial<TableProps> &
     id?: string;
   };
 
-const SIcon = styled(Icon)`
-  color: ${(props: any) => props.theme.colors.primary};
-  display: inline-block;
-  margin-right: 15px;
+export const HoverIcon = styled(Icon)`
+  border-radius: 50%;
+  transition: all 0.3s;
+  &:hover {
+    background-color: ${(props: any) => props.theme.colors.lt800};
+  }
 `;
 
 const SWrapperDiv = styled(ReactTable)`
@@ -266,15 +268,16 @@ const collator = new Intl.Collator(undefined, {
   sensitivity: 'base',
 });
 
-export const rowExpander = ({ isExpanded, ...rest }) => (
+export const TableRowExpander = ({ isExpanded, ...rest }) => (
   <>
     {isExpanded ? (
-      <SIcon data-testid="collapser" icon={chevronUp} />
+      <HoverIcon icon={IKAD} size={24} />
     ) : (
-      <SIcon data-testid="expander" icon={chevronDown} />
+      <HoverIcon icon={IKAR} size={24} />
     )}
   </>
 );
+
 export class Table extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
@@ -350,7 +353,7 @@ export class Table extends React.Component<Props> {
           column={{
             ...ReactTableDefaults.column,
             resizable: false,
-            Expander: rowExpander,
+            Expander: TableRowExpander,
           }}
           loading={loading}
           noDataText={loading ? '' : noDataText}
