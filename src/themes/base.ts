@@ -654,14 +654,20 @@ export const buildTheme = colors => ({
     zIndex: 99,
   },
   tabs: {
-    color: colors.drk800,
     borderColor: colors.primary,
     hoverColor: colors.primaryFaded,
-    borderRadius: '0px',
+    borderRadius: '20px',
     bottomBorderWidth: '4px',
-
+    tab: {
+      color: colors.drk800,
+      backgroundColor: colors.white,
+    },
+    activetab: {
+      color: colors.white,
+      backgroundColor: colors.primary,
+    },
     fontSize: '14px',
-    padding: '0 0 4px 0',
+    padding: '2px 10px',
     margin: '16px 16px 0 16px',
   },
   copyToClipboard: {
@@ -695,8 +701,8 @@ export const buildTheme = colors => ({
     borderBottom: `1px solid ${colors.lt800}`,
     color: colors.drk800,
     tab: {
-      padding: '4px 0 8px',
-      margin: '0 56px 0 0',
+      padding: '2px 10px',
+      margin: '0 40px 0 0',
       color: 'inherit',
       fontWeight: 'inherit',
       cursor: 'pointer',
@@ -705,17 +711,17 @@ export const buildTheme = colors => ({
       bottomBorderWidth: '0',
       bottomBorderColor: 'transparent',
       transition: 'opacity 0.15s',
-      iconColor: colors.primary,
+      iconColor: colors.drk800,
     },
     activetab: {
-      color: colors.drk800,
-      fontWeight: 700,
+      color: colors.white,
+      fontWeight: 500,
       cursor: 'pointer',
-      background: 'transparent',
+      background: colors.primary,
       opacity: '1',
       bottomBorderWidth: '4px',
       bottomBorderColor: colors.primary,
-      iconColor: colors.primary,
+      iconColor: colors.white,
     },
     tabDropdown: {
       color: colors.drk800,

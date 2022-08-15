@@ -694,14 +694,20 @@ export const cobaltTheme = {
     zIndex: 99,
   },
   tabs: {
-    color: cobaltColors.drk800,
     borderColor: cobaltColors.primary,
     hoverColor: cobaltColors.primaryFaded,
-    borderRadius: '0px',
+    borderRadius: '20px',
     bottomBorderWidth: '4px',
-
+    tab: {
+      color: cobaltColors.drk800,
+      backgroundColor: cobaltColors.white,
+    },
+    activetab: {
+      color: cobaltColors.white,
+      backgroundColor: cobaltColors.primary,
+    },
     fontSize: '14px',
-    padding: '0 0 4px 0',
+    padding: '2px 10px',
     margin: '16px 16px 0 16px',
   },
   copyToClipboard: {
@@ -735,8 +741,8 @@ export const cobaltTheme = {
     borderBottom: `1px solid ${cobaltColors.lt800}`,
     color: cobaltColors.drk800,
     tab: {
-      padding: '4px 0 8px',
-      margin: '0 56px 0 0',
+      padding: '2px 10px',
+      margin: '0 40px 0 0',
       color: 'inherit',
       fontWeight: 'inherit',
       cursor: 'pointer',
@@ -745,17 +751,17 @@ export const cobaltTheme = {
       bottomBorderWidth: '0',
       bottomBorderColor: 'transparent',
       transition: 'opacity 0.15s',
-      iconColor: cobaltColors.primary,
+      iconColor: cobaltColors.drk800,
     },
     activetab: {
-      color: cobaltColors.drk800,
-      fontWeight: 700,
+      color: cobaltColors.white,
+      fontWeight: 500,
       cursor: 'pointer',
-      background: 'transparent',
+      background: cobaltColors.primary,
       opacity: '1',
       bottomBorderWidth: '4px',
       bottomBorderColor: cobaltColors.primary,
-      iconColor: cobaltColors.primary,
+      iconColor: cobaltColors.white,
     },
     tabDropdown: {
       color: cobaltColors.drk800,

@@ -53,7 +53,7 @@ export const _Tabnav = ({ onTabClick }) => (
       },
       {
         label: 'Business Plans',
-        active: false,
+        active: true,
         children: [
           { label: 'Business Overview', to: '/business-plans/overview' },
           { label: 'Contracts Overview', to: '/business-plans/contracts' },
@@ -61,7 +61,7 @@ export const _Tabnav = ({ onTabClick }) => (
       },
       {
         label: 'Offers',
-        active: true,
+        active: false,
         children: [
           { label: 'Claims', to: '/offers/claims', disabled: true },
           { label: 'PQRs', to: '/offers/pqrs' },
@@ -72,7 +72,6 @@ export const _Tabnav = ({ onTabClick }) => (
       },
       {
         label: 'Notes',
-        active: true,
         to: '/notes',
         className: 'notes',
       },
@@ -113,7 +112,6 @@ export const _TabnavWithHeader = ({ onTabClick }) => (
       },
       {
         label: 'Notes',
-        active: true,
         to: '/notes',
         className: 'notes',
       },
