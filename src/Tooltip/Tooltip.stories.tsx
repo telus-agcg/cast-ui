@@ -1,4 +1,6 @@
 import * as React from 'react';
+import Icon from 'react-icons-kit';
+import { ic_info as InfoIcon } from 'react-icons-kit/md';
 
 import { Tooltip } from '../';
 
@@ -49,9 +51,18 @@ export default {
 };
 
 export const _Tooltip = args => (
-  <Tooltip content={<MyComponent />} {...args} trigger="click">
-    <button>This button has a controlled tooltip</button>
-  </Tooltip>
+  <>
+    {'Click the icon to see the tooltip'}
+    <Tooltip content={<MyComponent />} {...args} trigger="click">
+      <span>
+        <Icon
+          size="20"
+          icon={InfoIcon}
+          style={{ marginLeft: '5px', cursor: 'pointer' }}
+        />
+      </span>
+    </Tooltip>
+  </>
 );
 
 _Tooltip.args = {
