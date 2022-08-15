@@ -120,14 +120,19 @@ const SListHeader = styled.li<Partial<Props>>`
   position: relative;
 `;
 
-const SIcon = styled(Icon)<Partial<Props>>`
+export const HoverIcon = styled(Icon)`
+  border-radius: 50%;
+  transition: all 0.3s;
+  &:hover {
+    background-color: ${(props: any) => props.theme.colors.lt800};
+  }
   position: absolute;
   left: ${(props: any) =>
     props.chevronAlignment === 'right' ? 'initial' : '0'};
   right: ${(props: any) =>
     props.chevronAlignment === 'right' ? '0' : 'initial'};
-  color: ${(props: any) => props.theme.colors.primary};
 `;
+
 const SHeaderContent = styled.span`
   order: 2;
 `;
@@ -140,9 +145,9 @@ const ChevronImage: Function = (
     return null;
   }
   return isCollapsed ? (
-    <SIcon icon={IKAR} size={24} chevronAlignment={chevronAlignment} />
+    <HoverIcon icon={IKAR} size={24} chevronAlignment={chevronAlignment} />
   ) : (
-    <SIcon icon={IKAD} size={24} chevronAlignment={chevronAlignment} />
+    <HoverIcon icon={IKAR} size={24} chevronAlignment={chevronAlignment} />
   );
 };
 
