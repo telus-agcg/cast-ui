@@ -116,7 +116,6 @@ const indeterminateCheckboxRules: Function = (cbSize: string) => {
 };
 
 const SDiv = styled.div`
-  cursor: pointer;
   line-height: ${(props: Props) => props.theme.checkbox[props.cbSize!].height};
   ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)};
   display: inline-flex;
@@ -124,6 +123,7 @@ const SDiv = styled.div`
 `;
 
 const SLabel = styled.label`
+  cursor: pointer;
   align-items: center;
   display: inline-flex;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
