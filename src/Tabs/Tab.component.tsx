@@ -34,7 +34,9 @@ const ReactTabProxy = ({ children, className, ...props }: any) => (
 ReactTabProxy.tabsRole = 'Tab'; // Required field to use your custom Tab
 
 const SReactTab = styled(ReactTabProxy)`
+  color: ${(props: Props) => props.theme.tabs.tab.color};
   display: inline-block;
+  background-color: ${(props: any) => props.theme.tabs.tab.backgroundColor};
   border: 1px solid transparent;
   border-bottom: none;
   bottom: -1px;
@@ -44,41 +46,31 @@ const SReactTab = styled(ReactTabProxy)`
   margin: ${(props: Props) => props.theme.tabs.margin};
   cursor: pointer;
   border-radius: ${(props: Props) => props.theme.tabs.borderRadius};
-  font-size:${(props: Props) => props.theme.tabs.fontSize};
+  font-size: ${(props: Props) => props.theme.tabs.fontSize};
   font-weight: normal;
+  transition: 0.3s all;
 
-  &:focus, &:hover {
-    color: ${(props: Props) => props.theme.tabs.hoverColor};
+  &:focus,
+  &:hover {
     outline: none;
-    background: ${(props: Props) => props.theme.colors.disabledBackground};
-    &:after {
-      content: "";
-      position: absolute;
-      height: 5px;
-      width: 100%;
-      left: 0;
-      bottom: 0px;
-      background: ${(props: Props) => props.theme.tabs.hoverColor};
-    }
-  }
-  
-  &[class$="--selected"]\t {
-    color: ${(props: Props) => props.theme.tabs.color};
-    font-weight: bold;
-    &:after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 5px;
-      left: 0;
-      bottom: 0px;
-      background: ${(props: Props) => props.theme.tabs.borderColor};
-    }
+    background: ${(props: Props) => props.theme.colors.primaryFaded};
   }
 
-  &[class$="--disabled"] {
-    color: ${(props: Props) => props.theme.colors.gray};
+  &[class$='--selected']\t {
+    color: ${(props: Props) => props.theme.tabs.activetab.color};
+    font-weight: bold;
+    background-color: ${(props: any) =>
+      props.theme.tabs.activetab.backgroundColor};
+  }
+
+  &[class$='--disabled'] {
+    color: ${(props: Props) => props.theme.colors.drk600};
     cursor: not-allowed;
+  }
+
+  &[class$='--disabled']:focus,
+  &[class$='--disabled']:hover {
+    background-color: ${(props: any) => props.theme.tabs.tab.backgroundColor};
   }
 `;
 
