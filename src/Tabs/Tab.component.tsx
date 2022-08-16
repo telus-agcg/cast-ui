@@ -53,14 +53,19 @@ const SReactTab = styled(ReactTabProxy)`
   &:focus,
   &:hover {
     outline: none;
-    background: ${(props: Props) => props.theme.colors.primaryFaded};
+    background-color: ${(props: Props) => props.theme.colors.primaryFaded};
   }
 
-  &[class$='--selected']\t {
+  &[class$='--selected'] {
     color: ${(props: Props) => props.theme.tabs.activetab.color};
     font-weight: bold;
     background-color: ${(props: any) =>
       props.theme.tabs.activetab.backgroundColor};
+  }
+
+  &[class$='--selected']:focus,
+  &[class$='--selected']:hover {
+    background-color: ${(props: any) => props.theme.colors.primaryFaded};
   }
 
   &[class$='--disabled'] {

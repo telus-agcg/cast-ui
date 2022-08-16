@@ -158,6 +158,7 @@ const SPopoverItem = styled.div`
     props.disabled
       ? '.6'
       : props.theme.tabnav[`${props.active ? 'active' : ''}tab`].opacity};
+  cursor: ${(props: any) => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
 
 const PopoverContent = ({ tab, onTabClick, ...props }: any) => (

@@ -659,7 +659,7 @@ export const buildTheme = colors => ({
     borderRadius: '20px',
     bottomBorderWidth: '4px',
     tab: {
-      color: colors.black,
+      color: colors.drk800,
       backgroundColor: colors.white,
     },
     activetab: {
@@ -711,7 +711,7 @@ export const buildTheme = colors => ({
       bottomBorderWidth: '0',
       bottomBorderColor: 'transparent',
       transition: 'opacity 0.15s',
-      iconColor: colors.primary,
+      iconColor: colors.drk800,
     },
     activetab: {
       color: colors.white,

@@ -699,7 +699,7 @@ export const cobaltTheme = {
     borderRadius: '20px',
     bottomBorderWidth: '4px',
     tab: {
-      color: cobaltColors.black,
+      color: cobaltColors.drk800,
       backgroundColor: cobaltColors.white,
     },
     activetab: {
@@ -751,7 +751,7 @@ export const cobaltTheme = {
       bottomBorderWidth: '0',
       bottomBorderColor: 'transparent',
       transition: 'opacity 0.15s',
-      iconColor: cobaltColors.primary,
+      iconColor: cobaltColors.drk800,
     },
     activetab: {
       color: cobaltColors.white,
