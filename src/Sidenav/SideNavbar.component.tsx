@@ -210,7 +210,7 @@ const SSecondarySideNavbar = styled.div`
   flex-direction: column;
   .closeIcon {
     position: absolute;
-    color: black;
+    color: ${(props: any) => props.theme.colors.drk800};
     top: 5px;
     right: 5px;
   }
