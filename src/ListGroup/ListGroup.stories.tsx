@@ -91,7 +91,6 @@ export const _ListGroup = ({
         isCollapsed={isCollapsed}
         name="Nested Collapsible List Group"
         listGroupTheme={listGroupTheme2}
-        chevronAlignment={chevronAlignment}
       >
         <ListGroupItem data-testid="collapsible-nested-list-item-1">
           List Item
