@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { Tabnav, Header, Badge } from '../';
+import { Tabnav, Title, Badge } from '../';
 
 export default {
   title: 'Components/Navigation/Tabnav',
   component: Tabnav,
   subcomponents: {
-    Header,
+    Title,
   },
   argTypes: {
     theme: {
@@ -52,22 +52,19 @@ export const _Tabnav = ({ onTabClick }) => (
         className: 'overview',
       },
       {
-        label: 'Business Plans',
+        label: 'Plans',
         active: true,
         children: [
-          { label: 'Business Overview', to: '/business-plans/overview' },
-          { label: 'Contracts Overview', to: '/business-plans/contracts' },
+          { label: 'Overview', to: '/plans/overview' },
+          { label: 'Contracts', to: '/plans/contracts' },
         ],
       },
       {
         label: 'Offers',
         active: false,
         children: [
-          { label: 'Claims', to: '/offers/claims', disabled: true },
-          { label: 'PQRs', to: '/offers/pqrs' },
-          { label: 'Contracts', to: '/offers/contracts' },
-          { label: 'Competitives', to: '/offers/competitives' },
-          { label: 'Programs', to: '/offers/programs' },
+          { label: 'Some Offers', to: '/offers/some', disabled: true },
+          { label: 'Some Other Offers', to: '/offers/other' },
         ],
       },
       {
@@ -92,22 +89,19 @@ export const _TabnavWithHeader = ({ onTabClick }) => (
         className: 'overview',
       },
       {
-        label: 'Business Plans',
+        label: 'Plans',
         active: false,
         children: [
-          { label: 'Business Overview', to: '/business-plans/overview' },
-          { label: 'Contracts Overview', to: '/business-plans/contracts' },
+          { label: 'Overview', to: '/plans/overview' },
+          { label: 'Contracts', to: '/plans/contracts' },
         ],
       },
       {
         label: 'Offers',
         active: true,
         children: [
-          { label: 'Claims', to: '/offers/claims', disabled: true },
-          { label: 'PQRs', to: '/offers/pqrs' },
-          { label: 'Contracts', to: '/offers/contracts' },
-          { label: 'Competitives', to: '/offers/competitives' },
-          { label: 'Programs', to: '/offers/programs' },
+          { label: 'Some Offers', to: '/offers/some', disabled: true },
+          { label: 'Some Other Offers', to: '/offers/other' },
         ],
       },
       {
@@ -121,7 +115,7 @@ export const _TabnavWithHeader = ({ onTabClick }) => (
     tabsBarProps={{ className: 'tabs-bar' }}
   >
     <div style={{ display: 'flex', alignItems: 'baseline' }}>
-      <Header>Agrineed, Inc. (62875)</Header>
+      <Title size="20">Agrineed, Inc. (62875)</Title>
       <Badge>Retailer</Badge>
     </div>
   </Tabnav>

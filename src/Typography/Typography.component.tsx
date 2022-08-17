@@ -1,18 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-import {
-  Header,
-  Button,
-  Tooltip,
-  Display,
-  Title,
-  Caption,
-  Link,
-  BodyText,
-} from '../';
-import CopyToClipboard from '../CopyToClipboard';
-import { sampleCode } from './CodeBlock/CodeBlock.stories';
+import { Button, Header, Tooltip, Display, Title, Caption, Link } from '../';
 
 export type Props = {
   /**
@@ -39,25 +28,18 @@ export const Typography: React.FunctionComponent<Props> = ({
       <Display>Display</Display>
       <Header>Header</Header>
       <Title>Title</Title>
-      <p>
-        Etiam ullamcorper, metus sed luctus auctor, tortor lorem auctor quam, ut
-        condimentum massa tellus at turpis.
-      </p>
-      <Caption>Use for hero images and website headers</Caption>
-      <Link solo={true} href="https://www.tkxs.com" target="_blank">
-        Read More
+      <p>Body text</p>
+      <Caption>Caption</Caption>
+      <Link href="https://www.tkxs.com" target="_blank">
+        Standalone link
       </Link>
       <br />
       <p>
         Lorem ipsum dolor sit amet, consectetur{' '}
-        <Link href="https://theuselessweb.com/" target="_blank">
-          unvisited link in text
-        </Link>{' '}
-        over a{' '}
         <Link href="https://www.tkxs.com" target="_blank">
-          visited link in text
-        </Link>{' '}
-        elit.
+          link in text
+        </Link>
+        .
       </p>
       <Button btnStyle="primary">Read More Button</Button>
       <br />
@@ -70,13 +52,7 @@ export const Typography: React.FunctionComponent<Props> = ({
           </Button>
         </span>
       </Tooltip>
-      <BodyText>$25,855.90</BodyText>
-      <br />
-      <CopyToClipboard
-        copyContent={sampleCode || ''}
-        background="#F5F7F8"
-        includeCopyButton={true}
-      />
+      <p>$25,855.90</p>
     </STypography>
   </ThemeProvider>
 );

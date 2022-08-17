@@ -22,12 +22,6 @@ export type Props = {
    **/
   size?: number;
   /**
-   * Set border width
-   *
-   * @default 3
-   **/
-  borderWidth?: number;
-  /**
    * Adjust animation speed in seconds
    *
    * @default 1
@@ -64,7 +58,7 @@ const SSpinner = styled.div`
     margin-left: ${(props: Props) => `-${props.size! / 2}px`};
     border-radius: 50%;
     border: ${(props: Props) =>
-      `${props.borderWidth}px solid
+      `3px solid
       ${props.backgroundColor || props.theme.spinner.backgroundColor}`};
     border-top-color: ${(props: Props) =>
       props.borderColor || props.theme.spinner.borderColor};
@@ -88,7 +82,6 @@ export const Spinner: React.FunctionComponent<Props> = ({
   </ThemeProvider>
 );
 Spinner.defaultProps = {
-  borderWidth: 3,
   size: 50,
   animationSpeed: 1,
   transitionType: 'linear',

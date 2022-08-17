@@ -33,6 +33,11 @@ export type Props = {
    * @default ''
    **/
   className?: string;
+  /**
+   * Specify if the default state of the checkbox is checked
+   *
+   * @default false
+   **/
   defaultChecked?: boolean;
   /**
    * Specify if the checkbox should be disabled
@@ -41,22 +46,17 @@ export type Props = {
    **/
   disabled?: boolean;
   /**
-   * Specify the display style the radio button will have
+   * Specify the way checkboxes will be laid out
    *
    * @default 'stacked'
    **/
   displayStyle?: 'inline' | 'stacked';
   /**
-   * Specify the function to fire when the checkbox is changed
+   * Specify whether the checkbox is neither "on" or "off"
    *
    * @default void
    **/
   indeterminate?: boolean;
-  /**
-   * Specify if the default state of the checkbox is checked
-   *
-   * @default false
-   **/
   /**
    * Specify whether the control is currently invalid
    *
@@ -73,6 +73,11 @@ export type Props = {
    * @default ''
    **/
   invalidTextColor?: string;
+  /**
+   * Specify the function to fire when the checkbox is changed
+   *
+   * @default void
+   **/
   onChange?(checked: boolean, event: React.SyntheticEvent<HTMLElement>): void;
   /**
    * From theme provider

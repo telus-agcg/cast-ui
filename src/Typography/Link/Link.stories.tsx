@@ -35,13 +35,12 @@ _Regular.args = {
   href: 'https://www.tkxs.com',
   target: '_blank',
   disabled: false,
-  solo: true,
   dataTestId: 'link-standalone',
 };
 
-export const _WithOnclick = _Link.bind({});
+export const _WithOnClick = _Link.bind({});
 
-_WithOnclick.args = {
+_WithOnClick.args = {
   disabled: false,
   dataTestId: 'link-with-onclick',
 };

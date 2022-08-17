@@ -52,11 +52,6 @@ export default {
         type: 'text',
       },
     },
-    onRequestClose: {
-      action: {
-        type: 'onRequestClose',
-      },
-    },
     onTitleClose: {
       action: {
         type: 'onTitleClose',

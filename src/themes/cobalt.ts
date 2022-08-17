@@ -255,20 +255,6 @@ export const cobaltTheme = {
         lineHeight: '100%',
       },
     },
-    bodyText: {
-      10: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
-        fontWeight: '400',
-        fontSize: '12px',
-        lineHeight: '100%',
-      },
-      20: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
-        fontWeight: '400',
-        fontSize: '14px',
-        lineHeight: '160%',
-      },
-    },
     code: {
       background: cobaltColors.lt200,
       fontFamily:
@@ -318,11 +304,11 @@ export const cobaltTheme = {
       },
       visited: {
         color: cobaltColors.primary,
-        textDecoration: 'underline',
+        textDecoration: 'none',
       },
       hover: {
         color: cobaltColors.primary,
-        textDecoration: 'underline',
+        textDecoration: 'none',
       },
     },
     pre: {

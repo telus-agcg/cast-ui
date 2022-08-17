@@ -215,20 +215,6 @@ export const buildTheme = colors => ({
         lineHeight: '100%',
       },
     },
-    bodyText: {
-      10: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
-        fontWeight: '400',
-        fontSize: '12px',
-        lineHeight: '100%',
-      },
-      20: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
-        fontWeight: '400',
-        fontSize: '14px',
-        lineHeight: '160%',
-      },
-    },
     code: {
       background: colors.lt200,
       fontFamily:
@@ -278,7 +264,7 @@ export const buildTheme = colors => ({
       },
       visited: {
         color: colors.primary,
-        textDecoration: 'underline',
+        textDecoration: 'none',
       },
       hover: {
         color: colors.primary,

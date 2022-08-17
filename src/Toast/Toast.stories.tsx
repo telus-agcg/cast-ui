@@ -25,7 +25,7 @@ export default {
         type: 'boolean',
       },
     },
-    lightmode: {
+    lightMode: {
       control: {
         type: 'boolean',
       },
@@ -75,6 +75,6 @@ export const _Toast = args => (
 _Toast.args = {
   position: 'fixed top left',
   active: true,
-  lightmode: true,
+  lightMode: true,
   toastStyle: 'primary',
 };

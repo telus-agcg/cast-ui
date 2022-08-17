@@ -34,7 +34,7 @@ export interface Props {
    *
    * @default true
    * */
-  actionable?: boolean;
+  canDelete?: boolean;
   /**
    * Override default options for the Progress Bars.
    * See Cast-UI's ProgressBar for options list.
@@ -135,7 +135,7 @@ export class File extends React.Component<Props, State> {
   static defaultProps = {
     file: {},
     fileDetails: '',
-    actionable: true,
+    canDelete: true,
     uploaded: false,
     progressBarProps: {},
     onSelect: () => {},
@@ -160,7 +160,7 @@ export class File extends React.Component<Props, State> {
 
     const {
       fileDetails,
-      actionable,
+      canDelete,
       progressBarProps,
       onSelect = noop,
       onCancel = noop,
@@ -192,7 +192,7 @@ export class File extends React.Component<Props, State> {
             {props.uploaded && fileDetails && <div> {fileDetails} </div>}
           </div>
 
-          {actionable && (
+          {canDelete && (
             <div className="file-actions">
               {!props.uploaded && (
                 <Icon

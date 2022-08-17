@@ -24,12 +24,6 @@ export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
    **/
   target?: string;
   /**
-   * Specify if the link is stand alone
-   *
-   * @default false
-   **/
-  solo?: boolean;
-  /**
    * Specify if the link is disabled
    *
    * @default false
@@ -70,21 +64,6 @@ const SLink = styled.a`
     text-decoration: ${(props: Props) =>
       props.theme.typography.link.visited.textDecoration};
   }
-  &.solo {
-    text-decoration: ${(props: Props) =>
-      props.theme.typography.link.hover.textDecoration};
-    &:hover,
-    &:focus {
-      color: ${(props: Props) => props.theme.typography.link.hover.color};
-      text-decoration: ${(props: Props) =>
-        props.theme.typography.link.hover.textDecoration};
-    }
-    &:visited {
-      color: ${(props: Props) => props.theme.typography.link.color};
-      text-decoration: ${(props: Props) =>
-        props.theme.typography.link.textDecoration};
-    }
-  }
   &.disabled {
     color: ${(props: Props) =>
       props.theme.typography.link.disabled.color} !important;
@@ -115,7 +94,7 @@ export const Link: React.FunctionComponent<Props> = ({
         <SLink
           {...dataProps}
           id={id}
-          className={cn([{ solo: linkProps.solo }, className])}
+          className={className}
           onClick={linkProps.onClick}
           href={linkProps.href}
           target={linkProps.target}
