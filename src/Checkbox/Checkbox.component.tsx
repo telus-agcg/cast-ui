@@ -156,13 +156,19 @@ const SInput = styled.input`
       props.theme.checkbox[props.cbSize!].squareMargin};
     margin-right: 5px;
     padding: 3px;
+    transition: 0.3s all;
   }
   &:disabled + label {
     color: ${(props: Props) => props.theme.checkbox.disabledText};
     cursor: not-allowed;
   }
-  &:checked + label:before,  &:indeterminate + label:before{
+  &:checked + label:before,  
+  &:indeterminate + label:before {
     background-color: ${(props: Props) => props.theme.checkbox.selectedColor};
+  }
+  &:checked + label:hover:before,  
+  &:indeterminate + label:hover:before {
+    background-color: ${(props: Props) => props.theme.colors.primaryHover};
   }
   &:checked + label:after {
       content: "";

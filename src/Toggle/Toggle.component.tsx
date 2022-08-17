@@ -132,6 +132,13 @@ const SDiv = styled.div`
         : props.theme.toggle.activeBorderColor};
   }
 
+  input:checked + label:hover:after {
+    background: ${(props: Props) =>
+      props.disabled
+        ? props.theme.toggle.activeDisabledColor
+        : props.theme.colors.primaryHover};
+  }
+
   label:active:after {
     width: ${(props: Props) =>
       props.theme.toggle[props.toggleSize!].toggleSize};

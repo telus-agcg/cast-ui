@@ -65,7 +65,7 @@ const SReactTab = styled(ReactTabProxy)`
 
   &[class$='--selected']:focus,
   &[class$='--selected']:hover {
-    background-color: ${(props: any) => props.theme.colors.primaryFaded};
+    background-color: ${(props: any) => props.theme.colors.primaryHover};
   }
 
   &[class$='--disabled'] {

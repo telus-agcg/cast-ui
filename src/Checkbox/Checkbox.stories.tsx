@@ -77,6 +77,18 @@ const _Checkbox = args => (
   </div>
 );
 
+export const _Regular = _Checkbox.bind({});
+_Regular.args = {
+  cbSize: 'md',
+  checked: true,
+  disabled: false,
+  displayStyle: 'inline',
+  indeterminate: false,
+  invalid: false,
+  invalidText: 'A valid value is required',
+  defaultChecked: true,
+};
+
 export const _Indeterminate = _Checkbox.bind({});
 _Indeterminate.args = {
   cbSize: 'md',
@@ -84,18 +96,6 @@ _Indeterminate.args = {
   disabled: false,
   displayStyle: 'inline',
   indeterminate: true,
-  invalid: false,
-  invalidText: 'A valid value is required',
-  defaultChecked: true,
-};
-
-export const _Determinate = _Checkbox.bind({});
-_Determinate.args = {
-  cbSize: 'md',
-  checked: true,
-  disabled: false,
-  displayStyle: 'inline',
-  indeterminate: false,
   invalid: false,
   invalidText: 'A valid value is required',
   defaultChecked: true,
