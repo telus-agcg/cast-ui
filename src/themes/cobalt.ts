@@ -555,7 +555,7 @@ export const cobaltTheme = {
   textarea: {
     background: cobaltColors.white,
     backgroundDisabled: cobaltColors.secondaryBackground,
-    borderColor: cobaltColors.secondary,
+    borderColor: cobaltColors.drk400,
     hoverBorderColor: cobaltColors.drk800,
     color: cobaltColors.drk800,
     padding: '6px 12px',

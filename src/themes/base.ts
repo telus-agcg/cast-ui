@@ -515,7 +515,7 @@ export const buildTheme = colors => ({
   textarea: {
     background: colors.white,
     backgroundDisabled: colors.secondaryBackground,
-    borderColor: colors.secondary,
+    borderColor: colors.drk400,
     hoverBorderColor: colors.drk800,
     color: colors.drk800,
     padding: '6px 12px',
