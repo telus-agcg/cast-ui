@@ -108,7 +108,6 @@ const SDiv = styled.div`
         ? props.theme.toggle.inactiveDisabledBorderColor
         : props.theme.toggle.inactiveBorderColor};
     border-radius: 50px;
-    transition: all 0.3s;
   }
 
   input:checked + label {
@@ -137,7 +136,6 @@ const SDiv = styled.div`
       props.disabled
         ? props.theme.toggle.activeDisabledColor
         : props.theme.colors.primaryHover};
-    transition: all 0.3s;
   }
 
   input:not(:checked) + label:hover:after {
@@ -145,13 +143,13 @@ const SDiv = styled.div`
       props.disabled
         ? props.theme.toggle.activeDisabledColor
         : props.theme.colors.drk800};
-    transition: all 0.3s;
   }
 
   label:active:after {
     width: ${(props: Props) =>
       props.theme.toggle[props.toggleSize!].toggleSize};
   }
+  transition: all 0.3s;
 `;
 
 export class Toggle extends React.Component<Props> {

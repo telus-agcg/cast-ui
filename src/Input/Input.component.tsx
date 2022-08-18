@@ -181,6 +181,7 @@ const SInputWrapper = styled.div<Partial<Props>>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
+  transition: all 0.3s;
   border: ${(props: Props) =>
     `${props.theme.input.borderWidth} 
      ${props.theme.input.borderStyle} 
@@ -222,7 +223,6 @@ const SInputWrapper = styled.div<Partial<Props>>`
 
   &:hover {
     border-color: ${(props: Props) => props.theme.colors.drk800};
-    transition: all 0.3s;
   }
 `;
 

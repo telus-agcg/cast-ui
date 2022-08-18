@@ -35,11 +35,10 @@ const SIcon = styled(Icon)<Partial<PaginationButtonsProps>>`
       : props.theme.pagination.text};
   cursor: pointer;
   border-radius: 50%;
-
+  transition: all 0.3s;
   &:hover {
     background-color: ${props =>
       props.disabled ? 'none' : props.theme.pagination.button.hoverBackground};
-    transition: all 0.3s;
     color: ${props =>
       props.disabled
         ? props.theme.pagination.button.disabledText
@@ -132,7 +131,7 @@ export const PaginationPageButton = styled.button`
     props.theme.pagination.button.width};
   height: ${(props: PaginationPageButtonProps) =>
     props.theme.pagination.button.height};
-
+  transition: all 0.3s;
   &:hover {
     font-weight: ${(props: PaginationPageButtonProps) =>
       props.theme.pagination.hoverFontWeight};
@@ -144,7 +143,6 @@ export const PaginationPageButton = styled.button`
       ${(props: PaginationPageButtonProps) =>
         props.theme.pagination.button.hoverBorderColor};
     cursor: pointer;
-    transition: all 0.3s;
   }
   &:disabled {
     background: ${(props: PaginationPageButtonProps) =>

@@ -124,8 +124,8 @@ const STextarea = styled.textarea`
   }
   &:hover {
     border-color: ${(props: Props) => props.theme.textarea.hoverBorderColor};
-    transition: all 0.3s;
   }
+  transition: all 0.3s;
 `;
 
 export const Textarea: React.FunctionComponent<Props> = ({

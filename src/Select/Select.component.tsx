@@ -239,9 +239,9 @@ const SDiv = styled.div<Props>`
     }
   }
   .react-select-component {
+    transition: all 0.3s;
     &:hover {
       background-color: ${(props: Props) => props.theme.colors.primaryHover};
-      transition: all 0.3s;
     }
     .react-select__control {
       min-height: ${(props: Props) =>
@@ -256,7 +256,6 @@ const SDiv = styled.div<Props>`
           : props.theme.select.borderColor || 'inherit')};
       &:hover {
         border-color: ${(props: Props) => props.theme.colors.drk800};
-        transition: all 0.3s;
       }
       .react-select__value-container {
         color: ${(props: Props) => props.theme.colors.drk800};

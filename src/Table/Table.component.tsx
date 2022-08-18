@@ -70,6 +70,7 @@ const SWrapperDiv = styled(ReactTable)`
   border: none !important;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.table.fontSize};
+  transition: all 0.3s;
   width: 100%;
   box-sizing: border-box;
   .word-break {
@@ -132,7 +133,6 @@ const SWrapperDiv = styled(ReactTable)`
 
   &.ReactTable .rt-tbody .rt-tr:hover {
     background-color: ${(props: any) => props.theme.table.row.hoverColor};
-    transition: all 0.3s;
   }
   &.ReactTable .rt-thead .rt-th,
   &.ReactTable .rt-tbody .rt-td,
