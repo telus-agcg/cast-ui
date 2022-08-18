@@ -137,6 +137,15 @@ const SDiv = styled.div`
       props.disabled
         ? props.theme.toggle.activeDisabledColor
         : props.theme.colors.primaryHover};
+    transition: 0.3s all;
+  }
+
+  input:not(:checked) + label:hover:after {
+    background: ${(props: Props) =>
+      props.disabled
+        ? props.theme.toggle.activeDisabledColor
+        : props.theme.colors.drk800};
+    transition: 0.3s all;
   }
 
   label:active:after {

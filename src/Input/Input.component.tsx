@@ -217,6 +217,11 @@ const SInputWrapper = styled.div<Partial<Props>>`
       color: ${(props: Props) => props.theme.input.disabled.addonTextColor};
     }
   }
+
+  &:hover {
+    border-color: ${(props: Props) => props.theme.colors.drk800};
+    transition: 0.3s all;
+  }
 `;
 
 export const Input: React.FunctionComponent<Props> = ({

@@ -39,6 +39,11 @@ const SIcon = styled(Icon)<Partial<PaginationButtonsProps>>`
   &:hover {
     background-color: ${props =>
       props.disabled ? 'none' : props.theme.pagination.button.hoverBackground};
+    transition: 0.3s all;
+    color: ${props =>
+      props.disabled
+        ? props.theme.pagination.button.disabledText
+        : props.theme.colors.primaryHover};
   }
 `;
 
@@ -110,8 +115,9 @@ export const PaginationPageButton = styled.button`
     props.selected
       ? props.theme.pagination.selectedBackground
       : props.theme.pagination.background};
-  border: 1px solid ${(props: PaginationPageButtonProps) =>
-    props.theme.pagination.button.borderColor};
+  border: 1px solid
+    ${(props: PaginationPageButtonProps) =>
+      props.theme.pagination.button.borderColor};
   padding: ${(props: PaginationPageButtonProps) =>
     props.theme.pagination.button.padding[props.btnSize]};
   font-family: ${(props: PaginationPageButtonProps) =>
@@ -126,23 +132,26 @@ export const PaginationPageButton = styled.button`
     props.theme.pagination.button.width};
   height: ${(props: PaginationPageButtonProps) =>
     props.theme.pagination.button.height};
-  
+
   &:hover {
     font-weight: ${(props: PaginationPageButtonProps) =>
       props.theme.pagination.hoverFontWeight};
     color: ${(props: PaginationPageButtonProps) =>
-      props.theme.pagination.hoverTextColor};
+      props.theme.colors.primaryHover};
     background: ${(props: PaginationPageButtonProps) =>
       props.theme.pagination.hoverBackground};
-    border: 1px solid ${(props: PaginationPageButtonProps) =>
-      props.theme.pagination.button.hoverBorderColor};
+    border: 1px solid
+      ${(props: PaginationPageButtonProps) =>
+        props.theme.pagination.button.hoverBorderColor};
     cursor: pointer;
+    transition: 0.3s all;
   }
   &:disabled {
     background: ${(props: PaginationPageButtonProps) =>
       props.theme.pagination.disabledBackground};
-    border: 1px solid ${(props: PaginationPageButtonProps) =>
-      props.theme.pagination.button.disabledBorderColor};
+    border: 1px solid
+      ${(props: PaginationPageButtonProps) =>
+        props.theme.pagination.button.disabledBorderColor};
     cursor: not-allowed;
   }
   &[data-selected] {
@@ -150,7 +159,16 @@ export const PaginationPageButton = styled.button`
       props.theme.pagination.activeFontWeight};
     color: ${(props: PaginationPageButtonProps) =>
       props.theme.pagination.activeText};
-    border: 1px solid ${(props: PaginationPageButtonProps) =>
-      props.theme.pagination.button.activeBorderColor};
+    border: 1px solid
+      ${(props: PaginationPageButtonProps) =>
+        props.theme.pagination.button.activeBorderColor};
+
+    &:hover {
+      border: 1px solid
+        ${(props: PaginationPageButtonProps) => props.theme.colors.primaryHover};
+      color: ${(props: PaginationPageButtonProps) =>
+        props.theme.colors.primaryHover};
+      transition: 0.3s all;
+    }
   }
 `;

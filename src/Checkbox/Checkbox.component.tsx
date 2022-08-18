@@ -162,14 +162,27 @@ const SInput = styled.input`
     color: ${(props: Props) => props.theme.checkbox.disabledText};
     cursor: not-allowed;
   }
+
   &:checked + label:before,  
   &:indeterminate + label:before {
     background-color: ${(props: Props) => props.theme.checkbox.selectedColor};
   }
-  &:checked + label:hover:before,  
-  &:indeterminate + label:hover:before {
+
+  &:checked + label:hover:before,
+  &:indeterminate + label:hover:before {  
     background-color: ${(props: Props) => props.theme.colors.primaryHover};
+    border-color: ${(props: Props) => props.theme.colors.primaryHover};
   }
+
+  &:not(:checked) + label:hover:before{
+    border-color: ${(props: Props) => props.theme.colors.primaryHover};
+  }
+
+  label:before  {
+    background-color: ${(props: Props) => props.theme.checkbox.disabledCheck};
+    border-color: ${(props: Props) => props.theme.checkbox.disabledCheck};
+  } 
+
   &:checked + label:after {
       content: "";
       padding: 2px;
@@ -209,10 +222,14 @@ const SInput = styled.input`
 			top:${(props: Props) =>
         props.theme.checkbox[props.cbSize!].indeterminateTopPosition};
     }
-    &:disabled + label:before {
+    &:disabled + label:before,
+    &:disabled:checked + label:before,
+    &:disabled:not(:checked) + label:before
+     {
       background-color: ${(props: Props) => props.theme.checkbox.disabledCheck};
       border-color: ${(props: Props) => props.theme.checkbox.disabledCheck};
-    }    
+    } 
+     
 `;
 
 export class Checkbox extends React.Component<Props, State> {
