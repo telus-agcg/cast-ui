@@ -48,7 +48,7 @@ const SReactTab = styled(ReactTabProxy)`
   border-radius: ${(props: Props) => props.theme.tabs.borderRadius};
   font-size: ${(props: Props) => props.theme.tabs.fontSize};
   font-weight: normal;
-  transition: 0.3s all;
+  transition: all 0.3s;
 
   &:focus,
   &:hover {

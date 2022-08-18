@@ -132,7 +132,7 @@ const SButton = styled.button`
   min-width: 96px;
   box-sizing: border-box;
   -webkit-transition-duration: 0.4s; /* Safari */
-  transition: 0.3s all;
+  transition: all 0.3s;
   border-radius: ${(props: Props) =>
     props.theme.common[props.btnSize!].borderRadius};
   background: ${(props: Props) =>

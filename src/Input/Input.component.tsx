@@ -220,7 +220,7 @@ const SInputWrapper = styled.div<Partial<Props>>`
 
   &:hover {
     border-color: ${(props: Props) => props.theme.colors.drk800};
-    transition: 0.3s all;
+    transition: all 0.3s;
   }
 `;
 

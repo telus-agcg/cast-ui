@@ -39,7 +39,7 @@ const SIcon = styled(Icon)<Partial<PaginationButtonsProps>>`
   &:hover {
     background-color: ${props =>
       props.disabled ? 'none' : props.theme.pagination.button.hoverBackground};
-    transition: 0.3s all;
+    transition: all 0.3s;
     color: ${props =>
       props.disabled
         ? props.theme.pagination.button.disabledText
@@ -144,7 +144,7 @@ export const PaginationPageButton = styled.button`
       ${(props: PaginationPageButtonProps) =>
         props.theme.pagination.button.hoverBorderColor};
     cursor: pointer;
-    transition: 0.3s all;
+    transition: all 0.3s;
   }
   &:disabled {
     background: ${(props: PaginationPageButtonProps) =>
@@ -169,7 +169,7 @@ export const PaginationPageButton = styled.button`
           props.theme.pagination.hoverTextColor};
       color: ${(props: PaginationPageButtonProps) =>
         props.theme.pagination.hoverTextColor};
-      transition: 0.3s all;
+      transition: all 0.3s;
     }
   }
 `;

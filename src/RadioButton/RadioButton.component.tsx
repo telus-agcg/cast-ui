@@ -143,7 +143,7 @@ const SInput = styled.input<Partial<Props>>`
     cursor: pointer;
     margin-right: 5px;
     padding: 3px;
-    transition: 0.3s all;
+    transition: all 0.3s;
   }
   &:disabled + label {
     color: ${(props: Partial<Props>) => props.theme.radioButton.disabledText};
