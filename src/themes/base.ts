@@ -149,7 +149,7 @@ export const buildTheme = colors => ({
     activeBackground: colors.white,
     disabledText: colors.drk200,
     disabledBackground: colors.white,
-    hoverTextColor: colors.primary,
+    hoverTextColor: colors.primaryHover,
     hoverBackground: colors.white,
     hoverFontWeight: 'bold',
 
