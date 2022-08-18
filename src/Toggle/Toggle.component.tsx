@@ -108,6 +108,7 @@ const SDiv = styled.div`
         ? props.theme.toggle.inactiveDisabledBorderColor
         : props.theme.toggle.inactiveBorderColor};
     border-radius: 50px;
+    transition: all 0.3s;
   }
 
   input:checked + label {
@@ -149,7 +150,6 @@ const SDiv = styled.div`
     width: ${(props: Props) =>
       props.theme.toggle[props.toggleSize!].toggleSize};
   }
-  transition: all 0.3s;
 `;
 
 export class Toggle extends React.Component<Props> {
