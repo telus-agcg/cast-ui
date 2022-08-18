@@ -239,9 +239,6 @@ const SDiv = styled.div<Props>`
     }
   }
   .react-select-component {
-    &:hover {
-      background-color: ${(props: Props) => props.theme.colors.primaryHover};
-    }
     .react-select__control {
       transition: all 0.3s;
       min-height: ${(props: Props) =>
