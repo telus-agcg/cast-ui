@@ -212,7 +212,9 @@ const SInputWrapper = styled.div<Partial<Props>>`
     border: ${(props: Props) => props.theme.input.disabled.border};
     background: ${(props: Props) => props.theme.input.disabled.background};
     cursor: not-allowed;
-
+    &:hover {
+      border: ${(props: Props) => props.theme.input.disabled.border};
+    }
     & > div {
       color: ${(props: Props) => props.theme.input.disabled.addonTextColor};
     }
