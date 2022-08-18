@@ -70,7 +70,6 @@ const SWrapperDiv = styled(ReactTable)`
   border: none !important;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.table.fontSize};
-  transition: all 0.3s;
   width: 100%;
   box-sizing: border-box;
   .word-break {
@@ -125,6 +124,7 @@ const SWrapperDiv = styled(ReactTable)`
       props.theme.table.row.borderBottomColor};
     border-bottom-style: solid;
     border-bottom-width: 1px;
+    transition: 0.3s all;
   }
 
   &.ReactTable .rt-tbody .rt-tr-group:last-child .rt-tr {
