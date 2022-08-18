@@ -6,7 +6,6 @@ const sampleFile = {
   size: 9032385,
   type: 'application/x-yaml',
 };
-const TestAttachmentsComponent = () => {};
 
 const description = `
 This is a FileUpload Component. 
