@@ -167,7 +167,6 @@ export const PaginationPageButton = styled.button`
           props.theme.pagination.hoverTextColor};
       color: ${(props: PaginationPageButtonProps) =>
         props.theme.pagination.hoverTextColor};
-      transition: all 0.3s;
     }
   }
 `;
