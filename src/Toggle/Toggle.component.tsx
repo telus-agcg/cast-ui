@@ -108,7 +108,7 @@ const SDiv = styled.div`
         ? props.theme.toggle.inactiveDisabledBorderColor
         : props.theme.toggle.inactiveBorderColor};
     border-radius: 50px;
-    transition: 0.3s;
+    transition: all 0.3s;
   }
 
   input:checked + label {
@@ -137,7 +137,7 @@ const SDiv = styled.div`
       props.disabled
         ? props.theme.toggle.activeDisabledColor
         : props.theme.colors.primaryHover};
-    transition: 0.3s all;
+    transition: all 0.3s;
   }
 
   input:not(:checked) + label:hover:after {
@@ -145,7 +145,7 @@ const SDiv = styled.div`
       props.disabled
         ? props.theme.toggle.activeDisabledColor
         : props.theme.colors.drk800};
-    transition: 0.3s all;
+    transition: all 0.3s;
   }
 
   label:active:after {

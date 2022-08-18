@@ -156,7 +156,7 @@ const SInput = styled.input`
       props.theme.checkbox[props.cbSize!].squareMargin};
     margin-right: 5px;
     padding: 3px;
-    transition: 0.3s all;
+    transition: all 0.3s;
   }
   &:disabled + label {
     color: ${(props: Props) => props.theme.checkbox.disabledText};
