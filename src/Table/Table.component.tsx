@@ -127,7 +127,7 @@ const SWrapperDiv = styled(ReactTable)`
     transition: 0.3s all;
   }
 
-  &.ReactTable .rt-tbody .rt-tr-group:last-child .rt-tr {
+  &.ReactTable .rt-tbody > .rt-tr-group:last-child .rt-tr:last-child {
     border: none;
   }
 
