@@ -108,7 +108,7 @@ const SDiv = styled.div`
         ? props.theme.toggle.inactiveDisabledBorderColor
         : props.theme.toggle.inactiveBorderColor};
     border-radius: 50px;
-    transition: 0.3s;
+    transition: all 0.3s;
   }
 
   input:checked + label {
@@ -130,6 +130,20 @@ const SDiv = styled.div`
       props.disabled
         ? props.theme.toggle.activeDisabledBorderColor
         : props.theme.toggle.activeBorderColor};
+  }
+
+  input:checked + label:hover:after {
+    background: ${(props: Props) =>
+      props.disabled
+        ? props.theme.toggle.activeDisabledColor
+        : props.theme.colors.primaryHover};
+  }
+
+  input:not(:checked) + label:hover:after {
+    background: ${(props: Props) =>
+      props.disabled
+        ? props.theme.toggle.activeDisabledColor
+        : props.theme.colors.drk800};
   }
 
   label:active:after {

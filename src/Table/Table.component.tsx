@@ -124,6 +124,7 @@ const SWrapperDiv = styled(ReactTable)`
       props.theme.table.row.borderBottomColor};
     border-bottom-style: solid;
     border-bottom-width: 1px;
+    transition: 0.3s all;
   }
 
   &.ReactTable .rt-tbody .rt-tr-group:last-child .rt-tr {

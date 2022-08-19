@@ -130,7 +130,10 @@ const STab = styled.div`
       props.theme.tabnav[`${props.active ? 'active' : ''}tab`].iconColor};
   }
   &:hover {
-    background-color: ${(props: any) => props.theme.colors.primaryFaded};
+    background-color: ${(props: any) =>
+      props.active
+        ? props.theme.colors.primaryHover
+        : props.theme.colors.primaryFaded};
   }
   transition: all 0.3s;
 `;

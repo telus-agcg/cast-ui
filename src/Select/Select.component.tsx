@@ -240,6 +240,7 @@ const SDiv = styled.div<Props>`
   }
   .react-select-component {
     .react-select__control {
+      transition: all 0.3s;
       min-height: ${(props: Props) =>
         props.theme.select[props.selectSize!].height};
       border-radius: ${(props: Props) =>
@@ -250,6 +251,9 @@ const SDiv = styled.div<Props>`
         (props.invalid
           ? props.theme.validation.borderColor
           : props.theme.select.borderColor || 'inherit')};
+      &:hover {
+        border-color: ${(props: Props) => props.theme.colors.drk800};
+      }
       .react-select__value-container {
         color: ${(props: Props) => props.theme.colors.drk800};
         padding: ${(props: Props) =>
