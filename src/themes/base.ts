@@ -850,7 +850,7 @@ export const buildTheme = colors => ({
     },
     md: {
       height: '32px',
-      padding: '3px 10px 2px',
+      padding: '0px 10px',
     },
     lg: {
       height: '40px',
