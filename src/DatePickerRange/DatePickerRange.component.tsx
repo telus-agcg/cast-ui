@@ -132,7 +132,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
   }
   .DateRangePickerInput__withBorder {
-    border-color: border-color: ${(props: Partial<Props>) =>
+    border-color: ${(props: Partial<Props>) =>
       props.invalid
         ? props.theme.validation.borderColor
         : props.theme.input.borderColor};
