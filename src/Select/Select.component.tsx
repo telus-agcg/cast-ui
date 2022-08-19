@@ -270,11 +270,6 @@ const SDiv = styled.div<Props>`
         .react-select__placeholder {
           color: ${(props: Props) => props.theme.select.placeholderColor};
         }
-
-        div:last-child {
-          margin: 0px;
-          padding: 0px;
-        }
       }
 
       .react-select__multi-value {
