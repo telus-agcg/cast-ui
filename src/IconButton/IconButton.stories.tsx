@@ -53,9 +53,6 @@ export default {
     btnSize: {
       control: false,
     },
-    color: {
-      control: false,
-    },
     icon: {
       control: false,
     },

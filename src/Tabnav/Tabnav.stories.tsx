@@ -19,17 +19,6 @@ export default {
         type: 'onTabClick',
       },
     },
-    background: {
-      control: {
-        type: 'control',
-      },
-    },
-    borderTop: {
-      control: false,
-    },
-    borderBottom: {
-      control: false,
-    },
     tabs: {
       control: false,
     },

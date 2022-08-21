@@ -8,24 +8,6 @@ import _ from 'lodash';
 
 export type Props = {
   /**
-   * The shorthand string for setting element background
-   *
-   * @default ''
-   **/
-  background?: string;
-  /**
-   * The shorthand string for setting element border-top
-   *
-   * @default ''
-   **/
-  borderTop?: string;
-  /**
-   * The shorthand string for setting element border-bottom
-   *
-   * @default ''
-   **/
-  borderBottom?: string;
-  /**
    * An array of objects.
    * Each object define properties of a each tab.
    * If an object has property children<Array>, the children
@@ -81,12 +63,9 @@ const STabNav = styled.div`
   font-size: ${(props: Props) => props.theme.typography.fontSize};
   color: ${(props: Props) => props.theme.tabnav.color};
   padding: ${(props: Props) => props.theme.tabnav.padding};
-  background: ${(props: Props) =>
-    props.background || props.theme.tabnav.background};
-  border-top: ${(props: Props) =>
-    props.borderTop || props.theme.tabnav.borderTop};
-  border-bottom: ${(props: Props) =>
-    props.borderBottom || props.theme.tabnav.borderBottom};
+  background: ${(props: Props) => props.theme.tabnav.background};
+  border-top: ${(props: Props) => props.theme.tabnav.borderTop};
+  border-bottom: ${(props: Props) => props.theme.tabnav.borderBottom};
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -33,31 +33,6 @@ export default {
         type: 'text',
       },
     },
-    bodyBackgroundColor: {
-      control: {
-        type: 'color',
-      },
-    },
-    bodyBorderColor: {
-      control: {
-        type: 'color',
-      },
-    },
-    headerColor: {
-      control: {
-        type: 'color',
-      },
-    },
-    headerBackgroundColor: {
-      control: {
-        type: 'color',
-      },
-    },
-    headerBorderColor: {
-      control: {
-        type: 'color',
-      },
-    },
     withHeader: {
       control: {
         type: 'boolean',
@@ -95,9 +70,6 @@ const _Panel = ({
   title,
   panelStyle,
   withHeader,
-  headerColor,
-  headerBackgroundColor,
-  headerBorderColor,
   iconPosition,
   toggleItem,
   isCollapsed,
@@ -120,9 +92,6 @@ const _Panel = ({
           name={name}
           title={title}
           panelStyle={panelStyle}
-          headerColor={headerColor}
-          headerBorderColor={headerBorderColor}
-          headerBackgroundColor={headerBackgroundColor}
           iconPosition={iconPosition}
           isCollapsed={openPanel}
           toggleItem={handleTogglePanel}
@@ -160,7 +129,6 @@ _Regular.args = {
   name: 'Blood Group',
   title: 'A- type',
   panelStyle: 'primary',
-  headerColor: 'white',
   withHeader: false,
   withCollapse: false,
   noPadding: false,
@@ -171,10 +139,8 @@ _WithHeader.args = {
   name: 'Blood Group',
   title: 'B- type',
   panelStyle: 'primary',
-  headerColor: 'white',
   withHeader: true,
   withCollapse: false,
-  headerBackgroundColor: 'secondary',
   noPadding: false,
 };
 
@@ -183,11 +149,9 @@ _Collapsible.args = {
   name: 'Blood Group',
   title: 'O+ type',
   panelStyle: 'primary',
-  headerColor: 'white',
   withHeader: true,
   withCollapse: true,
   isOpen: true,
-  headerBackgroundColor: 'secondary',
   noPadding: false,
   iconPosition: 'right',
 };

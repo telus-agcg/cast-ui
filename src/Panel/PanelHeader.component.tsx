@@ -22,24 +22,6 @@ export type Props = {
    * */
   title?: string;
   /**
-   * Set header color. A CSS color code or a color defined in theme colors
-   *
-   * @default 'primary'
-   **/
-  headerColor?: string;
-  /**
-   * Set header background color. A CSS color code or a color defined in theme colors
-   *
-   * @default 'white'
-   **/
-  headerBackgroundColor?: string;
-  /**
-   * Set header border color. A CSS color code or a color defined in theme colors
-   *
-   * @default 'gray'
-   **/
-  headerBorderColor?: string;
-  /**
    * Set PanelHeader Style
    *
    *  @default 'primary'
@@ -77,13 +59,11 @@ const SPanelHeader = styled.div`
   background: ${(props: Props) =>
     props.theme.styles[props.panelStyle!].lightFlood};
   padding: ${(props: Props) => props.theme.panel.header.padding};
-  color: ${(props: Props) =>
-    props.headerColor || props.theme.panel.headerColor};
-  background: ${(props: Props) =>
-    props.headerBackgroundColor || props.theme.panel.headerBackgroundColor};
+  color: ${(props: Props) => props.theme.panel.headerColor};
+  background: ${(props: Props) => props.theme.panel.headerBackgroundColor};
   border: ${(props: Props) =>
     `${props.theme.panel.borderWidth} solid
-    ${props.headerBorderColor || props.theme.panel.headerBorderColor}`};
+    ${props.theme.panel.headerBorderColor}`};
   &:hover {
     cursor: ${(props: Props) =>
       props.isCollapsed !== undefined ? 'pointer' : 'auto'};
@@ -152,8 +132,6 @@ type State = Readonly<typeof initialState>;
 export class PanelHeader extends React.Component<Props> {
   static defaultProps = {
     panelStyle: 'primary',
-    headerColor: 'primary',
-    headerBackgroundColor: 'white',
     toggleItem: () => {},
     theme: Themes.defaultTheme,
   };
