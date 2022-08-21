@@ -181,7 +181,7 @@ export const cobaltTheme = {
   pagination: {
     text: cobaltColors.drk800,
     fontWeight: 'normal',
-    padding: '4px 0',
+    padding: '0',
     background: cobaltColors.white,
 
     activeText: cobaltColors.primary,
@@ -664,7 +664,7 @@ export const cobaltTheme = {
     fontSize: '11px',
     fontStyle: 'italic',
     lineHeight: '13px',
-    padding: '4px',
+    padding: '4px 4px 0px',
   },
   table: {
     fontSize: '14px',
