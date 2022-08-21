@@ -23,7 +23,7 @@ ReactTabListProxy.tabsRole = 'TabList';
 
 const SReactTabList = styled(ReactTabListProxy)`
   border-bottom: 1px solid #aaa;
-  margin: 0 0 10px;
+  margin: 0;
   padding: 0 0 5px;
 `;
 
