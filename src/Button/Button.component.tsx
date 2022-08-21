@@ -29,12 +29,6 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    **/
   btnSize?: 'sm' | 'md' | 'lg';
   /**
-   * Override default background color
-   *
-   * @default ''
-   **/
-  backgroundColor?: string;
-  /**
    * Specify if the button is disabled
    *
    * @default false

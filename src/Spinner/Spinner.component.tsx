@@ -8,12 +8,6 @@ export type Props = {
    *
    * @default ''
    **/
-  backgroundColor?: string;
-  /**
-   * Set body background color. A CSS color code
-   *
-   * @default ''
-   **/
   borderColor?: string;
   /**
    * Adjust spinner size in pixels
@@ -59,7 +53,7 @@ const SSpinner = styled.div`
     border-radius: 50%;
     border: ${(props: Props) =>
       `3px solid
-      ${props.backgroundColor || props.theme.spinner.backgroundColor}`};
+      ${props.theme.spinner.backgroundColor}`};
     border-top-color: ${(props: Props) =>
       props.borderColor || props.theme.spinner.borderColor};
     animation: ${(props: Props) =>

@@ -11,11 +11,6 @@ export default {
         disable: true,
       },
     },
-    backgroundColor: {
-      control: {
-        type: 'color',
-      },
-    },
     size: {
       control: {
         type: 'select',

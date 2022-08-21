@@ -59,9 +59,6 @@ export default {
     icon: {
       control: false,
     },
-    backgroundColor: {
-      control: false,
-    },
     selected: {
       control: false,
     },
