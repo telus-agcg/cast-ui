@@ -23,9 +23,6 @@ export default {
         options: [1, 2, 3, 4, 5],
       },
     },
-    borderColor: {
-      control: false,
-    },
     transitionType: {
       control: false,
     },

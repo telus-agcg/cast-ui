@@ -4,12 +4,6 @@ import { Themes } from '../themes';
 
 export type Props = {
   /**
-   * Set body background color. A CSS color code
-   *
-   * @default ''
-   **/
-  borderColor?: string;
-  /**
    * Adjust spinner size in pixels
    *
    * @default 50
@@ -54,8 +48,7 @@ const SSpinner = styled.div`
     border: ${(props: Props) =>
       `3px solid
       ${props.theme.spinner.backgroundColor}`};
-    border-top-color: ${(props: Props) =>
-      props.borderColor || props.theme.spinner.borderColor};
+    border-top-color: ${(props: Props) => props.theme.spinner.borderColor};
     animation: ${(props: Props) =>
       `spinner ${props.animationSpeed}s ${props.transitionType} infinite`};
   }

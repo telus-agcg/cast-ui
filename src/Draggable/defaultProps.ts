@@ -24,12 +24,6 @@ export type DraggableProps = {
    **/
   color?: string;
   /**
-   * Select Draggable Parent borders' color.
-   *
-   * @default 'lightGray'
-   **/
-  borderColor?: string;
-  /**
    * Select Draggable Gutters Size
    *
    * @default 'md'
