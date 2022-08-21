@@ -48,7 +48,7 @@ const SReactTab = styled(ReactTabProxy)`
   border-radius: ${(props: Props) => props.theme.tabs.borderRadius};
   font-size: ${(props: Props) => props.theme.tabs.fontSize};
   font-weight: normal;
-  transition: 0.3s all;
+  transition: all 0.3s;
 
   &:focus,
   &:hover {
@@ -65,7 +65,7 @@ const SReactTab = styled(ReactTabProxy)`
 
   &[class$='--selected']:focus,
   &[class$='--selected']:hover {
-    background-color: ${(props: any) => props.theme.colors.primaryFaded};
+    background-color: ${(props: any) => props.theme.colors.primaryHover};
   }
 
   &[class$='--disabled'] {

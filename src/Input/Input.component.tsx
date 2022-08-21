@@ -181,6 +181,7 @@ const SInputWrapper = styled.div<Partial<Props>>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
+  transition: all 0.3s;
   border: ${(props: Props) =>
     `${props.theme.input.borderWidth} 
      ${props.theme.input.borderStyle} 
@@ -212,10 +213,16 @@ const SInputWrapper = styled.div<Partial<Props>>`
     border: ${(props: Props) => props.theme.input.disabled.border};
     background: ${(props: Props) => props.theme.input.disabled.background};
     cursor: not-allowed;
-
+    &:hover {
+      border: ${(props: Props) => props.theme.input.disabled.border};
+    }
     & > div {
       color: ${(props: Props) => props.theme.input.disabled.addonTextColor};
     }
+  }
+
+  &:hover {
+    border-color: ${(props: Props) => props.theme.colors.drk800};
   }
 `;
 

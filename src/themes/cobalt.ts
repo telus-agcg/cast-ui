@@ -541,7 +541,8 @@ export const cobaltTheme = {
   textarea: {
     background: cobaltColors.white,
     backgroundDisabled: cobaltColors.secondaryBackground,
-    borderColor: cobaltColors.secondary,
+    borderColor: cobaltColors.drk400,
+    hoverBorderColor: cobaltColors.drk800,
     color: cobaltColors.drk800,
     padding: '6px 12px',
     placeholderColor: cobaltColors.drk400,
@@ -876,7 +877,7 @@ export const cobaltTheme = {
     },
     md: {
       height: '32px',
-      padding: '3px 10px 2px',
+      padding: '0px 10px',
     },
     lg: {
       height: '40px',

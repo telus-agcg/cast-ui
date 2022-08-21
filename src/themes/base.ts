@@ -149,7 +149,7 @@ export const buildTheme = colors => ({
     activeBackground: colors.white,
     disabledText: colors.drk200,
     disabledBackground: colors.white,
-    hoverTextColor: colors.primary,
+    hoverTextColor: colors.primaryHover,
     hoverBackground: colors.white,
     hoverFontWeight: 'bold',
 
@@ -501,7 +501,8 @@ export const buildTheme = colors => ({
   textarea: {
     background: colors.white,
     backgroundDisabled: colors.secondaryBackground,
-    borderColor: colors.secondary,
+    borderColor: colors.drk400,
+    hoverBorderColor: colors.drk800,
     color: colors.drk800,
     padding: '6px 12px',
     placeholderColor: colors.drk400,
@@ -836,7 +837,7 @@ export const buildTheme = colors => ({
     },
     md: {
       height: '32px',
-      padding: '3px 10px 2px',
+      padding: '0px 10px',
     },
     lg: {
       height: '40px',

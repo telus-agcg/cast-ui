@@ -91,20 +91,23 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     border: none;
     border-radius: ${(props: Partial<Props>) =>
       props.theme.common[props.datePickerSize!].borderRadius};
-    &[data-invalid] {
-      border-color: ${(props: Partial<Props>) =>
-        props.theme.validation.borderColor};
-    }
     ::placeholder {
       color: ${(props: Partial<Props>) => props.theme.input.placeholderColor};
     }
   }
   .SingleDatePickerInput {
-    border: ${(props: Partial<Props>) => props.theme.input.border};
-  }
-  .SingleDatePickerInput {
     background: ${(props: Partial<Props>) => props.theme.colors.white};
     display: flex;
+  }
+  .SingleDatePickerInput__withBorder {
+    border-color: ${(props: Partial<Props>) =>
+      props.invalid
+        ? props.theme.validation.borderColor
+        : props.theme.input.borderColor};
+    transition: all 0.3s;
+  }
+  .SingleDatePickerInput__withBorder:hover {
+    border-color: ${(props: Partial<Props>) => props.theme.colors.drk800};
   }
   .SingleDatePickerInput_calendarIcon {
     padding: 0 10px;

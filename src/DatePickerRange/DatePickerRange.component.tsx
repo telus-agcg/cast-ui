@@ -132,7 +132,14 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
   }
   .DateRangePickerInput__withBorder {
-    border-color: ${(props: Partial<Props>) => props.theme.select.borderColor}
+    border-color: ${(props: Partial<Props>) =>
+      props.invalid
+        ? props.theme.validation.borderColor
+        : props.theme.input.borderColor};
+    transition: all 0.3s;
+  }
+  .DateRangePickerInput__withBorder:hover {
+    border-color: ${(props: Partial<Props>) => props.theme.colors.drk800}
   }
   .DayPickerKeyboardShortcuts_show__bottomRight::before {
     border-right: 33px solid ${(props: Partial<Props>) =>

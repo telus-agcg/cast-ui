@@ -143,6 +143,7 @@ const SInput = styled.input<Partial<Props>>`
     cursor: pointer;
     margin-right: 5px;
     padding: 3px;
+    transition: all 0.3s;
   }
   &:disabled + label {
     color: ${(props: Partial<Props>) => props.theme.radioButton.disabledText};
@@ -159,12 +160,28 @@ const SInput = styled.input<Partial<Props>>`
     background-color: ${(props: Partial<Props>) =>
       props.theme.radioButton.borderColor};
   }
+  &:checked + label:hover:before {
+    border-color: ${(props: Partial<Props>) => props.theme.colors.primaryHover};
+    background-color: ${(props: Partial<Props>) =>
+      props.theme.colors.primaryHover};
+  }
+
+  &:not(:checked) + label:hover:before {
+    border-color: ${(props: Partial<Props>) => props.theme.colors.primaryHover};
+  }
+
   &:disabled:checked + label:before {
     border-color: ${(props: Partial<Props>) =>
       props.theme.radioButton.disabledRadio};
     background-color:  ${(props: Partial<Props>) =>
       props.theme.radioButton.disabledRadio};
   }
+
+  &:disabled:not(:checked)+ label:before{
+    border-color: ${(props: Partial<Props>) =>
+      props.theme.radioButton.disabledRadio};
+  }
+
 `;
 
 export class RadioButton extends React.Component<Props> {
