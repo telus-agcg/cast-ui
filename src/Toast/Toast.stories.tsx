@@ -60,21 +60,12 @@ export default {
 };
 
 export const _Toast = args => (
-  <div
-    style={{
-      position: 'relative',
-      width: '100%',
-      height: '100px',
-      border: '1px solid rgba(0,0,0,0.1)',
-    }}
-  >
-    <Toast {...args}>TOASTER</Toast>
-  </div>
+  <Toast {...args}>You have a new notification</Toast>
 );
 
 _Toast.args = {
-  position: 'fixed top left',
+  position: 'fixed top right',
   active: true,
-  lightMode: true,
+  lightmode: true,
   toastStyle: 'primary',
 };

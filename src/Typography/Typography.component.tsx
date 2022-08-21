@@ -25,13 +25,19 @@ export const Typography: React.FunctionComponent<Props> = ({
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
     <STypography>
-      <Display>Display</Display>
-      <Header>Header</Header>
-      <Title>Title</Title>
-      <p>Body text</p>
-      <Caption>Caption</Caption>
-      <Link href="https://www.tkxs.com" target="_blank">
-        Standalone link
+      <Display size={20}>Display Size 20</Display>
+      <Display size={10}>Display Size 10</Display>
+      <Title size={20}>Title Size 20</Title>
+      <Title size={10}>Title Size 10</Title>
+      <Header size={20}>Header Size 20</Header>
+      <Header size={10}>Header Size 10</Header>
+      <p>
+        Etiam ullamcorper, metus sed luctus auctor, tortor lorem auctor quam, ut
+        condimentum massa tellus at turpis.
+      </p>
+      <Caption>Use for hero images and website headers</Caption>
+      <Link solo={true} href="https://www.tkxs.com" target="_blank">
+        Read More
       </Link>
       <br />
       <p>
