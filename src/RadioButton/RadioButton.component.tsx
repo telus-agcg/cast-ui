@@ -177,13 +177,11 @@ const SInput = styled.input<Partial<Props>>`
       props.theme.radioButton.disabledRadio};
     background-color:  ${(props: Partial<Props>) =>
       props.theme.radioButton.disabledRadio};
-      cursor: not-allowed;
   }
 
   &:disabled:not(:checked)+ label:before{
     border-color: ${(props: Partial<Props>) =>
       props.theme.radioButton.disabledRadio};
-      cursor: not-allowed;
   }
 
 `;
