@@ -480,7 +480,7 @@ export const buildTheme = colors => ({
   modal: {
     header: {
       minHeight: '0',
-      backgroundColor: colors.lt200,
+      backgroundColor: colors.white,
       borderColor: colors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -495,7 +495,7 @@ export const buildTheme = colors => ({
     },
     footer: {
       minHeight: '0',
-      backgroundColor: colors.lt200,
+      backgroundColor: colors.white,
       borderColor: colors.lt800,
       padding: '15px',
     },
