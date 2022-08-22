@@ -316,6 +316,9 @@ const SDiv = styled.div<Props>`
           background-color: ${(props: Props) =>
             props.theme.select.multiSelect.badge.disabled.backgroundColor};
         }
+        .react-select__multi-value__remove {
+          color: ${(props: Props) => props.theme.select.disabled.color};
+        }
       }
 
       &.react-select__control--is-focused {
