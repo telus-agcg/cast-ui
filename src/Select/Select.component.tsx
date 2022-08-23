@@ -6,7 +6,7 @@ import { Themes } from '../themes';
 import uuid from 'uuid';
 import { SelectCheckboxProps } from './SelectCheckbox.component';
 import _ from 'lodash';
-import { SelectComponents } from '..';
+import { SelectComponents } from './index';
 import { getDataProps } from '../utils/common';
 
 export type OptionType = {

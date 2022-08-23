@@ -4,7 +4,7 @@ import { Tabs as ReactTabs, TabsProps } from 'react-tabs';
 import { Themes } from '../themes';
 import { Omit } from '../utils/castTypes';
 
-export interface Props extends Omit<TabsProps, 'ref'> {
+export interface Props extends Omit<TabsProps, 'as'> {
   /**
    * Specify the tab that should be open on initial render.
    * This is a zero-based index, so first tab is 0, second tab is 1, ...
