@@ -6,7 +6,7 @@ import postcss from 'rollup-plugin-postcss';
 import filesize from 'rollup-plugin-filesize';
 import autoprefixer from 'autoprefixer';
 import localResolve from 'rollup-plugin-local-resolve';
-import typescript from 'rollup-plugin-typescript2';
+import ts from 'rollup-plugin-ts';
 import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 
@@ -52,9 +52,7 @@ const config = {
       },
     }),
     filesize(),
-    typescript({
-      typescript: require('typescript'),
-    }),
+    ts({}),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
