@@ -1,7 +1,7 @@
 version: 2
 
 references:
-  image_npm: &image_node node:11
+  image_npm: &image_node node:16
   cache_key_npm: &cache_key_npm v2-npm-{{ checksum "package-lock.json" }}
   cache_key_backup_npm: &cache_key_backup_npm v2-npm-
   cache_path_npm: &cache_path_npm /usr/src/app/node_modules
