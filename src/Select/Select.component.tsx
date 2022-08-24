@@ -6,7 +6,7 @@ import { Themes } from '../themes';
 import uuid from 'uuid';
 import { SelectCheckboxProps } from './SelectCheckbox.component';
 import _ from 'lodash';
-import { SelectComponents } from '..';
+import { SelectComponents } from './index';
 import { getDataProps } from '../utils/common';
 
 export type OptionType = {
@@ -315,6 +315,9 @@ const SDiv = styled.div<Props>`
         .react-select__multi-value {
           background-color: ${(props: Props) =>
             props.theme.select.multiSelect.badge.disabled.backgroundColor};
+        }
+        .react-select__multi-value__remove {
+          color: ${(props: Props) => props.theme.select.disabled.color};
         }
       }
 

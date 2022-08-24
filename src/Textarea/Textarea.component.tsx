@@ -124,6 +124,9 @@ const STextarea = styled.textarea`
   }
   &:hover {
     border-color: ${(props: Props) => props.theme.textarea.hoverBorderColor};
+    &:disabled {
+      border-color: ${props => props.theme.textarea.disabled.borderColor};
+    }
   }
   transition: all 0.3s;
 `;

@@ -108,9 +108,7 @@ const displayStyleRules = (
 };
 
 const SDiv = styled.div<Partial<Props> & any>`
-	cursor: pointer;
   ${(props: any) => displayStyleRules(props.displayStyle, props.theme)}
-  }
 `;
 
 const SLabel = styled.label<Partial<Props>>`
@@ -148,6 +146,10 @@ const SInput = styled.input<Partial<Props>>`
   &:disabled + label {
     color: ${(props: Partial<Props>) => props.theme.radioButton.disabledText};
     cursor: not-allowed;
+  }
+  
+  &:not(:disabled) + label {
+    cursor: pointer;
   }
   &:disabled + label:before {
     border-color: ${(props: Partial<Props>) =>
