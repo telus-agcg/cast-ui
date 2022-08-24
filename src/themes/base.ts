@@ -499,6 +499,11 @@ export const buildTheme = colors => ({
       borderColor: colors.lt800,
       padding: '15px',
     },
+    button: {
+      disabledText: colors.drk200,
+      hoverBorderColor: colors.white,
+      hoverBackground: colors.lt400,
+    },
     overlay: {
       zIndex: '999999',
     },

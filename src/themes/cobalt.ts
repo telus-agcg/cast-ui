@@ -539,6 +539,11 @@ export const cobaltTheme = {
       borderColor: cobaltColors.lt800,
       padding: '15px',
     },
+    button: {
+      disabledText: cobaltColors.drk200,
+      hoverBorderColor: cobaltColors.white,
+      hoverBackground: cobaltColors.lt400,
+    },
     overlay: {
       zIndex: '999999',
     },
