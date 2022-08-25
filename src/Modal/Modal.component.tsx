@@ -89,6 +89,8 @@ const ModalHeaderDiv = styled.div`
   flex-shrink: 0;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   padding: ${(props: any) => props.theme.modal.header.padding};
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   h5 {
     font-size: ${(props: any) => props.theme.modal.header.fontSize};
     color: ${(props: any) => props.theme.modal.header.color};
@@ -122,7 +124,6 @@ const ModalHeaderDiv = styled.div`
           : props.theme.pagination.hoverTextColor};
     }
   }
-
 `;
 
 const ModalBodyDiv = styled.div`
@@ -143,6 +144,8 @@ const ModalFooterDiv = styled.div`
   text-align: ${(props: any) => props.theme.modal.footer.textAlign};
   background-color: ${(props: any) => props.theme.modal.footer.backgroundColor};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 `;
 
 export class Modal extends React.Component<Props> {
@@ -187,7 +190,7 @@ export class Modal extends React.Component<Props> {
         padding: '0',
         textAlign: 'left',
         fontSize: '14px',
-        borderRadius: '1px',
+        borderRadius: '5px',
         zIndex: this.props.theme.modal.overlay.zIndex,
       },
     };
