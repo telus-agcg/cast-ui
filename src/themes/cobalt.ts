@@ -518,6 +518,7 @@ export const cobaltTheme = {
     },
   },
   modal: {
+    borderRadius: '5px',
     header: {
       minHeight: '0',
       backgroundColor: cobaltColors.white,

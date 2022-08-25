@@ -478,6 +478,7 @@ export const buildTheme = colors => ({
     },
   },
   modal: {
+    borderRadius: '5px',
     header: {
       minHeight: '0',
       backgroundColor: colors.white,
