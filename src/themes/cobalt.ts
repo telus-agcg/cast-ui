@@ -518,9 +518,10 @@ export const cobaltTheme = {
     },
   },
   modal: {
+    borderRadius: '5px',
     header: {
       minHeight: '0',
-      backgroundColor: cobaltColors.lt200,
+      backgroundColor: cobaltColors.white,
       borderColor: cobaltColors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -535,9 +536,14 @@ export const cobaltTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: cobaltColors.lt200,
+      backgroundColor: cobaltColors.white,
       borderColor: cobaltColors.lt800,
       padding: '15px',
+    },
+    button: {
+      disabledText: cobaltColors.drk200,
+      hoverBorderColor: cobaltColors.white,
+      hoverBackground: cobaltColors.lt400,
     },
     overlay: {
       zIndex: '999999',

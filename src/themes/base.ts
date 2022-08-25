@@ -478,9 +478,10 @@ export const buildTheme = colors => ({
     },
   },
   modal: {
+    borderRadius: '5px',
     header: {
       minHeight: '0',
-      backgroundColor: colors.lt200,
+      backgroundColor: colors.white,
       borderColor: colors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -495,9 +496,14 @@ export const buildTheme = colors => ({
     },
     footer: {
       minHeight: '0',
-      backgroundColor: colors.lt200,
+      backgroundColor: colors.white,
       borderColor: colors.lt800,
       padding: '15px',
+    },
+    button: {
+      disabledText: colors.drk200,
+      hoverBorderColor: colors.white,
+      hoverBackground: colors.lt400,
     },
     overlay: {
       zIndex: '999999',
