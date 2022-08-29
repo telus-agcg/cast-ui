@@ -366,6 +366,9 @@ export const _EmptyTable = args => {
             accessor: 'weight',
             Aggregated: () => <></>,
             width: 150,
+            Footer: row => {
+              return <span>Total: 262g</span>;
+            },
           },
         ]}
         pageSizeOptions={[5, 10, 25, 50, 100]}
