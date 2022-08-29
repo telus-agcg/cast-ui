@@ -675,7 +675,7 @@ export const cobaltTheme = {
   },
   table: {
     fontSize: '14px',
-    border: `1px solid ${cobaltColors.lt800}`,
+    border: `1px solid ${cobaltColors.drk400}`,
     header: {
       borderBottomColor: cobaltColors.drk800,
       color: cobaltColors.drk800,
