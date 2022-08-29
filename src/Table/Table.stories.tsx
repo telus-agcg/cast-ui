@@ -304,6 +304,9 @@ export const _TableWithGroupedRows = args => {
             accessor: 'weight',
             Aggregated: () => <></>,
             width: 150,
+            Footer: row => {
+              return <span>Total: 262g</span>;
+            },
           },
         ]}
         pageSizeOptions={[5, 10, 25, 50, 100]}
@@ -316,6 +319,64 @@ export const _TableWithGroupedRows = args => {
 _TableWithGroupedRows.args = {
   tableSize: 'md',
   showPagination: true,
+  showPaginationTop: false,
+  showPaginationBottom: true,
+  showPageSizeOptions: true,
+  defaultPageSize: 10,
+  showPageJump: true,
+  collapseOnSortingChange: true,
+  collapseOnPageChange: true,
+  collapseOnDataChange: true,
+  freezeWhenExpanded: true,
+  filterable: false,
+  resizable: true,
+  sortable: true,
+  multiSort: true,
+  striped: true,
+  sizable: true,
+};
+
+export const _EmptyTable = args => {
+  return (
+    <div>
+      <Table
+        id={testTableId}
+        data={[]}
+        columns={[
+          {
+            PivotValue: () => <div />,
+            accessor: 'type',
+            width: 50,
+          },
+          {
+            Header: 'Name',
+            id: 'name',
+            accessor: val => val.name,
+            Aggregated: (row: any) => row.row.type,
+            width: 150,
+          },
+          {
+            Header: 'Color',
+            accessor: 'color',
+            Aggregated: () => <></>,
+            width: 150,
+          },
+          {
+            Header: 'Weight',
+            accessor: 'weight',
+            Aggregated: () => <></>,
+            width: 150,
+          },
+        ]}
+        pageSizeOptions={[5, 10, 25, 50, 100]}
+        {...args}
+      />
+    </div>
+  );
+};
+
+_EmptyTable.args = {
+  tableSize: 'md',
   showPaginationTop: false,
   showPaginationBottom: true,
   showPageSizeOptions: true,

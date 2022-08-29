@@ -134,6 +134,15 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .rt-tbody .rt-tr:hover {
     background-color: ${(props: any) => props.theme.table.row.hoverColor};
   }
+
+  &.ReactTable .rt-tfoot {
+    border-top-color: ${(props: any) =>
+      props.theme.table.header.borderBottomColor};
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: none;
+  }
+
   &.ReactTable .rt-thead .rt-th,
   &.ReactTable .rt-tbody .rt-td,
   &.ReactTable .rt-tfoot .rt-td {
@@ -225,6 +234,7 @@ const SWrapperDiv = styled(ReactTable)`
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
   }
   &.ReactTable .rt-noData {
+    position: static;
     width: 100%;
     display: flex;
     align-items: center;
@@ -232,6 +242,8 @@ const SWrapperDiv = styled(ReactTable)`
     top: 0px;
     height: 100px;
     background-color: ${(props: any) => props.theme.colors.secondaryBackground};
+    border: ${(props: any) => props.theme.table.border};
+    border-top: none;
     transform: none;
     left: 0;
   }
