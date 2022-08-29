@@ -635,7 +635,7 @@ export const buildTheme = colors => ({
   },
   table: {
     fontSize: '14px',
-    border: `1px solid ${colors.lt800}`,
+    border: `1px solid ${colors.drk400}`,
     header: {
       borderBottomColor: colors.drk800,
       color: colors.drk800,
