@@ -141,7 +141,7 @@ export const buildTheme = colors => ({
   pagination: {
     text: colors.drk800,
     fontWeight: 'normal',
-    padding: '4px 0',
+    padding: '0',
     background: colors.white,
 
     activeText: colors.primary,
@@ -359,7 +359,6 @@ export const buildTheme = colors => ({
       horizontalMargin: '12px 0',
     },
     label: {
-      padding: '8px 16px 4px 0',
       fontWeight: 500,
       horizontalWidth: '300px',
     },
@@ -631,7 +630,7 @@ export const buildTheme = colors => ({
     fontSize: '11px',
     fontStyle: 'italic',
     lineHeight: '13px',
-    padding: '4px',
+    padding: '4px 4px 0px',
   },
   table: {
     fontSize: '14px',
