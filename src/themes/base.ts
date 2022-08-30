@@ -581,7 +581,7 @@ export const buildTheme = colors => ({
   },
   card: {
     borderRadius: '2px',
-    borderColor: colors.secondaryHover,
+    borderColor: colors.drk400,
     fontSize: '14px',
     padding: '8px 16px',
     background: colors.white,

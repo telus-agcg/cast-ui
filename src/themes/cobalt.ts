@@ -621,7 +621,7 @@ export const cobaltTheme = {
   },
   card: {
     borderRadius: '2px',
-    borderColor: cobaltColors.secondaryHover,
+    borderColor: cobaltColors.drk400,
     fontSize: '14px',
     padding: '8px 16px',
     background: cobaltColors.white,
