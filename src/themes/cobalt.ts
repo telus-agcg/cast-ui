@@ -517,9 +517,10 @@ export const cobaltTheme = {
     },
   },
   modal: {
+    borderRadius: '5px',
     header: {
       minHeight: '0',
-      backgroundColor: cobaltColors.lt200,
+      backgroundColor: cobaltColors.white,
       borderColor: cobaltColors.lt800,
       padding: '15px',
       fontSize: '16px',
@@ -534,9 +535,14 @@ export const cobaltTheme = {
     },
     footer: {
       minHeight: '0',
-      backgroundColor: cobaltColors.lt200,
+      backgroundColor: cobaltColors.white,
       borderColor: cobaltColors.lt800,
       padding: '15px',
+    },
+    button: {
+      disabledText: cobaltColors.drk200,
+      hoverBorderColor: cobaltColors.white,
+      hoverBackground: cobaltColors.lt400,
     },
     overlay: {
       zIndex: '999999',
@@ -668,7 +674,7 @@ export const cobaltTheme = {
   },
   table: {
     fontSize: '14px',
-    border: `1px solid ${cobaltColors.lt800}`,
+    border: `1px solid ${cobaltColors.drk400}`,
     header: {
       borderBottomColor: cobaltColors.drk800,
       color: cobaltColors.drk800,

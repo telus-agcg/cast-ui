@@ -86,11 +86,11 @@ const SReactModal = styled(ReactModal)`
 const ModalHeaderDiv = styled.div`
   min-height: ${(props: any) => props.theme.modal.header.minHeight};
   background-color: ${(props: any) => props.theme.modal.header.backgroundColor};
-  border-bottom: ${(props: any) =>
-    `1px solid ${props.theme.modal.header.borderColor}`};
   flex-shrink: 0;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   padding: ${(props: any) => props.theme.modal.header.padding};
+  border-top-left-radius: ${(props: any) => props.theme.modal.borderRadius};
+  border-top-right-radius: ${(props: any) => props.theme.modal.borderRadius};
   h5 {
     font-size: ${(props: any) => props.theme.modal.header.fontSize};
     color: ${(props: any) => props.theme.modal.header.color};
@@ -101,7 +101,8 @@ const ModalHeaderDiv = styled.div`
     position: absolute;
     right: 0;
     top: 0;
-    padding: 15px;
+    padding: 12px;
+    margin: 2px;
     line-height: 20px;
     font-weight: 300;
     font-size: 30px;
@@ -112,6 +113,16 @@ const ModalHeaderDiv = styled.div`
     -moz-appearance: none;
     appearance: none;
     cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s;
+    &:hover {
+      background-color: ${props =>
+        props.disabled ? 'none' : props.theme.modal.button.hoverBackground};
+      color: ${props =>
+        props.disabled
+          ? props.theme.pagination.button.disabledText
+          : props.theme.pagination.hoverTextColor};
+    }
   }
 `;
 
@@ -133,10 +144,8 @@ const ModalFooterDiv = styled.div`
   text-align: ${(props: any) => props.theme.modal.footer.textAlign};
   background-color: ${(props: any) => props.theme.modal.footer.backgroundColor};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
-  border-top: ${(props: Props) =>
-    props.modalTitle && props.modalTitle !== undefined
-      ? `1px solid ${props.theme.modal.footer.borderColor}`
-      : 'none'};
+  border-bottom-left-radius: ${(props: any) => props.theme.modal.borderRadius};
+  border-bottom-right-radius: ${(props: any) => props.theme.modal.borderRadius};
 `;
 
 export class Modal extends React.Component<Props> {
@@ -181,7 +190,7 @@ export class Modal extends React.Component<Props> {
         padding: '0',
         textAlign: 'left',
         fontSize: '14px',
-        borderRadius: '1px',
+        borderRadius: this.props.theme.modal.borderRadius,
         zIndex: this.props.theme.modal.overlay.zIndex,
       },
     };
