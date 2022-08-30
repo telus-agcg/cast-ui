@@ -136,13 +136,14 @@ const ModalBodyDiv = styled.div`
   color: ${(props: any) => props.theme.modal.body.color};
   &:before {
     position: fixed;
-    bottom: 60px;
+    bottom: 61px;
     left: 15px;
     right: 15px;
-    height: 22px;
+    height: 17px;
     content: '';
     backdrop-filter: blur(1px);
     z-index: 1;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
   }
 `;
 
