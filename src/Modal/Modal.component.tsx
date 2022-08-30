@@ -134,6 +134,15 @@ const ModalBodyDiv = styled.div`
   overflow-y: ${(props: any) =>
     props.modalSize === 'full' ? 'scroll' : 'auto'};
   color: ${(props: any) => props.theme.modal.body.color};
+  &:before {
+    position: fixed;
+    bottom: 50px;
+    left: 15px;
+    right: 15px;
+    height: 22px;
+    content: '';
+    backdrop-filter: blur(1px);
+  }
 `;
 
 const ModalFooterDiv = styled.div`
