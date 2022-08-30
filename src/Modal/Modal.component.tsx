@@ -134,6 +134,15 @@ const ModalBodyDiv = styled.div`
   overflow-y: ${(props: any) =>
     props.modalSize === 'full' ? 'scroll' : 'auto'};
   color: ${(props: any) => props.theme.modal.body.color};
+  &:before {
+    position: fixed;
+    bottom: 50px;
+    left: 15px;
+    right: 15px;
+    height: 22px;
+    content: '';
+    backdrop-filter: blur(1px);
+  }
 `;
 
 const ModalFooterDiv = styled.div`
@@ -146,9 +155,6 @@ const ModalFooterDiv = styled.div`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   border-bottom-left-radius: ${(props: any) => props.theme.modal.borderRadius};
   border-bottom-right-radius: ${(props: any) => props.theme.modal.borderRadius};
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
-  backdrop-filter: blur(1px);
-  margin-top: -20px;
 `;
 
 export class Modal extends React.Component<Props> {
