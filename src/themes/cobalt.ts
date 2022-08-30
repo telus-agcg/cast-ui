@@ -181,7 +181,7 @@ export const cobaltTheme = {
   pagination: {
     text: cobaltColors.drk800,
     fontWeight: 'normal',
-    padding: '4px 0',
+    padding: '0',
     background: cobaltColors.white,
 
     activeText: cobaltColors.primary,
@@ -399,7 +399,6 @@ export const cobaltTheme = {
       horizontalMargin: '12px 0',
     },
     label: {
-      padding: '8px 16px 4px 0',
       fontWeight: 500,
       horizontalWidth: '300px',
     },
@@ -621,7 +620,7 @@ export const cobaltTheme = {
   },
   card: {
     borderRadius: '2px',
-    borderColor: cobaltColors.secondaryHover,
+    borderColor: cobaltColors.drk400,
     fontSize: '14px',
     padding: '8px 16px',
     background: cobaltColors.white,
@@ -671,11 +670,11 @@ export const cobaltTheme = {
     fontSize: '11px',
     fontStyle: 'italic',
     lineHeight: '13px',
-    padding: '4px',
+    padding: '4px 4px 0px',
   },
   table: {
     fontSize: '14px',
-    border: `1px solid ${cobaltColors.lt800}`,
+    border: `1px solid ${cobaltColors.drk400}`,
     header: {
       borderBottomColor: cobaltColors.drk800,
       color: cobaltColors.drk800,
