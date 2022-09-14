@@ -136,6 +136,18 @@ const ModalBodyDiv = styled.div`
   color: ${(props: any) => props.theme.modal.body.color};
 `;
 
+const ModalBodyBlurredDiv = styled.div`
+  position: fixed;
+  width: 95%;
+  bottom: 0px;
+  margin-bottom: ${(props: any) => (props.hasFooter ? '-1px' : '0px')};
+  left: ${(props: any) => props.theme.modal.body.padding};
+  height: ${(props: any) => props.theme.modal.body.padding};
+  content: '';
+  backdrop-filter: blur(1px);
+  z-index: 1;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+`;
 const ModalFooterDiv = styled.div`
   flex-shrink: 0;
   padding: ${(props: any) => props.theme.modal.footer.padding};
@@ -152,7 +164,6 @@ export class Modal extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
-
   static defaultProps = {
     modalSize: 'md',
     theme: Themes.defaultTheme,
@@ -201,7 +212,32 @@ export class Modal extends React.Component<Props> {
     if (fn) {
       fn();
     }
+
+    const footerDOM = document.getElementsByClassName('footer');
+    const blurElement = document.getElementsByClassName(
+      'transparent',
+    )[0] as HTMLElement;
+    if (footerDOM.length > 0) {
+      const footerHeight = footerDOM[0].clientHeight;
+      blurElement.style.bottom = `${footerHeight}px`;
+    }
+    const element = document.getElementsByClassName('body')[0];
+    let hasScrollbar = this.hasScroll(element);
+    if (!hasScrollbar) {
+      const elements = element.getElementsByTagName('div');
+      Array.from(elements).forEach(el => {
+        hasScrollbar = this.hasScroll(el);
+        return !hasScrollbar;
+      });
+      if (!hasScrollbar) {
+        blurElement.style.height = '0px';
+      }
+    }
   };
+
+  hasScroll(element) {
+    return element.scrollHeight > element.clientHeight;
+  }
 
   OnAfterClose = fn => {
     document.body.removeAttribute('style');
@@ -220,6 +256,7 @@ export class Modal extends React.Component<Props> {
       footerContent,
       ...props
     } = this.props;
+
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SReactModal
@@ -245,9 +282,10 @@ export class Modal extends React.Component<Props> {
               )}
             </ModalHeaderDiv>
           )}
-          <ModalBodyDiv>{children}</ModalBodyDiv>
+          <ModalBodyDiv className="body">{children}</ModalBodyDiv>
+          <ModalBodyBlurredDiv className="transparent" />
           {footerContent && (
-            <ModalFooterDiv modalTitle={modalTitle}>
+            <ModalFooterDiv modalTitle={modalTitle} className="footer">
               {footerContent}
             </ModalFooterDiv>
           )}
