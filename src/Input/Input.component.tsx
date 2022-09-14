@@ -311,14 +311,14 @@ export const Input: React.FunctionComponent<Props> = ({
               {addonText}
             </SAddonTextWrapper>
           )}
+          {invalid && inputProps.invalidText && (
+            <ErrorMessage
+              id={errorId}
+              message={inputProps.invalidText || ''}
+              textColor={inputProps.invalidTextColor || ''}
+            />
+          )}
         </SInputWrapper>
-        {invalid && inputProps.invalidText && (
-          <ErrorMessage
-            id={errorId}
-            message={inputProps.invalidText || ''}
-            textColor={inputProps.invalidTextColor || ''}
-          />
-        )}
       </>
     </ThemeProvider>
   );

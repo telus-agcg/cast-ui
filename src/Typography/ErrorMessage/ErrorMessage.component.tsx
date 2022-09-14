@@ -31,12 +31,15 @@ export interface Props {
 }
 
 const SErrorDiv = styled.div`
+  position: absolute;
   color: ${(props: Props) => props.textColor || props.theme.validation.color};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.validation.fontSize};
   font-style: ${(props: Props) => props.theme.validation.fontStyle};
   line-height: ${(props: Props) => props.theme.validation.lineHeight};
   padding: ${(props: Props) => props.theme.validation.padding};
+  bottom: ${(props: Props) =>
+    props.theme.validation.errorMessageBottomPosition};
 `;
 
 export const ErrorMessage: React.FunctionComponent<Props> = ({
