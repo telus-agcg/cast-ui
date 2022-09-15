@@ -136,6 +136,22 @@ const ModalBodyDiv = styled.div`
   color: ${(props: any) => props.theme.modal.body.color};
 `;
 
+const ModalBlurWrapper = styled.div`
+  position: relative;
+`;
+
+const ModalBlurDiv = styled.div`
+  position: absolute;
+  left: ${(props: any) => props.theme.modal.body.padding};
+  right: ${(props: any) => props.theme.modal.body.padding};
+  height: ${(props: any) => props.theme.modal.body.padding};
+  bottom: 0px;
+  content: '';
+  backdrop-filter: blur(1px);
+  z-index: 1;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+`;
+
 const ModalFooterDiv = styled.div`
   flex-shrink: 0;
   padding: ${(props: any) => props.theme.modal.footer.padding};
@@ -246,6 +262,9 @@ export class Modal extends React.Component<Props> {
             </ModalHeaderDiv>
           )}
           <ModalBodyDiv>{children}</ModalBodyDiv>
+          <ModalBlurWrapper>
+            <ModalBlurDiv />
+          </ModalBlurWrapper>
           {footerContent && (
             <ModalFooterDiv modalTitle={modalTitle}>
               {footerContent}
