@@ -65,7 +65,7 @@
     "@storybook/addon-viewport": "5.1.11",
     "@storybook/addons": "5.1.11",
     "@storybook/react": "5.1.11",
-    "@storybook/storybook-deployer": "2.8.1",
+    "@storybook/storybook-deployer": "2.8.12",
     "@types/lodash": "^4.14.118",
     "@types/react": "^16.8.13",
     "@types/react-dates": "^17.1.5",
