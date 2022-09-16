@@ -127,7 +127,8 @@ const ModalHeaderDiv = styled.div`
 `;
 
 const ModalBodyDiv = styled.div`
-  padding: ${(props: any) => props.theme.modal.body.padding};
+  padding: 0 ${(props: any) => props.theme.modal.body.padding}
+    ${(props: any) => props.theme.modal.body.padding};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   position: relative;
   height: 100%;
