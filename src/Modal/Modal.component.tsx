@@ -128,8 +128,7 @@ const ModalHeaderDiv = styled.div`
 `;
 
 const ModalBodyDiv = styled.div`
-  margin: ${(props: any) => props.theme.modal.body.padding}
-    ${(props: any) => props.theme.modal.body.padding} 0;
+  margin: ${(props: any) => props.theme.modal.body.padding};
   padding-bottom: ${(props: any) => props.theme.modal.body.padding};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   position: relative;
@@ -145,6 +144,7 @@ const ModalBlurWrapper = styled.div`
 
 const ModalBlurDiv = styled.div`
   position: absolute;
+  padding-bottom: ${(props: any) => props.theme.modal.body.padding};
   left: ${(props: any) => props.theme.modal.body.padding};
   right: ${(props: any) => props.theme.modal.body.padding};
   height: ${(props: any) => props.theme.modal.body.padding};
