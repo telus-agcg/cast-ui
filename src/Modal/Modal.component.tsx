@@ -88,7 +88,8 @@ const ModalHeaderDiv = styled.div`
   background-color: ${(props: any) => props.theme.modal.header.backgroundColor};
   flex-shrink: 0;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
-  padding: ${(props: any) => props.theme.modal.header.padding};
+  padding: ${(props: any) => props.theme.modal.header.padding}
+    ${(props: any) => props.theme.modal.header.padding} 0;
   border-top-left-radius: ${(props: any) => props.theme.modal.borderRadius};
   border-top-right-radius: ${(props: any) => props.theme.modal.borderRadius};
   h5 {
@@ -127,7 +128,8 @@ const ModalHeaderDiv = styled.div`
 `;
 
 const ModalBodyDiv = styled.div`
-  padding: ${(props: any) => props.theme.modal.body.padding};
+  margin: ${(props: any) => props.theme.modal.body.padding};
+  padding-bottom: ${(props: any) => props.theme.modal.body.padding};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   position: relative;
   height: 100%;
@@ -142,6 +144,7 @@ const ModalBlurWrapper = styled.div`
 
 const ModalBlurDiv = styled.div`
   position: absolute;
+  padding-bottom: ${(props: any) => props.theme.modal.body.padding};
   left: ${(props: any) => props.theme.modal.body.padding};
   right: ${(props: any) => props.theme.modal.body.padding};
   height: ${(props: any) => props.theme.modal.body.padding};
@@ -154,7 +157,8 @@ const ModalBlurDiv = styled.div`
 
 const ModalFooterDiv = styled.div`
   flex-shrink: 0;
-  padding: ${(props: any) => props.theme.modal.footer.padding};
+  padding: 0 ${(props: any) => props.theme.modal.footer.padding}
+    ${(props: any) => props.theme.modal.footer.padding};
   min-height: ${(props: any) => props.theme.modal.footer.minHeight};
   margin-top: ${(props: any) => props.theme.modal.footer.marginTop};
   text-align: ${(props: any) => props.theme.modal.footer.textAlign};
