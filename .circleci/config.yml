@@ -42,6 +42,11 @@ jobs:
     steps:
       - *restore_cache_git
       - run:
+          name: Install runner dependencies
+          command: |
+            apk update && \
+            apk add git
+      - run:
           name: Run npm install
           command: npm install
       - run:
@@ -62,6 +67,11 @@ jobs:
     steps:
       - *restore_cache_git
       - *restore_cache_npm
+      - run:
+          name: Install runner dependencies
+          command: |
+            apk update && \
+            apk add git
       - run:
           name: Run npm build
           command: npm run build
