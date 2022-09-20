@@ -144,11 +144,10 @@ const ModalBlurWrapper = styled.div`
 
 const ModalBlurDiv = styled.div`
   position: absolute;
-  padding-bottom: ${(props: any) => props.theme.modal.body.padding};
   left: ${(props: any) => props.theme.modal.body.padding};
   right: ${(props: any) => props.theme.modal.body.padding};
   height: ${(props: any) => props.theme.modal.body.padding};
-  bottom: 0px;
+  bottom: ${(props: any) => props.theme.modal.body.padding};
   content: '';
   backdrop-filter: blur(1px);
   z-index: 1;
@@ -169,8 +168,12 @@ const ModalFooterDiv = styled.div`
 `;
 
 export class Modal extends React.Component<Props> {
+  bodyRef;
+  blurRef;
   constructor(props: Props) {
     super(props);
+    this.bodyRef = React.createRef();
+    this.blurRef = React.createRef();
   }
 
   static defaultProps = {
@@ -221,7 +224,17 @@ export class Modal extends React.Component<Props> {
     if (fn) {
       fn();
     }
+
+    const element = this.bodyRef.current;
+    const hasScrollbar = this.hasScroll(element);
+    if (!hasScrollbar) {
+      this.blurRef.current.style.bottom = '0px';
+    }
   };
+
+  hasScroll(element) {
+    return element.scrollHeight > element.clientHeight;
+  }
 
   OnAfterClose = fn => {
     document.body.removeAttribute('style');
@@ -265,9 +278,9 @@ export class Modal extends React.Component<Props> {
               )}
             </ModalHeaderDiv>
           )}
-          <ModalBodyDiv>{children}</ModalBodyDiv>
+          <ModalBodyDiv ref={this.bodyRef}>{children}</ModalBodyDiv>
           <ModalBlurWrapper>
-            <ModalBlurDiv />
+            <ModalBlurDiv ref={this.blurRef} />
           </ModalBlurWrapper>
           {footerContent && (
             <ModalFooterDiv modalTitle={modalTitle}>
