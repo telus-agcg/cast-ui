@@ -739,7 +739,7 @@ export const buildTheme = colors => ({
   },
   sidenav: {
     fontSize: '14px',
-    color: 'black',
+    color: colors.primary,
     height: '',
     width: '50px',
     openWidth: '220px',
@@ -783,7 +783,7 @@ export const buildTheme = colors => ({
       display: 'grid',
     },
     navItem: {
-      color: 'black',
+      color: 'inherit',
       fontWeight: 'inherit',
       cursor: 'pointer',
       background: 'transparent',
@@ -795,10 +795,10 @@ export const buildTheme = colors => ({
       transition: 'opacity 0.15s',
     },
     activenavItem: {
-      color: colors.black,
+      color: colors.primary,
       fontWeight: 700,
       cursor: 'pointer',
-      background: 'blue',
+      background: colors.white,
       opacity: '1',
       leftBorderWidth: '4px',
       leftBorderColor: colors.primary,
