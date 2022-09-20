@@ -15,7 +15,7 @@ const SidebarLink = styled(Link)`
   margin: 0;
   display: inline-flex;
   align-items: center;
-  padding-left: ${props => (props.level === 1 ? '4rem' : '0rem')};
+  padding-left: ${props => (props.level === 1 ? '3rem' : '0rem')};
   transition: ${props => props.theme.sidenav.navItem.transition};
   color: ${props =>
     props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`].color};
