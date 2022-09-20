@@ -795,11 +795,15 @@ export const cobaltTheme = {
     borderLeft: '',
     borderRight: `1px solid ${cobaltColors.lt800}`,
     transition: 'min-width 0.15s',
+    label: {
+      color: cobaltColors.black,
+    },
+
     secondaryNavbar: {
       width: '0px',
       openWidth: '170px',
       background: cobaltColors.white,
-      padding: '80px 0 16px',
+      padding: '30px 0 16px',
       margin: '',
       zIndex: 4,
       position: 'absolute',
@@ -810,6 +814,9 @@ export const cobaltTheme = {
       borderLeft: '',
       borderRight: `1px solid ${cobaltColors.lt800}`,
       transition: 'left 0.15s',
+    },
+    secondaryNavbarLabel: {
+      color: `${cobaltColors.black}`,
     },
     nav: {
       padding: '',
@@ -823,8 +830,8 @@ export const cobaltTheme = {
       display: 'grid',
     },
     navItem: {
-      color: 'inherit',
-      fontWeight: 'inherit',
+      color: `${cobaltColors.black}`,
+      fontWeight: 300,
       cursor: 'pointer',
       background: 'transparent',
       opacity: '1',
@@ -832,13 +839,13 @@ export const cobaltTheme = {
       leftBorderColor: 'transparent',
       topNavBorderBottom: `1px solid ${cobaltColors.lt800}`,
       bottonNavBorderBottom: '',
-      transition: 'opacity 0.15s',
+      transition: 'all 0.3s',
     },
     activenavItem: {
       color: cobaltColors.primary,
-      fontWeight: 700,
+      fontWeight: 500,
       cursor: 'pointer',
-      background: cobaltColors.white,
+      background: `border-box ${cobaltColors.primaryBackground}`,
       opacity: '1',
       leftBorderWidth: '4px',
       leftBorderColor: cobaltColors.primary,
@@ -859,10 +866,16 @@ export const cobaltTheme = {
       display: 'flex',
     },
     navIcon: {
+      padding: '8px 0 8px 0px',
+    },
+    subnavIcon: {
       padding: '8px 0 8px 12px',
     },
+    navLabel: {
+      padding: '8px 8px 8px 8px',
+    },
     navText: {
-      padding: '8px 0 8px 12px',
+      padding: '8px 8px 8px 8px',
     },
   },
   spinner: {
