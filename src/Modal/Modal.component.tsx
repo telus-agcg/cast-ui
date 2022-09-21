@@ -144,11 +144,10 @@ const ModalBlurWrapper = styled.div`
 
 const ModalBlurDiv = styled.div`
   position: absolute;
-  padding-bottom: ${(props: any) => props.theme.modal.body.padding};
   left: ${(props: any) => props.theme.modal.body.padding};
   right: ${(props: any) => props.theme.modal.body.padding};
   height: ${(props: any) => props.theme.modal.body.padding};
-  bottom: 0px;
+  bottom: calc(${(props: any) => props.theme.modal.body.padding} - 1px);
   content: '';
   backdrop-filter: blur(1px);
   z-index: 1;
