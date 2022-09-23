@@ -228,11 +228,11 @@ const SWrapperDiv = styled(ReactTable)`
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
   }
   &.ReactTable .rt-noData {
+    position: static;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 0px;
     height: 100px;
     background-color: ${(props: any) => props.theme.colors.secondaryBackground};
     transform: none;
@@ -241,6 +241,8 @@ const SWrapperDiv = styled(ReactTable)`
 
   .rt-thead {
     font-size: ${(props: any) => props.theme.table.header.fontSize};
+    pointer-events: ${(props: any) =>
+      props.data.length > 0 ? 'auto' : 'none'};
   }
 
   &.ReactTable .white-space-wrap {
