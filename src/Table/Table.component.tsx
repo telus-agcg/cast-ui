@@ -235,6 +235,8 @@ const SWrapperDiv = styled(ReactTable)`
     justify-content: center;
     height: 100px;
     background-color: ${(props: any) => props.theme.colors.secondaryBackground};
+    border: ${(props: any) => props.theme.table.border};
+    border-top: none;
     transform: none;
     left: 0;
   }
