@@ -137,6 +137,13 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .rt-tbody .rt-tr:hover {
     background-color: ${(props: any) => props.theme.table.row.hoverColor};
   }
+  &.ReactTable .rt-tfoot {
+    border-top-color: ${(props: any) =>
+      props.theme.table.header.borderBottomColor};
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: none;
+  }
   &.ReactTable .rt-thead .rt-th,
   &.ReactTable .rt-tbody .rt-td,
   &.ReactTable .rt-tfoot .rt-td {
