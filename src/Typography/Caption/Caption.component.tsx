@@ -17,7 +17,7 @@ export type Props = {
   theme?: any;
 };
 
-const SCaption = styled.p`
+const SCaption = styled.span`
   font-family: ${(props: Props) =>
     props.theme.typography.caption[props.size!].fontFamily};
   color: ${(props: Props) => props.theme.typography.color};
