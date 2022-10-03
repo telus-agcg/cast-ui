@@ -128,7 +128,7 @@ const SWrapperDiv = styled(ReactTable)`
   }
 
   &.ReactTable .rt-tbody {
-    min-height: 100px;
+    min-height: 80px;
   }
 
   &.ReactTable
