@@ -268,7 +268,6 @@ const SWrapperDiv = styled(ReactTable)`
     justify-content: center; // for flex elements
   }
   &.ReactTable .rt-noData {
-    position: fixed;
     padding: unset;
   }
 `;
