@@ -128,6 +128,16 @@ const SWrapperDiv = styled(ReactTable)`
   }
 
   &.ReactTable .rt-tbody {
+    &::before {
+      width: auto;
+      top: 80px;
+      left: 43%;
+      position: absolute;
+      content: 'No results found';
+      margin: 0 auto;
+      display: ${(props: any) => (props.data.length > 0 ? 'none' : 'initial')};
+    }
+
     min-height: ${(props: any) => (props.data.length > 0 ? 'unset' : '100px')};
   }
 
@@ -268,7 +278,7 @@ const SWrapperDiv = styled(ReactTable)`
     justify-content: center; // for flex elements
   }
   &.ReactTable .rt-noData {
-    padding: unset;
+    display: none !important;
   }
 `;
 
