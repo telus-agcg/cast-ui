@@ -134,10 +134,8 @@ const SWrapperDiv = styled(ReactTable)`
       left: 43%;
       position: absolute;
       content: 'No results found';
-      margin: 0 auto;
       display: ${(props: any) => (props.data.length > 0 ? 'none' : 'initial')};
     }
-
     min-height: ${(props: any) => (props.data.length > 0 ? 'unset' : '100px')};
   }
 
