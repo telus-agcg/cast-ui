@@ -300,7 +300,7 @@ export class Table extends React.Component<Props> {
 
   render() {
     const {
-      data = 'dkhadkadkjak',
+      data,
       getTdProps,
       getTrProps,
       loading,
