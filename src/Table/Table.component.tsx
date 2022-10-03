@@ -128,7 +128,7 @@ const SWrapperDiv = styled(ReactTable)`
   }
 
   &.ReactTable .rt-tbody {
-    min-height: 80px;
+    min-height: ${(props: any) => (props.data.length > 0 ? 'unset' : '100px')};
   }
 
   &.ReactTable
@@ -266,6 +266,10 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .center-align {
     text-align: center; // for blocked elements
     justify-content: center; // for flex elements
+  }
+  &.ReactTable .rt-noData {
+    position: fixed;
+    padding: unset;
   }
 `;
 
