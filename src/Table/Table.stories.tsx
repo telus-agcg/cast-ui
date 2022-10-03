@@ -300,10 +300,18 @@ export const _TableWithGroupedRows = args => {
             width: 150,
           },
           {
-            Header: 'Weight',
+            Header: 'Weight (g)',
             accessor: 'weight',
+            headerClassName: 'right-align',
+            className: 'right-align',
             Aggregated: () => <></>,
             width: 150,
+            Footer: (row: any) => {
+              return `Total: ${SampleData.fruit.reduce(
+                (acc, cur) => acc + cur.weight,
+                0,
+              )}`;
+            },
           },
         ]}
         pageSizeOptions={[5, 10, 25, 50, 100]}
@@ -360,20 +368,15 @@ export const _TableWithNoData = args => {
             width: 150,
           },
           {
-            Header: 'Weight',
+            Header: 'Weight (g)',
             accessor: 'weight',
+            headerClassName: 'right-align',
+            className: 'right-align',
             Aggregated: () => <></>,
             width: 150,
-          },
-          {
-            Footer: 'Weight',
-            accessor: 'weight',
-            Aggregated: () => <></>,
-          },
-          {
-            Footer: 'Total',
-            accessor: 'total',
-            Aggregated: () => <></>,
+            Footer: (row: any) => {
+              return `Total: 0`;
+            },
           },
         ]}
         pageSizeOptions={[5, 10, 25, 50, 100]}
