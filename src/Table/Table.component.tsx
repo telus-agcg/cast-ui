@@ -127,6 +127,10 @@ const SWrapperDiv = styled(ReactTable)`
     transition: 0.3s all;
   }
 
+  &.ReactTable .rt-tbody {
+    min-height: 100px;
+  }
+
   &.ReactTable
     .rt-tbody
     > .rt-tr-group:last-of-type:not(:only-of-type)
@@ -227,17 +231,6 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .rt-thead .rt-th.-sort-desc {
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
   }
-  &.ReactTable .rt-noData {
-    position: static;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100px;
-    background-color: ${(props: any) => props.theme.colors.secondaryBackground};
-    transform: none;
-    left: 0;
-  }
 
   .rt-thead {
     font-size: ${(props: any) => props.theme.table.header.fontSize};
@@ -307,7 +300,7 @@ export class Table extends React.Component<Props> {
 
   render() {
     const {
-      data,
+      data = 'dkhadkadkjak',
       getTdProps,
       getTrProps,
       loading,
@@ -317,7 +310,6 @@ export class Table extends React.Component<Props> {
     } = this.props;
 
     const customProps = { id: props.id };
-
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv

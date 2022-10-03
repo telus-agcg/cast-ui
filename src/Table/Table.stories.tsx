@@ -365,6 +365,16 @@ export const _TableWithNoData = args => {
             Aggregated: () => <></>,
             width: 150,
           },
+          {
+            Footer: 'Weight',
+            accessor: 'weight',
+            Aggregated: () => <></>,
+          },
+          {
+            Footer: 'Total',
+            accessor: 'total',
+            Aggregated: () => <></>,
+          },
         ]}
         pageSizeOptions={[5, 10, 25, 50, 100]}
         {...args}
