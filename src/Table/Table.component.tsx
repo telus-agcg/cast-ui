@@ -130,11 +130,11 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .rt-tbody {
     &::after {
       margin: auto;
-      position: relative;
       content: 'No results found';
       display: ${(props: any) => (props.data.length > 0 ? 'none' : 'initial')};
+      height: 100px;
+      line-height: 100px;
     }
-    min-height: ${(props: any) => (props.data.length > 0 ? 'unset' : '100px')};
   }
 
   &.ReactTable
