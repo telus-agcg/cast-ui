@@ -128,11 +128,9 @@ const SWrapperDiv = styled(ReactTable)`
   }
 
   &.ReactTable .rt-tbody {
-    &::before {
-      width: auto;
-      top: 80px;
-      left: 43%;
-      position: absolute;
+    &::after {
+      margin: auto;
+      position: relative;
       content: 'No results found';
       display: ${(props: any) => (props.data.length > 0 ? 'none' : 'initial')};
     }
