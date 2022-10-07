@@ -408,7 +408,8 @@ export class CustomSelect extends React.Component<Props> {
         : !isMulti;
     const uniqueId = uuid.v4();
 
-    const normalizedSelectedValue = typeof(selectedOption) === 'undefined' ? null : selectedOption
+    const normalizedSelectedValue =
+      typeof selectedOption === 'undefined' ? null : selectedOption;
 
     const selectCheckboxProps =
       optionType === 'checkbox'
@@ -418,7 +419,7 @@ export class CustomSelect extends React.Component<Props> {
               isMulti,
               id,
               clearText,
-              selectedOptions: selectedOption,
+              selectedOptions: normalizedSelectedValue,
               updateSelectedOptions: this.props.onChange,
             }),
           }
