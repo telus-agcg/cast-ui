@@ -786,7 +786,7 @@ export const cobaltTheme = {
     background: cobaltColors.lt200,
     padding: '',
     margin: '',
-    zIndex: 5,
+    zIndex: 100,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -796,7 +796,7 @@ export const cobaltTheme = {
     borderRight: `1px solid ${cobaltColors.lt800}`,
     transition: 'min-width 0.15s',
     label: {
-      color: cobaltColors.black,
+      color: cobaltColors.drk800,
     },
 
     secondaryNavbar: {
@@ -805,7 +805,7 @@ export const cobaltTheme = {
       background: cobaltColors.white,
       padding: '30px 0 16px',
       margin: '',
-      zIndex: 4,
+      zIndex: 100,
       position: 'absolute',
       top: 0,
       left: 0,
@@ -816,7 +816,7 @@ export const cobaltTheme = {
       transition: 'left 0.15s',
     },
     secondaryNavbarLabel: {
-      color: `${cobaltColors.black}`,
+      color: `${cobaltColors.drk800}`,
     },
     nav: {
       padding: '',
@@ -830,7 +830,7 @@ export const cobaltTheme = {
       display: 'grid',
     },
     navItem: {
-      color: `${cobaltColors.black}`,
+      color: `${cobaltColors.drk800}`,
       fontWeight: 300,
       cursor: 'pointer',
       background: 'transparent',

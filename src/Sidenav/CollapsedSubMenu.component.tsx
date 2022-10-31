@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { SideNavItemIcon } from './SideNavItemIcon.component';
-import Icon from 'react-icons-kit';
-import { iosPaperOutline } from 'react-icons-kit/ionicons/iosPaperOutline';
 
 const SidebarLink = styled(Link)`
   float: left;
@@ -64,11 +61,26 @@ const SidebarLabel = styled.span`
   display: 'block';
 `;
 
-const CollapsedSubMenu = ({ item, ...props }) => {
+const CollapsedSubMenu = ({
+  item,
+  onSelect,
+  setSecondarySidebar,
+  ...props
+}) => {
   const newProps = { disabled: item.disabled, ...props };
+  const collapsedItemClick = (e, item) => {
+    if (onSelect) {
+      setSecondarySidebar(false);
+      onSelect(e, item, []);
+    }
+  };
   return (
     <>
-      <SidebarLink to={item.path} {...newProps}>
+      <SidebarLink
+        to={item.path}
+        {...newProps}
+        onClick={e => collapsedItemClick(e, item)}
+      >
         <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
       </SidebarLink>
     </>

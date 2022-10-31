@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   iosSpeedometerOutline,
   iosPeopleOutline,
@@ -11,7 +10,7 @@ const SideNavData = [
   {
     label: 'Dashboard',
     path: '/',
-    icon: iosSpeedometerOutline,
+    reactIcon: iosSpeedometerOutline,
     iconOpen: '',
     iconClosed: '',
     disabled: false,
@@ -19,7 +18,7 @@ const SideNavData = [
   {
     label: 'Customers',
     path: '/customers',
-    icon: iosPeopleOutline,
+    reactIcon: iosPeopleOutline,
     iconOpen: '',
     iconClosed: '',
     disabled: false,
@@ -45,7 +44,7 @@ const SideNavData = [
   {
     label: 'Offers',
     path: '/offers',
-    icon: iosPricetagsOutline,
+    reactIcon: iosPricetagsOutline,
     iconOpen: '',
     iconClosed: '',
     disabled: false,
@@ -67,7 +66,7 @@ const SideNavData = [
     label: 'Products',
     exact: false,
     path: '/products',
-    icon: iosBoxOutline,
+    reactIcon: iosBoxOutline,
     iconOpen: '',
     iconClosed: '',
     disabled: false,
@@ -88,7 +87,7 @@ const SideNavData = [
   {
     label: 'Report Download',
     path: '/reports',
-    icon: iosDownloadOutline,
+    reactIcon: iosDownloadOutline,
     iconOpen: '',
     iconClosed: '',
     disabled: true,

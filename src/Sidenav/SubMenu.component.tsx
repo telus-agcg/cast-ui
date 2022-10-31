@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { SideNavItemIcon } from './SideNavItemIcon.component';
 import Icon from 'react-icons-kit';
-import { iosPaperOutline } from 'react-icons-kit/ionicons/iosPaperOutline';
-import { ThemeProvider } from 'themes';
 
+const SSubMenuItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  transition: height 500ms ease-in-out;
+`;
 const SidebarLink = styled(Link)`
   float: left;
   text-decoration: none;
@@ -16,6 +19,7 @@ const SidebarLink = styled(Link)`
   display: inline-flex;
   align-items: center;
   padding-left: ${props => (props.level === 1 ? '3rem' : '0rem')};
+  border-bottom: '0px';
   transition: ${props => props.theme.sidenav.navItem.transition};
   color: ${props =>
     props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`].color};
@@ -50,6 +54,12 @@ const SidebarLink = styled(Link)`
       props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`]
         .leftBorderWidth};
   }
+  .custom-icon-svg {
+       path {
+                 fill: ${props =>
+    props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`].color};;
+       }
+    }
 `;
 
 const SidebarLabel = styled.span`
@@ -71,10 +81,10 @@ const SubMenu = ({
   setCurrentActiveItem,
   hoverActiveItem,
   setHoverActiveItem,
+  onSelect,
   ...props
 }) => {
   const [subnav, setSubnav] = useState(false);
-  const [openFromHover, setOpenFromHover] = useState(false);
 
   // resetting all subnav to close state when navigation bar is collapsed
   useEffect(() => {
@@ -95,46 +105,57 @@ const SubMenu = ({
     else setSubnav(true);
   }, [hoverActiveItem]);
 
-  const handleItemClick = () => {
+  const handleItemClick = (e) => {
     if (item.subNav && isOpen) showSubnav();
-    else handleSubMenuClick();
+    else handleSubMenuClick(e,item);
   };
-  const handleSubMenuClick = () => {
+  const handleSubMenuClick = (e,selectedItem) => {
+    
     if (!item.disabled) {
       setSecondarySidebar(false);
       setCurrentActiveSubNav([]);
       setCurrentActiveItem(item);
+      
     }
 
     if (item.subNav && !isOpen && !item.disabled) {
       setSecondarySidebar(true);
       setCurrentActiveSubNav(item.subNav);
     }
+    else
+    {
+      if(onSelect) {
+      onSelect(e, selectedItem, item.subNav);
+      }
+  }
   };
   const handleItemHover = () => {
     if (item.subNav && isOpen) {
       setSubnav(true);
       setHoverActiveItem(item);
-      setOpenFromHover(true); // additional parameter to check if subnav is open from hover
     }
   };
-  const handleItemHoverOver = () => {
-    if (item.subNav && isOpen && item.label !== currentActiveItem.label) {
-      setSubnav(false);
-      setOpenFromHover(true);
-    }
+  const IconObj=item?.icon;
+  const callSetTimer = () => {
+    setTimeout(() => {
+      handleItemHover();
+    }, 400);
   };
   return (
-    <>
+    <SSubMenuItem>
       <SidebarLink
         to={item.path}
         onClick={handleItemClick}
-        onMouseEnter={handleItemHover}
+        onMouseEnter={callSetTimer}
         // onMouseLeave={handleItemHoverOver}
         {...newProps}
       >
         <SideNavItemIcon isOpen={isOpen} item={item}>
-          <Icon icon={item.icon} size={24} />
+          {/* keep one icon prop */}
+          {item.reactIcon?
+        <Icon icon={item.reactIcon} size={24} />
+        :<IconObj className={`custom-icon-svg`} style={{width:'24px',height:'24px' }}/>}
+       
         </SideNavItemIcon>
         <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
 
@@ -148,22 +169,22 @@ const SubMenu = ({
       </SidebarLink>
       {isOpen &&
         subnav &&
-        item.subNav.map((item, index) => {
+        item.subNav?.map((subMenuItem, index) => {
           return (
             <SidebarLink
-              to={item.path}
+              to={subMenuItem.path}
               key={index}
               level={1}
               style={{ paddingRight: '1rem' }}
-              onClick={handleSubMenuClick}
+              onClick={(e)=>handleSubMenuClick(e,subMenuItem)}
             >
               <SidebarLabel level={1} {...newProps}>
-                {item.label}
+                {subMenuItem.label}
               </SidebarLabel>
             </SidebarLink>
           );
         })}
-    </>
+    </SSubMenuItem>
   );
 };
 

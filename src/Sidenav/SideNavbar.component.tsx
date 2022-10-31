@@ -1,18 +1,19 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { SideNavContext, propsDeepSearch } from './context';
+import ErrorBoundary from '../ErrorBoundary';
 import { Themes } from '../themes';
 import { nameSpace } from '../utils/constants';
 import Icon from 'react-icons-kit';
+import { ic_keyboard_arrow_left as IKAL } from 'react-icons-kit/md/ic_keyboard_arrow_left';
+import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
+
 import { ic_close } from 'react-icons-kit/md/ic_close';
 
+import SubMenu from './SubMenu.component';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+import CollapsedSubMenu from './CollapsedSubMenu.component';
+
 export type Props = {
-  /**
-   * Set the sidebar as Expanded/collapsed
-   *
-   * @default false
-   **/
-  isOpen?: boolean;
   /**
    * Before Expand/collapse the sidebar
    *
@@ -31,38 +32,7 @@ export type Props = {
    * @default false
    **/
   afterToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
-  /**
-   * Before Expand/collapse the secondary sidebar
-   *
-   * @default false
-   **/
-  beforeSecondaryToggle?(
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ): void;
-  /**
-   * Expand/collapse the secondary sidebar
-   *
-   * @default false
-   **/
-  onSecondaryToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
-  /**
-   * After Expand/collapse the secondary sidebar
-   *
-   * @default false
-   **/
-  afterSecondaryToggle?(
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ): void;
-  /**
-   * Handle select SideNavItem
-   *
-   * @default false
-   **/
-  onSelect?(
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    selectItemPath: any,
-    itemSecondaryChildren: any,
-  ): void;
+
   /**
    * A  CSS color code
    *
@@ -111,51 +81,49 @@ export type Props = {
    * @default ''
    **/
   bottom?: number | string;
-  /**
-   * Expand/collapse the secondary sidebar
-   *
-   * @default false
-   **/
-  isSecondaryNavbarOpen?: boolean;
-  /**
-   * Adjust width of Secondary SideNavbar.
-   *
-   * @default '170px'
-   **/
-  secondaryNavbarWidth?: string;
-  /**
-   * Adjust height of Secondary SideNavbar.
-   *
-   * @default ''
-   **/
-  secondaryNavbarHeight?: string;
-  /**
-   * A CSS color code
-   *
-   * @default ''
-   **/
-  secondaryNavbarBackground?: string;
-  /**
-   * Custom content for the itemToggleButton on open mode
-   *
-   * @default '>'
-   **/
-  itemToggleOpenContent?: JSX.Element | React.Component | string;
-  /**
-   * Custom content for the itemToggleButton on close mode
-   *
-   * @default '<'
-   **/
-  itemToggleCloseContent?: JSX.Element | React.Component | string;
+
+  inputSideNavData?: any;
 };
+
+const NavIcon = styled(Link)`
+  margin-left: 2px;
+  padding-right: 5px;
+  font-size: 2rem;
+  height: 50px;
+  display: flex;
+  justify-content: ${props => (props.isOpen ? 'end' : 'center')};
+  align-items: center;
+  > *:hover {
+    background: ${props => props.theme.sidenav['activenavItem'].background};
+    border-radius: 15px;
+    transition: all 0.3s;
+  }
+`;
+const SSideNav = styled.nav`
+  float: left;
+  clear: both;
+  list-style: none;
+  width: 100%;
+  height: ${props => (props.elementType === 'list' ? '90%' : 'auto')};
+
+  padding: ${props => props.theme.sidenav.nav.padding};
+  margin-bottom: ${props => (props.top || props.center ? 'auto' : '0')};
+  margin-top: ${props => (props.bottom || props.center ? 'auto' : '0')};
+  display: flex;
+  flex-direction: column;
+
+ 
+`;
 
 const SSideNavbar = styled.div`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.sidenav.fontSize};
   color: ${(props: any) => props.theme.sidenav.color};
-  height: ${(props: any) => props.height || props.theme.sidenav.height};
+  /* height: ${(props: any) => props.height || props.theme.sidenav.height}; */
   padding: ${(props: any) => props.theme.sidenav.padding};
+
   margin: ${(props: any) => props.theme.sidenav.margin};
+  height:92vh;
   z-index: ${(props: any) => props.theme.sidenav.zIndex};
   background: ${(props: any) =>
     props.background || props.theme.sidenav.background};
@@ -166,7 +134,7 @@ const SSideNavbar = styled.div`
   position: ${(props: any) => props.position || props.theme.sidenav.position};
   top: ${(props: any) => props.top || props.theme.sidenav.top};
   bottom: ${(props: any) => props.bottom || props.theme.sidenav.bottom};
-  left: ${(props: any) => props.theme.sidenav.left};
+  /* left: ${({ sidebar }) => (sidebar ? 0 : '-100%')}; */
   right: ${(props: any) => props.theme.sidenav.right};
   min-width: ${(props: any) =>
     props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
@@ -178,8 +146,7 @@ const SSecondarySideNavbar = styled.div`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.sidenav.fontSize};
   color: ${(props: any) => props.theme.sidenav.color};
-  height: ${(props: any) =>
-    props.secondaryNavbarHeight || props.theme.sidenav.secondaryNavbar.height};
+  height: 100vh;
   padding: ${(props: any) => props.theme.sidenav.secondaryNavbar.padding};
   margin: ${(props: any) => props.theme.sidenav.secondaryNavbar.margin};
   z-index: ${(props: any) => props.theme.sidenav.secondaryNavbar.zIndex};
@@ -198,120 +165,125 @@ const SSecondarySideNavbar = styled.div`
   right: ${(props: any) => props.theme.sidenav.secondaryNavbar.right};
   left: ${(props: any) =>
     props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
-  width: ${(props: any) =>
+  min-width: ${(props: any) =>
     props.secondaryNavbarWidth ||
     (props.isSecondaryNavbarOpen
       ? props.theme.sidenav.secondaryNavbar.openWidth
       : props.theme.sidenav.secondaryNavbar.width)};
+
   transition: ${(props: any) => props.theme.sidenav.secondaryNavbar.transition};
-  visibility: ${(props: any) =>
-    props.isSecondaryNavbarOpen ? 'visible' : 'hidden'};
+
   display: flex;
   flex-direction: column;
   .closeIcon {
     position: absolute;
+    cursor: pointer;
     color: ${(props: any) => props.theme.colors.drk800};
     top: 5px;
     right: 5px;
   }
 `;
-
-export const SideNavbar: React.FunctionComponent<Props> = ({
-  isOpen = false,
-  isSecondaryNavbarOpen = false,
-  beforeToggle = () => {},
-  onToggle = () => {},
-  afterToggle = () => {},
-  beforeSecondaryToggle = () => {},
-  onSecondaryToggle = () => {},
-  afterSecondaryToggle = () => {},
-  onSelect = () => {},
-  itemToggleOpenContent,
-  itemToggleCloseContent,
-  children,
-  ...props
-}) => {
-  const newProps = {
-    ...props,
-    isOpen,
-    beforeToggle,
-    onToggle,
-    afterToggle,
-    isSecondaryNavbarOpen,
+const SSecondarySideNavbarLabel = styled.h3`
+  padding-left: 1.25rem;
+  color: ${props => props.theme.sidenav.secondaryNavbarLabel.color};
+  margin-block-start: 6px;
+  margin-block-end: 10px;
+`;
+const SideNavbar = props => {
+  const { isSideNavbarOpen, toggleSideNavbar, top, inputSideNavData,onSelect} = props;
+  const [sidebar, setSidebar] = useState(false);
+  const [sideNavData, setSideNavData] = useState([]);
+  const [secondarySidebar, setSecondarySidebar] = useState(false);
+  const [currentActiveItem, setCurrentActiveItem] = useState({ label: '' });
+  const [currentActiveSubnav, setCurrentActiveSubnav] = useState([]);
+  const [hoverActiveItem, setHoverActiveItem] = useState(false);
+  const showSidebar = () => {
+    setSecondarySidebar(false);
+    if (toggleSideNavbar !== undefined) toggleSideNavbar();
+    else setSidebar(!sidebar);
   };
-
-  const handleClick = async (e: any) => {
-    e.preventDefault();
-    await beforeSecondaryToggle(e);
-    await onSecondaryToggle(e);
-    await afterSecondaryToggle(e);
-  };
-
-  // Perform deep search through sidenavbar props
-  // Select the 'activeSideNavItem' and search through its children.
-  // If a child has a SideNav with the 'secondary' prop set to true,
-  // its children will automatically be displayed in the secondary SideNavbar
-  const activeSideNavItems: any = [];
-  propsDeepSearch(children, 'activeSideNavItem', true, activeSideNavItems);
-  let activeSideNavItemsChildren: any = [];
-  activeSideNavItems.map((child: any) => {
-    activeSideNavItemsChildren = [
-      ...activeSideNavItemsChildren,
-      ...child.children.filter((child: any) =>
-        child.props ? child.props.secondary : false,
-      ),
-    ];
-  });
-
+  useEffect(() => {
+    setSidebar(isSideNavbarOpen);
+  }, [isSideNavbarOpen]);
+  useEffect(() => {
+    
+    setSideNavData(inputSideNavData);
+   
+  }, [inputSideNavData]);
   return (
-    <ThemeProvider
-      theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
-    >
-      <SideNavContext.Provider
-        value={{
-          baseProps: {
-            ...newProps,
-            isOpen,
-            beforeToggle,
-            onToggle,
-            afterToggle,
-            itemToggleOpenContent,
-            itemToggleCloseContent,
-            isSecondaryNavbarOpen,
-            onItemSelect: onSelect,
-          },
-        }}
+    <Router>
+      <ThemeProvider
+        theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
       >
-        <SSideNavbar
-          className={`${nameSpace}-sidenavbar`}
-          role="side-nav-bar"
-          {...newProps}
-        >
-          {children}
+      <ErrorBoundary>
+        <SSideNavbar isOpen={sidebar} top={top} {...props}>
+          {
+            <>
+              <SSideNav {...props} elementType={'list'}>
+                {sideNavData?.map((item, index) => {
+                  return (
+                    
+                    <SubMenu
+                      item={item}
+                      key={index}
+                      isOpen={sidebar}
+                      currentActiveItem={currentActiveItem}
+                      setCurrentActiveItem={setCurrentActiveItem}
+                      setSecondarySidebar={setSecondarySidebar}
+                      setCurrentActiveSubNav={setCurrentActiveSubnav}
+                      hoverActiveItem={hoverActiveItem}
+                      setHoverActiveItem={setHoverActiveItem}
+                      onSelect={onSelect}
+                      {...props}
+                    />
+                  );
+                })}
+              </SSideNav>
+              <SSideNav>
+                {sidebar ? (
+                  <NavIcon to="#" isOpen={sidebar}>
+                    <Icon icon={IKAL} size={24} onClick={showSidebar} />
+                  </NavIcon>
+                ) : (
+                  <NavIcon to="#" isOpen={sidebar}>
+                    <Icon icon={IKAR} size={24} onClick={showSidebar} />
+                  </NavIcon>
+                )}
+              </SSideNav>
+            </>
+          }
         </SSideNavbar>
-        <SSecondarySideNavbar
-          className={`${nameSpace}-secondary-sidenavbar`}
-          role="secondary-side-nav-bar"
-          {...newProps}
-        >
-          <a onClick={(e: any) => handleClick(e)} href="#">
-            <Icon className={'closeIcon'} icon={ic_close} />
-          </a>
-          {activeSideNavItemsChildren}
-        </SSecondarySideNavbar>
-      </SideNavContext.Provider>
-    </ThemeProvider>
+        {secondarySidebar ? (
+          <SSecondarySideNavbar
+            className={`${nameSpace}-secondary-sidenavbar`}
+            role="secondary-side-nav-bar"
+            isSecondaryNavbarOpen={secondarySidebar}
+            {...props}
+            // onMouseLeave={()=>setSecondarySidebar(false)}
+          >
+            <a onClick={() => setSecondarySidebar(false)}>
+              <Icon className={'closeIcon'} icon={ic_close} />
+            </a>
+            <SSecondarySideNavbarLabel>
+              {currentActiveItem?.label}
+            </SSecondarySideNavbarLabel>
+            {currentActiveSubnav?.map((item, index) => {
+              return <CollapsedSubMenu item={item} key={index} onSelect={onSelect} setSecondarySidebar={setSecondarySidebar}/>;
+            })}
+          </SSecondarySideNavbar>
+        ) : (
+          ''
+        )}
+        </ErrorBoundary> 
+      </ThemeProvider>
+      
+    </Router>
   );
 };
 
 SideNavbar.defaultProps = {
-  isOpen: false,
   width: '',
   borderLeft: '',
   borderRight: '',
-  isSecondaryNavbarOpen: false,
-  secondaryNavbarWidth: '',
-  secondaryNavbarHeight: '',
-  itemToggleOpenContent: '',
-  itemToggleCloseContent: '',
 };
+export default SideNavbar;
