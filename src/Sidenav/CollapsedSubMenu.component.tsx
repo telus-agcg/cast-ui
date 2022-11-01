@@ -48,7 +48,7 @@ const SidebarLink = styled(Link)`
       props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
         .leftBorderColor};
   }
-  > *:hover {
+  :hover {
     background: ${props => props.theme.sidenav['activenavItem'].background};
     border-radius: 7px;
     transition: all 0.3s;

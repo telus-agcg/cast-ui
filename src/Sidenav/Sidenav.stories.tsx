@@ -3,7 +3,7 @@ import * as React from 'react';
 import SideNavData from './SideNavData.component';
 
 export default {
-  title: 'Components/Navigation/LeftMenu',
+  title: 'Components/Navigation/Sidenav',
   component: SideNavbar,
 
   argTypes: {
@@ -110,7 +110,7 @@ export default {
   },
 };
 
-export const LeftMenu = ({
+export const Sidenav = ({
   onSelect,
   activeSideNavItem,
   activeSideNavItem2,
@@ -126,7 +126,7 @@ export const LeftMenu = ({
   </div>
 );
 
-LeftMenu.args = {
+Sidenav.args = {
   top: 0,
   isSideNavbarOpen: true,
   isSecondaryNavbarOpen: true,

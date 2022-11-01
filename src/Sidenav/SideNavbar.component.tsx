@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import ErrorBoundary from '../ErrorBoundary';
 import { Themes } from '../themes';
 import { nameSpace } from '../utils/constants';
 import Icon from 'react-icons-kit';
@@ -215,7 +214,7 @@ const SideNavbar = props => {
       <ThemeProvider
         theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
       >
-      <ErrorBoundary>
+      
         <SSideNavbar isOpen={sidebar} top={top} {...props}>
           {
             <>
@@ -274,7 +273,7 @@ const SideNavbar = props => {
         ) : (
           ''
         )}
-        </ErrorBoundary> 
+        
       </ThemeProvider>
       
     </Router>

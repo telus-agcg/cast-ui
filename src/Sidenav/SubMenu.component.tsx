@@ -31,13 +31,12 @@ const SidebarLink = styled(Link)`
       ? 'not-allowed'
       : props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
           .cursor};
-  background: ${props => props.theme.sidenav[`navItem`].background};
-  opacity: ${props =>
+   opacity: ${props =>
     props.disabled
       ? '.6'
       : props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`]
           .opacity};
-  > *:hover {
+:hover {
     background: ${props =>
       props.level === 1 ? props.theme.sidenav['activenavItem'].background : ''};
     border-radius: 7px;
