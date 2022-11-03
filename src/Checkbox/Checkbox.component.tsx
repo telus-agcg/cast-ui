@@ -132,16 +132,16 @@ const SLabel = styled.label`
 `;
 
 const SInput = styled.input`
-opacity: 0;
-width: 0;
-height: 0;
-&:focus {
-  & + label:before{
+  opacity: 0;
+  width: 0;
+  height: 0;
+  &:focus {
+  & + label:before {
     border: 2px solid ${(props: Props) => props.theme.colors.primaryHover};
   }
-}
-	& + label{
-		&:before, &:after{
+  }
+	& + label {
+		&:before, &:after {
 			display:block;
 		}
 	}
