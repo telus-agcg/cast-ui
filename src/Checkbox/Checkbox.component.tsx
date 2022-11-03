@@ -141,12 +141,12 @@ const SInput = styled.input`
       box-shadow: 0 0 0 2px ${(props: Props) =>
         props.theme.checkbox.selectedColor};
     }
-    }
+  }
 	& + label {
-		&:before, &:after {
-			display:block;
-		}
-	}
+    &:before, &:after {
+      display:block;
+    }
+  }
   + label:before {
     content: "";
     display: inline-block;
