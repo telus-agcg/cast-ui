@@ -136,10 +136,12 @@ const SInput = styled.input`
   width: 0;
   height: 0;
   &:focus {
-  & + label:before {
-    border: 2px solid ${(props: Props) => props.theme.colors.primaryHover};
-  }
-  }
+    & + label:before {
+      border: 1px solid ${(props: Props) => props.theme.colors.white};
+      box-shadow: 0 0 0 2px ${(props: Props) =>
+        props.theme.checkbox.selectedColor};
+    }
+    }
 	& + label {
 		&:before, &:after {
 			display:block;
