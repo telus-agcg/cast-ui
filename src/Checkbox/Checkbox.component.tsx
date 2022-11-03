@@ -142,7 +142,7 @@ const SInput = styled.input`
         props.theme.checkbox.selectedColor};
     }
   }
-	& + label {
+  & + label {
     &:before, &:after {
       display:block;
     }
