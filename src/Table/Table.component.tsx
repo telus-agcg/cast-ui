@@ -345,11 +345,14 @@ export class Table extends React.Component<Props> {
             if (incomingTrProps && incomingTrProps.className) {
               className += ` ${incomingTrProps.className}`;
             }
-            return {
+            const trProps = {
               ...incomingTrProps,
               className,
-              id: `${props.id}-row-${rowInfo.viewIndex}`,
             };
+            if (props.id && rowInfo && rowInfo.viewIndex) {
+              trProps.id = `${props.id}-row-${rowInfo.viewIndex}`;
+            }
+            return trProps;
           }}
           getTdProps={(state, rowInfo, column) => {
             let className = 'white-space-wrap vertically-align-center';
