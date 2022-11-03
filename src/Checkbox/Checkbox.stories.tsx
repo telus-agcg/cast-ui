@@ -100,3 +100,44 @@ _Indeterminate.args = {
   invalidText: 'A valid value is required',
   defaultChecked: true,
 };
+
+export const _listOfCheckboxes = args => (
+  <div>
+    <div>
+      <Checkbox id="myInput1" value="1" data-testid="checkbox-1" {...args}>
+        One
+      </Checkbox>
+    </div>
+    <div>
+      <Checkbox id="myInput2" value="2" data-testid="checkbox-2" {...args}>
+        Two
+      </Checkbox>
+    </div>
+    <div>
+      <Checkbox id="myInput3" value="3" data-testid="checkbox-3" {...args}>
+        Three
+      </Checkbox>
+    </div>
+    <div>
+      <Checkbox id="myInput4" value="4" data-testid="checkbox-4" {...args}>
+        Four
+      </Checkbox>
+    </div>
+    <div>
+      <Checkbox id="myInput5" value="5" data-testid="checkbox-5" {...args}>
+        Five
+      </Checkbox>
+    </div>
+  </div>
+);
+
+_listOfCheckboxes.args = {
+  cbSize: 'md',
+  checked: true,
+  disabled: false,
+  displayStyle: 'inline',
+  indeterminate: false,
+  invalid: false,
+  invalidText: 'A valid value is required',
+  defaultChecked: true,
+};

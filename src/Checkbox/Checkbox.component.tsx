@@ -132,7 +132,14 @@ const SLabel = styled.label`
 `;
 
 const SInput = styled.input`
-	display: none;
+opacity: 0;
+width: 0;
+height: 0;
+&:focus {
+  & + label:before{
+    border: 2px solid ${(props: Props) => props.theme.colors.primaryHover};
+  }
+}
 	& + label{
 		&:before, &:after{
 			display:block;
@@ -315,6 +322,7 @@ export class Checkbox extends React.Component<Props, State> {
               onChange={this.onChange}
               checked={this.state.checked}
               type="checkbox"
+              role="checkbox"
               ref={el => (this.input = el)}
               id={id}
               cbSize={cbSize}
