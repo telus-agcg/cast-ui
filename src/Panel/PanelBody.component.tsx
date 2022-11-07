@@ -40,7 +40,6 @@ export type Props = {
 };
 
 const SPanelBody = styled.div`
-  display: flex;
   background: ${(props: Props) =>
     props.bodyBackgroundColor ||
     props.theme.colors[props.bodyBackgroundColor!]};
@@ -52,6 +51,7 @@ const SPanelBody = styled.div`
     props.noPadding ? '10px' : props.theme.panel.body.padding};
   overflow: hidden;
   height: auto;
+  margin-bottom: 2px;
 `;
 
 const initialState = {};
