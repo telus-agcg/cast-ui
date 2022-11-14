@@ -3,13 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const SidebarLink = styled(Link)`
-  float: left;
   text-decoration: none;
-  list-style: none;
-  height: auto;
-  position: relative;
-  margin: 0;
-  margin-top: 0.5rem;
   display: inline-flex;
   align-items: center;
   padding-left: ${(props) => (props.level === 1 ? '1rem' : '0rem')};

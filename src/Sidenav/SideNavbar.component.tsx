@@ -169,6 +169,7 @@ const SSecondarySideNavbar = styled.div`
       : props.theme.sidenav.secondaryNavbar.width)};
   transition: ${(props: any) => props.theme.sidenav.secondaryNavbar.transition};
   display: flex;
+  gap: 0.5rem;
   flex-direction: column;
   .closeIcon {
     position: absolute;
