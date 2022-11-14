@@ -1,43 +1,29 @@
+import SideNavbar from './SideNavbar.component';
 import * as React from 'react';
-import Icon from 'react-icons-kit';
-import { socialBitcoinOutline } from 'react-icons-kit/ionicons/socialBitcoinOutline';
-import { socialAndroidOutline } from 'react-icons-kit/ionicons/socialAndroidOutline';
-import { iosHomeOutline } from 'react-icons-kit/ionicons/iosHomeOutline';
-import { iosPaperOutline } from 'react-icons-kit/ionicons/iosPaperOutline';
-import { iosWorldOutline } from 'react-icons-kit/ionicons/iosWorldOutline';
-import {
-  SideNavbar,
-  SideNav,
-  SideNavItem,
-  SideNavItemIcon,
-  SideNavItemText,
-  SideNavToggle,
-} from '../';
+import SideNavData from './SideNavData';
 
 export default {
   title: 'Components/Navigation/Sidenav',
   component: SideNavbar,
-  subcomponents: {
-    SideNav,
-    SideNavItem,
-    SideNavItemIcon,
-    SideNavItemText,
-    SideNavToggle,
-  },
+
   argTypes: {
     theme: {
       table: {
         disable: true,
       },
     },
-    isOpen: {
-      control: {
-        type: 'boolean',
-      },
-    },
+
     background: {
       control: {
         type: 'color',
+      },
+    },
+    inputSideNavData: {
+      control: false,
+    },
+    isSideNavbarOpen: {
+      control: {
+        type: 'boolean',
       },
     },
     isSecondaryNavbarOpen: {
@@ -50,9 +36,9 @@ export default {
         type: 'color',
       },
     },
-    onToggle: {
+    toggleSideNavbar: {
       action: {
-        type: 'onToggle',
+        type: 'toggleSideNavbar',
       },
     },
     beforeToggle: {
@@ -128,114 +114,24 @@ export const Sidenav = ({
   onSelect,
   activeSideNavItem,
   activeSideNavItem2,
+  isSideNavbarOpen,
+  inputSideNavData,
   ...args
 }) => (
   <div style={{ height: '600px', position: 'relative' }}>
-    <SideNavbar {...args}>
-      <SideNavToggle />
-      <SideNav top>
-        <SideNavItem path="/home" data-testid="sidenav-home">
-          <SideNavItemIcon>
-            <Icon icon={iosHomeOutline} size={24} />
-          </SideNavItemIcon>
-          <SideNavItemText>Home</SideNavItemText>
-        </SideNavItem>
-        <SideNavItem
-          path="/documents"
-          data-testid="sidenav-documents"
-          activeSideNavItem={activeSideNavItem}
-        >
-          <SideNavItemIcon>
-            <Icon icon={iosPaperOutline} size={24} />
-          </SideNavItemIcon>
-          <SideNavItemText>Documents</SideNavItemText>
-          <SideNav secondary>
-            <SideNavItem
-              path="/documents/home-documents"
-              data-testid="sidenav-home-documents"
-              onSelect={onSelect}
-            >
-              <div style={{ padding: '12px 0 12px 24px' }}>Home Documents</div>
-            </SideNavItem>
-            <SideNavItem
-              path="/documents/office-documents"
-              data-testid="sidenav-office-documents"
-            >
-              <div style={{ padding: '12px 0 12px 24px' }}>
-                Office Documents
-              </div>
-            </SideNavItem>
-          </SideNav>
-        </SideNavItem>
-        <SideNavItem
-          path="/web"
-          data-testid="sidenav-web"
-          activeSideNavItem={activeSideNavItem2}
-        >
-          <SideNavItemIcon>
-            <Icon icon={iosWorldOutline} size={24} />
-          </SideNavItemIcon>
-          <SideNavItemText>The Web</SideNavItemText>
-          <SideNav top secondary>
-            <SideNavItem path="/web/www" data-testid="sidenav-www">
-              <div style={{ padding: '12px 0 12px 24px' }}>World Wide Web</div>
-            </SideNavItem>
-            <SideNavItem path="/web/dark-web" data-testid="sidenav-dark-web">
-              <div style={{ padding: '12px 0 12px 24px' }}>The Dark Web</div>
-            </SideNavItem>
-          </SideNav>
-        </SideNavItem>
-        <SideNavItem
-          path="/currencies"
-          data-testid="sidenav-currencies"
-          disabled
-        >
-          <SideNavItemIcon>
-            <Icon icon={socialBitcoinOutline} size={24} />
-          </SideNavItemIcon>
-          <SideNavItemText>Currencies</SideNavItemText>
-        </SideNavItem>
-      </SideNav>
-      <SideNav center>
-        <SideNavItem path="/technology" data-testid="sidenav-technology">
-          <SideNavItemIcon>
-            <Icon icon={socialAndroidOutline} size={24} />
-          </SideNavItemIcon>
-          <SideNavItemText>Technology</SideNavItemText>
-        </SideNavItem>
-        <SideNavItem
-          path="/currencies"
-          data-testid="sidenav-technology"
-          disabled
-        >
-          <SideNavItemIcon>
-            <Icon icon={socialBitcoinOutline} size={24} />
-          </SideNavItemIcon>
-          <SideNavItemText>Currencies</SideNavItemText>
-        </SideNavItem>
-      </SideNav>
-      <SideNav bottom>
-        <SideNavItem path="/reports" data-testid="sidenav-reports">
-          <SideNavItemIcon>
-            <Icon icon={iosPaperOutline} size={24} />
-          </SideNavItemIcon>
-          <SideNavItemText>Reports</SideNavItemText>
-        </SideNavItem>
-        <SideNavItem path="/logout" data-testid="sidenav-logout">
-          <SideNavItemIcon>
-            <Icon icon={iosHomeOutline} size={24} />
-          </SideNavItemIcon>
-          <SideNavItemText>Logout</SideNavItemText>
-        </SideNavItem>
-      </SideNav>
-    </SideNavbar>
+    <SideNavbar
+      isSideNavbarOpen={isSideNavbarOpen}
+      inputSideNavData={inputSideNavData}
+    />
   </div>
 );
 
 Sidenav.args = {
-  isOpen: true,
+  top: 0,
+  isSideNavbarOpen: true,
   isSecondaryNavbarOpen: true,
   secondaryNavbarBackground: '#ffffff',
   activeSideNavItem: true,
   activeSideNavItem2: false,
+  inputSideNavData: SideNavData,
 };
