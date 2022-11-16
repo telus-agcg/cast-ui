@@ -1106,19 +1106,19 @@ const data = {
       name: 'Strawberry',
       type: 'Fruit',
       color: 'Red',
-      weight: '12g',
+      weight: 12,
     },
     {
       name: 'Apple',
       type: 'Fruit',
       color: 'Mixed',
-      weight: '200g',
+      weight: 200,
     },
     {
       name: 'Lettuce',
       type: 'Vegetable',
       color: 'Green',
-      weight: '50g',
+      weight: 50,
     },
   ],
 };

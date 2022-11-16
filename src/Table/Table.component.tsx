@@ -127,6 +127,16 @@ const SWrapperDiv = styled(ReactTable)`
     transition: 0.3s all;
   }
 
+  &.ReactTable .rt-tbody {
+    &::after {
+      margin: auto;
+      content: 'No results found';
+      display: ${(props: any) => (props.data.length > 0 ? 'none' : 'initial')};
+      height: 100px;
+      line-height: 100px;
+    }
+  }
+
   &.ReactTable
     .rt-tbody
     > .rt-tr-group:last-of-type:not(:only-of-type)
@@ -136,6 +146,13 @@ const SWrapperDiv = styled(ReactTable)`
 
   &.ReactTable .rt-tbody .rt-tr:hover {
     background-color: ${(props: any) => props.theme.table.row.hoverColor};
+  }
+  &.ReactTable .rt-tfoot {
+    border-top-color: ${(props: any) =>
+      props.theme.table.header.borderBottomColor};
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: none;
   }
   &.ReactTable .rt-thead .rt-th,
   &.ReactTable .rt-tbody .rt-td,
@@ -227,20 +244,11 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .rt-thead .rt-th.-sort-desc {
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=');
   }
-  &.ReactTable .rt-noData {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 0px;
-    height: 100px;
-    background-color: ${(props: any) => props.theme.colors.secondaryBackground};
-    transform: none;
-    left: 0;
-  }
 
   .rt-thead {
     font-size: ${(props: any) => props.theme.table.header.fontSize};
+    pointer-events: ${(props: any) =>
+      props.data.length > 0 ? 'auto' : 'none'};
   }
 
   &.ReactTable .white-space-wrap {
@@ -264,6 +272,9 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .center-align {
     text-align: center; // for blocked elements
     justify-content: center; // for flex elements
+  }
+  &.ReactTable .rt-noData {
+    display: none !important;
   }
 `;
 
@@ -315,7 +326,6 @@ export class Table extends React.Component<Props> {
     } = this.props;
 
     const customProps = { id: props.id };
-
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperDiv
@@ -335,11 +345,14 @@ export class Table extends React.Component<Props> {
             if (incomingTrProps && incomingTrProps.className) {
               className += ` ${incomingTrProps.className}`;
             }
-            return {
+            const trProps = {
               ...incomingTrProps,
               className,
-              id: `${props.id}-row-${rowInfo.viewIndex}`,
             };
+            if (props.id && rowInfo && rowInfo.viewIndex) {
+              trProps.id = `${props.id}-row-${rowInfo.viewIndex}`;
+            }
+            return trProps;
           }}
           getTdProps={(state, rowInfo, column) => {
             let className = 'white-space-wrap vertically-align-center';
