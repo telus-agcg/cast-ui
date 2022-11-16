@@ -51,7 +51,6 @@ const SPanelBody = styled.div`
     props.noPadding ? '10px' : props.theme.panel.body.padding};
   overflow: hidden;
   height: auto;
-  margin-bottom: 2px;
 `;
 
 const initialState = {};
