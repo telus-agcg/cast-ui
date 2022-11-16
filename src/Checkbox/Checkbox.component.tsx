@@ -132,12 +132,21 @@ const SLabel = styled.label`
 `;
 
 const SInput = styled.input`
-	display: none;
-	& + label{
-		&:before, &:after{
-			display:block;
-		}
-	}
+  opacity: 0;
+  width: 0;
+  height: 0;
+  &:focus {
+    & + label:before {
+      border: 1px solid ${(props: Props) => props.theme.colors.white};
+      box-shadow: 0 0 0 2px ${(props: Props) =>
+        props.theme.checkbox.selectedColor};
+    }
+  }
+  & + label {
+    &:before, &:after {
+      display:block;
+    }
+  }
   + label:before {
     content: "";
     display: inline-block;
@@ -315,6 +324,7 @@ export class Checkbox extends React.Component<Props, State> {
               onChange={this.onChange}
               checked={this.state.checked}
               type="checkbox"
+              role="checkbox"
               ref={el => (this.input = el)}
               id={id}
               cbSize={cbSize}
