@@ -40,7 +40,6 @@ export type Props = {
 };
 
 const SPanelBody = styled.div`
-  display: flex;
   background: ${(props: Props) =>
     props.bodyBackgroundColor ||
     props.theme.colors[props.bodyBackgroundColor!]};
