@@ -14,7 +14,7 @@ export type Props = {
    *
    * @default null
    **/
-  id: string;
+  id?: string;
   /**
    * Specify the size of the checkbox (sm | md | lg)
    *
@@ -100,7 +100,6 @@ const displayStyleRules: Function = (
   }
   return {
     display: 'block',
-    'padding-bottom': theme.checkbox.stackedSpacing,
   };
 };
 
@@ -116,7 +115,6 @@ const indeterminateCheckboxRules: Function = (cbSize: string) => {
 };
 
 const SDiv = styled.div`
-  line-height: ${(props: Props) => props.theme.checkbox[props.cbSize!].height};
   ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)};
   display: inline-flex;
   align-items: center;
@@ -161,9 +159,7 @@ const SInput = styled.input`
     border-style: ${(props: Props) => props.theme.checkbox.borderStyle};
     border-radius: 1px;
     border-width ${(props: Props) => props.theme.checkbox.borderWidth};
-    margin: ${(props: Props) =>
-      props.theme.checkbox[props.cbSize!].squareMargin};
-    margin-right: 5px;
+    margin-right: ${(props: any) => (props.hasChildren ? '4px' : '0px')};
     padding: 3px;
     transition: all 0.3s;
   }
@@ -208,28 +204,20 @@ const SInput = styled.input`
       margin-left: ${(props: Props) =>
         props.theme.checkbox[props.cbSize!].marginLeft};
       left: 0;
-      top:${(props: Props) =>
-        props.theme.checkbox[props.cbSize!].checkedTopPosition};
     }
 
     &:indeterminate + label:after {
       content: "";
-      padding: 2px;
+      padding: 6px 2px;
       text-align: center;
       position: absolute;
-      height:  ${(props: Props) => (props.cbSize === 'lg' ? '8px' : '6px')};
+      height: 0px;
       border-style: solid;
       border-color: ${(props: Props) => props.theme.colors.white};
       border-width: ${(props: Props) =>
         props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
       ${(props: Props) => indeterminateCheckboxRules(props.cbSize)};
-      margin-left: ${(props: Props) =>
-        props.theme.checkbox[props.cbSize!].marginLeft};
-			transform: rotate(90deg) translateX(50%) translateY(0px);
-			-webkit-transform: rotate(90deg) translateX(50%) translateY(0px);
-			-ms-transform: rotate(90deg) translateX(50%) translateY(0px);
-			top:${(props: Props) =>
-        props.theme.checkbox[props.cbSize!].indeterminateTopPosition};
+      margin-left: 7px;
     }
     &:disabled + label:before,
     &:disabled:checked + label:before,
@@ -323,6 +311,7 @@ export class Checkbox extends React.Component<Props, State> {
               {...dataProps}
               onChange={this.onChange}
               checked={this.state.checked}
+              hasChildren={Boolean(children)}
               type="checkbox"
               role="checkbox"
               ref={el => (this.input = el)}
