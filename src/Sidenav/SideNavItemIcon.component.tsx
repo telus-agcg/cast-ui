@@ -21,7 +21,7 @@ const SSideNavItemIcon = styled.div`
         ? ''
         : props.theme.sidenav['activenavItem'].background};
     border-radius: ${(props) => (props.isOpen ? '' : '4px')};
-    transition: all 0.3s;
+    transition: color 0.3s;
   }
 `;
 

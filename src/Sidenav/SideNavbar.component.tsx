@@ -89,9 +89,6 @@ const NavIcon = styled(Link)`
   i {
     padding: 6px;
     margin: 2px;
-    line-height: 20px;
-    font-weight: 200;
-    font-size: 20px;
     border-radius: 50%;
   }
   > *:hover {
@@ -100,19 +97,13 @@ const NavIcon = styled(Link)`
     transition: all 0.3s;
   }
 `;
-const SSideNav = styled.nav`
-  float: left;
-  clear: both;
-  list-style: none;
-  width: 100%;
+const SSideNav = styled.div`
   height: ${(props) => (props.elementType === 'list' ? '90%' : 'auto')};
   padding: ${(props) => props.theme.sidenav.nav.padding};
   margin-bottom: ${(props) => (props.top || props.center ? 'auto' : '1px')};
   margin-top: 12px;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s 0s ease-in-out;
-  color: ${(props) => props.theme.sidenav.color};
 `;
 
 const SSideNavbar = styled.div`
@@ -120,7 +111,6 @@ const SSideNavbar = styled.div`
   font-size: ${(props: any) => props.theme.sidenav.fontSize};
   color: ${(props: any) => props.theme.sidenav.color};
   padding: ${(props: any) => (props.isOpen ? props.theme.sidenav.padding : 0)};
-  margin: ${(props: any) => props.theme.sidenav.margin};
   height: 92vh;
   z-index: ${(props: any) => props.theme.sidenav.zIndex};
   background: ${(props: any) =>
@@ -132,10 +122,8 @@ const SSideNavbar = styled.div`
   position: ${(props: any) => props.position || props.theme.sidenav.position};
   top: ${(props: any) => props.top || props.theme.sidenav.top};
   bottom: ${(props: any) => props.bottom || props.theme.sidenav.bottom};
-  right: ${(props: any) => props.theme.sidenav.right};
   width: ${(props: any) =>
     props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
-  transition: ${(props: any) => props.theme.sidenav.transition};
   display: flex;
   flex-direction: column;
 `;
@@ -167,7 +155,6 @@ const SSecondarySideNavbar = styled.div`
     (props.isSecondaryNavbarOpen
       ? props.theme.sidenav.secondaryNavbar.openWidth
       : props.theme.sidenav.secondaryNavbar.width)};
-  transition: ${(props: any) => props.theme.sidenav.secondaryNavbar.transition};
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
@@ -183,8 +170,6 @@ const SSecondarySideNavbar = styled.div`
     color: ${(props: any) => props.theme.sidenav.secondaryNavbarLabel.color};
     background-color: transparent;
     border: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     cursor: pointer;
     border-radius: 50%;

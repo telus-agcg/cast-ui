@@ -8,7 +8,6 @@ const SidebarLink = styled(Link)`
   align-items: center;
   padding-left: ${(props) => (props.level === 1 ? '1rem' : '0rem')};
   padding-right: 18px;
-  transition: ${(props) => props.theme.sidenav.navItem.transition};
   color: ${(props) =>
     props.theme.sidenav[`${props.isActiveSubMenuItem ? 'active' : ''}navItem`]
       .color};
@@ -29,7 +28,6 @@ const SidebarLink = styled(Link)`
       : props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
           .opacity};
   &:before {
-    content: '';
     display: block;
     height: 100%;
     position: absolute;
@@ -45,7 +43,7 @@ const SidebarLink = styled(Link)`
   :hover {
     background: ${(props) => props.theme.sidenav['activenavItem'].background};
     border-radius: 7px;
-    transition: all 0.3s;
+    transition: background-color 0.3s;
   }
 `;
 

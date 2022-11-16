@@ -15,22 +15,17 @@ const SSubNavWrapper = styled.div`
   opacity: ${(props) => (props.show ? 1 : 0)};
   flex-direction: column;
   &.fade-enter {
-    transition: all 0.15s 0s ease-in;
+    transition: height 0.15s 0s ease-in;
   }
 `;
 const SidebarLink = styled(Link)`
-  float: left;
   text-decoration: none;
-  list-style: none;
-  height: auto;
   position: relative;
-  margin: 0;
   display: inline-flex;
   align-items: center;
   padding: ${(props) =>
     props.level === 1 ? '8px 0px 8px 46px' : props.isOpen ? '8px 0px' : '8px'};
   gap: 12px;
-  border-bottom: '0px';
   color: ${(props) =>
     props.theme.sidenav[
       `${props.activeItem || props.isActiveSubMenuItem ? 'active' : ''}navItem`
@@ -55,18 +50,7 @@ const SidebarLink = styled(Link)`
         ? props.theme.sidenav['activenavItem'].background
         : ''};
     border-radius: 7px;
-    transition: all 0.3s;
-  }
-  &:before {
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: ${(props) =>
-      props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`]
-        .leftBorderWidth};
+    transition: color 0.3s;
   }
   .custom-icon-svg {
     path {
@@ -97,18 +81,6 @@ const SubMenu = ({
   hoverDelay,
   ...props
 }) => {
-  const [subnav, setSubnav] = useState(false);
-  // resetting all subnav to close state when navigation bar is collapsed
-  useEffect(() => {
-    if (!isOpen) setSubnav(false);
-  }, [isOpen]);
-  const showSubnav = () => setSubnav(!subnav);
-  const newProps = {
-    isOpen,
-    activeItem: currentActiveItem.label === item.label ? true : false,
-    disabled: item.disabled,
-    ...props,
-  };
   useEffect(() => {
     if (item.label !== currentActiveItem.label) setSubnav(false);
   }, [currentActiveItem]);
@@ -116,6 +88,20 @@ const SubMenu = ({
     if (item.label !== hoverActiveItem.label) setSubnav(false);
     else setSubnav(true);
   }, [hoverActiveItem]);
+  // resetting all subnav to close state when navigation bar is collapsed
+  useEffect(() => {
+    if (!isOpen) setSubnav(false);
+  }, [isOpen]);
+  const [subnav, setSubnav] = useState(false);
+
+  const newProps = {
+    isOpen,
+    activeItem: currentActiveItem.label === item.label ? true : false,
+    disabled: item.disabled,
+    ...props,
+  };
+
+  const showSubnav = () => setSubnav(!subnav);
 
   const handleItemClick = (e) => {
     if (item.subNav && isOpen && !item.disabled) showSubnav();
@@ -141,7 +127,6 @@ const SubMenu = ({
       setHoverActiveItem(item);
     }
   };
-  const IconObj = item?.icon;
   const handleHoverDelay = () => {
     if (allowHover) {
       setTimeout(() => {
@@ -158,15 +143,7 @@ const SubMenu = ({
         {...newProps}
       >
         <SideNavItemIcon isOpen={isOpen} item={item}>
-          {/* keep one icon prop */}
-          {item.reactIcon ? (
-            <Icon icon={item.reactIcon} size={24} />
-          ) : (
-            <IconObj
-              className={`custom-icon-svg`}
-              style={{ width: '24px', height: '24px' }}
-            />
-          )}
+          <Icon icon={item.icon} size={24} />
         </SideNavItemIcon>
         <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
         <div>
