@@ -537,7 +537,7 @@ export const buildTheme = colors => ({
     body: {
       padding: '30px 30px',
     },
-    borderWidth: '1px',
+    borderWidth: 'thin',
     headerBorderColor: colors.drk400,
     bodyBackgroundColor: colors.lt200,
     bodyBorderColor: colors.drk400,
