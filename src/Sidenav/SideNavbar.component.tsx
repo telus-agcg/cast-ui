@@ -196,6 +196,12 @@ const SideNavbar = (props) => {
     onSelect,
     allowHover = false,
   } = props;
+  useEffect(() => {
+    setSidebar(isSideNavbarOpen);
+  }, [isSideNavbarOpen]);
+  useEffect(() => {
+    setSideNavData(inputSideNavData);
+  }, [inputSideNavData]);
   const [sidebar, setSidebar] = useState(false);
   const [sideNavData, setSideNavData] = useState([]);
   const [secondarySidebar, setSecondarySidebar] = useState(false);
@@ -212,12 +218,7 @@ const SideNavbar = (props) => {
     if (toggleSideNavbar !== undefined) toggleSideNavbar();
     else setSidebar(!sidebar);
   };
-  useEffect(() => {
-    setSidebar(isSideNavbarOpen);
-  }, [isSideNavbarOpen]);
-  useEffect(() => {
-    setSideNavData(inputSideNavData);
-  }, [inputSideNavData]);
+
   return (
     <Router>
       <ThemeProvider

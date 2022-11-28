@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const SidebarLink = styled(Link)`
   text-decoration: none;
   display: inline-flex;
-  align-items: center;
   padding-left: ${(props) => (props.level === 1 ? '1rem' : '0rem')};
   padding-right: 18px;
   color: ${(props) =>
@@ -27,19 +26,6 @@ const SidebarLink = styled(Link)`
       ? '.6'
       : props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
           .opacity};
-  &:before {
-    display: block;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: ${(props) =>
-      props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
-        .leftBorderWidth};
-    background-color: ${(props) =>
-      props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
-        .leftBorderColor};
-  }
   :hover {
     background: ${(props) => props.theme.sidenav['activenavItem'].background};
     border-radius: 7px;

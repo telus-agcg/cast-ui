@@ -7,7 +7,7 @@ import Icon from 'react-icons-kit';
 const SSubMenuItem = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0px 3px 0px 4px;
+  margin: 0px 4px;
 `;
 const SSubNavWrapper = styled.div`
   display: flex;

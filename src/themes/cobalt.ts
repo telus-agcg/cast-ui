@@ -781,7 +781,7 @@ export const cobaltTheme = {
     fontSize: '14px',
     color: cobaltColors.primary,
     height: '',
-    width: '50px',
+    width: '48px',
     openWidth: '200px',
     background: cobaltColors.lt200,
     padding: '0 8px',
