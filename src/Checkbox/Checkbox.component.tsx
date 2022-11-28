@@ -133,6 +133,7 @@ const SInput = styled.input`
   opacity: 0;
   width: 0;
   height: 0;
+  margin: 0;
   &:focus {
     & + label:before {
       border: 1px solid ${(props: Props) => props.theme.colors.white};
@@ -266,7 +267,7 @@ export class Checkbox extends React.Component<Props, State> {
   onChange = (event: any) => {
     if (!this.props.disabled) {
       this.setState(
-        prevState => ({
+        (prevState) => ({
           checked: !prevState.checked,
         }),
         () => {
@@ -314,7 +315,7 @@ export class Checkbox extends React.Component<Props, State> {
               hasChildren={Boolean(children)}
               type="checkbox"
               role="checkbox"
-              ref={el => (this.input = el)}
+              ref={(el) => (this.input = el)}
               id={id}
               cbSize={cbSize}
               disabled={disabled}
