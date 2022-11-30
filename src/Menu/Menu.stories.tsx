@@ -26,7 +26,11 @@ export default {
 };
 
 const menuData = [
-  { label: 'Business Overview', to: '/business-plans/overview' },
+  {
+    label: 'Business Overview',
+    to: '/business-plans/overview',
+    disabled: true,
+  },
   { label: 'Contracts Overview', to: '/business-plans/contracts' },
 ];
 

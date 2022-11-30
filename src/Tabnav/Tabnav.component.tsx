@@ -43,7 +43,6 @@ export type Props = {
     'data-testid'?: string;
     children?: {
       label: String;
-      active?: boolean;
       disabled?: boolean;
       to?: any;
       className?: string;

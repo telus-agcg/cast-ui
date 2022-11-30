@@ -28,7 +28,6 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    **/
   items?: {
     label: String;
-    active?: boolean;
     disabled?: boolean;
     to?: any;
     className?: string;

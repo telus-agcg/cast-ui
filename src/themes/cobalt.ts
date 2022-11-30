@@ -756,13 +756,6 @@ export const cobaltTheme = {
       bottomBorderColor: cobaltColors.primary,
       iconColor: cobaltColors.white,
     },
-    tabDropdown: {
-      color: cobaltColors.drk800,
-      background: cobaltColors.white,
-      padding: '8px 16px',
-      hoverColor: cobaltColors.primary,
-      hoverBackground: cobaltColors.lt200,
-    },
   },
   sidenav: {
     fontSize: '14px',
