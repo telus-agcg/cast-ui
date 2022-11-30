@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../Typography/Link';
 import styled from 'styled-components';
 import { SideNavItemIcon } from './SideNavItemIcon.component';
 import Icon from 'react-icons-kit';

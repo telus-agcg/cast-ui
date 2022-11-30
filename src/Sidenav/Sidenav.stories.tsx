@@ -18,10 +18,10 @@ export default {
         type: 'color',
       },
     },
-    inputSideNavData: {
+    data: {
       control: false,
     },
-    isSideNavbarOpen: {
+    isOpen: {
       control: {
         type: 'boolean',
       },
@@ -114,24 +114,21 @@ export const Sidenav = ({
   onSelect,
   activeSideNavItem,
   activeSideNavItem2,
-  isSideNavbarOpen,
-  inputSideNavData,
+  isOpen,
+  data,
   ...args
 }) => (
   <div style={{ height: '600px', position: 'relative' }}>
-    <SideNavbar
-      isSideNavbarOpen={isSideNavbarOpen}
-      inputSideNavData={inputSideNavData}
-    />
+    <SideNavbar isOpen={isOpen} data={data} />
   </div>
 );
 
 Sidenav.args = {
   top: 0,
-  isSideNavbarOpen: true,
+  isOpen: true,
   isSecondaryNavbarOpen: true,
   secondaryNavbarBackground: '#ffffff',
   activeSideNavItem: true,
   activeSideNavItem2: false,
-  inputSideNavData: SideNavData,
+  data: SideNavData,
 };

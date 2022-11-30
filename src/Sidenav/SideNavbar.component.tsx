@@ -6,7 +6,7 @@ import Icon from 'react-icons-kit';
 import { ic_keyboard_arrow_left as IKAL } from 'react-icons-kit/md/ic_keyboard_arrow_left';
 import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
 import SubMenu from './SubMenu.component';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import Link from '../Typography/Link';
 import CollapsedSubMenu from './CollapsedSubMenu.component';
 
 export type Props = {
@@ -78,7 +78,7 @@ export type Props = {
    **/
   bottom?: number | string;
 
-  inputSideNavData?: any;
+  data?: any;
 };
 
 const NavIcon = styled(Link)`
@@ -177,6 +177,7 @@ const SSecondarySideNavbar = styled.div`
     &:hover {
       background-color: ${(props) => props.theme.modal.button.hoverBackground};
       color: ${(props) => props.theme.pagination.hoverTextColor};
+      text-decoration: none;
     }
   }
 `;
@@ -189,19 +190,19 @@ const SSecondarySideNavbarLabel = styled.h3`
 `;
 const SideNavbar = (props) => {
   const {
-    isSideNavbarOpen,
+    isOpen,
     toggleSideNavbar,
     top,
-    inputSideNavData,
+    data,
     onSelect,
     allowHover = false,
   } = props;
   useEffect(() => {
-    setSidebar(isSideNavbarOpen);
-  }, [isSideNavbarOpen]);
+    setSidebar(isOpen);
+  }, [isOpen]);
   useEffect(() => {
-    setSideNavData(inputSideNavData);
-  }, [inputSideNavData]);
+    setSideNavData(data);
+  }, [data]);
   const [sidebar, setSidebar] = useState(false);
   const [sideNavData, setSideNavData] = useState([]);
   const [secondarySidebar, setSecondarySidebar] = useState(false);
@@ -220,87 +221,85 @@ const SideNavbar = (props) => {
   };
 
   return (
-    <Router>
-      <ThemeProvider
-        theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
-      >
-        <SSideNavbar isOpen={sidebar} top={top} {...props}>
-          {
-            <>
-              <SSideNav {...props} elementType={'list'}>
-                {sideNavData?.map((item, index) => {
-                  return (
-                    <SubMenu
-                      item={item}
-                      key={index}
-                      isOpen={sidebar}
-                      currentActiveItem={currentActiveItem}
-                      setCurrentActiveItem={setCurrentActiveItem}
-                      setSecondarySidebar={setSecondarySidebar}
-                      setCurrentActiveSubNav={setCurrentActiveSubnav}
-                      hoverActiveItem={hoverActiveItem}
-                      setHoverActiveItem={setHoverActiveItem}
-                      currentActiveSubNavItem={currentActiveSubNavItem}
-                      setCurrentActiveSubNavItem={setCurrentActiveSubNavItem}
-                      onSelect={onSelect}
-                      allowHover={allowHover}
-                      {...props}
-                    />
-                  );
-                })}
-              </SSideNav>
-              <SSideNav>
-                {sidebar ? (
-                  <NavIcon to="#" isOpen={sidebar}>
-                    <Icon icon={IKAL} size={24} onClick={showSidebar} />
-                  </NavIcon>
-                ) : (
-                  <NavIcon to="#" isOpen={sidebar}>
-                    <Icon icon={IKAR} size={24} onClick={showSidebar} />
-                  </NavIcon>
-                )}
-              </SSideNav>
-            </>
-          }
-        </SSideNavbar>
-        {secondarySidebar ? (
-          <SSecondarySideNavbar
-            className={`${nameSpace}-secondary-sidenavbar`}
-            role="secondary-side-nav-bar"
-            isSecondaryNavbarOpen={secondarySidebar}
-            {...props}
+    <ThemeProvider
+      theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
+    >
+      <SSideNavbar isOpen={sidebar} top={top} {...props}>
+        {
+          <>
+            <SSideNav {...props} elementType={'list'}>
+              {sideNavData?.map((item, index) => {
+                return (
+                  <SubMenu
+                    item={item}
+                    key={index}
+                    isOpen={sidebar}
+                    currentActiveItem={currentActiveItem}
+                    setCurrentActiveItem={setCurrentActiveItem}
+                    setSecondarySidebar={setSecondarySidebar}
+                    setCurrentActiveSubNav={setCurrentActiveSubnav}
+                    hoverActiveItem={hoverActiveItem}
+                    setHoverActiveItem={setHoverActiveItem}
+                    currentActiveSubNavItem={currentActiveSubNavItem}
+                    setCurrentActiveSubNavItem={setCurrentActiveSubNavItem}
+                    onSelect={onSelect}
+                    allowHover={allowHover}
+                    {...props}
+                  />
+                );
+              })}
+            </SSideNav>
+            <SSideNav>
+              {sidebar ? (
+                <NavIcon to="#" isOpen={sidebar}>
+                  <Icon icon={IKAL} size={24} onClick={showSidebar} />
+                </NavIcon>
+              ) : (
+                <NavIcon to="#" isOpen={sidebar}>
+                  <Icon icon={IKAR} size={24} onClick={showSidebar} />
+                </NavIcon>
+              )}
+            </SSideNav>
+          </>
+        }
+      </SSideNavbar>
+      {secondarySidebar ? (
+        <SSecondarySideNavbar
+          className={`${nameSpace}-secondary-sidenavbar`}
+          role="secondary-side-nav-bar"
+          isSecondaryNavbarOpen={secondarySidebar}
+          {...props}
+        >
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={() => setSecondarySidebar(false)}
+            className={'closeIcon'}
           >
-            <button
-              type="button"
-              aria-label="Close"
-              onClick={() => setSecondarySidebar(false)}
-              className={'closeIcon'}
-            >
-              <span>&times;</span>
-            </button>
-            <SSecondarySideNavbarLabel>
-              {currentActiveSubnav?.label}
-            </SSecondarySideNavbarLabel>
-            {currentActiveSubnav?.subNav?.map((item, index) => {
-              return (
-                <CollapsedSubMenu
-                  item={item}
-                  key={index}
-                  onSelect={onSelect}
-                  setSecondarySidebar={setSecondarySidebar}
-                  currentActiveSubNavItem={currentActiveSubNavItem}
-                  setCurrentActiveSubNavItem={setCurrentActiveSubNavItem}
-                  parentItem={currentActiveSubnav}
-                  setCurrentActiveItem={setCurrentActiveItem}
-                />
-              );
-            })}
-          </SSecondarySideNavbar>
-        ) : (
-          ''
-        )}
-      </ThemeProvider>
-    </Router>
+            <span>&times;</span>
+          </button>
+          <SSecondarySideNavbarLabel>
+            {currentActiveSubnav?.label}
+          </SSecondarySideNavbarLabel>
+          {currentActiveSubnav?.subNav?.map((item, index) => {
+            return (
+              <CollapsedSubMenu
+                item={item}
+                key={index}
+                onSelect={onSelect}
+                setSecondarySidebar={setSecondarySidebar}
+                currentActiveSubNavItem={currentActiveSubNavItem}
+                setCurrentActiveSubNavItem={setCurrentActiveSubNavItem}
+                parentItem={currentActiveSubnav}
+                setCurrentActiveItem={setCurrentActiveItem}
+              />
+            );
+          })}
+        </SSecondarySideNavbar>
+      ) : (
+        ''
+      )}
+    </ThemeProvider>
   );
 };
 
