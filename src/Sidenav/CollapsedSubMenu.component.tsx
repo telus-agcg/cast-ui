@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../Typography/Link';
 import styled from 'styled-components';
 
 const SidebarLink = styled(Link)`
