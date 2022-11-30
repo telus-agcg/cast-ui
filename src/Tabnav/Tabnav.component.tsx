@@ -5,6 +5,7 @@ import { Popover } from '../Popover';
 import Icon from 'react-icons-kit';
 import { ic_keyboard_arrow_down as ICKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 import _ from 'lodash';
+import { Menu } from '../Menu';
 
 export type Props = {
   /**
@@ -27,7 +28,7 @@ export type Props = {
   borderBottom?: string;
   /**
    * An array of objects.
-   * Each object define properties of a each tab.
+   * Each object defines properties of each tab.
    * If an object has property children<Array>, the children
    * will automatically appear in the tab's popup view.
    *
@@ -137,48 +138,6 @@ const STab = styled.div`
   }
   transition: all 0.3s;
 `;
-const SPopoverContent = styled.div`
-  padding: 8px 0;
-  min-width: 140px;
-  text-align: left;
-  > * {
-    cursor: pointer;
-    text-decoration: none;
-    padding: ${(props: any) => props.theme.tabnav.tabDropdown.padding};
-    color: ${(props: any) => props.theme.tabnav.tabDropdown.color};
-    background: ${(props: any) => props.theme.tabnav.tabDropdown.background};
-    font-family: ${(props: any) => props.theme.typography.fontFamily};
-  }
-  > *:hover {
-    color: ${(props: any) => props.theme.tabnav.tabDropdown.hoverColor};
-    background: ${(props: any) =>
-      props.theme.tabnav.tabDropdown.hoverBackground};
-  }
-`;
-
-const SPopoverItem = styled.div`
-  opacity: ${(props: any) =>
-    props.disabled
-      ? '.6'
-      : props.theme.tabnav[`${props.active ? 'active' : ''}tab`].opacity};
-  cursor: ${(props: any) => (props.disabled ? 'not-allowed' : 'pointer')};
-`;
-
-const PopoverContent = ({ tab, onTabClick, ...props }: any) => (
-  <SPopoverContent {...props}>
-    {tab.children.length > 0 &&
-      tab.children.map((childTab: any, j: any) => (
-        <SPopoverItem
-          key={j}
-          onClick={(e: any) => handleTabClick(childTab, e, onTabClick)}
-          data-testid={_.kebabCase(childTab.label)}
-          {...childTab}
-        >
-          {childTab.label}
-        </SPopoverItem>
-      ))}
-  </SPopoverContent>
-);
 
 const handleTabClick = (tab, e, onTabClick) => {
   if (tab.disabled) {
@@ -205,7 +164,7 @@ export const Tabnav: React.FunctionComponent<Props> = ({
             <Popover
               content={
                 tab.children ? (
-                  <PopoverContent tab={tab} onTabClick={onTabClick} />
+                  <Menu items={tab.children} onClick={onTabClick} />
                 ) : (
                   ''
                 )
