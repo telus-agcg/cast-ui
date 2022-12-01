@@ -77,8 +77,29 @@ export type Props = {
    * @default ''
    **/
   bottom?: number | string;
-
-  data?: any;
+  /**
+   * An array of objects.
+   * Each object defines a menuItem in sidenav.
+   * If an object has property subNav<Array>, then
+   * it will appear either under that menu item if sidenav is open
+   * or in secondary sidenav if sidenav is closed
+   *
+   * @default []
+   **/
+  data?: {
+    label: String;
+    path: String;
+    disabled: boolean;
+    to: any;
+    icon: any;
+    subNav: {
+      label: String;
+      path: String;
+      disabled: boolean;
+      to: any;
+      icon: any;
+    }[];
+  }[];
 };
 
 const NavIcon = styled(Link)`
