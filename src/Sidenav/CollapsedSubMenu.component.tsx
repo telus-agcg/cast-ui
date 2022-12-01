@@ -42,7 +42,7 @@ const SidebarLabel = styled.span`
 const CollapsedSubMenu = ({
   item,
   onSelect,
-  setSecondarySidebar,
+  setSecondarySidebarOpen,
   currentActiveSubNavItem,
   setCurrentActiveSubNavItem,
   setCurrentActiveItem,
@@ -51,7 +51,7 @@ const CollapsedSubMenu = ({
 }) => {
   const newProps = { disabled: item.disabled, ...props };
   const collapsedItemClick = (e, item) => {
-    setSecondarySidebar(false);
+    setSecondarySidebarOpen(false);
     setCurrentActiveItem(parentItem);
     setCurrentActiveSubNavItem(item.label);
     if (onSelect) {

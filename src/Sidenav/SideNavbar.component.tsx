@@ -148,8 +148,7 @@ const SSecondarySideNavbar = styled.div`
   bottom: ${(props: any) =>
     props.bottom || props.theme.sidenav.secondaryNavbar.bottom};
   right: ${(props: any) => props.theme.sidenav.secondaryNavbar.right};
-  left: ${(props: any) =>
-    props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
+  left: ${(props: any) => props.theme.sidenav.width};
   min-width: ${(props: any) =>
     props.secondaryNavbarWidth ||
     (props.isSecondaryNavbarOpen
@@ -177,7 +176,6 @@ const SSecondarySideNavbar = styled.div`
     &:hover {
       background-color: ${(props) => props.theme.modal.button.hoverBackground};
       color: ${(props) => props.theme.pagination.hoverTextColor};
-      text-decoration: none;
     }
   }
 `;
@@ -198,14 +196,14 @@ const SideNavbar = (props) => {
     allowHover = false,
   } = props;
   useEffect(() => {
-    setSidebar(isOpen);
+    setSidebarOpen(isOpen);
   }, [isOpen]);
   useEffect(() => {
     setSideNavData(data);
   }, [data]);
-  const [sidebar, setSidebar] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sideNavData, setSideNavData] = useState([]);
-  const [secondarySidebar, setSecondarySidebar] = useState(false);
+  const [secondarySidebarOpen, setSecondarySidebarOpen] = useState(false);
   const [currentActiveItem, setCurrentActiveItem] = useState({ label: '' });
   const [currentActiveSubnav, setCurrentActiveSubnav] = useState({
     subNav: [],
@@ -215,28 +213,32 @@ const SideNavbar = (props) => {
 
   const [hoverActiveItem, setHoverActiveItem] = useState(false);
   const showSidebar = () => {
-    setSecondarySidebar(false);
-    if (toggleSideNavbar !== undefined) toggleSideNavbar();
-    else setSidebar(!sidebar);
+    setSecondarySidebarOpen(false);
+    if (typeof toggleSideNavbar !== 'undefined') {
+      toggleSideNavbar();
+    } else {
+      setSidebarOpen(!sidebarOpen);
+    }
   };
 
   return (
     <ThemeProvider
       theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
     >
-      <SSideNavbar isOpen={sidebar} top={top} {...props}>
+      <SSideNavbar top={top} {...props} isOpen={sidebarOpen}>
         {
           <>
             <SSideNav {...props} elementType={'list'}>
               {sideNavData?.map((item, index) => {
                 return (
                   <SubMenu
+                    {...props}
                     item={item}
                     key={index}
-                    isOpen={sidebar}
+                    isOpen={sidebarOpen}
                     currentActiveItem={currentActiveItem}
                     setCurrentActiveItem={setCurrentActiveItem}
-                    setSecondarySidebar={setSecondarySidebar}
+                    setSecondarySidebarOpen={setSecondarySidebarOpen}
                     setCurrentActiveSubNav={setCurrentActiveSubnav}
                     hoverActiveItem={hoverActiveItem}
                     setHoverActiveItem={setHoverActiveItem}
@@ -244,36 +246,33 @@ const SideNavbar = (props) => {
                     setCurrentActiveSubNavItem={setCurrentActiveSubNavItem}
                     onSelect={onSelect}
                     allowHover={allowHover}
-                    {...props}
                   />
                 );
               })}
             </SSideNav>
             <SSideNav>
-              {sidebar ? (
-                <NavIcon to="#" isOpen={sidebar}>
-                  <Icon icon={IKAL} size={24} onClick={showSidebar} />
-                </NavIcon>
-              ) : (
-                <NavIcon to="#" isOpen={sidebar}>
-                  <Icon icon={IKAR} size={24} onClick={showSidebar} />
-                </NavIcon>
-              )}
+              <NavIcon to="#" isOpen={sidebarOpen}>
+                <Icon
+                  icon={sidebarOpen ? IKAL : IKAR}
+                  size={24}
+                  onClick={showSidebar}
+                />
+              </NavIcon>
             </SSideNav>
           </>
         }
       </SSideNavbar>
-      {secondarySidebar ? (
+      {secondarySidebarOpen ? (
         <SSecondarySideNavbar
           className={`${nameSpace}-secondary-sidenavbar`}
           role="secondary-side-nav-bar"
-          isSecondaryNavbarOpen={secondarySidebar}
+          isSecondaryNavbarOpen={secondarySidebarOpen}
           {...props}
         >
           <button
             type="button"
             aria-label="Close"
-            onClick={() => setSecondarySidebar(false)}
+            onClick={() => setSecondarySidebarOpen(false)}
             className={'closeIcon'}
           >
             <span>&times;</span>
@@ -287,7 +286,7 @@ const SideNavbar = (props) => {
                 item={item}
                 key={index}
                 onSelect={onSelect}
-                setSecondarySidebar={setSecondarySidebar}
+                setSecondarySidebarOpen={setSecondarySidebarOpen}
                 currentActiveSubNavItem={currentActiveSubNavItem}
                 setCurrentActiveSubNavItem={setCurrentActiveSubNavItem}
                 parentItem={currentActiveSubnav}

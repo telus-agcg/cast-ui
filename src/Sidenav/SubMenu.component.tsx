@@ -68,7 +68,7 @@ const SubMenu = ({
   item,
   isOpen,
   setCurrentActiveSubNav,
-  setSecondarySidebar,
+  setSecondarySidebarOpen,
   currentActiveItem,
   setCurrentActiveItem,
   hoverActiveItem,
@@ -108,13 +108,13 @@ const SubMenu = ({
   };
   const handleSubMenuClick = (e, selectedItem, level) => {
     if (!item.disabled && (isOpen || level === 1 || !item.subNav)) {
-      setSecondarySidebar(false);
+      setSecondarySidebarOpen(false);
       setCurrentActiveSubNav([]);
       setCurrentActiveItem(item);
       setCurrentActiveSubNavItem(selectedItem?.label);
     }
     if (item.subNav && !isOpen && !item.disabled) {
-      setSecondarySidebar(true);
+      setSecondarySidebarOpen(true);
       setCurrentActiveSubNav(item);
     } else if (onSelect && !item.disabled) {
       onSelect(e, selectedItem, item.subNav);
