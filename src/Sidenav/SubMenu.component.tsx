@@ -18,7 +18,6 @@ const SSubNavWrapper = styled.div`
   }
 `;
 const SidebarLink = styled(Link)`
-  text-decoration: none;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -50,6 +49,12 @@ const SidebarLink = styled(Link)`
         : ''};
     border-radius: 7px;
     transition: color 0.3s;
+  }
+  :hover,
+  :visited,
+  :active,
+  :link {
+    text-decoration: none;
   }
   .custom-icon-svg {
     path {

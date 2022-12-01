@@ -31,6 +31,12 @@ const SidebarLink = styled(Link)`
     border-radius: 7px;
     transition: background-color 0.3s;
   }
+  :hover,
+  :visited,
+  :active,
+  :link {
+    text-decoration: none;
+  }
 `;
 
 const SidebarLabel = styled.span`
