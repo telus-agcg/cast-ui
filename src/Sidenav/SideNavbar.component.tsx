@@ -11,72 +11,11 @@ import CollapsedSubMenu from './CollapsedSubMenu.component';
 
 export type Props = {
   /**
-   * Before Expand/collapse the sidebar
+   * Controls whether the Sidenav allows hovering over submenu items
    *
    * @default false
    **/
-  beforeToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
-  /**
-   * Expand/collapse the sidebar
-   *
-   * @default false
-   **/
-  onToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
-  /**
-   * After Expand/collapse the sidebar
-   *
-   * @default false
-   **/
-  afterToggle?(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
-
-  /**
-   * A  CSS color code
-   *
-   * @default ''
-   **/
-  background?: string;
-  /**
-   * The shorthand string for setting element border-top
-   *
-   * @default ''
-   **/
-  borderLeft?: string;
-  /**
-   * The shorthand string for setting element border-bottom
-   *
-   * @default ''
-   **/
-  borderRight?: string;
-  /**
-   * Adjust SideNavbar height.
-   *
-   * @default ''
-   **/
-  height?: string;
-  /**
-   * Adjust SideNavbar width.
-   *
-   * @default '50px'
-   **/
-  width?: string;
-  /**
-   * Set position of SideNavbar
-   *
-   * @default ''
-   **/
-  position?: 'absolute' | 'sticky' | 'fixed';
-  /**
-   * Set SideNavbar's distance from top of viewport
-   *
-   * @default ''
-   **/
-  top?: number | string;
-  /**
-   * Set SideNavbar's distance from bottom of viewport
-   *
-   * @default ''
-   **/
-  bottom?: number | string;
+  allowHover?: boolean;
   /**
    * An array of objects.
    * Each object defines a menuItem in sidenav.
@@ -100,6 +39,24 @@ export type Props = {
       icon: any;
     }[];
   }[];
+  /**
+   * Controls whether the Sidenav is open
+   *
+   * @default true
+   **/
+  isOpen?: boolean;
+  /**
+   * Callback when a Sidenav item is clicked
+   *
+   * @default void
+   **/
+  onSelect?(): void;
+  /**
+   * Callback when the Sidenav is toggled
+   *
+   * @default void
+   **/
+  toggleSideNavbar?(): void;
 };
 
 const NavIcon = styled(Link)`
@@ -121,7 +78,7 @@ const NavIcon = styled(Link)`
 const SSideNav = styled.div`
   height: ${(props) => (props.elementType === 'list' ? '90%' : 'auto')};
   padding: ${(props) => props.theme.sidenav.nav.padding};
-  margin-bottom: ${(props) => (props.top || props.center ? 'auto' : '1px')};
+  margin-bottom: ${(props) => (props.center ? 'auto' : '1px')};
   margin: 4px;
   display: flex;
   flex-direction: column;
@@ -134,15 +91,12 @@ const SSideNavbar = styled.div`
   padding: ${(props: any) => (props.isOpen ? props.theme.sidenav.padding : 0)};
   height: 92vh;
   z-index: ${(props: any) => props.theme.sidenav.zIndex};
-  background: ${(props: any) =>
-    props.background || props.theme.sidenav.background};
-  border-left: ${(props: any) =>
-    props.borderLeft!.toString() || props.theme.sidenav.borderLeft};
-  border-right: ${(props: any) =>
-    props.borderRight!.toString() || props.theme.sidenav.borderRight};
-  position: ${(props: any) => props.position || props.theme.sidenav.position};
-  top: ${(props: any) => props.top || props.theme.sidenav.top};
-  bottom: ${(props: any) => props.bottom || props.theme.sidenav.bottom};
+  background: ${(props: any) => props.theme.sidenav.background};
+  border-left: ${(props: any) => props.theme.sidenav.borderLeft};
+  border-right: ${(props: any) => props.theme.sidenav.borderRight};
+  position: ${(props: any) => props.theme.sidenav.position};
+  top: ${(props: any) => props.theme.sidenav.top};
+  bottom: ${(props: any) => props.theme.sidenav.bottom};
   width: ${(props: any) =>
     props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
   display: flex;
@@ -156,25 +110,20 @@ const SSecondarySideNavbar = styled.div`
   padding: ${(props: any) => props.theme.sidenav.secondaryNavbar.padding};
   margin: ${(props: any) => props.theme.sidenav.secondaryNavbar.margin};
   z-index: ${(props: any) => props.theme.sidenav.secondaryNavbar.zIndex};
-  background: ${(props: any) =>
-    props.secondaryNavbarBackground ||
-    props.theme.sidenav.secondaryNavbar.background};
+  background: ${(props: any) => props.theme.sidenav.secondaryNavbar.background};
   border-left: ${(props: any) =>
-    props.borderLeft || props.theme.sidenav.secondaryNavbar.borderLeft};
+    props.theme.sidenav.secondaryNavbar.borderLeft};
   border-right: ${(props: any) =>
-    props.borderRight || props.theme.sidenav.secondaryNavbar.borderRight};
-  position: ${(props: any) =>
-    props.position || props.theme.sidenav.secondaryNavbar.position};
-  top: ${(props: any) => props.top || props.theme.sidenav.secondaryNavbar.top};
-  bottom: ${(props: any) =>
-    props.bottom || props.theme.sidenav.secondaryNavbar.bottom};
+    props.theme.sidenav.secondaryNavbar.borderRight};
+  position: ${(props: any) => props.theme.sidenav.secondaryNavbar.position};
+  top: ${(props: any) => props.theme.sidenav.secondaryNavbar.top};
+  bottom: ${(props: any) => props.theme.sidenav.secondaryNavbar.bottom};
   right: ${(props: any) => props.theme.sidenav.secondaryNavbar.right};
   left: ${(props: any) => props.theme.sidenav.width};
   min-width: ${(props: any) =>
-    props.secondaryNavbarWidth ||
-    (props.isSecondaryNavbarOpen
+    props.isSecondaryNavbarOpen
       ? props.theme.sidenav.secondaryNavbar.openWidth
-      : props.theme.sidenav.secondaryNavbar.width)};
+      : props.theme.sidenav.secondaryNavbar.width};
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
@@ -209,12 +158,11 @@ const SSecondarySideNavbarLabel = styled.h3`
 `;
 const SideNavbar = (props) => {
   const {
-    isOpen,
-    toggleSideNavbar,
-    top,
-    data,
-    onSelect,
     allowHover = false,
+    data,
+    isOpen,
+    onSelect,
+    toggleSideNavbar,
   } = props;
   useEffect(() => {
     setSidebarOpen(isOpen);
@@ -324,9 +272,7 @@ const SideNavbar = (props) => {
 };
 
 SideNavbar.defaultProps = {
-  width: '',
-  borderLeft: '',
-  borderRight: '',
+  isOpen: true,
 };
 
 export default SideNavbar;
