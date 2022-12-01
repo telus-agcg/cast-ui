@@ -24,14 +24,14 @@ export default {
         type: 'boolean',
       },
     },
-    toggleSideNavbar: {
-      action: {
-        type: 'toggleSideNavbar',
-      },
-    },
     onSelect: {
       action: {
         type: 'onSelect',
+      },
+    },
+    toggleSideNavbar: {
+      action: {
+        type: 'toggleSideNavbar',
       },
     },
   },
