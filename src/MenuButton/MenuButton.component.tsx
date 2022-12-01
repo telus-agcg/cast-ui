@@ -47,6 +47,10 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: any;
 }
 
+const SPopover = styled(Popover)`
+  text-align: left;
+`;
+
 const SMenuButton = styled(Button)`
   display: flex;
   align-items: center;
@@ -75,7 +79,7 @@ export class MenuButton extends React.Component<Props, any> {
     const { children, theme, onClick = noop, items, ...props } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <Popover
+        <SPopover
           content={<Menu items={items} onClick={onClick} />}
           arrow={false}
           placement="bottom-start"
@@ -88,7 +92,7 @@ export class MenuButton extends React.Component<Props, any> {
               <Icon icon={ICEM} size={24} />
             </SMenuButton>
           </span>
-        </Popover>
+        </SPopover>
       </ThemeProvider>
     );
   }
