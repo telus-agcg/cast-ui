@@ -26,18 +26,18 @@ export type Props = {
    * @default []
    **/
   data?: {
-    label: String;
-    path: String;
     disabled: boolean;
-    to: any;
     icon: any;
+    label: string;
+    path: string;
     subNav: {
-      label: String;
-      path: String;
+      label: string;
+      path: string;
       disabled: boolean;
       to: any;
       icon: any;
     }[];
+    to: any;
   }[];
   /**
    * Controls whether the Sidenav is open
