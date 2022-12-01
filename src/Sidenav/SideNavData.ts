@@ -27,82 +27,22 @@ const SideNavData = [
         label: 'Distributors',
         path: '/distributors',
         exact: false,
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              includesOneOf: ['read:distributor', 'read:distributor-general'],
-              value: true,
-            },
-          ],
-          value: false,
-        },
         to: {
-          conditions: [
-            {
-              when: 'permissions',
-              includes: 'read:distributor',
-              value: {
-                asPath: '/distributors',
-              },
-            },
-          ],
-          value: {
-            asPath: '/distributor-contexts',
-          },
+          asPath: '/distributors',
         },
-        matchedUrls: ['/distributors', '/distributor-contexts'],
       },
       {
         label: 'Retailers',
         path: '/retailers',
         exact: false,
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              includes: 'read:crops-retailer',
-              value: true,
-            },
-          ],
-          value: false,
-        },
         to: {
           asPath: '/retailers',
-        },
-      },
-      {
-        label: 'Pest Management',
-        path: '/pest-management-customers',
-        exact: false,
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              includes: 'read:sentricon-target',
-              value: true,
-            },
-          ],
-          value: false,
-        },
-        to: {
-          asPath: '/pest-management-customers',
         },
       },
       {
         label: 'Farmers',
         path: '/linked-farmers',
         exact: false,
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              includes: 'read:farmer-grp',
-              value: true,
-            },
-          ],
-          value: false,
-        },
         to: {
           asPath: '/linked-farmers',
         },
@@ -119,105 +59,24 @@ const SideNavData = [
     icon: iosPricetagsOutline,
     subNav: [
       {
-        label: 'Retailer Competitives',
+        label: 'Retailer',
         path: '/offers/retailer-competitives',
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              startsWith: 'read:competitive.retailer',
-              value: true,
-            },
-          ],
-          value: false,
-        },
         to: {
           asPath: '/offers/retailer-competitives',
         },
       },
       {
-        label: 'Distributor Competitives',
+        label: 'Distributor',
         path: '/offers/distributor-competitives',
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              startsWith: 'read:competitive.distributor',
-              value: true,
-            },
-          ],
-          value: false,
-        },
         to: {
           asPath: '/offers/distributor-competitives',
         },
       },
       {
-        label: 'Farmer Competitives',
+        label: 'Farmer',
         path: '/offers/farmer-competitives',
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              startsWith: 'read:competitive.farmer',
-              value: true,
-            },
-          ],
-          value: false,
-        },
         to: {
           asPath: '/offers/farmer-competitives',
-        },
-      },
-      {
-        label: 'Plans & Agreements',
-        path: '/offers/business-plans',
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              startsWith: 'read:business_plan',
-              value: true,
-            },
-          ],
-          value: false,
-        },
-        to: {
-          asPath: '/offers/business-plans',
-        },
-      },
-      {
-        label: 'Claims',
-        path: '/offers/claims',
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              startsWith: ['read:claim.phytogen', 'read:claim.cp'],
-              value: true,
-            },
-          ],
-          value: false,
-        },
-        to: {
-          asPath: '/offers/claims',
-        },
-      },
-      {
-        label: 'PQRs',
-        path: '/offers/pqrs',
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              startsWith: 'read:claim.pqr',
-              value: true,
-            },
-          ],
-          value: false,
-        },
-        to: {
-          asPath: '/offers/pqrs',
         },
       },
     ],
@@ -234,16 +93,6 @@ const SideNavData = [
         label: 'All Products',
         path: '/products',
         exact: false,
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              includes: 'read:product',
-              value: true,
-            },
-          ],
-          value: false,
-        },
         to: {
           asPath: '/products',
         },
@@ -252,16 +101,6 @@ const SideNavData = [
         label: 'Letter Generation',
         path: '/products/market-letters',
         exact: false,
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              includes: 'write:mla-generator',
-              value: true,
-            },
-          ],
-          value: false,
-        },
         to: {
           asPath: '/products/market-letters',
         },
@@ -270,16 +109,6 @@ const SideNavData = [
         label: 'Seed Pricing',
         path: '/products/seed-pricing',
         exact: false,
-        show: {
-          conditions: [
-            {
-              when: 'permissions',
-              includes: 'read:phytogen-seed-sku-pricing-file',
-              value: true,
-            },
-          ],
-          value: false,
-        },
         to: {
           asPath: '/products/seed-pricing',
         },
@@ -292,13 +121,6 @@ const SideNavData = [
     path: '/reports',
     icon: iosDownloadOutline,
     disabled: {
-      // conditions: [
-      //   {
-      //     when: 'permissions',
-      //     startsWith: 'read:report',
-      //     value: false,
-      //   },
-      // ],
       value: true,
     },
   },

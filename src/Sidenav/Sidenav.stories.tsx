@@ -37,9 +37,9 @@ export default {
   },
 };
 
-export const Sidenav = ({ onSelect, isOpen, data, ...args }) => (
+export const Sidenav = ({ onSelect, isOpen, allowHover, data, ...args }) => (
   <div style={{ height: '600px', position: 'relative' }}>
-    <SideNavbar isOpen={isOpen} data={data} />
+    <SideNavbar isOpen={isOpen} data={data} allowHover={allowHover} />
   </div>
 );
 
