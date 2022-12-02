@@ -11,20 +11,33 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
+  isOpen?: any;
+  item?: any;
 };
 const SSideNavItemIcon = styled.div`
-  padding: ${(props: Props) => props.theme.sidenav.navText.padding};
+  :hover {
+    background: ${(props) =>
+      props.isOpen || props.item.disabled
+        ? ''
+        : props.theme.sidenav['activenavItem'].background};
+    border-radius: ${(props) => (props.isOpen ? '' : '4px')};
+    transition: color 0.3s;
+  }
 `;
 
 export const SideNavItemIcon: React.FunctionComponent<Props> = ({
   theme,
   children,
+  isOpen,
+  item,
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
     <SSideNavItemIcon
       className={`${nameSpace}-sidenav-item-icon`}
       role="side-nav-icon"
+      isOpen={isOpen}
+      item={item}
       {...props}
     >
       {children}

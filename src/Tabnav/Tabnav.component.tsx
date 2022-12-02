@@ -178,7 +178,7 @@ export const Tabnav: React.FunctionComponent<Props> = ({
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
     <STabNav {...props}>
       <SChildren>{children}</SChildren>
-      {tabs && (
+      {tabs && Boolean(tabs.length) && (
         <STabsBar {...tabsBarProps}>
           {tabs.map((tab: any, i: any) => (
             <Popover

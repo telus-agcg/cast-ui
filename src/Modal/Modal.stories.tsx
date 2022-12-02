@@ -16,12 +16,16 @@ you can pass a component instead of any of those.
 
 const DemoButtons = props => {
   return (
-    <div>
-      <Button btnSize="md" btnStyle="primary" onClick={props.handleCloseModal}>
-        OK
-      </Button>
-      <Button btnSize="md" btnStyle="primary" onClick={props.handleCloseModal}>
+    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Button
+        btnStyle="primary"
+        outline={true}
+        onClick={props.handleCloseModal}
+      >
         Cancel
+      </Button>
+      <Button btnStyle="success" onClick={props.handleCloseModal}>
+        Submit
       </Button>
     </div>
   );
@@ -106,8 +110,8 @@ export const _Regular = _Modal.bind({});
 _Regular.args = {
   isOpen: false,
   modalSize: 'md',
-  modalTitle: 'Regular Modal',
-  children: <p>Lorem</p>,
+  modalTitle: 'Modal Title',
+  children: <p>Lorem Ipsum</p>,
 };
 
 export const _Scrollable = _Modal.bind({});

@@ -300,10 +300,18 @@ export const _TableWithGroupedRows = args => {
             width: 150,
           },
           {
-            Header: 'Weight',
+            Header: 'Weight (g)',
             accessor: 'weight',
+            headerClassName: 'right-align',
+            className: 'right-align',
             Aggregated: () => <></>,
             width: 150,
+            Footer: (row: any) => {
+              return `Total: ${SampleData.fruit.reduce(
+                (acc, cur) => acc + cur.weight,
+                0,
+              )}`;
+            },
           },
         ]}
         pageSizeOptions={[5, 10, 25, 50, 100]}
@@ -316,6 +324,133 @@ export const _TableWithGroupedRows = args => {
 _TableWithGroupedRows.args = {
   tableSize: 'md',
   showPagination: true,
+  showPaginationTop: false,
+  showPaginationBottom: true,
+  showPageSizeOptions: true,
+  defaultPageSize: 10,
+  showPageJump: true,
+  collapseOnSortingChange: true,
+  collapseOnPageChange: true,
+  collapseOnDataChange: true,
+  freezeWhenExpanded: true,
+  filterable: false,
+  resizable: true,
+  sortable: true,
+  multiSort: true,
+  striped: true,
+  sizable: true,
+};
+
+export const _EmptyTable = args => {
+  return (
+    <div>
+      <Table
+        id={testTableId}
+        data={[]}
+        pivotBy={['type']}
+        columns={[
+          {
+            PivotValue: () => <div />,
+            accessor: 'type',
+            width: 50,
+          },
+          {
+            Header: 'Name',
+            id: 'name',
+            accessor: val => val.name,
+            Aggregated: (row: any) => row.row.type,
+            width: 150,
+          },
+          {
+            Header: 'Color',
+            accessor: 'color',
+            Aggregated: () => <></>,
+            width: 150,
+          },
+          {
+            Header: 'Weight (g)',
+            accessor: 'weight',
+            headerClassName: 'right-align',
+            className: 'right-align',
+            Aggregated: () => <></>,
+            width: 150,
+            Footer: (row: any) => {
+              return `Total: 0`;
+            },
+          },
+        ]}
+        pageSizeOptions={[5, 10, 25, 50, 100]}
+        {...args}
+      />
+    </div>
+  );
+};
+
+_EmptyTable.args = {
+  tableSize: 'md',
+  showPagination: false,
+  showPaginationTop: false,
+  showPaginationBottom: true,
+  showPageSizeOptions: true,
+  defaultPageSize: 10,
+  showPageJump: true,
+  collapseOnSortingChange: true,
+  collapseOnPageChange: true,
+  collapseOnDataChange: true,
+  freezeWhenExpanded: true,
+  filterable: false,
+  resizable: true,
+  sortable: true,
+  multiSort: true,
+  striped: true,
+  sizable: true,
+};
+
+export const _EmptyTableWithoutFooter = args => {
+  return (
+    <div>
+      <Table
+        id={testTableId}
+        data={[]}
+        pivotBy={['type']}
+        columns={[
+          {
+            PivotValue: () => <div />,
+            accessor: 'type',
+            width: 50,
+          },
+          {
+            Header: 'Name',
+            id: 'name',
+            accessor: val => val.name,
+            Aggregated: (row: any) => row.row.type,
+            width: 150,
+          },
+          {
+            Header: 'Color',
+            accessor: 'color',
+            Aggregated: () => <></>,
+            width: 150,
+          },
+          {
+            Header: 'Weight (g)',
+            accessor: 'weight',
+            headerClassName: 'right-align',
+            className: 'right-align',
+            Aggregated: () => <></>,
+            width: 150,
+          },
+        ]}
+        pageSizeOptions={[5, 10, 25, 50, 100]}
+        {...args}
+      />
+    </div>
+  );
+};
+
+_EmptyTableWithoutFooter.args = {
+  tableSize: 'md',
+  showPagination: false,
   showPaginationTop: false,
   showPaginationBottom: true,
   showPageSizeOptions: true,

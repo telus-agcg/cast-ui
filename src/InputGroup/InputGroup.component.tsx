@@ -47,8 +47,15 @@ const InputGroupWrapper = styled.div`
 const SLabel = styled.label`
   background: inherit;
   height: auto;
-  padding: ${(props: Props) =>
-    props.label ? props.theme.inputGroup.label.padding : '0'};
+  padding: ${(props: Props) => {
+    if (props.label) {
+      if (props.horizontal) {
+        return '8px 16px 4px 0';
+      }
+      return '0 0 4px 0';
+    }
+    return '0';
+  }};
   font-weight: ${(props: Props) => props.theme.inputGroup.label.fontWeight};
   font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize};
   color: ${(props: Props) => props.theme.body.color};

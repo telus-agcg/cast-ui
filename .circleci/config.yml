@@ -1,7 +1,7 @@
 version: 2
 
 references:
-  image_npm: &image_node node:11
+  image_npm: &image_node node:16-alpine
   cache_key_npm: &cache_key_npm v2-npm-{{ checksum "package-lock.json" }}
   cache_key_backup_npm: &cache_key_backup_npm v2-npm-
   cache_path_npm: &cache_path_npm /usr/src/app/node_modules
@@ -28,7 +28,7 @@ jobs:
       - *restore_cache_git
       - checkout
       - run:
-          name: npmrc
+          name: Set npmrc
           command: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
       - save_cache:
           key: *cache_key_git
@@ -42,13 +42,18 @@ jobs:
     steps:
       - *restore_cache_git
       - run:
-          name: Install
+          name: Install runner dependencies
+          command: |
+            apk update && \
+            apk add git
+      - run:
+          name: Run npm install
           command: npm install
       - run:
-          name: Build
+          name: Run npm build
           command: npm run build
       - run:
-          name: Lint
+          name: Run npm linting
           command: npm run lint
       - save_cache:
           key: *cache_key_npm
@@ -63,10 +68,15 @@ jobs:
       - *restore_cache_git
       - *restore_cache_npm
       - run:
-          name: Build
+          name: Install runner dependencies
+          command: |
+            apk update && \
+            apk add git
+      - run:
+          name: Run npm build
           command: npm run build
       - run:
-          name: Release
+          name: Semantic Release
           command: npm run semantic-release
       - run:
           name: Publish Storybook
