@@ -53,36 +53,38 @@ const SMenuItem = styled.div`
   cursor: ${(props: any) => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
 
-const MenuContent = ({ items, onClick, ...props }: Props) => (
-  <SMenuContent {...props}>
-    {Array.isArray(items) &&
-      items.map((item: any, j: any) => (
-        <SMenuItem
-          {...item}
-          key={j}
-          onClick={(e: any) => handleItemClick(item, e, onClick)}
-          data-testid={_.kebabCase(item.label)}
-        >
-          {item.label}
-        </SMenuItem>
-      ))}
-  </SMenuContent>
-);
-
-const handleItemClick = (item, e, onClick) => {
-  if (item.disabled) {
-    return;
-  }
-  onClick(item, e);
-};
-
 const noop = () => {}; // tslint:disable-line
 
-export const Menu: React.FC<Props> = ({ theme, items, onClick = noop }) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <MenuContent items={items} onClick={onClick} />
-  </ThemeProvider>
-);
+export const Menu: React.FC<Props> = ({ theme, items, onClick = noop }) => {
+  const MenuContent = ({ items, onClick, ...props }: Props) => (
+    <SMenuContent {...props}>
+      {Array.isArray(items) &&
+        items.map((item: any, j: any) => (
+          <SMenuItem
+            {...item}
+            key={j}
+            onClick={(e: any) => handleItemClick(item, e)}
+            data-testid={_.kebabCase(item.label)}
+          >
+            {item.label}
+          </SMenuItem>
+        ))}
+    </SMenuContent>
+  );
+
+  const handleItemClick = (item, e) => {
+    if (item.disabled) {
+      return;
+    }
+    onClick(item, e);
+  };
+
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <MenuContent items={items} onClick={onClick} />
+    </ThemeProvider>
+  );
+};
 
 Menu.defaultProps = {
   theme: Themes.defaultTheme,
