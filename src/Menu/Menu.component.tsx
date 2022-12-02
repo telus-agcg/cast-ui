@@ -21,7 +21,7 @@ export interface Props {
    *
    * @default void
    * */
-  onClick?(item: any, event: React.MouseEvent<HTMLElement>): void;
+  onClick?(item: any, e: React.MouseEvent<HTMLElement>): void;
   /**
    * From theme provider
    *
