@@ -11,11 +11,10 @@ export interface Props {
    * @default []
    **/
   items?: {
-    label: String;
-    disabled?: boolean;
-    to?: any;
     className?: string;
     'data-testid'?: string;
+    disabled?: boolean;
+    to?: any;
   }[];
   /**
    * This dictates what the Menu will do on item click
@@ -30,8 +29,6 @@ export interface Props {
    **/
   theme?: any;
 }
-
-const noop = () => {}; // tslint:disable-line
 
 const SMenuContent = styled.div`
   padding: 8px 0;
@@ -56,15 +53,15 @@ const SMenuItem = styled.div`
   cursor: ${(props: any) => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
 
-const MenuContent = ({ items, onItemClick, ...props }: any) => (
+const MenuContent = ({ items, onClick, ...props }: Props) => (
   <SMenuContent {...props}>
-    {items.length > 0 &&
+    {Array.isArray(items) &&
       items.map((item: any, j: any) => (
         <SMenuItem
-          key={j}
-          onClick={(e: any) => handleItemClick(item, e, onItemClick)}
-          data-testid={_.kebabCase(item.label)}
           {...item}
+          key={j}
+          onClick={(e: any) => handleItemClick(item, e, onClick)}
+          data-testid={_.kebabCase(item.label)}
         >
           {item.label}
         </SMenuItem>
@@ -72,23 +69,21 @@ const MenuContent = ({ items, onItemClick, ...props }: any) => (
   </SMenuContent>
 );
 
-const handleItemClick = (item, e, onItemClick) => {
+const handleItemClick = (item, e, onClick) => {
   if (item.disabled) {
     return;
   }
-  onItemClick(item, e);
+  onClick(item, e);
 };
 
-export class Menu extends React.Component<Props, any> {
-  static defaultProps = {
-    theme: Themes.defaultTheme,
-  };
-  render() {
-    const { theme, items, onClick = noop } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <MenuContent items={items} onItemClick={onClick} />
-      </ThemeProvider>
-    );
-  }
-}
+const noop = () => {}; // tslint:disable-line
+
+export const Menu: React.FC<Props> = ({ theme, items, onClick = noop }) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <MenuContent items={items} onClick={onClick} />
+  </ThemeProvider>
+);
+
+Menu.defaultProps = {
+  theme: Themes.defaultTheme,
+};

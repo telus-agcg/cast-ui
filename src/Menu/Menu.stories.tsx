@@ -27,11 +27,10 @@ export default {
 
 const menuData = [
   {
-    label: 'Business Overview',
-    to: '/business-plans/overview',
+    label: 'Vanilla',
     disabled: true,
   },
-  { label: 'Contracts Overview', to: '/business-plans/contracts' },
+  { label: 'Chocolate' },
 ];
 
 export const _Menu = (args) => (

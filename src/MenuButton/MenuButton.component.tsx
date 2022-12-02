@@ -15,6 +15,12 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    **/
   btnStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   /**
+   * Select Button Size
+   *
+   * @default 'md'
+   **/
+  btnSize?: 'sm' | 'md' | 'lg';
+  /**
    * Specify if the button is disabled
    *
    * @default false
@@ -27,11 +33,11 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    * @default []
    **/
   items?: {
-    label: String;
-    disabled?: boolean;
-    to?: any;
     className?: string;
     'data-testid'?: string;
+    disabled?: boolean;
+    label: String;
+    to?: any;
   }[];
   /**
    * This dictates what the button will do
@@ -69,31 +75,33 @@ const SMenuButton = styled(Button)`
 
 const noop = () => {}; // tslint:disable-line
 
-export class MenuButton extends React.Component<Props, any> {
-  static defaultProps = {
-    theme: Themes.defaultTheme,
-    btnStyle: 'primary',
-    btnSize: 'md',
-  };
-  render() {
-    const { children, theme, onClick = noop, items, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SPopover
-          content={<Menu items={items} onClick={onClick} />}
-          arrow={false}
-          placement="bottom-start"
-          distance={2}
-          hideOnClick={true}
-        >
-          <span>
-            <SMenuButton {...props}>
-              {children}
-              <Icon icon={ICEM} size={24} />
-            </SMenuButton>
-          </span>
-        </SPopover>
-      </ThemeProvider>
-    );
-  }
-}
+export const MenuButton: React.FC<Props> = ({
+  children,
+  theme,
+  onClick = noop,
+  items,
+  ...props
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SPopover
+      content={<Menu items={items} onClick={onClick} />}
+      arrow={false}
+      placement="bottom-start"
+      distance={2}
+      hideOnClick={true}
+    >
+      <span>
+        <SMenuButton {...props}>
+          {children}
+          <Icon icon={ICEM} size={24} />
+        </SMenuButton>
+      </span>
+    </SPopover>
+  </ThemeProvider>
+);
+
+MenuButton.defaultProps = {
+  theme: Themes.defaultTheme,
+  btnStyle: 'primary',
+  btnSize: 'md',
+};
