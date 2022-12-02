@@ -9,7 +9,7 @@ export interface Props extends TippyProps {
 
 // Tippy temporary fix
 // CCIBI-360, https://github.com/atomiks/tippy.js-react/issues/106
-const TippyProxy = props => {
+const TippyProxy = (props) => {
   const $this = React.useState({})[0];
 
   React.useLayoutEffect(() => {
@@ -50,19 +50,17 @@ const STippy = styled(TippyProxy)`
   }
 `;
 
-export class Tooltip extends React.Component<Props> {
-  static defaultProps = {
-    arrow: true,
-    theme: Themes.defaultTheme,
-  };
-  public render() {
-    const { theme, children, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <STippy {...props}>{children}</STippy>
-      </ThemeProvider>
-    );
-  }
-}
+export const Tooltip: React.FunctionComponent<Props> = ({
+  theme,
+  children,
+  ...props
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <STippy {...props}>{children}</STippy>
+  </ThemeProvider>
+);
 
-export default Tooltip;
+Tooltip.defaultProps = {
+  arrow: true,
+  theme: Themes.defaultTheme,
+};

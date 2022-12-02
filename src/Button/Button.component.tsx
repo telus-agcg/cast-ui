@@ -62,24 +62,26 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const noop = () => {}; // tslint:disable-line
 
-export class Button extends React.Component<Props, any> {
-  static defaultProps = {
-    theme: Themes.defaultTheme,
-    btnStyle: 'primary',
-    btnSize: 'md',
-  };
-  render() {
-    const { theme, onClick = noop, disabled, children, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SButton
-          disabled={disabled}
-          onClick={!disabled ? onClick : noop}
-          {...props}
-        >
-          {children}
-        </SButton>
-      </ThemeProvider>
-    );
-  }
-}
+export const Button: React.FunctionComponent<Props> = ({
+  theme,
+  onClick = noop,
+  disabled,
+  children,
+  ...props
+}) => (
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SButton
+      disabled={disabled}
+      onClick={!disabled ? onClick : noop}
+      {...props}
+    >
+      {children}
+    </SButton>
+  </ThemeProvider>
+);
+
+Button.defaultProps = {
+  theme: Themes.defaultTheme,
+  btnStyle: 'primary',
+  btnSize: 'md',
+};
