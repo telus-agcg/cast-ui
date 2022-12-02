@@ -163,7 +163,7 @@ export const Tabnav: React.FunctionComponent<Props> = ({
             <Popover
               content={
                 tab.children ? (
-                  <Menu items={tab.children} onClick={onTabClick} />
+                  <Menu items={tab.children} onItemClick={onTabClick} />
                 ) : (
                   ''
                 )

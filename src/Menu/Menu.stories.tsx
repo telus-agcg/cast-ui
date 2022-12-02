@@ -9,7 +9,7 @@ export default {
   title: 'Components/Interactions/Menu',
   component: Menu,
   argTypes: {
-    onClick: { action: 'onClick' },
+    onItemClick: { action: 'onItemClick' },
     theme: {
       table: {
         disable: true,

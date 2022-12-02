@@ -24,7 +24,7 @@ export default {
         type: 'boolean',
       },
     },
-    onClick: { action: 'onClick' },
+    onItemClick: { action: 'onItemClick' },
     theme: {
       table: {
         disable: true,

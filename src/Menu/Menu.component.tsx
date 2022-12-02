@@ -3,25 +3,25 @@ import _ from 'lodash';
 import { Themes } from '../themes';
 import styled, { ThemeProvider } from 'styled-components';
 
+export interface MenuItem {
+  disabled?: boolean;
+  label: string;
+  to?: any;
+}
 export interface Props {
   /**
-   * An array of objects.
+   * An array of MenuItems.
    * Each object defines properties of each menu item.
    *
    * @default []
    **/
-  items?: {
-    className?: string;
-    'data-testid'?: string;
-    disabled?: boolean;
-    to?: any;
-  }[];
+  items?: MenuItem[];
   /**
    * This dictates what the Menu will do on item click
    *
    * @default void
    * */
-  onClick?(item: any, e: React.MouseEvent<HTMLElement>): void;
+  onItemClick?(item: any, e: React.MouseEvent<HTMLElement>): void;
   /**
    * From theme provider
    *
@@ -30,7 +30,7 @@ export interface Props {
   theme?: any;
 }
 
-const SMenuContent = styled.div`
+const SMenu = styled.div`
   padding: 8px 0;
   min-width: 140px;
   > * {
@@ -55,33 +55,34 @@ const SMenuItem = styled.div`
 
 const noop = () => {}; // tslint:disable-line
 
-export const Menu: React.FC<Props> = ({ theme, items, onClick = noop }) => {
-  const MenuContent = ({ items, onClick, ...props }: Props) => (
-    <SMenuContent {...props}>
-      {Array.isArray(items) &&
-        items.map((item: any, j: any) => (
-          <SMenuItem
-            {...item}
-            key={j}
-            onClick={(e: any) => handleItemClick(item, e)}
-            data-testid={_.kebabCase(item.label)}
-          >
-            {item.label}
-          </SMenuItem>
-        ))}
-    </SMenuContent>
-  );
-
+export const Menu: React.FC<Props> = ({
+  theme,
+  items,
+  onItemClick = noop,
+  ...props
+}) => {
   const handleItemClick = (item, e) => {
     if (item.disabled) {
       return;
     }
-    onClick(item, e);
+    onItemClick(item, e);
   };
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <MenuContent items={items} onClick={onClick} />
+      <SMenu {...props}>
+        {Array.isArray(items) &&
+          items.map((item: MenuItem, j: number) => (
+            <SMenuItem
+              {...item}
+              key={j}
+              onClick={(e: any) => handleItemClick(item, e)}
+              data-testid={_.kebabCase(item.label)}
+            >
+              {item.label}
+            </SMenuItem>
+          ))}
+      </SMenu>
     </ThemeProvider>
   );
 };

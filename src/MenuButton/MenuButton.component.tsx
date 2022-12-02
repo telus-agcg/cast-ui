@@ -4,7 +4,7 @@ import Icon from 'react-icons-kit';
 import { ic_expand_more as ICEM } from 'react-icons-kit/md/ic_expand_more';
 import { Themes } from '../themes';
 import { Button } from '../Button';
-import { Menu } from '../Menu';
+import { Menu, MenuItem } from '../Menu';
 import { Popover } from '../Popover';
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -27,24 +27,18 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    **/
   disabled?: boolean;
   /**
-   * An array of objects.
+   * An array of MenuItems.
    * Each object defines properties of each menu item.
    *
    * @default []
    **/
-  items?: {
-    className?: string;
-    'data-testid'?: string;
-    disabled?: boolean;
-    label: String;
-    to?: any;
-  }[];
+  items?: MenuItem[];
   /**
-   * This dictates what the button will do
+   * Called when an item is clicked
    *
    * @default void
    * */
-  onClick?(e: React.MouseEvent<HTMLElement>): void;
+  onItemClick?(item: any): void;
   /**
    * From theme provider
    *
@@ -78,13 +72,13 @@ const noop = () => {}; // tslint:disable-line
 export const MenuButton: React.FC<Props> = ({
   children,
   theme,
-  onClick = noop,
+  onItemClick = noop,
   items,
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
     <SPopover
-      content={<Menu items={items} onClick={onClick} />}
+      content={<Menu items={items} onItemClick={onItemClick} />}
       arrow={false}
       placement="bottom-start"
       distance={2}
