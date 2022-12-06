@@ -57,6 +57,12 @@ export type Props = {
    * @default void
    **/
   toggleSideNavbar?(): void;
+  /**
+   * sets top of Sidenav
+   *
+   * @default 0
+   **/
+  top?: string;
 };
 
 const NavIcon = styled(Link)`
@@ -95,7 +101,7 @@ const SSideNavbar = styled.div`
   border-left: ${(props: any) => props.theme.sidenav.borderLeft};
   border-right: ${(props: any) => props.theme.sidenav.borderRight};
   position: ${(props: any) => props.theme.sidenav.position};
-  top: ${(props: any) => props.theme.sidenav.top};
+  top: ${(props: any) => (props.top ? props.top : props.theme.sidenav.top)};
   bottom: ${(props: any) => props.theme.sidenav.bottom};
   width: ${(props: any) =>
     props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
@@ -161,6 +167,7 @@ const SideNavbar = (props) => {
     allowHover = false,
     data,
     isOpen,
+    top,
     onSelect,
     toggleSideNavbar,
   } = props;
