@@ -83,7 +83,7 @@ const SubMenu = ({
   setCurrentActiveSubNavItem,
   allowHover,
   hoverDelay,
-  ...props
+  theme,
 }) => {
   useEffect(() => {
     if (item.label !== currentActiveItem.label) setSubnav(false);
@@ -100,13 +100,13 @@ const SubMenu = ({
 
   const newProps = {
     isOpen,
+    theme,
     activeItem: currentActiveItem.label === item.label ? true : false,
     disabled: item.disabled,
-    ...props,
   };
 
   const showSubnav = () => setSubnav(!subnav);
-  const IconObj = item?.icon;
+  const IconObj = item?.customIcon;
   const handleItemClick = (e) => {
     if (item.subNav && isOpen && !item.disabled) showSubnav();
     else handleSubMenuClick(e, item, 0);
@@ -148,12 +148,12 @@ const SubMenu = ({
       >
         <SideNavItemIcon isOpen={isOpen} item={item}>
           {item.customIcon ? (
-            <Icon icon={item.customIcon} size={24} />
-          ) : (
             <IconObj
               className={`custom-icon-svg`}
               style={{ width: '24px', height: '24px' }}
             />
+          ) : (
+            <Icon icon={item.icon} size={24} />
           )}
         </SideNavItemIcon>
         <SidebarLabel {...newProps}>{item.label}</SidebarLabel>

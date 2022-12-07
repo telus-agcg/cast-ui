@@ -61,6 +61,7 @@ export type Props = {
 
 const NavIcon = styled(Link)`
   display: flex;
+  z-index: ${(props: any) => props.theme.sidenav.zIndex + 1};
   justify-content: ${(props) => (props.isOpen ? 'end' : 'center')};
   color: ${(props: any) => props.theme.sidenav.label.color};
   align-items: center;
@@ -75,15 +76,10 @@ const NavIcon = styled(Link)`
     transition: all 0.3s;
   }
 `;
-const SSideNav = styled.div`
-  height: ${(props) => (props.elementType === 'list' ? '90%' : 'auto')};
-  padding: ${(props) => props.theme.sidenav.nav.padding};
-  margin-bottom: ${(props) => (props.center ? 'auto' : '1px')};
-  margin: 4px;
-  display: flex;
-  flex-direction: column;
-`;
 
+const SideNavbarWrapper = styled.div`
+  display: flex;
+`;
 const SSideNavbar = styled.div`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.sidenav.fontSize};
@@ -94,11 +90,16 @@ const SSideNavbar = styled.div`
   background: ${(props: any) => props.theme.sidenav.background};
   border-left: ${(props: any) => props.theme.sidenav.borderLeft};
   border-right: ${(props: any) => props.theme.sidenav.borderRight};
-  position: ${(props: any) => props.theme.sidenav.position};
-  top: ${(props: any) => (props.top ? props.top : props.theme.sidenav.top)};
-  bottom: ${(props: any) => props.theme.sidenav.bottom};
   width: ${(props: any) =>
     props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
+  display: flex;
+  flex-direction: column;
+`;
+const SSideNav = styled.div`
+  height: ${(props) => (props.elementType === 'list' ? '90%' : 'auto')};
+  padding: ${(props) => props.theme.sidenav.nav.padding};
+  margin-bottom: 1px;
+  margin: 4px;
   display: flex;
   flex-direction: column;
 `;
@@ -106,41 +107,30 @@ const SSecondarySideNavbar = styled.div`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.sidenav.fontSize};
   color: ${(props: any) => props.theme.sidenav.color};
-  height: 100vh;
-  padding: ${(props: any) => props.theme.sidenav.secondaryNavbar.padding};
+  height: 92vh;
   margin: ${(props: any) => props.theme.sidenav.secondaryNavbar.margin};
   z-index: ${(props: any) => props.theme.sidenav.secondaryNavbar.zIndex};
   background: ${(props: any) => props.theme.sidenav.secondaryNavbar.background};
-  border-left: ${(props: any) =>
-    props.theme.sidenav.secondaryNavbar.borderLeft};
   border-right: ${(props: any) =>
     props.theme.sidenav.secondaryNavbar.borderRight};
-  position: ${(props: any) => props.theme.sidenav.secondaryNavbar.position};
-  top: ${(props: any) =>
-    props.top ? props.top : props.theme.sidenav.secondaryNavbar.top};
-  bottom: ${(props: any) => props.theme.sidenav.secondaryNavbar.bottom};
-  right: ${(props: any) => props.theme.sidenav.secondaryNavbar.right};
-  left: ${(props: any) => props.theme.sidenav.width};
   min-width: ${(props: any) =>
     props.isSecondaryNavbarOpen
       ? props.theme.sidenav.secondaryNavbar.openWidth
       : props.theme.sidenav.secondaryNavbar.width};
   display: flex;
-  gap: 0.5rem;
   flex-direction: column;
+`;
+const CloseIconWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   .closeIcon {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 6px 10px;
-    margin: 2px;
-    line-height: 20px;
-    font-weight: 200;
+    padding: 4px 10px;
+    margin: 1px 2px;
     font-size: 20px;
     color: ${(props: any) => props.theme.sidenav.secondaryNavbarLabel.color};
     background-color: transparent;
     border: 0;
-    appearance: none;
     cursor: pointer;
     border-radius: 50%;
     transition: all 0.3s;
@@ -149,6 +139,11 @@ const SSecondarySideNavbar = styled.div`
       color: ${(props) => props.theme.pagination.hoverTextColor};
     }
   }
+`;
+const SSecondarySideNavbarWrapper = styled.div`
+  padding: 0px 8px;
+  display: flex;
+  flex-direction: column;
 `;
 const SSecondarySideNavbarLabel = styled.h3`
   padding-left: 1.25rem;
@@ -164,7 +159,6 @@ const SideNavbar = (props) => {
     isOpen,
     onSelect,
     toggleSideNavbar,
-    top,
   } = props;
   useEffect(() => {
     setSidebarOpen(isOpen);
@@ -196,79 +190,87 @@ const SideNavbar = (props) => {
     <ThemeProvider
       theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
     >
-      <SSideNavbar top={top} {...props} isOpen={sidebarOpen}>
-        {
-          <>
-            <SSideNav {...props} elementType={'list'}>
-              {sideNavData?.map((item, index) => {
+      <SideNavbarWrapper className={props.className}>
+        <SSideNavbar theme={props.theme} isOpen={sidebarOpen}>
+          {
+            <>
+              <SSideNav theme={props.theme} elementType={'list'}>
+                {sideNavData?.map((item, index) => {
+                  return (
+                    <SubMenu
+                      {...props}
+                      item={item}
+                      key={index}
+                      isOpen={sidebarOpen}
+                      currentActiveItem={currentActiveItem}
+                      setCurrentActiveItem={setCurrentActiveItem}
+                      setSecondarySidebarOpen={setSecondarySidebarOpen}
+                      setCurrentActiveSubNav={setCurrentActiveSubnav}
+                      hoverActiveItem={hoverActiveItem}
+                      setHoverActiveItem={setHoverActiveItem}
+                      currentActiveSubNavItem={currentActiveSubNavItem}
+                      setCurrentActiveSubNavItem={setCurrentActiveSubNavItem}
+                      onSelect={onSelect}
+                      allowHover={allowHover}
+                    />
+                  );
+                })}
+              </SSideNav>
+              <SSideNav>
+                <NavIcon to="#" isOpen={sidebarOpen}>
+                  <Icon
+                    icon={sidebarOpen ? IKAL : IKAR}
+                    size={24}
+                    onClick={showSidebar}
+                  />
+                </NavIcon>
+              </SSideNav>
+            </>
+          }
+        </SSideNavbar>
+        {secondarySidebarOpen ? (
+          <SSecondarySideNavbar
+            className={`${nameSpace}-secondary-sidenavbar`}
+            role="secondary-side-nav-bar"
+            isSecondaryNavbarOpen={secondarySidebarOpen}
+            theme={props.theme}
+          >
+            <CloseIconWrapper>
+              <button
+                type="button"
+                aria-label="Close"
+                onClick={() => setSecondarySidebarOpen(false)}
+                className={'closeIcon'}
+              >
+                <span>&times;</span>
+              </button>
+            </CloseIconWrapper>
+
+            <SSecondarySideNavbarWrapper>
+              <SSecondarySideNavbarLabel>
+                {currentActiveSubnav?.label}
+              </SSecondarySideNavbarLabel>
+              {currentActiveSubnav?.subNav?.map((item, index) => {
                 return (
-                  <SubMenu
-                    {...props}
+                  <CollapsedSubMenu
                     item={item}
                     key={index}
-                    isOpen={sidebarOpen}
-                    currentActiveItem={currentActiveItem}
-                    setCurrentActiveItem={setCurrentActiveItem}
+                    onSelect={onSelect}
                     setSecondarySidebarOpen={setSecondarySidebarOpen}
-                    setCurrentActiveSubNav={setCurrentActiveSubnav}
-                    hoverActiveItem={hoverActiveItem}
-                    setHoverActiveItem={setHoverActiveItem}
                     currentActiveSubNavItem={currentActiveSubNavItem}
                     setCurrentActiveSubNavItem={setCurrentActiveSubNavItem}
-                    onSelect={onSelect}
-                    allowHover={allowHover}
+                    parentItem={currentActiveSubnav}
+                    setCurrentActiveItem={setCurrentActiveItem}
+                    theme={props.theme}
                   />
                 );
               })}
-            </SSideNav>
-            <SSideNav>
-              <NavIcon to="#" isOpen={sidebarOpen}>
-                <Icon
-                  icon={sidebarOpen ? IKAL : IKAR}
-                  size={24}
-                  onClick={showSidebar}
-                />
-              </NavIcon>
-            </SSideNav>
-          </>
-        }
-      </SSideNavbar>
-      {secondarySidebarOpen ? (
-        <SSecondarySideNavbar
-          className={`${nameSpace}-secondary-sidenavbar`}
-          role="secondary-side-nav-bar"
-          isSecondaryNavbarOpen={secondarySidebarOpen}
-          {...props}
-        >
-          <button
-            type="button"
-            aria-label="Close"
-            onClick={() => setSecondarySidebarOpen(false)}
-            className={'closeIcon'}
-          >
-            <span>&times;</span>
-          </button>
-          <SSecondarySideNavbarLabel>
-            {currentActiveSubnav?.label}
-          </SSecondarySideNavbarLabel>
-          {currentActiveSubnav?.subNav?.map((item, index) => {
-            return (
-              <CollapsedSubMenu
-                item={item}
-                key={index}
-                onSelect={onSelect}
-                setSecondarySidebarOpen={setSecondarySidebarOpen}
-                currentActiveSubNavItem={currentActiveSubNavItem}
-                setCurrentActiveSubNavItem={setCurrentActiveSubNavItem}
-                parentItem={currentActiveSubnav}
-                setCurrentActiveItem={setCurrentActiveItem}
-              />
-            );
-          })}
-        </SSecondarySideNavbar>
-      ) : (
-        ''
-      )}
+            </SSecondarySideNavbarWrapper>
+          </SSecondarySideNavbar>
+        ) : (
+          ''
+        )}
+      </SideNavbarWrapper>
     </ThemeProvider>
   );
 };

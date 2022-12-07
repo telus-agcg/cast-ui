@@ -12,7 +12,7 @@ const SideNavData = [
     to: {
       asPath: '/',
     },
-    customIcon: iosSpeedometerOutline,
+    icon: iosSpeedometerOutline,
     disabled: false,
   },
   {
@@ -21,7 +21,7 @@ const SideNavData = [
       asPath: '/customers',
     },
     path: 'customers',
-    customIcon: iosPeopleOutline,
+    icon: iosPeopleOutline,
     subNav: [
       {
         label: 'Distributors',
@@ -56,7 +56,7 @@ const SideNavData = [
     to: {
       asPath: '/offers',
     },
-    customIcon: iosPricetagsOutline,
+    icon: iosPricetagsOutline,
     subNav: [
       {
         label: 'Retailer',
@@ -85,7 +85,7 @@ const SideNavData = [
   {
     label: 'Products',
     path: '/products',
-    customIcon: iosBoxOutline,
+    icon: iosBoxOutline,
     exact: false,
     disabled: false,
     subNav: [
@@ -119,7 +119,7 @@ const SideNavData = [
     label: 'Report Download',
     exact: false,
     path: '/reports',
-    customIcon: iosDownloadOutline,
+    icon: iosDownloadOutline,
     disabled: {
       value: true,
     },

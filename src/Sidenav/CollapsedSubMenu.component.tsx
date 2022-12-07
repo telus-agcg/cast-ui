@@ -53,9 +53,9 @@ const CollapsedSubMenu = ({
   setCurrentActiveSubNavItem,
   setCurrentActiveItem,
   parentItem,
-  ...props
+  theme,
 }) => {
-  const newProps = { disabled: item.disabled, ...props };
+  const newProps = { theme, disabled: item.disabled };
   const collapsedItemClick = (e, item) => {
     setSecondarySidebarOpen(false);
     setCurrentActiveItem(parentItem);
