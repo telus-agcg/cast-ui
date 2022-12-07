@@ -11,8 +11,6 @@ import {
   Link,
   BodyText,
 } from '../';
-import CopyToClipboard from '../CopyToClipboard';
-import { sampleCode } from './CodeBlock/CodeBlock.stories';
 
 export type Props = {
   /**
@@ -72,11 +70,6 @@ export const Typography: React.FunctionComponent<Props> = ({
       </Tooltip>
       <BodyText>$25,855.90</BodyText>
       <br />
-      <CopyToClipboard
-        copyContent={sampleCode || ''}
-        background="#F5F7F8"
-        includeCopyButton={true}
-      />
     </STypography>
   </ThemeProvider>
 );
