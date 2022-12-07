@@ -95,7 +95,7 @@ const SSideNavbar = styled.div`
   border-left: ${(props: any) => props.theme.sidenav.borderLeft};
   border-right: ${(props: any) => props.theme.sidenav.borderRight};
   position: ${(props: any) => props.theme.sidenav.position};
-  top: ${(props: any) => props.theme.sidenav.top};
+  top: ${(props: any) => (props.top ? props.top : props.theme.sidenav.top)};
   bottom: ${(props: any) => props.theme.sidenav.bottom};
   width: ${(props: any) =>
     props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
@@ -116,7 +116,8 @@ const SSecondarySideNavbar = styled.div`
   border-right: ${(props: any) =>
     props.theme.sidenav.secondaryNavbar.borderRight};
   position: ${(props: any) => props.theme.sidenav.secondaryNavbar.position};
-  top: ${(props: any) => props.theme.sidenav.secondaryNavbar.top};
+  top: ${(props: any) =>
+    props.top ? props.top : props.theme.sidenav.secondaryNavbar.top};
   bottom: ${(props: any) => props.theme.sidenav.secondaryNavbar.bottom};
   right: ${(props: any) => props.theme.sidenav.secondaryNavbar.right};
   left: ${(props: any) => props.theme.sidenav.width};
@@ -163,6 +164,7 @@ const SideNavbar = (props) => {
     isOpen,
     onSelect,
     toggleSideNavbar,
+    top,
   } = props;
   useEffect(() => {
     setSidebarOpen(isOpen);

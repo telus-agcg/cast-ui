@@ -106,7 +106,7 @@ const SubMenu = ({
   };
 
   const showSubnav = () => setSubnav(!subnav);
-
+  const IconObj = item?.icon;
   const handleItemClick = (e) => {
     if (item.subNav && isOpen && !item.disabled) showSubnav();
     else handleSubMenuClick(e, item, 0);
@@ -147,7 +147,14 @@ const SubMenu = ({
         {...newProps}
       >
         <SideNavItemIcon isOpen={isOpen} item={item}>
-          <Icon icon={item.icon} size={24} />
+          {item.customIcon ? (
+            <Icon icon={item.customIcon} size={24} />
+          ) : (
+            <IconObj
+              className={`custom-icon-svg`}
+              style={{ width: '24px', height: '24px' }}
+            />
+          )}
         </SideNavItemIcon>
         <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
         <div>
