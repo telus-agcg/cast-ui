@@ -13,7 +13,7 @@ const Color = withTheme<any>(({ theme: { colors } }: any) =>
         key={key}
         style={{
           display: 'flex',
-          width: '32%',
+          width: '24%',
           marginBottom: 12,
           fontSize: '.8em',
           flexDirection: 'column',
