@@ -49,8 +49,8 @@ const CollapsedSubMenu = ({
   item,
   onSelect,
   setSecondarySidebarOpen,
-  currentActiveSubNavItem,
-  setCurrentActiveSubNavItem,
+  currentActiveSubnavItem,
+  setCurrentActiveSubnavItem,
   setCurrentActiveItem,
   parentItem,
   theme,
@@ -59,7 +59,7 @@ const CollapsedSubMenu = ({
   const collapsedItemClick = (e, item) => {
     setSecondarySidebarOpen(false);
     setCurrentActiveItem(parentItem);
-    setCurrentActiveSubNavItem(item.label);
+    setCurrentActiveSubnavItem(item.label);
     if (onSelect) {
       onSelect(e, item, []);
     }
@@ -68,7 +68,7 @@ const CollapsedSubMenu = ({
     <>
       <SidebarLink
         to={item.path}
-        isActiveSubMenuItem={item.label === currentActiveSubNavItem}
+        isActiveSubMenuItem={item.label === currentActiveSubnavItem}
         {...newProps}
         onClick={(e) => collapsedItemClick(e, item)}
       >

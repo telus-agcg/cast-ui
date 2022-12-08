@@ -160,29 +160,27 @@ const SideNavbar = (props) => {
     onSelect,
     toggleSideNavbar,
   } = props;
+
   useEffect(() => {
     setSidebarOpen(isOpen);
   }, [isOpen]);
-  useEffect(() => {
-    setSideNavData(data);
-  }, [data]);
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sideNavData, setSideNavData] = useState([]);
   const [secondarySidebarOpen, setSecondarySidebarOpen] = useState(false);
   const [currentActiveItem, setCurrentActiveItem] = useState({ label: '' });
   const [currentActiveSubnav, setCurrentActiveSubnav] = useState({
     subNav: [],
     label: '',
   });
-  const [currentActiveSubNavItem, setCurrentActiveSubNavItem] = useState('');
+  const [currentActiveSubnavItem, setCurrentActiveSubnavItem] = useState('');
 
   const [hoverActiveItem, setHoverActiveItem] = useState(false);
   const showSidebar = () => {
     setSecondarySidebarOpen(false);
-    if (typeof toggleSideNavbar !== 'undefined') {
-      toggleSideNavbar();
-    } else {
+    if (typeof toggleSideNavbar === 'undefined') {
       setSidebarOpen(!sidebarOpen);
+    } else {
+      toggleSideNavbar();
     }
   };
 
@@ -192,41 +190,39 @@ const SideNavbar = (props) => {
     >
       <SideNavbarWrapper className={props.className}>
         <SSideNavbar theme={props.theme} isOpen={sidebarOpen}>
-          {
-            <>
-              <SSideNav theme={props.theme} elementType={'list'}>
-                {sideNavData?.map((item, index) => {
-                  return (
-                    <SubMenu
-                      {...props}
-                      item={item}
-                      key={index}
-                      isOpen={sidebarOpen}
-                      currentActiveItem={currentActiveItem}
-                      setCurrentActiveItem={setCurrentActiveItem}
-                      setSecondarySidebarOpen={setSecondarySidebarOpen}
-                      setCurrentActiveSubNav={setCurrentActiveSubnav}
-                      hoverActiveItem={hoverActiveItem}
-                      setHoverActiveItem={setHoverActiveItem}
-                      currentActiveSubNavItem={currentActiveSubNavItem}
-                      setCurrentActiveSubNavItem={setCurrentActiveSubNavItem}
-                      onSelect={onSelect}
-                      allowHover={allowHover}
-                    />
-                  );
-                })}
-              </SSideNav>
-              <SSideNav>
-                <NavIcon to="#" isOpen={sidebarOpen}>
-                  <Icon
-                    icon={sidebarOpen ? IKAL : IKAR}
-                    size={24}
-                    onClick={showSidebar}
-                  />
-                </NavIcon>
-              </SSideNav>
-            </>
-          }
+          <SSideNav theme={props.theme} elementType={'list'}>
+            {data?.map((item, index) => {
+              return (
+                <SubMenu
+                  {...props}
+                  item={item}
+                  key={index}
+                  allowHover={allowHover}
+                  isOpen={sidebarOpen}
+                  currentActiveItem={currentActiveItem}
+                  currentActiveSubnav={currentActiveSubnav}
+                  currentActiveSubnavItem={currentActiveSubnavItem}
+                  hoverActiveItem={hoverActiveItem}
+                  onSelect={onSelect}
+                  secondarySidebarOpen={secondarySidebarOpen}
+                  setCurrentActiveItem={setCurrentActiveItem}
+                  setCurrentActiveSubnav={setCurrentActiveSubnav}
+                  setHoverActiveItem={setHoverActiveItem}
+                  setSecondarySidebarOpen={setSecondarySidebarOpen}
+                  setCurrentActiveSubnavItem={setCurrentActiveSubnavItem}
+                />
+              );
+            })}
+          </SSideNav>
+          <SSideNav>
+            <NavIcon to="#" isOpen={sidebarOpen}>
+              <Icon
+                icon={sidebarOpen ? IKAL : IKAR}
+                size={24}
+                onClick={showSidebar}
+              />
+            </NavIcon>
+          </SSideNav>
         </SSideNavbar>
         {secondarySidebarOpen ? (
           <SSecondarySideNavbar
@@ -257,8 +253,8 @@ const SideNavbar = (props) => {
                     key={index}
                     onSelect={onSelect}
                     setSecondarySidebarOpen={setSecondarySidebarOpen}
-                    currentActiveSubNavItem={currentActiveSubNavItem}
-                    setCurrentActiveSubNavItem={setCurrentActiveSubNavItem}
+                    currentActiveSubnavItem={currentActiveSubnavItem}
+                    setCurrentActiveSubnavItem={setCurrentActiveSubnavItem}
                     parentItem={currentActiveSubnav}
                     setCurrentActiveItem={setCurrentActiveItem}
                     theme={props.theme}

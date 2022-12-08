@@ -70,19 +70,21 @@ const SidebarLabel = styled.span`
 `;
 
 const SubMenu = ({
-  item,
-  isOpen,
-  setCurrentActiveSubNav,
-  setSecondarySidebarOpen,
-  currentActiveItem,
-  setCurrentActiveItem,
-  hoverActiveItem,
-  setHoverActiveItem,
-  onSelect,
-  currentActiveSubNavItem,
-  setCurrentActiveSubNavItem,
   allowHover,
+  currentActiveItem,
+  currentActiveSubnav,
+  currentActiveSubnavItem,
+  hoverActiveItem,
   hoverDelay,
+  isOpen,
+  item,
+  onSelect,
+  secondarySidebarOpen,
+  setCurrentActiveItem,
+  setCurrentActiveSubnav,
+  setHoverActiveItem,
+  setSecondarySidebarOpen,
+  setCurrentActiveSubnavItem,
   theme,
 }) => {
   useEffect(() => {
@@ -108,19 +110,27 @@ const SubMenu = ({
   const showSubnav = () => setSubnav(!subnav);
   const IconObj = item?.customIcon;
   const handleItemClick = (e) => {
-    if (item.subNav && isOpen && !item.disabled) showSubnav();
-    else handleSubMenuClick(e, item, 0);
+    if (item.subNav && isOpen && !item.disabled) {
+      showSubnav();
+    } else {
+      handleSubMenuClick(e, item, 0);
+    }
   };
   const handleSubMenuClick = (e, selectedItem, level) => {
     if (!item.disabled && (isOpen || level === 1 || !item.subNav)) {
       setSecondarySidebarOpen(false);
-      setCurrentActiveSubNav([]);
+      setCurrentActiveSubnav([]);
       setCurrentActiveItem(item);
-      setCurrentActiveSubNavItem(selectedItem?.label);
+      setCurrentActiveSubnavItem(selectedItem?.label);
     }
     if (item.subNav && !isOpen && !item.disabled) {
-      setSecondarySidebarOpen(true);
-      setCurrentActiveSubNav(item);
+      if (secondarySidebarOpen && currentActiveSubnav === selectedItem) {
+        setSecondarySidebarOpen(false);
+        setCurrentActiveSubnav([]);
+      } else {
+        setSecondarySidebarOpen(true);
+        setCurrentActiveSubnav(item);
+      }
     } else if (onSelect && !item.disabled) {
       onSelect(e, selectedItem, item.subNav);
     }
@@ -177,7 +187,7 @@ const SubMenu = ({
               level={1}
               onClick={(e) => handleSubMenuClick(e, subMenuItem, 1)}
               isActiveSubMenuItem={
-                subMenuItem.label === currentActiveSubNavItem
+                subMenuItem.label === currentActiveSubnavItem
               }
             >
               <SidebarLabel level={1} {...newProps}>
