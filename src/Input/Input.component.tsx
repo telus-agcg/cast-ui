@@ -243,6 +243,7 @@ export const Input: React.FunctionComponent<Props> = ({
     addonText,
     icon,
     isClearable,
+    inputSize,
   } = inputProps;
 
   const [focused, setFocused] = React.useState(false);
@@ -257,13 +258,17 @@ export const Input: React.FunctionComponent<Props> = ({
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      {console.log('inputProps%%%', inputProps)}
+      {console.log(' {console.log({...inputProps})}', { ...inputProps })}
       <>
         <SInputWrapper
+          theme={theme}
+          inputSize={inputSize}
+          invalid={invalid}
           className={classNames(inputProps.className, {
             disabled,
             focused,
           })}
-          {...inputProps}
         >
           {'left' === iconPosition && icon && (
             <SIconWrapper>{icon}</SIconWrapper>
