@@ -258,8 +258,6 @@ export const Input: React.FunctionComponent<Props> = ({
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      {console.log('inputProps%%%', inputProps)}
-      {console.log(' {console.log({...inputProps})}', { ...inputProps })}
       <>
         <SInputWrapper
           theme={theme}
