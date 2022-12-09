@@ -325,3 +325,8 @@ export const Input: React.FunctionComponent<Props> = ({
     </ThemeProvider>
   );
 };
+
+Input.defaultProps = {
+  inputSize: 'md',
+  type: 'text',
+};
