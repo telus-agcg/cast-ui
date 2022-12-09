@@ -2,6 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import styled, { ThemeProvider } from 'styled-components';
 import ErrorMessage from '../Typography/ErrorMessage/index';
+import { Themes } from '../themes';
 import { components } from 'react-select';
 
 export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -259,7 +260,6 @@ export const Input: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInputWrapper
-          theme={theme}
           inputSize={inputSize}
           invalid={invalid}
           className={classNames(inputProps.className, {
@@ -327,6 +327,7 @@ export const Input: React.FunctionComponent<Props> = ({
 };
 
 Input.defaultProps = {
+  theme: Themes.defaultTheme,
   inputSize: 'md',
   type: 'text',
 };
