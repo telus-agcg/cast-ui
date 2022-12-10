@@ -1,4 +1,4 @@
-export const buildTheme = colors => ({
+export const buildTheme = (colors) => ({
   colors,
   borders: {
     radius: '1px',
@@ -45,8 +45,8 @@ export const buildTheme = colors => ({
       selectedFlood: colors.secondaryHover,
       badgeBackground: colors.drk400,
       badgeColor: colors.white,
-      alertColor: colors.drk800,
-      alertBackground: colors.secondary,
+      alertColor: colors.white,
+      alertBackground: colors.drk400,
       notificationColor: colors.drk800,
       notificationBackground: colors.secondary,
       light: {

@@ -78,8 +78,8 @@ export const cobaltTheme = {
       selectedFlood: cobaltColors.secondaryHover,
       badgeBackground: cobaltColors.drk400,
       badgeColor: cobaltColors.white,
-      alertColor: cobaltColors.drk800,
-      alertBackground: cobaltColors.secondary,
+      alertColor: cobaltColors.white,
+      alertBackground: cobaltColors.drk400,
       notificationColor: cobaltColors.drk800,
       notificationBackground: cobaltColors.secondary,
       light: {
