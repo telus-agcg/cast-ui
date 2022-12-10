@@ -768,12 +768,12 @@ export const cobaltTheme = {
     fontSize: '14px',
     color: cobaltColors.primary,
     height: '',
-    width: '48px',
-    openWidth: '200px',
+    width: '50px',
+    openWidth: '220px',
     background: cobaltColors.lt200,
-    padding: '0 8px',
+    padding: '',
     margin: '',
-    zIndex: 100,
+    zIndex: 5,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -782,18 +782,13 @@ export const cobaltTheme = {
     borderLeft: '',
     borderRight: `1px solid ${cobaltColors.lt800}`,
     transition: 'min-width 0.15s',
-    label: {
-      color: cobaltColors.drk800,
-    },
-
     secondaryNavbar: {
       width: '0px',
       openWidth: '170px',
       background: cobaltColors.white,
-      color: `${cobaltColors.drk800}`,
-      padding: '30px 8px 16px',
+      padding: '80px 0 16px',
       margin: '',
-      zIndex: 100,
+      zIndex: 4,
       position: 'absolute',
       top: 0,
       left: 0,
@@ -802,9 +797,6 @@ export const cobaltTheme = {
       borderLeft: '',
       borderRight: `1px solid ${cobaltColors.lt800}`,
       transition: 'left 0.15s',
-    },
-    secondaryNavbarLabel: {
-      color: `${cobaltColors.drk800}`,
     },
     nav: {
       padding: '',
@@ -818,8 +810,8 @@ export const cobaltTheme = {
       display: 'grid',
     },
     navItem: {
-      color: `${cobaltColors.drk800}`,
-      fontWeight: 300,
+      color: 'inherit',
+      fontWeight: 'inherit',
       cursor: 'pointer',
       background: 'transparent',
       opacity: '1',
@@ -827,13 +819,13 @@ export const cobaltTheme = {
       leftBorderColor: 'transparent',
       topNavBorderBottom: `1px solid ${cobaltColors.lt800}`,
       bottonNavBorderBottom: '',
-      transition: 'all 0.3s 0s ease-in-out',
+      transition: 'opacity 0.15s',
     },
     activenavItem: {
       color: cobaltColors.primary,
-      fontWeight: 500,
+      fontWeight: 700,
       cursor: 'pointer',
-      background: `border-box ${cobaltColors.primaryBackground}`,
+      background: cobaltColors.white,
       opacity: '1',
       leftBorderWidth: '4px',
       leftBorderColor: cobaltColors.primary,
@@ -854,16 +846,10 @@ export const cobaltTheme = {
       display: 'flex',
     },
     navIcon: {
-      padding: '14px 0 8px 0px',
-    },
-    subnavIcon: {
       padding: '8px 0 8px 12px',
     },
-    navLabel: {
-      padding: '6px 10px',
-    },
     navText: {
-      padding: '8px',
+      padding: '8px 0 8px 12px',
     },
   },
   spinner: {
