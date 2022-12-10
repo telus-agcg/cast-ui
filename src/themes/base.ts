@@ -1,4 +1,4 @@
-export const buildTheme = (colors) => ({
+export const buildTheme = colors => ({
   colors,
   borders: {
     radius: '1px',
@@ -728,12 +728,12 @@ export const buildTheme = (colors) => ({
     fontSize: '14px',
     color: colors.primary,
     height: '',
-    width: '48px',
-    openWidth: '200px',
+    width: '50px',
+    openWidth: '220px',
     background: colors.lt400,
-    padding: '0 8px',
+    padding: '',
     margin: '',
-    zIndex: 100,
+    zIndex: 5,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -742,18 +742,13 @@ export const buildTheme = (colors) => ({
     borderLeft: '',
     borderRight: `1px solid ${colors.lt800}`,
     transition: 'min-width 0.15s',
-    label: {
-      color: colors.drk800,
-    },
-
     secondaryNavbar: {
       width: '0px',
       openWidth: '170px',
       background: colors.white,
-      color: `${colors.drk800}`,
-      padding: '30px 8px 16px',
+      padding: '80px 0 16px',
       margin: '',
-      zIndex: 100,
+      zIndex: 4,
       position: 'absolute',
       top: 0,
       left: 0,
@@ -762,9 +757,6 @@ export const buildTheme = (colors) => ({
       borderLeft: '',
       borderRight: `1px solid ${colors.lt800}`,
       transition: 'left 0.15s',
-    },
-    secondaryNavbarLabel: {
-      color: `${colors.drk800}`,
     },
     nav: {
       padding: '',
@@ -778,8 +770,8 @@ export const buildTheme = (colors) => ({
       display: 'grid',
     },
     navItem: {
-      color: `${colors.drk800}`,
-      fontWeight: 300,
+      color: 'inherit',
+      fontWeight: 'inherit',
       cursor: 'pointer',
       background: 'transparent',
       opacity: '1',
@@ -787,13 +779,13 @@ export const buildTheme = (colors) => ({
       leftBorderColor: 'transparent',
       topNavBorderBottom: `1px solid ${colors.lt800}`,
       bottonNavBorderBottom: '',
-      transition: 'all 0.3s 0s ease-in-out',
+      transition: 'opacity 0.15s',
     },
     activenavItem: {
       color: colors.primary,
-      fontWeight: 500,
+      fontWeight: 700,
       cursor: 'pointer',
-      background: `border-box ${colors.primaryBackground}`,
+      background: colors.white,
       opacity: '1',
       leftBorderWidth: '4px',
       leftBorderColor: colors.primary,
@@ -814,16 +806,10 @@ export const buildTheme = (colors) => ({
       display: 'flex',
     },
     navIcon: {
-      padding: '14px 0 8px 0px',
-    },
-    subnavIcon: {
       padding: '8px 0 8px 12px',
     },
-    navLabel: {
-      padding: '6px 10px',
-    },
     navText: {
-      padding: '8px',
+      padding: '8px 0 8px 12px',
     },
   },
   spinner: {
