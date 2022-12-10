@@ -20,15 +20,10 @@ export default {
         type: 'onClick',
       },
     },
-    onMouseEnter: {
-      action: {
-        type: 'onMouseEnter',
-      },
-    },
   },
 };
 
-const _Link = (args) => (
+const _Link = args => (
   <Link data-testid={args.dataTestId} {...args}>
     Read More
   </Link>
