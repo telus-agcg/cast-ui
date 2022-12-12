@@ -15,6 +15,7 @@ export type Props = {
   item?: any;
 };
 const SSideNavItemIcon = styled.div`
+  height: 24px;
   :hover {
     background: ${(props) =>
       props.isOpen || props.item.disabled

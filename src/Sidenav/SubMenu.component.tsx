@@ -73,7 +73,7 @@ const SubMenu = ({
   allowHover,
   currentActiveItem,
   currentActiveSubnav,
-  currentActiveSubnavItem,
+  currentSelectedSubnavItem,
   hoverActiveItem,
   hoverDelay,
   isOpen,
@@ -151,7 +151,6 @@ const SubMenu = ({
   return (
     <SSubMenuItem>
       <SidebarLink
-        to={item.path}
         onClick={handleItemClick}
         onMouseEnter={handleHoverDelay}
         {...newProps}
@@ -182,12 +181,11 @@ const SubMenu = ({
         {item.subNav?.map((subMenuItem, index) => {
           return (
             <SidebarLink
-              to={subMenuItem.path}
               key={index}
               level={1}
               onClick={(e) => handleSubMenuClick(e, subMenuItem, 1)}
               isActiveSubMenuItem={
-                subMenuItem.label === currentActiveSubnavItem
+                subMenuItem.label === currentSelectedSubnavItem
               }
             >
               <SidebarLabel level={1} {...newProps}>

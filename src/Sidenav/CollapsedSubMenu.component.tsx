@@ -49,7 +49,7 @@ const CollapsedSubMenu = ({
   item,
   onSelect,
   setSecondarySidebarOpen,
-  currentActiveSubnavItem,
+  currentSelectedSubnavItem,
   setCurrentActiveSubnavItem,
   setCurrentActiveItem,
   parentItem,
@@ -68,7 +68,7 @@ const CollapsedSubMenu = ({
     <>
       <SidebarLink
         to={item.path}
-        isActiveSubMenuItem={item.label === currentActiveSubnavItem}
+        isActiveSubMenuItem={item.label === currentSelectedSubnavItem}
         {...newProps}
         onClick={(e) => collapsedItemClick(e, item)}
       >

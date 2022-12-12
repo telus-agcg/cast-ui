@@ -27,17 +27,12 @@ export type Props = {
    **/
   data?: {
     disabled: boolean;
-    icon: any;
+    icon?: any;
+    customIcon?: any;
     label: string;
-    path: string;
     subNav: {
       label: string;
-      path: string;
-      disabled: boolean;
-      to: any;
-      icon: any;
     }[];
-    to: any;
   }[];
   /**
    * Controls whether the Sidenav is open
@@ -172,9 +167,10 @@ const SideNavbar = (props) => {
     subNav: [],
     label: '',
   });
-  const [currentActiveSubnavItem, setCurrentActiveSubnavItem] = useState('');
+  const [currentSelectedSubnavItem, setCurrentActiveSubnavItem] = useState('');
 
   const [hoverActiveItem, setHoverActiveItem] = useState(false);
+
   const showSidebar = () => {
     setSecondarySidebarOpen(false);
     if (typeof toggleSideNavbar === 'undefined') {
@@ -201,7 +197,7 @@ const SideNavbar = (props) => {
                   isOpen={sidebarOpen}
                   currentActiveItem={currentActiveItem}
                   currentActiveSubnav={currentActiveSubnav}
-                  currentActiveSubnavItem={currentActiveSubnavItem}
+                  currentSelectedSubnavItem={currentSelectedSubnavItem}
                   hoverActiveItem={hoverActiveItem}
                   onSelect={onSelect}
                   secondarySidebarOpen={secondarySidebarOpen}
@@ -253,7 +249,7 @@ const SideNavbar = (props) => {
                     key={index}
                     onSelect={onSelect}
                     setSecondarySidebarOpen={setSecondarySidebarOpen}
-                    currentActiveSubnavItem={currentActiveSubnavItem}
+                    currentSelectedSubnavItem={currentSelectedSubnavItem}
                     setCurrentActiveSubnavItem={setCurrentActiveSubnavItem}
                     parentItem={currentActiveSubnav}
                     setCurrentActiveItem={setCurrentActiveItem}
