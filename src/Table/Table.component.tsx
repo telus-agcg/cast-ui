@@ -286,9 +286,9 @@ const collator = new Intl.Collator(undefined, {
 export const TableRowExpander = ({ isExpanded, ...rest }) => (
   <>
     {isExpanded ? (
-      <HoverIcon icon={IKAD} size={24} />
+      <HoverIcon data-testid="collapser" icon={IKAD} size={24} />
     ) : (
-      <HoverIcon icon={IKAR} size={24} />
+      <HoverIcon data-testid="expander" icon={IKAR} size={24} />
     )}
   </>
 );
@@ -349,7 +349,7 @@ export class Table extends React.Component<Props> {
               ...incomingTrProps,
               className,
             };
-            if (props.id && rowInfo && rowInfo.viewIndex) {
+            if (props.id && rowInfo && rowInfo.hasOwnProperty('viewIndex')) {
               trProps.id = `${props.id}-row-${rowInfo.viewIndex}`;
             }
             return trProps;
