@@ -62,6 +62,11 @@ const SidebarLink = styled(Link)`
         props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`]
           .color};
     }
+    :hover {
+      path {
+        fill: ${(props) => props.theme.sidenav[`activenavItem`].color};
+      }
+    }
   }
 `;
 
@@ -84,6 +89,7 @@ const SubMenu = ({
   setCurrentActiveSubnav,
   setHoverActiveItem,
   setSecondarySidebarOpen,
+  toggleSecondarySideNav,
   setCurrentActiveSubnavItem,
   theme,
 }) => {
@@ -128,7 +134,9 @@ const SubMenu = ({
         setSecondarySidebarOpen(false);
         setCurrentActiveSubnav([]);
       } else {
-        setSecondarySidebarOpen(true);
+        toggleSecondarySideNav
+          ? toggleSecondarySideNav(true)
+          : setSecondarySidebarOpen(true);
         setCurrentActiveSubnav(item);
       }
     } else if (onSelect && !item.disabled) {

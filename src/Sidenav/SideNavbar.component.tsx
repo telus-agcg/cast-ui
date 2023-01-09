@@ -9,6 +9,16 @@ import SubMenu from './SubMenu.component';
 import Link from '../Typography/Link';
 import CollapsedSubMenu from './CollapsedSubMenu.component';
 
+type SideNavItem = {
+  disabled: boolean;
+  icon?: any;
+  customIcon?: any;
+  label: string;
+  subNav: {
+    label: string;
+  }[];
+};
+
 export type Props = {
   /**
    * Controls whether the Sidenav allows hovering over submenu items
@@ -25,19 +35,11 @@ export type Props = {
    *
    * @default []
    **/
-  data?: {
-    disabled: boolean;
-    icon?: any;
-    customIcon?: any;
-    label: string;
-    subNav: {
-      label: string;
-    }[];
-  }[];
+  data?: SideNavItem[];
   /**
    * Controls whether the Sidenav is open
    *
-   * @default true
+   * @default false
    **/
   isOpen?: boolean;
   /**
@@ -52,6 +54,24 @@ export type Props = {
    * @default void
    **/
   toggleSideNavbar?(): void;
+  /**
+   * represents the current active menu item
+   * it allows setting current active menu item from outside cast
+   *
+   **/
+  currentActiveMenuItem?: SideNavItem;
+  /**
+   * Callback when the Secondary Sidenav is toggled
+   *
+   * @default void
+   **/
+  toggleSecondarySideNav?(): void;
+  /**
+   * Controls whether the Secondary Sidenav is open
+   *
+   * @default false
+   **/
+  isSecondaryNavOpen?: boolean;
 };
 
 const NavIcon = styled(Link)`
@@ -152,13 +172,12 @@ const SideNavbar = (props) => {
     allowHover = false,
     data,
     isOpen,
+    isSecondaryNavOpen,
     onSelect,
     toggleSideNavbar,
+    toggleSecondarySideNav,
+    currentActiveMenuItem,
   } = props;
-
-  useEffect(() => {
-    setSidebarOpen(isOpen);
-  }, [isOpen]);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [secondarySidebarOpen, setSecondarySidebarOpen] = useState(false);
@@ -170,6 +189,18 @@ const SideNavbar = (props) => {
   const [currentSelectedSubnavItem, setCurrentActiveSubnavItem] = useState('');
 
   const [hoverActiveItem, setHoverActiveItem] = useState(false);
+
+  useEffect(() => {
+    setSidebarOpen(isOpen);
+  }, [isOpen]);
+
+  useEffect(() => {
+    setSecondarySidebarOpen(isSecondaryNavOpen);
+  }, [isSecondaryNavOpen]);
+
+  useEffect(() => {
+    if (currentActiveMenuItem) setCurrentActiveItem(currentActiveMenuItem);
+  }, [currentActiveMenuItem]);
 
   const showSidebar = () => {
     setSecondarySidebarOpen(false);
@@ -205,6 +236,7 @@ const SideNavbar = (props) => {
                   setCurrentActiveSubnav={setCurrentActiveSubnav}
                   setHoverActiveItem={setHoverActiveItem}
                   setSecondarySidebarOpen={setSecondarySidebarOpen}
+                  toggleSecondarySideNav={toggleSecondarySideNav}
                   setCurrentActiveSubnavItem={setCurrentActiveSubnavItem}
                 />
               );
