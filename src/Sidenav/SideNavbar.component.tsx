@@ -14,7 +14,7 @@ type SideNavItem = {
   icon?: any;
   customIcon?: any;
   label: string;
-  subNav: {
+  subNav?: {
     label: string;
   }[];
 };
