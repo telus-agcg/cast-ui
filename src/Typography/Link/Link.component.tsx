@@ -18,6 +18,10 @@ export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
    **/
   onClick?(e: React.MouseEvent<HTMLElement>): void;
   /**
+   * Set an onMouseEnter listener
+   **/
+  onMouseEnter?(e: React.MouseEvent<HTMLElement>): void;
+  /**
    * Set a target for the Link
    *
    * @default ''
@@ -107,7 +111,7 @@ export const Link: React.FunctionComponent<Props> = ({
           {...dataProps}
           id={id}
           className={cn([className, 'disabled'])}
-          onClick={e => e.preventDefault()}
+          onClick={(e) => e.preventDefault()}
         >
           {children}
         </SLink>
@@ -117,6 +121,7 @@ export const Link: React.FunctionComponent<Props> = ({
           id={id}
           className={cn([{ solo: linkProps.solo }, className])}
           onClick={linkProps.onClick}
+          onMouseEnter={linkProps.onMouseEnter}
           href={linkProps.href}
           target={linkProps.target}
         >
