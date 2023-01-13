@@ -7,6 +7,7 @@ export const defaultColors = {
   highlight200: '#F1F6FF',
   drk400: '#9EA3A7',
   drk800: '#2C363E',
+  lt200: '#F5F7F8',
   lt400: '#EEF0F2',
   lt800: '#D5D7D9',
   primary: '#0D70F4',
