@@ -174,13 +174,6 @@ const SubMenu = ({
           )}
         </SideNavItemIcon>
         <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
-        <div>
-          {item.subNav && subnav
-            ? item.iconOpened
-            : item.subNav
-            ? item.iconClosed
-            : null}
-        </div>
       </SidebarLink>
       <SSubNavWrapper
         show={isOpen && subnav}
