@@ -286,6 +286,7 @@ export const Input: React.FunctionComponent<Props> = ({
           />
           {isClearable && !disabled && value && (
             <SIconWrapper
+              data-testid={`clear-${inputProps['data-testid']}`}
               onClick={() => {
                 // manually trigger onChange event to provide value to parent component
                 // @ts-ignore
