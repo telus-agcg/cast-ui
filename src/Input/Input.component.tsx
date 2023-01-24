@@ -246,8 +246,6 @@ export const Input: React.FunctionComponent<Props> = ({
     inputSize,
   } = inputProps;
 
-  console.log('value', value);
-
   const [focused, setFocused] = React.useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
