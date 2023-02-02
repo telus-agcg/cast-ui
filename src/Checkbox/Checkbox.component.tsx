@@ -130,6 +130,7 @@ const SLabel = styled.label`
 `;
 
 const SInput = styled.input`
+
   position: relative;
 	display: none;
 	& + label{
@@ -258,7 +259,7 @@ export class Checkbox extends React.Component<Props, State> {
   onChange = (event: any) => {
     if (!this.props.disabled) {
       this.setState(
-        prevState => ({
+        (prevState) => ({
           checked: !prevState.checked,
         }),
         () => {
@@ -305,7 +306,8 @@ export class Checkbox extends React.Component<Props, State> {
               checked={this.state.checked}
               hasChildren={Boolean(children)}
               type="checkbox"
-              ref={el => (this.input = el)}
+              role="checkbox"
+              ref={(el) => (this.input = el)}
               id={id}
               cbSize={cbSize}
               disabled={disabled}

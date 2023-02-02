@@ -1,4 +1,4 @@
-export const buildTheme = colors => ({
+export const buildTheme = (colors) => ({
   colors,
   borders: {
     radius: '1px',
@@ -10,7 +10,7 @@ export const buildTheme = colors => ({
     primary: {
       borderColor: colors.primary,
       flood: colors.primary,
-      disabledFlood: colors.drk200,
+      disabledFlood: colors.drk400,
       lightFlood: colors.primaryFaded,
       hoverlightFlood: colors.primaryFaded,
       text: colors.primary,
@@ -36,7 +36,7 @@ export const buildTheme = colors => ({
     secondary: {
       borderColor: colors.secondary,
       flood: colors.secondary,
-      disabledFlood: colors.drk200,
+      disabledFlood: colors.drk400,
       lightFlood: colors.secondaryFaded,
       hoverlightFlood: colors.secondaryFaded,
       text: colors.primary,
@@ -45,8 +45,8 @@ export const buildTheme = colors => ({
       selectedFlood: colors.secondaryHover,
       badgeBackground: colors.drk400,
       badgeColor: colors.white,
-      alertColor: colors.drk800,
-      alertBackground: colors.secondary,
+      alertColor: colors.white,
+      alertBackground: colors.drk400,
       notificationColor: colors.drk800,
       notificationBackground: colors.secondary,
       light: {
@@ -62,7 +62,7 @@ export const buildTheme = colors => ({
     danger: {
       borderColor: colors.danger,
       flood: colors.danger,
-      disabledFlood: colors.drk200,
+      disabledFlood: colors.drk400,
       lightFlood: colors.dangerFaded,
       hoverlightFlood: colors.dangerFaded,
       text: colors.danger,
@@ -88,7 +88,7 @@ export const buildTheme = colors => ({
     warning: {
       borderColor: colors.warning,
       flood: colors.warning,
-      disabledFlood: colors.drk200,
+      disabledFlood: colors.drk400,
       lightFlood: colors.warningFaded,
       hoverlightFlood: colors.warningFaded,
       text: colors.warning,
@@ -114,7 +114,7 @@ export const buildTheme = colors => ({
     success: {
       borderColor: colors.success,
       flood: colors.success,
-      disabledFlood: colors.drk200,
+      disabledFlood: colors.drk400,
       lightFlood: colors.successFaded,
       hoverlightFlood: colors.successFaded,
       text: colors.success,
@@ -147,7 +147,7 @@ export const buildTheme = colors => ({
     activeText: colors.primary,
     activeFontWeight: 'bold',
     activeBackground: colors.white,
-    disabledText: colors.drk200,
+    disabledText: colors.drk400,
     disabledBackground: colors.white,
     hoverTextColor: colors.primaryHover,
     hoverBackground: colors.white,
@@ -161,7 +161,7 @@ export const buildTheme = colors => ({
       borderColor: colors.white,
       activeBorderColor: colors.primary,
       disabledBorderColor: colors.white,
-      disabledText: colors.drk200,
+      disabledText: colors.drk400,
       hoverBorderColor: colors.white,
       hoverBackground: colors.lt400,
     },
@@ -230,7 +230,7 @@ export const buildTheme = colors => ({
       },
     },
     code: {
-      background: colors.lt200,
+      background: colors.lt400,
       fontFamily:
         '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
       fontSize: '95%',
@@ -286,7 +286,7 @@ export const buildTheme = colors => ({
       },
     },
     pre: {
-      background: colors.lt200,
+      background: colors.lt400,
       fontFamily: '"Roboto Mono", Courier, monospace',
       fontSize: '100%',
       lineHeight: '100%',
@@ -331,8 +331,8 @@ export const buildTheme = colors => ({
     fontSize: '14px',
     placeholderColor: colors.drk400,
     disabled: {
-      background: colors.lt600,
-      border: `1px solid ${colors.lt600}`,
+      background: colors.lt800,
+      border: `1px solid ${colors.lt800}`,
       addonTextColor: colors.drk400,
     },
     sm: {
@@ -367,8 +367,8 @@ export const buildTheme = colors => ({
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: colors.primary,
-    disabledRadio: colors.drk200,
-    disabledText: colors.drk600,
+    disabledRadio: colors.drk400,
+    disabledText: colors.drk800,
     unselectedColor: colors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
@@ -386,7 +386,7 @@ export const buildTheme = colors => ({
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: colors.primary,
-    disabledCheck: colors.lt600,
+    disabledCheck: colors.lt800,
     disabledText: colors.drk800,
     unselectedColor: colors.white,
     selectedColor: colors.primary,
@@ -413,14 +413,14 @@ export const buildTheme = colors => ({
       disabled: colors.lt400,
       disabledBorderColor: colors.lt400,
     },
-    inactiveColor: colors.drk600,
-    inactiveBorderColor: colors.drk600,
+    inactiveColor: colors.drk800,
+    inactiveBorderColor: colors.drk800,
     activeColor: colors.primary,
     activeBorderColor: colors.primary,
-    activeDisabledColor: colors.drk200,
-    activeDisabledBorderColor: colors.drk200,
-    inactiveDisabledColor: colors.drk200,
-    inactiveDisabledBorderColor: colors.drk200,
+    activeDisabledColor: colors.drk400,
+    activeDisabledBorderColor: colors.drk400,
+    inactiveDisabledColor: colors.drk400,
+    inactiveDisabledBorderColor: colors.drk400,
     sm: {
       toggleSize: '20px',
       toggleOffsetTop: '-3px',
@@ -487,7 +487,7 @@ export const buildTheme = colors => ({
       padding: '15px',
     },
     button: {
-      disabledText: colors.drk200,
+      disabledText: colors.drk400,
       hoverBorderColor: colors.white,
       hoverBackground: colors.lt400,
     },
@@ -513,7 +513,7 @@ export const buildTheme = colors => ({
     padding: '6px 12px',
     placeholderColor: colors.drk400,
     disabled: {
-      background: colors.lt600,
+      background: colors.lt800,
       borderColor: colors.secondaryFaded,
     },
   },
@@ -524,9 +524,9 @@ export const buildTheme = colors => ({
     body: {
       padding: '30px 30px',
     },
-    borderWidth: '1px',
+    borderWidth: 'thin',
     headerBorderColor: colors.drk400,
-    bodyBackgroundColor: colors.lt200,
+    bodyBackgroundColor: colors.lt400,
     bodyBorderColor: colors.drk400,
     headerColor: colors.primary,
     headerBackgroundColor: colors.white,
@@ -631,8 +631,8 @@ export const buildTheme = colors => ({
     row: {
       borderBottomColor: colors.lt800,
       highlightColor: colors.highlight200,
-      hoverColor: colors.lt200,
-      readonlyColor: colors.lt200,
+      hoverColor: colors.lt400,
+      readonlyColor: colors.lt400,
       groupedHeader: {
         fontSize: '15px',
         fontWeight: 'bold',
@@ -640,7 +640,7 @@ export const buildTheme = colors => ({
     },
     column: {
       highlightColor: colors.highlight200,
-      readonlyColor: colors.lt200,
+      readonlyColor: colors.lt400,
     },
   },
   datepicker: {
@@ -667,7 +667,7 @@ export const buildTheme = colors => ({
     fontFamily: 'monospace',
     fontSize: '14px',
     color: colors.drk800,
-    background: colors.lt200,
+    background: colors.lt400,
     copiedColor: colors.drk400,
     padding: '16px',
     button: {
@@ -721,19 +721,19 @@ export const buildTheme = colors => ({
       background: colors.white,
       padding: '8px 16px',
       hoverColor: colors.primary,
-      hoverBackground: colors.lt200,
+      hoverBackground: colors.lt400,
     },
   },
   sidenav: {
     fontSize: '14px',
     color: colors.primary,
     height: '',
-    width: '50px',
-    openWidth: '220px',
+    width: '48px',
+    openWidth: '200px',
     background: colors.lt200,
-    padding: '',
+    padding: '0 8px',
     margin: '',
-    zIndex: 5,
+    zIndex: 100,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -742,13 +742,18 @@ export const buildTheme = colors => ({
     borderLeft: '',
     borderRight: `1px solid ${colors.lt800}`,
     transition: 'min-width 0.15s',
+    label: {
+      color: colors.drk800,
+    },
+
     secondaryNavbar: {
       width: '0px',
       openWidth: '170px',
       background: colors.white,
-      padding: '80px 0 16px',
+      color: `${colors.drk800}`,
+      padding: '30px 8px 16px',
       margin: '',
-      zIndex: 4,
+      zIndex: 100,
       position: 'absolute',
       top: 0,
       left: 0,
@@ -757,6 +762,9 @@ export const buildTheme = colors => ({
       borderLeft: '',
       borderRight: `1px solid ${colors.lt800}`,
       transition: 'left 0.15s',
+    },
+    secondaryNavbarLabel: {
+      color: `${colors.drk800}`,
     },
     nav: {
       padding: '',
@@ -770,8 +778,8 @@ export const buildTheme = colors => ({
       display: 'grid',
     },
     navItem: {
-      color: 'inherit',
-      fontWeight: 'inherit',
+      color: `${colors.drk800}`,
+      fontWeight: 300,
       cursor: 'pointer',
       background: 'transparent',
       opacity: '1',
@@ -779,13 +787,13 @@ export const buildTheme = colors => ({
       leftBorderColor: 'transparent',
       topNavBorderBottom: `1px solid ${colors.lt800}`,
       bottonNavBorderBottom: '',
-      transition: 'opacity 0.15s',
+      transition: 'all 0.3s 0s ease-in-out',
     },
     activenavItem: {
       color: colors.primary,
-      fontWeight: 700,
+      fontWeight: 500,
       cursor: 'pointer',
-      background: colors.white,
+      background: `border-box ${colors.primaryBackground}`,
       opacity: '1',
       leftBorderWidth: '4px',
       leftBorderColor: colors.primary,
@@ -806,10 +814,16 @@ export const buildTheme = colors => ({
       display: 'flex',
     },
     navIcon: {
+      padding: '14px 0 8px 0px',
+    },
+    subnavIcon: {
       padding: '8px 0 8px 12px',
     },
+    navLabel: {
+      padding: '6px 10px',
+    },
     navText: {
-      padding: '8px 0 8px 12px',
+      padding: '8px',
     },
   },
   spinner: {
@@ -823,7 +837,7 @@ export const buildTheme = colors => ({
     color: colors.drk800,
     dropdownColor: colors.drk800,
     optionBackgroundColor: colors.white,
-    highlightOptionBackgroundColor: colors.lt200,
+    highlightOptionBackgroundColor: colors.lt400,
     highlightOptionColor: colors.primary,
     selectedOptionColor: colors.primary,
     selectedOptionBackgroundColor: colors.white,
@@ -833,8 +847,8 @@ export const buildTheme = colors => ({
     disabled: {
       color: colors.drk800,
       dropdownColor: colors.drk400,
-      borderColor: colors.lt600,
-      backgroundColor: colors.lt600,
+      borderColor: colors.lt800,
+      backgroundColor: colors.lt800,
       placeholderColor: colors.drk400,
     },
     sm: {
@@ -851,10 +865,10 @@ export const buildTheme = colors => ({
     },
     multiSelect: {
       badge: {
-        backgroundColor: colors.lt600,
+        backgroundColor: colors.lt800,
         borderRadius: '10px',
         disabled: {
-          backgroundColor: colors.drk200,
+          backgroundColor: colors.drk400,
         },
       },
       sm: {
@@ -895,13 +909,13 @@ export const buildTheme = colors => ({
       margin: '0 0 16px',
       ctaColor: colors.primary,
       background: colors.white,
-      draggingBackground: colors.lt200,
+      draggingBackground: colors.lt400,
     },
     file: {
       defaultColor: colors.drk800,
       primaryColor: colors.primary,
       dangerColor: colors.danger,
-      background: colors.lt200,
+      background: colors.lt400,
       borderRadius: '1px',
       textAlign: 'left',
       padding: '16px',
