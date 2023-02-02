@@ -100,7 +100,10 @@ const SSideNavbar = styled.div`
   font-size: ${(props: any) => props.theme.sidenav.fontSize};
   color: ${(props: any) => props.theme.sidenav.color};
   padding: ${(props: any) => (props.isOpen ? props.theme.sidenav.padding : 0)};
-  height: 92vh;
+
+  height: ${(props: any) =>
+    props.sidenavHeight ? props.sidenavHeight : '92vh'};
+
   z-index: ${(props: any) => props.theme.sidenav.zIndex};
   background: ${(props: any) => props.theme.sidenav.background};
   border-left: ${(props: any) => props.theme.sidenav.borderLeft};
@@ -177,6 +180,8 @@ const SideNavbar = (props) => {
     toggleSideNavbar,
     toggleSecondarySideNav,
     currentActiveMenuItem,
+    sidenavHeight,
+
   } = props;
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -216,7 +221,12 @@ const SideNavbar = (props) => {
       theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
     >
       <SideNavbarWrapper className={props.className}>
-        <SSideNavbar theme={props.theme} isOpen={sidebarOpen}>
+        <SSideNavbar
+          theme={props.theme}
+          isOpen={sidebarOpen}
+          sidenavHeight={sidenavHeight}
+        >
+
           <SSideNav theme={props.theme} elementType={'list'}>
             {data?.map((item, index) => {
               return (
