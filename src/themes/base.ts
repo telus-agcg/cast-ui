@@ -614,10 +614,10 @@ export const buildTheme = (colors) => ({
   validation: {
     borderColor: colors.danger,
     color: colors.drk800,
-    fontSize: '11px',
+    fontSize: '12px',
     fontStyle: 'italic',
     lineHeight: '13px',
-    padding: '4px 4px 0px',
+    errorMessageBottomPosition: '-14px',
   },
   table: {
     fontSize: '14px',

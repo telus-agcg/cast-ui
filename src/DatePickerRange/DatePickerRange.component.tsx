@@ -83,6 +83,7 @@ type State = {
 };
 
 const SWrapperComponent = styled.div<Partial<Props>>`
+  position: relative;
   font-family: ${(props: Partial<Props>) => props.theme.typography.fontFamily};
   font-size: ${(props: Partial<Props>) =>
     props.theme.common[props.datePickerSize!].fontSize};
@@ -229,6 +230,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
         <SWrapperComponent
           className={className!}
           id={id!}
+          invalid={invalid}
           datePickerSize={datePickerSize!}
           datePickerStyle={datePickerStyle!}
           data-invalid={invalid ? '' : undefined}

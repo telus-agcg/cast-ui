@@ -118,6 +118,7 @@ const SDiv = styled.div`
   ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)};
   display: inline-flex;
   align-items: center;
+  position: relative;
 `;
 
 const SLabel = styled.label`
@@ -126,26 +127,17 @@ const SLabel = styled.label`
   display: inline-flex;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.cbSize!].fontSize};
-  position: relative;
 `;
 
 const SInput = styled.input`
-  opacity: 0;
-  width: 0;
-  height: 0;
-  margin: 0;
-  &:focus {
-    & + label:before {
-      border: 1px solid ${(props: Props) => props.theme.colors.white};
-      box-shadow: 0 0 0 2px ${(props: Props) =>
-        props.theme.checkbox.selectedColor};
-    }
-  }
-  & + label {
-    &:before, &:after {
-      display:block;
-    }
-  }
+
+  position: relative;
+	display: none;
+	& + label{
+		&:before, &:after{
+			display:block;
+		}
+	}
   + label:before {
     content: "";
     display: inline-block;
@@ -328,14 +320,14 @@ export class Checkbox extends React.Component<Props, State> {
             <SLabel htmlFor={id} cbSize={cbSize}>
               {children}
             </SLabel>
+            {invalid && invalidText && (
+              <ErrorMessage
+                id={errorId}
+                message={invalidText || ''}
+                textColor={invalidTextColor || ''}
+              />
+            )}
           </SDiv>
-          {invalid && invalidText && (
-            <ErrorMessage
-              id={errorId}
-              message={invalidText || ''}
-              textColor={invalidTextColor || ''}
-            />
-          )}
         </>
       </ThemeProvider>
     );
