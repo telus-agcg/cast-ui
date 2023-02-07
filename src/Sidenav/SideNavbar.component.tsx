@@ -181,7 +181,6 @@ const SideNavbar = (props) => {
     toggleSecondarySideNav,
     currentActiveMenuItem,
     sidenavHeight,
-
   } = props;
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -208,7 +207,9 @@ const SideNavbar = (props) => {
   }, [currentActiveMenuItem]);
 
   const showSidebar = () => {
-    setSecondarySidebarOpen(false);
+    toggleSecondarySideNav
+      ? toggleSecondarySideNav(false)
+      : setSecondarySidebarOpen(false);
     if (typeof toggleSideNavbar === 'undefined') {
       setSidebarOpen(!sidebarOpen);
     } else {
@@ -226,7 +227,6 @@ const SideNavbar = (props) => {
           isOpen={sidebarOpen}
           sidenavHeight={sidenavHeight}
         >
-
           <SSideNav theme={props.theme} elementType={'list'}>
             {data?.map((item, index) => {
               return (
@@ -273,7 +273,11 @@ const SideNavbar = (props) => {
               <button
                 type="button"
                 aria-label="Close"
-                onClick={() => setSecondarySidebarOpen(false)}
+                onClick={() => {
+                  toggleSecondarySideNav
+                    ? toggleSecondarySideNav(false)
+                    : setSecondarySidebarOpen(false);
+                }}
                 className={'closeIcon'}
               >
                 <span>&times;</span>
@@ -296,6 +300,7 @@ const SideNavbar = (props) => {
                     parentItem={currentActiveSubnav}
                     setCurrentActiveItem={setCurrentActiveItem}
                     theme={props.theme}
+                    toggleSecondarySideNav={toggleSecondarySideNav}
                   />
                 );
               })}
