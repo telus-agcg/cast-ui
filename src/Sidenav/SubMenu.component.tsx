@@ -131,7 +131,9 @@ const SubMenu = ({
     }
     if (item.subNav && !isOpen && !item.disabled) {
       if (secondarySidebarOpen && currentActiveSubnav === selectedItem) {
-        setSecondarySidebarOpen(false);
+        toggleSecondarySideNav
+          ? toggleSecondarySideNav(false)
+          : setSecondarySidebarOpen(false);
         setCurrentActiveSubnav([]);
       } else {
         toggleSecondarySideNav
