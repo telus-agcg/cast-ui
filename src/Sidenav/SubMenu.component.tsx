@@ -91,6 +91,7 @@ const SubMenu = ({
   setSecondarySidebarOpen,
   toggleSecondarySideNav,
   setCurrentActiveSubnavItem,
+  isSecondaryNavOpen,
   theme,
 }) => {
   useEffect(() => {
@@ -130,7 +131,10 @@ const SubMenu = ({
       setCurrentActiveSubnavItem(selectedItem?.label);
     }
     if (item.subNav && !isOpen && !item.disabled) {
-      if (secondarySidebarOpen && currentActiveSubnav === selectedItem) {
+      if (
+        (secondarySidebarOpen || isSecondaryNavOpen) &&
+        currentActiveSubnav.label === selectedItem.label
+      ) {
         toggleSecondarySideNav
           ? toggleSecondarySideNav(false)
           : setSecondarySidebarOpen(false);
