@@ -227,7 +227,6 @@ const SideNavbar = (props) => {
           isOpen={sidebarOpen}
           sidenavHeight={sidenavHeight}
         >
-
           <SSideNav theme={props.theme} elementType={'list'}>
             {data?.map((item, index) => {
               return (
@@ -249,6 +248,7 @@ const SideNavbar = (props) => {
                   setSecondarySidebarOpen={setSecondarySidebarOpen}
                   toggleSecondarySideNav={toggleSecondarySideNav}
                   setCurrentActiveSubnavItem={setCurrentActiveSubnavItem}
+                  isSecondaryNavOpen={isSecondaryNavOpen}
                 />
               );
             })}
