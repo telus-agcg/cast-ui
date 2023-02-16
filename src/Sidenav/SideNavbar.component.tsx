@@ -142,20 +142,20 @@ const CloseIconWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  .closeIcon {
-    padding: 4px 10px;
-    margin: 1px 2px;
-    font-size: 20px;
-    color: ${(props: any) => props.theme.sidenav.secondaryNavbarLabel.color};
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: all 0.3s;
-    &:hover {
-      background-color: ${(props) => props.theme.modal.button.hoverBackground};
-      color: ${(props) => props.theme.pagination.hoverTextColor};
-    }
+`;
+const CloseIcon = styled.button`
+  padding: 4px 10px;
+  margin: 1px 2px;
+  font-size: 20px;
+  color: ${(props: any) => props.theme.sidenav.secondaryNavbarLabel.color};
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s;
+  &:hover {
+    background-color: ${(props) => props.theme.modal.button.hoverBackground};
+    color: ${(props) => props.theme.pagination.hoverTextColor};
   }
 `;
 const SSecondarySideNavbarWrapper = styled.div`
@@ -259,6 +259,7 @@ const SideNavbar = (props) => {
                 icon={sidebarOpen ? IKAL : IKAR}
                 size={24}
                 onClick={showSidebar}
+                data-testid={sidebarOpen ? 'close-sidebar' : 'open-sidebar'}
               />
             </NavIcon>
           </SSideNav>
@@ -271,18 +272,17 @@ const SideNavbar = (props) => {
             theme={props.theme}
           >
             <CloseIconWrapper>
-              <button
-                type="button"
+              <CloseIcon
                 aria-label="Close"
                 onClick={() => {
                   toggleSecondarySideNav
                     ? toggleSecondarySideNav(false)
                     : setSecondarySidebarOpen(false);
                 }}
-                className={'closeIcon'}
+                data-testid="close-secondary-sidenav"
               >
                 <span>&times;</span>
-              </button>
+              </CloseIcon>
             </CloseIconWrapper>
 
             <SSecondarySideNavbarWrapper>

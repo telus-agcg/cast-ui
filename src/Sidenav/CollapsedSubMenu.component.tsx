@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from '../Typography/Link';
 import styled from 'styled-components';
+import _ from 'lodash';
 
 const SidebarLink = styled(Link)`
   text-decoration: none;
@@ -74,6 +75,7 @@ const CollapsedSubMenu = ({
         isActiveSubMenuItem={item.label === currentSelectedSubnavItem}
         {...newProps}
         onClick={(e) => collapsedItemClick(e, item)}
+        data-testid={_.kebabCase(item.label)}
       >
         <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
       </SidebarLink>
