@@ -74,6 +74,7 @@ const CollapsedSubMenu = ({
         isActiveSubMenuItem={item.label === currentSelectedSubnavItem}
         {...newProps}
         onClick={(e) => collapsedItemClick(e, item)}
+        data-testid={_.kebabCase(item.label)}
       >
         <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
       </SidebarLink>

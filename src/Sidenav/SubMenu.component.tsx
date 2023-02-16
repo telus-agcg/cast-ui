@@ -3,6 +3,8 @@ import { Link } from '../Typography/Link';
 import styled from 'styled-components';
 import { SideNavItemIcon } from './SideNavItemIcon.component';
 import Icon from 'react-icons-kit';
+import { getDataProps } from '../utils/common';
+import _ from 'lodash';
 
 const SSubMenuItem = styled.div`
   display: flex;
@@ -167,6 +169,7 @@ const SubMenu = ({
       <SidebarLink
         onClick={handleItemClick}
         onMouseEnter={handleHoverDelay}
+        data-testid={_.kebabCase(item.label)}
         {...newProps}
       >
         <SideNavItemIcon isOpen={isOpen} item={item}>
@@ -194,6 +197,7 @@ const SubMenu = ({
               isActiveSubMenuItem={
                 subMenuItem.label === currentSelectedSubnavItem
               }
+              data-testid={_.kebabCase(subMenuItem.label)}
             >
               <SidebarLabel level={1} {...newProps}>
                 {subMenuItem.label}
