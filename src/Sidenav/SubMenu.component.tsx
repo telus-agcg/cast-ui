@@ -3,7 +3,6 @@ import { Link } from '../Typography/Link';
 import styled from 'styled-components';
 import { SideNavItemIcon } from './SideNavItemIcon.component';
 import Icon from 'react-icons-kit';
-import { getDataProps } from '../utils/common';
 import _ from 'lodash';
 
 const SSubMenuItem = styled.div`

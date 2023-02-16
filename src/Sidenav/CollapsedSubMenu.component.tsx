@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from '../Typography/Link';
 import styled from 'styled-components';
+import _ from 'lodash';
 
 const SidebarLink = styled(Link)`
   text-decoration: none;
