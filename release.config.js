@@ -1,4 +1,4 @@
-const branch = process.env.CIRCLE_BRANCH;
+const branch = process.env.BRANCH_NAME;
 
 const config = {
   branches: ['master', { name: 'beta', prerelease: true }],
@@ -11,7 +11,7 @@ const config = {
 };
 if (
   config.branches.some(
-    it => it === branch || (it.name === branch && !it.prerelease),
+    (it) => it === branch || (it.name === branch && !it.prerelease),
   )
 ) {
   config.plugins.push(
