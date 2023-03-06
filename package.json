@@ -18,7 +18,7 @@
     "clean": "shx rm -rf lib-cjs lib-esm lib-umd",
     "prettier": "pretty-quick --staged",
     "pre-commit": "npm run lint:fix && npm run prettier",
-    "deploy-storybook": "storybook-to-ghpages --ci",
+    "deploy-storybook": "storybook-to-ghpages -- --ci",
     "build-and-publish": "npm run build && npm publish",
     "semantic-release": "semantic-release",
     "commit": "cz"
