@@ -35,9 +35,8 @@ jobs:
         run: npm run lint
       # https://github.com/marketplace/actions/action-for-semantic-release
       - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v3
+        run: npm run semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
       - name: Deploy Storybook
         run: npm run deploy-storybook
