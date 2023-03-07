@@ -86,9 +86,9 @@ export default {
   },
 };
 
-export const _Button = args => (
+export const _Button = (args) => (
   <Button id={'testId'} data-testid="submit" {...args}>
-    Submit Button
+    Submit
   </Button>
 );
 
