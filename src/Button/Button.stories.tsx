@@ -88,7 +88,7 @@ export default {
 
 export const _Button = (args) => (
   <Button id={'testId'} data-testid="submit" {...args}>
-    Submit
+    Submit Button
   </Button>
 );
 
