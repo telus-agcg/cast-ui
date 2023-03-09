@@ -26,7 +26,7 @@ export default {
   },
 };
 
-export const _ButtonGroup = args => (
+export const _ButtonGroup = (args) => (
   <ButtonGroup {...args}>
     <Button
       btnStyle="primary"
@@ -52,6 +52,33 @@ export const _ButtonGroup = args => (
       value="3"
       data-testid="button-3"
       onClick={() => console.log('Button 3')}
+    >
+      Three
+    </Button>
+    <Button
+      btnStyle="primary"
+      btnSize="md"
+      value="4"
+      data-testid="button-4"
+      onClick={() => console.log('Button 4')}
+    >
+      Three
+    </Button>
+    <Button
+      btnStyle="primary"
+      btnSize="md"
+      value="5"
+      data-testid="button-5"
+      onClick={() => console.log('Button 5')}
+    >
+      Three
+    </Button>
+    <Button
+      btnStyle="primary"
+      btnSize="md"
+      value="6"
+      data-testid="button-6"
+      onClick={() => console.log('Button 6')}
     >
       Three
     </Button>
