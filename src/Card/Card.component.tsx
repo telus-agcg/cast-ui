@@ -73,7 +73,7 @@ const highlighBorderRules: Function = (
 };
 
 const SCard = styled.div`
-  border-radius: ${(props: Props) => props.theme.card.borderRadius};
+  border-radius: ${(props: Props) => props.theme.common.borderRadius};
   color: ${(props: Props) => props.theme.styles[props.cardStyle!].cardColor};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.card.fontSize};

@@ -46,8 +46,7 @@ const SDropZone = styled.div`
     props.dragging
       ? props.theme.fileUpload.dropZone.draggingBorder
       : props.theme.fileUpload.dropZone.border};
-  border-radius: ${(props: Props) =>
-    props.theme.fileUpload.dropZone.borderRadius};
+  border-radius: ${(props: Props) => props.theme.common.borderRadius};
   text-align: ${(props: Props) => props.theme.fileUpload.dropZone.textAlign};
   padding: ${(props: Props) => props.theme.fileUpload.dropZone.padding};
   margin: ${(props: Props) => props.theme.fileUpload.dropZone.margin};

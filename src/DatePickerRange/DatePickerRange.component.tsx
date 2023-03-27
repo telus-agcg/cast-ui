@@ -120,11 +120,17 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     border-color: ${(props: Partial<Props>) =>
       props.theme.styles[props.datePickerStyle!].borderColor};
   }
+  .DateRangePickerInput {
+    border-radius: ${(props: Partial<Props>) =>
+      props.theme.common[props.datePickerSize!].borderRadius};
+  }
   .DateRangePickerInput_calendarIcon {
     padding: 0 10px;
   }
   .DateInput {
     width: 110px;
+    border-radius: ${(props: Partial<Props>) =>
+      props.theme.common[props.datePickerSize!].borderRadius};
   }
   .DateRangePicker_picker {
     z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};

@@ -27,7 +27,7 @@ TippyPopover.defaultProps = {
 
 const SPopover = styled(TippyPopover)`
   color: ${(props: Props) => props.theme.popover.color};
-  border-radius: ${(props: Props) => props.theme.popover.borderRadius};
+  border-radius: ${(props: Props) => props.theme.common.borderRadius};
   background: ${(props: Props) => props.theme.popover.background};
   border: 1px solid ${(props: Props) => props.theme.popover.borderColor};
   box-shadow: ${(props: Props) => props.theme.popover.boxShadow};

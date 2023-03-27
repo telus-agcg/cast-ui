@@ -90,8 +90,8 @@ const ModalHeaderDiv = styled.div`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   padding: ${(props: any) => props.theme.modal.header.padding}
     ${(props: any) => props.theme.modal.header.padding} 0;
-  border-top-left-radius: ${(props: any) => props.theme.modal.borderRadius};
-  border-top-right-radius: ${(props: any) => props.theme.modal.borderRadius};
+  border-top-left-radius: ${(props: any) => props.theme.common.borderRadius};
+  border-top-right-radius: ${(props: any) => props.theme.common.borderRadius};
   h5 {
     font-size: ${(props: any) => props.theme.modal.header.fontSize};
     color: ${(props: any) => props.theme.modal.header.color};
@@ -190,7 +190,6 @@ export class Modal extends React.Component<Props> {
         bottom: 0,
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         textAlign: 'center',
-        zIndex: this.props.theme.modal.overlay.zIndex,
       },
       content: {
         top: '40%',

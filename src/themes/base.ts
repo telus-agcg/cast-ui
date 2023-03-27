@@ -1,4 +1,4 @@
-export const buildTheme = (colors) => ({
+export const buildTheme = colors => ({
   colors,
   borders: {
     radius: '1px',
@@ -176,6 +176,7 @@ export const buildTheme = (colors) => ({
     backgroundColor: colors.white,
   },
   button: {
+    borderRadius: '20px',
     outlineBackgroundColor: colors.white,
     sm: {
       fontSize: '11px',
@@ -464,7 +465,7 @@ export const buildTheme = (colors) => ({
     },
   },
   modal: {
-    borderRadius: '5px',
+    borderRadius: '4px',
     header: {
       minHeight: '0',
       backgroundColor: colors.white,
@@ -551,7 +552,7 @@ export const buildTheme = (colors) => ({
     },
   },
   alert: {
-    borderRadius: '1px',
+    borderRadius: '4px',
     fontSize: '14px',
     padding: '8px 16px',
     fontWeight: 'bold',
@@ -559,14 +560,14 @@ export const buildTheme = (colors) => ({
     lineHeight: '18px',
   },
   notification: {
-    borderRadius: '1px',
+    borderRadius: '4px',
     fontSize: '14px',
     padding: '8px 16px',
     fontWeight: 'bold',
     lineHeight: '18px',
   },
   card: {
-    borderRadius: '2px',
+    borderRadius: '4px',
     borderColor: colors.drk400,
     fontSize: '14px',
     padding: '8px 16px',
@@ -580,31 +581,32 @@ export const buildTheme = (colors) => ({
     withoutArrowDistance: 9,
     background: colors.white,
     color: colors.drk800,
-    borderRadius: '1px',
+    borderRadius: '4px',
     borderColor: colors.lt800,
     boxShadow: `0 0 5px ${colors.lt800}`,
   },
   tooltip: {
     background: colors.drk800,
-    borderRadius: '1px',
+    borderRadius: '4px',
   },
   common: {
+    borderRadius: '4px',
     sm: {
-      borderRadius: '1px',
+      borderRadius: '4px',
       fontSize: '11px',
       padding: '4px 8px',
       tableCellPadding: '5px 0',
       inputIconSize: '14px',
     },
     md: {
-      borderRadius: '1px',
+      borderRadius: '4px',
       fontSize: '14px',
       padding: '8px 16px',
       tableCellPadding: '9px 0',
       inputIconSize: '20px',
     },
     lg: {
-      borderRadius: '1px',
+      borderRadius: '4px',
       fontSize: '16px',
       padding: '10px 16px',
       tableCellPadding: '11px 0',
@@ -903,7 +905,7 @@ export const buildTheme = (colors) => ({
       color: colors.secondaryHover,
       border: `1px dashed ${colors.lt800}`,
       draggingBorder: `1px dashed ${colors.drk400}`,
-      borderRadius: '1px',
+      borderRadius: '4px',
       textAlign: 'center',
       padding: '16px',
       margin: '0 0 16px',
@@ -916,7 +918,7 @@ export const buildTheme = (colors) => ({
       primaryColor: colors.primary,
       dangerColor: colors.danger,
       background: colors.lt400,
-      borderRadius: '1px',
+      borderRadius: '4px',
       textAlign: 'left',
       padding: '16px',
       margin: '3px 0',
@@ -924,7 +926,7 @@ export const buildTheme = (colors) => ({
   },
   progressBar: {
     height: '8px',
-    borderRadius: '6px',
+    borderRadius: '4px',
     background: colors.lt800,
     progressBackground: colors.primary,
     transition: 'width .2s ease-in',

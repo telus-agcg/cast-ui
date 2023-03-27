@@ -36,7 +36,7 @@ const TippyProxy = props => {
 
 const STippy = styled(TippyProxy)`
   background: ${(props: Props) => props.theme.tooltip.background};
-  border-radius: ${(props: Props) => props.theme.tooltip.borderRadius};
+  border-radius: ${(props: Props) => props.theme.common.borderRadius};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   &[x-placement^='bottom'] .tippy-arrow,
   &[x-placement^='top'] .tippy-arrow {

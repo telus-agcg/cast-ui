@@ -117,6 +117,7 @@ export const PaginationPageButton = styled.button`
   border: 1px solid
     ${(props: PaginationPageButtonProps) =>
       props.theme.pagination.button.borderColor};
+  border-radius: ${(props: any) => props.theme.common['md'].borderRadius};
   padding: ${(props: PaginationPageButtonProps) =>
     props.theme.pagination.button.padding[props.btnSize]};
   font-family: ${(props: PaginationPageButtonProps) =>

@@ -98,6 +98,8 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   }
   .SingleDatePickerInput {
     background: ${(props: Partial<Props>) => props.theme.colors.white};
+    border-radius: ${(props: Partial<Props>) =>
+      props.theme.common[props.datePickerSize!].borderRadius};
     display: flex;
   }
   .SingleDatePickerInput__withBorder {
@@ -115,6 +117,8 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   }
   .DateInput {
     width: 110px;
+    border-radius: ${(props: Partial<Props>) =>
+      props.theme.common[props.datePickerSize!].borderRadius};
   }
   .SingleDatePicker_picker {
     z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};

@@ -102,6 +102,7 @@ const SWrapperDiv = styled(ReactTable)`
 
   &.ReactTable .rt-table {
     border: ${(props: any) => props.theme.table.border};
+    border-radius: ${(props: any) => props.theme.common.borderRadius};
   }
 
   &.ReactTable .rt-thead.-header {

@@ -210,6 +210,7 @@ export const cobaltTheme = {
     backgroundColor: cobaltColors.white,
   },
   button: {
+    borderRadius: '20px',
     outlineBackgroundColor: cobaltColors.white,
     sm: {
       fontSize: '11px',
@@ -498,7 +499,7 @@ export const cobaltTheme = {
     },
   },
   modal: {
-    borderRadius: '5px',
+    borderRadius: '4px',
     header: {
       minHeight: '0',
       backgroundColor: cobaltColors.white,
@@ -585,7 +586,7 @@ export const cobaltTheme = {
     },
   },
   alert: {
-    borderRadius: '1px',
+    borderRadius: '4px',
     fontSize: '14px',
     padding: '8px 16px',
     fontWeight: 'bold',
@@ -593,14 +594,14 @@ export const cobaltTheme = {
     lineHeight: '18px',
   },
   notification: {
-    borderRadius: '1px',
+    borderRadius: '4px',
     fontSize: '14px',
     padding: '8px 16px',
     fontWeight: 'bold',
     lineHeight: '18px',
   },
   card: {
-    borderRadius: '2px',
+    borderRadius: '4px',
     borderColor: cobaltColors.drk400,
     fontSize: '14px',
     padding: '8px 16px',
@@ -614,31 +615,32 @@ export const cobaltTheme = {
     withoutArrowDistance: 9,
     background: cobaltColors.white,
     color: cobaltColors.drk800,
-    borderRadius: '1px',
+    borderRadius: '4px',
     borderColor: cobaltColors.lt800,
     boxShadow: `0 0 5px ${cobaltColors.lt800}`,
   },
   tooltip: {
     background: cobaltColors.drk800,
-    borderRadius: '1px',
+    borderRadius: '4px',
   },
   common: {
+    borderRadius: '4px',
     sm: {
-      borderRadius: '1px',
+      borderRadius: '4px',
       fontSize: '11px',
       padding: '4px 8px',
       tableCellPadding: '5px 0',
       inputIconSize: '14px',
     },
     md: {
-      borderRadius: '1px',
+      borderRadius: '4px',
       fontSize: '14px',
       padding: '8px 16px',
       tableCellPadding: '9px 0',
       inputIconSize: '20px',
     },
     lg: {
-      borderRadius: '1px',
+      borderRadius: '4px',
       fontSize: '16px',
       padding: '10px 16px',
       tableCellPadding: '11px 0',
@@ -937,7 +939,7 @@ export const cobaltTheme = {
       color: cobaltColors.secondaryHover,
       border: `1px dashed ${cobaltColors.lt800}`,
       draggingBorder: `1px dashed ${cobaltColors.drk400}`,
-      borderRadius: '1px',
+      borderRadius: '4px',
       textAlign: 'center',
       padding: '16px',
       margin: '0 0 16px',
@@ -950,7 +952,7 @@ export const cobaltTheme = {
       primaryColor: cobaltColors.primary,
       dangerColor: cobaltColors.danger,
       background: cobaltColors.lt400,
-      borderRadius: '1px',
+      borderRadius: '4px',
       textAlign: 'left',
       padding: '16px',
       margin: '3px 0',
@@ -958,7 +960,7 @@ export const cobaltTheme = {
   },
   progressBar: {
     height: '8px',
-    borderRadius: '6px',
+    borderRadius: '4px',
     background: cobaltColors.lt800,
     progressBackground: cobaltColors.primary,
     transition: 'width .2s ease-in',
