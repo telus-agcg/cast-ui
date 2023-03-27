@@ -190,6 +190,7 @@ export class Modal extends React.Component<Props> {
         bottom: 0,
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         textAlign: 'center',
+        zIndex: this.props.theme.modal.overlay.zIndex,
       },
       content: {
         top: '40%',
