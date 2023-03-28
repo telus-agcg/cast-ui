@@ -1,6 +1,6 @@
 /* tslint:disable:max-line-length */
 import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { css, ThemeProvider } from 'styled-components';
 import ReactTable, {
   TableProps,
   ReactTableDefaults,
@@ -37,6 +37,12 @@ export type Props = Partial<TableProps> &
      * @default true
      **/
     showPageSizeOptions?: boolean;
+    /**
+     * Specify if table has sticky headers
+     *
+     * @default false
+     **/
+    stickyHeaders?: boolean;
     /**
      * From theme provider
      *
@@ -276,6 +282,23 @@ const SWrapperDiv = styled(ReactTable)`
   &.ReactTable .rt-noData {
     display: none !important;
   }
+
+  ${props =>
+    props.stickyHeaders &&
+    css`
+      &.ReactTable .rt-table {
+        overflow: visible;
+        border-top: none;
+      }
+
+      &.ReactTable .rt-thead.-header {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: white;
+        border-top: ${props => props.theme.table.border};
+      }
+    `}
 `;
 
 const collator = new Intl.Collator(undefined, {
@@ -312,6 +335,7 @@ export class Table extends React.Component<Props> {
     showPageSizeOptions: true,
     noDataText: 'No results found',
     pageSizeOptions: PAGE_SIZE_OPTIONS,
+    stickyHeaders: false,
   };
 
   render() {

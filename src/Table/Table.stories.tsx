@@ -124,6 +124,11 @@ export default {
     onSortedChange: {
       action: 'onSortedChange',
     },
+    stickyHeaders: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
   parameters: {
     docs: {
@@ -271,6 +276,7 @@ _Table.args = {
   multiSort: true,
   striped: true,
   sizable: true,
+  stickyHeaders: false,
 };
 
 export const _TableWithGroupedRows = args => {
@@ -339,6 +345,7 @@ _TableWithGroupedRows.args = {
   multiSort: true,
   striped: true,
   sizable: true,
+  stickyHeaders: false,
 };
 
 export const _EmptyTable = args => {
@@ -404,6 +411,7 @@ _EmptyTable.args = {
   multiSort: true,
   striped: true,
   sizable: true,
+  stickyHeaders: false,
 };
 
 export const _EmptyTableWithoutFooter = args => {
@@ -466,4 +474,5 @@ _EmptyTableWithoutFooter.args = {
   multiSort: true,
   striped: true,
   sizable: true,
+  stickyHeaders: false,
 };
