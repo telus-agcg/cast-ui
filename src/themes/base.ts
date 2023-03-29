@@ -1,4 +1,4 @@
-export const buildTheme = (colors) => ({
+export const buildTheme = colors => ({
   colors,
   borders: {
     radius: '1px',
@@ -623,6 +623,7 @@ export const buildTheme = (colors) => ({
     fontSize: '14px',
     border: `1px solid ${colors.drk400}`,
     header: {
+      backgroundColor: colors.white,
       borderBottomColor: colors.drk800,
       color: colors.drk800,
       fontWeight: 'bold',

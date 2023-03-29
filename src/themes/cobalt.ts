@@ -657,6 +657,7 @@ export const cobaltTheme = {
     fontSize: '14px',
     border: `1px solid ${cobaltColors.drk400}`,
     header: {
+      backgroundColor: cobaltColors.white,
       borderBottomColor: cobaltColors.drk800,
       color: cobaltColors.drk800,
       fontWeight: 'bold',
