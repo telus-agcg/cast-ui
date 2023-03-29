@@ -297,11 +297,13 @@ const SWrapperDiv = styled(ReactTable)`
         z-index: 1;
         background-color: ${props => props.theme.table.header.backgroundColor};
         border: ${props => props.theme.table.border};
+        border-bottom: none;
       }
 
       &.ReactTable .rt-tbody {
         overflow: visible;
         border: ${props => props.theme.table.border};
+        border-top: none;
       }
     `}
 `;
