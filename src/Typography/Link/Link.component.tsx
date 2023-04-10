@@ -100,8 +100,8 @@ export const Link: React.FunctionComponent<Props> = ({
           id={id}
           className={className}
           onClick={linkProps.onClick}
-          href={linkProps.href}
           onMouseEnter={linkProps.onMouseEnter}
+          href={linkProps.href}
           target={linkProps.target}
         >
           {children}

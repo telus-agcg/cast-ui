@@ -74,6 +74,7 @@ type State = {
 };
 
 const SWrapperComponent = styled.div<Partial<Props>>`
+  position: relative;
   font-family: ${(props: Partial<Props>) => props.theme.typography.fontFamily};
   font-size: ${(props: Partial<Props>) =>
     props.theme.common[props.datePickerSize!].fontSize};
@@ -205,6 +206,7 @@ class ReactDatePicker extends Component<Props> {
       <ThemeProvider theme={theme}>
         <SWrapperComponent
           id={wrapperId!}
+          invalid={invalid}
           className={className}
           datePickerSize={datePickerSize}
           datePickerStyle={datePickerStyle}

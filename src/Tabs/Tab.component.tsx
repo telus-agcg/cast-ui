@@ -69,7 +69,7 @@ const SReactTab = styled(ReactTabProxy)`
   }
 
   &[class$='--disabled'] {
-    color: ${(props: Props) => props.theme.colors.drk600};
+    color: ${(props: Props) => props.theme.colors.drk800};
     cursor: not-allowed;
   }
 

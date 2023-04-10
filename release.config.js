@@ -1,4 +1,5 @@
-const branch = process.env.CIRCLE_BRANCH;
+const branch = process.env.BRANCH_NAME;
+console.log(branch);
 
 const config = {
   branches: ['master', { name: 'beta', prerelease: true }],

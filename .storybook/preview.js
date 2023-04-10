@@ -5,15 +5,10 @@ import 'react-dates/initialize';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import '../src/utils/static/fonts.css';
-import {
-  defaultTheme,
-  cobaltTheme,
-  azureTheme,
-  faluTheme,
-} from '../src/themes';
+import { defaultTheme, cobaltTheme } from '../src/themes';
 
 export const decorators = [
-  withThemesProvider([cobaltTheme, faluTheme, azureTheme, defaultTheme]),
+  withThemesProvider([cobaltTheme, defaultTheme]),
   Story => {
     // TODO: Figure out how to switch the theme
     return (

@@ -1,33 +1,34 @@
 import React from 'react';
 import Link from '../Typography/Link';
 import styled from 'styled-components';
+import _ from 'lodash';
 
 const SidebarLink = styled(Link)`
   text-decoration: none;
   display: inline-flex;
-  padding-left: ${(props) => (props.level === 1 ? '1rem' : '0rem')};
+  padding-left: ${props => (props.level === 1 ? '1rem' : '0rem')};
   padding-right: 18px;
-  color: ${(props) =>
+  color: ${props =>
     props.theme.sidenav[`${props.isActiveSubMenuItem ? 'active' : ''}navItem`]
       .color};
-  font-weight: ${(props) =>
+  font-weight: ${props =>
     props.theme.sidenav[`${props.isActiveSubMenuItem ? 'active' : ''}navItem`]
       .fontWeight};
-  cursor: ${(props) =>
+  cursor: ${props =>
     props.disabled
       ? 'not-allowed'
       : props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
           .cursor};
-  background: ${(props) =>
+  background: ${props =>
     props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
       .background};
-  opacity: ${(props) =>
+  opacity: ${props =>
     props.disabled
       ? '.6'
       : props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
           .opacity};
   :hover {
-    background: ${(props) => props.theme.sidenav['activenavItem'].background};
+    background: ${props => props.theme.sidenav['activenavItem'].background};
     border-radius: 7px;
     transition: background-color 0.3s;
   }
@@ -40,7 +41,7 @@ const SidebarLink = styled(Link)`
 `;
 
 const SidebarLabel = styled.span`
-  padding: ${(props) => props.theme.sidenav.navLabel.padding};
+  padding: ${props => props.theme.sidenav.navLabel.padding};
   margin-left: 16px;
   display: 'block';
 `;
@@ -49,17 +50,20 @@ const CollapsedSubMenu = ({
   item,
   onSelect,
   setSecondarySidebarOpen,
-  currentActiveSubNavItem,
-  setCurrentActiveSubNavItem,
+  currentSelectedSubnavItem,
+  setCurrentActiveSubnavItem,
   setCurrentActiveItem,
   parentItem,
-  ...props
+  theme,
+  toggleSecondarySideNav,
 }) => {
-  const newProps = { disabled: item.disabled, ...props };
+  const newProps = { theme, disabled: item.disabled };
   const collapsedItemClick = (e, item) => {
-    setSecondarySidebarOpen(false);
+    toggleSecondarySideNav
+      ? toggleSecondarySideNav(false)
+      : setSecondarySidebarOpen(false);
     setCurrentActiveItem(parentItem);
-    setCurrentActiveSubNavItem(item.label);
+    setCurrentActiveSubnavItem(item.label);
     if (onSelect) {
       onSelect(e, item, []);
     }
@@ -68,9 +72,10 @@ const CollapsedSubMenu = ({
     <>
       <SidebarLink
         to={item.path}
-        isActiveSubMenuItem={item.label === currentActiveSubNavItem}
+        isActiveSubMenuItem={item.label === currentSelectedSubnavItem}
         {...newProps}
-        onClick={(e) => collapsedItemClick(e, item)}
+        onClick={e => collapsedItemClick(e, item)}
+        data-testid={_.kebabCase(item.label)}
       >
         <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
       </SidebarLink>

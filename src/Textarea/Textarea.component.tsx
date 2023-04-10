@@ -85,6 +85,10 @@ export interface Props
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
+const SWrapperDiv = styled.div`
+  position: relative;
+`;
+
 const STextarea = styled.textarea`
   width: 100%;
   box-sizing: border-box;
@@ -129,6 +133,7 @@ const STextarea = styled.textarea`
     }
   }
   transition: all 0.3s;
+  vertical-align: top;
 `;
 
 export const Textarea: React.FunctionComponent<Props> = ({
@@ -141,7 +146,7 @@ export const Textarea: React.FunctionComponent<Props> = ({
   const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <>
+      <SWrapperDiv>
         <STextarea
           value={value}
           onChange={onChange}
@@ -159,7 +164,7 @@ export const Textarea: React.FunctionComponent<Props> = ({
             textColor={textareaProps.invalidTextColor || ''}
           />
         )}
-      </>
+      </SWrapperDiv>
     </ThemeProvider>
   );
 };
