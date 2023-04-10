@@ -40,9 +40,10 @@ export type Props = {
 };
 
 const SPanelBody = styled.div`
-  background: ${(props: Props) =>
+  background-color: ${(props: Props) =>
     props.bodyBackgroundColor ||
-    props.theme.colors[props.bodyBackgroundColor!]};
+    props.theme.colors[props.bodyBackgroundColor!] ||
+    props.theme.panel.bodyBackgroundColor};
   border: ${(props: Props) =>
     `${props.theme.panel.borderWidth} solid 
     ${props.bodyBorderColor || props.theme.panel.bodyBorderColor}`};

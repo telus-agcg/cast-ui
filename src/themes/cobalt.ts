@@ -557,11 +557,11 @@ export const cobaltTheme = {
       padding: '14px 16px',
     },
     body: {
-      padding: '30px 30px',
+      padding: '24px 24px',
     },
     borderWidth: 'thin',
     headerBorderColor: cobaltColors.drk400,
-    bodyBackgroundColor: cobaltColors.lt400,
+    bodyBackgroundColor: cobaltColors.white,
     bodyBorderColor: cobaltColors.drk400,
     headerColor: cobaltColors.primary,
     headerBackgroundColor: cobaltColors.white,

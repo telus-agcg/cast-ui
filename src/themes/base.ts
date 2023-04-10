@@ -523,11 +523,11 @@ export const buildTheme = colors => ({
       padding: '14px 16px',
     },
     body: {
-      padding: '30px 30px',
+      padding: '24px 24px',
     },
     borderWidth: 'thin',
     headerBorderColor: colors.drk400,
-    bodyBackgroundColor: colors.lt400,
+    bodyBackgroundColor: colors.white,
     bodyBorderColor: colors.drk400,
     headerColor: colors.primary,
     headerBackgroundColor: colors.white,
