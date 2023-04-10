@@ -1,18 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-import {
-  Header,
-  Button,
-  Tooltip,
-  Display,
-  Title,
-  Caption,
-  Link,
-  BodyText,
-} from '../';
-import CopyToClipboard from '../CopyToClipboard';
-import { sampleCode } from './CodeBlock/CodeBlock.stories';
+import { Button, Header, Tooltip, Display, Title, Caption, Link } from '../';
 
 export type Props = {
   /**
@@ -36,9 +25,12 @@ export const Typography: React.FunctionComponent<Props> = ({
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
     <STypography>
-      <Display>Display</Display>
-      <Header>Header</Header>
-      <Title>Title</Title>
+      <Display size={20}>Display Size 20</Display>
+      <Display size={10}>Display Size 10</Display>
+      <Title size={20}>Title Size 20</Title>
+      <Title size={10}>Title Size 10</Title>
+      <Header size={20}>Header Size 20</Header>
+      <Header size={10}>Header Size 10</Header>
       <p>
         Etiam ullamcorper, metus sed luctus auctor, tortor lorem auctor quam, ut
         condimentum massa tellus at turpis.
@@ -50,14 +42,10 @@ export const Typography: React.FunctionComponent<Props> = ({
       <br />
       <p>
         Lorem ipsum dolor sit amet, consectetur{' '}
-        <Link href="https://theuselessweb.com/" target="_blank">
-          unvisited link in text
-        </Link>{' '}
-        over a{' '}
         <Link href="https://www.tkxs.com" target="_blank">
-          visited link in text
-        </Link>{' '}
-        elit.
+          link in text
+        </Link>
+        .
       </p>
       <Button btnStyle="primary">Read More Button</Button>
       <br />
@@ -70,13 +58,7 @@ export const Typography: React.FunctionComponent<Props> = ({
           </Button>
         </span>
       </Tooltip>
-      <BodyText>$25,855.90</BodyText>
-      <br />
-      <CopyToClipboard
-        copyContent={sampleCode || ''}
-        background="#F5F7F8"
-        includeCopyButton={true}
-      />
+      <p>$25,855.90</p>
     </STypography>
   </ThemeProvider>
 );

@@ -6,23 +6,6 @@ const sampleFile = {
   size: 9032385,
   type: 'application/x-yaml',
 };
-const TestAttachmentsComponent = () => {
-  const [files, setFiles] = React.useState([]);
-
-  return (
-    <div>
-      <FileUpload onFilesAdded={(files: any) => setFiles(files)} />
-      {files.map((file: any, i: any) => (
-        <File
-          key={i}
-          file={file}
-          uploaded={true}
-          fileDetails={'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM'}
-        />
-      ))}
-    </div>
-  );
-};
 
 const description = `
 This is a FileUpload Component. 
@@ -61,7 +44,7 @@ export default {
         type: 'text',
       },
     },
-    actionable: {
+    canDelete: {
       control: {
         type: 'boolean',
       },
@@ -104,29 +87,33 @@ export default {
   },
 };
 
-export const _FileUpload = ({
-  disabled,
-  info,
-  onFilesAdded,
-  percentage,
-  ...args
-}) => (
-  <div>
-    <FileUpload onFilesAdded={onFilesAdded} disabled={disabled} info={info} />
-    <File file={sampleFile} {...args} progressBarProps={{ percentage }} />
-    <br />
-    <br />
-    <b>
-      <p>Attachments Component Example</p>
-    </b>
-    <TestAttachmentsComponent />
-  </div>
-);
+export const _FileUpload = ({ disabled, info, percentage, ...fileProps }) => {
+  const [files, setFiles] = React.useState([sampleFile]);
+
+  return (
+    <div>
+      <FileUpload
+        disabled={disabled}
+        info={info}
+        onFilesAdded={(files: any) => setFiles(files)}
+      />
+      {files.map((file: any, i: any) => (
+        <File
+          {...fileProps}
+          progressBarProps={{ percentage }}
+          key={i}
+          file={file}
+          fileDetails={'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM'}
+        />
+      ))}
+    </div>
+  );
+};
 
 _FileUpload.args = {
   disabled: false,
   info: 'File size not more than 15MB',
-  actionable: true,
+  canDelete: true,
   uploaded: false,
   percentage: 70,
   fileDetails: 'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM',

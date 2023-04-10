@@ -10,18 +10,7 @@ export default {
         type: 'boolean',
       },
     },
-    transition: {
-      control: {
-        type: 'text',
-      },
-    },
-    elementType: {
-      control: false,
-    },
     onInit: {
-      control: false,
-    },
-    collapseHeight: {
       control: false,
     },
     className: {
@@ -51,5 +40,45 @@ export const _Collapse = args => (
 
 _Collapse.args = {
   isOpen: true,
-  transition: 'height 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+};
+
+export const _CollapseWithExpandableData = args => {
+  const elem = (index: number) => (
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+      <a onClick={() => removeElem(index)}>Delete</a>
+    </p>
+  );
+
+  const [elems, setElems] = React.useState([elem(0)]);
+
+  const addElem = () => {
+    setElems([...elems, elem(elems.length)]);
+  };
+
+  const removeElem = (index: number) => {
+    setElems(elems.splice(index, 1));
+  };
+  console.log(elems);
+  return (
+    <div>
+      <a onClick={() => addElem()}>Add</a>
+      <Collapse
+        style={{ border: '1px solid black' }}
+        data-testid="lorem-collapse"
+        {...args}
+      >
+        {elems.map((elem, i) => {
+          return elem;
+        })}
+      </Collapse>
+    </div>
+  );
+};
+
+_CollapseWithExpandableData.args = {
+  isOpen: true,
 };

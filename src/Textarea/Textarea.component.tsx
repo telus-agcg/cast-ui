@@ -6,23 +6,23 @@ import { Themes } from '../themes';
 export interface Props
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   /**
-   * The ID of the control
+   * What is the maximum length of the text in the field?
    *
    * @default null
    **/
-  id: string;
-  /**
-   * Select Textarea Size
-   *
-   * @default 'md'
-   **/
-  textareaSize?: 'sm' | 'md' | 'lg';
+  cols?: number;
   /**
    * Disables modification
    *
    * @default false
    **/
   disabled?: boolean;
+  /**
+   * The ID of the control
+   *
+   * @default null
+   **/
+  id: string;
   /**
    * Specify whether the control is currently invalid
    *
@@ -40,6 +40,18 @@ export interface Props
    **/
   invalidTextColor?: string;
   /**
+   * What is the maximum length of the text in the field?
+   *
+   * @default null
+   **/
+  maxLength?: number;
+  /**
+   * Placeholder text
+   *
+   * @default null
+   **/
+  placeholder?: any;
+  /**
    * Is the field required?
    *
    * @default false
@@ -50,25 +62,13 @@ export interface Props
    *
    * @default null
    **/
-  maxLength?: number;
-  /**
-   * What is the maximum length of the text in the field?
-   *
-   * @default null
-   **/
   rows?: number;
   /**
-   * What is the maximum length of the text in the field?
+   * Select Textarea Size
    *
-   * @default null
+   * @default 'md'
    **/
-  cols?: number;
-  /**
-   * Placeholder text
-   *
-   * @default null
-   **/
-  placeholder?: any;
+  textareaSize?: 'sm' | 'md' | 'lg';
   /**
    * From theme provider
    *
@@ -84,6 +84,10 @@ export interface Props
    */
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
+
+const SWrapperDiv = styled.div`
+  position: relative;
+`;
 
 const STextarea = styled.textarea`
   width: 100%;
@@ -129,6 +133,7 @@ const STextarea = styled.textarea`
     }
   }
   transition: all 0.3s;
+  vertical-align: top;
 `;
 
 export const Textarea: React.FunctionComponent<Props> = ({
@@ -141,7 +146,7 @@ export const Textarea: React.FunctionComponent<Props> = ({
   const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <>
+      <SWrapperDiv>
         <STextarea
           value={value}
           onChange={onChange}
@@ -159,7 +164,7 @@ export const Textarea: React.FunctionComponent<Props> = ({
             textColor={textareaProps.invalidTextColor || ''}
           />
         )}
-      </>
+      </SWrapperDiv>
     </ThemeProvider>
   );
 };

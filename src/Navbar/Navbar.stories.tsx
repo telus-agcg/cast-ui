@@ -16,36 +16,11 @@ export default {
         disable: true,
       },
     },
-    background: {
-      control: {
-        type: 'color',
-      },
-    },
-    height: {
-      control: {
-        type: 'number',
-      },
-    },
-    borderTop: {
-      control: false,
-    },
-    borderBottom: {
-      control: false,
-    },
-    borderBottomColor: {
-      control: {
-        type: 'color',
-      },
-    },
   },
 };
 
-export const _Navbar = ({ height, borderBottomColor, ...args }) => (
-  <Navbar
-    {...args}
-    height={`${height}px`}
-    borderBottom={`1px solid ${borderBottomColor}`}
-  >
+export const _Navbar = ({ height, ...args }) => (
+  <Navbar {...args}>
     <Nav left>
       <img
         src="https://www.tkxs.com/hubfs/TKXS-brand/TKXS%20Official%20Logo%20(black).svg"
@@ -67,8 +42,4 @@ export const _Navbar = ({ height, borderBottomColor, ...args }) => (
   </Navbar>
 );
 
-_Navbar.args = {
-  background: '#F5F7F8',
-  height: 80,
-  borderBottomColor: 'grey',
-};
+_Navbar.args = {};

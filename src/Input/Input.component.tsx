@@ -243,6 +243,7 @@ export const Input: React.FunctionComponent<Props> = ({
     addonText,
     icon,
     isClearable,
+    inputSize,
   } = inputProps;
 
   const [focused, setFocused] = React.useState(false);
@@ -259,11 +260,12 @@ export const Input: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SInputWrapper
+          inputSize={inputSize}
+          invalid={invalid}
           className={classNames(inputProps.className, {
             disabled,
             focused,
           })}
-          {...inputProps}
         >
           {'left' === iconPosition && icon && (
             <SIconWrapper>{icon}</SIconWrapper>
@@ -284,6 +286,7 @@ export const Input: React.FunctionComponent<Props> = ({
           />
           {isClearable && !disabled && value && (
             <SIconWrapper
+              data-testid={`clear-${inputProps['data-testid']}`}
               onClick={() => {
                 // manually trigger onChange event to provide value to parent component
                 // @ts-ignore
@@ -311,14 +314,14 @@ export const Input: React.FunctionComponent<Props> = ({
               {addonText}
             </SAddonTextWrapper>
           )}
+          {invalid && inputProps.invalidText && (
+            <ErrorMessage
+              id={errorId}
+              message={inputProps.invalidText || ''}
+              textColor={inputProps.invalidTextColor || ''}
+            />
+          )}
         </SInputWrapper>
-        {invalid && inputProps.invalidText && (
-          <ErrorMessage
-            id={errorId}
-            message={inputProps.invalidText || ''}
-            textColor={inputProps.invalidTextColor || ''}
-          />
-        )}
       </>
     </ThemeProvider>
   );

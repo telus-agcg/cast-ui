@@ -33,6 +33,11 @@ export type Props = {
    * @default ''
    **/
   className?: string;
+  /**
+   * Specify if the default state of the checkbox is checked
+   *
+   * @default false
+   **/
   defaultChecked?: boolean;
   /**
    * Specify if the checkbox should be disabled
@@ -41,22 +46,17 @@ export type Props = {
    **/
   disabled?: boolean;
   /**
-   * Specify the display style the radio button will have
+   * Specify the way checkboxes will be laid out
    *
    * @default 'stacked'
    **/
   displayStyle?: 'inline' | 'stacked';
   /**
-   * Specify the function to fire when the checkbox is changed
+   * Specify whether the checkbox is neither "on" or "off"
    *
    * @default void
    **/
   indeterminate?: boolean;
-  /**
-   * Specify if the default state of the checkbox is checked
-   *
-   * @default false
-   **/
   /**
    * Specify whether the control is currently invalid
    *
@@ -73,6 +73,11 @@ export type Props = {
    * @default ''
    **/
   invalidTextColor?: string;
+  /**
+   * Specify the function to fire when the checkbox is changed
+   *
+   * @default void
+   **/
   onChange?(checked: boolean, event: React.SyntheticEvent<HTMLElement>): void;
   /**
    * From theme provider
@@ -117,38 +122,28 @@ const indeterminateCheckboxRules: Function = (cbSize: string) => {
 const SDiv = styled.div`
   ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)};
   display: inline-flex;
-  align-items: center;
+  position: relative;
 `;
 
 const SLabel = styled.label`
   cursor: pointer;
-  align-items: center;
-  display: inline-flex;
+  padding-left: 20px;
+  text-indent: -20px;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.common[props.cbSize!].fontSize};
-  position: relative;
 `;
 
 const SInput = styled.input`
-  opacity: 0;
-  width: 0;
-  height: 0;
-  margin: 0;
-  &:focus {
-    & + label:before {
-      border: 1px solid ${(props: Props) => props.theme.colors.white};
-      box-shadow: 0 0 0 2px ${(props: Props) =>
-        props.theme.checkbox.selectedColor};
-    }
-  }
-  & + label {
-    &:before, &:after {
-      display:block;
-    }
-  }
+
+  position: relative;
+	display: none;
+	& + label{
+		&:before, &:after{
+      display: inline-flex;
+		}
+	}
   + label:before {
     content: "";
-    display: inline-block;
     width: ${(props: Props) => props.theme.checkbox[props.cbSize!].squareSize};
     height: ${(props: Props) => props.theme.checkbox[props.cbSize!].squareSize};
     background-clip: padding-box;
@@ -192,7 +187,6 @@ const SInput = styled.input`
   &:checked + label:after {
       content: "";
       padding: 2px;
-      text-align: center;
       position: absolute;
       height:  ${(props: Props) => (props.cbSize === 'lg' ? '8px' : '6px')};
       border-style: solid;
@@ -204,6 +198,7 @@ const SInput = styled.input`
       -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
       margin-left: ${(props: Props) =>
         props.theme.checkbox[props.cbSize!].marginLeft};
+      top: 2px;
       left: 0;
     }
 
@@ -218,7 +213,9 @@ const SInput = styled.input`
       border-width: ${(props: Props) =>
         props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
       ${(props: Props) => indeterminateCheckboxRules(props.cbSize)};
-      margin-left: 7px;
+      margin-left: 6px;
+      top: 3px;
+      left: 0;
     }
     &:disabled + label:before,
     &:disabled:checked + label:before,
@@ -267,7 +264,7 @@ export class Checkbox extends React.Component<Props, State> {
   onChange = (event: any) => {
     if (!this.props.disabled) {
       this.setState(
-        (prevState) => ({
+        prevState => ({
           checked: !prevState.checked,
         }),
         () => {
@@ -315,7 +312,7 @@ export class Checkbox extends React.Component<Props, State> {
               hasChildren={Boolean(children)}
               type="checkbox"
               role="checkbox"
-              ref={(el) => (this.input = el)}
+              ref={el => (this.input = el)}
               id={id}
               cbSize={cbSize}
               disabled={disabled}
@@ -328,14 +325,14 @@ export class Checkbox extends React.Component<Props, State> {
             <SLabel htmlFor={id} cbSize={cbSize}>
               {children}
             </SLabel>
+            {invalid && invalidText && (
+              <ErrorMessage
+                id={errorId}
+                message={invalidText || ''}
+                textColor={invalidTextColor || ''}
+              />
+            )}
           </SDiv>
-          {invalid && invalidText && (
-            <ErrorMessage
-              id={errorId}
-              message={invalidText || ''}
-              textColor={invalidTextColor || ''}
-            />
-          )}
         </>
       </ThemeProvider>
     );

@@ -4,7 +4,7 @@ import { addons } from '@storybook/addons';
 const theme = create({
   base: 'light',
   brandTitle: 'Cast UI',
-  brandUrl: 'https://github.com/technekes/cast-ui',
+  brandUrl: 'https://github.com/telus-agcg/cast-ui',
   brandImage: 'https://cdn2.hubspot.net/hubfs/1976913/TKXS-brand/tkxs-logo.png',
 });
 

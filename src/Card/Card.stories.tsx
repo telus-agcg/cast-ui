@@ -4,8 +4,6 @@ import { Card } from '../';
 import Title from '../Typography/Title';
 
 const description = `
-Cards include various options for customizing their backgrounds, borders, and color.
-
 ###### Style
 Use the **cardStyle** prop to set the style of the card
 Options include
@@ -14,20 +12,6 @@ Options include
 - success
 - warning
 - danger
-
-###### Background
-Use the **bgColor** prop to set the background of the card in CSS color format.
-
-###### Borders
-Use the **highlightBorder** prop to select the border
-that will bear the prominent size and color of the style.
-Options include
-- top (default)
-- right
-- left
-- bottom
-- all
-When using **all** all the borders will be the same size as defined in your theme.
 `;
 
 export default {
@@ -37,13 +21,6 @@ export default {
     cardStyle: {
       options: ['success', 'primary', 'secondary', 'danger', 'warning'],
       control: { type: 'select' },
-    },
-    highlightBorder: {
-      options: ['top', 'left', 'right', 'bottom', 'all'],
-      control: { type: 'select' },
-    },
-    bgColor: {
-      control: { type: 'color' },
     },
     theme: {
       table: {
@@ -78,7 +55,5 @@ export const _Card = args => (
 );
 
 _Card.args = {
-  bgColor: '#ffffff',
   cardStyle: 'primary',
-  highlightBorder: 'top',
 };

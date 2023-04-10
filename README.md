@@ -1,6 +1,6 @@
 # TKXS Component Library
 
-[Component Documentation](https://technekes.github.io/cast-ui/)
+[Component Documentation](https://telus-agcg.github.io/cast-ui/)
 
 ## Usage
 
@@ -27,7 +27,7 @@ Type definitions are included with CommonJS and ES5 modules.
 ### Components
 
 Components in this library must receive a theme object as
-[documented](https://technekes.github.io/cast-ui/). To achieve this,
+[documented](https://telus-agcg.github.io/cast-ui/). To achieve this,
 use the `ThemeProvider`, which is passed on from
 [styled-components](https://www.styled-components.com/docs/advanced#theming).
 If no theme is provided, components will fall back to a default theme.

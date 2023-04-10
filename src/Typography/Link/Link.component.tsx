@@ -18,17 +18,15 @@ export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
    **/
   onClick?(e: React.MouseEvent<HTMLElement>): void;
   /**
+   * Set an onMouseEnter listener
+   **/
+  onMouseEnter?(e: React.MouseEvent<HTMLElement>): void;
+  /**
    * Set a target for the Link
    *
    * @default ''
    **/
   target?: string;
-  /**
-   * Specify if the link is stand alone
-   *
-   * @default false
-   **/
-  solo?: boolean;
   /**
    * Specify if the link is disabled
    *
@@ -70,21 +68,6 @@ const SLink = styled.a`
     text-decoration: ${(props: Props) =>
       props.theme.typography.link.visited.textDecoration};
   }
-  &.solo {
-    text-decoration: ${(props: Props) =>
-      props.theme.typography.link.hover.textDecoration};
-    &:hover,
-    &:focus {
-      color: ${(props: Props) => props.theme.typography.link.hover.color};
-      text-decoration: ${(props: Props) =>
-        props.theme.typography.link.hover.textDecoration};
-    }
-    &:visited {
-      color: ${(props: Props) => props.theme.typography.link.color};
-      text-decoration: ${(props: Props) =>
-        props.theme.typography.link.textDecoration};
-    }
-  }
   &.disabled {
     color: ${(props: Props) =>
       props.theme.typography.link.disabled.color} !important;
@@ -107,7 +90,7 @@ export const Link: React.FunctionComponent<Props> = ({
           {...dataProps}
           id={id}
           className={cn([className, 'disabled'])}
-          onClick={e => e.preventDefault()}
+          onClick={(e) => e.preventDefault()}
         >
           {children}
         </SLink>
@@ -115,8 +98,9 @@ export const Link: React.FunctionComponent<Props> = ({
         <SLink
           {...dataProps}
           id={id}
-          className={cn([{ solo: linkProps.solo }, className])}
+          className={className}
           onClick={linkProps.onClick}
+          onMouseEnter={linkProps.onMouseEnter}
           href={linkProps.href}
           target={linkProps.target}
         >

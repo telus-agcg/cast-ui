@@ -199,6 +199,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const SDiv = styled.div<Props>`
+  position: relative;
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) =>
     props.theme.common[props.selectSize!].fontSize};

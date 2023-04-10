@@ -53,9 +53,9 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    */
   duration?: ToastDurationEnum;
   /**
-   * Toggle Lightmode
+   * Toggle lightMode
    */
-  lightmode?: boolean;
+  lightMode?: boolean;
   /**
    * is Toast visible
    */
@@ -126,7 +126,7 @@ export const Toast = ({
   active,
   className,
   toastStyle,
-  lightmode,
+  lightMode,
   ...props
 }: Props) => {
   return (
@@ -137,7 +137,7 @@ export const Toast = ({
         {...props}
       >
         <AlertWrapper
-          lightMode={lightmode}
+          lightMode={lightMode}
           alertStyle={toastStyle}
           {...alertProps}
         >
@@ -150,7 +150,7 @@ export const Toast = ({
 
 Toast.defaultProps = {
   position: 'top right',
-  lightmode: false,
+  lightMode: false,
   toastStyle: ToastStyleEnum.PRIMARY,
   duration: ToastDurationEnum.SHORT,
   active: false,

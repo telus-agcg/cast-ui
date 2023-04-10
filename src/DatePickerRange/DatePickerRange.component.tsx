@@ -1,10 +1,9 @@
 import * as React from 'react';
+import uuid from 'uuid';
+import { DateRangePicker, DateRangePickerShape } from 'react-dates';
+import { Moment } from 'moment';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 import styled, { ThemeProvider } from 'styled-components';
-import { DateRangePicker, DateRangePickerShape } from 'react-dates';
-import uuid from 'uuid';
-import { Moment } from 'moment';
-import { lighten } from '../utils/colorUtils';
 import { Themes } from '../themes';
 
 type momentDate = Moment | null;
@@ -84,6 +83,7 @@ type State = {
 };
 
 const SWrapperComponent = styled.div<Partial<Props>>`
+  position: relative;
   font-family: ${(props: Partial<Props>) => props.theme.typography.fontFamily};
   font-size: ${(props: Partial<Props>) =>
     props.theme.common[props.datePickerSize!].fontSize};
@@ -110,10 +110,8 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     }
   }
   .CalendarDay__hovered_span, .CalendarDay__selected_span {
-    background: ${(props: Partial<Props>) =>
-      lighten(props.theme.styles[props.datePickerStyle!].borderColor, 25)};
-    border-color: ${(props: Partial<Props>) =>
-      lighten(props.theme.styles[props.datePickerStyle!].borderColor, 5)};
+    background: ${(props: Partial<Props>) => props.theme.colors.primaryFaded};
+    border-color: ${(props: Partial<Props>) => props.theme.colors.primary};
     color: ${(props: Partial<Props>) => props.theme.colors.white}
   }
   .CalendarDay__selected {
@@ -232,6 +230,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
         <SWrapperComponent
           className={className!}
           id={id!}
+          invalid={invalid}
           datePickerSize={datePickerSize!}
           datePickerStyle={datePickerStyle!}
           data-invalid={invalid ? '' : undefined}

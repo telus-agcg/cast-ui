@@ -57,11 +57,6 @@ export default {
         type: 'radio',
       },
     },
-    backgroundColor: {
-      control: {
-        type: 'color',
-      },
-    },
     disabled: {
       control: {
         type: 'boolean',
