@@ -28,12 +28,6 @@ type Props = {
    **/
   btnSize?: 'sm' | 'md' | 'lg';
   /**
-   * Override default background color
-   *
-   * @default ''
-   **/
-  backgroundColor?: string;
-  /**
    * Specify if the button is disabled
    *
    * @default false
@@ -58,7 +52,6 @@ const computeColor: Function = (
   selected: Boolean,
   outline: Boolean,
   btnStyle: string,
-  backgroundColor: string,
   theme: any,
 ) => {
   switch (true) {
@@ -99,7 +92,7 @@ const computeColor: Function = (
           };
         default:
           return {
-            background: backgroundColor || theme.button.outlineBackgroundColor,
+            background: theme.button.outlineBackgroundColor,
             color: theme.styles[btnStyle].flood,
             borderColor: theme.styles[btnStyle].borderColor,
           };
@@ -135,13 +128,11 @@ const SButton = styled.button`
   border-radius: ${(props: Props) =>
     props.theme.common[props.btnSize!].borderRadius};
   background: ${(props: Props) =>
-    props.backgroundColor ||
     computeColor(
       'normal',
       props.selected,
       props.outline,
       props.btnStyle,
-      props.backgroundColor,
       props.theme,
     ).background};
   border: 1px solid
@@ -151,7 +142,6 @@ const SButton = styled.button`
         props.selected,
         props.outline,
         props.btnStyle,
-        props.backgroundColor,
         props.theme,
       ).borderColor};
   padding: ${(props: Props) => props.theme.button[props.btnSize!].padding};
@@ -166,7 +156,6 @@ const SButton = styled.button`
       props.selected,
       props.outline,
       props.btnStyle,
-      props.backgroundColor,
       props.theme,
     ).color};
 
@@ -186,7 +175,6 @@ const SButton = styled.button`
         props.selected,
         props.outline,
         props.btnStyle,
-        props.backgroundColor,
         props.theme,
       ).background};
     color: ${(props: Props) =>
@@ -195,7 +183,6 @@ const SButton = styled.button`
         props.selected,
         props.outline,
         props.btnStyle,
-        props.backgroundColor,
         props.theme,
       ).color};
     border: 1px solid
@@ -205,7 +192,6 @@ const SButton = styled.button`
           props.selected,
           props.outline,
           props.btnStyle,
-          props.backgroundColor,
           props.theme,
         ).borderColor};
     cursor: pointer;
@@ -217,7 +203,6 @@ const SButton = styled.button`
         props.selected,
         props.outline,
         props.btnStyle,
-        props.backgroundColor,
         props.theme,
       ).background};
     color: ${(props: Props) =>
@@ -226,7 +211,6 @@ const SButton = styled.button`
         props.selected,
         props.outline,
         props.btnStyle,
-        props.backgroundColor,
         props.theme,
       ).color};
     border: 1px solid
@@ -236,7 +220,6 @@ const SButton = styled.button`
           props.selected,
           props.outline,
           props.btnStyle,
-          props.backgroundColor,
           props.theme,
         ).borderColor};
     cursor: not-allowed;

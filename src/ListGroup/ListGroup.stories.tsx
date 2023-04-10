@@ -29,12 +29,6 @@ export default {
         type: 'boolean',
       },
     },
-    chevronAlignment: {
-      options: ['right', 'left'],
-      control: {
-        type: 'inline-radio',
-      },
-    },
     isCollapsed: {
       control: {
         type: 'boolean',
@@ -64,7 +58,6 @@ export const _ListGroup = ({
   collapsible,
   listGroupTheme,
   border,
-  chevronAlignment,
   collapsible2,
   listGroupTheme2,
   isCollapsed,
@@ -80,7 +73,6 @@ export const _ListGroup = ({
       name="Collapsible List Group"
       listGroupTheme={listGroupTheme}
       border={border}
-      chevronAlignment={chevronAlignment}
     >
       <ListGroupItem data-testid="collapsible-list-item-1">
         List Item
@@ -99,7 +91,6 @@ export const _ListGroup = ({
         isCollapsed={isCollapsed}
         name="Nested Collapsible List Group"
         listGroupTheme={listGroupTheme2}
-        chevronAlignment={chevronAlignment}
       >
         <ListGroupItem data-testid="collapsible-nested-list-item-1">
           List Item
@@ -119,7 +110,6 @@ _ListGroup.args = {
   collapsible: true,
   listGroupTheme: 'light',
   border: true,
-  chevronAlignment: 'right',
   collapsible2: true,
   listGroupTheme2: 'light',
   isCollapsed: false,

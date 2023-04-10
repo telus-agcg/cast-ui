@@ -9,7 +9,7 @@ import { defaultTheme, cobaltTheme } from '../src/themes';
 
 export const decorators = [
   withThemesProvider([cobaltTheme, defaultTheme]),
-  (Story) => {
+  Story => {
     // TODO: Figure out how to switch the theme
     return (
       <div style={defaultTheme.body}>

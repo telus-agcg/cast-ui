@@ -17,11 +17,11 @@ export type Props = {
 const SSideNavItemIcon = styled.div`
   height: 24px;
   :hover {
-    background: ${(props) =>
+    background: ${props =>
       props.isOpen || props.item.disabled
         ? ''
         : props.theme.sidenav['activenavItem'].background};
-    border-radius: ${(props) => (props.isOpen ? '' : '4px')};
+    border-radius: ${props => (props.isOpen ? '' : '4px')};
     transition: color 0.3s;
   }
 `;

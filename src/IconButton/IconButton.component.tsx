@@ -6,12 +6,6 @@ import { Themes } from '../themes';
 
 export interface Props extends ButtonProps {
   /**
-   * Select IconButton color. Must be a color defined in theme colors
-   *
-   * @default 'lightGray'
-   **/
-  color?: string;
-  /**
    * Set button icon
    *
    * @default null
@@ -72,7 +66,6 @@ export const IconButton: React.FunctionComponent<Props> = ({
 
 IconButton.defaultProps = {
   theme: Themes.defaultTheme,
-  color: 'lightGray',
   pixelButtonSize: 32,
   iconSize: 24,
   rounded: true,

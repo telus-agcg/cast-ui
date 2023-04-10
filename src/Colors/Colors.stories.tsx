@@ -3,7 +3,7 @@ import { withTheme } from 'styled-components';
 import Tooltip from '../Tooltip';
 
 const Color = withTheme<any>(({ theme: { colors } }: any) =>
-  Object.keys(colors).map((key) => (
+  Object.keys(colors).map(key => (
     <Tooltip
       key={key}
       content={colors[key].toUpperCase()}

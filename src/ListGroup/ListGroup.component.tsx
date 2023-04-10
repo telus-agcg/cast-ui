@@ -48,12 +48,6 @@ export type Props = {
    **/
   theme?: any;
   /**
-   * Chevron alignment
-   *
-   * @default 'right'
-   **/
-  chevronAlignment?: 'left' | 'right';
-  /**
    * Borders?
    *
    * @default true
@@ -115,8 +109,7 @@ const SListHeader = styled.li<Partial<Props>>`
       : props.theme.colors.highlight200};
   display: flex;
   align-items: center;
-  justify-content: ${(props: any) =>
-    props.chevronAlignment === 'right' ? 'space-between' : 'flex-start'};
+  justify-content: flex-start;
   position: relative;
 `;
 
@@ -127,27 +120,22 @@ export const HoverIcon = styled(Icon)`
     background-color: ${(props: any) => props.theme.colors.lt800};
   }
   position: absolute;
-  left: ${(props: any) =>
-    props.chevronAlignment === 'right' ? 'initial' : '0'};
-  right: ${(props: any) =>
-    props.chevronAlignment === 'right' ? '0' : 'initial'};
+  left: 0;
+  right: initial;
 `;
 
 const SHeaderContent = styled.span`
   order: 2;
 `;
 
-const ChevronImage: Function = (
-  isCollapsed: boolean | undefined,
-  chevronAlignment,
-) => {
+const ChevronImage: Function = (isCollapsed: boolean | undefined) => {
   if (undefined === isCollapsed) {
     return null;
   }
   return isCollapsed ? (
-    <HoverIcon icon={IKAR} size={24} chevronAlignment={chevronAlignment} />
+    <HoverIcon icon={IKAR} size={24} />
   ) : (
-    <HoverIcon icon={IKAD} size={24} chevronAlignment={chevronAlignment} />
+    <HoverIcon icon={IKAD} size={24} />
   );
 };
 
@@ -155,7 +143,6 @@ const initialState = {
   isCollapsed: true,
   collapsible: false,
   listGroupTheme: 'light',
-  chevronAlignment: 'right',
   border: true,
 };
 type State = Readonly<typeof initialState>;
@@ -168,7 +155,6 @@ export class ListGroup extends React.Component<Props, State> {
       isCollapsed: true,
       collapsible: false,
       listGroupTheme: 'light',
-      chevronAlignment: 'right',
       border: true,
     };
   }
@@ -187,7 +173,6 @@ export class ListGroup extends React.Component<Props, State> {
     listGroupTheme: 'light',
     collapsible: false,
     theme: Themes.defaultTheme,
-    chevronAlignment: 'right',
     border: true,
   };
 
@@ -197,7 +182,6 @@ export class ListGroup extends React.Component<Props, State> {
     const {
       collapsible,
       isCollapsed,
-      chevronAlignment,
       name,
       theme,
       children,
@@ -214,13 +198,11 @@ export class ListGroup extends React.Component<Props, State> {
                   dependOnProps ? isCollapsed : this.state.isCollapsed
                 }
                 onClick={collapsible ? this.toggle : undefined}
-                chevronAlignment={chevronAlignment}
                 {...props}
               >
                 <SHeaderContent>{name}</SHeaderContent>
                 {ChevronImage(
                   dependOnProps ? isCollapsed : this.state.isCollapsed,
-                  chevronAlignment,
                   {
                     ...props,
                   },

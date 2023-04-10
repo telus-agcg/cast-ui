@@ -27,7 +27,7 @@ export default {
     step: {
       control: {
         type: 'select',
-        options: [1, 2, 3, 5, 8, 13, 21],
+        options: [1, 5, 10],
       },
     },
   },

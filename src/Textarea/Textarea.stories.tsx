@@ -6,21 +6,18 @@ export default {
   title: 'Components/Interactions/Textarea',
   component: Textarea,
   argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    textareaSize: {
+    cols: {
       control: {
-        type: 'select',
-        options: ['sm', 'md', 'lg'],
+        type: 'number',
       },
     },
     disabled: {
       control: {
         type: 'boolean',
       },
+    },
+    id: {
+      control: false,
     },
     invalid: {
       control: {
@@ -57,13 +54,16 @@ export default {
         type: 'number',
       },
     },
-    cols: {
+    textareaSize: {
       control: {
-        type: 'number',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
       },
     },
-    id: {
-      control: false,
+    theme: {
+      table: {
+        disable: true,
+      },
     },
     value: {
       control: false,
@@ -76,7 +76,7 @@ export const _Textarea = args => (
 );
 
 _Textarea.args = {
-  textareaSize: 'md',
+  cols: 60,
   disabled: false,
   invalid: false,
   invalidText: 'A valid value is required',
@@ -85,5 +85,5 @@ _Textarea.args = {
   placeholder: 'Placeholder Text',
   required: false,
   rows: 8,
-  cols: 60,
+  textareaSize: 'md',
 };

@@ -17,12 +17,6 @@ export type Props = {
    **/
   listGroupTheme?: 'light' | 'dark';
   /**
-   * Set body border color. A CSS color code or a color defined in theme colors
-   *
-   * @default 'red'
-   **/
-  borderColor?: string;
-  /**
    * From theme provider
    *
    * @default defaultTheme
