@@ -5,9 +5,10 @@ import styled, { ThemeProvider } from 'styled-components';
 
 export interface MenuItem {
   disabled?: boolean;
+  id?: any;
   label: string;
-  to?: any;
 }
+
 export interface Props {
   /**
    * An array of MenuItems.
@@ -21,7 +22,7 @@ export interface Props {
    *
    * @default void
    * */
-  onItemClick?(item: any, e: React.MouseEvent<HTMLElement>): void;
+  onItemClick?(item: MenuItem, e: React.MouseEvent<HTMLElement>): void;
   /**
    * From theme provider
    *
