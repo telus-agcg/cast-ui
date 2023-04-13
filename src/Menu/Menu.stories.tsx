@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Menu } from '..';
+import { Button, Menu } from '..';
 
 const description = `
 `;
@@ -28,15 +28,18 @@ export default {
 const menuData = [
   {
     label: 'Vanilla',
+    id: 'vanilla',
     disabled: true,
   },
-  { label: 'Chocolate' },
+  { label: 'Chocolate', id: 'chocolate' },
 ];
 
-export const _Menu = (args) => (
-  <Menu data-testid="submit" {...args}>
-    Submit Menu
-  </Menu>
+export const _Menu = args => (
+  <Menu
+    triggerComponent={<Button>Submit Menu</Button>}
+    data-testid="submit"
+    {...args}
+  />
 );
 
 _Menu.args = {

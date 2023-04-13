@@ -5,7 +5,6 @@ import { ic_expand_more as ICEM } from 'react-icons-kit/md/ic_expand_more';
 import { Themes } from '../themes';
 import { Button } from '../Button';
 import { Menu, MenuItem } from '../Menu';
-import { Popover } from '../Popover';
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -47,10 +46,6 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: any;
 }
 
-const SPopover = styled(Popover)`
-  text-align: left;
-`;
-
 const SMenuButton = styled(Button)`
   display: flex;
   align-items: center;
@@ -77,20 +72,15 @@ export const MenuButton: React.FC<Props> = ({
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SPopover
-      content={<Menu items={items} onItemClick={onItemClick} />}
-      arrow={false}
-      placement="bottom-start"
-      distance={2}
-      hideOnClick={true}
-    >
-      <span>
+    <Menu
+      items={items}
+      triggerComponent={
         <SMenuButton {...props}>
           {children}
           <Icon icon={ICEM} size={24} />
         </SMenuButton>
-      </span>
-    </SPopover>
+      }
+    />
   </ThemeProvider>
 );
 

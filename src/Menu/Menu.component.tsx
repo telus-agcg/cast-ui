@@ -2,6 +2,7 @@ import * as React from 'react';
 import _ from 'lodash';
 import { Themes } from '../themes';
 import styled, { ThemeProvider } from 'styled-components';
+import { Popover } from '../Popover';
 
 export interface MenuItem {
   disabled?: boolean;
@@ -29,6 +30,12 @@ export interface Props {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Component that triggers the menu.
+   *
+   * @default []
+   **/
+  triggerComponent: React.ReactElement;
 }
 
 const SMenu = styled.div`
@@ -50,6 +57,10 @@ const SMenu = styled.div`
   }
 `;
 
+const SPopover = styled(Popover)`
+  text-align: left;
+`;
+
 const SMenuItem = styled.div`
   opacity: ${(props: any) => (props.disabled ? '.6' : '1')};
   text-align: left;
@@ -59,6 +70,7 @@ const SMenuItem = styled.div`
 const noop = () => {}; // tslint:disable-line
 
 export const Menu: React.FC<Props> = ({
+  triggerComponent,
   theme,
   items,
   onItemClick = noop,
@@ -73,19 +85,29 @@ export const Menu: React.FC<Props> = ({
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SMenu {...props}>
-        {Array.isArray(items) &&
-          items.map((item: MenuItem, j: number) => (
-            <SMenuItem
-              {...item}
-              key={j}
-              onClick={(e: any) => handleItemClick(item, e)}
-              data-testid={_.kebabCase(item.label)}
-            >
-              {item.label}
-            </SMenuItem>
-          ))}
-      </SMenu>
+      <SPopover
+        content={
+          <SMenu {...props}>
+            {Array.isArray(items) &&
+              items.map((item: MenuItem, j: number) => (
+                <SMenuItem
+                  {...item}
+                  key={j}
+                  onClick={(e: any) => handleItemClick(item, e)}
+                  data-testid={_.kebabCase(item.label)}
+                >
+                  {item.label}
+                </SMenuItem>
+              ))}
+          </SMenu>
+        }
+        arrow={false}
+        placement="bottom-start"
+        distance={2}
+        hideOnClick={true}
+      >
+        <span>{triggerComponent}</span>
+      </SPopover>
     </ThemeProvider>
   );
 };
