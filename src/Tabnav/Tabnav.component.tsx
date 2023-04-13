@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
-import { Popover } from '../Popover';
 import Icon from 'react-icons-kit';
 import { ic_keyboard_arrow_down as ICKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 import _ from 'lodash';
@@ -139,32 +138,24 @@ export const Tabnav: React.FunctionComponent<Props> = ({
       {tabs && Boolean(tabs.length) && (
         <STabsBar {...tabsBarProps}>
           {tabs.map((tab: any, i: any) => (
-            <Popover
-              content={
-                tab.children ? (
-                  <Menu items={tab.children} onItemClick={onTabClick} />
-                ) : (
-                  ''
-                )
+            <Menu
+              items={tab.children}
+              onItemClick={onTabClick}
+              triggerComponent={
+                <STab
+                  role="tab"
+                  tabIndex="0"
+                  onClick={(e: any) => handleTabClick(tab, e, onTabClick)}
+                  data-testid={_.kebabCase(tab.label)}
+                  {...tab}
+                >
+                  {tab.label}
+                  {tab.children && (
+                    <Icon size={24} icon={ICKAD} className="icon" />
+                  )}
+                </STab>
               }
-              arrow={false}
-              placement="bottom-start"
-              key={i}
-              {...popoverProps}
-            >
-              <STab
-                role="tab"
-                tabIndex="0"
-                onClick={(e: any) => handleTabClick(tab, e, onTabClick)}
-                data-testid={_.kebabCase(tab.label)}
-                {...tab}
-              >
-                {tab.label}
-                {tab.children && (
-                  <Icon size={24} icon={ICKAD} className="icon" />
-                )}
-              </STab>
-            </Popover>
+            />
           ))}
         </STabsBar>
       )}
