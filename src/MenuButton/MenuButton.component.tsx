@@ -74,6 +74,7 @@ export const MenuButton: React.FC<Props> = ({
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
     <Menu
       items={items}
+      onItemClick={onItemClick}
       triggerComponent={
         <SMenuButton {...props}>
           {children}
