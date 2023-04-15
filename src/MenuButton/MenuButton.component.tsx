@@ -3,28 +3,10 @@ import styled, { ThemeProvider } from 'styled-components';
 import Icon from 'react-icons-kit';
 import { ic_expand_more as ICEM } from 'react-icons-kit/md/ic_expand_more';
 import { Themes } from '../themes';
-import { Button } from '../Button';
+import { Button, ButtonProps } from '../Button';
 import { Menu, MenuItem } from '../Menu';
 
-export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /**
-   * Set Button Style
-   *
-   * @default 'primary'
-   **/
-  btnStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
-  /**
-   * Select Button Size
-   *
-   * @default 'md'
-   **/
-  btnSize?: 'sm' | 'md' | 'lg';
-  /**
-   * Specify if the button is disabled
-   *
-   * @default false
-   **/
-  disabled?: boolean;
+export interface Props extends ButtonProps {
   /**
    * An array of MenuItems.
    * Each object defines properties of each menu item.
@@ -38,12 +20,6 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    * @default void
    * */
   onItemClick?(item: any): void;
-  /**
-   * From theme provider
-   *
-   * @default defaultTheme
-   **/
-  theme?: any;
 }
 
 const SMenuButton = styled(Button)`
