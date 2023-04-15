@@ -52,14 +52,15 @@ const SMenuButton = styled(Button)`
   padding-top: 0px;
   padding-right: 0px;
   padding-bottom: 0px;
-  & i {
-    border-left: 1px solid ${(props: any) => props.theme.colors.lt800};
-    margin: ${(props: any) => props.theme.button[props.btnSize!].padding};
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    padding: 3px;
-  }
+`;
+
+const SIcon = styled(Icon)`
+  border-left: 1px solid ${(props: any) => props.theme.colors.lt800};
+  margin: ${(props: any) => props.theme.button[props.btnSize!].padding};
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  padding: 3px;
 `;
 
 const noop = () => {}; // tslint:disable-line
@@ -76,9 +77,9 @@ export const MenuButton: React.FC<Props> = ({
       items={items}
       onItemClick={onItemClick}
       triggerComponent={
-        <SMenuButton {...props}>
+        <SMenuButton>
           {children}
-          <Icon icon={ICEM} size={24} />
+          <SIcon {...props} icon={ICEM} size={24} />
         </SMenuButton>
       }
     />
