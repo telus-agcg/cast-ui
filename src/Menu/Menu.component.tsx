@@ -76,10 +76,17 @@ export const Menu: React.FC<Props> = ({
   onItemClick = noop,
   ...props
 }) => {
+  const [popoverInstance, setPopoverInstance] = React.useState(null);
+  const closePopoverMenu = () => {
+    // @ts-ignore
+    popoverInstance && popoverInstance.hide();
+  };
+
   const handleItemClick = (item, e) => {
     if (item.disabled) {
       return;
     }
+    closePopoverMenu();
     onItemClick(item, e);
   };
 
@@ -105,6 +112,7 @@ export const Menu: React.FC<Props> = ({
         placement="bottom-start"
         distance={2}
         hideOnClick={true}
+        onMount={(instance: any) => setPopoverInstance(instance)}
       >
         <span>{triggerComponent}</span>
       </SPopover>

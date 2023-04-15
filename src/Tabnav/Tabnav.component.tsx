@@ -6,6 +6,22 @@ import { ic_keyboard_arrow_down as ICKAD } from 'react-icons-kit/md/ic_keyboard_
 import _ from 'lodash';
 import { Menu } from '../Menu';
 
+export type Tab = {
+  label: string;
+  active?: boolean;
+  disabled?: boolean;
+  to?: any;
+  className?: string;
+  'data-testid'?: string;
+  children?: {
+    label: string;
+    disabled?: boolean;
+    to?: any;
+    className?: string;
+    'data-testid'?: string;
+  }[];
+};
+
 export type Props = {
   /**
    * An array of objects.
@@ -15,21 +31,7 @@ export type Props = {
    *
    * @default []
    **/
-  tabs?: {
-    label: String;
-    active?: boolean;
-    disabled?: boolean;
-    to?: any;
-    className?: string;
-    'data-testid'?: string;
-    children?: {
-      label: String;
-      disabled?: boolean;
-      to?: any;
-      className?: string;
-      'data-testid'?: string;
-    }[];
-  }[];
+  tabs?: Tab[];
   /**
    * Handle tab click events.
    *
@@ -69,17 +71,20 @@ const STabNav = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
 const SChildren = styled.div`
   flex-grow: 1;
   display: flex;
   width: 100%;
 `;
+
 const STabsBar = styled.div`
   display: flex;
   align-items: baseline;
   width: 100%;
   padding: 5px 0px;
 `;
+
 const STab = styled.div`
   outline: none;
   position: relative;
@@ -116,12 +121,25 @@ const STab = styled.div`
   transition: all 0.3s;
 `;
 
-const handleTabClick = (tab, e, onTabClick) => {
+const handleTabClick = (tab: Tab, e, onTabClick) => {
   if (tab.disabled) {
     return;
   }
   onTabClick(tab, e);
 };
+
+const Tab = ({ tab, onTabClick }: { tab: Tab; onTabClick: any }) => (
+  <STab
+    role="tab"
+    tabIndex="0"
+    onClick={(e: any) => handleTabClick(tab, e, onTabClick)}
+    data-testid={_.kebabCase(tab.label)}
+    {...tab}
+  >
+    {tab.label}
+    {tab.children && <Icon size={24} icon={ICKAD} className="icon" />}
+  </STab>
+);
 
 export const Tabnav: React.FunctionComponent<Props> = ({
   theme,
@@ -137,26 +155,17 @@ export const Tabnav: React.FunctionComponent<Props> = ({
       <SChildren>{children}</SChildren>
       {tabs && Boolean(tabs.length) && (
         <STabsBar {...tabsBarProps}>
-          {tabs.map((tab: any, i: any) => (
-            <Menu
-              items={tab.children}
-              onItemClick={onTabClick}
-              triggerComponent={
-                <STab
-                  role="tab"
-                  tabIndex="0"
-                  onClick={(e: any) => handleTabClick(tab, e, onTabClick)}
-                  data-testid={_.kebabCase(tab.label)}
-                  {...tab}
-                >
-                  {tab.label}
-                  {tab.children && (
-                    <Icon size={24} icon={ICKAD} className="icon" />
-                  )}
-                </STab>
-              }
-            />
-          ))}
+          {tabs.map((tab: Tab, i: any) =>
+            tab.children ? (
+              <Menu
+                items={tab.children}
+                onItemClick={onTabClick}
+                triggerComponent={<Tab tab={tab} onTabClick={onTabClick} />}
+              />
+            ) : (
+              <Tab tab={tab} onTabClick={onTabClick} />
+            ),
+          )}
         </STabsBar>
       )}
     </STabNav>
