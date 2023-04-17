@@ -23,7 +23,6 @@ export * from './Input';
 export * from './InputGroup';
 export * from './ListGroup';
 export * from './Menu';
-export * from './MenuButton';
 export * from './Modal';
 export * from './Navbar';
 export * from './Pagination';

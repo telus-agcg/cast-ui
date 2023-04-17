@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import { Button, Menu } from '..';
+import { Button, Link, Menu } from '..';
 
 const description = `
+A Menu is a specialized Popover wrapper that displays items to select when triggered via click, typically with a Link or Button (with displayType="menu").
 `;
 
 export default {
@@ -34,14 +35,26 @@ const menuData = [
   { label: 'Chocolate', id: 'chocolate' },
 ];
 
-export const _Menu = args => (
+export const _MenuFromLink = args => (
   <Menu
-    triggerComponent={<Button>Submit Menu</Button>}
+    triggerComponent={<Link>Show options</Link>}
     data-testid="submit"
     {...args}
   />
 );
 
-_Menu.args = {
+_MenuFromLink.args = {
+  items: menuData,
+};
+
+export const _MenuFromButton = args => (
+  <Menu
+    triggerComponent={<Button displayType="menu">Submit Menu</Button>}
+    data-testid="submit"
+    {...args}
+  />
+);
+
+_MenuFromButton.args = {
   items: menuData,
 };
