@@ -12,14 +12,17 @@ export interface MenuItem {
 
 export interface Props {
   /**
-   * An array of MenuItems.
-   * Each object defines properties of each menu item.
+   * An array of `MenuItem`.
+   * Each `MenuItem` can contain the following properties:
+   * - `disabled` (boolean),  *optional*
+   * - `id` (any),  *optional*
+   * - `label` (string), **required**
    *
    * @default []
    **/
   items?: MenuItem[];
   /**
-   * This dictates what the Menu will do on item click
+   * Callback that's triggered when an item is clicked. Returns the original `MenuItem` and the `event` object.
    *
    * @default void
    * */
@@ -31,11 +34,11 @@ export interface Props {
    **/
   theme?: any;
   /**
-   * Component that triggers the menu.
+   * Optional component, such as a `Link` or `Button`, that triggers the menu's display.
    *
    * @default []
    **/
-  triggerComponent: React.ReactElement;
+  triggerComponent?: React.ReactElement;
 }
 
 const SMenu = styled.div`
