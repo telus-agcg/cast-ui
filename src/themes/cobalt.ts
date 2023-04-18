@@ -737,13 +737,6 @@ export const cobaltTheme = {
       bottomBorderColor: cobaltColors.primary,
       iconColor: cobaltColors.white,
     },
-    tabDropdown: {
-      color: cobaltColors.drk800,
-      background: cobaltColors.white,
-      padding: '8px 16px',
-      hoverColor: cobaltColors.primary,
-      hoverBackground: cobaltColors.lt400,
-    },
   },
   sidenav: {
     fontSize: '14px',
@@ -766,7 +759,6 @@ export const cobaltTheme = {
     label: {
       color: cobaltColors.drk800,
     },
-
     secondaryNavbar: {
       width: '0px',
       openWidth: '170px',

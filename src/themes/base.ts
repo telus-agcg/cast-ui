@@ -1,4 +1,4 @@
-export const buildTheme = colors => ({
+export const buildTheme = (colors) => ({
   colors,
   borders: {
     radius: '1px',
@@ -702,13 +702,6 @@ export const buildTheme = colors => ({
       bottomBorderWidth: '4px',
       bottomBorderColor: colors.primary,
       iconColor: colors.white,
-    },
-    tabDropdown: {
-      color: colors.drk800,
-      background: colors.white,
-      padding: '8px 16px',
-      hoverColor: colors.primary,
-      hoverBackground: colors.lt400,
     },
   },
   sidenav: {
