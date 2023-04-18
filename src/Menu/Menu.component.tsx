@@ -34,11 +34,11 @@ export interface Props {
    **/
   theme?: any;
   /**
-   * Optional component, such as a `Link` or `Button`, that triggers the menu's display.
+   * A Component, such as a `Link` or `Button`, that triggers the menu's display.
    *
-   * @default []
+   * @default undefined
    **/
-  triggerComponent?: React.ReactElement;
+  triggerComponent: React.ReactElement;
 }
 
 const SMenu = styled.div`
