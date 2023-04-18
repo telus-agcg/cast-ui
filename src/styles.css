@@ -1,0 +1,35 @@
+body,
+.sbdocs.sbdocs-wrapper {
+  background-color: #f0f4f7;
+}
+
+h3.section {
+  margin: 5px;
+  padding: 0px;
+  font-size: 19px;
+  font-weight: 400;
+  color: #745fb5;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+h3.section:after {
+  margin-left: 24px;
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(116, 95, 181, 0.2), transparent 80%);
+}
+
+.sbdocs.sbdocs-div.layout {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+a {
+  color: #140084;
+}

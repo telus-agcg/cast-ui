@@ -1,0 +1,658 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs';
+import { userSecret } from 'react-icons-kit/fa/userSecret';
+import { Alert } from './Alert';
+import { Badge } from './Badge';
+import { Button } from './Button';
+import { Card } from './Card';
+import { Checkbox } from './Checkbox';
+import { Collapse } from './Collapse';
+import { IconButton } from './IconButton';
+import { Input } from './Input';
+import CheatSheet from '../CHEATSHEET.md';
+import { ListGroup, ListGroupItem } from './ListGroup';
+import { Modal } from './Modal';
+import { Navbar } from './Navbar';
+import { Pagination } from './Pagination';
+import { Panel } from './Panel';
+import { Popover } from './Popover';
+import { RadioButton } from './RadioButton';
+import { RadioButtonGroup } from './RadioButtonGroup';
+import { Select } from './Select';
+import { CustomSelect } from './Select';
+import { Slider } from './Slider';
+import { Spinner } from './Spinner';
+import { Table } from './Table';
+import { Tabnav } from './Tabnav';
+import { Tabs } from './Tabs';
+import { Textarea } from './Textarea';
+import { Toggle } from './Toggle';
+import { Tooltip } from './Tooltip';
+import { Typography } from './Typography';
+
+import Icon from 'react-icons-kit';
+
+import * as ListGroupStories from './ListGroup/ListGroup.stories.tsx';
+
+import './styles.css';
+
+<Meta title="CheatSheet" />
+
+<CheatSheet />
+
+export const BadgeTemplate = args => <Badge {...args} />;
+
+<h3 class="section"> Data Display</h3>
+
+<div class="layout">
+  <h4>
+    <a href="/story/components-data-display-badge--badge">Badge</a>
+  </h4>
+  <Badge badgeStyle="secondary">123</Badge>
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/story/components-data-display-card--card">Card</a>
+  </h4>
+  <Card>
+    <Title>Card Header</Title>
+    <div>
+      <b>Nullam mattis egestas tortor</b>
+      <p>Aliquam porttitor aliquet fringilla.</p>
+      <b>Nullam mattis egestas tortor</b>
+      <p>
+        Duis pellentesque, risus id faucibus porttitor,
+        <br />
+        dolor arcu tristique ligula, id tincidunt odio nisl id tellus. dolor
+        arcu tristique ligula, id tincidunt odio nisl id tellus.
+      </p>
+    </div>
+  </Card>
+</div>
+
+<div class="layout">
+
+<ListGroup >
+      <ListGroupItem data-testid="list-item-1">List Item</ListGroupItem>
+      <ListGroupItem data-testid="list-item-2">List Item</ListGroupItem>
+      <ListGroupItem data-testid="list-item-3">List Item</ListGroupItem>
+    </ListGroup>
+    </div>
+
+<div class="Layout">
+  <h4>Modal</h4>
+</div>
+
+<h3 class="section"> Feedback</h3>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-feedback-alert--alert">Alert</a>
+  </h4>
+  <Alert>Reminder: Sales meeting at Rm 223 in 10 minutes</Alert>
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-feedback-spinner--spinner">Spinner</a>
+  </h4>
+  <Spinner />
+</div>
+
+<h3 class="section">Interactions</h3>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-interactions--icon-button">Icon Button</a>
+  </h4>
+  <div>
+    <IconButton
+      btnStyle="primary"
+      data-testid="icon-button"
+      icon={{
+        children: [
+          {
+            attribs: {
+              d: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z',
+            },
+            name: 'path',
+          },
+        ],
+        viewBox: '0 0 24 24',
+      }}
+      iconSize={20}
+      onClick={() => {}}
+      pixelButtonSize={40}
+    />
+  </div>
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-interactions-button--button">Button</a>
+  </h4>
+  <Button data-testid="submit" id="testId" onClick={() => {}}>
+    Submit Button
+  </Button>
+</div>
+
+<div class="layout">
+<h4>
+<a href="/docs/components-interactions-checkbox--regular">Checkbox</a>
+</h4>
+<div>
+  <Checkbox
+    checked
+    data-testid="checkbox-1"
+    defaultChecked
+    displayStyle="inline"
+    id="myInput1"
+    invalidText="A valid value is required"
+    onChange={() => {}}
+    value="1"
+  >
+    One
+  </Checkbox>
+</div>
+
+<h4>
+  <a href="/docs/components-interactions-checkbox--indeterminate">
+    Indeterminate
+  </a>
+</h4>
+
+<div>
+  <Checkbox
+    checked
+    data-testid="checkbox-1"
+    defaultChecked
+    displayStyle="inline"
+    id="myInput1"
+    indeterminate
+    invalidText="A valid value is required"
+    onChange={() => {}}
+    value="1"
+  >
+    One
+  </Checkbox>
+</div>
+
+<h4>
+<a href="/docs/components-interactions-checkbox--list-of-checkboxes">List of Checkbox</a>
+</h4>
+<div>
+  <div>
+    <Checkbox
+      checked
+      data-testid="checkbox-1"
+      defaultChecked
+      displayStyle="inline"
+      id="myInput1"
+      invalidText="A valid value is required"
+      onChange={() => {}}
+      value="1"
+    >
+      One
+    </Checkbox>
+  </div>
+  <div>
+    <Checkbox
+      checked
+      data-testid="checkbox-2"
+      defaultChecked
+      displayStyle="inline"
+      id="myInput2"
+      invalidText="A valid value is required"
+      onChange={function noRefCheck() {}}
+      value="2"
+    >
+      Two
+    </Checkbox>
+  </div>
+  <div>
+    <Checkbox
+      checked
+      data-testid="checkbox-3"
+      defaultChecked
+      displayStyle="inline"
+      id="myInput3"
+      invalidText="A valid value is required"
+      onChange={function noRefCheck() {}}
+      value="3"
+    >
+      Three
+    </Checkbox>
+  </div>
+  <div>
+    <Checkbox
+      checked
+      data-testid="checkbox-4"
+      defaultChecked
+      displayStyle="inline"
+      id="myInput4"
+      invalidText="A valid value is required"
+      onChange={function noRefCheck() {}}
+      value="4"
+    >
+      Four
+    </Checkbox>
+  </div>
+  <div>
+    <Checkbox
+      checked
+      data-testid="checkbox-5"
+      defaultChecked
+      displayStyle="inline"
+      id="myInput5"
+      invalidText="A valid value is required"
+      onChange={function noRefCheck() {}}
+      value="5"
+    >
+      Five
+    </Checkbox>
+  </div>
+</div>
+</div>
+
+<div class="layout">
+<h4>
+<a href="/docs/components-interactions-input--regular">Input</a>
+</h4>
+<Input
+  autoComplete="on"
+  data-testid="basic-input"
+  dataTestId="basic-input"
+  id="basic_input"
+  invalidText="A valid value is required"
+  maxLength={1000}
+  onChange={() => {}}
+  placeholder="Please enter some text"
+/>
+
+<h4>
+<a href="/docs/components-interactions-input--with-icon">With Icon</a>
+</h4>
+<Input
+  autoComplete="on"
+  data-testid="input-with-icon"
+  dataTestId="input-with-icon"
+  icon={<Icon icon={{children: [{attribs: {d: 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'}, name: 'path'}], viewBox: '0 0 24 24'}} size={20}/>}
+  iconPosition="right"
+  id="input_with_icon"
+  invalidText="A valid value is required"
+  maxLength={1000}
+  onChange={() => {}}
+  placeholder="Please enter some text"
+/>
+
+<h4>
+<a href="/docs/components-interactions-input--with-addon-text">With Addon Text</a>
+</h4>
+<Input
+  addonText="$"
+  addonTextPosition="right"
+  autoComplete="on"
+  data-testid="input-with-addon-text"
+  dataTestId="input-with-addon-text"
+  id="input_with_addon_text"
+  invalidText="A valid value is required"
+  maxLength={1000}
+  onChange={() => {}}
+  placeholder="Please enter some text"
+/>
+
+<h4>
+<a href="/docs/components-interactions-input--input-with-all-options">Input With All Options</a>
+</h4>
+<Input
+  addonText="$"
+  addonTextPosition="right"
+  autoComplete="on"
+  data-testid="input-with-all-options"
+  dataTestId="input-with-all-options"
+  highlightFilled
+  icon={<Icon icon={{children: [{attribs: {d: 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'}, name: 'path'}], viewBox: '0 0 24 24'}} size={20}/>}
+  iconPosition="right"
+  id="input_with_all_options"
+  invalidText="A valid value is required"
+  isClearable
+  maxLength={1000}
+  onChange={() => {}}
+  placeholder="Please enter some text"
+/>
+
+<h4>
+<a href="/docs/components-interactions-input--with-icon-button">With Icon Button</a>
+</h4>
+<Input
+  autoComplete="on"
+  data-testid="input-with-icon-button"
+  dataTestId="input-with-icon-button"
+  icon={<IconButton icon={{children: [{attribs: {d: 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'}, name: 'path'}], viewBox: '0 0 24 24'}} onClick={() => {}} rounded={false}/>}
+  iconPosition="right"
+  id="input_with_icon_button"
+  invalidText="A valid value is required"
+  maxLength={1000}
+  onChange={function noRefCheck() {}}
+  placeholder="Please enter some text"
+/>
+
+<h4>
+  <a href="/docs/components-interactions-input--input-group">Input Group</a>
+</h4>
+
+</div>
+
+<div class="layout">
+<h4>
+<a href="/docs/components-interactions-radio-button--radio-button">Radio Button</a>
+</h4>
+<div>
+  <RadioButton
+    checked
+    data-testid="input1-radio-button"
+    displayStyle="inline"
+    id="myInput1"
+    name="radio-buttons"
+    value={1}
+  >
+    One
+  </RadioButton>
+  <RadioButton
+    checked
+    data-testid="input2-radio-button"
+    displayStyle="inline"
+    id="myInput2"
+    name="radio-buttons"
+    value={2}
+  >
+    Two
+  </RadioButton>
+</div>
+
+<h4>
+<a href="/docs/components-interactions-radio-button--radio-button-group">Radio Button Group</a>
+</h4>
+<RadioButtonGroup
+  defaultChecked="1"
+  name="myRadioButtonGroup"
+  onChange={() => {}}
+>
+  <RadioButton
+    data-testid="input1-radio-button"
+    id="myInput1"
+    value="1"
+  >
+    One
+  </RadioButton>
+  <RadioButton
+    data-testid="input2-radio-button"
+    id="myInput2"
+    value="2"
+  >
+    Two
+  </RadioButton>
+</RadioButtonGroup>
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-interactions-textarea--textarea">Textarea</a>
+  </h4>
+  <Textarea
+    cols={60}
+    data-testid="textarea"
+    id="myTextarea"
+    invalidText="A valid value is required"
+    invalidTextColor="red"
+    maxLength={1000}
+    placeholder="Placeholder Text"
+    rows={8}
+  />
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-interactions-textarea--textarea">Toggle</a>
+  </h4>
+  <div>
+    <Toggle
+      checked
+      data-testid="toggle"
+      id="toggleId"
+      onChange={() => {}}
+      value="1"
+    >
+      One
+    </Toggle>
+  </div>
+</div>
+
+<h3 class="section">Navigation</h3>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-interactions-textarea--textarea">Link</a>
+  </h4>
+  <Link
+    data-testid="link-standalone"
+    dataTestId="link-standalone"
+    href="https://www.tkxs.com"
+    onClick={() => {}}
+    onMouseEnter={function noRefCheck() {}}
+    target="_blank"
+  >
+    Read More
+  </Link>
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-navigation-navbar--navbar">Navbar</a>
+  </h4>
+  <Navbar>
+    <Nav left>
+      <img
+        alt="TKXS"
+        src="https://www.tkxs.com/hubfs/TKXS-brand/TKXS%20Official%20Logo%20(black).svg"
+        style={{
+          width: '100px',
+        }}
+      />
+      <h2
+        style={{
+          padding: '0 16px',
+        }}
+      >
+        Cast UI
+      </h2>
+    </Nav>
+    <Nav center>
+      <h3
+        style={{
+          padding: '0 12px',
+        }}
+      >
+        Center Item
+      </h3>
+      <h3
+        style={{
+          padding: '0 12px',
+        }}
+      >
+        Center Item
+      </h3>
+    </Nav>
+    <Nav right>
+      <h3
+        style={{
+          padding: '0 0 0 16px',
+        }}
+      >
+        Right Item
+      </h3>
+      <h3
+        style={{
+          cursor: 'pointer',
+          padding: '0 0 0 16px',
+        }}
+      >
+        <Icon
+          icon={{
+            children: [
+              {
+                attribs: {
+                  d:
+                    'M576 1536l96-448-96-128-128-64zM832 1536l128-640-128 64-96 128zM992 526q-2-4-4-6-10-8-96-8-70 0-167 19-7 2-21 2t-21-2q-97-19-167-19-86 0-96 8-2 2-4 6 2 18 4 27 2 3 7.5 6.5t7.5 10.5q2 4 7.5 20.5t7 20.5 7.5 17 8.5 17 9 14 12 13.5 14 9.5 17.5 8 20.5 4 24.5 2q36 0 59-12.5t32.5-30 14.5-34.5 11.5-29.5 17.5-12.5h12q11 0 17.5 12.5t11.5 29.5 14.5 34.5 32.5 30 59 12.5q13 0 24.5-2t20.5-4 17.5-8 14-9.5 12-13.5 9-14 8.5-17 7.5-17 7-20.5 7.5-20.5q2-7 7.5-10.5t7.5-6.5q2-9 4-27zM1408 1405q0 121-73 190t-194 69h-874q-121 0-194-69t-73-190q0-61 4.5-118t19-125.5 37.5-123.5 63.5-103.5 93.5-74.5l-90-220h214q-22-64-22-128 0-12 2-32-194-40-194-96 0-57 210-99 17-62 51.5-134t70.5-114q32-37 76-37 30 0 84 31t84 31 84-31 84-31q44 0 76 37 36 42 70.5 114t51.5 134q210 42 210 99 0 56-194 96 7 81-20 160h214l-82 225q63 33 107.5 96.5t65.5 143.5 29 151.5 8 148.5z',
+                },
+                name: 'path',
+              },
+            ],
+            viewBox: '0 0 1536 1792',
+          }}
+          size={32}
+        />
+      </h3>
+    </Nav>
+  </Navbar>
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-navigation-pagination--pagination">Pagination</a>
+  </h4>
+  <Pagination
+    onPageChange={() => {}}
+    onPageSizeChange={function noRefCheck() {}}
+    page={3}
+    pageSize={20}
+    pages={10}
+    showPageSizeOptions
+  />
+</div>
+
+<div class="layout">
+<h4>
+<a href="/docs/components-navigation-tabnav--tabnav">Tabnav</a>
+</h4>
+<Tabnav
+  onTabClick={() => {}}
+  popoverProps={{
+    placement: 'bottom-start'
+  }}
+  tabs={[
+    {
+      active: false,
+      className: 'overview',
+      label: 'Overview',
+      to: '/overview'
+    },
+    {
+      active: true,
+      children: [
+        {
+          label: 'Overview',
+          to: '/plans/overview'
+        },
+        {
+          label: 'Contracts',
+          to: '/plans/contracts'
+        }
+      ],
+      label: 'Plans'
+    },
+    {
+      active: false,
+      children: [
+        {
+          disabled: true,
+          label: 'Some Offers',
+          to: '/offers/some'
+        },
+        {
+          label: 'Some Other Offers',
+          to: '/offers/other'
+        }
+      ],
+      label: 'Offers'
+    },
+    {
+      className: 'notes',
+      label: 'Notes',
+      to: '/notes'
+    }
+  ]}
+  tabsBarProps={{
+    className: 'tabs-bar'
+  }}
+/>
+
+<h4>
+<a href="/docs/components-navigation-tabnav--tabnav-with-header">Tabnav</a>
+</h4>
+<Tabnav
+  onTabClick={() => {}}
+  popoverProps={{
+    placement: 'bottom-start'
+  }}
+  tabs={[
+    {
+      active: false,
+      className: 'overview',
+      label: 'Overview',
+      to: '/overview'
+    },
+    {
+      active: false,
+      children: [
+        {
+          label: 'Overview',
+          to: '/plans/overview'
+        },
+        {
+          label: 'Contracts',
+          to: '/plans/contracts'
+        }
+      ],
+      label: 'Plans'
+    },
+    {
+      active: true,
+      children: [
+        {
+          disabled: true,
+          label: 'Some Offers',
+          to: '/offers/some'
+        },
+        {
+          label: 'Some Other Offers',
+          to: '/offers/other'
+        }
+      ],
+      label: 'Offers'
+    },
+    {
+      className: 'notes',
+      label: 'Notes',
+      to: '/notes'
+    }
+  ]}
+  tabsBarProps={{
+    className: 'tabs-bar'
+  }}
+>
+  <div
+    style={{
+      alignItems: 'baseline',
+      display: 'flex'
+    }}
+  >
+    <Title>
+      Agrineed, Inc. (62875)
+    </Title>
+    <Badge>
+      Retailer
+    </Badge>
+  </div>
+</Tabnav>
+</div>
