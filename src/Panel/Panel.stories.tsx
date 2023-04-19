@@ -83,7 +83,7 @@ const _Panel = ({
     setOpenPanel(isOpen);
   }, [isOpen]);
 
-  const handleTogglePanel = () => setOpenPanel(!openPanel);
+  const handleTogglePanel = () => withCollapse && setOpenPanel(!openPanel);
 
   return (
     <Panel name={name} panelStyle={panelStyle}>
