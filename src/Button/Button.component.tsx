@@ -1,7 +1,8 @@
 import * as React from 'react';
-import SButton from './SButton';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
-import { ThemeProvider } from 'styled-components';
+import Icon from 'react-icons-kit';
+import { ic_expand_more as ICEM } from 'react-icons-kit/md/ic_expand_more';
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -29,17 +30,17 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    **/
   btnSize?: 'sm' | 'md' | 'lg';
   /**
-   * Override default background color
-   *
-   * @default ''
-   **/
-  backgroundColor?: string;
-  /**
    * Specify if the button is disabled
    *
    * @default false
    **/
   disabled?: boolean;
+  /**
+   * The display type: regular button or menu
+   *
+   * @default false
+   **/
+  displayType?: 'button' | 'menu';
   /**
    * Specify if the button is selected
    *
@@ -60,6 +61,201 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: any;
 }
 
+const computeColor: Function = (
+  btnState: string,
+  selected: Boolean,
+  outline: Boolean,
+  btnStyle: string,
+  theme: any,
+) => {
+  switch (true) {
+    case selected === true:
+      switch (btnState) {
+        case 'hover':
+          return {
+            background: theme.styles[btnStyle].hoverFlood,
+            color: theme.styles[btnStyle].reverseText,
+            borderColor: theme.styles[btnStyle].hoverFlood,
+          };
+        case 'disabled':
+          return {
+            background: theme.colors.disabledText,
+            color: theme.styles[btnStyle].reverseText,
+            borderColor: theme.styles[btnStyle].disabledText,
+          };
+        default:
+          return {
+            background: theme.styles[btnStyle].selectedFlood,
+            color: theme.styles[btnStyle].reverseText,
+            borderColor: theme.styles[btnStyle].borderColor,
+          };
+      }
+    case outline === true:
+      switch (btnState) {
+        case 'hover':
+          return {
+            background: theme.styles[btnStyle].selectedFlood,
+            color: theme.styles[btnStyle].reverseText,
+            borderColor: theme.styles[btnStyle].selectedFlood,
+          };
+        case 'disabled':
+          return {
+            background: theme.styles[btnStyle].disabledFlood,
+            color: theme.styles[btnStyle].reverseText,
+            borderColor: theme.styles[btnStyle].disabledFlood,
+          };
+        default:
+          return {
+            background: theme.button.outlineBackgroundColor,
+            color: theme.styles[btnStyle].flood,
+            borderColor: theme.styles[btnStyle].borderColor,
+          };
+      }
+    default:
+      switch (btnState) {
+        case 'hover':
+          return {
+            background: theme.styles[btnStyle].hoverFlood,
+            color: theme.styles[btnStyle].reverseText,
+            borderColor: theme.styles[btnStyle].hoverFlood,
+          };
+        case 'disabled':
+          return {
+            background: theme.styles[btnStyle].disabledFlood,
+            color: theme.styles[btnStyle].reverseText,
+            borderColor: theme.styles[btnStyle].disabledFlood,
+          };
+        default:
+          return {
+            background: theme.styles[btnStyle].flood,
+            color: theme.styles[btnStyle].reverseText,
+            borderColor: theme.styles[btnStyle].borderColor,
+          };
+      }
+  }
+};
+
+const SButton = styled.button`
+  min-width: 96px;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  border-radius: ${(props: Props) => props.theme.button.borderRadius};
+  background: ${(props: Props) =>
+    computeColor(
+      'normal',
+      props.selected,
+      props.outline,
+      props.btnStyle,
+      props.theme,
+    ).background};
+  border: 1px solid
+    ${(props: Props) =>
+      computeColor(
+        'normal',
+        props.selected,
+        props.outline,
+        props.btnStyle,
+        props.theme,
+      ).borderColor};
+  padding: ${(props: Props) => props.theme.button[props.btnSize!].padding};
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.button[props.btnSize!].fontSize};
+  font-weight: 600;
+  line-height: ${(props: Props) =>
+    props.theme.button[props.btnSize!].lineHeight};
+  color: ${(props: Props) =>
+    computeColor(
+      'normal',
+      props.selected,
+      props.outline,
+      props.btnStyle,
+      props.theme,
+    ).color};
+
+  outline: none !important;
+  &:focus {
+    outline: none !important;
+    border-color: ${(props: Props) =>
+      props.theme.colors[props.btnStyle || 'primary']};
+    box-shadow: 0 0 3px
+      ${(props: Props) => props.theme.colors[props.btnStyle || 'primary']};
+  }
+  &:hover,
+  &:active {
+    background: ${(props: Props) =>
+      computeColor(
+        'hover',
+        props.selected,
+        props.outline,
+        props.btnStyle,
+        props.theme,
+      ).background};
+    color: ${(props: Props) =>
+      computeColor(
+        'hover',
+        props.selected,
+        props.outline,
+        props.btnStyle,
+        props.theme,
+      ).color};
+    border: 1px solid
+      ${(props: Props) =>
+        computeColor(
+          'hover',
+          props.selected,
+          props.outline,
+          props.btnStyle,
+          props.theme,
+        ).borderColor};
+    cursor: pointer;
+  }
+  &:disabled {
+    background: ${(props: Props) =>
+      computeColor(
+        'disabled',
+        props.selected,
+        props.outline,
+        props.btnStyle,
+        props.theme,
+      ).background};
+    color: ${(props: Props) =>
+      computeColor(
+        'disabled',
+        props.selected,
+        props.outline,
+        props.btnStyle,
+        props.theme,
+      ).color};
+    border: 1px solid
+      ${(props: Props) =>
+        computeColor(
+          'disabled',
+          props.selected,
+          props.outline,
+          props.btnStyle,
+          props.theme,
+        ).borderColor};
+    cursor: not-allowed;
+  }
+`;
+
+const SMenuButton = styled(SButton)`
+  display: flex;
+  align-items: center;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+`;
+
+const SIcon = styled(Icon)`
+  border-left: 1px solid ${(props: any) => props.theme.colors.lt800};
+  margin: ${(props: any) => props.theme.button[props.btnSize!].padding};
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  padding: 3px;
+`;
+
 const noop = () => {}; // tslint:disable-line
 
 export class Button extends React.Component<Props, any> {
@@ -67,18 +263,31 @@ export class Button extends React.Component<Props, any> {
     theme: Themes.defaultTheme,
     btnStyle: 'primary',
     btnSize: 'md',
+    displayType: 'button',
   };
   render() {
-    const { theme, onClick = noop, disabled, children, ...props } = this.props;
+    const {
+      theme,
+      onClick = noop,
+      disabled,
+      displayType,
+      children,
+      ...props
+    } = this.props;
+
+    const ButtonType = displayType === 'menu' ? SMenuButton : SButton;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SButton
+        <ButtonType
           disabled={disabled}
           onClick={!disabled ? onClick : noop}
           {...props}
         >
           {children}
-        </SButton>
+          {displayType === 'menu' ? (
+            <SIcon {...props} icon={ICEM} size={24} />
+          ) : null}
+        </ButtonType>
       </ThemeProvider>
     );
   }

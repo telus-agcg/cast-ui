@@ -12,7 +12,7 @@ const config = {
 };
 if (
   config.branches.some(
-    (it) => it === branch || (it.name === branch && !it.prerelease),
+    it => it === branch || (it.name === branch && !it.prerelease),
   )
 ) {
   config.plugins.push(

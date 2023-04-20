@@ -11,21 +11,10 @@ export default {
         disable: true,
       },
     },
-    backgroundColor: {
-      control: {
-        type: 'color',
-      },
-    },
     size: {
       control: {
         type: 'select',
         options: [20, 30, 40, 50, 60, 70],
-      },
-    },
-    borderWidth: {
-      control: {
-        type: 'select',
-        options: [1, 2, 3, 4, 5],
       },
     },
     animationSpeed: {
@@ -33,9 +22,6 @@ export default {
         type: 'select',
         options: [1, 2, 3, 4, 5],
       },
-    },
-    borderColor: {
-      control: false,
     },
     transitionType: {
       control: false,
@@ -47,6 +33,5 @@ export const _Spinner = args => <Spinner {...args} />;
 
 _Spinner.args = {
   size: 50,
-  borderWidth: 3,
   animationSpeed: 1,
 };

@@ -9,11 +9,8 @@ const EXPANDED = 'expanded';
 export type Props = {
   isOpen?: boolean;
   children?: any;
-  elementType?: any;
   onInit?: any;
   onChange?: any;
-  collapseHeight?: any;
-  transition?: any;
   className?: any;
   /**
    * From theme provider
@@ -36,6 +33,27 @@ const CWrapper = styled.div`
   }
 `;
 
+function getHeight(content) {
+  return `${content.scrollHeight}px`;
+}
+
+function nextFrame(callback: any) {
+  // Ensure it is always visible on collapsing, afterFrame didn't work
+  requestAnimationFrame(() => requestAnimationFrame(callback));
+}
+
+function isMoving(collapseState: any) {
+  return collapseState === EXPANDING || collapseState === COLLAPSING;
+}
+
+function getCollapseHeight() {
+  return '0px';
+}
+
+function getCollapseVisibility(props: Props) {
+  return 'hidden';
+}
+
 export class Collapse extends React.Component<Props, any> {
   state: State;
   content: HTMLElement;
@@ -46,58 +64,11 @@ export class Collapse extends React.Component<Props, any> {
     this.state = {
       collapseState: EXPANDED,
       collapseStyle: {
-        height: getCollapseHeight(props),
+        height: getCollapseHeight(),
         visibility: getCollapseVisibility(props),
       },
       hasReversed: false,
     };
-  }
-
-  render() {
-    const {
-      className,
-      children,
-      elementType,
-      collapseHeight,
-      onInit,
-      onChange,
-      isOpen,
-      theme,
-      ...props
-    } = this.props;
-
-    const transition = this.props.transition
-      ? this.props.transition
-      : 'height 300ms cubic-bezier(0.4, 0, 0.2, 1)';
-
-    const style = {
-      transition,
-      ...this.state.collapseStyle,
-    };
-
-    const ElementType = elementType || 'div';
-    const collapseClassName = `${className || 'collapse-css-transition'} --is-${
-      this.state.collapseState
-    }`;
-
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <CWrapper>
-          <ElementType
-            ref={(element: any) => {
-              this.content = element;
-              this.handleState(this.content);
-            }}
-            style={style}
-            className={collapseClassName}
-            onTransitionEnd={this.onTransitionEnd}
-            {...props}
-          >
-            {children}
-          </ElementType>
-        </CWrapper>
-      </ThemeProvider>
-    );
   }
 
   // Detect a new collapse state from props.isOpen change
@@ -119,7 +90,6 @@ export class Collapse extends React.Component<Props, any> {
 
   componentDidUpdate(prevProps: Props, prevState: State) {
     if (this.state.collapseState === prevState.collapseState) return;
-    // this.handleState(this.content)
   }
 
   handleState = content => {
@@ -175,7 +145,7 @@ export class Collapse extends React.Component<Props, any> {
       this.setState(
         {
           collapseStyle: {
-            height: getCollapseHeight(this.props),
+            height: getCollapseHeight(),
             visibility: getCollapseVisibility(this.props),
           },
         },
@@ -187,15 +157,20 @@ export class Collapse extends React.Component<Props, any> {
   setCollapsing = () => {
     if (!this.content) return;
     nextFrame(() => {
-      this.setState(
-        {
-          collapseStyle: {
-            height: getCollapseHeight(this.props),
-            visibility: '',
-          },
-        },
-        () => this.onCallback(this.props.onChange),
-      );
+      if (this.content) {
+        const height = getCollapseHeight();
+        if (height !== this.content.style.height) {
+          this.setState(
+            {
+              collapseStyle: {
+                height,
+                visibility: '',
+              },
+            },
+            () => this.onCallback(this.props.onChange),
+          );
+        }
+      }
     });
   };
 
@@ -203,16 +178,17 @@ export class Collapse extends React.Component<Props, any> {
     nextFrame(() => {
       if (this.content) {
         const height = getHeight(this.content);
-
-        this.setState(
-          {
-            collapseStyle: {
-              height,
-              visibility: '',
+        if (height !== this.content.style.height) {
+          this.setState(
+            {
+              collapseStyle: {
+                height,
+                visibility: '',
+              },
             },
-          },
-          () => this.onCallback(this.props.onChange),
-        );
+            () => this.onCallback(this.props.onChange),
+          );
+        }
       }
     });
   };
@@ -231,25 +207,46 @@ export class Collapse extends React.Component<Props, any> {
       );
     });
   };
-}
 
-function getHeight(content) {
-  return `${content.scrollHeight}px`;
-}
+  render() {
+    const {
+      className,
+      children,
+      onInit,
+      onChange,
+      isOpen,
+      theme,
+      ...props
+    } = this.props;
 
-function nextFrame(callback: any) {
-  // Ensure it is always visible on collapsing, afterFrame didn't work
-  requestAnimationFrame(() => requestAnimationFrame(callback));
-}
+    const transition = 'height 300ms cubic-bezier(0.4, 0, 0.2, 1)';
 
-function isMoving(collapseState: any) {
-  return collapseState === EXPANDING || collapseState === COLLAPSING;
-}
+    const style = {
+      transition,
+      ...this.state.collapseStyle,
+    };
 
-function getCollapseHeight(props: Props) {
-  return props.collapseHeight || '0px';
-}
+    const collapseClassName = `${className || 'collapse-css-transition'} --is-${
+      this.state.collapseState
+    }`;
 
-function getCollapseVisibility(props: Props) {
-  return props.collapseHeight ? '' : 'hidden';
+    return (
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <CWrapper>
+          <div
+            ref={(element: any) => {
+              this.content = element;
+              this.handleState(this.content);
+            }}
+            style={style}
+            className={collapseClassName}
+            onTransitionEnd={this.onTransitionEnd}
+            {...props}
+          >
+            {children}
+          </div>
+        </CWrapper>
+      </ThemeProvider>
+    );
+  }
 }

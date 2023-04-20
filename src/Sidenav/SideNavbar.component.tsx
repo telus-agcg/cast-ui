@@ -228,7 +228,7 @@ const SideNavbar = (props) => {
           sidenavHeight={sidenavHeight}
         >
           <SSideNav theme={props.theme} elementType={'list'}>
-            {data?.map((item, index) => {
+            {data.map((item, index) => {
               return (
                 <SubMenu
                   {...props}

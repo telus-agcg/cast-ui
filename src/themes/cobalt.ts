@@ -250,20 +250,6 @@ export const cobaltTheme = {
         lineHeight: '100%',
       },
     },
-    bodyText: {
-      10: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
-        fontWeight: '400',
-        fontSize: '12px',
-        lineHeight: '100%',
-      },
-      20: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
-        fontWeight: '400',
-        fontSize: '14px',
-        lineHeight: '160%',
-      },
-    },
     code: {
       background: cobaltColors.lt400,
       fontFamily:
@@ -313,11 +299,11 @@ export const cobaltTheme = {
       },
       visited: {
         color: cobaltColors.primary,
-        textDecoration: 'underline',
+        textDecoration: 'none',
       },
       hover: {
         color: cobaltColors.primary,
-        textDecoration: 'underline',
+        textDecoration: 'none',
       },
     },
     pre: {
@@ -659,6 +645,7 @@ export const cobaltTheme = {
     fontSize: '14px',
     border: `1px solid ${cobaltColors.drk400}`,
     header: {
+      backgroundColor: cobaltColors.white,
       borderBottomColor: cobaltColors.drk800,
       color: cobaltColors.drk800,
       fontWeight: 'bold',
@@ -752,13 +739,6 @@ export const cobaltTheme = {
       bottomBorderColor: cobaltColors.primary,
       iconColor: cobaltColors.white,
     },
-    tabDropdown: {
-      color: cobaltColors.drk800,
-      background: cobaltColors.white,
-      padding: '8px 16px',
-      hoverColor: cobaltColors.primary,
-      hoverBackground: cobaltColors.lt400,
-    },
   },
   sidenav: {
     fontSize: '14px',
@@ -781,7 +761,6 @@ export const cobaltTheme = {
     label: {
       color: cobaltColors.drk800,
     },
-
     secondaryNavbar: {
       width: '0px',
       openWidth: '170px',

@@ -20,18 +20,6 @@ export type Props = {
    */
   noPadding?: boolean;
   /**
-   * Set body background color. A CSS color code or a color defined in theme colors
-   *
-   * @default 'lightBackground'
-   **/
-  bodyBackgroundColor?: string;
-  /**
-   * Set body border color. A CSS color code or a color defined in theme colors
-   *
-   * @default 'gray'
-   **/
-  bodyBorderColor?: string;
-  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -40,13 +28,10 @@ export type Props = {
 };
 
 const SPanelBody = styled.div`
-  background-color: ${(props: Props) =>
-    props.bodyBackgroundColor ||
-    props.theme.colors[props.bodyBackgroundColor!] ||
-    props.theme.panel.bodyBackgroundColor};
+  background-color: ${(props: Props) => props.theme.panel.bodyBackgroundColor};
   border: ${(props: Props) =>
     `${props.theme.panel.borderWidth} solid 
-    ${props.bodyBorderColor || props.theme.panel.bodyBorderColor}`};
+    ${props.theme.panel.bodyBorderColor}`};
 
   border-radius: ${(props: Props) => props.theme.common.borderRadius};
   padding: ${(props: Props) =>

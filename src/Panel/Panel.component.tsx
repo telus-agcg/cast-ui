@@ -22,24 +22,6 @@ export type Props = {
    * */
   title?: string;
   /**
-   * Set header color. A CSS color code
-   *
-   * @default 'primary'
-   **/
-  headerColor?: string;
-  /**
-   * Set header background color. A CSS color code
-   *
-   * @default ''
-   **/
-  headerBackgroundColor?: string;
-  /**
-   * Set header border color. A CSS color code
-   *
-   * @default ''
-   **/
-  headerBorderColor?: string;
-  /**
    * Set Panel Style
    *
    *  @default 'primary'

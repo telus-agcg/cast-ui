@@ -216,20 +216,6 @@ export const buildTheme = colors => ({
         lineHeight: '100%',
       },
     },
-    bodyText: {
-      10: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
-        fontWeight: '400',
-        fontSize: '12px',
-        lineHeight: '100%',
-      },
-      20: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
-        fontWeight: '400',
-        fontSize: '14px',
-        lineHeight: '160%',
-      },
-    },
     code: {
       background: colors.lt400,
       fontFamily:
@@ -279,7 +265,7 @@ export const buildTheme = colors => ({
       },
       visited: {
         color: colors.primary,
-        textDecoration: 'underline',
+        textDecoration: 'none',
       },
       hover: {
         color: colors.primary,
@@ -625,6 +611,7 @@ export const buildTheme = colors => ({
     fontSize: '14px',
     border: `1px solid ${colors.drk400}`,
     header: {
+      backgroundColor: colors.white,
       borderBottomColor: colors.drk800,
       color: colors.drk800,
       fontWeight: 'bold',
@@ -717,13 +704,6 @@ export const buildTheme = colors => ({
       bottomBorderWidth: '4px',
       bottomBorderColor: colors.primary,
       iconColor: colors.white,
-    },
-    tabDropdown: {
-      color: colors.drk800,
-      background: colors.white,
-      padding: '8px 16px',
-      hoverColor: colors.primary,
-      hoverBackground: colors.lt400,
     },
   },
   sidenav: {
