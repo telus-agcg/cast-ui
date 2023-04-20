@@ -7,7 +7,6 @@ h2.css-idch3x {
   margin-bottom: 20px;
 }
 
-body,
 .sbdocs.sbdocs-wrapper {
   background-color: #f0f4f7;
 }
@@ -32,11 +31,11 @@ h3.section:after {
   background: linear-gradient(90deg, rgba(116, 95, 181, 0.2), transparent 80%);
 }
 
-.sbdocs.sbdocs-div.layout {
+.layout {
   background-color: #fff;
   border-radius: 8px;
   padding: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 30px !important;
 }
 
 .layout > p {
