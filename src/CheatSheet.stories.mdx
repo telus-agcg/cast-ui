@@ -56,6 +56,10 @@ import { _CollapseWithExpandableData as Collapse } from './Collapse/Collapse.sto
 import { _Toggle as Toggle } from './Toggle/Toggle.stories.tsx';
 import { Colors } from './Colors/Colors.stories.tsx';
 import { _Typography as Typo } from './Typography/Typography.stories.tsx';
+import {
+  _MenuFromButton as Menu,
+  _MenuFromLink as MenuLink,
+} from './Menu/Menu.stories.tsx';
 
 import { Themes } from './themes';
 import './styles.css';
@@ -373,6 +377,30 @@ import './styles.css';
   datePickerSize='md'
   invalidText= 'A valid value is required'
   numberOfMonths={1}></DatePickerRange>
+</div>
+
+<div class="layout">
+<h4><a href="/docs/components-interactions-menu--menu-from-button">Menu</a></h4>
+<p>Menu refers to a Button or a Link that opens a drop-down menu with various options that the user can choose from.</p>
+<Menu items={[
+  {
+    label: 'Vanilla',
+    id: 'vanilla',
+    disabled: true,
+  },
+  { label: 'Chocolate', id: 'chocolate' },
+]}/>
+
+<h4><a href="/docs/components-interactions-menu--menu-from-link">Menu Link</a></h4>
+
+<MenuLink items={[
+  {
+    label: 'Vanilla',
+    id: 'vanilla',
+    disabled: true,
+  },
+  { label: 'Chocolate', id: 'chocolate' },
+]}/>
 </div>
 
 <div class="layout">
