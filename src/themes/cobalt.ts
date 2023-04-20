@@ -542,7 +542,7 @@ export const cobaltTheme = {
       padding: '14px 16px',
     },
     body: {
-      padding: '30px 30px',
+      padding: '24px 24px',
     },
     borderWidth: 'thin',
     headerBorderColor: cobaltColors.drk400,
@@ -737,13 +737,6 @@ export const cobaltTheme = {
       bottomBorderColor: cobaltColors.primary,
       iconColor: cobaltColors.white,
     },
-    tabDropdown: {
-      color: cobaltColors.drk800,
-      background: cobaltColors.white,
-      padding: '8px 16px',
-      hoverColor: cobaltColors.primary,
-      hoverBackground: cobaltColors.lt400,
-    },
   },
   sidenav: {
     fontSize: '14px',
@@ -766,7 +759,6 @@ export const cobaltTheme = {
     label: {
       color: cobaltColors.drk800,
     },
-
     secondaryNavbar: {
       width: '0px',
       openWidth: '170px',

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { withTheme, ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import Title from '../Typography/Title';
 
 export type Props = {
   /**
@@ -56,6 +57,8 @@ export type Props = {
 };
 
 const SPanelHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
   background: ${(props: Props) =>
     props.theme.styles[props.panelStyle!].lightFlood};
   padding: ${(props: Props) => props.theme.panel.header.padding};
@@ -68,6 +71,10 @@ const SPanelHeader = styled.div`
     cursor: ${(props: Props) =>
       props.isCollapsed !== undefined ? 'pointer' : 'auto'};
   }
+`;
+
+const SPanelTitle = styled(Title)`
+  margin: 0;
 `;
 
 /* tslint:disable:max-line-length */
@@ -115,17 +122,13 @@ const ChevronImage: Function = (
   iconPosition?: 'right' | 'left',
   collapsedIcon?: any,
   expandedIcon?: any,
-) => {
-  if (undefined === isCollapsed) {
-    return null;
-  }
-  return isCollapsed
+) =>
+  isCollapsed
     ? collapsedIcon || <SCollapseIcon iconPosition={iconPosition} />
     : expandedIcon || <SExpandIcon iconPosition={iconPosition} />;
-};
 
 const initialState = {
-  isCollapsed: false,
+  isCollapsed: undefined,
 };
 type State = Readonly<typeof initialState>;
 
@@ -148,24 +151,29 @@ export class PanelHeader extends React.Component<Props> {
       collapsedIcon,
       expandedIcon,
       iconPosition,
+      isCollapsed,
       ...props
     } = this.props;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SPanelHeader onClick={(e: any) => toggleItem!(e, theme)} {...props}>
-          {name && (
-            <b>
-              {name}
-              {title ? ':' : ''}
-            </b>
-          )}{' '}
-          {title}{' '}
-          {ChevronImage(
-            this.props.isCollapsed,
-            iconPosition,
-            collapsedIcon,
-            expandedIcon,
-          )}
+          <SPanelTitle size={20}>
+            {name && (
+              <b>
+                {name}
+                {title ? ':' : ''}
+              </b>
+            )}{' '}
+            {title}{' '}
+          </SPanelTitle>
+          {typeof isCollapsed !== 'undefined'
+            ? ChevronImage(
+                isCollapsed,
+                iconPosition,
+                collapsedIcon,
+                expandedIcon,
+              )
+            : ''}
         </SPanelHeader>
       </ThemeProvider>
     );

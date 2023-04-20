@@ -508,7 +508,7 @@ export const buildTheme = colors => ({
       padding: '14px 16px',
     },
     body: {
-      padding: '30px 30px',
+      padding: '24px 24px',
     },
     borderWidth: 'thin',
     headerBorderColor: colors.drk400,
@@ -702,13 +702,6 @@ export const buildTheme = colors => ({
       bottomBorderWidth: '4px',
       bottomBorderColor: colors.primary,
       iconColor: colors.white,
-    },
-    tabDropdown: {
-      color: colors.drk800,
-      background: colors.white,
-      padding: '8px 16px',
-      hoverColor: colors.primary,
-      hoverBackground: colors.lt400,
     },
   },
   sidenav: {
