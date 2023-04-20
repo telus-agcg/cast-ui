@@ -7,4 +7,4 @@ export default {
   component: Typography,
 };
 
-export const _Typography = () => <Typography />;
+export const _Typography = args => <Typography {...args} />;

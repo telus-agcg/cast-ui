@@ -1,59 +1,96 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs';
+import Icon from 'react-icons-kit';
 import { userSecret } from 'react-icons-kit/fa/userSecret';
 import { Alert } from './Alert';
 import { Badge } from './Badge';
 import { Button } from './Button';
 import { Card } from './Card';
 import { Checkbox } from './Checkbox';
-import { Collapse } from './Collapse';
 import { IconButton } from './IconButton';
 import { Input } from './Input';
 import CheatSheet from '../CHEATSHEET.md';
-import { ListGroup, ListGroupItem } from './ListGroup';
 import { Modal } from './Modal';
-import { Navbar } from './Navbar';
 import { Pagination } from './Pagination';
-import { Panel } from './Panel';
-import { Popover } from './Popover';
-import { RadioButton } from './RadioButton';
-import { RadioButtonGroup } from './RadioButtonGroup';
-import { Select } from './Select';
-import { CustomSelect } from './Select';
-import { Slider } from './Slider';
 import { Spinner } from './Spinner';
-import { Table } from './Table';
 import { Tabnav } from './Tabnav';
-import { Tabs } from './Tabs';
 import { Textarea } from './Textarea';
-import { Toggle } from './Toggle';
-import { Tooltip } from './Tooltip';
-import { Typography } from './Typography';
+import { Link } from './Typography/Link';
+import { RadioButton } from './RadioButton';
 
-import Icon from 'react-icons-kit';
+import {
+  _Regular as RegularModal,
+  _Scrollable as ScrollableModal,
+} from './Modal/Modal.stories.tsx';
+import { _Navbar as NavBar } from './Navbar/Navbar.stories.tsx';
+import {
+  _Collapsible as CPanel,
+  _WithHeader as HPanel,
+  _Regular as Panel,
+} from './Panel/Panel.stories.tsx';
+import { _Popover as Popover } from './Popover/Popover.stories.tsx';
+import SideNavData from './Sidenav/SideNavData';
+import { Sidenav } from './Sidenav/Sidenav.stories.tsx';
+import { _Slider as Slider } from './Slider/Slider.stories.tsx';
+import {
+  MultiSelectWithCheckbox,
+  MultiSelect,
+  Regular,
+} from './Select/Select.stories.tsx';
+import {
+  _Table as Table,
+  _EmptyTable as ETable,
+  _TableWithGroupedRows as GTable,
+  _EmptyTableWithoutFooter as EWTable,
+} from './Table/Table.stories.tsx';
+import { _Tabs as Tabs } from './Tabs/Tabs.stories.tsx';
+import { _Tooltip as Tooltip } from './Tooltip/Tooltip.stories.tsx';
+import { _Toast as Toast } from './Toast/Toast.stories.tsx';
+import { _CopyToClipboard as CopyToClipboard } from './CopyToClipboard/CopyToClipboard.stories.tsx';
+import { _FileUpload as FileUpload } from './FileUpload/FileUpload.stories.tsx';
+import { _DatePicker as DatePicker } from './DatePicker/DatePicker.stories.tsx';
+import { _DatePickerRange as DatePickerRange } from './DatePickerRange/DatePickerRange.stories.tsx';
+import { _InputGroup as InputGroup } from './InputGroup/InputGroup.stories.tsx';
+import { _RadioButton as RButton } from './RadioButton/RadioButton.stories.tsx';
+import { _RadioButtonGroup as RButtonGroup } from './RadioButtonGroup/RadioButtonGroup.stories.tsx';
+import { _ListGroup as ListGroup } from './ListGroup/ListGroup.stories.tsx';
+import { _CollapseWithExpandableData as Collapse } from './Collapse/Collapse.stories.tsx';
+import { _Toggle as Toggle } from './Toggle/Toggle.stories.tsx';
+import { Colors } from './Colors/Colors.stories.tsx';
+import { _Typography as Typo } from './Typography/Typography.stories.tsx';
 
-import * as ListGroupStories from './ListGroup/ListGroup.stories.tsx';
-
+import { Themes } from './themes';
 import './styles.css';
 
 <Meta title="CheatSheet" />
 
-<CheatSheet />
+<h2>Components Cheatsheet</h2>
 
-export const BadgeTemplate = args => <Badge {...args} />;
-
-<h3 class="section"> Data Display</h3>
+<h3 class="section">1. Data Display</h3>
 
 <div class="layout">
   <h4>
-    <a href="/story/components-data-display-badge--badge">Badge</a>
+    <a href="/docs/components-data-display-badge--badge">Badge</a>
   </h4>
-  <Badge badgeStyle="secondary">123</Badge>
+  <p>
+    Badges are small visual indicators that can be added to elements in a web
+    application to provide additional information or context to the user badges
+    can be a useful way to provide quick, at-a-glance information to the user,
+    without taking up too much space or cluttering the user interface. When used
+    appropriately, badges can enhance the user experience by providing
+    additional context and information to the user.
+  </p>
+  <Badge badgeStyle="primary">123</Badge>
 </div>
 
 <div class="layout">
   <h4>
-    <a href="/story/components-data-display-card--card">Card</a>
+    <a href="/docs/components-data-display-card--card">Card</a>
   </h4>
+  <p>
+    Card displays content and information in a structured way. It is often used
+    to present information in a visually appealing and easy-to-understand
+    manner.
+  </p>
   <Card>
     <Title>Card Header</Title>
     <div>
@@ -71,24 +108,137 @@ export const BadgeTemplate = args => <Badge {...args} />;
 </div>
 
 <div class="layout">
-
-<ListGroup >
-      <ListGroupItem data-testid="list-item-1">List Item</ListGroupItem>
-      <ListGroupItem data-testid="list-item-2">List Item</ListGroupItem>
-      <ListGroupItem data-testid="list-item-3">List Item</ListGroupItem>
-    </ListGroup>
-    </div>
-
-<div class="Layout">
-  <h4>Modal</h4>
+  <h4>
+    <a href="/docs/components-data-display-list-group--list-group">
+      List Group
+    </a>
+  </h4>
+  <p>
+    List group allows users to organize and display a list of items in a way
+    that can be easily expanded and collapsed as needed.{' '}
+  </p>
+  <ListGroup
+    collapsible={true}
+    listGroupTheme="light"
+    border={true}
+    collapsible2={true}
+    listGroupTheme2="light"
+    isCollapsed={false}
+  />
 </div>
 
-<h3 class="section"> Feedback</h3>
+<div class="layout">
+  <h4>
+    <a href="/docs/components-data-display-modal--regular">Modal</a>
+  </h4>
+  <p>
+    Modals are used to display information, prompt users for input, or confirm
+    actions.
+  </p>
+  <RegularModal modalTitle={'Modal Title'} children={<p>Lorem Ipsum</p>} />
+
+  <h4>
+    <a href="/docs/components-data-display-modal--scrollable">
+      Scrollable Modal
+    </a>
+  </h4>
+  <ScrollableModal
+    modalTitle={'Scrollable Modal'}
+    children={Array(20)
+      .fill('')
+      .map((_, index) => (
+        <div key={index}>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Exercitationem, fugit velit. Aliquam autem blanditiis, consequatur
+          dolore eius, harum ipsum maxime nam nihil officiis optio, pariatur
+          repellat soluta suscipit tempora ut?
+        </div>
+      ))}
+  />
+</div>
+
+<div class="layout">
+<h4><a href="/docs/components-data-display-panel--regular">Panel</a></h4>
+<p>Panels can be used to display contextual information related to the current page or task. This allows users to quickly access relevant information without leaving the current page. </p>
+<Panel name='Blood Group' title='A- type' panelStyle= 'primary' withHeader={false}
+  withCollapse={false} noPadding={false}></Panel>
+
+<h4><a href="/docs/components-data-display-panel--with-header">Panel With Header</a></h4>
+
+<HPanel
+  name="Blood Group"
+  title="B- type"
+  panelStyle="primary"
+  withHeader={true}
+  withCollapse={false}
+  noPadding={false}
+/>
+
+<h4><a href="/docs/components-data-display-panel--collapsible">Collapsible</a></h4>
+
+<CPanel name='Blood Group' title='O+ type' panelStyle= 'primary' withHeader={true}
+  withCollapse={true}  isOpen={true}  noPadding={false} iconPosition= 'right'></CPanel>
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-data-display-popover--popover">Popover</a>
+  </h4>
+  <p>
+    Popover is to provide more information about an element or to display
+    additional options.{' '}
+  </p>
+  <Popover />
+</div>
+
+<div class="layout">
+<h4><a href="/docs/components-data-display-table--table">Table</a></h4>
+<p>Tables can be used to display large amounts of data in an organized format. This is useful for applications that require users to analyze data or make decisions based on data. </p>
+<Table></Table>
+<h4><a href="/docs/components-data-display-table--table-with-grouped-rows">Table With Grouped Rows</a></h4>
+<GTable sortable={true}></GTable>
+
+<h4><a href="/docs/components-data-display-table--empty-table">Empty Table</a></h4>
+
+<EWTable sortable={true}></EWTable>
+<h4><a href="/docs/components-data-display-table--empty-table-without-footer">Empty Table With Footer</a></h4>
+<ETable ></ETable>
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-data-display-tooltip--tooltip">Tooltip</a>
+  </h4>
+  <p>
+    Tooltips used to provide additional information or context about an element
+    when the user hovers over it with their mouse or taps on it on a mobile
+    device.
+  </p>
+  <Tooltip />
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-data-display-collapse--collapse">Collapse</a>
+  </h4>
+  <p>
+    The Collapse element can be used to hide content on a page that is not
+    immediately relevant or necessary, but can be accessed if needed.{' '}
+  </p>
+  <Collapse theme={Themes.defaultTheme} isOpen={true} />
+</div>
+
+<h3 class="section">2. Feedback</h3>
 
 <div class="layout">
   <h4>
     <a href="/docs/components-feedback-alert--alert">Alert</a>
   </h4>
+  <p>
+    Alert is to notify users of certain events or actions on a web page. They
+    are typically used to provide feedback to users, confirm actions, or display
+    error messages.{' '}
+  </p>
   <Alert>Reminder: Sales meeting at Rm 223 in 10 minutes</Alert>
 </div>
 
@@ -96,15 +246,80 @@ export const BadgeTemplate = args => <Badge {...args} />;
   <h4>
     <a href="/docs/components-feedback-spinner--spinner">Spinner</a>
   </h4>
+  <p>
+    Spinner is to indicate to the user that a process is happening in the
+    background, and to prevent the user from clicking on other parts of the
+    application or website while the process is ongoing.{' '}
+  </p>
   <Spinner />
 </div>
 
-<h3 class="section">Interactions</h3>
+<div class="layout">
+  <h4>
+    <a href="/docs/components-feedback-toast--toast">Toast</a>
+  </h4>
+  <p>
+    Toast message is used to provide quick, non-intrusive feedback to users.
+    They typically appear at the bottom or top of the screen and disappear after
+    a short period of time.{' '}
+  </p>
+  <Toast
+    theme={Themes.defaultTheme}
+    position="top right"
+    active={true}
+    lightmode={true}
+    toastStyle="primary"
+  />
+</div>
+
+<h3 class="section">3. Interactions</h3>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-interactions--copy-to-clipboard">
+      CopyToClipboard
+    </a>
+  </h4>
+  <p>
+    Copy to Clipboard feature allows users to copy text or other content to
+    their clipboard with a single click.{' '}
+  </p>
+  <CopyToClipboard
+    copyContent="Copy this content"
+    copyContainerClass="copy-container"
+    background="#F5F7F8"
+    includeCopyButton={true}
+    copyButtonContent="copy"
+    copyButtonClass="copy-button"
+    copyContent2="CBA6697-67895"
+  />
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-interactions--file-upload">FileUpload</a>
+  </h4>
+  <p>
+    File upload is used to deal with user-generated content or require users to
+    submit files as part of the workflow.{' '}
+  </p>
+  <FileUpload
+    info="File size not more than 15MB"
+    canDelete={true}
+    uploaded={false}
+    percentage={70}
+    fileDetails="Added by Benedict Cumberbatch on 3/15/2019 08:30 AM"
+  />
+</div>
 
 <div class="layout">
   <h4>
     <a href="/docs/components-interactions--icon-button">Icon Button</a>
   </h4>
+  <p>
+    Icon Button can be used in many different ways to indicate the ability to
+    add new content or items to a Collection.{' '}
+  </p>
   <div>
     <IconButton
       btnStyle="primary"
@@ -131,15 +346,41 @@ export const BadgeTemplate = args => <Badge {...args} />;
   <h4>
     <a href="/docs/components-interactions-button--button">Button</a>
   </h4>
+  <p>
+    Button allow users to interact with the app and trigger actions. Buttons can
+    be used in a variety of ways in web apps, including Navigation, Form
+    submission, Call to Action, Confirmation or as Menu.
+  </p>
   <Button data-testid="submit" id="testId" onClick={() => {}}>
     Submit Button
   </Button>
 </div>
 
 <div class="layout">
+  <h4><a href="/docs/components-interactions-date-picker--date-picker">DatePicker</a></h4>
+  <p>DatePicker allows users to select a date from a graphical calendar. It is commonly used in web apps to allow users to select a date for various purposes, such as scheduling appointments, setting deadlines, or filtering data.</p>
+  <DatePicker showDefaultInputIcon={true}
+  inputIconPosition= 'after'
+  datePickerStyle= 'primary'
+  datePickerSize='md'
+  invalidText= 'A valid value is required'
+  numberOfMonths={1}></DatePicker>
+
+<h4><a href="/docs/components-interactions-date-picker--date-picker-range">Date Picker Range</a></h4>
+
+  <DatePickerRange showDefaultInputIcon={true}
+  inputIconPosition= 'after'
+  datePickerStyle= 'primary'
+  datePickerSize='md'
+  invalidText= 'A valid value is required'
+  numberOfMonths={1}></DatePickerRange>
+</div>
+
+<div class="layout">
 <h4>
 <a href="/docs/components-interactions-checkbox--regular">Checkbox</a>
 </h4>
+<p>Checkbox allow users to select one or more options from a list. Checkboxes are typically used in situations where there are multiple options to choose from, and the user can select one or more options.</p>
 <div>
   <Checkbox
     checked
@@ -258,6 +499,7 @@ export const BadgeTemplate = args => <Badge {...args} />;
 <h4>
 <a href="/docs/components-interactions-input--regular">Input</a>
 </h4>
+<p>Input allows users to enter data into a web app. It can be used in various ways to allow users to provide text, numbers, and other types of input. </p>
 <Input
   autoComplete="on"
   data-testid="basic-input"
@@ -337,68 +579,112 @@ export const BadgeTemplate = args => <Badge {...args} />;
   placeholder="Please enter some text"
 />
 
-<h4>
-  <a href="/docs/components-interactions-input--input-group">Input Group</a>
-</h4>
+<h4><a href="/docs/components-interactions-input--input-group">Input Group</a></h4>
 
+<InputGroup label='Input Group label'
+  invalidText='A valid value is required'></InputGroup>
 </div>
 
 <div class="layout">
 <h4>
 <a href="/docs/components-interactions-radio-button--radio-button">Radio Button</a>
 </h4>
-<div>
-  <RadioButton
-    checked
-    data-testid="input1-radio-button"
-    displayStyle="inline"
-    id="myInput1"
-    name="radio-buttons"
-    value={1}
-  >
-    One
-  </RadioButton>
-  <RadioButton
-    checked
-    data-testid="input2-radio-button"
-    displayStyle="inline"
-    id="myInput2"
-    name="radio-buttons"
-    value={2}
-  >
-    Two
-  </RadioButton>
-</div>
+<p>Radio Button allow users to select one option from a list of options. They are typically used in situations where there are a limited number of options to choose from, and only one option can be selected at a time.</p>
+<RButton  rbSize='md' disabled={false}
+  displayStyle='inline' theme={Themes.defaultTheme}></RButton>
 
 <h4>
 <a href="/docs/components-interactions-radio-button--radio-button-group">Radio Button Group</a>
 </h4>
-<RadioButtonGroup
-  defaultChecked="1"
-  name="myRadioButtonGroup"
-  onChange={() => {}}
->
-  <RadioButton
-    data-testid="input1-radio-button"
-    id="myInput1"
-    value="1"
-  >
-    One
-  </RadioButton>
-  <RadioButton
-    data-testid="input2-radio-button"
-    id="myInput2"
-    value="2"
-  >
-    Two
-  </RadioButton>
-</RadioButtonGroup>
+<RButtonGroup name='myRadioButtonGroup' defaultChecked='1'>
+</RButtonGroup>
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-interactions-select--regular">Select</a>
+  </h4>
+  <p>
+    Select allow users to select one or more options from a list of options. It
+    is typically used in situations where there are more than a few options to
+    choose from, and the options are presented in a dropdown list.
+  </p>
+  <Regular
+    creatable={true}
+    dataTestId="single-select"
+    isMulti={false}
+    isDisabled={false}
+    isClearable={false}
+    isSearchable={false}
+    highlightFilled={false}
+    selectSize="md"
+    invalid={false}
+    invalidText="A valid value is required"
+    options={[
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' },
+    ]}
+    optionType="default"
+  />
+  <h4>
+    <a href="/docs/components-interactions-select--multi-select">
+      Multi Select
+    </a>
+  </h4>
+  <MultiSelect
+    creatable={true}
+    dataTestId="single-select"
+    isMulti={true}
+    isDisabled={false}
+    isClearable={false}
+    isSearchable={false}
+    highlightFilled={false}
+    selectSize="md"
+    invalid={false}
+    invalidText="A valid value is required"
+    options={[
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' },
+    ]}
+    optionType="default"
+  />
+  <h4>
+    <a href="/docs/components-interactions-select--multi-select-with-checkbox">
+      Multi Select With Checkbox
+    </a>
+  </h4>
+  <MultiSelectWithCheckbox
+    creatable={true}
+    isMulti={true}
+    selectSize="md"
+    invalidText="A valid value is required"
+    optionType="checkbox"
+  />
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-interactions-slider--slider">Slider</a>
+  </h4>
+  <p>
+    Slider allow users to select a value within a range. It typically consists
+    of a bar or track and a slider thumb that can be moved along the track to
+    select a specific value.
+  </p>
+  <Slider minValue={50} maxValue={150} step={5} theme={Themes.defaultTheme} />
 </div>
 
 <div class="layout">
   <h4>
     <a href="/docs/components-interactions-textarea--textarea">Textarea</a>
   </h4>
+  <p>
+    Textarea allow users to input and edit multiple lines of text. It is
+    typically used in situations where users need to provide a longer text
+    input, such as for comments, feedback, or descriptions.
+  </p>
   <Textarea
     cols={60}
     data-testid="textarea"
@@ -415,112 +701,68 @@ export const BadgeTemplate = args => <Badge {...args} />;
   <h4>
     <a href="/docs/components-interactions-textarea--textarea">Toggle</a>
   </h4>
+  <p>
+    Toggle buttons allow users to switch between two states or options. They are
+    commonly used in dark mode, preference settings, filters, navigation, and
+    on/off controls in web apps, and can greatly improve the user experience by
+    making it easy for users to toggle between different states or options with
+    just a single click.
+  </p>
   <div>
-    <Toggle
-      checked
-      data-testid="toggle"
-      id="toggleId"
-      onChange={() => {}}
-      value="1"
-    >
-      One
-    </Toggle>
+    <Toggle toggleSize="md" checked={true} />
   </div>
 </div>
 
-<h3 class="section">Navigation</h3>
+<h3 class="section">4. Navigation</h3>
 
 <div class="layout">
   <h4>
     <a href="/docs/components-interactions-textarea--textarea">Link</a>
   </h4>
+  <p>Link is used to navigate between different pages or resources within the app or on the web.</p>
   <Link
-    data-testid="link-standalone"
-    dataTestId="link-standalone"
-    href="https://www.tkxs.com"
-    onClick={() => {}}
-    onMouseEnter={function noRefCheck() {}}
-    target="_blank"
-  >
+  href="https://www.tkxs.com" target='_blank'
+    disabled={false}
+  dataTestId='link-with-onclick'>
     Read More
   </Link>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur{' '}
+    <Link
+      data-testid="link-within-text"
+      href="https://www.tkxs.com"
+      target="_blank"
+    >
+      adipiscing
+    </Link>{' '}
+    elit.
+  </p>
 </div>
 
 <div class="layout">
   <h4>
     <a href="/docs/components-navigation-navbar--navbar">Navbar</a>
   </h4>
-  <Navbar>
-    <Nav left>
-      <img
-        alt="TKXS"
-        src="https://www.tkxs.com/hubfs/TKXS-brand/TKXS%20Official%20Logo%20(black).svg"
-        style={{
-          width: '100px',
-        }}
-      />
-      <h2
-        style={{
-          padding: '0 16px',
-        }}
-      >
-        Cast UI
-      </h2>
-    </Nav>
-    <Nav center>
-      <h3
-        style={{
-          padding: '0 12px',
-        }}
-      >
-        Center Item
-      </h3>
-      <h3
-        style={{
-          padding: '0 12px',
-        }}
-      >
-        Center Item
-      </h3>
-    </Nav>
-    <Nav right>
-      <h3
-        style={{
-          padding: '0 0 0 16px',
-        }}
-      >
-        Right Item
-      </h3>
-      <h3
-        style={{
-          cursor: 'pointer',
-          padding: '0 0 0 16px',
-        }}
-      >
-        <Icon
-          icon={{
-            children: [
-              {
-                attribs: {
-                  d:
-                    'M576 1536l96-448-96-128-128-64zM832 1536l128-640-128 64-96 128zM992 526q-2-4-4-6-10-8-96-8-70 0-167 19-7 2-21 2t-21-2q-97-19-167-19-86 0-96 8-2 2-4 6 2 18 4 27 2 3 7.5 6.5t7.5 10.5q2 4 7.5 20.5t7 20.5 7.5 17 8.5 17 9 14 12 13.5 14 9.5 17.5 8 20.5 4 24.5 2q36 0 59-12.5t32.5-30 14.5-34.5 11.5-29.5 17.5-12.5h12q11 0 17.5 12.5t11.5 29.5 14.5 34.5 32.5 30 59 12.5q13 0 24.5-2t20.5-4 17.5-8 14-9.5 12-13.5 9-14 8.5-17 7.5-17 7-20.5 7.5-20.5q2-7 7.5-10.5t7.5-6.5q2-9 4-27zM1408 1405q0 121-73 190t-194 69h-874q-121 0-194-69t-73-190q0-61 4.5-118t19-125.5 37.5-123.5 63.5-103.5 93.5-74.5l-90-220h214q-22-64-22-128 0-12 2-32-194-40-194-96 0-57 210-99 17-62 51.5-134t70.5-114q32-37 76-37 30 0 84 31t84 31 84-31 84-31q44 0 76 37 36 42 70.5 114t51.5 134q210 42 210 99 0 56-194 96 7 81-20 160h214l-82 225q63 33 107.5 96.5t65.5 143.5 29 151.5 8 148.5z',
-                },
-                name: 'path',
-              },
-            ],
-            viewBox: '0 0 1536 1792',
-          }}
-          size={32}
-        />
-      </h3>
-    </Nav>
-  </Navbar>
+  <p>
+    Navbar provides easy access to different parts of the app. It typically
+    consists of a horizontal or vertical bar that contains links or buttons to
+    various sections of the app,
+  </p>
+  <NavBar />
 </div>
 
 <div class="layout">
   <h4>
     <a href="/docs/components-navigation-pagination--pagination">Pagination</a>
   </h4>
+  <p>
+    Pagination is used to divide a large set of data or content into smaller,
+    more manageable chunks. Instead of loading all the data or content at once,
+    pagination enables the user to view a smaller subset of the data or content
+    and navigate to other subsets using page numbers or other navigation
+    controls.
+  </p>
   <Pagination
     onPageChange={() => {}}
     onPageSizeChange={function noRefCheck() {}}
@@ -532,9 +774,25 @@ export const BadgeTemplate = args => <Badge {...args} />;
 </div>
 
 <div class="layout">
+  <h4>
+    <a href="/docs/components-navigation-sidenav--sidenav">Sidenav</a>
+  </h4>
+  <p>
+    Sidenav is to provide easy access to different parts of the app. It
+    typically consists of a vertical bar that is positioned on the left or right
+    side of the screen and contains links or buttons to various sections of the
+    app.
+  </p>
+  <Sidenav allowHover={false} data={SideNavData} isOpen={true}>
+    {' '}
+  </Sidenav>
+</div>
+
+<div class="layout">
 <h4>
 <a href="/docs/components-navigation-tabnav--tabnav">Tabnav</a>
 </h4>
+<p>Tabnav is to provide a way for users to switch between different views or sections of the app. It typically consists of a horizontal bar that contains multiple tabs, each representing a different view or section of the app.</p>
 <Tabnav
   onTabClick={() => {}}
   popoverProps={{
@@ -655,4 +913,60 @@ export const BadgeTemplate = args => <Badge {...args} />;
     </Badge>
   </div>
 </Tabnav>
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-navigation-tabs--tabs">Tabs</a>
+  </h4>
+  <p>
+    Tabs is used to organize and present related content or features. Tabs
+    typically consist of a horizontal bar of clickable tabs, each of which
+    displays a different section of content or set of features when clicked.
+  </p>
+  <Tabs
+    tabTitle1="Tab Page 01"
+    tabTitle2="Tab Page 02"
+    tabTitle3="Tab Page 03"
+    disabled={true}
+  />
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-typography-colors--colors">Colors</a>
+  </h4>
+  <p>Colors used in our Apps.</p>
+
+  <Colors theme={Themes.defaultTheme} />
+</div>
+
+<div class="layout">
+  <h4>
+    <a href="/docs/components-typography-typography--typography">Typography</a>
+  </h4>
+  <p>The Typography helps present content clearly and efficiently.</p>
+  <p>
+    <b>Font Family: </b>It's important to choose a font family that's easily
+    readable and compatible with different devices and browsers.
+  </p>
+  <p>
+    <b>Font Size: </b>The font size determines the size of the text displayed on
+    the screen.The optimal font size depends on the content and the device's
+    screen size. A general rule of thumb is to use a font size of 16px or higher
+    for body text and adjust the size for headings accordingly.
+  </p>
+  <p>
+    <b>Line Height:</b>Line height refers to the vertical space between each
+    line of text. An optimal line height improves the legibility of the text and
+    makes it easier to read. A general rule of thumb is to use a line height of
+    1.5 or 1.6 for body text.
+  </p>
+  <p>
+    <b>Font Weight:</b>Font weight refers to the thickness of the text. Bold
+    text is usually used for headings or to emphasize certain words or
+    phrases.it's important to use font weights consistently throughout the
+    website.
+  </p>
+  <Typo theme={Themes.defaultTheme} />
 </div>

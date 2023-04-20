@@ -1,5 +1,6 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
+import { Themes } from '../themes';
 import Tooltip from '../Tooltip';
 
 const Color = withTheme<any>(({ theme: { colors } }: any) =>
@@ -42,7 +43,7 @@ export default {
   },
 };
 
-export const Colors = () => (
+export const Colors = args => (
   <div
     style={{
       display: 'flex',
@@ -51,6 +52,10 @@ export const Colors = () => (
       justifyContent: 'space-between',
     }}
   >
-    <Color />
+    <Color {...args} />
   </div>
 );
+
+Colors.defaultProps = {
+  theme: Themes.defaultTheme,
+};

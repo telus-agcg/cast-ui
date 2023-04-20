@@ -1,3 +1,12 @@
+h2.css-idch3x {
+  font-weight: var(--wsr-font-weight-bold, 400);
+  font-size: 36px;
+  line-height: 20px;
+  color: #162d3d;
+  border-bottom: none;
+  margin-bottom: 20px;
+}
+
 body,
 .sbdocs.sbdocs-wrapper {
   background-color: #f0f4f7;
@@ -5,10 +14,10 @@ body,
 
 h3.section {
   margin: 5px;
-  padding: 0px;
+  padding-bottom: 12px;
   font-size: 19px;
-  font-weight: 400;
-  color: #745fb5;
+  font-weight: bold;
+  color: #0d70f4;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -30,6 +39,6 @@ h3.section:after {
   margin-bottom: 30px;
 }
 
-a {
-  color: #140084;
+.layout > p {
+  font-style: italic;
 }
