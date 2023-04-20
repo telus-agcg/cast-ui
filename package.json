@@ -127,34 +127,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      [
-        "transform-typescript-metadata"
-      ],
-      [
-        "@babel/plugin-proposal-decorators",
-        {
-          "legacy": true
-        }
-      ],
-      [
-        "@babel/plugin-proposal-class-properties",
-        {
-          "loose": true
-        }
-      ],
-      [
-        "@babel/plugin-transform-runtime",
-        {
-          "regenerator": true
-        }
-      ]
-    ]
   }
 }

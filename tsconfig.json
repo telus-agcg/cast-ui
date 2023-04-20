@@ -28,7 +28,7 @@
   "linterOptions": {
     "exclude": ["*.json", "**/*.json"]
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "src/CheatSheet.stories.mdx"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
   "exclude": [
     "node_modules",
     "dist",
