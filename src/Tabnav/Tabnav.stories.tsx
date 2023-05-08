@@ -104,7 +104,7 @@ export const _TabnavWithHeader = ({ onTabClick }) => (
     tabsBarProps={{ className: 'tabs-bar' }}
   >
     <div style={{ display: 'flex', alignItems: 'baseline' }}>
-      <Title size="20">Agrineed, Inc. (62875)</Title>
+      <Title size={20}>Agrineed, Inc. (62875)</Title>
       <Badge>Retailer</Badge>
     </div>
   </Tabnav>
