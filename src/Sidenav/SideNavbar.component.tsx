@@ -221,13 +221,13 @@ const SideNavbar = (props) => {
     <ThemeProvider
       theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
     >
-      <SideNavbarWrapper className={props.className}>
+      <SideNavbarWrapper className={props.className} role="navigation">
         <SSideNavbar
           theme={props.theme}
           isOpen={sidebarOpen}
           sidenavHeight={sidenavHeight}
         >
-          <SSideNav theme={props.theme} elementType={'list'}>
+          <SSideNav theme={props.theme} elementType={'list'} role="menu">
             {data.map((item, index) => {
               return (
                 <SubMenu
@@ -253,7 +253,7 @@ const SideNavbar = (props) => {
               );
             })}
           </SSideNav>
-          <SSideNav>
+          <SSideNav aria-hidden={true}>
             <NavIcon to="#" isOpen={sidebarOpen}>
               <Icon
                 icon={sidebarOpen ? IKAL : IKAR}
@@ -267,7 +267,6 @@ const SideNavbar = (props) => {
         {secondarySidebarOpen ? (
           <SSecondarySideNavbar
             className={`${nameSpace}-secondary-sidenavbar`}
-            role="secondary-side-nav-bar"
             isSecondaryNavbarOpen={secondarySidebarOpen}
             theme={props.theme}
           >
@@ -285,7 +284,7 @@ const SideNavbar = (props) => {
               </CloseIcon>
             </CloseIconWrapper>
 
-            <SSecondarySideNavbarWrapper>
+            <SSecondarySideNavbarWrapper role="menu">
               <SSecondarySideNavbarLabel>
                 {currentActiveSubnav?.label}
               </SSecondarySideNavbarLabel>

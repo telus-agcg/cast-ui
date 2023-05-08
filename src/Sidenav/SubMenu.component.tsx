@@ -169,6 +169,7 @@ const SubMenu = ({
         onClick={handleItemClick}
         onMouseEnter={handleHoverDelay}
         data-testid={_.kebabCase(item.label)}
+        aria-label={item.label}
         {...newProps}
       >
         <SideNavItemIcon isOpen={isOpen} item={item}>
@@ -183,28 +184,33 @@ const SubMenu = ({
         </SideNavItemIcon>
         <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
       </SidebarLink>
-      <SSubNavWrapper
-        show={isOpen && subnav}
-        className={isOpen && subnav ? 'fade-enter' : ''}
-      >
-        {item.subNav?.map((subMenuItem, index) => {
-          return (
-            <SidebarLink
-              key={index}
-              level={1}
-              onClick={(e) => handleSubMenuClick(e, subMenuItem, 1)}
-              isActiveSubMenuItem={
-                subMenuItem.label === currentSelectedSubnavItem
-              }
-              data-testid={_.kebabCase(subMenuItem.label)}
-            >
-              <SidebarLabel level={1} {...newProps}>
-                {subMenuItem.label}
-              </SidebarLabel>
-            </SidebarLink>
-          );
-        })}
-      </SSubNavWrapper>
+      {isOpen && subnav ? (
+        <SSubNavWrapper
+          show={isOpen && subnav}
+          className={isOpen && subnav ? 'fade-enter' : ''}
+        >
+          {item.subNav?.map((subMenuItem, index) => {
+            return (
+              <SidebarLink
+                key={index}
+                level={1}
+                onClick={(e) => handleSubMenuClick(e, subMenuItem, 1)}
+                isActiveSubMenuItem={
+                  subMenuItem.label === currentSelectedSubnavItem
+                }
+                data-testid={_.kebabCase(subMenuItem.label)}
+                aria-label={subMenuItem.label}
+              >
+                <SidebarLabel level={1} {...newProps}>
+                  {subMenuItem.label}
+                </SidebarLabel>
+              </SidebarLink>
+            );
+          })}
+        </SSubNavWrapper>
+      ) : (
+        ''
+      )}
     </SSubMenuItem>
   );
 };

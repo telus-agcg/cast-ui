@@ -4,7 +4,7 @@ import cn from 'classnames';
 import styled, { ThemeProvider } from 'styled-components';
 
 import { Themes } from '../../themes';
-import { getDataProps } from '../../utils/common';
+import { getDataProps, getAriaProps } from '../../utils/common';
 
 export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
   /**
@@ -45,6 +45,12 @@ export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * defines role of this link
+   *
+   * @default 'link'
+   **/
+  role?: string;
 };
 
 const SLink = styled.a`
@@ -79,30 +85,36 @@ export const Link: React.FunctionComponent<Props> = ({
   className,
   children,
   theme,
+  role,
   ...linkProps
 }) => {
   const { id } = linkProps;
   const dataProps: any = getDataProps(linkProps);
+  const ariaProps: any = getAriaProps(linkProps);
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       {linkProps.disabled ? (
         <SLink
           {...dataProps}
+          {...ariaProps}
           id={id}
           className={cn([className, 'disabled'])}
           onClick={(e) => e.preventDefault()}
+          role={role}
         >
           {children}
         </SLink>
       ) : (
         <SLink
           {...dataProps}
+          {...ariaProps}
           id={id}
           className={className}
           onClick={linkProps.onClick}
           onMouseEnter={linkProps.onMouseEnter}
           href={linkProps.href}
           target={linkProps.target}
+          role={role}
         >
           {children}
         </SLink>
