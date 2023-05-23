@@ -80,20 +80,3 @@ _Popover.args = {
   size: 'regular',
   placement: 'bottom',
 };
-
-export const _PopoverWithoutContent = args => (
-  <Popover {...args}>
-    <span>
-      <Button btnSize="md" btnStyle="primary" onClick={() => null}>
-        This button has a controlled popover
-      </Button>
-    </span>
-  </Popover>
-);
-
-_PopoverWithoutContent.args = {
-  isVisible: true,
-  arrow: true,
-  size: 'regular',
-  placement: 'bottom',
-};
