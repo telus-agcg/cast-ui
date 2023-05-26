@@ -406,7 +406,11 @@ export const cobaltTheme = {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: cobaltColors.primary,
+<<<<<<< HEAD
     disabledCheck: cobaltColors.lt800,
+=======
+    disabledCheck: cobaltColors.drk400,
+>>>>>>> d2fbedb (fix(colors): update radio & checkbox disabled text)
     disabledText: cobaltColors.drk400,
     unselectedColor: cobaltColors.white,
     selectedColor: cobaltColors.primary,
