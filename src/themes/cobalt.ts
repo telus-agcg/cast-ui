@@ -406,7 +406,7 @@ export const cobaltTheme = {
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: cobaltColors.primary,
-    disabledCheck: cobaltColors.lt800,
+    disabledCheck: cobaltColors.drk400,
     disabledText: cobaltColors.drk400,
     unselectedColor: cobaltColors.white,
     selectedColor: cobaltColors.primary,

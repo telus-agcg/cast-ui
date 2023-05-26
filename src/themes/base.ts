@@ -372,7 +372,7 @@ export const buildTheme = colors => ({
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: colors.primary,
-    disabledCheck: colors.lt800,
+    disabledCheck: colors.drk400,
     disabledText: colors.drk400,
     unselectedColor: colors.white,
     selectedColor: colors.primary,
