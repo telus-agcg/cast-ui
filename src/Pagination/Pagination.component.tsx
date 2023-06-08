@@ -206,7 +206,6 @@ export class Pagination extends React.Component<Props> {
       ...props
     } = this.props;
     const { activePage, visiblePages } = this.state;
-    debugger;
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SDivPaginationWrapper>
