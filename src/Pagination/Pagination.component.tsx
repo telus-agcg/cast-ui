@@ -67,9 +67,9 @@ type State = {
   visiblePages: number[];
 };
 const SDivPaginationWrapper = styled.div`
-  font-family: ${(props) => props.theme.typography.fontFamily};
-  font-size: ${(props) => props.theme.body.fontSize};
-  padding: ${(props) => props.theme.pagination.padding};
+  font-family: ${props => props.theme.typography.fontFamily};
+  font-size: ${props => props.theme.body.fontSize};
+  padding: ${props => props.theme.pagination.padding};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -77,7 +77,7 @@ const SDivPaginationWrapper = styled.div`
 const SSpanPageSizeOptionsSelectWrapper = styled.div`
   display: flex;
   align-items: center;
-  color: ${(props) => props.theme.pagination.text};
+  color: ${props => props.theme.pagination.text};
   .select-wrapper {
     min-width: 80px;
   }
@@ -158,16 +158,14 @@ export class Pagination extends React.Component<Props> {
       this.props.onPageSizeChange(pageSize);
     }
   }
-  renderPageSizeOptions = (props) => {
+  renderPageSizeOptions = props => {
     const { pageSize, pageSizeOptions, rowsSelectorText, rowsText } = props;
     const options = pageSizeOptions.map((option, i) => ({
       pageSize: option,
       label: `${option} ${rowsText}`,
       value: i,
     }));
-    const selectedOption = options.find(
-      (option) => option.pageSize === pageSize,
-    );
+    const selectedOption = options.find(option => option.pageSize === pageSize);
     return (
       <SSpanPageSizeOptionsSelectWrapper className="select-wrap -pageSizeOptions">
         <Select
@@ -175,7 +173,7 @@ export class Pagination extends React.Component<Props> {
           isMulti={false}
           isDisabled={this.props.pages <= 0}
           selectSize="md"
-          onChange={(selectedOption) =>
+          onChange={selectedOption =>
             this.changePageSize(
               Number(this.props.pageSizeOptions[selectedOption.value]),
             )
@@ -235,11 +233,11 @@ export class Pagination extends React.Component<Props> {
             <div>
               {visiblePages.map(
                 (page: number, index: number, array: number[]) => {
-                  const showPrevNextGap = array[index - 1] + 2 < page;
+                  const showPrevNextGap = array[index - 1] + 1 < page;
                   const prevNextGapPageIndex =
                     index === array.length - 1
-                      ? array[index - 1] + 2
-                      : page - 2;
+                      ? array[index - 1] + 1
+                      : page - 1;
                   return (
                     <span key={page}>
                       {showPrevNextGap && (
