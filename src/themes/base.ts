@@ -523,17 +523,17 @@ export const buildTheme = colors => ({
     sm: {
       borderRadius: '4px',
       fontSize: '12px',
-      padding: '4px 8px 3px',
+      padding: '4px 8px',
     },
     md: {
       borderRadius: '4px',
       fontSize: '15px',
-      padding: '4px 8px 3px',
+      padding: '4px 8px',
     },
     lg: {
       borderRadius: '4px',
       fontSize: '18px',
-      padding: '4px 8px 3px',
+      padding: '4px 8px',
     },
   },
   alert: {
