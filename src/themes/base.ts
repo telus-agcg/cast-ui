@@ -599,7 +599,7 @@ export const buildTheme = colors => ({
   },
   validation: {
     borderColor: colors.danger,
-    color: colors.drk800,
+    color: colors.danger,
     fontSize: '12px',
     fontStyle: 'italic',
     lineHeight: '13px',
