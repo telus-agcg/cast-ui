@@ -157,17 +157,19 @@ export class Collapse extends React.Component<Props, any> {
   setCollapsing = () => {
     if (!this.content) return;
     nextFrame(() => {
-      const height = getCollapseHeight();
-      if (height !== this.content.style.height) {
-        this.setState(
-          {
-            collapseStyle: {
-              height,
-              visibility: '',
+      if (this.content) {
+        const height = getCollapseHeight();
+        if (height !== this.content.style.height) {
+          this.setState(
+            {
+              collapseStyle: {
+                height,
+                visibility: '',
+              },
             },
-          },
-          () => this.onCallback(this.props.onChange),
-        );
+            () => this.onCallback(this.props.onChange),
+          );
+        }
       }
     });
   };

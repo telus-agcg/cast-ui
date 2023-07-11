@@ -1,4 +1,4 @@
-export const buildTheme = (colors) => ({
+export const buildTheme = colors => ({
   colors,
   borders: {
     radius: '1px',
@@ -354,7 +354,7 @@ export const buildTheme = (colors) => ({
     borderStyle: 'solid',
     borderColor: colors.primary,
     disabledRadio: colors.drk400,
-    disabledText: colors.drk800,
+    disabledText: colors.drk400,
     unselectedColor: colors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
@@ -372,8 +372,8 @@ export const buildTheme = (colors) => ({
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: colors.primary,
-    disabledCheck: colors.lt800,
-    disabledText: colors.drk800,
+    disabledCheck: colors.drk400,
+    disabledText: colors.drk400,
     unselectedColor: colors.white,
     selectedColor: colors.primary,
     inlineSpacing: '20px',
@@ -508,7 +508,7 @@ export const buildTheme = (colors) => ({
       padding: '14px 16px',
     },
     body: {
-      padding: '30px 30px',
+      padding: '24px 24px',
     },
     borderWidth: 'thin',
     headerBorderColor: colors.drk400,

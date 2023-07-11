@@ -62,7 +62,6 @@ export const _CollapseWithExpandableData = args => {
   const removeElem = (index: number) => {
     setElems(elems.splice(index, 1));
   };
-  console.log(elems);
   return (
     <div>
       <a onClick={() => addElem()}>Add</a>

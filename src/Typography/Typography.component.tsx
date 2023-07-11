@@ -36,7 +36,7 @@ export const Typography: React.FunctionComponent<Props> = ({
         condimentum massa tellus at turpis.
       </p>
       <Caption>Use for hero images and website headers</Caption>
-      <Link solo={true} href="https://www.tkxs.com" target="_blank">
+      <Link href="https://www.tkxs.com" target="_blank">
         Read More
       </Link>
       <br />

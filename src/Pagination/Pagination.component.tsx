@@ -97,7 +97,10 @@ export class Pagination extends React.Component<Props> {
     this.changePageSize = this.changePageSize.bind(this);
     this.state = {
       activePage: props.page + 1,
-      visiblePages: this.getVisiblePages(0, props.pages),
+      visiblePages: this.getVisiblePages(
+        props.page ? props.page : 0,
+        props.pages,
+      ),
     };
   }
   readonly state: State = initialState;
@@ -115,7 +118,10 @@ export class Pagination extends React.Component<Props> {
     if (this.props.pages !== nextProps.pages) {
       this.setState({
         activePage: this.props.page + 1,
-        visiblePages: this.getVisiblePages(0, nextProps.pages),
+        visiblePages: this.getVisiblePages(
+          this.props.page ? this.props.page : 0,
+          nextProps.pages,
+        ),
       });
     } else {
       this.changePage(nextProps.page + 1);

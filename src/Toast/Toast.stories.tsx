@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Toast } from '../Toast';
+import { Button } from '../Button';
 
 export default {
   title: 'Components/Feedback/Toast',
@@ -59,9 +60,24 @@ export default {
   },
 };
 
-export const _Toast = args => (
-  <Toast {...args}>You have a new notification</Toast>
-);
+export const _Toast = ({ isOpen, ...args }) => {
+  const [showToast, setShowToast] = React.useState(false);
+
+  React.useEffect(() => {
+    setShowToast(isOpen);
+  }, [isOpen]);
+
+  const handleToggleModal = () => setShowToast(!showToast);
+
+  return (
+    <>
+      <Button onClick={handleToggleModal}>Click to see Notification</Button>
+      <Toast {...args} active={showToast}>
+        You have a new notification
+      </Toast>
+    </>
+  );
+};
 
 _Toast.args = {
   position: 'fixed top right',
