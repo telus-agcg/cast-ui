@@ -4,6 +4,7 @@ import { Table } from './';
 import { Input } from '../Input';
 import { Checkbox } from '../Checkbox';
 import SampleData from './sampleData';
+import { valueContainerCSS } from 'react-select/lib/components/containers';
 
 const testTableId = 'testTable';
 
@@ -172,7 +173,7 @@ export const _Table = args => {
             Cell: (row: any) => {
               return (
                 <Input
-                  id={`TextInput`}
+                  id={`TextInput-${row.original.id}`}
                   data-testid={'text-input'}
                   addonText="%"
                   addonTextPosition="right"
@@ -233,6 +234,7 @@ export const _Table = args => {
                   value="2"
                   indeterminate={true}
                   displayStyle="inline"
+                  aria-label="Member"
                 >
                   Two
                 </Checkbox>

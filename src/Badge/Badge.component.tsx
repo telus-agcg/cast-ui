@@ -53,7 +53,9 @@ export const Badge: React.FunctionComponent<Props> = ({
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SBadge {...props}>{children}</SBadge>
+    <SBadge role={'status'} {...props}>
+      {children}
+    </SBadge>
   </ThemeProvider>
 );
 
