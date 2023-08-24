@@ -34,9 +34,9 @@
   "types": "lib-esm/index.d.ts",
   "sideEffects": false,
   "peerDependencies": {
-    "react": "^16.8.6",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react-dates": "^20.2.0",
-    "react-dom": "^16.8.6",
     "styled-components": "^5.2.1"
   },
   "dependencies": {
