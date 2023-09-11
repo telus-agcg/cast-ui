@@ -72,5 +72,5 @@ Spinner.defaultProps = {
   size: 50,
   animationSpeed: 1,
   transitionType: 'linear',
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };

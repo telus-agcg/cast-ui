@@ -100,7 +100,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
       props.theme.common[props.datePickerSize!].padding};
     border: none;
     border-radius: ${(props: Partial<Props>) =>
-      props.theme.common[props.datePickerSize!].borderRadius};
+      props.theme.input[props.datePickerSize!].borderRadius};
     &[data-invalid] {
       border-color: ${(props: Partial<Props>) =>
         props.theme.validation.borderColor};
@@ -110,9 +110,10 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     }
   }
   .CalendarDay__hovered_span, .CalendarDay__selected_span {
-    background: ${(props: Partial<Props>) => props.theme.colors.primaryFaded};
+    background: ${(props: Partial<Props>) =>
+      props.theme.colors.primaryBackground};
     border-color: ${(props: Partial<Props>) => props.theme.colors.primary};
-    color: ${(props: Partial<Props>) => props.theme.colors.white}
+    color: ${(props: Partial<Props>) => props.theme.colors.drk800}
   }
   .CalendarDay__selected {
     background: ${(props: Partial<Props>) =>
@@ -125,6 +126,8 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   }
   .DateInput {
     width: 110px;
+    border-radius: ${(props: Partial<Props>) =>
+      props.theme.input[props.datePickerSize!].borderRadius};
   }
   .DateRangePicker_picker {
     z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
@@ -134,6 +137,8 @@ const SWrapperComponent = styled.div<Partial<Props>>`
       props.invalid
         ? props.theme.validation.borderColor
         : props.theme.input.borderColor};
+    border-radius: ${(props: Partial<Props>) =>
+      props.theme.input[props.datePickerSize!].borderRadius};
     transition: all 0.3s;
   }
   .DateRangePickerInput__withBorder:hover {
@@ -163,7 +168,7 @@ export class DatePickerRange extends React.PureComponent<Props> {
     invalidText: '',
     invalidTextColor: '',
     verticalSpacing: 10,
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
     readOnly: true,
   };
 

@@ -246,7 +246,7 @@ const SDiv = styled.div<Props>`
         props.theme.select[props.selectSize!].height};
       border-radius: ${(props: Props) =>
         props.theme.select.borderRadius ||
-        props.theme.common[props.selectSize!].borderRadius};
+        props.theme.select[props.selectSize!].borderRadius};
       border-color: ${(props: Props) =>
         props.theme.common.borderColor ||
         (props.invalid
@@ -361,17 +361,13 @@ const SDiv = styled.div<Props>`
         }
       }
     }
-
-    &.highlighted .react-select__control {
-      background-color: ${props => props.theme.colors.highlight200};
-    }
   }
 `;
 
 export class CustomSelect extends React.Component<Props> {
   static defaultProps = {
     selectSize: 'md',
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
     invalidText: '',
     id: 'select',
     option: {},

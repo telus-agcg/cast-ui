@@ -91,13 +91,15 @@ const SWrapperComponent = styled.div<Partial<Props>>`
       props.theme.common[props.datePickerSize!].padding};
     border: none;
     border-radius: ${(props: Partial<Props>) =>
-      props.theme.common[props.datePickerSize!].borderRadius};
+      props.theme.input[props.datePickerSize!].borderRadius};
     ::placeholder {
       color: ${(props: Partial<Props>) => props.theme.input.placeholderColor};
     }
   }
   .SingleDatePickerInput {
     background: ${(props: Partial<Props>) => props.theme.colors.white};
+    border-radius: ${(props: Partial<Props>) =>
+      props.theme.input[props.datePickerSize!].borderRadius};
     display: flex;
   }
   .SingleDatePickerInput__withBorder {
@@ -115,6 +117,8 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   }
   .DateInput {
     width: 110px;
+    border-radius: ${(props: Partial<Props>) =>
+      props.theme.input[props.datePickerSize!].borderRadius};
   }
   .SingleDatePicker_picker {
     z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
@@ -147,7 +151,7 @@ class ReactDatePicker extends Component<Props> {
     invalidText: '',
     invalidTextColor: '',
     verticalSpacing: 10,
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
 
   state: State = {

@@ -21,7 +21,7 @@ export class TabPanel extends React.Component<Props> {
     super(props);
   }
   static defaultProps = {
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
 
   render() {

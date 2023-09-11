@@ -58,7 +58,7 @@ export const Badge: React.FunctionComponent<Props> = ({
 );
 
 Badge.defaultProps = {
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
   badgeSize: 'md',
   badgeStyle: 'primary',
   lightMode: false,

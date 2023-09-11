@@ -52,5 +52,5 @@ Nav.defaultProps = {
   left: false,
   center: false,
   right: false,
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };

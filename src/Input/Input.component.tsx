@@ -127,6 +127,8 @@ const SInput = styled.input`
   height: ${(props: Props) => props.theme.input[props.inputSize!].height};
   box-sizing: border-box;
   border: none;
+  border-radius: ${(props: Props) =>
+    props.theme.input[props.inputSize!].borderRadius};
   padding: ${(props: Props) => props.theme.input[props.inputSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.input.fontSize};
@@ -144,8 +146,6 @@ const SInput = styled.input`
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
     // override autofill user-agent styles
-    -webkit-box-shadow: ${(props: Props) =>
-      `inset 0 0 0 50px ${props.theme.colors.highlight200}`};
     -webkit-text-fill-color: ${(props: Props) => props.theme.input.color};
   }
 
@@ -191,7 +191,7 @@ const SInputWrapper = styled.div<Partial<Props>>`
          : props.theme.input.borderColor
      }`};
   border-radius: ${(props: Props) =>
-    props.theme.common[props.inputSize!].borderRadius};
+    props.theme.input[props.inputSize!].borderRadius};
 
   outline: none !important;
 
@@ -328,7 +328,7 @@ export const Input: React.FunctionComponent<Props> = ({
 };
 
 Input.defaultProps = {
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
   inputSize: 'md',
   type: 'text',
 };

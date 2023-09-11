@@ -99,7 +99,7 @@ const STextarea = styled.textarea`
         ? props.theme.validation.borderColor
         : props.theme.textarea.borderColor};
   border-radius: ${(props: Props) =>
-    props.theme.common[props.textareaSize!].borderRadius};
+    props.theme.textarea[props.textareaSize!].borderRadius};
   padding: ${(props: Props) => props.theme.common[props.textareaSize!].padding};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) =>
@@ -170,5 +170,5 @@ export const Textarea: React.FunctionComponent<Props> = ({
 };
 Textarea.defaultProps = {
   textareaSize: 'md',
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };

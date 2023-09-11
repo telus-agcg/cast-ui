@@ -91,7 +91,7 @@ export class FileUpload extends React.Component<Props, State> {
     progressBarProps: {},
     disabled: false,
     onFilesAdded: () => {},
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
 
   openFileDialog() {

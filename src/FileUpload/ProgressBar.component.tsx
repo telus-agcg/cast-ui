@@ -69,5 +69,5 @@ ProgressBar.defaultProps = {
   background: '',
   progressBackground: '',
   percentage: 0,
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };

@@ -38,4 +38,4 @@ export const Header: React.FunctionComponent<Props> = ({
     <Sheader {...props}>{children}</Sheader>
   </ThemeProvider>
 );
-Header.defaultProps = { theme: Themes.defaultTheme, size: 10 };
+Header.defaultProps = { theme: Themes.canopyTheme, size: 10 };

@@ -124,5 +124,5 @@ export const Menu: React.FC<Props> = ({
 };
 
 Menu.defaultProps = {
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };

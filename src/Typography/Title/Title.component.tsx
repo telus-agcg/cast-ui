@@ -39,6 +39,6 @@ export const Title: React.FunctionComponent<Props> = ({
   </ThemeProvider>
 );
 Title.defaultProps = {
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
   size: 10,
 };

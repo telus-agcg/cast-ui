@@ -90,7 +90,7 @@ export const Link: React.FunctionComponent<Props> = ({
           {...dataProps}
           id={id}
           className={cn([className, 'disabled'])}
-          onClick={(e) => e.preventDefault()}
+          onClick={e => e.preventDefault()}
         >
           {children}
         </SLink>
@@ -112,6 +112,6 @@ export const Link: React.FunctionComponent<Props> = ({
 };
 Link.defaultProps = {
   href: 'javascript:void(0)',
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
   disabled: false,
 };

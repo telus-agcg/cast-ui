@@ -332,7 +332,7 @@ export class Table extends React.Component<Props> {
     defaultSortMethod: collator.compare,
     striped: false,
     tableSize: 'md',
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
     minRows: 0,
     defaultPageSize: 10,
     resizable: false,

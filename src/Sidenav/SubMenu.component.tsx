@@ -11,8 +11,8 @@ const SSubMenuItem = styled.div`
 `;
 const SSubNavWrapper = styled.div`
   display: flex;
-  height: ${(props) => (props.show ? 'auto' : 0)};
-  opacity: ${(props) => (props.show ? 1 : 0)};
+  height: ${props => (props.show ? 'auto' : 0)};
+  opacity: ${props => (props.show ? 1 : 0)};
   flex-direction: column;
   &.fade-enter {
     transition: height 0.15s 0s ease-in;
@@ -22,31 +22,35 @@ const SidebarLink = styled(Link)`
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding: ${(props) =>
+  padding: ${props =>
     props.level === 1 ? '8px 0px 8px 46px' : props.isOpen ? '8px 0px' : '8px'};
   gap: 12px;
-  color: ${(props) =>
+  color: ${props =>
     props.theme.sidenav[
       `${props.activeItem || props.isActiveSubMenuItem ? 'active' : ''}navItem`
     ].color};
-  font-weight: ${(props) =>
+  font-weight: ${props =>
     props.theme.sidenav[
       `${props.activeItem || props.isActiveSubMenuItem ? 'active' : ''}navItem`
     ].fontWeight};
-  cursor: ${(props) =>
+  cursor: ${props =>
     props.disabled
       ? 'not-allowed'
       : props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
           .cursor};
-  opacity: ${(props) =>
+  opacity: ${props =>
     props.disabled
       ? '.6'
       : props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`]
           .opacity};
   :hover {
-    background: ${(props) =>
+    background: ${props =>
       props.level === 1 || (!props.isOpen && !props.disabled)
-        ? props.theme.sidenav['activenavItem'].background
+        ? props.theme.sidenav.activenavItem.background
+        : ''};
+    outline: ${props =>
+      !props.isOpen && !props.disabled
+        ? props.theme.sidenav.activenavItem.hoverBorder
         : ''};
     border-radius: 7px;
     transition: color 0.3s;
@@ -59,20 +63,20 @@ const SidebarLink = styled(Link)`
   }
   .custom-icon-svg {
     path {
-      fill: ${(props) =>
+      fill: ${props =>
         props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`]
           .color};
     }
     :hover {
       path {
-        fill: ${(props) => props.theme.sidenav[`activenavItem`].color};
+        fill: ${props => props.theme.sidenav[`activenavItem`].color};
       }
     }
   }
 `;
 
 const SidebarLabel = styled.span`
-  display: ${(props) => (props.isOpen ? 'block' : 'none')};
+  display: ${props => (props.isOpen ? 'block' : 'none')};
 `;
 
 const SubMenu = ({
@@ -116,8 +120,8 @@ const SubMenu = ({
   };
 
   const showSubnav = () => setSubnav(!subnav);
-  const IconObj = item?.customIcon;
-  const handleItemClick = (e) => {
+  const IconObj = item && item.customIcon;
+  const handleItemClick = e => {
     if (item.subNav && isOpen && !item.disabled) {
       showSubnav();
     } else {
@@ -129,7 +133,7 @@ const SubMenu = ({
       setSecondarySidebarOpen(false);
       setCurrentActiveSubnav([]);
       setCurrentActiveItem(item);
-      setCurrentActiveSubnavItem(selectedItem?.label);
+      setCurrentActiveSubnavItem(selectedItem ? selectedItem.label : null);
     }
     if (item.subNav && !isOpen && !item.disabled) {
       if (
@@ -160,7 +164,7 @@ const SubMenu = ({
     if (allowHover) {
       setTimeout(() => {
         handleItemHover();
-      }, hoverDelay ?? 400);
+      }, hoverDelay || 400);
     }
   };
   return (
@@ -187,23 +191,24 @@ const SubMenu = ({
         show={isOpen && subnav}
         className={isOpen && subnav ? 'fade-enter' : ''}
       >
-        {item.subNav?.map((subMenuItem, index) => {
-          return (
-            <SidebarLink
-              key={index}
-              level={1}
-              onClick={(e) => handleSubMenuClick(e, subMenuItem, 1)}
-              isActiveSubMenuItem={
-                subMenuItem.label === currentSelectedSubnavItem
-              }
-              data-testid={_.kebabCase(subMenuItem.label)}
-            >
-              <SidebarLabel level={1} {...newProps}>
-                {subMenuItem.label}
-              </SidebarLabel>
-            </SidebarLink>
-          );
-        })}
+        {item.subNav &&
+          item.subNav.map((subMenuItem, index) => {
+            return (
+              <SidebarLink
+                key={index}
+                level={1}
+                onClick={e => handleSubMenuClick(e, subMenuItem, 1)}
+                isActiveSubMenuItem={
+                  subMenuItem.label === currentSelectedSubnavItem
+                }
+                data-testid={_.kebabCase(subMenuItem.label)}
+              >
+                <SidebarLabel level={1} {...newProps}>
+                  {subMenuItem.label}
+                </SidebarLabel>
+              </SidebarLink>
+            );
+          })}
       </SSubNavWrapper>
     </SSubMenuItem>
   );

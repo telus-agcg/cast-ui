@@ -59,8 +59,6 @@ export type Props = {
 const SPanelHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  background: ${(props: Props) =>
-    props.theme.styles[props.panelStyle!].lightFlood};
   padding: ${(props: Props) => props.theme.panel.header.padding};
   color: ${(props: Props) => props.theme.panel.headerColor};
   background: ${(props: Props) => props.theme.panel.headerBackgroundColor};
@@ -136,7 +134,7 @@ export class PanelHeader extends React.Component<Props> {
   static defaultProps = {
     panelStyle: 'primary',
     toggleItem: () => {},
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
 
   readonly state: State = initialState;

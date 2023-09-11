@@ -117,6 +117,8 @@ export const PaginationPageButton = styled.button`
   border: 1px solid
     ${(props: PaginationPageButtonProps) =>
       props.theme.pagination.button.borderColor};
+  border-radius: ${(props: PaginationPageButtonProps) =>
+    props.theme.pagination.button.borderRadius};
   padding: ${(props: PaginationPageButtonProps) =>
     props.theme.pagination.button.padding[props.btnSize]};
   font-family: ${(props: PaginationPageButtonProps) =>
@@ -157,6 +159,8 @@ export const PaginationPageButton = styled.button`
       props.theme.pagination.activeFontWeight};
     color: ${(props: PaginationPageButtonProps) =>
       props.theme.pagination.activeText};
+    background: ${(props: any) => props.theme.pagination.activeBackground};
+
     border: 1px solid
       ${(props: PaginationPageButtonProps) =>
         props.theme.pagination.button.activeBorderColor};
@@ -165,8 +169,6 @@ export const PaginationPageButton = styled.button`
       border: 1px solid
         ${(props: PaginationPageButtonProps) =>
           props.theme.pagination.hoverTextColor};
-      color: ${(props: PaginationPageButtonProps) =>
-        props.theme.pagination.hoverTextColor};
     }
   }
 `;

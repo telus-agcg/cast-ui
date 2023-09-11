@@ -28,7 +28,7 @@ export default {
   },
 };
 
-const _Link = (args) => (
+const _Link = args => (
   <Link data-testid={args.dataTestId} {...args}>
     Read More
   </Link>
@@ -37,7 +37,7 @@ const _Link = (args) => (
 export const _Regular = _Link.bind({});
 
 _Regular.args = {
-  href: 'https://www.tkxs.com',
+  href: 'https://www.telus.com/agcg',
   target: '_blank',
   disabled: false,
   dataTestId: 'link-standalone',
@@ -55,7 +55,7 @@ export const WithinText = () => (
     Lorem ipsum dolor sit amet, consectetur{' '}
     <Link
       data-testid="link-within-text"
-      href="https://www.tkxs.com"
+      href="https://www.telus.com/agcg"
       target="_blank"
     >
       adipiscing

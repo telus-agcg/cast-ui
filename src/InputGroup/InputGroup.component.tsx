@@ -83,5 +83,5 @@ export const InputGroup: React.FunctionComponent<Props> = ({
 InputGroup.defaultProps = {
   inputSize: 'md',
   horizontal: false,
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };

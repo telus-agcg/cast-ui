@@ -57,5 +57,5 @@ export const ErrorMessage: React.FunctionComponent<Props> = ({
 };
 
 ErrorMessage.defaultProps = {
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };

@@ -140,7 +140,7 @@ const SButton = styled.button`
   box-sizing: border-box;
   transition: all 0.3s;
   border-radius: ${(props: Props) =>
-    props.theme.common[props.btnSize!].borderRadius};
+    props.theme.button[props.btnSize!].borderRadius};
   background: ${(props: Props) =>
     computeColor(
       'normal',
@@ -261,7 +261,7 @@ const noop = () => {}; // tslint:disable-line
 
 export class Button extends React.Component<Props, any> {
   static defaultProps = {
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
     btnStyle: 'primary',
     btnSize: 'md',
     displayType: 'button',

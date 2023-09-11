@@ -116,7 +116,7 @@ const STab = styled.div`
     background-color: ${(props: any) =>
       props.active
         ? props.theme.colors.primaryHover
-        : props.theme.colors.primaryFaded};
+        : props.theme.colors.primaryBackground};
   }
   transition: all 0.3s;
 `;
@@ -174,5 +174,5 @@ export const Tabnav: React.FunctionComponent<Props> = ({
 
 Tabnav.defaultProps = {
   tabs: [],
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };
