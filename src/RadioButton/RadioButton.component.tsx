@@ -191,7 +191,7 @@ export class RadioButton extends React.Component<Props> {
     rbSize: 'md',
     displayStyle: 'stacked',
     name: '',
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
     id: uuid.v4(),
     disabled: false,
     defaultChecked: false,

@@ -159,7 +159,7 @@ export class Toggle extends React.Component<Props> {
 
   static defaultProps = {
     toggleSize: 'md',
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
     id: uuid.v4(),
   };
 

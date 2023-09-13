@@ -38,6 +38,6 @@ export const Display: React.FunctionComponent<Props> = ({
   </ThemeProvider>
 );
 Display.defaultProps = {
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
   size: 10,
 };

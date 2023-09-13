@@ -35,9 +35,9 @@ const SAlert = styled.div`
       : props.theme.styles[props.alertStyle!].alertColor};
   border: 1px solid
     ${(props: Props) =>
-    props.lightMode
-      ? props.theme.styles[props.alertStyle!].alertBackground
-      : props.theme.styles[props.alertStyle!].alertBackground};
+      props.lightMode
+        ? props.theme.styles[props.alertStyle!].alertBackground
+        : props.theme.styles[props.alertStyle!].alertBackground};
   display: ${(props: Props) => props.theme.alert.display};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.alert.fontSize};
@@ -54,13 +54,13 @@ export const Alert: React.FunctionComponent<Props> = ({
   theme,
   ...props
 }) => (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SAlert {...props}>{children}</SAlert>
-    </ThemeProvider>
-  );
+  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <SAlert {...props}>{children}</SAlert>
+  </ThemeProvider>
+);
 
 Alert.defaultProps = {
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
   alertStyle: 'primary',
   lightMode: false,
 };

@@ -178,7 +178,7 @@ export class CopyToClipboard extends React.Component<Props> {
     copyButtonContent: 'copy',
     copyButtonSuccessContent: <SuccessContent />,
     copyButtonClass: '',
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
 
   static copy(e: any, cb: Function) {

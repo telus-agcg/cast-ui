@@ -35,7 +35,7 @@ type State = Readonly<typeof initialState>;
 export class ListGroupItem extends React.Component<Props> {
   static defaultProps = {
     listGroupTheme: '',
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
 
   readonly state: State = initialState;

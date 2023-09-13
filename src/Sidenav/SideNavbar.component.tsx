@@ -77,7 +77,7 @@ export type Props = {
 const NavIcon = styled(Link)`
   display: flex;
   z-index: ${(props: any) => props.theme.sidenav.zIndex + 1};
-  justify-content: ${(props) => (props.isOpen ? 'end' : 'center')};
+  justify-content: ${props => (props.isOpen ? 'end' : 'center')};
   color: ${(props: any) => props.theme.sidenav.label.color};
   align-items: center;
   i {
@@ -86,8 +86,8 @@ const NavIcon = styled(Link)`
     border-radius: 50%;
   }
   > *:hover {
-    background: ${(props) => props.theme.sidenav['activenavItem'].background};
-    color: ${(props) => props.theme.pagination.hoverTextColor};
+    background: ${props => props.theme.sidenav['activenavItem'].background};
+    color: ${props => props.theme.pagination.hoverTextColor};
     transition: all 0.3s;
   }
 `;
@@ -114,8 +114,8 @@ const SSideNavbar = styled.div`
   flex-direction: column;
 `;
 const SSideNav = styled.div`
-  height: ${(props) => (props.elementType === 'list' ? '90%' : 'auto')};
-  padding: ${(props) => props.theme.sidenav.nav.padding};
+  height: ${props => (props.elementType === 'list' ? '90%' : 'auto')};
+  padding: ${props => props.theme.sidenav.nav.padding};
   margin-bottom: 1px;
   margin: 4px;
   display: flex;
@@ -154,8 +154,8 @@ const CloseIcon = styled.button`
   border-radius: 50%;
   transition: all 0.3s;
   &:hover {
-    background-color: ${(props) => props.theme.modal.button.hoverBackground};
-    color: ${(props) => props.theme.pagination.hoverTextColor};
+    background-color: ${props => props.theme.modal.button.hoverBackground};
+    color: ${props => props.theme.pagination.hoverTextColor};
   }
 `;
 const SSecondarySideNavbarWrapper = styled.div`
@@ -165,12 +165,12 @@ const SSecondarySideNavbarWrapper = styled.div`
 `;
 const SSecondarySideNavbarLabel = styled.h3`
   padding-left: 1.25rem;
-  color: ${(props) => props.theme.sidenav.secondaryNavbarLabel.color};
+  color: ${props => props.theme.sidenav.secondaryNavbarLabel.color};
   margin-block-start: 6px;
   margin-block-end: 10px;
   padding-top: 4px;
 `;
-const SideNavbar = (props) => {
+const SideNavbar = props => {
   const {
     allowHover = false,
     data,
@@ -219,7 +219,7 @@ const SideNavbar = (props) => {
 
   return (
     <ThemeProvider
-      theme={(outerTheme: any) => outerTheme || Themes.defaultTheme}
+      theme={(outerTheme: any) => outerTheme || Themes.canopyTheme}
     >
       <SideNavbarWrapper className={props.className}>
         <SSideNavbar
@@ -287,24 +287,26 @@ const SideNavbar = (props) => {
 
             <SSecondarySideNavbarWrapper>
               <SSecondarySideNavbarLabel>
-                {currentActiveSubnav?.label}
+                {currentActiveSubnav ? currentActiveSubnav.label : null}
               </SSecondarySideNavbarLabel>
-              {currentActiveSubnav?.subNav?.map((item, index) => {
-                return (
-                  <CollapsedSubMenu
-                    item={item}
-                    key={index}
-                    onSelect={onSelect}
-                    setSecondarySidebarOpen={setSecondarySidebarOpen}
-                    currentSelectedSubnavItem={currentSelectedSubnavItem}
-                    setCurrentActiveSubnavItem={setCurrentActiveSubnavItem}
-                    parentItem={currentActiveSubnav}
-                    setCurrentActiveItem={setCurrentActiveItem}
-                    theme={props.theme}
-                    toggleSecondarySideNav={toggleSecondarySideNav}
-                  />
-                );
-              })}
+              {currentActiveSubnav &&
+                currentActiveSubnav.subNav &&
+                currentActiveSubnav.subNav.map((item, index) => {
+                  return (
+                    <CollapsedSubMenu
+                      item={item}
+                      key={index}
+                      onSelect={onSelect}
+                      setSecondarySidebarOpen={setSecondarySidebarOpen}
+                      currentSelectedSubnavItem={currentSelectedSubnavItem}
+                      setCurrentActiveSubnavItem={setCurrentActiveSubnavItem}
+                      parentItem={currentActiveSubnav}
+                      setCurrentActiveItem={setCurrentActiveItem}
+                      theme={props.theme}
+                      toggleSecondarySideNav={toggleSecondarySideNav}
+                    />
+                  );
+                })}
             </SSecondarySideNavbarWrapper>
           </SSecondarySideNavbar>
         ) : (

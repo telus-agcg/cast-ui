@@ -40,7 +40,7 @@ export interface Props extends ButtonProps {
 const SIconButton = styled(Button)`
   position: relative;
   border-radius: ${(props: any) =>
-    props.rounded ? '50%' : props.theme.common[props.btnSize].borderRadius};
+    props.rounded ? '50%' : props.theme.button[props.btnSize].borderRadius};
   min-width: ${(props: any) =>
     props.rounded || !props.rounded ? '10px' : '75px'};
   width: ${(props: any) =>
@@ -65,7 +65,7 @@ export const IconButton: React.FunctionComponent<Props> = ({
 );
 
 IconButton.defaultProps = {
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
   pixelButtonSize: 32,
   iconSize: 24,
   rounded: true,

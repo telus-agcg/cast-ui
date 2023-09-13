@@ -255,7 +255,7 @@ export class Checkbox extends React.Component<Props, State> {
 
   static defaultProps = {
     cbSize: 'md',
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
     indeterminate: false,
     defaultChecked: false,
     disabled: false,

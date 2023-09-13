@@ -57,5 +57,5 @@ export const Colors = args => (
 );
 
 Colors.defaultProps = {
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };

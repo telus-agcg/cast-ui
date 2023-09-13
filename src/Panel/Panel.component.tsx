@@ -53,7 +53,7 @@ export class Panel extends React.Component<Props, State> {
   static defaultProps = {
     panelStyle: 'primary',
     noPadding: false,
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
 
   readonly state: State = initialState;

@@ -102,11 +102,6 @@ export default {
         type: 'boolean',
       },
     },
-    highlightFilled: {
-      control: {
-        type: 'boolean',
-      },
-    },
     id: {
       control: false,
     },
@@ -197,7 +192,6 @@ _InputWithAllOptions.args = {
   iconPosition: 'right',
   icon: <Icon size={20} icon={icSearch} />,
   isClearable: true,
-  highlightFilled: true,
 };
 
 export const _WithIconButton = _Input.bind({});

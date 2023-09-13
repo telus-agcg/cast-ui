@@ -47,5 +47,5 @@ export const SideNavItemIcon: React.FunctionComponent<Props> = ({
 );
 
 SideNavItemIcon.defaultProps = {
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };

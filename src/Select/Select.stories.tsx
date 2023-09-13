@@ -53,11 +53,6 @@ export default {
         type: 'boolean',
       },
     },
-    highlightFilled: {
-      control: {
-        type: 'boolean',
-      },
-    },
     invalid: {
       control: {
         type: 'boolean',
@@ -124,7 +119,6 @@ Regular.args = {
   isDisabled: false,
   isClearable: false,
   isSearchable: false,
-  highlightFilled: false,
   selectSize: 'md',
   invalid: false,
   invalidText: 'A valid value is required',
@@ -146,7 +140,6 @@ MultiSelect.args = {
   invalid: false,
   invalidText: 'A valid value is required',
   isClearable: false,
-  highlightFilled: false,
   options: [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
@@ -166,7 +159,6 @@ MultiSelectWithCheckbox.args = {
   invalid: false,
   invalidText: 'A valid value is required',
   isClearable: false,
-  highlightFilled: false,
   hideSelectedOptions: false,
   optionType: 'checkbox',
 };

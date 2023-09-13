@@ -54,7 +54,7 @@ export class RadioButtonGroup extends React.Component<Props, State> {
     selected: this.props.defaultChecked || this.props.valueChecked,
   };
   static defaultProps = {
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
     onChange: () => {},
   };
 

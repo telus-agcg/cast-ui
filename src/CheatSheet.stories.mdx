@@ -96,17 +96,13 @@ import './styles.css';
   </p>
   <Card>
     <Title>Card Header</Title>
-    <div>
-      <b>Nullam mattis egestas tortor</b>
-      <p>Aliquam porttitor aliquet fringilla.</p>
-      <b>Nullam mattis egestas tortor</b>
-      <p>
-        Duis pellentesque, risus id faucibus porttitor,
-        <br />
-        dolor arcu tristique ligula, id tincidunt odio nisl id tellus. dolor
-        arcu tristique ligula, id tincidunt odio nisl id tellus.
-      </p>
-    </div>
+    <p>Aliquam porttitor aliquet fringilla.</p>
+    <p>
+      Duis pellentesque, risus id faucibus porttitor,
+      <br />
+      dolor arcu tristique ligula, id tincidunt odio nisl id tellus. dolor arcu
+      tristique ligula, id tincidunt odio nisl id tellus.
+    </p>
   </Card>
 </div>
 
@@ -228,7 +224,7 @@ import './styles.css';
     The Collapse element can be used to hide content on a page that is not
     immediately relevant or necessary, but can be accessed if needed.{' '}
   </p>
-  <Collapse theme={Themes.defaultTheme} isOpen={true} />
+  <Collapse theme={Themes.canopyTheme} isOpen={true} />
 </div>
 
 <h3 class="section">2. Feedback</h3>
@@ -267,7 +263,7 @@ import './styles.css';
     period of time.{' '}
   </p>
   <Toast
-    theme={Themes.defaultTheme}
+    theme={Themes.canopyTheme}
     position="top right"
     active={true}
     lightmode={true}
@@ -579,7 +575,6 @@ import './styles.css';
   autoComplete="on"
   data-testid="input-with-all-options"
   dataTestId="input-with-all-options"
-  highlightFilled
   icon={<Icon icon={{children: [{attribs: {d: 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'}, name: 'path'}], viewBox: '0 0 24 24'}} size={20}/>}
   iconPosition="right"
   id="input_with_all_options"
@@ -618,7 +613,7 @@ import './styles.css';
 </h4>
 <p>Radio Button allow users to select one option from a list of options. They are typically used in situations where there are a limited number of options to choose from, and only one option can be selected at a time.</p>
 <RButton  rbSize='md' disabled={false}
-  displayStyle='inline' theme={Themes.defaultTheme}></RButton>
+  displayStyle='inline'></RButton>
 
 <h4>
 <a href="/docs/components-interactions-radio-button--radio-button-group">Radio Button Group</a>
@@ -643,7 +638,6 @@ import './styles.css';
     isDisabled={false}
     isClearable={false}
     isSearchable={false}
-    highlightFilled={false}
     selectSize="md"
     invalid={false}
     invalidText="A valid value is required"
@@ -666,7 +660,6 @@ import './styles.css';
     isDisabled={false}
     isClearable={false}
     isSearchable={false}
-    highlightFilled={false}
     selectSize="md"
     invalid={false}
     invalidText="A valid value is required"
@@ -700,7 +693,7 @@ import './styles.css';
     of a bar or track and a slider thumb that can be moved along the track to
     select a specific value.
   </p>
-  <Slider minValue={50} maxValue={150} step={5} theme={Themes.defaultTheme} />
+  <Slider minValue={50} maxValue={150} step={5} theme={Themes.canopyTheme} />
 </div>
 
 <div class="layout">
@@ -748,7 +741,7 @@ import './styles.css';
   </h4>
   <p>Link is used to navigate between different pages or resources within the app or on the web.</p>
   <Link
-  href="https://www.tkxs.com" target='_blank'
+  href="https://www.telus.com/agcg" target='_blank'
     disabled={false}
   dataTestId='link-with-onclick'>
     Read More
@@ -758,7 +751,7 @@ import './styles.css';
     Lorem ipsum dolor sit amet, consectetur{' '}
     <Link
       data-testid="link-within-text"
-      href="https://www.tkxs.com"
+      href="https://www.telus.com/agcg"
       target="_blank"
     >
       adipiscing
@@ -965,7 +958,7 @@ import './styles.css';
   </h4>
   <p>Colors used in our Apps.</p>
 
-  <Colors theme={Themes.defaultTheme} />
+  <Colors theme={Themes.canopyTheme} />
 </div>
 
 <div class="layout">
@@ -995,5 +988,5 @@ import './styles.css';
     phrases.it's important to use font weights consistently throughout the
     website.
   </p>
-  <Typo theme={Themes.defaultTheme} />
+  <Typo theme={Themes.canopyTheme} />
 </div>

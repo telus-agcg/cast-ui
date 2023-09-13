@@ -6,7 +6,7 @@ import { Themes } from './themes';
 
 # Cast UI
 
-Cast UI is an open source component library maintained by [TKXS](https://www.tkxs.com/)
+Cast UI is an open source component library maintained by [TELUS Agriculture & Consumer Goods](https://www.telus.com/agcg)
 
 A `defaultTheme` theme is available, which can be overridden by passing
 in a theme of the same shape into the `ThemeProvider`.
@@ -24,11 +24,11 @@ the child components with the Theme object as a prop.
 ```js
 import { Themes, ThemeProvider } from '@tkxs/cast-ui';
 
-<ThemeProvider theme={Themes.defaultTheme}>
+<ThemeProvider theme={Themes.canopyTheme}>
   <App />
 </ThemeProvider>;
 ```
 
 ### The shape of the theme object.
 
-<Source language="json" code={JSON.stringify(Themes.defaultTheme, null, 2)} />
+<Source language="json" code={JSON.stringify(Themes.canopyTheme, null, 2)} />

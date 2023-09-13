@@ -73,7 +73,7 @@ export class Popover extends React.Component<Props> {
   static defaultProps = {
     arrow: false,
     placement: 'bottom-start',
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
   public render() {
     const { theme, children, ...props } = this.props;

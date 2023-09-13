@@ -35,5 +35,5 @@ export const Navbar: React.FunctionComponent<Props> = ({
 );
 
 Navbar.defaultProps = {
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };

@@ -141,7 +141,7 @@ export class File extends React.Component<Props, State> {
     onSelect: () => {},
     onCancel: () => {},
     onDelete: () => {},
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
 
   render() {

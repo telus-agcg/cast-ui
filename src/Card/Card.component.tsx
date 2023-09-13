@@ -48,5 +48,5 @@ export const Card: React.FunctionComponent<Props> = ({
 );
 Card.defaultProps = {
   cardStyle: 'primary',
-  theme: Themes.defaultTheme,
+  theme: Themes.canopyTheme,
 };

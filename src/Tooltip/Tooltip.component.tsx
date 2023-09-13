@@ -53,7 +53,7 @@ const STippy = styled(TippyProxy)`
 export class Tooltip extends React.Component<Props> {
   static defaultProps = {
     arrow: true,
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
   public render() {
     const { theme, children, ...props } = this.props;

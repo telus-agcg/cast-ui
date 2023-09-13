@@ -105,7 +105,7 @@ export class Pagination extends React.Component<Props> {
   }
   readonly state: State = initialState;
   static defaultProps = {
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
     btnSize: 'md',
     showPageSizeOptions: false,
     rowsSelectorText: '',

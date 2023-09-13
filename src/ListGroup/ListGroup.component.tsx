@@ -106,7 +106,7 @@ const SListHeader = styled.li<Partial<Props>>`
   background-color: ${(props: Props) =>
     props.isCollapsed
       ? props.theme.listGroup.theme[props.listGroupTheme!].backgroundColor
-      : props.theme.colors.highlight200};
+      : props.theme.colors.primaryBackground};
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -172,7 +172,7 @@ export class ListGroup extends React.Component<Props, State> {
   static defaultProps = {
     listGroupTheme: 'light',
     collapsible: false,
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
     border: true,
   };
 

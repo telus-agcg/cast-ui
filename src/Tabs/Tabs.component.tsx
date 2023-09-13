@@ -38,7 +38,7 @@ export class Tabs extends React.Component<Props> {
   }
   static defaultProps = {
     onSelect: () => {},
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
 
   render() {

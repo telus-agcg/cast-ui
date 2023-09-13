@@ -53,7 +53,7 @@ const SReactTab = styled(ReactTabProxy)`
   &:focus,
   &:hover {
     outline: none;
-    background-color: ${(props: Props) => props.theme.colors.primaryFaded};
+    background-color: ${(props: Props) => props.theme.colors.primaryBackground};
   }
 
   &[class$='--selected'] {
@@ -86,7 +86,7 @@ export class Tab extends React.Component<Props> {
     super(props);
   }
   static defaultProps = {
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
 
   render() {

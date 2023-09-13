@@ -40,17 +40,13 @@ export default {
 export const _Card = args => (
   <Card {...args}>
     <Title>Card Header</Title>
-    <div>
-      <b>Nullam mattis egestas tortor</b>
-      <p>Aliquam porttitor aliquet fringilla.</p>
-      <b>Nullam mattis egestas tortor</b>
-      <p>
-        Duis pellentesque, risus id faucibus porttitor,
-        <br />
-        dolor arcu tristique ligula, id tincidunt odio nisl id tellus. dolor
-        arcu tristique ligula, id tincidunt odio nisl id tellus.
-      </p>
-    </div>
+    <p>Aliquam porttitor aliquet fringilla.</p>
+    <p>
+      Duis pellentesque, risus id faucibus porttitor,
+      <br />
+      dolor arcu tristique ligula, id tincidunt odio nisl id tellus. dolor arcu
+      tristique ligula, id tincidunt odio nisl id tellus.
+    </p>
   </Card>
 );
 

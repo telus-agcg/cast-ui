@@ -38,4 +38,4 @@ export const Caption: React.FunctionComponent<Props> = ({
     <SCaption {...props}>{children}</SCaption>
   </ThemeProvider>
 );
-Caption.defaultProps = { theme: Themes.defaultTheme, size: 10 };
+Caption.defaultProps = { theme: Themes.canopyTheme, size: 10 };

@@ -174,7 +174,7 @@ export class Modal extends React.Component<Props> {
 
   static defaultProps = {
     modalSize: 'md',
-    theme: Themes.defaultTheme,
+    theme: Themes.canopyTheme,
   };
 
   getModalStyles = () => {

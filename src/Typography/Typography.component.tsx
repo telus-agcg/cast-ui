@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-import { Button, Header, Tooltip, Display, Title, Caption, Link } from '../';
+import { Header, Display, Title, Caption, Link } from '../';
 
 export type Props = {
   /**
@@ -36,29 +36,17 @@ export const Typography: React.FunctionComponent<Props> = ({
         condimentum massa tellus at turpis.
       </p>
       <Caption>Use for hero images and website headers</Caption>
-      <Link href="https://www.tkxs.com" target="_blank">
+      <Link href="https://www.telus.com/agcg" target="_blank">
         Read More
       </Link>
       <br />
       <p>
         Lorem ipsum dolor sit amet, consectetur{' '}
-        <Link href="https://www.tkxs.com" target="_blank">
+        <Link href="https://www.telus.com/agcg" target="_blank">
           link in text
         </Link>
         .
       </p>
-      <Button btnStyle="primary">Read More Button</Button>
-      <br />
-      <br />
-      <br />
-      <Tooltip content="Tooltip text appears here">
-        <span>
-          <Button btnStyle="primary" outline={true}>
-            Read More
-          </Button>
-        </span>
-      </Tooltip>
-      <p>$25,855.90</p>
     </STypography>
   </ThemeProvider>
 );
