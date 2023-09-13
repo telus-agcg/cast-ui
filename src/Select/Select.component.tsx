@@ -221,23 +221,6 @@ const SDiv = styled.div<Props>`
       font-family: ${(props: Props) => props.theme.typography.fontFamily};
       color: ${(props: Props) => props.theme.colors.drk800};
     }
-    .react-select__option {
-      padding: 8px 12px;
-      background-color: ${(props: Props) =>
-        props.theme.select.optionBackgroundColor};
-      font-family: ${(props: Props) => props.theme.typography.fontFamily};
-      color: ${(props: Props) => props.theme.colors.drk800};
-      &.react-select__option--is-selected {
-        color: ${(props: Props) => props.theme.select.selectedOptionColor};
-        background-color: ${(props: Props) =>
-          props.theme.select.selectedOptionBackgroundColor};
-      }
-      &:hover {
-        background-color: ${(props: Props) =>
-          props.theme.select.highlightOptionBackgroundColor};
-        color: ${(props: Props) => props.theme.select.highlightOptionColor};
-      }
-    }
   }
   .react-select-component {
     .react-select__control {
@@ -364,6 +347,29 @@ const SDiv = styled.div<Props>`
   }
 `;
 
+const SSelectOption = styled.div`
+  background-color: ${(props: any) =>
+    props.isFocused
+      ? props.theme.select.highlightOptionBackgroundColor
+      : props.theme.select.optionBackgroundColor};
+  color: ${(props: any) =>
+    props.isFocused
+      ? props.theme.select.highlightOptionColor
+      : props.theme.select.color};
+  padding: 8px 12px;
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  &.react-select__option--is-selected {
+    color: ${(props: Props) => props.theme.select.selectedOptionColor};
+    background-color: ${(props: Props) =>
+      props.theme.select.selectedOptionBackgroundColor};
+  }
+  &:hover {
+    background-color: ${(props: Props) =>
+      props.theme.select.highlightOptionBackgroundColor};
+    color: ${(props: Props) => props.theme.select.highlightOptionColor};
+  }
+`;
+
 export class CustomSelect extends React.Component<Props> {
   static defaultProps = {
     selectSize: 'md',
@@ -422,21 +428,16 @@ export class CustomSelect extends React.Component<Props> {
     const DefaultSelectOption = props => {
       const { innerProps, innerRef, isFocused } = props;
       return (
-        <div
+        <SSelectOption
           data-testid={`select-option-${_.snakeCase(props.data.label)}`}
           className={'react-select__option'}
-          style={{
-            backgroundColor: isFocused
-              ? theme.select.highlightOptionBackgroundColor
-              : undefined,
-            color: isFocused ? theme.select.highlightOptionColor : undefined,
-          }}
+          isFocused={isFocused}
           ref={innerRef}
           {...innerProps}
           id={`${id}-Select-${_.snakeCase(props.data.label)}`}
         >
           {props.data.label}
-        </div>
+        </SSelectOption>
       );
     };
 
