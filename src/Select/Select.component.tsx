@@ -221,6 +221,9 @@ const SDiv = styled.div<Props>`
       font-family: ${(props: Props) => props.theme.typography.fontFamily};
       color: ${(props: Props) => props.theme.colors.drk800};
     }
+    .react-select__option {
+      padding: 8px 12px;
+    }
   }
   .react-select-component {
     .react-select__control {
@@ -356,7 +359,6 @@ const SSelectOption = styled.div`
     props.isFocused
       ? props.theme.select.highlightOptionColor
       : props.theme.select.color};
-  padding: 8px 12px;
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   &.react-select__option--is-selected {
     color: ${(props: Props) => props.theme.select.selectedOptionColor};
