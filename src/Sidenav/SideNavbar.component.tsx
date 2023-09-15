@@ -114,7 +114,7 @@ const SSideNavbar = styled.div`
   flex-direction: column;
 `;
 const SSideNav = styled.div`
-  height: ${props => (props.elementType === 'list' ? '90%' : 'auto')};
+  height: auto;
   padding: ${props => props.theme.sidenav.nav.padding};
   margin-bottom: 1px;
   margin: 4px;
