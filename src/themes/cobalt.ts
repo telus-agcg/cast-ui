@@ -500,7 +500,7 @@ export const cobaltTheme = {
       borderColor: cobaltColors.lt800,
       padding: '15px',
     },
-    button: {
+    closeButton: {
       disabledText: cobaltColors.drk400,
       hoverBorderColor: cobaltColors.white,
       hoverBackground: cobaltColors.lt400,

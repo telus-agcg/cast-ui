@@ -63,7 +63,7 @@ export const canopyTheme = {
         badgeBackground: canopyColors.primaryBackground,
         badgeColor: canopyColors.primary,
       },
-      cardTopBorderColor: canopyColors.primary,
+      cardTopBorderColor: canopyColors.drk400,
     },
     secondary: {
       borderColor: canopyColors.secondary,
@@ -87,7 +87,7 @@ export const canopyTheme = {
         badgeBackground: canopyColors.secondaryBackground,
         badgeColor: canopyColors.drk800,
       },
-      cardTopBorderColor: canopyColors.secondary,
+      cardTopBorderColor: canopyColors.drk400,
     },
     danger: {
       borderColor: canopyColors.danger,
@@ -111,7 +111,7 @@ export const canopyTheme = {
         badgeBackground: canopyColors.dangerBackground,
         badgeColor: canopyColors.danger,
       },
-      cardTopBorderColor: canopyColors.danger,
+      cardTopBorderColor: canopyColors.drk400,
     },
     warning: {
       borderColor: canopyColors.warning,
@@ -135,7 +135,7 @@ export const canopyTheme = {
         badgeBackground: canopyColors.warningBackground,
         badgeColor: canopyColors.warningHover,
       },
-      cardTopBorderColor: canopyColors.warning,
+      cardTopBorderColor: canopyColors.drk400,
     },
     success: {
       borderColor: canopyColors.success,
@@ -159,7 +159,7 @@ export const canopyTheme = {
         badgeBackground: canopyColors.successBackground,
         badgeColor: canopyColors.success,
       },
-      cardTopBorderColor: canopyColors.success,
+      cardTopBorderColor: canopyColors.drk400,
     },
   },
   pagination: {
@@ -296,7 +296,7 @@ export const canopyTheme = {
       },
       hover: {
         color: canopyColors.primary,
-        textDecoration: 'none',
+        textDecoration: 'underline',
       },
     },
     pre: {
@@ -486,7 +486,7 @@ export const canopyTheme = {
       minHeight: '0',
       backgroundColor: canopyColors.white,
       borderColor: canopyColors.lt800,
-      padding: '15px',
+      padding: '24px',
       fontSize: '16px',
       color: canopyColors.drk800,
     },
@@ -494,19 +494,19 @@ export const canopyTheme = {
       minHeight: '0',
       backgroundColor: canopyColors.white,
       borderBottom: canopyColors.lt800,
-      padding: '15px',
+      padding: '24px',
       color: canopyColors.drk800,
     },
     footer: {
       minHeight: '0',
       backgroundColor: canopyColors.white,
       borderColor: canopyColors.lt800,
-      padding: '15px',
+      padding: '24px',
     },
-    button: {
+    closeButton: {
       disabledText: canopyColors.drk400,
       hoverBorderColor: canopyColors.white,
-      hoverBackground: canopyColors.lt400,
+      hoverBackground: canopyColors.primaryBackground,
     },
     overlay: {
       zIndex: '999999',
@@ -592,14 +592,14 @@ export const canopyTheme = {
     lineHeight: '18px',
   },
   card: {
-    borderRadius: '2px',
+    borderRadius: '0px',
     borderColor: canopyColors.drk400,
     fontSize: '14px',
-    padding: '8px 16px',
+    padding: '16px',
     background: canopyColors.white,
-    boxShadow: '0 2px 4px rgba(0,0,0,.075) !important;',
-    highlightAllBorderWidth: '1px',
-    highlightedBorderWidth: '5px',
+    boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
+    highlightAllBorderWidth: '0px',
+    highlightedBorderWidth: '0px',
   },
   popover: {
     withArrowDistance: 10,
