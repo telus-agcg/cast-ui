@@ -118,7 +118,9 @@ const ModalHeaderDiv = styled.div`
     transition: all 0.3s;
     &:hover {
       background-color: ${props =>
-        props.disabled ? 'none' : props.theme.modal.button.hoverBackground};
+        props.disabled
+          ? 'none'
+          : props.theme.modal.closeButton.hoverBackground};
       color: ${props =>
         props.disabled
           ? props.theme.pagination.button.disabledText

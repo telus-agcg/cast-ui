@@ -154,7 +154,7 @@ const CloseIcon = styled.button`
   border-radius: 50%;
   transition: all 0.3s;
   &:hover {
-    background-color: ${props => props.theme.modal.button.hoverBackground};
+    background-color: ${props => props.theme.modal.closeButton.hoverBackground};
     color: ${props => props.theme.pagination.hoverTextColor};
   }
 `;

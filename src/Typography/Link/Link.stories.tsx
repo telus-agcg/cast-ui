@@ -20,11 +20,6 @@ export default {
         type: 'onClick',
       },
     },
-    onMouseEnter: {
-      action: {
-        type: 'onMouseEnter',
-      },
-    },
   },
 };
 

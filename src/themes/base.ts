@@ -466,7 +466,7 @@ export const buildTheme = colors => ({
       borderColor: colors.lt800,
       padding: '15px',
     },
-    button: {
+    closeButton: {
       disabledText: colors.drk400,
       hoverBorderColor: colors.white,
       hoverBackground: colors.lt400,
