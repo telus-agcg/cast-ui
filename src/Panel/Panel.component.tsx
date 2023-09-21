@@ -38,7 +38,7 @@ export type Props = {
 const PanelWrapper = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.fontSize};
-  border-radius: ${(props: Props) => props.theme.borders.radius};
+  border-radius: ${(props: Props) => props.theme.panel.borderRadius};
 `;
 
 const initialState = {};

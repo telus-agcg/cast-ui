@@ -1,4 +1,4 @@
-# TKXS Component Library
+# TAC Component Library
 
 [Component Documentation](https://telus-agcg.github.io/cast-ui/)
 
