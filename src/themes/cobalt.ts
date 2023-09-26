@@ -546,6 +546,7 @@ export const cobaltTheme = {
     },
     body: {
       padding: '24px 24px',
+      borderRadius: '1px',
     },
     borderWidth: 'thin',
     headerBorderColor: cobaltColors.drk400,

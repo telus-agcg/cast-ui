@@ -4,11 +4,11 @@ export { ThemeProvider } from 'styled-components';
 export const canopyColors = {
   white: '#ffffff',
   highlight200: '#F1F6FF', // ***try to get rid of***
-  drk800: '#2C363E',
-  drk400: '#9EA3A7',
-  lt800: '#D5D7D9',
-  lt400: '#EEF0F2',
-  lt200: '#F5F7F8',
+  drk800: '#2A2B30', // updated
+  drk400: '#9EA3A7', // updated
+  lt800: '#DADCE0', // updated
+  lt400: '#EEF0F2', // updated
+  lt200: '#FAFAFA', // updated
   primary: '#65299E', // updated
   primaryHover: '#4B286D', // updated
   primaryFaded: '#D6C4E6', // updated
@@ -63,7 +63,7 @@ export const canopyTheme = {
         badgeBackground: canopyColors.primaryBackground,
         badgeColor: canopyColors.primary,
       },
-      cardTopBorderColor: canopyColors.drk400,
+      cardTopBorderColor: canopyColors.lt800,
     },
     secondary: {
       borderColor: canopyColors.secondary,
@@ -87,7 +87,7 @@ export const canopyTheme = {
         badgeBackground: canopyColors.secondaryBackground,
         badgeColor: canopyColors.drk800,
       },
-      cardTopBorderColor: canopyColors.drk400,
+      cardTopBorderColor: canopyColors.lt800,
     },
     danger: {
       borderColor: canopyColors.danger,
@@ -111,7 +111,7 @@ export const canopyTheme = {
         badgeBackground: canopyColors.dangerBackground,
         badgeColor: canopyColors.danger,
       },
-      cardTopBorderColor: canopyColors.drk400,
+      cardTopBorderColor: canopyColors.lt800,
     },
     warning: {
       borderColor: canopyColors.warning,
@@ -135,7 +135,7 @@ export const canopyTheme = {
         badgeBackground: canopyColors.warningBackground,
         badgeColor: canopyColors.warningHover,
       },
-      cardTopBorderColor: canopyColors.drk400,
+      cardTopBorderColor: canopyColors.lt800,
     },
     success: {
       borderColor: canopyColors.success,
@@ -159,7 +159,7 @@ export const canopyTheme = {
         badgeBackground: canopyColors.successBackground,
         badgeColor: canopyColors.success,
       },
-      cardTopBorderColor: canopyColors.drk400,
+      cardTopBorderColor: canopyColors.lt800,
     },
   },
   pagination: {
@@ -340,13 +340,13 @@ export const canopyTheme = {
     background: canopyColors.white,
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: canopyColors.drk400,
+    borderColor: canopyColors.lt800,
     color: canopyColors.drk800,
     fontSize: '14px',
     placeholderColor: canopyColors.drk400,
     disabled: {
       background: canopyColors.lt800,
-      border: `1px solid ${canopyColors.lt800}`,
+      border: `1px solid ${canopyColors.lt400}`,
       addonTextColor: canopyColors.drk400,
     },
     sm: {
@@ -524,7 +524,7 @@ export const canopyTheme = {
   textarea: {
     background: canopyColors.white,
     backgroundDisabled: canopyColors.secondaryBackground,
-    borderColor: canopyColors.drk400,
+    borderColor: canopyColors.lt800,
     hoverBorderColor: canopyColors.drk800,
     color: canopyColors.drk800,
     padding: '6px 12px',
@@ -549,11 +549,12 @@ export const canopyTheme = {
     },
     body: {
       padding: '24px 24px',
+      borderRadius: '10px',
     },
     borderWidth: 'thin',
-    headerBorderColor: canopyColors.drk400,
+    headerBorderColor: canopyColors.lt800,
     bodyBackgroundColor: canopyColors.lt400,
-    bodyBorderColor: canopyColors.drk400,
+    bodyBorderColor: canopyColors.lt800,
     headerColor: canopyColors.primary,
     headerBackgroundColor: canopyColors.white,
   },
@@ -593,7 +594,7 @@ export const canopyTheme = {
   },
   card: {
     borderRadius: '0px',
-    borderColor: canopyColors.drk400,
+    borderColor: canopyColors.lt800,
     fontSize: '14px',
     padding: '16px',
     background: canopyColors.white,
@@ -647,7 +648,7 @@ export const canopyTheme = {
   },
   table: {
     fontSize: '14px',
-    border: `1px solid ${canopyColors.drk400}`,
+    border: `1px solid ${canopyColors.lt800}`,
     header: {
       backgroundColor: canopyColors.white,
       borderBottomColor: canopyColors.drk800,
@@ -859,13 +860,13 @@ export const canopyTheme = {
     highlightOptionColor: canopyColors.primary,
     selectedOptionColor: canopyColors.primary,
     selectedOptionBackgroundColor: canopyColors.white,
-    borderColor: canopyColors.drk400,
+    borderColor: canopyColors.lt800,
     placeholderColor: canopyColors.drk400,
     width: '100%',
     disabled: {
       color: canopyColors.drk800,
       dropdownColor: canopyColors.drk400,
-      borderColor: canopyColors.lt800,
+      borderColor: canopyColors.lt400,
       backgroundColor: canopyColors.lt800,
       placeholderColor: canopyColors.drk400,
     },
