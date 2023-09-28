@@ -152,7 +152,6 @@ export class PanelHeader extends React.Component<Props> {
       isCollapsed,
       ...props
     } = this.props;
-    console.log(`is collapsed`, typeof isCollapsed);
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SPanelHeader onClick={(e: any) => toggleItem!(e, theme)} {...props}>
