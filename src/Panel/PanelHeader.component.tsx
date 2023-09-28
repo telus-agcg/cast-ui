@@ -63,11 +63,11 @@ const SPanelHeader = styled.div`
   color: ${(props: Props) => props.theme.panel.headerColor};
   background: ${(props: Props) => props.theme.panel.headerBackgroundColor};
   border: ${(props: Props) =>
-    `${props.theme.panel.borderWidth} solid
+    `${props.theme.panel.header.borderWidth} solid
     ${props.theme.panel.headerBorderColor}`};
   &:hover {
     cursor: ${(props: Props) =>
-      props.isCollapsed !== undefined ? 'pointer' : 'auto'};
+      typeof props.isCollapsed !== 'undefined' ? 'pointer' : 'auto'};
   }
 `;
 
@@ -152,6 +152,7 @@ export class PanelHeader extends React.Component<Props> {
       isCollapsed,
       ...props
     } = this.props;
+    console.log(`is collapsed`, typeof isCollapsed);
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SPanelHeader onClick={(e: any) => toggleItem!(e, theme)} {...props}>

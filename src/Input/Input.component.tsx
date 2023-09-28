@@ -156,7 +156,10 @@ const SInput = styled.input`
 `;
 
 const SIconWrapper = styled.div`
-  margin: 0px;
+  margin-left: ${(props: Props) =>
+    props.iconPosition === 'left' ? '8px' : '0px'};
+  margin-right: ${(props: Props) =>
+    props.iconPosition === 'right' ? '8px' : '0px'};
   border-radius: 0px;
   button {
     border-radius: 0px;
@@ -268,7 +271,7 @@ export const Input: React.FunctionComponent<Props> = ({
           })}
         >
           {'left' === iconPosition && icon && (
-            <SIconWrapper>{icon}</SIconWrapper>
+            <SIconWrapper iconPosition={iconPosition}>{icon}</SIconWrapper>
           )}
           {'left' === addonTextPosition && addonText && (
             <SAddonTextWrapper>{addonText}</SAddonTextWrapper>
@@ -307,7 +310,7 @@ export const Input: React.FunctionComponent<Props> = ({
             </SIconWrapper>
           )}
           {'right' === iconPosition && icon && (
-            <SIconWrapper>{icon}</SIconWrapper>
+            <SIconWrapper iconPosition={iconPosition}>{icon}</SIconWrapper>
           )}
           {'right' === addonTextPosition && addonText && (
             <SAddonTextWrapper className={'addon-text'}>
