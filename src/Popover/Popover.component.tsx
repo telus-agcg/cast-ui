@@ -39,6 +39,7 @@ const SPopover = styled(TippyPopover)`
     border-right: 1px solid ${(props: Props) => props.theme.popover.borderColor};
     border-top: 1px solid ${(props: Props) => props.theme.popover.borderColor};
     position: absolute;
+    border: 1px solid ${(props: Props) => props.theme.popover.borderColor};
   }
   &[x-placement^='bottom'] .tippy-arrow {
     border-bottom: 8px solid ${(props: Props) => props.theme.colors.white};
