@@ -29,7 +29,7 @@ export type Props = {
 
 const SPanelBody = styled.div`
   border: ${(props: Props) =>
-    `${props.theme.panel.borderWidth} solid 
+    `${props.theme.panel.body.borderWidth} solid 
     ${props.theme.panel.bodyBorderColor}`};
   border-radius: ${(props: Props) => props.theme.panel.body.borderRadius};
   padding: ${(props: Props) =>

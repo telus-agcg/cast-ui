@@ -34,6 +34,10 @@ const SBadge = styled.div`
     props.lightMode
       ? props.theme.styles[props.badgeStyle!]['light'].badgeBackground
       : props.theme.styles[props.badgeStyle!].badgeBackground};
+  border: ${(props: Props) =>
+    props.lightMode
+      ? props.theme.styles[props.badgeStyle!]['light'].badgeBorder
+      : props.theme.styles[props.badgeStyle!].badgeBorder};
   border-radius: ${(props: Props) =>
     props.theme.badge[props.badgeSize!].borderRadius};
   color: ${(props: Props) =>
