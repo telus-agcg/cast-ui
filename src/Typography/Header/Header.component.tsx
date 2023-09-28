@@ -27,7 +27,8 @@ const SHeader = styled.h2`
     props.theme.typography.header[props.size!].fontSize};
   line-height: ${(props: Props) =>
     props.theme.typography.header[props.size!].lineHeight};
-  margin-top: 0px;
+  margin: ${(props: Props) =>
+    props.theme.typography.header[props.size!].margin};
 `;
 
 export const Header: React.FunctionComponent<Props> = ({

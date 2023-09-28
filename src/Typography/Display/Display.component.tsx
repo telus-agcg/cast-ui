@@ -26,7 +26,8 @@ const SDisplay = styled.h1`
     props.theme.typography.display[props.size!].fontSize};
   line-height: ${(props: Props) =>
     props.theme.typography.display[props.size!].lineHeight};
-  margin-top: 0px;
+  margin: ${(props: Props) =>
+    props.theme.typography.display[props.size!].margin};
 `;
 
 export const Display: React.FunctionComponent<Props> = ({

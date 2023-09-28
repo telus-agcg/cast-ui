@@ -27,7 +27,7 @@ const STitle = styled.h1`
     props.theme.typography.title[props.size!].fontSize};
   line-height: ${(props: Props) =>
     props.theme.typography.title[props.size!].lineHeight};
-  margin-top: 0px;
+  margin: ${(props: Props) => props.theme.typography.title[props.size!].margin};
 `;
 
 export const Title: React.FunctionComponent<Props> = ({
