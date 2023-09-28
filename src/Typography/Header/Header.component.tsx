@@ -17,7 +17,7 @@ export type Props = {
   theme?: any;
 };
 
-const Sheader = styled.h2`
+const SHeader = styled.h2`
   font-family: ${(props: Props) =>
     props.theme.typography.header[props.size!].fontFamily};
   color: ${(props: Props) => props.theme.typography.color};
@@ -27,6 +27,8 @@ const Sheader = styled.h2`
     props.theme.typography.header[props.size!].fontSize};
   line-height: ${(props: Props) =>
     props.theme.typography.header[props.size!].lineHeight};
+  margin: ${(props: Props) =>
+    props.theme.typography.header[props.size!].margin};
 `;
 
 export const Header: React.FunctionComponent<Props> = ({
@@ -35,7 +37,7 @@ export const Header: React.FunctionComponent<Props> = ({
   ...props
 }) => (
   <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <Sheader {...props}>{children}</Sheader>
+    <SHeader {...props}>{children}</SHeader>
   </ThemeProvider>
 );
 Header.defaultProps = { theme: Themes.canopyTheme, size: 10 };
