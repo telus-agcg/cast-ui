@@ -625,8 +625,8 @@ export const canopyTheme = {
     background: canopyColors.white,
     color: canopyColors.drk800,
     borderRadius: '1px',
-    borderColor: canopyColors.lt800,
     boxShadow: `0 0 5px ${canopyColors.lt800}`,
+    borderColor: canopyColors.primary,
   },
   tooltip: {
     background: canopyColors.drk800,
