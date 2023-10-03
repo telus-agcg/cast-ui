@@ -34,7 +34,6 @@ const SPanelBody = styled.div`
   border-radius: ${(props: Props) => props.theme.panel.body.borderRadius};
   padding: ${(props: Props) =>
     props.noPadding ? '10px' : props.theme.panel.body.padding};
-  overflow: hidden;
   height: auto;
 `;
 
