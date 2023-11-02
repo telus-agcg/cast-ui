@@ -34,7 +34,7 @@ const CWrapper = styled.div`
 `;
 
 function getHeight(content) {
-  return `${content.scrollHeight}px`;
+  return content ? `${content.scrollHeight}px` : '0px';
 }
 
 function nextFrame(callback: any) {
