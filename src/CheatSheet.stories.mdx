@@ -29,7 +29,6 @@ import {
 import { _Popover as Popover } from './Popover/Popover.stories.tsx';
 import SideNavData from './Sidenav/SideNavData';
 import { Sidenav } from './Sidenav/Sidenav.stories.tsx';
-import { _Slider as Slider } from './Slider/Slider.stories.tsx';
 import {
   MultiSelectWithCheckbox,
   MultiSelect,
@@ -51,7 +50,6 @@ import { _DatePickerRange as DatePickerRange } from './DatePickerRange/DatePicke
 import { _InputGroup as InputGroup } from './InputGroup/InputGroup.stories.tsx';
 import { _RadioButton as RButton } from './RadioButton/RadioButton.stories.tsx';
 import { _RadioButtonGroup as RButtonGroup } from './RadioButtonGroup/RadioButtonGroup.stories.tsx';
-import { _ListGroup as ListGroup } from './ListGroup/ListGroup.stories.tsx';
 import { _CollapseWithExpandableData as Collapse } from './Collapse/Collapse.stories.tsx';
 import { _Toggle as Toggle } from './Toggle/Toggle.stories.tsx';
 import { Colors } from './Colors/Colors.stories.tsx';
@@ -116,14 +114,6 @@ import './styles.css';
     List group allows users to organize and display a list of items in a way
     that can be easily expanded and collapsed as needed.{' '}
   </p>
-  <ListGroup
-    collapsible={true}
-    listGroupTheme="light"
-    border={true}
-    collapsible2={true}
-    listGroupTheme2="light"
-    isCollapsed={false}
-  />
 </div>
 
 <div class="layout">
@@ -683,19 +673,6 @@ import './styles.css';
     optionType="checkbox"
   />
 </div>
-
-<div class="layout">
-  <h4>
-    <a href="/docs/components-interactions-slider--slider">Slider</a>
-  </h4>
-  <p>
-    Slider allow users to select a value within a range. It typically consists
-    of a bar or track and a slider thumb that can be moved along the track to
-    select a specific value.
-  </p>
-  <Slider minValue={50} maxValue={150} step={5} theme={Themes.canopyTheme} />
-</div>
-
 <div class="layout">
   <h4>
     <a href="/docs/components-interactions-textarea--textarea">Textarea</a>
@@ -715,22 +692,6 @@ import './styles.css';
     placeholder="Placeholder Text"
     rows={8}
   />
-</div>
-
-<div class="layout">
-  <h4>
-    <a href="/docs/components-interactions-textarea--textarea">Toggle</a>
-  </h4>
-  <p>
-    Toggle buttons allow users to switch between two states or options. They are
-    commonly used in dark mode, preference settings, filters, navigation, and
-    on/off controls in web apps, and can greatly improve the user experience by
-    making it easy for users to toggle between different states or options with
-    just a single click.
-  </p>
-  <div>
-    <Toggle toggleSize="md" checked={true} />
-  </div>
 </div>
 
 <h3 class="section">4. Navigation</h3>
