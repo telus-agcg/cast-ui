@@ -571,6 +571,7 @@ export const cobaltTheme = {
     bodyBorderColor: cobaltColors.drk400,
     headerColor: cobaltColors.primary,
     headerBackgroundColor: cobaltColors.white,
+    boxShadow: 'none',
   },
   badge: {
     borderRadius: '4px',
