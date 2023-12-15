@@ -574,6 +574,7 @@ export const canopyTheme = {
     bodyBorderColor: canopyColors.lt800,
     headerColor: canopyColors.primary,
     headerBackgroundColor: canopyColors.white,
+    boxShadow: 'rgba(0, 0, 0, 0.24) 0px 1px 1px;',
   },
   badge: {
     borderRadius: '20px',
@@ -610,14 +611,14 @@ export const canopyTheme = {
     lineHeight: '18px',
   },
   card: {
-    borderRadius: '0px',
+    borderRadius: '10px',
     borderColor: canopyColors.lt800,
     fontSize: '14px',
     padding: '16px',
     background: canopyColors.white,
-    boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-    highlightAllBorderWidth: '0px',
-    highlightedBorderWidth: '0px',
+    boxShadow: 'rgba(0, 0, 0, 0.24) 0px 1px 1px;',
+    highlightAllBorderWidth: '1px',
+    highlightedBorderWidth: '1px',
   },
   popover: {
     withArrowDistance: 10,
