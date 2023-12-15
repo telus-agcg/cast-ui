@@ -537,6 +537,7 @@ export const buildTheme = colors => ({
     bodyBorderColor: colors.drk400,
     headerColor: colors.primary,
     headerBackgroundColor: colors.white,
+    boxShadow: 'none',
   },
   badge: {
     borderRadius: '4px',
