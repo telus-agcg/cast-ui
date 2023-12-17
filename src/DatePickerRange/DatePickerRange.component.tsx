@@ -123,6 +123,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   }
   .DateRangePickerInput_calendarIcon {
     padding: 0 10px;
+    margin: -3px 0 0 0;
   }
   .DateInput {
     width: 110px;
