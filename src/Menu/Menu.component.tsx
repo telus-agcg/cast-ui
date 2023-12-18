@@ -44,7 +44,6 @@ export interface Props {
 const SMenu = styled.div`
   padding: 8px 0;
   min-width: 140px;
-  border: 1px solid ${(props: any) => props.theme.select.borderColor};
   > * {
     cursor: pointer;
     text-decoration: none;

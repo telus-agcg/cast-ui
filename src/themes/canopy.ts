@@ -625,7 +625,7 @@ export const canopyTheme = {
     withoutArrowDistance: 9,
     background: canopyColors.white,
     color: canopyColors.drk800,
-    borderRadius: '1px',
+    borderRadius: '8px',
     boxShadow: `0 0 5px ${canopyColors.lt800}`,
     borderColor: canopyColors.primary,
   },
