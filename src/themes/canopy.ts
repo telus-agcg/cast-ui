@@ -579,6 +579,7 @@ export const canopyTheme = {
   badge: {
     borderRadius: '20px',
     fontSize: '14px',
+    fontWeight: 'normal',
     sm: {
       borderRadius: '20px',
       fontSize: '12px',
