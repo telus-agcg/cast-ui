@@ -273,7 +273,6 @@ const SDiv = styled.div<Props>`
           color: ${(props: Props) => props.theme.colors.primary};
           display: flex;
           align-items: center;
-          margin: 5px;
           div:first-child {
             display: flex;
           }
@@ -459,7 +458,7 @@ export class CustomSelect extends React.Component<Props> {
           ref={innerRef}
           {...innerProps}
         >
-          <SelectComponents.MultiValueRemove {...innerProps} />
+          <SelectComponents.MultiValueRemove {...props} />
         </div>
       );
     };
