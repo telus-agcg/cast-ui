@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ErrorMessage from '../Typography/ErrorMessage/index';
-import Select, { Creatable as CreatableSelect } from 'react-select';
+import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
@@ -455,7 +456,7 @@ export class CustomSelect extends React.Component<Props> {
           ref={innerRef}
           {...innerProps}
         >
-          <SelectComponents.MultiValueRemove />
+          <SelectComponents.MultiValueRemove {...innerProps} />
         </div>
       );
     };
