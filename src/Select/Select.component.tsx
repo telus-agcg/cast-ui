@@ -273,6 +273,7 @@ const SDiv = styled.div<Props>`
           color: ${(props: Props) => props.theme.colors.primary};
           display: flex;
           align-items: center;
+          margin: 5px;
           div:first-child {
             display: flex;
           }
