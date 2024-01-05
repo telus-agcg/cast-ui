@@ -579,6 +579,7 @@ export const canopyTheme = {
   badge: {
     borderRadius: '20px',
     fontSize: '14px',
+    fontWeight: 'normal',
     sm: {
       borderRadius: '20px',
       fontSize: '12px',
@@ -627,7 +628,7 @@ export const canopyTheme = {
     color: canopyColors.drk800,
     borderRadius: '8px',
     boxShadow: `0 0 5px ${canopyColors.lt800}`,
-    borderColor: canopyColors.primary,
+    borderColor: canopyColors.lt800,
   },
   tooltip: {
     background: canopyColors.drk800,

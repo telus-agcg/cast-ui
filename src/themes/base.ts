@@ -542,6 +542,7 @@ export const buildTheme = colors => ({
   badge: {
     borderRadius: '4px',
     fontSize: '15px',
+    fontWeight: 'bold',
     sm: {
       borderRadius: '4px',
       fontSize: '12px',
