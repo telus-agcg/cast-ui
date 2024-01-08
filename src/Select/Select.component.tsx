@@ -1,7 +1,6 @@
 import * as React from 'react';
 import ErrorMessage from '../Typography/ErrorMessage/index';
-import Select from 'react-select';
-import CreatableSelect from 'react-select/creatable';
+import Select, { Creatable as CreatableSelect } from 'react-select';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import uuid from 'uuid';
@@ -271,8 +270,6 @@ const SDiv = styled.div<Props>`
           props.theme.select.multiSelect.badge.borderRadius};
         .react-select__multi-value__remove {
           color: ${(props: Props) => props.theme.colors.primary};
-          display: flex;
-          align-items: center;
           div:first-child {
             display: flex;
           }
@@ -458,7 +455,7 @@ export class CustomSelect extends React.Component<Props> {
           ref={innerRef}
           {...innerProps}
         >
-          <SelectComponents.MultiValueRemove {...props} />
+          <SelectComponents.MultiValueRemove />
         </div>
       );
     };
