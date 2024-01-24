@@ -135,6 +135,9 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     border-color: ${(props: Partial<Props>) =>
       props.theme.styles[props.datePickerStyle!].borderColor};
   }
+  .CalendarDay__today {
+    border: 1.5px solid ${props => props.theme.colors.drk800}!important;
+  }
 `;
 
 class ReactDatePicker extends Component<Props> {
