@@ -136,7 +136,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
       props.theme.styles[props.datePickerStyle!].borderColor};
   }
   .CalendarDay__today {
-    border: 1.5px solid ${props => props.theme.colors.drk800}!important;
+    border: 1.5px double ${props => props.theme.colors.drk800}!important;
   }
 `;
 

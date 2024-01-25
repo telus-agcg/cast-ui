@@ -143,7 +143,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     transition: all 0.3s;
   }
   .CalendarDay__today {
-    border: 1.5px solid ${props => props.theme.colors.drk800}!important;
+    border: 1.5px double ${props => props.theme.colors.drk800}!important;
   }
   .DateRangePickerInput__withBorder:hover {
     border-color: ${(props: Partial<Props>) => props.theme.colors.drk800}
