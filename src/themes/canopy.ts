@@ -659,7 +659,7 @@ export const canopyTheme = {
   },
   validation: {
     borderColor: canopyColors.danger,
-    color: canopyColors.drk800,
+    color: canopyColors.danger,
     fontSize: '12px',
     fontStyle: 'italic',
     lineHeight: '13px',
