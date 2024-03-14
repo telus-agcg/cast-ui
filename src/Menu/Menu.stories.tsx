@@ -1,9 +1,20 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
 import { Button, Link, Menu } from '..';
 
 const description = `
 A Menu is a specialized Popover wrapper that displays items to select when triggered via click, typically with a Link or Button (with displayType="menu").
+`;
+
+const CustomItem = styled.div`
+  padding: 8px 16px;
+  border-top: ${(props: any) => `1px solid ${props.theme.colors.drk800}`};
+  :hover {
+    color: ${(props: any) => props.theme.select.highlightOptionColor};
+    background: ${(props: any) =>
+      props.theme.select.highlightOptionBackgroundColor};
+  }
 `;
 
 export default {
@@ -35,6 +46,19 @@ const menuData = [
   { label: 'Chocolate', id: 'chocolate' },
 ];
 
+const menuDataWithCustomComponent = [
+  {
+    label: 'Vanilla',
+    id: 'vanilla',
+    disabled: true,
+  },
+  { label: 'Chocolate', id: 'chocolate' },
+  {
+    id: 'something',
+    component: <CustomItem>Hello world</CustomItem>,
+  },
+];
+
 export const _MenuFromLink = args => (
   <Menu
     triggerComponent={<Link>Show options</Link>}
@@ -57,4 +81,16 @@ export const _MenuFromButton = args => (
 
 _MenuFromButton.args = {
   items: menuData,
+};
+
+export const _MenuWithCustomComponent = args => (
+  <Menu
+    triggerComponent={<Link>Show options</Link>}
+    data-testid="submit"
+    {...args}
+  />
+);
+
+_MenuWithCustomComponent.args = {
+  items: menuDataWithCustomComponent,
 };
