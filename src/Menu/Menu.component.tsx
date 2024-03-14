@@ -7,7 +7,8 @@ import { Popover } from '../Popover';
 export interface MenuItem {
   disabled?: boolean;
   id?: any;
-  label: string;
+  label?: string;
+  component?: any;
 }
 
 export interface Props {
@@ -16,7 +17,8 @@ export interface Props {
    * Each `MenuItem` can contain the following properties:
    * - `disabled` (boolean),  *optional*
    * - `id` (any),  *optional*
-   * - `label` (string), **required**
+   * - `label` (string), *optional*
+   * - `component` (string), *optional*
    *
    * @default []
    **/
@@ -44,19 +46,8 @@ export interface Props {
 const SMenu = styled.div`
   padding: 8px 0;
   min-width: 140px;
-  > * {
-    cursor: pointer;
-    text-decoration: none;
-    padding: 8px 16px;
-    color: ${(props: any) => props.theme.select.color};
-    background: ${(props: any) => props.theme.select.optionBackgroundColor};
-    font-family: ${(props: any) => props.theme.typography.fontFamily};
-  }
-  > *:hover {
-    color: ${(props: any) => props.theme.select.highlightOptionColor};
-    background: ${(props: any) =>
-      props.theme.select.highlightOptionBackgroundColor};
-  }
+  font-family: ${(props: any) => props.theme.typography.fontFamily};
+  cursor: pointer;
 `;
 
 const SPopover = styled(Popover)`
@@ -67,6 +58,15 @@ const SMenuItem = styled.div`
   opacity: ${(props: any) => (props.disabled ? '.6' : '1')};
   text-align: left;
   cursor: ${(props: any) => (props.disabled ? 'not-allowed' : 'pointer')};
+  text-decoration: none;
+  padding: 8px 16px;
+  color: ${(props: any) => props.theme.select.color};
+  background: ${(props: any) => props.theme.select.optionBackgroundColor};
+  :hover {
+    color: ${(props: any) => props.theme.select.highlightOptionColor};
+    background: ${(props: any) =>
+      props.theme.select.highlightOptionBackgroundColor};
+  }
 `;
 
 const noop = () => {}; // tslint:disable-line
@@ -98,16 +98,20 @@ export const Menu: React.FC<Props> = ({
         content={
           <SMenu {...props}>
             {Array.isArray(items) &&
-              items.map((item: MenuItem, j: number) => (
-                <SMenuItem
-                  {...item}
-                  key={j}
-                  onClick={(e: any) => handleItemClick(item, e)}
-                  data-testid={_.kebabCase(item.label)}
-                >
-                  {item.label}
-                </SMenuItem>
-              ))}
+              items.map((item: MenuItem, j: number) => {
+                if (item.component) return item.component;
+                return (
+                  <SMenuItem
+                    {...item}
+                    theme={theme}
+                    key={j}
+                    onClick={(e: any) => handleItemClick(item, e)}
+                    data-testid={_.kebabCase(item.label)}
+                  >
+                    {item.label}
+                  </SMenuItem>
+                );
+              })}
           </SMenu>
         }
         arrow={false}
