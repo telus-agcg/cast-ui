@@ -17,7 +17,7 @@ export interface Props {
    * Each `MenuItem` can contain the following properties:
    * - `disabled` (boolean),  *optional*
    * - `id` (any),  *optional*
-   * - `label` (string), **required**
+   * - `label` (string), *optional*
    * - `component` (string), *optional*
    *
    * @default []
