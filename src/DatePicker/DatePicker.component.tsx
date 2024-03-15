@@ -2,12 +2,18 @@ import React, { Component, ForwardRefExoticComponent } from 'react';
 import uuid from 'uuid';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
-import { SingleDatePicker, SingleDatePickerShape } from 'react-dates';
-import { Moment } from 'moment';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { Themes } from '../themes';
-import './DatePickerStyles.css';
+import Icon from 'react-icons-kit';
+import {
+  calendarO,
+  angleRight,
+  angleLeft,
+  angleDoubleRight,
+  angleDoubleLeft,
+} from 'react-icons-kit/fa';
 
-type momentDate = Moment | null;
 type pickerSize = 'sm' | 'md' | 'lg';
 type pickerStyle =
   | 'default'
@@ -19,7 +25,7 @@ type pickerStyle =
 type focusInput = boolean | null;
 type focused = { focused: focusInput };
 
-export type Props = Partial<SingleDatePickerShape> & {
+export type Props = Partial<any> & {
   /**
    * Set className
    *
@@ -70,7 +76,7 @@ export type Props = Partial<SingleDatePickerShape> & {
 
 type State = {
   focused: focusInput;
-  date: momentDate;
+  date: Date | null;
 };
 
 const SWrapperComponent = styled.div<Partial<Props>>`
@@ -87,56 +93,99 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     height: ${(props: Partial<Props>) =>
       props.theme.input[props.datePickerSize!].height};
     line-height: initial;
-    padding: ${(props: Partial<Props>) =>
-      props.theme.common[props.datePickerSize!].padding};
-    border: none;
+    border: ${(props: Props) =>
+      `${props.theme.input.borderWidth} 
+     ${props.theme.input.borderStyle} 
+     ${
+       props.invalid
+         ? props.theme.validation.borderColor
+         : props.theme.input.borderColor
+     }`};
     border-radius: ${(props: Partial<Props>) =>
       props.theme.input[props.datePickerSize!].borderRadius};
     ::placeholder {
       color: ${(props: Partial<Props>) => props.theme.input.placeholderColor};
     }
+
+    &:focus {
+      outline: none !important;
+      box-shadow: none;
+    }
+    &:hover {
+      border-color: ${(props: Props) => props.theme.colors.drk800};
+    }
   }
-  .SingleDatePickerInput {
-    background: ${(props: Partial<Props>) => props.theme.colors.white};
-    border-radius: ${(props: Partial<Props>) =>
-      props.theme.input[props.datePickerSize!].borderRadius};
+
+  .react-datepicker__calendar-icon {
     display: flex;
-  }
-  .SingleDatePickerInput__withBorder {
-    border-color: ${(props: Partial<Props>) =>
+    align-items: center;
+    color: ${(props: Props) =>
       props.invalid
         ? props.theme.validation.borderColor
-        : props.theme.input.borderColor};
-    transition: all 0.3s;
+        : props.theme.colors.primary};
   }
-  .SingleDatePickerInput__withBorder:hover {
-    border-color: ${(props: Partial<Props>) => props.theme.colors.drk800};
+
+  .react-datepicker__header.react-datepicker__header--custom {
+    text-align: center;
+    background-color: #fff;
   }
-  .SingleDatePickerInput_calendarIcon {
-    padding: 0 10px;
-    margin: -3px 0 0 0;
+
+  .react-datepicker__day-name {
+    width: 32px;
   }
-  .DateInput {
-    width: 110px;
-    border-radius: ${(props: Partial<Props>) =>
-      props.theme.input[props.datePickerSize!].borderRadius};
+
+  .react-datepicker__day {
+    width: 32px;
+    line-height: 32px;
   }
-  .SingleDatePicker_picker {
-    z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
+
+  .react-datepicker__day--today {
+    border: ${(props: Props) => `1px solid ${props.theme.colors.primary}`};
+    border-radius: 3px;
+    color: ${(props: Partial<Props>) => props.theme.colors.primary};
   }
-  .DayPickerKeyboardShortcuts_show__bottomRight::before {
-    border-right: 33px solid
-      ${(props: Partial<Props>) =>
-        props.theme.styles[props.datePickerStyle!].borderColor};
+
+  .react-datepicker__day--selected {
+    border: ${(props: Props) => `1px solid ${props.theme.colors.primary}`};
+    border-radius: 3px;
+    background-color: ${(props: Partial<Props>) => props.theme.colors.primary};
+    color: ${(props: Partial<Props>) => props.theme.colors.white};
   }
-  .CalendarDay__selected {
+
+  .react-datepicker__day--keyboard-selected {
     background: ${(props: Partial<Props>) =>
-      props.theme.styles[props.datePickerStyle!].borderColor};
-    border-color: ${(props: Partial<Props>) =>
-      props.theme.styles[props.datePickerStyle!].borderColor};
+      props.theme.colors.primaryBackground};
   }
-  .CalendarDay__today {
-    border: 1.5px double ${props => props.theme.colors.drk800}!important;
+
+  .react-datepicker__portal {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+`;
+
+const SDatePickerHeader = styled.div`
+  margin: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+`;
+
+const SDatePickerLabel = styled.div`
+  flex-grow: 1;
+`;
+
+const SButton = styled.button`
+  display: flex;
+  border: none;
+  padding: 6px 9px;
+  border-radius: 3px;
+  background: #fff;
+  cursor: pointer;
+  color: #757575;
+  &:hover {
+    background-color: ${(props: Partial<Props>) =>
+      props.theme.colors.primaryBackground};
   }
 `;
 
@@ -149,7 +198,7 @@ class ReactDatePicker extends Component<Props> {
     datePickerStyle: 'primary',
     date: null,
     focused: null,
-    onDateChange: null,
+    onChange: null,
     onFocusChange: null,
     invalid: false,
     invalidText: '',
@@ -163,15 +212,16 @@ class ReactDatePicker extends Component<Props> {
     date: null,
   };
 
-  onDateChange = (event: momentDate) =>
-    this.props.onDateChange instanceof Function
-      ? this.props.onDateChange(event)
+  onDateChange = (event: Date) => {
+    this.props.onChange instanceof Function
+      ? this.props.onChange(event)
       : this.setState(
           {
             date: event,
           },
           () => console.log(event),
         );
+  };
 
   onFocusChange = (input: focused) => {
     this.props.onFocusChange instanceof Function
@@ -184,6 +234,13 @@ class ReactDatePicker extends Component<Props> {
     );
   };
 
+  getYearsOption = (): number[] => {
+    return Array.from(
+      { length: 7 },
+      (_, index) => new Date().getFullYear() - 3 + index,
+    );
+  };
+
   render() {
     const {
       theme,
@@ -192,15 +249,14 @@ class ReactDatePicker extends Component<Props> {
       wrapperId,
       datePickerSize,
       datePickerStyle,
-
       date,
       focused,
-      onDateChange,
+      onChange,
       onFocusChange,
 
-      /**
-       * override sizes from react-dates
-       */
+      // /**
+      //  * override sizes from react-dates
+      //  */
       small,
       regular,
       block,
@@ -222,14 +278,60 @@ class ReactDatePicker extends Component<Props> {
           aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
         >
-          <SingleDatePicker
-            id={id!}
-            date={date || this.state.date}
-            focused={!!focused || !!this.state.focused}
-            onFocusChange={this.onFocusChange}
-            onDateChange={this.onDateChange}
-            showDefaultInputIcon={true}
-            numberOfMonths={1}
+          <DatePicker
+            icon={
+              <div>
+                <Icon icon={calendarO} />
+              </div>
+            }
+            onChange={this.onDateChange}
+            selected={date || this.state.date}
+            showIcon={true}
+            renderCustomHeader={({
+              date,
+              decreaseMonth,
+              increaseMonth,
+              increaseYear,
+              decreaseYear,
+              prevMonthButtonDisabled,
+              nextMonthButtonDisabled,
+              prevYearButtonDisabled,
+              nextYearButtonDisabled,
+            }) => {
+              return (
+                <SDatePickerHeader>
+                  <SButton
+                    disabled={prevYearButtonDisabled}
+                    onClick={decreaseYear}
+                  >
+                    <Icon icon={angleDoubleLeft} />
+                  </SButton>
+                  <SButton
+                    disabled={prevMonthButtonDisabled}
+                    onClick={decreaseMonth}
+                  >
+                    <Icon icon={angleLeft} />
+                  </SButton>
+                  <SDatePickerLabel>
+                    {`${date.toLocaleString('default', {
+                      month: 'long',
+                    })} ${date.getFullYear()}`}
+                  </SDatePickerLabel>
+                  <SButton
+                    disabled={nextMonthButtonDisabled}
+                    onClick={increaseMonth}
+                  >
+                    <Icon icon={angleRight} />
+                  </SButton>
+                  <SButton
+                    disabled={nextYearButtonDisabled}
+                    onClick={increaseYear}
+                  >
+                    <Icon icon={angleDoubleRight} />
+                  </SButton>
+                </SDatePickerHeader>
+              );
+            }}
             {...props}
           />
           {invalid && (
@@ -244,6 +346,6 @@ class ReactDatePicker extends Component<Props> {
     );
   }
 }
-export const DatePicker: ForwardRefExoticComponent<Props> = withTheme(
+export const SingleDatePicker: ForwardRefExoticComponent<Props> = withTheme(
   ReactDatePicker,
 );

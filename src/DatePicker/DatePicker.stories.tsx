@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DatePicker } from '../';
+import { DatePicker } from '..';
 
 const descriptionComponent = `
 This is a DatePicker, based on [react-dates](http://airbnb.io/react-dates), which you must install in your app. To initialize, you should include the following line in your app.
@@ -18,15 +18,9 @@ export default {
         disable: true,
       },
     },
-    showDefaultInputIcon: {
+    showIcon: {
       control: {
         type: 'boolean',
-      },
-    },
-    inputIconPosition: {
-      control: {
-        options: ['before', 'after'],
-        type: 'inline-radio',
       },
     },
     datePickerStyle: {
@@ -64,6 +58,11 @@ export default {
     className: {
       control: false,
     },
+    withPortal: {
+      control: {
+        type: 'boolean',
+      },
+    },
     wrapperId: {
       control: false,
     },
@@ -85,14 +84,14 @@ export default {
   },
 };
 
-export const _DatePicker = args => <DatePicker key="0" {...args} withPortal />;
+export const _DatePicker = args => <DatePicker key="0" {...args} />;
 
 _DatePicker.args = {
-  showDefaultInputIcon: true,
-  inputIconPosition: 'after',
+  showIcon: true,
   datePickerStyle: 'primary',
   datePickerSize: 'md',
   invalid: false,
   invalidText: 'A valid value is required',
   numberOfMonths: 1,
+  withPortal: true,
 };

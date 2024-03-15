@@ -1,5 +1,8 @@
-import { DatePicker } from './DatePicker.component';
+import { SingleDatePicker as DatePicker } from './DatePicker.component';
 
-export { DatePicker, Props as DatePickerProps } from './DatePicker.component';
+export {
+  SingleDatePicker as DatePicker,
+  Props as DatePickerProps,
+} from './DatePicker.component';
 
 export default DatePicker;
