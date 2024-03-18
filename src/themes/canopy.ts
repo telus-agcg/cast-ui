@@ -700,7 +700,7 @@ export const canopyTheme = {
     bottomBorderWidth: '3px',
     tab: {
       color: canopyColors.drk800,
-      backgroundColor: canopyColors.white,
+      backgroundColor: canopyColors.lt200,
     },
     activetab: {
       color: canopyColors.primary,
