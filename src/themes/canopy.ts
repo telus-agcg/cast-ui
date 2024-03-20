@@ -694,10 +694,10 @@ export const canopyTheme = {
     zIndex: 99,
   },
   tabs: {
-    borderColor: canopyColors.drk400,
+    borderColor: canopyColors.secondary,
     hoverColor: canopyColors.primaryFaded,
     borderRadius: '20px',
-    bottomBorderWidth: '4px',
+    bottomBorderWidth: '3px',
     tab: {
       color: canopyColors.drk800,
       backgroundColor: canopyColors.lt200,
@@ -706,6 +706,9 @@ export const canopyTheme = {
       color: canopyColors.primary,
       backgroundColor: canopyColors.white,
       borderColor: canopyColors.primary,
+    },
+    disabledtab: {
+      backgroundColor: canopyColors.lt200,
     },
     fontSize: '14px',
     padding: '14px',

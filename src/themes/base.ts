@@ -654,20 +654,24 @@ export const buildTheme = colors => ({
     zIndex: 99,
   },
   tabs: {
-    borderColor: colors.primary,
+    borderColor: colors.secondary,
     hoverColor: colors.primaryFaded,
     borderRadius: '20px',
-    bottomBorderWidth: '4px',
+    bottomBorderWidth: '3px',
     tab: {
       color: colors.drk800,
       backgroundColor: colors.white,
     },
     activetab: {
-      color: colors.white,
-      backgroundColor: colors.primary,
+      color: colors.primary,
+      backgroundColor: colors.white,
+      borderColor: colors.primary,
+    },
+    disabledtab: {
+      backgroundColor: colors.lt200,
     },
     fontSize: '14px',
-    padding: '2px 10px',
+    padding: '14px',
     margin: '16px 16px 0 16px',
   },
   copyToClipboard: {

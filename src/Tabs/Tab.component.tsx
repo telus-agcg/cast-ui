@@ -60,17 +60,13 @@ const SReactTab = styled(ReactTabProxy)`
 
   &[class$='--selected'] {
     background-color: ${props => props.theme.tabs.activetab.backgroundColor};
-    border: none;
-    border-right: 1px solid ${props => props.theme.tabs.borderColor};
     box-shadow: 0 -${props => props.theme.tabs.bottomBorderWidth} ${props =>
         props.theme.tabs.activetab.borderColor} inset;
     color: ${props => props.theme.tabs.activetab.color};
-    &:last-child {
-      border-right: none;
-    }
   }
 
   &[class$='--disabled'] {
+    background-color: ${props => props.theme.tabs.disabledtab.backgroundColor};
     color: ${props => props.theme.colors.drk400};
     cursor: not-allowed;
   }
