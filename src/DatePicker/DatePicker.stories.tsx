@@ -23,6 +23,12 @@ export default {
         type: 'boolean',
       },
     },
+    iconPosition: {
+      control: {
+        options: ['right', 'left'],
+        type: 'select',
+      },
+    },
     datePickerStyle: {
       control: {
         options: ['primary', 'secondary', 'success', 'warning', 'danger'],
@@ -50,7 +56,7 @@ export default {
         type: 'color',
       },
     },
-    numberOfMonths: {
+    monthsShown: {
       control: {
         type: 'number',
       },
@@ -90,8 +96,9 @@ _DatePicker.args = {
   showIcon: true,
   datePickerStyle: 'primary',
   datePickerSize: 'md',
+  iconPosition: 'right',
   invalid: false,
   invalidText: 'A valid value is required',
-  numberOfMonths: 1,
+  monthsShown: 1,
   withPortal: true,
 };
