@@ -10,15 +10,15 @@ export default {
         disable: true,
       },
     },
-    showDefaultInputIcon: {
+    showIcon: {
       control: {
         type: 'boolean',
       },
     },
-    inputIconPosition: {
+    iconPosition: {
       control: {
-        options: ['before', 'after'],
-        type: 'inline-radio',
+        options: ['right', 'left'],
+        type: 'select',
       },
     },
     datePickerStyle: {
@@ -48,8 +48,18 @@ export default {
         type: 'color',
       },
     },
+    monthsShown: {
+      control: {
+        type: 'number',
+      },
+    },
     className: {
       control: false,
+    },
+    withPortal: {
+      control: {
+        type: 'boolean',
+      },
     },
     id: {
       control: false,
@@ -69,10 +79,13 @@ export default {
 export const _DatePickerRange = args => <DatePickerRange key="0" {...args} />;
 
 _DatePickerRange.args = {
-  showDefaultInputIcon: true,
-  inputIconPosition: 'after',
-  datePickerStyle: 'primary',
   datePickerSize: 'md',
+  datePickerStyle: 'primary',
+  iconPosition: 'right',
   invalid: false,
   invalidText: 'A valid value is required',
+  monthsShown: 1,
+  placeholderText: 'Start Date - End Date',
+  showIcon: true,
+  withPortal: false,
 };

@@ -1,4 +1,4 @@
-import React, { Component, ForwardRefExoticComponent, forwardRef } from 'react';
+import React, { Component, ForwardRefExoticComponent } from 'react';
 import uuid from 'uuid';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 import Input from '../Input/index';
@@ -87,11 +87,9 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     props.theme.common[props.datePickerSize!].fontSize};
   color: ${(props: Partial<Props>) =>
     props.theme.styles[props.datePickerStyle!].text};
-  max-width: 200px;
+  max-width: 186px;
 
   input {
-    box-sizing: border-box;
-    font-size: ${(props: Partial<Props>) => props.theme.input.fontSize};
     height: ${(props: Partial<Props>) =>
       props.theme.input[props.datePickerSize!].height};
     line-height: initial;
@@ -100,20 +98,15 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     border: none;
     border-radius: ${(props: Partial<Props>) =>
       props.theme.input[props.datePickerSize!].borderRadius};
-    &[data-invalid] {
-      border-color: ${(props: Partial<Props>) =>
-        props.theme.validation.borderColor};
-    }
-    ::placeholder {
-      color: ${(props: Partial<Props>) => props.theme.input.placeholderColor};
-    }
   }
 
   .react-datepicker__icon {
+    visibility: ${(props: Props) => (props.showIcon ? 'visible' : 'hidden')};
     color: ${(props: Props) =>
       props.invalid
         ? props.theme.validation.borderColor
         : props.theme.colors.primary};
+    cursor: pointer;
   }
 
   .react-datepicker__header.react-datepicker__header--custom {
@@ -134,6 +127,8 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     border: ${(props: Props) => `1px solid ${props.theme.colors.primary}`};
     border-radius: 3px;
     color: ${(props: Partial<Props>) => props.theme.colors.primary};
+    background: ${(props: Partial<Props>) =>
+      props.theme.colors.primaryBackground};
   }
 
   .react-datepicker__day--selected {
@@ -180,12 +175,73 @@ const SButton = styled.button`
   }
 `;
 
-const CustomInput = (props: any) => {
+const CustomInput = (props: Partial<Props>) => {
   return (
     <Input
       {...props}
       icon={<Icon className="react-datepicker__icon" icon={calendarO} />}
     />
+  );
+};
+
+const CustomDatePickerHeader = ({
+  date,
+  decreaseMonth,
+  increaseMonth,
+  increaseYear,
+  customHeaderCount,
+  decreaseYear,
+  monthDate,
+  monthsShown,
+  prevMonthButtonDisabled,
+  nextMonthButtonDisabled,
+  prevYearButtonDisabled,
+  nextYearButtonDisabled,
+}) => {
+  return (
+    <SDatePickerHeader>
+      <SButton
+        disabled={prevYearButtonDisabled}
+        onClick={decreaseYear}
+        style={customHeaderCount === 1 ? { visibility: 'hidden' } : null}
+      >
+        <Icon icon={angleDoubleLeft} />
+      </SButton>
+      <SButton
+        disabled={prevMonthButtonDisabled}
+        onClick={decreaseMonth}
+        style={customHeaderCount === 1 ? { visibility: 'hidden' } : null}
+      >
+        <Icon icon={angleLeft} />
+      </SButton>
+      <SDatePickerLabel>
+        {`${monthDate.toLocaleString('default', {
+          month: 'long',
+        })} ${date.getFullYear()}`}
+      </SDatePickerLabel>
+      <SButton
+        disabled={nextMonthButtonDisabled}
+        onClick={increaseMonth}
+        style={
+          monthsShown > 1 && customHeaderCount === 0
+            ? { visibility: 'hidden' }
+            : null
+        }
+      >
+        <Icon icon={angleRight} />
+      </SButton>
+      <SButton
+        disabled={nextYearButtonDisabled}
+        onClick={increaseYear}
+        style={
+          monthsShown > 1 && customHeaderCount === 0
+            ? { visibility: 'hidden' }
+            : null
+        }
+      >
+        <Icon icon={angleDoubleRight} />
+      </SButton>
+    </SDatePickerHeader>
   );
 };
 
@@ -201,11 +257,12 @@ class ReactDatePicker extends Component<Props> {
     focused: null,
     onChange: null,
     onFocusChange: null,
-    monthsShown: null,
+    monthsShown: 1,
     invalid: false,
     invalidText: '',
     invalidTextColor: '',
     verticalSpacing: 10,
+    showIcon: true,
     theme: Themes.canopyTheme,
   };
 
@@ -256,19 +313,14 @@ class ReactDatePicker extends Component<Props> {
       onChange,
       onFocusChange,
       monthsShown,
-
-      // /**
-      //  * override sizes from react-datePicker
-      //  */
-      small,
-      regular,
-      block,
+      showIcon,
       invalid,
       invalidText,
       invalidTextColor,
       ...props
     } = this.props;
     const errorId = invalid ? `${id}-error-msg` : '';
+
     return (
       <ThemeProvider theme={theme}>
         <SWrapperComponent
@@ -280,78 +332,20 @@ class ReactDatePicker extends Component<Props> {
           data-invalid={invalid ? '' : undefined}
           aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
+          showIcon={showIcon}
         >
-          <DatePicker
-            customInput={<CustomInput {...this.props} />}
-            onChange={this.onDateChange}
-            selected={date || this.state.date}
-            showIcon={true}
-            monthsShown={monthsShown}
-            renderCustomHeader={({
-              date,
-              decreaseMonth,
-              increaseMonth,
-              increaseYear,
-              customHeaderCount,
-              decreaseYear,
-              monthDate,
-              prevMonthButtonDisabled,
-              nextMonthButtonDisabled,
-              prevYearButtonDisabled,
-              nextYearButtonDisabled,
-            }) => {
-              return (
-                <SDatePickerHeader>
-                  <SButton
-                    disabled={prevYearButtonDisabled}
-                    onClick={decreaseYear}
-                    style={
-                      customHeaderCount === 1 ? { visibility: 'hidden' } : null
-                    }
-                  >
-                    <Icon icon={angleDoubleLeft} />
-                  </SButton>
-                  <SButton
-                    disabled={prevMonthButtonDisabled}
-                    onClick={decreaseMonth}
-                    style={
-                      customHeaderCount === 1 ? { visibility: 'hidden' } : null
-                    }
-                  >
-                    <Icon icon={angleLeft} />
-                  </SButton>
-                  <SDatePickerLabel>
-                    {`${monthDate.toLocaleString('default', {
-                      month: 'long',
-                    })} ${date.getFullYear()}`}
-                  </SDatePickerLabel>
-                  <SButton
-                    disabled={nextMonthButtonDisabled}
-                    onClick={increaseMonth}
-                    style={
-                      monthsShown > 1 && customHeaderCount === 0
-                        ? { visibility: 'hidden' }
-                        : null
-                    }
-                  >
-                    <Icon icon={angleRight} />
-                  </SButton>
-                  <SButton
-                    disabled={nextYearButtonDisabled}
-                    onClick={increaseYear}
-                    style={
-                      monthsShown > 1 && customHeaderCount === 0
-                        ? { visibility: 'hidden' }
-                        : null
-                    }
-                  >
-                    <Icon icon={angleDoubleRight} />
-                  </SButton>
-                </SDatePickerHeader>
-              );
-            }}
-            {...props}
-          />
+          <label>
+            <DatePicker
+              customInput={<CustomInput {...this.props} />}
+              onChange={this.onDateChange}
+              selected={date || this.state.date}
+              monthsShown={monthsShown}
+              renderCustomHeader={props => (
+                <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
+              )}
+              {...props}
+            />
+          </label>
           {invalid && (
             <ErrorMessage
               id={errorId}

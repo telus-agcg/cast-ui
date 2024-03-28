@@ -1,12 +1,19 @@
 import * as React from 'react';
 import uuid from 'uuid';
-import { DateRangePicker, DateRangePickerShape } from 'react-dates';
-import { Moment } from 'moment';
 import ErrorMessage from '../Typography/ErrorMessage/index';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
+import Input from '../Input/index';
+import DatePicker from 'react-datepicker';
+import Icon from 'react-icons-kit';
+import {
+  calendarO,
+  angleRight,
+  angleLeft,
+  angleDoubleRight,
+  angleDoubleLeft,
+} from 'react-icons-kit/fa';
 
-type momentDate = Moment | null;
 type pickerSize = 'sm' | 'md' | 'lg';
 type pickerStyle =
   | 'default'
@@ -20,9 +27,14 @@ enum FocusInputs {
   START_DATE = 'startDate',
   END_DATE = 'endDate',
 }
-type dateChangeEvent = { startDate: momentDate; endDate: momentDate };
 
-export interface Props extends DateRangePickerShape {
+// type dateChangeEvent = [Date | null, Date | null];
+type dateChangeEvent = {
+  startDateRange: Date | null;
+  endDateRange: Date | null;
+};
+
+export type Props = Partial<any> & {
   /**
    * Set className
    *
@@ -75,7 +87,7 @@ export interface Props extends DateRangePickerShape {
    * @default false
    **/
   readOnly?: boolean;
-}
+};
 
 type State = {
   focusedInput: focusInputs;
@@ -90,69 +102,171 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   color: ${(props: Partial<Props>) =>
     props.theme.styles[props.datePickerStyle!].text};
   
-  input {
-    box-sizing: border-box;
-    font-size: ${(props: Partial<Props>) => props.theme.input.fontSize};
-    height: ${(props: Partial<Props>) =>
-      props.theme.input[props.datePickerSize!].height};
-    line-height: initial;
-    padding: ${(props: Partial<Props>) =>
-      props.theme.common[props.datePickerSize!].padding};
-    border: none;
-    border-radius: ${(props: Partial<Props>) =>
-      props.theme.input[props.datePickerSize!].borderRadius};
-    &[data-invalid] {
-      border-color: ${(props: Partial<Props>) =>
-        props.theme.validation.borderColor};
+    input {
+      height: ${(props: Partial<Props>) =>
+        props.theme.input[props.datePickerSize!].height};
+      line-height: initial;
+      padding: ${(props: Partial<Props>) =>
+        props.theme.common[props.datePickerSize!].padding};
+      border: none;
+      border-radius: ${(props: Partial<Props>) =>
+        props.theme.input[props.datePickerSize!].borderRadius};
     }
-    ::placeholder {
-      color: ${(props: Partial<Props>) => props.theme.input.placeholderColor};
+
+    .react-datepicker__icon {
+      visibility: ${(props: Props) => (props.showIcon ? 'visible' : 'hidden')};
+      color: ${(props: Props) =>
+        props.invalid
+          ? props.theme.validation.borderColor
+          : props.theme.colors.primary};
+      cursor: pointer;
     }
-  }
-  .CalendarDay__hovered_span, .CalendarDay__selected_span {
-    background: ${(props: Partial<Props>) =>
-      props.theme.colors.primaryBackground};
-    border-color: ${(props: Partial<Props>) => props.theme.colors.primary};
-    color: ${(props: Partial<Props>) => props.theme.colors.drk800}
-  }
-  .CalendarDay__selected {
-    background: ${(props: Partial<Props>) =>
-      props.theme.styles[props.datePickerStyle!].borderColor};
-    border-color: ${(props: Partial<Props>) =>
-      props.theme.styles[props.datePickerStyle!].borderColor};
-  }
-  .DateRangePickerInput_calendarIcon {
-    padding: 0 10px;
-    margin: -3px 0 0 0;
-  }
-  .DateInput {
-    width: 110px;
-    border-radius: ${(props: Partial<Props>) =>
-      props.theme.input[props.datePickerSize!].borderRadius};
-  }
-  .DateRangePicker_picker {
-    z-index: ${(props: Partial<Props>) => props.theme.datepicker.zIndex};
-  }
-  .DateRangePickerInput__withBorder {
-    border-color: ${(props: Partial<Props>) =>
-      props.invalid
-        ? props.theme.validation.borderColor
-        : props.theme.input.borderColor};
-    border-radius: ${(props: Partial<Props>) =>
-      props.theme.input[props.datePickerSize!].borderRadius};
-    transition: all 0.3s;
-  }
-  .CalendarDay__today {
-    border: 1.5px double ${props => props.theme.colors.drk800}!important;
-  }
-  .DateRangePickerInput__withBorder:hover {
-    border-color: ${(props: Partial<Props>) => props.theme.colors.drk800}
-  }
-  .DayPickerKeyboardShortcuts_show__bottomRight::before {
-    border-right: 33px solid ${(props: Partial<Props>) =>
-      props.theme.styles[props.datePickerStyle!].borderColor};
-  }
+  
+    .react-datepicker__header.react-datepicker__header--custom {
+      text-align: center;
+      background-color: #fff;
+    }
+  
+    .react-datepicker__day-name {
+      width: 32px;
+    }
+  
+    .react-datepicker__day {
+      width: 32px;
+      line-height: 32px;
+    }
+
+    .react-datepicker__day--in-selecting-range {
+      background: ${(props: Partial<Props>) =>
+        props.theme.colors.primaryBackground};
+    }
+  
+    .react-datepicker__day--today {
+      border: ${(props: Props) => `1px solid ${props.theme.colors.primary}`};
+      border-radius: 3px;
+      color: ${(props: Partial<Props>) => props.theme.colors.primary};
+    }
+  
+    .react-datepicker__day--in-range {
+      border: ${(props: Props) => `1px solid ${props.theme.colors.primary}`};
+      border-radius: 3px;
+      background-color: ${(props: Partial<Props>) =>
+        props.theme.colors.primary};
+      color: ${(props: Partial<Props>) => props.theme.colors.white};
+    }
+  
+    .react-datepicker__day--keyboard--in-range {
+      background: ${(props: Partial<Props>) =>
+        props.theme.colors.primaryBackground};
+    }
+
+    .react-datepicker__day--keyboard-selected {
+      background: ${(props: Partial<Props>) =>
+        props.theme.colors.primaryBackground};
+      color: ${(props: Partial<Props>) => props.theme.colors.primary};
+    }
+  
+    .react-datepicker__portal {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
 }`;
+
+const SDatePickerHeader = styled.div`
+  margin: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+`;
+
+const SDatePickerLabel = styled.div`
+  flex-grow: 1;
+`;
+
+const SButton = styled.button`
+  display: flex;
+  border: none;
+  padding: 6px 9px;
+  border-radius: 3px;
+  background: #fff;
+  cursor: pointer;
+  color: #757575;
+  &:hover {
+    background-color: ${(props: Partial<Props>) =>
+      props.theme.colors.primaryBackground};
+  }
+`;
+
+const CustomInput = (props: any) => {
+  return (
+    <Input
+      {...props}
+      icon={<Icon className="react-datepicker__icon" icon={calendarO} />}
+    />
+  );
+};
+
+const CustomDatePickerHeader = ({
+  date,
+  decreaseMonth,
+  increaseMonth,
+  increaseYear,
+  customHeaderCount,
+  decreaseYear,
+  monthDate,
+  monthsShown,
+  prevMonthButtonDisabled,
+  nextMonthButtonDisabled,
+  prevYearButtonDisabled,
+  nextYearButtonDisabled,
+}) => {
+  return (
+    <SDatePickerHeader>
+      <SButton
+        disabled={prevYearButtonDisabled}
+        onClick={decreaseYear}
+        style={customHeaderCount === 1 ? { visibility: 'hidden' } : null}
+      >
+        <Icon icon={angleDoubleLeft} />
+      </SButton>
+      <SButton
+        disabled={prevMonthButtonDisabled}
+        onClick={decreaseMonth}
+        style={customHeaderCount === 1 ? { visibility: 'hidden' } : null}
+      >
+        <Icon icon={angleLeft} />
+      </SButton>
+      <SDatePickerLabel>
+        {`${monthDate.toLocaleString('default', {
+          month: 'long',
+        })} ${date.getFullYear()}`}
+      </SDatePickerLabel>
+      <SButton
+        disabled={nextMonthButtonDisabled}
+        onClick={increaseMonth}
+        style={
+          monthsShown > 1 && customHeaderCount === 0
+            ? { visibility: 'hidden' }
+            : null
+        }
+      >
+        <Icon icon={angleRight} />
+      </SButton>
+      <SButton
+        disabled={nextYearButtonDisabled}
+        onClick={increaseYear}
+        style={
+          monthsShown > 1 && customHeaderCount === 0
+            ? { visibility: 'hidden' }
+            : null
+        }
+      >
+        <Icon icon={angleDoubleRight} />
+      </SButton>
+    </SDatePickerHeader>
+  );
+};
 
 export class DatePickerRange extends React.PureComponent<Props> {
   static defaultProps = {
@@ -160,14 +274,16 @@ export class DatePickerRange extends React.PureComponent<Props> {
     id: uuid.v4(),
     datePickerSize: 'md',
     datePickerStyle: 'primary',
+    iconPosition: 'right',
     startDateId: uuid.v4(),
     endDateId: uuid.v4(),
     startDate: null,
     endDate: null,
+    showIcon: true,
     focusedInput: null,
-    onDatesChange: null,
+    onChange: null,
     onFocusChange: null,
-    inputIconPosition: 'after',
+    monthsShown: 1,
     invalid: false,
     invalidText: '',
     invalidTextColor: '',
@@ -178,21 +294,23 @@ export class DatePickerRange extends React.PureComponent<Props> {
 
   state: State = {
     focusedInput: null,
-    range: {
-      startDate: null,
-      endDate: null,
-    },
+    range: { startDateRange: null, endDateRange: null },
   };
 
-  onDatesChange = (event: dateChangeEvent) =>
-    this.props.onDatesChange instanceof Function
-      ? this.props.onDatesChange(event)
-      : this.setState({
-          range: {
-            endDate: event.endDate || this.state.range.endDate,
-            startDate: event.startDate || this.state.range.startDate,
+  onDatesChange = (event: dateChangeEvent[]) => {
+    const [start, end] = event;
+    this.props.onChange instanceof Function
+      ? this.props.onChange(event)
+      : this.setState(
+          {
+            range: {
+              startDateRange: start,
+              endDateRange: end,
+            },
           },
-        });
+          () => console.log('state', this.state),
+        );
+  };
 
   onFocusChange = (input: focusInputs) =>
     this.props.onFocusChange instanceof Function
@@ -208,27 +326,21 @@ export class DatePickerRange extends React.PureComponent<Props> {
       startDate,
       endDate,
       focusedInput,
-      onDatesChange,
+      onChange,
       onFocusChange,
+      showIcon,
+      monthsShown,
 
       /**
-       * exclude div props from the react-dates
+       * exclude div props from the react-datepicker
        */
       className,
       id,
       datePickerSize,
       datePickerStyle,
-
-      /**
-       * override sizes from react-dates
-       */
-      small,
-      regular,
-      block,
       invalid,
       invalidText,
       invalidTextColor,
-      disabled,
       readOnly,
       ...props
     } = this.props;
@@ -237,28 +349,30 @@ export class DatePickerRange extends React.PureComponent<Props> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <SWrapperComponent
-          className={className!}
           id={id!}
           invalid={invalid}
-          datePickerSize={datePickerSize!}
-          datePickerStyle={datePickerStyle!}
+          className={className}
+          datePickerSize={datePickerSize}
+          datePickerStyle={datePickerStyle}
           data-invalid={invalid ? '' : undefined}
           aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
-          {...props}
+          showIcon={showIcon}
         >
-          <DateRangePicker
-            // The next properties have to be overridden by the instance's functions
-            startDate={startDate || this.state.range.startDate}
-            endDate={endDate || this.state.range.endDate}
-            focusedInput={focusedInput || this.state.focusedInput}
-            onFocusChange={this.onFocusChange}
-            onDatesChange={this.onDatesChange}
-            showDefaultInputIcon={true}
-            disabled={disabled}
-            readOnly={readOnly}
-            {...props}
-          />
+          <label>
+            <DatePicker
+              customInput={<CustomInput {...this.props} />}
+              onChange={this.onDatesChange}
+              startDate={startDate || this.state.range.startDateRange}
+              endDate={endDate || this.state.range.endDateRange}
+              renderCustomHeader={props => (
+                <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
+              )}
+              monthsShown={monthsShown}
+              selectsRange
+              {...props}
+            />
+          </label>
           {invalid && (
             <ErrorMessage
               id={errorId}
