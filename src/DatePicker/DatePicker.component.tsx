@@ -300,24 +300,24 @@ class ReactDatePicker extends Component<Props> {
   };
 
   onDateChange = (selectsRange: boolean, event) => {
+    const { onChange } = this.props;
+
     if (selectsRange) {
       const [start, end] = event;
-      this.props.onChange instanceof Function
-        ? this.props.onChange(event)
-        : this.setState({
-            date: null,
-            range: {
-              startDateRange: start,
-              endDateRange: end,
-            },
-          });
+
+      this.setState({
+        date: null,
+        range: { startDateRange: start, endDateRange: end },
+      });
     } else {
-      this.props.onChange instanceof Function
-        ? this.props.onChange(event)
-        : this.setState({
-            date: event,
-            range: { startDateRange: null, endDateRange: null },
-          });
+      this.setState({
+        date: event,
+        range: { startDateRange: null, endDateRange: null },
+      });
+    }
+
+    if (onChange instanceof Function) {
+      onChange(event);
     }
   };
 
@@ -329,13 +329,6 @@ class ReactDatePicker extends Component<Props> {
         });
     document.body.classList.add(
       `cui-${this.props.theme.name.toLowerCase()}-theme`,
-    );
-  };
-
-  getYearsOption = (): number[] => {
-    return Array.from(
-      { length: 7 },
-      (_, index) => new Date().getFullYear() - 3 + index,
     );
   };
 
