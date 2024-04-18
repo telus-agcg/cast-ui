@@ -47,7 +47,6 @@ import { _Toast as Toast } from './Toast/Toast.stories.tsx';
 import { _CopyToClipboard as CopyToClipboard } from './CopyToClipboard/CopyToClipboard.stories.tsx';
 import { _FileUpload as FileUpload } from './FileUpload/FileUpload.stories.tsx';
 import { _DatePicker as DatePicker } from './DatePicker/DatePicker.stories.tsx';
-import { _DatePickerRange as DatePickerRange } from './DatePickerRange/DatePickerRange.stories.tsx';
 import { _InputGroup as InputGroup } from './InputGroup/InputGroup.stories.tsx';
 import { _RadioButton as RButton } from './RadioButton/RadioButton.stories.tsx';
 import { _RadioButtonGroup as RButtonGroup } from './RadioButtonGroup/RadioButtonGroup.stories.tsx';
@@ -358,21 +357,28 @@ import './styles.css';
 <div class="layout">
   <h4><a href="/docs/components-interactions-date-picker--date-picker">DatePicker</a></h4>
   <p>DatePicker allows users to select a date from a graphical calendar. It is commonly used in web apps to allow users to select a date for various purposes, such as scheduling appointments, setting deadlines, or filtering data.</p>
-  <DatePicker showDefaultInputIcon={true}
-  inputIconPosition= 'after'
-  datePickerStyle= 'primary'
-  datePickerSize='md'
-  invalidText= 'A valid value is required'
-  numberOfMonths={1}></DatePicker>
 
-<h4><a href="/docs/components-interactions-date-picker--date-picker-range">Date Picker Range</a></h4>
+<h4><a href="/docs/components-interactions-date-picker--date-picker">Single Date Picker</a></h4>
+<DatePicker
+showIcon={true}
+iconPosition= 'right'
+datePickerStyle= 'primary'
+datePickerSize='md'
+invalidText= 'A valid value is required'
+placeholderText={'Select Date'}
 
-  <DatePickerRange showDefaultInputIcon={true}
-  inputIconPosition= 'after'
-  datePickerStyle= 'primary'
-  datePickerSize='md'
-  invalidText= 'A valid value is required'
-  numberOfMonths={1}></DatePickerRange>
+> </DatePicker>
+
+<h4><a href="/docs/components-interactions-date-picker--date-picker">Range Date Picker</a></h4>
+<DatePicker
+showIcon={true}
+iconPosition= 'right'
+datePickerStyle= 'primary'
+datePickerSize='md'
+invalidText= 'A valid value is required'
+placeholderText={'Start Date - End Date'}
+selectsRange={true} ></DatePicker>
+
 </div>
 
 <div class="layout">

@@ -3,7 +3,6 @@ import { DatePicker } from '..';
 
 const descriptionComponent = `
 This is a DatePicker is based on [react-datepicker](https://reactdatepicker.com/).
-
 `;
 
 export default {
@@ -13,6 +12,11 @@ export default {
     theme: {
       table: {
         disable: true,
+      },
+    },
+    selectsRange: {
+      control: {
+        type: 'boolean',
       },
     },
     showIcon: {
@@ -91,6 +95,7 @@ export const _DatePicker = args => <DatePicker key="0" {...args} />;
 
 _DatePicker.args = {
   datePickerSize: 'md',
+  selectsRange: false,
   datePickerStyle: 'primary',
   iconPosition: 'right',
   invalid: false,

@@ -15,7 +15,6 @@ export * from './CopyToClipboard';
 export * from './Card';
 export * from './Collapse';
 export * from './DatePicker';
-export * from './DatePickerRange';
 export * from './FileUpload';
 export * from './Typography/ErrorMessage/index';
 export * from './IconButton';

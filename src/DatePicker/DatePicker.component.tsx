@@ -26,6 +26,11 @@ type pickerStyle =
 type focusInput = boolean | null;
 type focused = { focused: focusInput };
 
+type dateChangeEvent = {
+  startDateRange: Date | null;
+  endDateRange: Date | null;
+};
+
 export type Props = Partial<any> & {
   /**
    * Set className
@@ -78,6 +83,7 @@ export type Props = Partial<any> & {
 type State = {
   focused: focusInput;
   date: Date | null;
+  range: dateChangeEvent;
 };
 
 const SWrapperComponent = styled.div<Partial<Props>>`
@@ -87,7 +93,6 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     props.theme.common[props.datePickerSize!].fontSize};
   color: ${(props: Partial<Props>) =>
     props.theme.styles[props.datePickerStyle!].text};
-  max-width: 186px;
 
   input {
     height: ${(props: Partial<Props>) =>
@@ -125,26 +130,39 @@ const SWrapperComponent = styled.div<Partial<Props>>`
 
   .react-datepicker__day--today {
     border: ${(props: Props) => `1px solid ${props.theme.colors.primary}`};
-    border-radius: 3px;
+    border-radius: 0.3rem;
     color: ${(props: Partial<Props>) => props.theme.colors.primary};
-    background: ${(props: Partial<Props>) =>
+    background-color: ${(props: Partial<Props>) =>
       props.theme.colors.primaryBackground};
   }
 
   .react-datepicker__day--selected {
-    border: ${(props: Props) => `1px solid ${props.theme.colors.primary}`};
-    border-radius: 3px;
     background-color: ${(props: Partial<Props>) => props.theme.colors.primary};
     color: ${(props: Partial<Props>) => props.theme.colors.white};
   }
 
   .react-datepicker__day--keyboard-selected {
-    background: ${(props: Partial<Props>) =>
-      props.theme.colors.primaryBackground};
+    background-color: inherit;
   }
 
   .react-datepicker__portal {
     background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  // Range picker style
+  .react-datepicker__day--in-range {
+    background-color: ${(props: Partial<Props>) => props.theme.colors.primary};
+    color: ${(props: Partial<Props>) => props.theme.colors.white};
+  }
+
+  .react-datepicker__day--keyboard--in-range {
+    background: ${(props: Partial<Props>) =>
+      props.theme.colors.primaryBackground};
+  }
+
+  .react-datepicker__day--in-selecting-range {
+    background: ${(props: Partial<Props>) => props.theme.colors.primaryFaded};
+    color: ${(props: Partial<Props>) => props.theme.colors.drk800};
   }
 `;
 
@@ -258,6 +276,9 @@ class ReactDatePicker extends Component<Props> {
     onChange: null,
     onFocusChange: null,
     monthsShown: 1,
+    selectsRange: false,
+    startDate: null,
+    endDate: null,
     invalid: false,
     invalidText: '',
     invalidTextColor: '',
@@ -269,17 +290,29 @@ class ReactDatePicker extends Component<Props> {
   state: State = {
     focused: null,
     date: null,
+    range: { startDateRange: null, endDateRange: null },
   };
 
-  onDateChange = (event: Date) => {
-    this.props.onChange instanceof Function
-      ? this.props.onChange(event)
-      : this.setState(
-          {
+  onDateChange = (selectsRange: boolean, event) => {
+    if (selectsRange) {
+      const [start, end] = event;
+      this.props.onChange instanceof Function
+        ? this.props.onChange(event)
+        : this.setState({
+            date: null,
+            range: {
+              startDateRange: start,
+              endDateRange: end,
+            },
+          });
+    } else {
+      this.props.onChange instanceof Function
+        ? this.props.onChange(event)
+        : this.setState({
             date: event,
-          },
-          () => console.log(event),
-        );
+            range: { startDateRange: null, endDateRange: null },
+          });
+    }
   };
 
   onFocusChange = (input: focused) => {
@@ -303,16 +336,27 @@ class ReactDatePicker extends Component<Props> {
   render() {
     const {
       theme,
-      className,
-      id,
-      wrapperId,
-      datePickerSize,
-      datePickerStyle,
+
+      /**
+       * exclude props for combine with state
+       */
+      startDate,
+      endDate,
       date,
-      focused,
+      monthsShown,
+      selectsRange,
+      focusedInput,
       onChange,
       onFocusChange,
-      monthsShown,
+
+      /**
+       * exclude div props from the react-datepicker
+       */
+      id,
+      className,
+      datePickerSize,
+      datePickerStyle,
+      wrapperId,
       showIcon,
       invalid,
       invalidText,
@@ -337,9 +381,17 @@ class ReactDatePicker extends Component<Props> {
           <label>
             <DatePicker
               customInput={<CustomInput {...this.props} />}
-              onChange={this.onDateChange}
-              selected={date || this.state.date}
+              onChange={event => this.onDateChange(selectsRange, event)}
+              selected={
+                date ||
+                this.state.date ||
+                startDate ||
+                this.state.range.startDateRange
+              }
+              startDate={startDate || this.state.range.startDateRange}
+              endDate={endDate || this.state.range.endDateRange}
               monthsShown={monthsShown}
+              selectsRange={selectsRange}
               renderCustomHeader={props => (
                 <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
               )}
