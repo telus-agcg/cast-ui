@@ -114,6 +114,12 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     cursor: pointer;
   }
 
+  .react-datepicker {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
   .react-datepicker__header.react-datepicker__header--custom {
     text-align: center;
     background-color: #fff;
@@ -380,6 +386,7 @@ class ReactDatePicker extends Component<Props> {
         >
           <label>
             <DatePicker
+              fixedHeight
               customInput={<CustomInput {...this.props} />}
               onChange={event => this.onDateChange(selectsRange, event)}
               selected={
@@ -392,6 +399,7 @@ class ReactDatePicker extends Component<Props> {
               endDate={endDate || this.state.range.endDateRange}
               monthsShown={monthsShown}
               selectsRange={selectsRange}
+              focusSelectedMonth={true}
               renderCustomHeader={props => (
                 <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
               )}
