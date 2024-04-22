@@ -81,7 +81,7 @@ const noop = () => {}; // tslint:disable-line
 export const Menu: React.FC<Props> = ({
   triggerComponent,
   theme,
-  items,
+  items = [],
   onItemClick = noop,
   ...props
 }) => {
