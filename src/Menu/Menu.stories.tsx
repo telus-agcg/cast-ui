@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-
+import { ic_casino as icCasino } from 'react-icons-kit/md/ic_casino';
 import { Button, Link, Menu } from '..';
 
 const description = `
@@ -43,7 +43,7 @@ const menuData = [
     id: 'vanilla',
     disabled: true,
   },
-  { label: 'Chocolate', id: 'chocolate' },
+  { label: 'Chocolate', id: 'chocolate', icon: icCasino },
 ];
 
 const menuDataWithCustomComponent = [

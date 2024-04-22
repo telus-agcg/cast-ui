@@ -3,12 +3,14 @@ import _ from 'lodash';
 import { Themes } from '../themes';
 import styled, { ThemeProvider } from 'styled-components';
 import { Popover } from '../Popover';
+import Icon from 'react-icons-kit';
 
 export interface MenuItem {
   disabled?: boolean;
   id?: any;
   label?: string;
   component?: any;
+  icon?: any;
 }
 
 export interface Props {
@@ -68,6 +70,11 @@ const SMenuItem = styled.div`
       props.theme.select.highlightOptionBackgroundColor};
   }
 `;
+const MenuItemLabel = styled.span`
+  padding-left: 4px;
+  margin-left: ${props =>
+    props.itemsHasNonEmptyIcon ? (props.hasIcon ? '0px' : '24px') : '0px'};
+`;
 
 const noop = () => {}; // tslint:disable-line
 
@@ -83,7 +90,9 @@ export const Menu: React.FC<Props> = ({
     // @ts-ignore
     popoverInstance && popoverInstance.hide();
   };
-
+  const hasNonEmptyIcon = items.some(item => {
+    return item.hasOwnProperty('icon') && item['icon'] !== '';
+  });
   const handleItemClick = (item, e) => {
     if (item.disabled) {
       return;
@@ -108,7 +117,13 @@ export const Menu: React.FC<Props> = ({
                     onClick={(e: any) => handleItemClick(item, e)}
                     data-testid={_.kebabCase(item.label)}
                   >
-                    {item.label}
+                    {item.icon ? <Icon icon={item.icon} size={24} /> : ''}
+                    <MenuItemLabel
+                      itemsHasNonEmptyIcon={hasNonEmptyIcon}
+                      hasIcon={item.icon ? true : false}
+                    >
+                      {item.label}
+                    </MenuItemLabel>
                   </SMenuItem>
                 );
               })}
