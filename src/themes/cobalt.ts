@@ -688,20 +688,24 @@ export const cobaltTheme = {
     zIndex: 99,
   },
   tabs: {
-    borderColor: cobaltColors.primary,
+    borderColor: cobaltColors.secondary,
     hoverColor: cobaltColors.primaryFaded,
     borderRadius: '20px',
-    bottomBorderWidth: '4px',
+    bottomBorderWidth: '3px',
     tab: {
       color: cobaltColors.drk800,
       backgroundColor: cobaltColors.white,
     },
     activetab: {
-      color: cobaltColors.white,
-      backgroundColor: cobaltColors.primary,
+      color: cobaltColors.primary,
+      backgroundColor: cobaltColors.white,
+      borderColor: cobaltColors.primary,
+    },
+    disabledtab: {
+      backgroundColor: cobaltColors.lt200,
     },
     fontSize: '14px',
-    padding: '2px 10px',
+    padding: '14px',
     margin: '16px 16px 0 16px',
   },
   copyToClipboard: {
