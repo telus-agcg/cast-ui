@@ -203,7 +203,7 @@ export const canopyTheme = {
   },
 
   body: {
-    fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+    fontFamily: '"Helvetica Now", Helvetica, arial, sans-serif',
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '18px',
@@ -233,7 +233,7 @@ export const canopyTheme = {
   },
   typography: {
     brandFont: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
-    fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+    fontFamily: '"Helvetica Now", Helvetica, arial, sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
     fontWeight: '400',
@@ -241,13 +241,13 @@ export const canopyTheme = {
     color: canopyColors.drk800,
     caption: {
       10: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+        fontFamily: '"Helvetica Now", Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '10px',
         lineHeight: '100%',
       },
       20: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+        fontFamily: '"Helvetica Now", Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
@@ -266,14 +266,14 @@ export const canopyTheme = {
     },
     display: {
       10: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+        fontFamily: '"Helvetica Now", Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '22px',
         lineHeight: '125%',
         margin: '0px 0px 0.67em',
       },
       20: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+        fontFamily: '"Helvetica Now", Helvetica, arial, sans-serif',
         fontWeight: '400',
         fontSize: '27px',
         lineHeight: '120%',
@@ -282,14 +282,14 @@ export const canopyTheme = {
     },
     header: {
       10: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+        fontFamily: '"Helvetica Now", Helvetica, arial, sans-serif',
         fontWeight: '700',
         fontSize: '13px',
         lineHeight: '160%',
         margin: '0px 0px 0.83em',
       },
       20: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+        fontFamily: '"Helvetica Now", Helvetica, arial, sans-serif',
         fontWeight: '700',
         fontSize: '14px',
         lineHeight: '175%',
@@ -337,14 +337,14 @@ export const canopyTheme = {
     },
     title: {
       10: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+        fontFamily: '"Helvetica Now", Helvetica, arial, sans-serif',
         fontWeight: '700',
         fontSize: '16px',
         lineHeight: '130%',
         margin: '0px 0px 0.67em',
       },
       20: {
-        fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+        fontFamily: '"Helvetica Now", Helvetica, arial, sans-serif',
         fontWeight: '700',
         fontSize: '18px',
         lineHeight: '135%',
