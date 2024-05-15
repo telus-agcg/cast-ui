@@ -659,7 +659,7 @@ export const canopyTheme = {
   },
   validation: {
     borderColor: canopyColors.danger,
-    color: canopyColors.drk800,
+    color: canopyColors.danger,
     fontSize: '12px',
     fontStyle: 'italic',
     lineHeight: '13px',
@@ -694,20 +694,24 @@ export const canopyTheme = {
     zIndex: 99,
   },
   tabs: {
-    borderColor: canopyColors.primary,
+    borderColor: canopyColors.secondary,
     hoverColor: canopyColors.primaryFaded,
     borderRadius: '20px',
-    bottomBorderWidth: '4px',
+    bottomBorderWidth: '3px',
     tab: {
       color: canopyColors.drk800,
-      backgroundColor: canopyColors.white,
+      backgroundColor: canopyColors.lt200,
     },
     activetab: {
-      color: canopyColors.white,
-      backgroundColor: canopyColors.primary,
+      color: canopyColors.primary,
+      backgroundColor: canopyColors.white,
+      borderColor: canopyColors.primary,
+    },
+    disabledtab: {
+      backgroundColor: canopyColors.lt200,
     },
     fontSize: '14px',
-    padding: '2px 10px',
+    padding: '14px',
     margin: '16px 16px 0 16px',
   },
   copyToClipboard: {
