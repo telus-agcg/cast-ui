@@ -108,9 +108,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
   .react-datepicker__icon {
     visibility: ${(props: Props) => (props.showIcon ? 'visible' : 'hidden')};
     color: ${(props: Props) =>
-      props.invalid
-        ? props.theme.validation.borderColor
-        : props.theme.colors.primary};
+      props.invalid ? props.theme.validation.borderColor : ''};
     cursor: pointer;
   }
 
@@ -173,7 +171,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
 `;
 
 const SDatePickerHeader = styled.div`
-  margin: 8px;
+  margin: 6px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -377,28 +375,26 @@ class ReactDatePicker extends Component<Props> {
           aria-describedby={errorId}
           showIcon={showIcon}
         >
-          <label>
-            <DatePicker
-              fixedHeight
-              customInput={<CustomInput {...this.props} />}
-              onChange={event => this.onDateChange(selectsRange, event)}
-              selected={
-                date ||
-                this.state.date ||
-                startDate ||
-                this.state.range.startDateRange
-              }
-              startDate={startDate || this.state.range.startDateRange}
-              endDate={endDate || this.state.range.endDateRange}
-              monthsShown={monthsShown}
-              selectsRange={selectsRange}
-              focusSelectedMonth={true}
-              renderCustomHeader={props => (
-                <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
-              )}
-              {...props}
-            />
-          </label>
+          <DatePicker
+            fixedHeight
+            customInput={<CustomInput {...this.props} />}
+            onChange={event => this.onDateChange(selectsRange, event)}
+            selected={
+              date ||
+              this.state.date ||
+              startDate ||
+              this.state.range.startDateRange
+            }
+            startDate={startDate || this.state.range.startDateRange}
+            endDate={endDate || this.state.range.endDateRange}
+            monthsShown={monthsShown}
+            selectsRange={selectsRange}
+            focusSelectedMonth={true}
+            renderCustomHeader={props => (
+              <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
+            )}
+            {...props}
+          />
           {invalid && (
             <ErrorMessage
               id={errorId}
