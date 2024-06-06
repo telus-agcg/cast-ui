@@ -141,7 +141,7 @@ const SWrapperComponent = styled.div<Partial<Props>>`
     &.react-datepicker__day--disabled {
       border: ${(props: Props) => `1px solid ${props.theme.colors.drk400}`};
       color: ${(props: Partial<Props>) => props.theme.colors.drk400};
-      background-color: #fff;
+      background-color: ${(props: Partial<Props>) => props.theme.colors.white};
     }
   }
 
