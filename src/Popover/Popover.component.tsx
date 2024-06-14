@@ -14,7 +14,7 @@ export interface Props extends TippyProps {
 }
 
 const TippyPopover: React.FunctionComponent<Props> = (props: Props) => (
-  <Tippy {...props} />
+  <Tippy zIndex={999999} {...props} />
 );
 TippyPopover.defaultProps = {
   animateFill: false,
