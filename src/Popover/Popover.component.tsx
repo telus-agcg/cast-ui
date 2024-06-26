@@ -11,10 +11,12 @@ export interface Props extends TippyProps {
    * @default defaultTheme
    **/
   theme?: any;
+
+  isOnModal?: boolean;
 }
 
 const TippyPopover: React.FunctionComponent<Props> = (props: Props) => (
-  <Tippy zIndex={999999} {...props} />
+  <Tippy {...props} />
 );
 TippyPopover.defaultProps = {
   animateFill: false,
@@ -67,6 +69,9 @@ const SPopover = styled(TippyPopover)`
       transform: rotate(135deg) translate(-4px, 11px);
     }
   }
+  .ReactModal__Content .tippy-popper {
+    z-index: 9999999 !important;
+  }
 `;
 
 export class Popover extends React.Component<Props> {
@@ -74,9 +79,10 @@ export class Popover extends React.Component<Props> {
     arrow: false,
     placement: 'bottom-start',
     theme: Themes.canopyTheme,
+    isOnModal: false,
   };
   public render() {
-    const { theme, children, ...props } = this.props;
+    const { theme, children, isOnModal, ...props } = this.props;
     const distance =
       props.distance || props.arrow
         ? theme.popover.withArrowDistance
@@ -84,7 +90,11 @@ export class Popover extends React.Component<Props> {
     return (
       <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
         <React.Fragment>
-          <SPopover distance={distance} {...props}>
+          <SPopover
+            distance={distance}
+            zIndex={isOnModal ? 999999 : 9999}
+            {...props}
+          >
             {children}
           </SPopover>
         </React.Fragment>

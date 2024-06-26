@@ -43,6 +43,12 @@ export interface Props {
    * @default undefined
    **/
   triggerComponent: React.ReactElement;
+  /**
+   * A boolean, it set to true changes zIndex of popover greater than modal
+   *
+   * @default false
+   **/
+  isOnModal?: false;
 }
 
 const SMenu = styled.div`
@@ -130,6 +136,7 @@ export const Menu: React.FC<Props> = ({
           </SMenu>
         }
         arrow={false}
+        isOnModal={props.isOnModal}
         placement="bottom-start"
         distance={2}
         hideOnClick={true}
