@@ -1,7 +1,4 @@
 import 'typeface-roboto';
-import 'react-dates/lib/css/_datepicker.css';
-import 'react-dates/initialize';
-import 'react-dates/initialize';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import '../src/utils/static/fonts.css';
