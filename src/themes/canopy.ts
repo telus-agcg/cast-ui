@@ -239,6 +239,12 @@ export const canopyTheme = {
     fontWeight: '400',
     lineHeight: '160%',
     color: canopyColors.drk800,
+    fontMedium: {
+      fontFamily: '"Helvetica Now - Medium", Helvetica, arial, sans-serif',
+    },
+    fontBold: {
+      fontFamily: '"Helvetica Now - Bold", Helvetica, arial, sans-serif',
+    },
     caption: {
       10: {
         fontFamily: '"Helvetica Now", Helvetica, arial, sans-serif',
