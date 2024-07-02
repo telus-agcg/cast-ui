@@ -19,6 +19,15 @@ const STypography = styled.div`
   line-height: ${(props: Props) => props.theme.typography.lineHeight};
 `;
 
+const BoldFont = styled.p`
+  font-family: ${(props: Props) => props.theme.typography.fontBold.fontFamily};
+`;
+
+const MediumFont = styled.p`
+  font-family: ${(props: Props) =>
+    props.theme.typography.fontMedium.fontFamily};
+`;
+
 export const Typography: React.FunctionComponent<Props> = ({
   children,
   theme,
@@ -48,5 +57,7 @@ export const Typography: React.FunctionComponent<Props> = ({
         .
       </p>
     </STypography>
+    <MediumFont>This is the medium font</MediumFont>
+    <BoldFont>This is the bold font</BoldFont>
   </ThemeProvider>
 );

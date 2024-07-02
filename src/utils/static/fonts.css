@@ -11,7 +11,7 @@
 }
 
 @font-face {
-  font-family: 'Helvetica Now - Bold';
+  font-family: 'Helvetica Now Bold';
   src: url('fonts/HNforTELUS-Bd.woff2') format('woff2'),
     url('fonts/HNforTELUS-Bd.woff') format('woff');
   font-weight: normal;
@@ -20,7 +20,7 @@
 }
 
 @font-face {
-  font-family: 'Helvetica Now - Medium';
+  font-family: 'Helvetica Now Medium';
   src: url('fonts/HNforTELUS-Md.woff2') format('woff2'),
     url('fonts/HNforTELUS-Md.woff') format('woff');
   font-weight: normal;
