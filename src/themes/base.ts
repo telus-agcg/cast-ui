@@ -202,6 +202,12 @@ export const buildTheme = colors => ({
     fontWeight: '400',
     lineHeight: '160%',
     color: colors.drk800,
+    fontMedium: {
+      fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+    },
+    fontBold: {
+      fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+    },
     caption: {
       10: {
         fontFamily: 'Roboto, Helvetica, arial, sans-serif',

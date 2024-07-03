@@ -236,6 +236,12 @@ export const cobaltTheme = {
     fontWeight: '400',
     lineHeight: '160%',
     color: cobaltColors.drk800,
+    fontMedium: {
+      fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+    },
+    fontBold: {
+      fontFamily: 'Roboto, Helvetica, arial, sans-serif',
+    },
     caption: {
       10: {
         fontFamily: 'Roboto, Helvetica, arial, sans-serif',
