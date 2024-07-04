@@ -51,6 +51,11 @@ export interface Props extends ReactModalProps {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * specify zIndex for modal
+   * @default 999999
+   **/
+  zIndex?: number;
 }
 
 const modalSizeRules: Function = (modalSize: string, theme: any) => {
@@ -192,7 +197,9 @@ export class Modal extends React.Component<Props> {
         bottom: 0,
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         textAlign: 'center',
-        zIndex: this.props.theme.modal.overlay.zIndex,
+        zIndex: this.props.zIndex
+          ? this.props.zIndex
+          : this.props.theme.modal.overlay.zIndex,
       },
       content: {
         top: '40%',
@@ -213,7 +220,9 @@ export class Modal extends React.Component<Props> {
         textAlign: 'left',
         fontSize: '14px',
         borderRadius: this.props.theme.modal.borderRadius,
-        zIndex: this.props.theme.modal.overlay.zIndex,
+        zIndex: this.props.zIndex
+          ? this.props.zIndex
+          : this.props.theme.modal.overlay.zIndex,
       },
     };
   };
