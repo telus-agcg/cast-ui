@@ -288,14 +288,14 @@ export const canopyTheme = {
     },
     header: {
       10: {
-        fontFamily: 'Helvetica Now, Helvetica, arial, sans-serif',
+        fontFamily: 'Helvetica Now Bold, Helvetica, arial, sans-serif',
         fontWeight: '700',
         fontSize: '13px',
         lineHeight: '160%',
         margin: '0px 0px 0.83em',
       },
       20: {
-        fontFamily: 'Helvetica Now, Helvetica, arial, sans-serif',
+        fontFamily: 'Helvetica Now Bold, Helvetica, arial, sans-serif',
         fontWeight: '700',
         fontSize: '14px',
         lineHeight: '175%',
