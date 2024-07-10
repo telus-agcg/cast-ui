@@ -2,7 +2,7 @@
 @import url('https://use.typekit.net/jym2jlf.css');
 
 @font-face {
-  font-family: 'Helvetica Now';
+  font-family: 'HN for Telus';
   src: url('fonts/HNforTELUS.woff2') format('woff2'),
     url('fonts/HNforTELUS.woff') format('woff');
   font-weight: normal;
@@ -11,7 +11,7 @@
 }
 
 @font-face {
-  font-family: 'Helvetica Now Bold';
+  font-family: 'HN for Telus Bold';
   src: url('fonts/HNforTELUS-Bd.woff2') format('woff2'),
     url('fonts/HNforTELUS-Bd.woff') format('woff');
   font-weight: normal;
@@ -20,7 +20,7 @@
 }
 
 @font-face {
-  font-family: 'Helvetica Now Medium';
+  font-family: 'HN for Telus Medium';
   src: url('fonts/HNforTELUS-Md.woff2') format('woff2'),
     url('fonts/HNforTELUS-Md.woff') format('woff');
   font-weight: normal;
