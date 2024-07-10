@@ -92,7 +92,7 @@ const ModalHeaderDiv = styled.div`
   min-height: ${(props: any) => props.theme.modal.header.minHeight};
   background-color: ${(props: any) => props.theme.modal.header.backgroundColor};
   flex-shrink: 0;
-  font-family: ${(props: any) => props.theme.typography.fontFamily};
+  font-family: ${(props: any) => props.theme.typography.fontBold.fontFamily};
   padding: ${(props: any) => props.theme.modal.header.padding}
     ${(props: any) => props.theme.modal.header.padding} 0;
   border-top-left-radius: ${(props: any) => props.theme.modal.borderRadius};
