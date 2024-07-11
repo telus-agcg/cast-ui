@@ -203,7 +203,7 @@ export const canopyTheme = {
   },
 
   body: {
-    fontFamily: 'HN for Telus, Helvetica, arial, sans-serif',
+    fontFamily: 'HN for Telus, arial, sans-serif',
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '18px',
@@ -233,27 +233,27 @@ export const canopyTheme = {
   },
   typography: {
     brandFont: '"Gilroy-Regular", "Open Sans", arial, sans-serif',
-    fontFamily: 'HN for Telus, Helvetica, arial, sans-serif',
+    fontFamily: 'HN for Telus, arial, sans-serif',
     secondaryFontFamily: '',
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '160%',
     color: canopyColors.drk800,
     fontMedium: {
-      fontFamily: 'HN for Telus Medium, Helvetica, arial, sans-serif',
+      fontFamily: 'HN for Telus Medium, arial, sans-serif',
     },
     fontBold: {
-      fontFamily: 'HN for Telus Bold, Helvetica, arial, sans-serif',
+      fontFamily: 'HN for Telus Bold, arial, sans-serif',
     },
     caption: {
       10: {
-        fontFamily: 'HN for Telus, Helvetica, arial, sans-serif',
+        fontFamily: 'HN for Telus, arial, sans-serif',
         fontWeight: '400',
         fontSize: '10px',
         lineHeight: '100%',
       },
       20: {
-        fontFamily: 'HN for Telus, Helvetica, arial, sans-serif',
+        fontFamily: 'HN for Telus, arial, sans-serif',
         fontWeight: '400',
         fontSize: '12px',
         lineHeight: '100%',
@@ -272,14 +272,14 @@ export const canopyTheme = {
     },
     display: {
       10: {
-        fontFamily: 'HN for Telus, Helvetica, arial, sans-serif',
+        fontFamily: 'HN for Telus, arial, sans-serif',
         fontWeight: '400',
         fontSize: '22px',
         lineHeight: '125%',
         margin: '0px 0px 0.67em',
       },
       20: {
-        fontFamily: 'HN for Telus, Helvetica, arial, sans-serif',
+        fontFamily: 'HN for Telus, arial, sans-serif',
         fontWeight: '400',
         fontSize: '27px',
         lineHeight: '120%',
@@ -288,14 +288,14 @@ export const canopyTheme = {
     },
     header: {
       10: {
-        fontFamily: 'HN for Telus Bold, Helvetica, arial, sans-serif',
+        fontFamily: 'HN for Telus Bold, arial, sans-serif',
         fontWeight: '700',
         fontSize: '13px',
         lineHeight: '160%',
         margin: '0px 0px 0.83em',
       },
       20: {
-        fontFamily: 'HN for Telus Bold, Helvetica, arial, sans-serif',
+        fontFamily: 'HN for Telus Bold, arial, sans-serif',
         fontWeight: '700',
         fontSize: '14px',
         lineHeight: '175%',
@@ -343,14 +343,14 @@ export const canopyTheme = {
     },
     title: {
       10: {
-        fontFamily: 'HN for Telus, Helvetica, arial, sans-serif',
+        fontFamily: 'HN for Telus, arial, sans-serif',
         fontWeight: '700',
         fontSize: '16px',
         lineHeight: '130%',
         margin: '0px 0px 0.67em',
       },
       20: {
-        fontFamily: 'HN for Telus, Helvetica, arial, sans-serif',
+        fontFamily: 'HN for Telus, arial, sans-serif',
         fontWeight: '700',
         fontSize: '18px',
         lineHeight: '135%',
