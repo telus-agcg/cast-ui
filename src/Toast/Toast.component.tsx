@@ -43,7 +43,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Content if Toast created as object
    */
-  content?: React.ReactElement | string | null;
+  content?: string | undefined;
   /**
    * styling for Toast
    */
