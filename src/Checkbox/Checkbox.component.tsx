@@ -151,7 +151,7 @@ const SInput = styled.input`
     border-color: ${(props: Props) =>
       props.invalid
         ? props.theme.validation.borderColor
-        : props.theme.checkbox.borderColor};
+        : props.theme.colors.drk400};
     border-style: ${(props: Props) => props.theme.checkbox.borderStyle};
     border-radius: 1px;
     border-width ${(props: Props) => props.theme.checkbox.borderWidth};
