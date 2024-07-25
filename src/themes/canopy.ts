@@ -424,7 +424,7 @@ export const canopyTheme = {
   checkbox: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: canopyColors.primary,
+    borderColor: canopyColors.drk400,
     disabledCheck: canopyColors.drk400,
     disabledText: canopyColors.drk400,
     unselectedColor: canopyColors.white,
