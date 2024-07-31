@@ -5,7 +5,7 @@ on:
     branches: [master, beta]
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -43,7 +43,7 @@ jobs:
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
-        with: 
+        with:
           path: storybook-static
 
   deploy:
