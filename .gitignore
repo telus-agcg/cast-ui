@@ -8,3 +8,4 @@ lib*
 .idea
 *.iml
 yarn.lock
+storybook-static
