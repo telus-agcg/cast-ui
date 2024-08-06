@@ -509,7 +509,6 @@ export const canopyTheme = {
       backgroundColor: canopyColors.white,
       borderColor: canopyColors.lt800,
       padding: '24px',
-      fontSize: '16px',
       color: canopyColors.drk800,
     },
     body: {
@@ -535,12 +534,21 @@ export const canopyTheme = {
     },
     sm: {
       width: '300px',
+      header: {
+        fontSize: '16px',
+      },
     },
     md: {
       width: '745px',
+      header: {
+        fontSize: '24px',
+      },
     },
     lg: {
       width: '1220px',
+      header: {
+        fontSize: '24px',
+      },
     },
   },
   textarea: {

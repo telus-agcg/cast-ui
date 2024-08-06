@@ -98,7 +98,8 @@ const ModalHeaderDiv = styled.div`
   border-top-left-radius: ${(props: any) => props.theme.modal.borderRadius};
   border-top-right-radius: ${(props: any) => props.theme.modal.borderRadius};
   h5 {
-    font-size: ${(props: any) => props.theme.modal.header.fontSize};
+    font-size: ${(props: any) =>
+      props.theme.modal[props.modalSize].header.fontSize};
     color: ${(props: any) => props.theme.modal.header.color};
     padding: 0;
     margin: 0 50px 0 0;
@@ -263,7 +264,7 @@ export class Modal extends React.Component<Props> {
           {...props}
         >
           {this.props.modalTitle && (
-            <ModalHeaderDiv>
+            <ModalHeaderDiv modalSize={this.props.modalSize}>
               <h5>{this.props.modalTitle}</h5>
               {props.onTitleClose && (
                 <button
