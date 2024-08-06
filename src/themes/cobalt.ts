@@ -532,21 +532,12 @@ export const cobaltTheme = {
     },
     sm: {
       width: '300px',
-      header: {
-        fontSize: '16px',
-      },
     },
     md: {
       width: '745px',
-      header: {
-        fontSize: '16px',
-      },
     },
     lg: {
       width: '1220px',
-      header: {
-        fontSize: '16px',
-      },
     },
   },
   textarea: {
