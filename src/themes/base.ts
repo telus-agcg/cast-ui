@@ -472,7 +472,6 @@ export const buildTheme = colors => ({
       backgroundColor: colors.white,
       borderColor: colors.lt800,
       padding: '15px',
-      fontSize: '16px',
       color: colors.drk800,
     },
     body: {
