@@ -472,7 +472,6 @@ export const buildTheme = colors => ({
       backgroundColor: colors.white,
       borderColor: colors.lt800,
       padding: '15px',
-      fontSize: '16px',
       color: colors.drk800,
     },
     body: {
@@ -498,12 +497,21 @@ export const buildTheme = colors => ({
     },
     sm: {
       width: '300px',
+      header: {
+        fontSize: '16px',
+      },
     },
     md: {
       width: '745px',
+      header: {
+        fontSize: '16px',
+      },
     },
     lg: {
       width: '1220px',
+      header: {
+        fontSize: '16px',
+      },
     },
   },
   textarea: {
