@@ -509,7 +509,6 @@ export const canopyTheme = {
       backgroundColor: canopyColors.white,
       borderColor: canopyColors.lt800,
       padding: '24px',
-      fontSize: '16px',
       color: canopyColors.drk800,
     },
     body: {
