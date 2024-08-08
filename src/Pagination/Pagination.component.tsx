@@ -266,14 +266,18 @@ export class Pagination extends React.Component<Props> {
               )}
             </div>
             <PageButtonNextPrevComponent
-              disabled={activePage === this.props.pages}
+              disabled={
+                activePage === this.props.pages || this.props.pages <= 0
+              }
               isForwardDirection={true}
               onClick={() => {
                 this.changePage(activePage + 1);
               }}
             />
             <PageButtonFirstLastComponent
-              disabled={activePage === this.props.pages}
+              disabled={
+                activePage === this.props.pages || this.props.pages <= 0
+              }
               isForwardDirection={true}
               onClick={() => {
                 this.changePage(this.props.pages);
