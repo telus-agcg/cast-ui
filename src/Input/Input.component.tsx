@@ -334,4 +334,5 @@ Input.defaultProps = {
   theme: Themes.canopyTheme,
   inputSize: 'md',
   type: 'text',
+  autoComplete: 'off',
 };
