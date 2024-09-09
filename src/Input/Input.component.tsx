@@ -21,7 +21,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
    * Autocomplete settings for this field
    *
-   * @default 'on'
+   * @default 'off'
    **/
   autoComplete?: string;
   /**
