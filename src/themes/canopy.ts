@@ -676,7 +676,6 @@ export const canopyTheme = {
     color: canopyColors.danger,
     fontSize: '12px',
     lineHeight: '13px',
-    errorMessageBottomPosition: '-22px',
     marginTop: '4px',
   },
   table: {
