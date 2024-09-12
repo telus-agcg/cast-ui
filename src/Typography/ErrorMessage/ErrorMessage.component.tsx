@@ -46,16 +46,8 @@ const SErrorIcon = styled(Icon)`
   color: ${(props: any) => props.theme.colors.danger};
   padding-right: 4px;
 `;
-const ErrorWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
 
-const SInfo = styled(Icon)`
-  color: ${(props: any) => props.theme.colors.danger};
-  padding-right: 4px;
-`;
-const ErrorWrapper = styled.div`
+const ErrorMessageWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -69,10 +61,10 @@ export const ErrorMessage: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SErrorDiv {...inputProps}>
-          <ErrorWrapper>
+          <ErrorMessageWrapper>
             <SErrorIcon size={14} icon={icError} />
             {inputProps.message}
-          </ErrorWrapper>
+          </ErrorMessageWrapper>
         </SErrorDiv>
       </>
     </ThemeProvider>
