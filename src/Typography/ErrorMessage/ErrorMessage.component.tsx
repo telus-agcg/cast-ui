@@ -51,6 +51,15 @@ const ErrorWrapper = styled.div`
   align-items: center;
 `;
 
+const SInfo = styled(Icon)`
+  color: ${(props: any) => props.theme.colors.danger};
+  padding-right: 4px;
+`;
+const ErrorWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const ErrorMessage: React.FunctionComponent<Props> = ({
   theme,
   children,
