@@ -1,6 +1,5 @@
 import React, { Component, ForwardRefExoticComponent } from 'react';
 import uuid from 'uuid';
-import ErrorMessage from '../Typography/ErrorMessage/index';
 import Input from '../Input/index';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
 import DatePicker from 'react-datepicker';
@@ -400,13 +399,6 @@ class ReactDatePicker extends Component<Props> {
             )}
             {...props}
           />
-          {invalid && (
-            <ErrorMessage
-              id={errorId}
-              message={invalidText || ''}
-              textColor={invalidTextColor || ''}
-            />
-          )}
         </SWrapperComponent>
       </ThemeProvider>
     );

@@ -33,22 +33,21 @@ export interface Props {
 }
 
 const SErrorDiv = styled.div`
-  position: absolute;
   color: ${(props: Props) => props.textColor || props.theme.validation.color};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.validation.fontSize};
   font-style: ${(props: Props) => props.theme.validation.fontStyle};
   line-height: ${(props: Props) => props.theme.validation.lineHeight};
   padding: ${(props: Props) => props.theme.validation.padding};
-  bottom: ${(props: Props) =>
-    props.theme.validation.errorMessageBottomPosition};
+  margin-top: ${(props: Props) => props.theme.validation.marginTop};
 `;
 
-const SInfo = styled(Icon)`
+const SErrorIcon = styled(Icon)`
   color: ${(props: any) => props.theme.colors.danger};
   padding-right: 4px;
 `;
-const ErrorWrapper = styled.div`
+
+const ErrorMessageWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -62,10 +61,10 @@ export const ErrorMessage: React.FunctionComponent<Props> = ({
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
         <SErrorDiv {...inputProps}>
-          <ErrorWrapper>
-            <SInfo size={14} icon={icError} />
+          <ErrorMessageWrapper>
+            <SErrorIcon size={14} icon={icError} />
             {inputProps.message}
-          </ErrorWrapper>
+          </ErrorMessageWrapper>
         </SErrorDiv>
       </>
     </ThemeProvider>
