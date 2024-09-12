@@ -107,7 +107,7 @@ const ModalHeaderDiv = styled.div`
   button {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 14px;
     padding: 12px;
     margin: 2px;
     line-height: 20px;

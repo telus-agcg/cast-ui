@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../../themes/index';
+import Icon from 'react-icons-kit';
+import { ic_error as icError } from 'react-icons-kit/md/ic_error';
 
 export interface Props {
   /**
@@ -42,6 +44,15 @@ const SErrorDiv = styled.div`
     props.theme.validation.errorMessageBottomPosition};
 `;
 
+const SInfo = styled(Icon)`
+  color: ${(props: any) => props.theme.colors.danger};
+  padding-right: 4px;
+`;
+const ErrorWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const ErrorMessage: React.FunctionComponent<Props> = ({
   theme,
   children,
@@ -50,7 +61,12 @@ export const ErrorMessage: React.FunctionComponent<Props> = ({
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
-        <SErrorDiv {...inputProps}>{inputProps.message}</SErrorDiv>
+        <SErrorDiv {...inputProps}>
+          <ErrorWrapper>
+            <SInfo size={14} icon={icError} />
+            {inputProps.message}
+          </ErrorWrapper>
+        </SErrorDiv>
       </>
     </ThemeProvider>
   );
