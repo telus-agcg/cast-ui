@@ -42,7 +42,7 @@ const SErrorDiv = styled.div`
   margin-top: ${(props: Props) => props.theme.validation.marginTop};
 `;
 
-const SInfo = styled(Icon)`
+const SErrorIcon = styled(Icon)`
   color: ${(props: any) => props.theme.colors.danger};
   padding-right: 4px;
 `;
@@ -61,7 +61,7 @@ export const ErrorMessage: React.FunctionComponent<Props> = ({
       <>
         <SErrorDiv {...inputProps}>
           <ErrorWrapper>
-            <SInfo size={14} icon={icError} />
+            <SErrorIcon size={14} icon={icError} />
             {inputProps.message}
           </ErrorWrapper>
         </SErrorDiv>
