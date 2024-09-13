@@ -138,6 +138,7 @@ const ModalHeaderWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const ModalBodyDiv = styled.div`
   margin: ${(props: any) => props.theme.modal.body.padding};
   padding-bottom: ${(props: any) => props.theme.modal.body.padding};
