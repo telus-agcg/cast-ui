@@ -107,7 +107,6 @@ const ModalHeaderDiv = styled.div`
   button {
     position: absolute;
     right: 0;
-    top: 12px;
     padding: 12px;
     margin: 2px;
     line-height: 20px;
@@ -135,6 +134,10 @@ const ModalHeaderDiv = styled.div`
   }
 `;
 
+const ModalHeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
 const ModalBodyDiv = styled.div`
   margin: ${(props: any) => props.theme.modal.body.padding};
   padding-bottom: ${(props: any) => props.theme.modal.body.padding};
@@ -265,16 +268,18 @@ export class Modal extends React.Component<Props> {
         >
           {this.props.modalTitle && (
             <ModalHeaderDiv modalSize={this.props.modalSize}>
-              <h5>{this.props.modalTitle}</h5>
-              {props.onTitleClose && (
-                <button
-                  type="button"
-                  aria-label="Close"
-                  onClick={props.onTitleClose}
-                >
-                  <span>&times;</span>
-                </button>
-              )}
+              <ModalHeaderWrapper>
+                <h5>{this.props.modalTitle}</h5>
+                {props.onTitleClose && (
+                  <button
+                    type="button"
+                    aria-label="Close"
+                    onClick={props.onTitleClose}
+                  >
+                    <span>&times;</span>
+                  </button>
+                )}
+              </ModalHeaderWrapper>
             </ModalHeaderDiv>
           )}
           <ModalBodyDiv>{children}</ModalBodyDiv>
