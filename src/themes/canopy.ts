@@ -29,6 +29,7 @@ export const canopyColors = {
   dangerHover: '#D73111', // updated
   dangerFaded: '#DD7057',
   dangerBackground: '#FADCD5',
+  warningHoverLight: '#F6E2D5',
 };
 
 export const canopyTheme = {
