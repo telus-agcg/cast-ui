@@ -56,6 +56,11 @@ export interface Props extends ReactModalProps {
    * @default 999999
    **/
   zIndex?: number;
+  /**
+   * specify if modal close is disabled
+   * @default false
+   **/
+  disableCloseIcon: boolean;
 }
 
 const modalSizeRules: Function = (modalSize: string, theme: any) => {
@@ -122,12 +127,12 @@ const ModalHeaderDiv = styled.div`
     border-radius: 50%;
     transition: all 0.3s;
     &:hover {
-      background-color: ${props =>
-        props.disabled
+      background-color: ${(props: Props) =>
+        props.disableCloseIcon
           ? 'none'
           : props.theme.modal.closeButton.hoverBackground};
-      color: ${props =>
-        props.disabled
+      color: ${(props: Props) =>
+        props.disableCloseIcon
           ? props.theme.pagination.button.disabledText
           : props.theme.pagination.hoverTextColor};
     }
@@ -186,6 +191,7 @@ export class Modal extends React.Component<Props> {
 
   static defaultProps = {
     modalSize: 'md',
+    disableCloseIcon: false,
     theme: Themes.canopyTheme,
   };
 
@@ -268,7 +274,10 @@ export class Modal extends React.Component<Props> {
           {...props}
         >
           {this.props.modalTitle && (
-            <ModalHeaderDiv modalSize={this.props.modalSize}>
+            <ModalHeaderDiv
+              modalSize={this.props.modalSize}
+              disableCloseIcon={this.props.disableCloseIcon}
+            >
               <ModalHeaderWrapper>
                 <h5>{this.props.modalTitle}</h5>
                 {props.onTitleClose && (
@@ -276,6 +285,7 @@ export class Modal extends React.Component<Props> {
                     type="button"
                     aria-label="Close"
                     onClick={props.onTitleClose}
+                    disabled={props.disableCloseIcon}
                   >
                     <span>&times;</span>
                   </button>

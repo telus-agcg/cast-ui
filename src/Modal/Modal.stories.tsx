@@ -70,6 +70,11 @@ export default {
     footerContent: {
       control: false,
     },
+    disableCloseIcon: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
   parameters: {
     docs: {
@@ -80,7 +85,13 @@ export default {
   },
 };
 
-const _Modal = ({ children, isOpen, modalTitle, ...args }) => {
+const _Modal = ({
+  children,
+  isOpen,
+  modalTitle,
+  disableCloseIcon,
+  ...args
+}) => {
   const [openModal, setOpenModal] = React.useState(false);
 
   React.useEffect(() => {
@@ -99,6 +110,7 @@ const _Modal = ({ children, isOpen, modalTitle, ...args }) => {
         modalTitle={modalTitle}
         {...args}
         onTitleClose={handleToggleModal}
+        disableCloseIcon={disableCloseIcon}
       >
         {children}
       </Modal>
@@ -112,6 +124,7 @@ _Regular.args = {
   modalSize: 'md',
   modalTitle: 'Modal Title',
   children: <p>Lorem Ipsum</p>,
+  disableCloseIcon: false,
 };
 
 export const _Scrollable = _Modal.bind({});
