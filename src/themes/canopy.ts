@@ -30,6 +30,7 @@ export const canopyColors = {
   dangerFaded: '#DD7057',
   dangerBackground: '#FADCD5',
   warningHoverLight: '#F6E2D5',
+  warningBackgroundLight: '#FFF4ED',
 };
 
 export const canopyTheme = {
