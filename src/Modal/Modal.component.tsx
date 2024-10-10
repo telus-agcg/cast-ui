@@ -123,7 +123,8 @@ const ModalHeaderDiv = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    cursor: pointer;
+    cursor: ${(props: Props) =>
+      props.disableCloseIcon ? 'not-allowed' : 'pointer'};
     border-radius: 50%;
     transition: all 0.3s;
     &:hover {
