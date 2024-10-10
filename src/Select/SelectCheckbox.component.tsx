@@ -4,17 +4,6 @@ import Checkbox from '../Checkbox';
 import _ from 'lodash';
 import { components, ValueContainerProps } from 'react-select';
 
-const isObject = val => {
-  if (val === null) {
-    return false;
-  }
-  return typeof val === 'object';
-};
-
-const isEmptyObject = val => {
-  return isObject(val) && Object.keys(val).length === 0;
-};
-
 interface Props {
   options: any[];
   isMulti?: boolean;
@@ -31,11 +20,6 @@ interface TruncatedValuesProps {
 
 const SCheckbox = styled(Checkbox)`
   padding-bottom: 0px;
-`;
-
-const MenuItemWrapper = styled.div`
-  max-height: 300px;
-  overflow-y: auto;
 `;
 
 const SFlex = styled.div`
