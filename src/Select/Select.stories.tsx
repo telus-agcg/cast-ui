@@ -164,19 +164,20 @@ MultiSelectWithCheckbox.args = {
 };
 
 const colorOptions: any[] = [
-  { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
-  { value: 'blue', label: 'Blue', color: '#0052CC' },
-  { value: 'purple', label: 'Purple', color: '#5243AA' },
-  { value: 'red', label: 'Red', color: '#FF5630' },
-  { value: 'orange', label: 'Orange', color: '#FF8B00', isDisabled: true },
+  { value: 'blue', label: 'Blue' },
+  { value: 'purple', label: 'Purple' },
+  { value: 'red', label: 'Red' },
+  { value: 'orange', label: 'Orange' },
+  { value: 'white', label: 'White' },
+  { value: 'black', label: 'Black' },
 ];
 
 const flavorOptions: any[] = [
-  { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
-  { value: 'blue', label: 'Blue', color: '#0052CC' },
-  { value: 'purple', label: 'Purple', color: '#5243AA' },
-  { value: 'red', label: 'Red', color: '#FF5630' },
-  { value: 'orange', label: 'Orange', color: '#FF8B00', isDisabled: true },
+  { value: 'vanilla', label: 'Vanilla' },
+  { value: 'lemon', label: 'Lemon' },
+  { value: 'cinnamon', label: 'Cinnamon' },
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'mint', label: 'Mint' },
 ];
 
 const groupedOptions = [
@@ -222,6 +223,7 @@ const MultiSelectCheckbox = args => {
   return (
     <FlexDiv>
       <Select
+        {...args}
         id="SampleCheckSelect"
         data-testid={'multi-select-checkbox'}
         onChange={e => handleSelect(e)}
@@ -229,7 +231,6 @@ const MultiSelectCheckbox = args => {
         closeMenuOnSelect={false}
         formatGroupLabel={formatGroupLabel}
         options={groupedOptions}
-        {...args}
       />
       <SLink onClick={() => setSelectedOptions([])}>Clear</SLink>
     </FlexDiv>

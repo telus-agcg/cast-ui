@@ -358,26 +358,31 @@ import './styles.css';
   <h4><a href="/docs/components-interactions-date-picker--date-picker">DatePicker</a></h4>
   <p>DatePicker allows users to select a date from a graphical calendar. It is commonly used in web apps to allow users to select a date for various purposes, such as scheduling appointments, setting deadlines, or filtering data.</p>
 
-<h4><a href="/docs/components-interactions-date-picker--date-picker">Single Date Picker</a></h4>
-<DatePicker
-showIcon={true}
-iconPosition= 'right'
-datePickerStyle= 'primary'
-datePickerSize='md'
-invalidText= 'A valid value is required'
-placeholderText={'Select Date'}
+<h4>Single Date Picker</h4>
 
-> </DatePicker>
-
-<h4><a href="/docs/components-interactions-date-picker--date-picker">Range Date Picker</a></h4>
 <DatePicker
-showIcon={true}
-iconPosition= 'right'
-datePickerStyle= 'primary'
-datePickerSize='md'
-invalidText= 'A valid value is required'
-placeholderText={'Start Date - End Date'}
-selectsRange={true} ></DatePicker>
+  showIcon={true}
+  iconPosition="right"
+  datePickerStyle="primary"
+  datePickerSize="md"
+  invalidText="A valid value is required"
+  placeholderText={'Select Date'}
+  selectsRange={false}
+>
+  {' '}
+</DatePicker>
+
+<h4>Range Date Picker</h4>
+
+<DatePicker
+  showIcon={true}
+  iconPosition="right"
+  datePickerStyle="primary"
+  datePickerSize="md"
+  invalidText="A valid value is required"
+  placeholderText={'Start Date - End Date'}
+  selectsRange={true}
+/>
 
 </div>
 
