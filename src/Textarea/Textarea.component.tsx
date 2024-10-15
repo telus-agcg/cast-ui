@@ -84,10 +84,10 @@ export interface Props
    */
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   /**
-   * Disables resize
+   * DeActivate resizing of the TextArea
    * @default false
    */
-  reSize?: boolean;
+  isReSizable?: boolean;
 }
 
 const SWrapperDiv = styled.div`
@@ -139,7 +139,7 @@ const STextarea = styled.textarea`
   }
   transition: all 0.3s;
   vertical-align: top;
-  resize: ${(props: Props) => (props.reSize ? 'none' : 'auto')};
+  resize: ${(props: Props) => (props.isReSizable ? 'auto' : 'none')};
 `;
 
 export const Textarea: React.FunctionComponent<Props> = ({
@@ -177,5 +177,5 @@ export const Textarea: React.FunctionComponent<Props> = ({
 Textarea.defaultProps = {
   textareaSize: 'md',
   theme: Themes.canopyTheme,
-  reSize: false,
+  isReSizable: false,
 };
