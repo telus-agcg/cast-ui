@@ -68,6 +68,11 @@ export default {
     value: {
       control: false,
     },
+    reSize: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 };
 
@@ -86,4 +91,5 @@ _Textarea.args = {
   required: false,
   rows: 8,
   textareaSize: 'md',
+  reSize: false,
 };
