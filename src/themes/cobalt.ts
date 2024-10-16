@@ -901,6 +901,9 @@ export const cobaltTheme = {
       backgroundColor: cobaltColors.lt800,
       placeholderColor: cobaltColors.drk400,
     },
+    invalid: {
+      selectedOptionColor: cobaltColors.drk800,
+    },
     sm: {
       borderRadius: '1px',
       height: '28px',

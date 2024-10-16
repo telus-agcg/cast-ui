@@ -908,6 +908,9 @@ export const canopyTheme = {
       backgroundColor: canopyColors.lt800,
       placeholderColor: canopyColors.drk400,
     },
+    invalid: {
+      selectedOptionColor: canopyColors.danger,
+    },
     sm: {
       borderRadius: '4px',
       height: '28px',
