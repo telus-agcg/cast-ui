@@ -889,7 +889,7 @@ export const cobaltTheme = {
     optionBackgroundColor: cobaltColors.white,
     highlightOptionBackgroundColor: cobaltColors.lt400,
     highlightOptionColor: cobaltColors.primary,
-    selectedOptionColor: cobaltColors.primary,
+    selectedOptionColor: cobaltColors.drk800,
     selectedOptionBackgroundColor: cobaltColors.white,
     borderColor: cobaltColors.drk400,
     placeholderColor: cobaltColors.drk400,

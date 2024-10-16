@@ -243,7 +243,7 @@ const SDiv = styled.div<Props>`
         border-color: ${(props: Props) => props.theme.colors.drk800};
       }
       .react-select__value-container {
-        color: ${(props: Props) => props.theme.colors.primary};
+        color: ${(props: Props) => props.theme.select.selectedOptionColor};
         padding: ${(props: Props) =>
           props.theme.select[props.selectSize!].padding};
         font-family: ${(props: Props) => props.theme.typography.fontFamily};
@@ -256,7 +256,7 @@ const SDiv = styled.div<Props>`
         }
 
         .react-select__single-value {
-          color: ${(props: Props) => props.theme.colors.primary};
+          color: ${(props: Props) => props.theme.select.selectedOptionColor};
         }
 
         .react-select__placeholder {
@@ -325,7 +325,7 @@ const SDiv = styled.div<Props>`
     }
     .react-select__indicators {
       align-self: center;
-      color: ${(props: Props) => props.theme.colors.primary};
+      color: ${(props: Props) => props.theme.select.selectedOptionColor};
       .react-select__indicator-separator {
         display: none;
       }

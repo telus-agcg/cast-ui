@@ -856,7 +856,7 @@ export const buildTheme = colors => ({
     optionBackgroundColor: colors.white,
     highlightOptionBackgroundColor: colors.lt400,
     highlightOptionColor: colors.primary,
-    selectedOptionColor: colors.primary,
+    selectedOptionColor: colors.drk800,
     selectedOptionBackgroundColor: colors.white,
     borderColor: colors.drk400,
     placeholderColor: colors.drk400,
