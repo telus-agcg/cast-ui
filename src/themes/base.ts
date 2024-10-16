@@ -868,9 +868,6 @@ export const buildTheme = colors => ({
       backgroundColor: colors.lt800,
       placeholderColor: colors.drk400,
     },
-    invalid: {
-      selectedOptionColor: colors.drk800,
-    },
     sm: {
       borderRadius: '1px',
       height: '28px',

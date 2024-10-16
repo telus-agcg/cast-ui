@@ -228,10 +228,7 @@ const SDiv = styled.div<Props>`
   }
   .react-select-component {
     .react-select__control {
-      color: ${(props: Props) =>
-        props.invalid
-          ? props.theme.select.invalid.selectedOptionColor
-          : props.theme.select.selectedOptionColor};
+      color: ${(props: Props) => props.theme.select.selectedOptionColor};
       transition: all 0.3s;
       min-height: ${(props: Props) =>
         props.theme.select[props.selectSize!].height};
@@ -259,10 +256,7 @@ const SDiv = styled.div<Props>`
         }
 
         .react-select__single-value {
-          color: ${(props: Props) =>
-            props.invalid
-              ? props.theme.select.invalid.selectedOptionColor
-              : props.theme.select.selectedOptionColor};
+          color: ${(props: Props) => props.theme.select.selectedOptionColor};
         }
 
         .react-select__placeholder {
