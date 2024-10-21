@@ -549,7 +549,7 @@ export const canopyTheme = {
     lg: {
       width: '1220px',
       header: {
-        fontSize: '24px',
+        fontSize: '30px',
       },
     },
   },
