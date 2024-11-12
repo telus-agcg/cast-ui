@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import Checkbox from '../Checkbox';
 import _ from 'lodash';
 import { components, ValueContainerProps } from 'react-select';
+import { SelectMenuList } from './SelectMenuList';
 
 interface Props {
   options: any[];
   isMulti?: boolean;
+  isFilterable?: boolean;
   selectedOptions?: any;
   updateSelectedOptions: (any) => void;
   id?: string;
@@ -181,6 +183,7 @@ export const SelectCheckboxProps = ({
   options,
   updateSelectedOptions,
   isMulti,
+  isFilterable,
   id,
   clearText,
 }: Props) => {
@@ -242,6 +245,9 @@ export const SelectCheckboxProps = ({
         </div>
       );
     },
+    ...(isFilterable && {
+      MenuList: SelectMenuList,
+    }),
   };
   return { components };
 };

@@ -1,9 +1,6 @@
-import { CustomSelect as Select } from './Select.component';
+import { Select } from './Select.component';
 
-export {
-  CustomSelect as Select,
-  Props as SelectProps,
-} from './Select.component';
+export { Select, Props as SelectProps } from './Select.component';
 
 export { components as SelectComponents } from 'react-select';
 

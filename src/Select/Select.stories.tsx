@@ -48,7 +48,7 @@ export default {
         type: 'boolean',
       },
     },
-    isSearchable: {
+    isFilterable: {
       control: {
         type: 'boolean',
       },
@@ -118,7 +118,7 @@ Regular.args = {
   isMulti: false,
   isDisabled: false,
   isClearable: false,
-  isSearchable: false,
+  isFilterable: false,
   selectSize: 'md',
   invalid: false,
   invalidText: 'A valid value is required',
@@ -136,6 +136,7 @@ MultiSelect.args = {
   dataTestId: 'multi-select',
   isMulti: true,
   isDisabled: false,
+  isFilterable: false,
   selectSize: 'md',
   invalid: false,
   invalidText: 'A valid value is required',
@@ -157,6 +158,7 @@ MultiSelectWithCheckbox.args = {
   isMulti: true,
   selectSize: 'md',
   invalid: false,
+  isFilterable: true,
   invalidText: 'A valid value is required',
   isClearable: false,
   hideSelectedOptions: false,
