@@ -6,7 +6,7 @@ import {
   PaginationButtonFirstLast,
 } from './PaginationButtons';
 import { Themes } from '../themes/index';
-import Select from '../Select/Select.component';
+import Select from '../Select/index';
 import uuid from 'uuid';
 export const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {

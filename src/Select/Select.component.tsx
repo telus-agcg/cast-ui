@@ -337,7 +337,7 @@ const SSelectOption = styled.div`
   }
 `;
 
-const CustomSelect: React.FC<Props> = props => {
+export const CustomSelect: React.FC<Props> = props => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = React.useState(false);
 
@@ -498,6 +498,3 @@ const CustomSelect: React.FC<Props> = props => {
     </ThemeProvider>
   );
 };
-
-export { CustomSelect as Select };
-export default CustomSelect;
