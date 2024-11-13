@@ -61,6 +61,11 @@ export interface Props extends ReactModalProps {
    * @default false
    **/
   disableCloseIcon: boolean;
+  /**
+   * adds blur effect at the bottom
+   * @default true
+   **/
+  blurEffect?: boolean;
 }
 
 const modalSizeRules: Function = (modalSize: string, theme: any) => {
@@ -261,6 +266,7 @@ export class Modal extends React.Component<Props> {
       children,
       modalTitle,
       footerContent,
+      blurEffect = true,
       ...props
     } = this.props;
     return (
@@ -295,9 +301,13 @@ export class Modal extends React.Component<Props> {
             </ModalHeaderDiv>
           )}
           <ModalBodyDiv>{children}</ModalBodyDiv>
-          <ModalBlurWrapper>
-            <ModalBlurDiv />
-          </ModalBlurWrapper>
+          {blurEffect ? (
+            <ModalBlurWrapper>
+              <ModalBlurDiv />
+            </ModalBlurWrapper>
+          ) : (
+            ''
+          )}
           {footerContent && (
             <ModalFooterDiv modalTitle={modalTitle}>
               {footerContent}
