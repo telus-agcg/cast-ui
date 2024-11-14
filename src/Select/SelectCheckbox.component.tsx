@@ -59,9 +59,10 @@ const TruncatedValues = ({
           };
 
           // Measure the width of the ellipsis with remaining items count
-          const ellipsisElement = createTempElement(
-            `... (+${selectedOptions.length})..`,
-          );
+          const ellipsisText = `...${
+            selectedOptions.length > 1 ? ` (+${selectedOptions.length})` : ''
+          }`;
+          const ellipsisElement = createTempElement(ellipsisText);
 
           const ellipsisWidth = ellipsisElement.scrollWidth;
           document.body.removeChild(ellipsisElement);

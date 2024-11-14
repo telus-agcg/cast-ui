@@ -337,9 +337,32 @@ const SSelectOption = styled.div`
   }
 `;
 
-export const CustomSelect: React.FC<Props> = props => {
+export const CustomSelect: React.FC<Props> = ({
+  theme,
+  components: propsComponents,
+  ...props
+}) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = React.useState(false);
+
+  const {
+    creatable,
+    options,
+    controlSpecificProps,
+    invalid,
+    selectSize,
+    id,
+    isMulti,
+    isDisabled,
+    isClearable,
+    isFilterable,
+    formatGroupLabel,
+    clearText,
+    selectedOption,
+    invalidText = '',
+    optionType,
+    ...restProps
+  } = props;
 
   React.useEffect(() => {
     const onDomClick = event => {
@@ -362,26 +385,14 @@ export const CustomSelect: React.FC<Props> = props => {
     };
   }, []);
 
-  const {
-    creatable,
-    options,
-    controlSpecificProps,
-    invalid,
-    selectSize,
-    theme = Themes.canopyTheme,
-    id = 'select',
-    isMulti,
-    isDisabled,
-    isClearable,
-    isFilterable = true,
-    formatGroupLabel,
-    clearText,
-    selectedOption,
-    invalidText = '',
-    optionType = 'default',
-    components: propsComponents,
-    ...restProps
-  } = props;
+  const handleBlur = (event: React.FocusEvent) => {
+    if (
+      containerRef.current &&
+      !containerRef.current.contains(event.relatedTarget as Node)
+    ) {
+      requestAnimationFrame(() => setIsFocused(false));
+    }
+  };
 
   const BaseSelectComponent = creatable ? CreatableSelect : Select;
   const errorId = invalid ? `${id}-error-msg` : '';
@@ -483,6 +494,7 @@ export const CustomSelect: React.FC<Props> = props => {
           menuIsOpen={isFocused || undefined}
           isFocused={isFocused || undefined}
           onMenuInputFocus={() => setIsFocused(true)}
+          onBlur={handleBlur}
           {...restProps}
           {...controlSpecificProps}
           {...selectCheckboxProps}
@@ -497,4 +509,12 @@ export const CustomSelect: React.FC<Props> = props => {
       </SDiv>
     </ThemeProvider>
   );
+};
+
+CustomSelect.defaultProps = {
+  theme: Themes.canopyTheme,
+  id: 'select',
+  optionType: 'default',
+  isFilterable: true,
+  selectSize: 'md',
 };
