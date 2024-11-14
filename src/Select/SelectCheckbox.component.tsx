@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import Checkbox from '../Checkbox';
 import _ from 'lodash';
 import { components, ValueContainerProps } from 'react-select';
+import { SelectMenuList } from './SelectMenuList';
 
 interface Props {
   options: any[];
   isMulti?: boolean;
+  isFilterable?: boolean;
   selectedOptions?: any;
   updateSelectedOptions: (any) => void;
   id?: string;
@@ -57,9 +59,10 @@ const TruncatedValues = ({
           };
 
           // Measure the width of the ellipsis with remaining items count
-          const ellipsisElement = createTempElement(
-            `... (+${selectedOptions.length})..`,
-          );
+          const ellipsisText = `...${
+            selectedOptions.length > 1 ? ` (+${selectedOptions.length})` : ''
+          }`;
+          const ellipsisElement = createTempElement(ellipsisText);
 
           const ellipsisWidth = ellipsisElement.scrollWidth;
           document.body.removeChild(ellipsisElement);
@@ -181,6 +184,7 @@ export const SelectCheckboxProps = ({
   options,
   updateSelectedOptions,
   isMulti,
+  isFilterable,
   id,
   clearText,
 }: Props) => {
@@ -242,6 +246,9 @@ export const SelectCheckboxProps = ({
         </div>
       );
     },
+    ...(isFilterable && {
+      MenuList: SelectMenuList,
+    }),
   };
   return { components };
 };

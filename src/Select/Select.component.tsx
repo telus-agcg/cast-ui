@@ -9,6 +9,7 @@ import { SelectCheckboxProps } from './SelectCheckbox.component';
 import _ from 'lodash';
 import { SelectComponents } from './index';
 import { getDataProps } from '../utils/common';
+import { SelectMenuList } from './SelectMenuList';
 
 export type OptionType = {
   value: string;
@@ -66,6 +67,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   isClearable?: boolean;
   /**
    * Specify custom option components
+   *
+   * @default null
+   **/
+  isFilterable?: boolean;
+  /**
+   * Add Custom filter components
    *
    * @default null
    **/
@@ -136,53 +143,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    * @default null
    **/
   controlSpecificProps?: any;
-  //  {
-  //   blockOptionHover: boolean;
-  //   clearFocusValueOnUpdate: boolean;
-  //   commonProps: any;
-  //   // components: SelectComponents<OptionType>;
-  //   hasGroups: boolean;
-  //   initialTouchX: number;
-  //   initialTouchY: number;
-  //   inputIsHiddenAfterUpdate: boolean | null;
-  //   instancePrefix: string;
-  //   isSearchable: boolean;
-  //   name: string;
-  //   openAfterFocus: boolean;
-  //   scrollToFocusedOptionOnUpdate: boolean;
-  //   userIsDragging: boolean | null;
-  //   controlRef: React.Ref<any>;
-  //   getControlRef: (ref: HTMLElement) => void;
-  //   focusedOptionRef: React.Ref<any>;
-  //   getFocusedOptionRef: (ref: HTMLElement) => void;
-  //   menuListRef: React.Ref<any>;
-  //   getMenuListRef: (ref: HTMLElement) => void;
-  //   inputRef: React.Ref<any>;
-  //   getInputRef: (ref: HTMLElement) => void;
-  //   // cacheComponents: (components: SelectComponents<OptionType>) => void;
-  //   onMenuOpen(): void;
-  //   onMenuClose(): void;
-  //   // onInputChange(newValue: string, actionMeta: InputActionMeta): void;
-  //   focusInput(): void;
-  //   blurInput(): void;
-  //   focus(): void;
-  //   blur(): void;
-  //   openMenu(focusOption: 'first' | 'last'): void;
-  //   focusValue(direction: 'previous' | 'next'): void;
-  //   menuPlacement: 'auto' | 'top' | 'bottom';
-  //   // focusOption(direction: FocusDirection): void;
-  //   // setValue: (
-  //   //   newValue: ValueType<OptionType>,
-  //   //   action: ActionTypes,
-  //   //   option?: OptionType
-  //   // ) => void;
-  //   selectOption: (newValue: OptionType) => void;
-  //   removeValue: (removedValue: OptionType) => void;
-  //   clearValue: () => void;
-  //   popValue: () => void;
-  //   children: React.ReactElement;
-  // };
-
   /**
    * Portal the select menu to another element.
    *
@@ -377,147 +337,184 @@ const SSelectOption = styled.div`
   }
 `;
 
-export class CustomSelect extends React.Component<Props> {
-  static defaultProps = {
-    selectSize: 'md',
-    theme: Themes.canopyTheme,
-    invalidText: '',
-    id: 'select',
-    option: {},
-    creatable: false,
-    optionType: 'default',
+export const CustomSelect: React.FC<Props> = ({
+  theme,
+  components: propsComponents,
+  ...props
+}) => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [isFocused, setIsFocused] = React.useState(false);
+
+  const {
+    creatable,
+    options,
+    controlSpecificProps,
+    invalid,
+    selectSize,
+    id,
+    isMulti,
+    isDisabled,
+    isClearable,
+    isFilterable,
+    formatGroupLabel,
+    clearText,
+    selectedOption,
+    invalidText = '',
+    optionType,
+    ...restProps
+  } = props;
+
+  React.useEffect(() => {
+    const onDomClick = event => {
+      const container = containerRef.current;
+      if (container) {
+        const menuElement = container.querySelector('.react-select__menu');
+        if (
+          !container.contains(event.target) ||
+          !menuElement ||
+          !menuElement.contains(event.target as Node)
+        ) {
+          setIsFocused(false);
+        }
+      }
+    };
+    document.addEventListener('mousedown', onDomClick);
+
+    return () => {
+      document.removeEventListener('mousedown', onDomClick);
+    };
+  }, []);
+
+  const handleBlur = (event: React.FocusEvent) => {
+    if (
+      containerRef.current &&
+      !containerRef.current.contains(event.relatedTarget as Node)
+    ) {
+      requestAnimationFrame(() => setIsFocused(false));
+    }
   };
 
-  render() {
-    const {
-      creatable,
-      options,
-      controlSpecificProps,
-      invalid,
-      selectSize,
-      theme,
-      id,
-      isMulti,
-      isDisabled,
-      isClearable,
-      formatGroupLabel,
-      clearText,
-      selectedOption,
-      invalidText,
-      optionType,
-      components: propsComponents,
-      ...props
-    } = this.props;
-    const BaseSelectComponent: React.ElementType = creatable
-      ? CreatableSelect
-      : Select;
-    const errorId = invalid ? `${id}-error-msg` : '';
-    const closeMenuOnSelect =
-      typeof this.props.closeMenuOnSelect !== 'undefined'
-        ? this.props.closeMenuOnSelect
-        : !isMulti;
-    const uniqueId = uuid.v4();
+  const BaseSelectComponent = creatable ? CreatableSelect : Select;
+  const errorId = invalid ? `${id}-error-msg` : '';
+  const closeMenuOnSelect =
+    typeof props.closeMenuOnSelect !== 'undefined'
+      ? props.closeMenuOnSelect
+      : !isMulti;
+  const uniqueId = uuid.v4();
 
-    const selectCheckboxProps =
-      optionType === 'checkbox'
-        ? {
-            ...SelectCheckboxProps({
-              options,
-              isMulti,
-              id,
-              clearText,
-              selectedOptions: this.props.selectedOption,
-              updateSelectedOptions: this.props.onChange,
-            }),
-          }
-        : {};
+  const selectCheckboxProps =
+    optionType === 'checkbox'
+      ? SelectCheckboxProps({
+          options,
+          isMulti,
+          isFilterable,
+          id,
+          clearText,
+          selectedOptions: selectedOption,
+          updateSelectedOptions: props.onChange,
+        })
+      : {};
 
-    const DefaultSelectOption = props => {
-      const { innerProps, innerRef, isFocused } = props;
-      return (
-        <SSelectOption
-          data-testid={`select-option-${_.snakeCase(props.data.label)}`}
-          className={'react-select__option'}
-          isFocused={isFocused}
-          ref={innerRef}
-          {...innerProps}
-          id={`${id}-Select-${_.snakeCase(props.data.label)}`}
-        >
-          {props.data.label}
-        </SSelectOption>
-      );
-    };
-
-    const MultiValueRemove = props => {
-      const { innerProps, innerRef } = props;
-      return (
-        <div
-          data-testid={`select-option-remove-${_.snakeCase(props.data.label)}`}
-          id={`${id}-Select-multi-value_remove-${_.snakeCase(
-            props.data.label,
-          )}`}
-          className={'react-select__multi-value__remove'}
-          ref={innerRef}
-          {...innerProps}
-        >
-          <SelectComponents.MultiValueRemove {...props} />
-        </div>
-      );
-    };
-
-    const dataProps = getDataProps(this.props);
+  const DefaultSelectOption = (props: any) => {
+    const { innerProps, innerRef, isFocused } = props;
     return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv
-          {...dataProps}
-          className="select-wrapper"
-          selectSize={selectSize}
+      <SSelectOption
+        data-testid={`select-option-${_.snakeCase(props.data.label)}`}
+        className="react-select__option"
+        isFocused={isFocused}
+        ref={innerRef}
+        {...innerProps}
+        id={`${id}-Select-${_.snakeCase(props.data.label)}`}
+      >
+        {props.data.label}
+      </SSelectOption>
+    );
+  };
+
+  const MultiValueRemove = (props: any) => {
+    const { innerProps, innerRef } = props;
+    return (
+      <div
+        data-testid={`select-option-remove-${_.snakeCase(props.data.label)}`}
+        id={`${id}-Select-multi-value_remove-${_.snakeCase(props.data.label)}`}
+        className="react-select__multi-value__remove"
+        ref={innerRef}
+        {...innerProps}
+      >
+        <SelectComponents.MultiValueRemove {...props} />
+      </div>
+    );
+  };
+
+  const components = {
+    ...(optionType === 'default' && {
+      MultiValueRemove,
+      Option: DefaultSelectOption,
+    }),
+    ...(isFilterable && {
+      MenuList: SelectMenuList,
+    }),
+  };
+
+  const dataProps = getDataProps(props);
+
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SDiv
+        {...dataProps}
+        ref={containerRef}
+        className="select-wrapper"
+        selectSize={selectSize}
+        aria-invalid={invalid ? true : undefined}
+        aria-describedby={errorId}
+        invalid={invalid}
+        id={uniqueId}
+        isDisabled={isDisabled}
+      >
+        <BaseSelectComponent
+          className={`react-select-component ${restProps.className}`}
+          closeMenuOnSelect={closeMenuOnSelect}
+          classNamePrefix="react-select"
+          isDisabled={isDisabled}
+          isClearable={isClearable}
+          isSearchable={false}
+          clearText={clearText}
+          isMulti={isMulti}
+          value={selectedOption}
+          options={options}
+          id={id}
+          invalid={invalid}
           aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
-          invalid={invalid}
-          id={uniqueId}
-          isDisabled={isDisabled}
-        >
-          <BaseSelectComponent
-            closeMenuOnSelect={closeMenuOnSelect}
-            classNamePrefix="react-select"
-            isDisabled={isDisabled}
-            isClearable={isClearable}
-            clearText={clearText}
-            isMulti={isMulti}
-            value={selectedOption}
-            options={options}
-            id={id}
-            invalid={invalid}
-            aria-invalid={invalid ? true : undefined}
-            aria-describedby={errorId}
-            selectSize={selectSize}
-            dropdownColor={theme.primary}
-            menuPortalTarget={document.getElementById(uniqueId)}
-            menuPlacement={'bottom'}
-            formatGroupLabel={formatGroupLabel}
-            components={
-              optionType === 'default' && {
-                MultiValueRemove,
-                Option: DefaultSelectOption,
-              }
-            }
-            {...props}
-            {...controlSpecificProps}
-            {...selectCheckboxProps}
-            className={`react-select-component ${props.className}`}
+          selectSize={selectSize}
+          dropdownColor={theme.primary}
+          menuPortalTarget={document.getElementById(uniqueId)}
+          formatGroupLabel={formatGroupLabel}
+          components={components}
+          menuIsOpen={isFocused || undefined}
+          isFocused={isFocused || undefined}
+          onMenuInputFocus={() => setIsFocused(true)}
+          onBlur={handleBlur}
+          {...restProps}
+          {...controlSpecificProps}
+          {...selectCheckboxProps}
+        />
+        {invalid && (
+          <ErrorMessage
+            id={errorId}
+            message={invalidText}
+            textColor={theme.danger}
           />
-          {invalid && (
-            <ErrorMessage
-              id={errorId}
-              message={invalidText!}
-              textColor={theme.danger}
-            />
-          )}
-        </SDiv>
-      </ThemeProvider>
-    );
-  }
-}
+        )}
+      </SDiv>
+    </ThemeProvider>
+  );
+};
 
-export default CustomSelect;
+CustomSelect.defaultProps = {
+  theme: Themes.canopyTheme,
+  id: 'select',
+  optionType: 'default',
+  isFilterable: true,
+  selectSize: 'md',
+};
