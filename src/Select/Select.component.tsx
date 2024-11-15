@@ -344,6 +344,7 @@ export const CustomSelect: React.FC<Props> = ({
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = React.useState(false);
+  const [filterValue, setFilterValue] = React.useState('');
 
   const {
     creatable,
@@ -361,6 +362,7 @@ export const CustomSelect: React.FC<Props> = ({
     selectedOption,
     invalidText = '',
     optionType,
+    onChange,
     ...restProps
   } = props;
 
@@ -375,6 +377,7 @@ export const CustomSelect: React.FC<Props> = ({
           !menuElement.contains(event.target as Node)
         ) {
           setIsFocused(false);
+          setFilterValue('');
         }
       }
     };
@@ -391,6 +394,13 @@ export const CustomSelect: React.FC<Props> = ({
       !containerRef.current.contains(event.relatedTarget as Node)
     ) {
       requestAnimationFrame(() => setIsFocused(false));
+    }
+  };
+
+  const handleSelectChange = event => {
+    onChange(event);
+    if (isFilterable && !isMulti) {
+      setIsFocused(false);
     }
   };
 
@@ -491,10 +501,13 @@ export const CustomSelect: React.FC<Props> = ({
           menuPortalTarget={document.getElementById(uniqueId)}
           formatGroupLabel={formatGroupLabel}
           components={components}
+          inputValue={filterValue}
           menuIsOpen={isFocused || undefined}
           isFocused={isFocused || undefined}
+          onInputChange={value => setFilterValue(value)}
           onMenuInputFocus={() => setIsFocused(true)}
           onBlur={handleBlur}
+          onChange={handleSelectChange}
           {...restProps}
           {...controlSpecificProps}
           {...selectCheckboxProps}

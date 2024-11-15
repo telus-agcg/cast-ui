@@ -156,6 +156,7 @@ const SInput = styled.input`
 `;
 
 const SIconWrapper = styled.div`
+  color: ${props => props.theme.input.iconColor};
   margin-left: ${(props: Props) =>
     props.iconPosition === 'left' ? '8px' : '0px'};
   margin-right: ${(props: Props) =>

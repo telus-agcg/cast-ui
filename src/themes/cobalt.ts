@@ -361,6 +361,7 @@ export const cobaltTheme = {
     borderStyle: 'solid',
     borderColor: cobaltColors.drk400,
     color: cobaltColors.drk800,
+    iconColor: cobaltColors.drk800,
     fontSize: '14px',
     placeholderColor: cobaltColors.drk400,
     disabled: {
