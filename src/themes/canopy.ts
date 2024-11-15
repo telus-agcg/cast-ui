@@ -366,6 +366,7 @@ export const canopyTheme = {
     borderStyle: 'solid',
     borderColor: canopyColors.lt800,
     color: canopyColors.drk800,
+    iconColor: canopyColors.primary,
     fontSize: '14px',
     placeholderColor: canopyColors.drk400,
     disabled: {

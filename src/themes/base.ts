@@ -327,6 +327,7 @@ export const buildTheme = colors => ({
     borderStyle: 'solid',
     borderColor: colors.drk400,
     color: colors.drk800,
+    iconColor: colors.drk800,
     fontSize: '14px',
     placeholderColor: colors.drk400,
     disabled: {

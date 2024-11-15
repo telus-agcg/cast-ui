@@ -28,7 +28,7 @@ export const SelectMenuList = props => {
   return (
     <div>
       <SInput
-        icon={<Icon icon={icSearch} />}
+        icon={<Icon size={20} icon={icSearch} />}
         iconPosition={'left'}
         value={inputValue}
         onChange={e => {
