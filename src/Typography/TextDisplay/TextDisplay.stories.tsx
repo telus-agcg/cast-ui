@@ -14,8 +14,4 @@ export default {
   },
 };
 
-export const _TextDisplay = args => (
-  <TextDisplay data-testid={args.dataTestId} {...args}>
-    Text
-  </TextDisplay>
-);
+export const _TextDisplay = args => <TextDisplay {...args}>Text</TextDisplay>;
