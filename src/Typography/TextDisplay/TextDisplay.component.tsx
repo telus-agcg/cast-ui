@@ -6,15 +6,10 @@ export interface Props {
   fontWeight?: string | number;
 }
 
-export const TextDisplay: React.FC<Props> = ({
-  fontSize,
-  fontWeight,
+export const TextDisplay = ({
+  fontSize = '16px',
+  fontWeight = 'bold',
   children,
-}) => {
+}: Props) => {
   return <span style={{ fontSize, fontWeight }}>{children}</span>;
-};
-
-TextDisplay.defaultProps = {
-  fontSize: '16px',
-  fontWeight: 'bold',
 };
