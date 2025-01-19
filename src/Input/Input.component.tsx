@@ -248,6 +248,7 @@ export const Input: React.FunctionComponent<Props> = ({
     icon,
     isClearable,
     inputSize,
+    onBlur,
   } = inputProps;
 
   const [focused, setFocused] = React.useState(false);
@@ -258,6 +259,11 @@ export const Input: React.FunctionComponent<Props> = ({
     }
 
     onChange && onChange(e);
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    setFocused(false);
+    onBlur && onBlur(e);
   };
 
   return (
@@ -286,7 +292,9 @@ export const Input: React.FunctionComponent<Props> = ({
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
             onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
+            onBlur={e => {
+              handleBlur(e);
+            }}
           />
           {isClearable && !disabled && value && (
             <SIconWrapper
