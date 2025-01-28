@@ -276,6 +276,7 @@ export const Input: React.FunctionComponent<Props> = ({
             disabled,
             focused,
           })}
+          data-testid={`wrapper-${inputProps['data-testid']}`}
         >
           {'left' === iconPosition && icon && (
             <SIconWrapper iconPosition={iconPosition}>{icon}</SIconWrapper>
