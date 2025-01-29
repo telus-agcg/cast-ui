@@ -249,6 +249,7 @@ export const Input: React.FunctionComponent<Props> = ({
     isClearable,
     inputSize,
     onBlur,
+    onFocus,
   } = inputProps;
 
   const [focused, setFocused] = React.useState(false);
@@ -264,6 +265,11 @@ export const Input: React.FunctionComponent<Props> = ({
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setFocused(false);
     onBlur && onBlur(e);
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    setFocused(true);
+    onFocus && onFocus(e);
   };
 
   return (
@@ -292,7 +298,7 @@ export const Input: React.FunctionComponent<Props> = ({
             data-invalid={invalid ? '' : undefined}
             aria-invalid={invalid ? true : undefined}
             aria-describedby={errorId}
-            onFocus={() => setFocused(true)}
+            onFocus={e => handleFocus(e)}
             onBlur={e => {
               handleBlur(e);
             }}
