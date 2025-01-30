@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../themes';
 import { nameSpace } from '../utils/constants';
+import Tooltip from '../Tooltip';
 
 export type Props = {
   children?: any;
@@ -41,7 +42,20 @@ export const SideNavItemIcon: React.FunctionComponent<Props> = ({
       item={item}
       {...props}
     >
-      {children}
+      {isOpen ? (
+        children
+      ) : (
+        <Tooltip
+          content={
+            <span data-testid={`sidenav-item-icon-${item.label}`}>
+              {item.label}
+            </span>
+          }
+          placement="right"
+        >
+          <span>{children}</span>
+        </Tooltip>
+      )}
     </SSideNavItemIcon>
   </ThemeProvider>
 );
