@@ -1,14 +1,14 @@
-import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import * as React from "react";
+import styled from "styled-components";
+import { getPropsWithDefaults } from "@utils";
 
-export type Props = {
+export type Props = React.PropsWithChildren<{
   /**
    * Select Alert Style
    *
    * @default 'primary'
    **/
-  alertStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+  alertStyle?: "primary" | "secondary" | "success" | "warning" | "danger";
   /**
    * Toggle Alert Light Mode
    *
@@ -21,17 +21,17 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 
 const SAlert = styled.div`
   background: ${(props: Props) =>
     props.lightMode
-      ? props.theme.styles[props.alertStyle!]['light'].alertBackground
+      ? props.theme.styles[props.alertStyle!]["light"].alertBackground
       : props.theme.styles[props.alertStyle!].alertBackground};
   border-radius: ${(props: Props) => props.theme.alert.borderRadius};
   color: ${(props: Props) =>
     props.lightMode
-      ? props.theme.styles[props.alertStyle!]['light'].alertColor
+      ? props.theme.styles[props.alertStyle!]["light"].alertColor
       : props.theme.styles[props.alertStyle!].alertColor};
   border: 1px solid
     ${(props: Props) =>
@@ -49,18 +49,16 @@ const SAlert = styled.div`
   line-height: ${(props: Props) => props.theme.alert.lineHeight};
 `;
 
+const defaultProps = {
+  alertStyle: "primary",
+  lightMode: false,
+} satisfies Partial<Props>;
+
 export const Alert: React.FunctionComponent<Props> = ({
   children,
   theme,
   ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SAlert {...props}>{children}</SAlert>
-  </ThemeProvider>
-);
-
-Alert.defaultProps = {
-  theme: Themes.canopyTheme,
-  alertStyle: 'primary',
-  lightMode: false,
+}) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  return <SAlert {...propsWithDefaults}>{children}</SAlert>;
 };

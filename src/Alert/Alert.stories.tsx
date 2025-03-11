@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Alert } from '../';
+import { Meta, StoryObj } from '@storybook/react';
+import { Alert } from './Alert.component';
 
-export default {
+const meta: Meta<typeof Alert> = {
   title: 'Components/Feedback/Alert',
   component: Alert,
   argTypes: {
@@ -18,20 +18,16 @@ export default {
       },
     },
   },
-  parameters: {
-    docs: {
-      description: {
-        component: 'The default theme mode, for an Alert is dark.',
-      },
-    },
-  },
 };
 
-export const _Alert = args => (
-  <Alert {...args}>Reminder: Sales meeting at Rm 223 in 10 minutes</Alert>
-);
+export default meta;
 
-_Alert.args = {
-  alertStyle: 'primary',
-  lightMode: false,
+type Story = StoryObj<typeof Alert>;
+
+export const Default: Story = {
+  args: {
+    alertStyle: 'primary',
+    lightMode: false,
+    children: 'Reminder: Sales meeting at Rm 223 in 10 minutes',
+  },
 };

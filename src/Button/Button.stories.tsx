@@ -1,6 +1,5 @@
-import * as React from 'react';
-
-import { Button, Menu } from '../';
+import { Meta, StoryObj } from '@storybook/react';
+import { Button } from './Button.component';
 
 const description = `
 Cast UI custom buttons come with support for multiple sizes, states and semantic styles ideal for use for action in forms, dialogs and more.
@@ -33,7 +32,7 @@ The active state can also be triggered with the **selected** prop by setting it 
 To make the Button look inactive add the standard HTML button **disabled** attribute to the component. The attribute is boolean in nature, therefore it will accept **true** or **false** as values as well.
       `;
 
-export default {
+const meta: Meta<typeof Button> = {
   title: 'Components/Interactions/Button',
   component: Button,
   argTypes: {
@@ -77,44 +76,33 @@ export default {
     },
   },
   parameters: {
-    docs: {
-      description: {
-        component: description,
-      },
-    },
+    description,
   },
 };
 
-export const _Button = args => (
-  <Button id={'testId'} data-testid="submit" {...args}>
-    Submit Button
-  </Button>
-);
+export default meta;
 
-_Button.args = {
-  outline: false,
-  selected: false,
-  btnStyle: 'primary',
-  btnSize: 'md',
-  disabled: false,
+type Story = StoryObj<typeof Button>;
+
+export const Default: Story = {
+  args: {
+    outline: false,
+    selected: false,
+    btnStyle: 'primary',
+    btnSize: 'md',
+    disabled: false,
+    children: 'Click Here!',
+  },
 };
 
-export const _ButtonWithMenu = args => (
-  <Menu
-    items={[{ label: 'Car' }, { label: 'Truck', disabled: true }]}
-    triggerComponent={
-      <Button data-testid="create-new" {...args}>
-        Create New
-      </Button>
-    }
-  />
-);
-
-_ButtonWithMenu.args = {
-  outline: false,
-  selected: false,
-  btnStyle: 'primary',
-  btnSize: 'md',
-  disabled: false,
-  displayType: 'menu',
+export const MenuButton: Story = {
+  args: {
+    outline: false,
+    selected: false,
+    btnStyle: 'primary',
+    btnSize: 'md',
+    disabled: false,
+    displayType: 'menu',
+    children: 'Click Here!',
+  },
 };

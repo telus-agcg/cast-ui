@@ -1,7 +1,8 @@
-import * as React from 'react';
-import uuid from 'uuid';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import * as React from "react";
+import { v4 as uuidv4 } from "uuid";
+import styled, { ThemeProvider } from "styled-components";
+import { Themes } from "@themes";
+import { getPropsWithDefaults } from "@utils";
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -15,7 +16,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default 'md'
    **/
-  toggleSize?: 'sm' | 'md' | 'lg';
+  toggleSize?: "sm" | "md" | "lg";
   /**
    * Specify if the toggle is checked
    *
@@ -58,10 +59,10 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   theme?: any;
 }
 
-const getCSSCalc: (str: string) => string = str => `calc(100% - ${str})`;
+const getCSSCalc: (str: string) => string = (str) => `calc(100% - ${str})`;
 
-const SDiv = styled.div`
-  input[type='checkbox'] {
+const SDiv = styled.div<Props>`
+  input[type="checkbox"] {
     height: 0;
     width: 0;
     visibility: hidden;
@@ -69,7 +70,7 @@ const SDiv = styled.div`
   }
 
   label {
-    cursor: ${(props: Props) => (props.disabled ? 'not-allowed' : 'pointer')};
+    cursor: ${(props: Props) => (props.disabled ? "not-allowed" : "pointer")};
     text-indent: -9999px;
     width: ${(props: Props) =>
       props.theme.toggle[props.toggleSize!].backgroundWidth};
@@ -89,7 +90,7 @@ const SDiv = styled.div`
   }
 
   label:after {
-    content: '';
+    content: "";
     position: absolute;
     top: ${(props: Props) =>
       props.theme.toggle[props.toggleSize!].toggleOffsetTop};
@@ -152,48 +153,32 @@ const SDiv = styled.div`
   }
 `;
 
-export class Toggle extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+const defaultProps = {
+  toggleSize: "md",
+  theme: Themes.canopyTheme,
+  id: uuidv4(),
+} satisfies Partial<Props>;
 
-  static defaultProps = {
-    toggleSize: 'md',
-    theme: Themes.canopyTheme,
-    id: uuid.v4(),
-  };
+export const Toggle = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { onChange, theme, children, checked, disabled, label, id, ...rest } =
+    propsWithDefaults;
 
-  onChange = event =>
-    this.props.onChange
-      ? this.props.onChange(event)
-      : alert(`Toggle with id ${this.props.id} was clicked!`);
+  const handleChange = (event) =>
+    onChange ? onChange(event) : alert(`Toggle with id ${id} was clicked!`);
 
-  render() {
-    const {
-      theme,
-      children,
-      checked,
-      disabled,
-      label,
-      id,
-
-      ...props
-    } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv disabled={!!disabled} {...props}>
-          <input
-            checked={checked}
-            disabled={!!disabled}
-            onChange={this.onChange}
-            type="checkbox"
-            id={id}
-          />
-          <label htmlFor={id}>{label}</label>
-        </SDiv>
-      </ThemeProvider>
-    );
-  }
-}
-
-export default Toggle;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SDiv disabled={!!disabled} {...rest}>
+        <input
+          checked={checked}
+          disabled={!!disabled}
+          onChange={handleChange}
+          type="checkbox"
+          id={id}
+        />
+        <label htmlFor={id}>{label}</label>
+      </SDiv>
+    </ThemeProvider>
+  );
+};

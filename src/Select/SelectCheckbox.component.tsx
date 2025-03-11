@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import Checkbox from '../Checkbox';
-import _ from 'lodash';
-import { components, ValueContainerProps } from 'react-select';
-import { SelectMenuList } from './SelectMenuList';
+import React, { useEffect, useRef, useState } from "react";
+import _ from "lodash";
+import styled from "styled-components";
+import { components, ValueContainerProps } from "react-select";
+import { SelectMenuList } from "./SelectMenuList";
+import { Checkbox } from "../Checkbox/Checkbox.component";
 
 interface Props {
   options: any[];
@@ -36,7 +36,7 @@ const TruncatedValues = ({
   selectedOptions,
   maxWidth,
 }: TruncatedValuesProps) => {
-  const [displayedValue, setDisplayedValue] = useState('');
+  const [displayedValue, setDisplayedValue] = useState("");
 
   useEffect(() => {
     if (selectedOptions) {
@@ -49,10 +49,10 @@ const TruncatedValues = ({
           let currentTextWidth = 0;
 
           // Create a temporary element to measure the width of the ellipsis text
-          const createTempElement = text => {
-            const tempSpan = document.createElement('span');
-            tempSpan.style.visibility = 'hidden';
-            tempSpan.style.position = 'absolute';
+          const createTempElement = (text) => {
+            const tempSpan = document.createElement("span");
+            tempSpan.style.visibility = "hidden";
+            tempSpan.style.position = "absolute";
             tempSpan.innerText = text;
             document.body.appendChild(tempSpan);
             return tempSpan;
@@ -60,7 +60,7 @@ const TruncatedValues = ({
 
           // Measure the width of the ellipsis with remaining items count
           const ellipsisText = `...${
-            selectedOptions.length > 1 ? ` (+${selectedOptions.length})` : ''
+            selectedOptions.length > 1 ? ` (+${selectedOptions.length})` : ""
           }`;
           const ellipsisElement = createTempElement(ellipsisText);
 
@@ -69,7 +69,7 @@ const TruncatedValues = ({
 
           for (let i = 0; i < selectedOptions.length; i += 1) {
             const label = selectedOptions[i].label;
-            const currentText = [...itemsToShow, label].join(', ');
+            const currentText = [...itemsToShow, label].join(", ");
 
             const tempTextElement = createTempElement(currentText);
             currentTextWidth = tempTextElement.scrollWidth;
@@ -92,7 +92,7 @@ const TruncatedValues = ({
                 tempTruncateElement.innerText = [
                   ...itemsToShow,
                   truncatedLabel,
-                ].join(', ');
+                ].join(", ");
                 document.body.appendChild(tempTruncateElement);
 
                 const truncateWidth = tempTruncateElement.scrollWidth;
@@ -115,8 +115,8 @@ const TruncatedValues = ({
               break;
             }
           }
-          const displayedOptions = itemsToShow.join(', ');
-          const remainingText = restCount > 0 ? `... (+${restCount}) ` : '';
+          const displayedOptions = itemsToShow.join(", ");
+          const remainingText = restCount > 0 ? `... (+${restCount}) ` : "";
 
           const newDisplayedText = `${displayedOptions}${remainingText}`;
           if (newDisplayedText !== displayedValue) {
@@ -136,7 +136,7 @@ const ValueContainer = ({
   children,
   ...props
 }: ValueContainerProps<any, true>) => {
-  const [values, input] = children as [any[], JSX.Element];
+  const [values, input] = children as [any[], React.JSX.Element];
   const [maxWidth, setMaxWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const hasSelectedOptions = props.hasValue && values.length > 0;
@@ -189,22 +189,22 @@ export const SelectCheckboxProps = ({
   clearText,
 }: Props) => {
   const selectMulti = (val, updateSelectedOptions) => {
-    const isSelectedOption = selectedOptions.find(o => o.value === val);
+    const isSelectedOption = selectedOptions.find((o) => o.value === val);
     let res: any[] = [];
     if (isSelectedOption) {
-      res = selectedOptions.filter(option => option.value !== val);
+      res = selectedOptions.filter((option) => option.value !== val);
     } else {
-      res = [...selectedOptions, options.find(o => o.value === val)];
+      res = [...selectedOptions, options.find((o) => o.value === val)];
     }
     updateSelectedOptions(res);
   };
 
   const selectSingle = (val, updateSelectedOptions) => {
-    const res: any[] = selectedOptions.filter(option => option.value !== val);
+    const res: any[] = selectedOptions.filter((option) => option.value !== val);
     updateSelectedOptions(res[0]);
   };
 
-  const handleCheck = val => {
+  const handleCheck = (val) => {
     if (isMulti) {
       selectMulti(val, updateSelectedOptions);
     } else {
@@ -218,7 +218,7 @@ export const SelectCheckboxProps = ({
       return (
         <div
           data-testid={`select-option-${_.snakeCase(props.data.label)}`}
-          className={'react-select__option'}
+          className={"react-select__option"}
           ref={props.innerRef}
           {...props.innerProps}
           id={`${id}-Select-${_.snakeCase(props.data.label)}`}
@@ -236,7 +236,7 @@ export const SelectCheckboxProps = ({
         </div>
       );
     },
-    ClearIndicator: props => {
+    ClearIndicator: (props) => {
       const {
         innerProps: { ref, ...restInnerProps },
       } = props;

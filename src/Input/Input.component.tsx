@@ -1,9 +1,9 @@
-import * as React from 'react';
-import classNames from 'classnames';
-import styled, { ThemeProvider } from 'styled-components';
-import ErrorMessage from '../Typography/ErrorMessage/index';
-import { Themes } from '../themes';
-import { components } from 'react-select';
+import * as React from "react";
+import clsx from "clsx";
+import styled from "styled-components";
+import { components } from "react-select";
+import { ErrorMessage } from "@typography";
+import { getPropsWithDefaults } from "@utils";
 
 export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
@@ -35,7 +35,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    *
    * @default 'md'
    **/
-  inputSize?: 'sm' | 'md' | 'lg';
+  inputSize?: "sm" | "md" | "lg";
   /**
    * Specify if the input is clearable
    *
@@ -64,7 +64,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    * @default null
    **/
   icon?:
-    | JSX.Element
+    | React.JSX.Element
     | React.Component
     | React.FunctionComponent
     | string
@@ -74,7 +74,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    *
    * @default 'right'
    */
-  iconPosition?: 'left' | 'right';
+  iconPosition?: "left" | "right";
   /**
    * Specify whether the control shows an icon
    *
@@ -86,7 +86,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    *
    * @default 'right'
    */
-  addonTextPosition?: 'left' | 'right';
+  addonTextPosition?: "left" | "right";
   /**
    * What is the maximum length of the text in the field?
    *
@@ -121,7 +121,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SInput = styled.input`
+const SInput = styled.input<Props>`
   flex-grow: 1;
   min-width: 0;
   height: ${(props: Props) => props.theme.input[props.inputSize!].height};
@@ -138,7 +138,7 @@ const SInput = styled.input`
   background-color: transparent !important;
 
   ::placeholder {
-    color: ${props => props.theme.input.placeholderColor};
+    color: ${(props) => props.theme.input.placeholderColor};
   }
 
   &:-webkit-autofill,
@@ -155,12 +155,12 @@ const SInput = styled.input`
   }
 `;
 
-const SIconWrapper = styled.div`
-  color: ${props => props.theme.input.iconColor};
+const SIconWrapper = styled.div<Props>`
+  color: ${(props) => props.theme.input.iconColor};
   margin-left: ${(props: Props) =>
-    props.iconPosition === 'left' ? '8px' : '0px'};
+    props.iconPosition === "left" ? "8px" : "0px"};
   margin-right: ${(props: Props) =>
-    props.iconPosition === 'right' ? '8px' : '0px'};
+    props.iconPosition === "right" ? "8px" : "0px"};
   border-radius: 0px;
   button {
     border-radius: 0px;
@@ -174,7 +174,7 @@ const SAddonTextWrapper = styled.div`
   margin: 0 8px;
 `;
 
-const SInputWrapper = styled.div<Partial<Props>>`
+const SInputWrapper = styled.div<Props>`
   width: 100%;
   position: relative;
   box-sizing: border-box;
@@ -230,32 +230,39 @@ const SInputWrapper = styled.div<Partial<Props>>`
   }
 `;
 
-export const Input: React.FunctionComponent<Props> = ({
-  theme,
-  children,
-  value,
-  onChange,
-  ...inputProps
-}) => {
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const errorId = inputProps.invalid ? `${inputProps.id}-error-msg` : '';
+const defaultProps = {
+  inputSize: "md",
+  type: "text",
+  autoComplete: "off",
+} satisfies Partial<Props>;
+
+export const Input = (props: Props) => {
+  const propsWithDefaults: Props = getPropsWithDefaults(defaultProps, props);
   const {
+    id,
     disabled,
+    className,
     iconPosition,
     invalid,
+    invalidText,
+    value,
     addonTextPosition,
     addonText,
     icon,
     isClearable,
     inputSize,
+    maxLength,
     onBlur,
     onFocus,
-  } = inputProps;
+    onChange,
+  } = propsWithDefaults;
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const errorId = invalid ? `${id}-error-msg` : "";
 
   const [focused, setFocused] = React.useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (inputProps.maxLength && inputProps.maxLength < e.target.value.length) {
+    if (maxLength && maxLength < e.target.value.length) {
       return;
     }
 
@@ -273,82 +280,71 @@ export const Input: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <>
-        <SInputWrapper
-          inputSize={inputSize}
-          invalid={invalid}
-          className={classNames(inputProps.className, {
-            disabled,
-            focused,
-          })}
-          data-testid={`wrapper-${inputProps['data-testid']}`}
-        >
-          {'left' === iconPosition && icon && (
-            <SIconWrapper iconPosition={iconPosition}>{icon}</SIconWrapper>
-          )}
-          {'left' === addonTextPosition && addonText && (
-            <SAddonTextWrapper>{addonText}</SAddonTextWrapper>
-          )}
-          <SInput
-            ref={inputRef}
-            {...inputProps}
-            onChange={handleChange}
-            value={value}
-            data-invalid={invalid ? '' : undefined}
-            aria-invalid={invalid ? true : undefined}
-            aria-describedby={errorId}
-            onFocus={e => handleFocus(e)}
-            onBlur={e => {
-              handleBlur(e);
-            }}
-          />
-          {isClearable && !disabled && value && (
-            <SIconWrapper
-              data-testid={`clear-${inputProps['data-testid']}`}
-              onClick={() => {
-                // manually trigger onChange event to provide value to parent component
-                // @ts-ignore
-                const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-                  // @ts-ignore
-                  window.HTMLInputElement.prototype,
-                  'value',
-                ).set;
-                // @ts-ignore
-                nativeInputValueSetter.call(inputRef.current, '');
-                const e = new Event('input', { bubbles: true });
-                inputRef &&
-                  inputRef.current &&
-                  inputRef.current.dispatchEvent(e);
-              }}
-            >
-              <components.CrossIcon />
-            </SIconWrapper>
-          )}
-          {'right' === iconPosition && icon && (
-            <SIconWrapper iconPosition={iconPosition}>{icon}</SIconWrapper>
-          )}
-          {'right' === addonTextPosition && addonText && (
-            <SAddonTextWrapper className={'addon-text'}>
-              {addonText}
-            </SAddonTextWrapper>
-          )}
-        </SInputWrapper>
-        {invalid && inputProps.invalidText && (
-          <ErrorMessage
-            id={errorId}
-            message={inputProps.invalidText || ''}
-            textColor={inputProps.invalidTextColor || ''}
-          />
+    <>
+      <SInputWrapper
+        inputSize={inputSize}
+        invalid={invalid}
+        className={clsx(className, {
+          disabled,
+          focused,
+        })}
+        data-testid={`wrapper-${propsWithDefaults["data-testid"]}`}
+      >
+        {"left" === iconPosition && icon && (
+          <SIconWrapper iconPosition={iconPosition}>
+            {icon as React.ReactNode}
+          </SIconWrapper>
         )}
-      </>
-    </ThemeProvider>
+        {"left" === addonTextPosition && addonText && (
+          <SAddonTextWrapper>{addonText}</SAddonTextWrapper>
+        )}
+        <SInput
+          ref={inputRef}
+          {...propsWithDefaults}
+          onChange={handleChange}
+          value={value}
+          data-invalid={invalid ? "" : undefined}
+          aria-invalid={invalid ? true : undefined}
+          aria-describedby={errorId}
+          onFocus={(e) => handleFocus(e)}
+          onBlur={(e) => {
+            handleBlur(e);
+          }}
+        />
+        {isClearable && !disabled && value && (
+          <SIconWrapper
+            data-testid={`clear-${propsWithDefaults["data-testid"]}`}
+            onClick={() => {
+              // manually trigger onChange event to provide value to parent component
+              // @ts-ignore
+              const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+                // @ts-ignore
+                window.HTMLInputElement.prototype,
+                "value"
+              ).set;
+              // @ts-ignore
+              nativeInputValueSetter.call(inputRef.current, "");
+              const e = new Event("input", { bubbles: true });
+              inputRef && inputRef.current && inputRef.current.dispatchEvent(e);
+            }}
+          >
+            <components.CrossIcon />
+          </SIconWrapper>
+        )}
+        {"right" === iconPosition && icon && (
+          <SIconWrapper iconPosition={iconPosition}>
+            {icon as React.ReactNode}
+          </SIconWrapper>
+        )}
+        {"right" === addonTextPosition && addonText && (
+          <SAddonTextWrapper className={"addon-text"}>
+            {addonText}
+          </SAddonTextWrapper>
+        )}
+      </SInputWrapper>
+      {invalid && invalidText && (
+        <ErrorMessage id={errorId} message={invalidText || ""} />
+      )}
+    </>
   );
-};
-
-Input.defaultProps = {
-  theme: Themes.canopyTheme,
-  inputSize: 'md',
-  type: 'text',
-  autoComplete: 'off',
 };

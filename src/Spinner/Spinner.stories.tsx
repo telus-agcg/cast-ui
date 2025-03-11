@@ -1,8 +1,7 @@
-import * as React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { Spinner } from './Spinner.component';
 
-import { Spinner } from '../';
-
-export default {
+const meta: Meta<typeof Spinner> = {
   title: 'Components/Feedback/Spinner',
   component: Spinner,
   argTypes: {
@@ -29,9 +28,13 @@ export default {
   },
 };
 
-export const _Spinner = args => <Spinner {...args} />;
+export default meta;
 
-_Spinner.args = {
-  size: 50,
-  animationSpeed: 1,
+type Story = StoryObj<typeof Spinner>;
+
+export const _Spinner: Story = {
+  args: {
+    size: 50,
+    animationSpeed: 1,
+  },
 };

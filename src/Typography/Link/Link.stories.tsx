@@ -1,60 +1,35 @@
-import * as React from 'react';
-import { Link } from './Link.component';
+import { Link } from "./Link.component";
+import { Meta, StoryObj } from "@storybook/react";
 
-export default {
-  title: 'Components/Navigation/Link',
+const meta: Meta<typeof Link> = {
+  title: "Components/Navigation/Link",
   component: Link,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    disabled: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    onClick: {
-      action: {
-        type: 'onClick',
-      },
-    },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof Link>;
+
+export const Regular: Story = {
+  args: {
+    href: "https://www.telus.com/agcg",
+    target: "_blank",
+    disabled: false,
+    children: "Read More",
+    // dataTestId: 'link-standalone',
   },
-};
-
-const _Link = args => (
-  <Link data-testid={args.dataTestId} {...args}>
-    Read More
-  </Link>
-);
-
-export const _Regular = _Link.bind({});
-
-_Regular.args = {
-  href: 'https://www.telus.com/agcg',
-  target: '_blank',
-  disabled: false,
-  dataTestId: 'link-standalone',
-};
-
-export const _WithOnClick = _Link.bind({});
-
-_WithOnClick.args = {
-  disabled: false,
-  dataTestId: 'link-with-onclick',
 };
 
 export const WithinText = () => (
   <p>
-    Lorem ipsum dolor sit amet, consectetur{' '}
+    Lorem ipsum dolor sit amet, consectetur{" "}
     <Link
       data-testid="link-within-text"
       href="https://www.telus.com/agcg"
       target="_blank"
     >
       adipiscing
-    </Link>{' '}
+    </Link>{" "}
     elit.
   </p>
 );

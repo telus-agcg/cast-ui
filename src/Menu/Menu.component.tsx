@@ -1,16 +1,15 @@
-import * as React from 'react';
-import _ from 'lodash';
-import { Themes } from '../themes';
-import styled, { ThemeProvider } from 'styled-components';
-import { Popover } from '../Popover';
-import Icon from 'react-icons-kit';
+import * as React from "react";
+import _ from "lodash";
+import styled from "styled-components";
+import { getPropsWithDefaults } from "@utils";
+import { Popover } from "../Popover/Popover.component";
 
 export interface MenuItem {
   disabled?: boolean;
   id?: any;
   label?: string;
   component?: any;
-  icon?: any;
+  // icon?: any; TODO
 }
 
 export interface Props {
@@ -57,9 +56,9 @@ const SPopover = styled(Popover)`
 `;
 
 const SMenuItem = styled.div`
-  opacity: ${(props: any) => (props.disabled ? '.6' : '1')};
+  opacity: ${(props: any) => (props.disabled ? ".6" : "1")};
   text-align: left;
-  cursor: ${(props: any) => (props.disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${(props: any) => (props.disabled ? "not-allowed" : "pointer")};
   text-decoration: none;
   padding: 8px 16px;
   color: ${(props: any) => props.theme.select.color};
@@ -70,77 +69,75 @@ const SMenuItem = styled.div`
       props.theme.select.highlightOptionBackgroundColor};
   }
 `;
-const MenuItemLabel = styled.span`
+const MenuItemLabel = styled.span<{
+  itemsHasNonEmptyIcon: boolean;
+  hasIcon: boolean;
+}>`
   padding-left: 4px;
-  margin-left: ${props =>
-    props.itemsHasNonEmptyIcon ? (props.hasIcon ? '0px' : '24px') : '0px'};
+  margin-left: ${(props) =>
+    props.itemsHasNonEmptyIcon ? (props.hasIcon ? "0px" : "24px") : "0px"};
 `;
 
 const noop = () => {}; // tslint:disable-line
 
-export const Menu: React.FC<Props> = ({
-  triggerComponent,
-  theme,
-  items = [],
-  onItemClick = noop,
-  ...props
-}) => {
+const defaultProps = {
+  onItemClick: noop,
+  items: [],
+} satisfies Partial<Props>;
+
+export const Menu: React.FC<Props> = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const [popoverInstance, setPopoverInstance] = React.useState(null);
   const closePopoverMenu = () => {
     // @ts-ignore
     popoverInstance && popoverInstance.hide();
   };
-  const hasNonEmptyIcon = items.some(item => {
-    return item.hasOwnProperty('icon') && item['icon'] !== '';
+  const { theme, items, onItemClick, triggerComponent } = propsWithDefaults;
+  const hasNonEmptyIcon = items?.some((item) => {
+    return item.hasOwnProperty("icon") && item["icon"] !== "";
   });
   const handleItemClick = (item, e) => {
     if (item.disabled) {
       return;
     }
     closePopoverMenu();
-    onItemClick(item, e);
+    onItemClick && onItemClick(item, e);
   };
 
   return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SPopover
-        content={
-          <SMenu {...props}>
-            {Array.isArray(items) &&
-              items.map((item: MenuItem, j: number) => {
-                if (item.component) return item.component;
-                return (
-                  <SMenuItem
-                    {...item}
-                    theme={theme}
-                    key={j}
-                    onClick={(e: any) => handleItemClick(item, e)}
-                    data-testid={_.kebabCase(item.label)}
+    <SPopover
+      content={
+        <SMenu {...propsWithDefaults}>
+          {Array.isArray(items) &&
+            items.map((item: MenuItem, j: number) => {
+              if (item.component) return item.component;
+              return (
+                <SMenuItem
+                  {...item}
+                  theme={theme}
+                  key={j}
+                  onClick={(e: any) => handleItemClick(item, e)}
+                  data-testid={_.kebabCase(item.label)}
+                >
+                  {/* {item.icon ? <Icon icon={item.icon} size={24} /> : ''} */}
+                  <MenuItemLabel
+                    itemsHasNonEmptyIcon={Boolean(hasNonEmptyIcon)}
+                    hasIcon={false}
+                    // hasIcon={item.icon ? true : false}
                   >
-                    {item.icon ? <Icon icon={item.icon} size={24} /> : ''}
-                    <MenuItemLabel
-                      itemsHasNonEmptyIcon={hasNonEmptyIcon}
-                      hasIcon={item.icon ? true : false}
-                    >
-                      {item.label}
-                    </MenuItemLabel>
-                  </SMenuItem>
-                );
-              })}
-          </SMenu>
-        }
-        arrow={false}
-        placement="bottom-start"
-        distance={2}
-        hideOnClick={true}
-        onMount={(instance: any) => setPopoverInstance(instance)}
-      >
-        <span>{triggerComponent}</span>
-      </SPopover>
-    </ThemeProvider>
+                    {item.label}
+                  </MenuItemLabel>
+                </SMenuItem>
+              );
+            })}
+        </SMenu>
+      }
+      arrow={false}
+      placement="bottom-start"
+      hideOnClick={true}
+      onMount={(instance: any) => setPopoverInstance(instance)}
+    >
+      <span>{triggerComponent}</span>
+    </SPopover>
   );
-};
-
-Menu.defaultProps = {
-  theme: Themes.canopyTheme,
 };

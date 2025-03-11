@@ -1,21 +1,21 @@
-import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import { getPropsWithDefaults } from "@utils";
+import * as React from "react";
+import styled from "styled-components";
 
-export interface Props {
+export type Props = React.PropsWithChildren<{
   /**
    * Select Card Style
    *
    * @default 'primary'
    **/
-  cardStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+  cardStyle?: "primary" | "secondary" | "success" | "warning" | "danger";
   /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
-}
+}>;
 
 const SCard = styled.div`
   border-radius: ${(props: Props) => props.theme.card.borderRadius};
@@ -37,16 +37,12 @@ const SCard = styled.div`
   display: inline-block;
 `;
 
-export const Card: React.FunctionComponent<Props> = ({
-  children,
-  theme,
-  ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SCard {...props}>{children}</SCard>
-  </ThemeProvider>
-);
-Card.defaultProps = {
-  cardStyle: 'primary',
-  theme: Themes.canopyTheme,
+const defaultProps = {
+  cardStyle: "primary",
+} satisfies Partial<Props>;
+
+export const Card: React.FunctionComponent<Props> = (props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { children } = propsWithDefaults;
+  return <SCard {...propsWithDefaults}>{children}</SCard>;
 };

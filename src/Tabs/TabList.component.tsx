@@ -1,10 +1,11 @@
-import * as React from 'react';
-import { TabList as ReactTabList, TabListProps } from 'react-tabs';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
-import { Omit } from '../utils/castTypes';
+import * as React from "react";
+import { TabList as ReactTabList, TabListProps } from "react-tabs";
+import styled, { ThemeProvider } from "styled-components";
+import { getPropsWithDefaults, Omit } from "@utils";
+import { Themes } from "@themes";
 
-export interface Props extends Omit<TabListProps, 'as'> {
+export interface Props
+  extends React.PropsWithChildren<Omit<TabListProps, "as">> {
   /**
    * From theme provider
    *
@@ -19,7 +20,7 @@ const ReactTabListProxy = ({ children, className, ...props }: any) => (
   </ReactTabList>
 );
 
-ReactTabListProxy.tabsRole = 'TabList';
+ReactTabListProxy.tabsRole = "TabList";
 
 const SReactTabList = styled(ReactTabListProxy)`
   border-bottom: 1px solid #aaa;
@@ -28,22 +29,16 @@ const SReactTabList = styled(ReactTabListProxy)`
   width: fit-content;
 `;
 
-export class TabList extends React.Component<Props> {
-  public static readonly tabsRole: string = 'TabList';
+const defaultProps = {
+  theme: Themes.canopyTheme,
+} satisfies Partial<Props>;
 
-  constructor(props: Props) {
-    super(props);
-  }
-  static defaultProps = {
-    theme: Themes.canopyTheme,
-  };
-
-  render() {
-    const { theme, children, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SReactTabList {...props}>{children}</SReactTabList>
-      </ThemeProvider>
-    );
-  }
-}
+export const TabList = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { children, theme, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SReactTabList {...rest}>{children}</SReactTabList>
+    </ThemeProvider>
+  );
+};

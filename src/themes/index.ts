@@ -1,14 +1,14 @@
-import { defaultTheme } from './default';
-import { cobaltTheme } from './cobalt';
-import { canopyTheme } from './canopy';
+import { canopyTheme } from "./canopy";
+import { cobaltTheme } from "./cobalt";
+import { defaultTheme } from "./default";
 
 export const Themes = {
-  defaultTheme,
-  cobaltTheme,
   canopyTheme,
+  cobaltTheme,
+  defaultTheme,
 };
 
-export * from './default';
-export * from './cobalt';
-export * from './canopy';
-export { ThemeProvider } from 'styled-components';
+export * from "./canopy";
+export * from "./default";
+export * from "./base";
+export * from "./cobalt";

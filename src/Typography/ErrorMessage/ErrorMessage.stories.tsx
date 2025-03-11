@@ -1,32 +1,28 @@
-import * as React from 'react';
+import { Meta, StoryObj } from "@storybook/react";
+import { ErrorMessage } from "./ErrorMessage.component";
 
-import { ErrorMessage } from './index';
-import { Input } from '../../Input';
-
-export default {
-  title: 'Components/Typography/ErrorMessage',
+const meta: Meta<typeof ErrorMessage> = {
+  title: "Components/Typography/ErrorMessage",
   component: ErrorMessage,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    message: {
-      control: 'text',
-    },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof ErrorMessage>;
+
+export const _ErrorMessage: Story = {
+  args: {
+    message: "This is an error message.",
   },
 };
 
-export const _ErrorMessage = args => (
-  <div>
-    <Input id="myInput" type="text" />
-    <ErrorMessage id="some-id-error-msg" {...args} />
-  </div>
-);
+// export const _ErrorMessage = args => (
+//   <div>
+//     <Input id="myInput" type="text" />
+//     <ErrorMessage id="some-id-error-msg" {...args} />
+//   </div>
+// );
 
-_ErrorMessage.args = {
-  message: 'This is an error message.',
-};
-
-_ErrorMessage.storyName = 'ErrorMessage';
+// _ErrorMessage.args = {
+//   message: 'This is an error message.',
+// };

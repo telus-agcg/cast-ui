@@ -1,8 +1,6 @@
-import * as React from 'react';
-import Icon from 'react-icons-kit';
-import { ic_search as icSearch } from 'react-icons-kit/md';
-
-import { Input, IconButton } from '../';
+import { SharpSearch } from '@icons';
+import { Input } from './Input.component';
+import { Meta, StoryObj } from '@storybook/react';
 
 const description = `
 ###### With Icon
@@ -14,8 +12,7 @@ The Input component accepts 2 additional props, **addonText** and **addonTextPos
 By using the *addonText* prop, the Input component text alignment is shifted to right otherwise it remains left or default.
 In this example, the **addonText** is the dollar sign ($).
 `;
-
-export default {
+const meta: Meta<typeof Input> = {
   title: 'Components/Interactions/Input',
   component: Input,
   argTypes: {
@@ -56,8 +53,8 @@ export default {
       },
     },
     maxLength: {
-      type: {
-        control: 'number',
+      control: {
+        type: 'number',
       },
     },
     placeholder: {
@@ -115,105 +112,103 @@ export default {
     },
   },
   parameters: {
-    docs: {
-      description: {
-        component: description,
-      },
-    },
+    description,
   },
 };
 
-const _Input = args => <Input data-testid={args.dataTestId} {...args} />;
+export default meta;
 
-export const _Regular = _Input.bind({});
-_Regular.args = {
-  id: 'basic_input',
-  dataTestId: 'basic-input',
-  type: 'text',
-  autoComplete: 'on',
-  disabled: false,
-  invalid: false,
-  inputSize: 'md',
-  invalidText: 'A valid value is required',
-  maxLength: 1000,
-  placeholder: 'Please enter some text',
-  required: false,
+type Story = StoryObj<typeof Input>;
+
+export const Regular: Story = {
+  args: {
+    id: 'basic_input',
+    type: 'text',
+    autoComplete: 'on',
+    disabled: false,
+    invalid: false,
+    inputSize: 'md',
+    invalidText: 'A valid value is required',
+    maxLength: 1000,
+    placeholder: 'Please enter some text',
+    required: false,
+  },
 };
 
-export const _WithIcon = _Input.bind({});
-_WithIcon.args = {
-  id: 'input_with_icon',
-  dataTestId: 'input-with-icon',
-  type: 'text',
-  autoComplete: 'on',
-  disabled: false,
-  invalid: false,
-  invalidText: 'A valid value is required',
-  maxLength: 1000,
-  inputSize: 'md',
-  placeholder: 'Please enter some text',
-  required: false,
-  iconPosition: 'right',
-  icon: <Icon size={20} icon={icSearch} />,
+export const WithIcon: Story = {
+  args: {
+    id: 'input_with_icon',
+    type: 'text',
+    autoComplete: 'on',
+    disabled: false,
+    invalid: false,
+    invalidText: 'A valid value is required',
+    maxLength: 1000,
+    inputSize: 'md',
+    placeholder: 'Please enter some text',
+    required: false,
+    iconPosition: 'right',
+    icon: <SharpSearch />,
+  },
 };
 
-export const _WithAddonText = _Input.bind({});
-_WithAddonText.args = {
-  id: 'input_with_addon_text',
-  dataTestId: 'input-with-addon-text',
-  type: 'text',
-  autoComplete: 'on',
-  disabled: false,
-  invalid: false,
-  invalidText: 'A valid value is required',
-  maxLength: 1000,
-  inputSize: 'md',
-  placeholder: 'Please enter some text',
-  required: false,
-  addonText: '$',
-  addonTextPosition: 'right',
+export const WithAddonText: Story = {
+  args: {
+    id: 'input_with_addon_text',
+    type: 'text',
+    autoComplete: 'on',
+    disabled: false,
+    invalid: false,
+    invalidText: 'A valid value is required',
+    maxLength: 1000,
+    inputSize: 'md',
+    placeholder: 'Please enter some text',
+    required: false,
+    addonText: '$',
+    addonTextPosition: 'right',
+  },
 };
 
-export const _InputWithAllOptions = _Input.bind({});
-_InputWithAllOptions.args = {
-  id: 'input_with_all_options',
-  dataTestId: 'input-with-all-options',
-  type: 'text',
-  autoComplete: 'on',
-  disabled: false,
-  invalid: false,
-  invalidText: 'A valid value is required',
-  maxLength: 1000,
-  inputSize: 'md',
-  placeholder: 'Please enter some text',
-  required: false,
-  addonText: '$',
-  addonTextPosition: 'right',
-  iconPosition: 'right',
-  icon: <Icon size={20} icon={icSearch} />,
-  isClearable: true,
+export const InputWithAllOptions: Story = {
+  args: {
+    id: 'input_with_all_options',
+    type: 'text',
+    autoComplete: 'on',
+    disabled: false,
+    invalid: false,
+    invalidText: 'A valid value is required',
+    maxLength: 1000,
+    inputSize: 'md',
+    placeholder: 'Please enter some text',
+    required: false,
+    addonText: '$',
+    addonTextPosition: 'right',
+    iconPosition: 'right',
+    icon: <SharpSearch />,
+    isClearable: true,
+  },
 };
 
-export const _WithIconButton = _Input.bind({});
-_WithIconButton.args = {
-  id: 'input_with_icon_button',
-  dataTestId: 'input-with-icon-button',
-  type: 'text',
-  autoComplete: 'on',
-  disabled: false,
-  invalid: false,
-  invalidText: 'A valid value is required',
-  maxLength: 1000,
-  inputSize: 'md',
-  placeholder: 'Please enter some text',
-  required: false,
-  iconPosition: 'right',
-  icon: (
-    <IconButton
-      icon={icSearch}
-      rounded={false}
-      btnSize="md"
-      onClick={e => alert('Searching....')}
-    />
-  ),
+export const WithIconButton: Story = {
+  args: {
+    id: 'input_with_icon_button',
+    type: 'text',
+    autoComplete: 'on',
+    disabled: false,
+    invalid: false,
+    invalidText: 'A valid value is required',
+    maxLength: 1000,
+    inputSize: 'md',
+    placeholder: 'Please enter some text',
+    required: false,
+    // iconPosition: 'right',
+    // icon: (
+    //   <IconButton
+    //     icon={icSearch}
+    //     rounded={false}
+    //     btnSize="md"
+    //     onClick={e => alert('Searching....')}
+    //   />
+    // ),
+  },
 };

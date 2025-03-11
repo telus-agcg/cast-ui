@@ -1,11 +1,11 @@
-import * as React from 'react';
-import RadioButton from '../RadioButton';
-import { Omit } from '../utils/castTypes';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import * as React from "react";
+import styled, { ThemeProvider } from "styled-components";
+import { getPropsWithDefaults, Omit } from "@utils";
+import { Themes } from "@themes";
+import { RadioButton } from "../RadioButton/RadioButton.component";
 
 export interface Props
-  extends Omit<React.InputHTMLAttributes<HTMLDivElement>, 'onChange'> {
+  extends Omit<React.InputHTMLAttributes<HTMLDivElement>, "onChange"> {
   /**
    * Specify the value of the radio button to select by default
    *
@@ -33,7 +33,7 @@ export interface Props
   onChange?(
     value: string,
     name: string,
-    event: React.MouseEvent<HTMLElement>,
+    event: React.MouseEvent<HTMLElement>
   ): void;
   /**
    * From ThemeProvider
@@ -43,55 +43,55 @@ export interface Props
   theme: any;
 }
 
-const SDiv = styled.div``;
 const initialState = {
   selected: null,
 };
 type State = Readonly<typeof initialState>;
 
-export class RadioButtonGroup extends React.Component<Props, State> {
-  readonly state: State = {
-    selected: this.props.defaultChecked || this.props.valueChecked,
-  };
-  static defaultProps = {
-    theme: Themes.canopyTheme,
-    onChange: () => {},
-  };
+const defaultProps = {
+  theme: Themes.canopyTheme,
+  onChange: () => {},
+} satisfies Partial<Props>;
 
-  handleChange = (newSelection: any, value: any, evt: any) => {
-    if (newSelection !== this.state.selected) {
-      this.setState({ selected: newSelection });
-      this.props.onChange!(newSelection, this.props.name, evt);
+export const RadioButtonGroup = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const [selected, setSelected] = React.useState("");
+
+  const { theme, name, defaultChecked, valueChecked, onChange, children } =
+    propsWithDefaults;
+
+  React.useEffect(() => {
+    setSelected(defaultChecked || valueChecked);
+  }, []);
+
+  const handleChange = (newSelection: any, _value: any, evt: any) => {
+    if (newSelection !== selected) {
+      setSelected(newSelection);
+      onChange!(newSelection, name, evt);
     }
   };
 
-  getRadioButtons() {
-    const children = React.Children.map(
-      this.props.children,
-      (radioButton: any) => {
-        const { value, ...other } = radioButton.props;
-        return (
-          <RadioButton
-            {...other}
-            checked={value === this.state.selected}
-            name={this.props.name}
-            key={value}
-            value={value}
-            onChange={this.handleChange}
-          />
-        );
-      },
-    );
+  const getRadioButtons = () => {
+    const newChildren = React.Children.map(children, (radioButton: any) => {
+      const { value, ...other } = radioButton.props;
+      return (
+        <RadioButton
+          {...other}
+          checked={value === selected}
+          name={name}
+          key={value}
+          value={value}
+          onChange={handleChange}
+        />
+      );
+    });
 
-    return children;
-  }
+    return newChildren;
+  };
 
-  render() {
-    const { theme, onChange, children, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv {...props}>{this.getRadioButtons()}</SDiv>
-      </ThemeProvider>
-    );
-  }
-}
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <div>{getRadioButtons()}</div>
+    </ThemeProvider>
+  );
+};

@@ -1,15 +1,21 @@
-import React from 'react';
+import React from "react";
 
-export interface Props {
-  children?: React.ReactNode;
+export type Props = React.PropsWithChildren<{
   fontSize?: string;
   fontWeight?: string | number;
-}
+}>;
 
-export const TextDisplay = ({
-  fontSize = '16px',
-  fontWeight = 'bold',
-  children,
-}: Props) => {
-  return <span style={{ fontSize, fontWeight }}>{children}</span>;
+const defaultProps = {
+  fontSize: "16px",
+  fontWeight: "bold",
+} satisfies Partial<Props>;
+
+export const TextDisplay = (props: Props) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
+  const { fontSize, fontWeight, children } = propsWithDefaults;
+  return (
+    <span style={{ fontSize, fontWeight }} {...propsWithDefaults}>
+      {children}
+    </span>
+  );
 };

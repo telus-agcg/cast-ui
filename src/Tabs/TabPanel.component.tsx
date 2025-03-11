@@ -1,11 +1,12 @@
-import * as React from 'react';
-import { ThemeProvider } from 'styled-components';
+import * as React from "react";
+import { ThemeProvider } from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 // tslint:disable-next-line:max-line-length
-import { TabPanel as ReactTabPanel, TabPanelProps } from 'react-tabs';
-import { Themes } from '../themes';
-import { Omit } from '../utils/castTypes';
+import { TabPanel as ReactTabPanel, TabPanelProps } from "react-tabs";
+import { getPropsWithDefaults, Omit } from "@utils";
+import { Themes } from "@themes";
 
-export interface Props extends Omit<TabPanelProps, 'ref'> {
+export interface Props extends Omit<TabPanelProps, "ref"> {
   /**
    * From theme provider
    *
@@ -14,22 +15,18 @@ export interface Props extends Omit<TabPanelProps, 'ref'> {
   theme?: any;
 }
 
-export class TabPanel extends React.Component<Props> {
-  public static readonly tabsRole: string = 'TabPanel';
+const defaultProps = {
+  theme: Themes.canopyTheme,
+} satisfies Partial<Props>;
 
-  constructor(props: Props) {
-    super(props);
-  }
-  static defaultProps = {
-    theme: Themes.canopyTheme,
-  };
-
-  render() {
-    const { theme, children, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <ReactTabPanel {...props}>{children}</ReactTabPanel>
-      </ThemeProvider>
-    );
-  }
-}
+export const TabPanel = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults<Props>(defaultProps, props);
+  const { children, theme, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <ReactTabPanel {...rest} id={uuidv4()}>
+        {children}
+      </ReactTabPanel>
+    </ThemeProvider>
+  );
+};

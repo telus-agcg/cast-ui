@@ -1,19 +1,14 @@
-import * as React from 'react';
-import styled, { withTheme, ThemeProvider } from 'styled-components';
+import * as React from "react";
+import styled, { ThemeProvider } from "styled-components";
+import { getPropsWithDefaults } from "@utils";
 
-export type Props = {
-  /**
-   * The content of the panel header
-   *
-   * @default null
-   * */
-  children?: any;
+export type Props = React.PropsWithChildren<{
   /**
    * Set PanelBody Style
    *
    *  @default 'primary'
    */
-  panelStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+  panelStyle?: "primary" | "secondary" | "success" | "warning" | "danger";
   /** Whether the panel has padding or not
    *
    *  @default 'false'
@@ -25,7 +20,7 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 
 const SPanelBody = styled.div`
   border: ${(props: Props) =>
@@ -33,28 +28,18 @@ const SPanelBody = styled.div`
     ${props.theme.panel.bodyBorderColor}`};
   border-radius: ${(props: Props) => props.theme.panel.body.borderRadius};
   padding: ${(props: Props) =>
-    props.noPadding ? '10px' : props.theme.panel.body.padding};
+    props.noPadding ? "10px" : props.theme.panel.body.padding};
   height: auto;
 `;
 
-const initialState = {};
-type State = Readonly<typeof initialState>;
+const defaultProps = { panelStyle: "primary" } satisfies Partial<Props>;
 
-export class PanelBody extends React.Component<Props> {
-  static defaultProps = {
-    panelStyle: 'primary',
-  };
-
-  readonly state: State = initialState;
-
-  render() {
-    const { children, theme, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SPanelBody {...props}>{children}</SPanelBody>
-      </ThemeProvider>
-    );
-  }
-}
-
-export default withTheme(PanelBody);
+export const PanelBody = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { children, theme, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SPanelBody {...props}>{children}</SPanelBody>
+    </ThemeProvider>
+  );
+};

@@ -1,26 +1,18 @@
-import * as React from 'react';
-import { Header } from './Header.component';
+import { Meta, StoryObj } from "@storybook/react";
+import { Header } from "./Header.component";
 
-export default {
-  title: 'Components/Typography/Header',
+const meta: Meta<typeof Header> = {
+  title: "Components/Typography/Header",
   component: Header,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    size: {
-      control: {
-        type: 'inline-radio',
-        options: [10, 20],
-      },
-    },
-  },
 };
 
-export const _Header = args => <Header {...args}>Example Header</Header>;
+export default meta;
 
-_Header.args = {
-  size: 10,
+type Story = StoryObj<typeof Header>;
+
+export const Default: Story = {
+  args: {
+    size: 10,
+    children: "Reminder: Sales meeting at Rm 223 in 10 minutes",
+  },
 };

@@ -1,10 +1,13 @@
-import * as React from 'react';
-import ErrorMessage from '../Typography/ErrorMessage/index';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import { Themes } from "@themes";
+import { ErrorMessage } from "@typography";
+import { getPropsWithDefaults } from "@utils";
+import * as React from "react";
+import styled, { ThemeProvider } from "styled-components";
 
 export interface Props
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  extends React.PropsWithChildren<
+    React.TextareaHTMLAttributes<HTMLTextAreaElement>
+  > {
   /**
    * What is the maximum length of the text in the field?
    *
@@ -68,7 +71,7 @@ export interface Props
    *
    * @default 'md'
    **/
-  textareaSize?: 'sm' | 'md' | 'lg';
+  textareaSize?: "sm" | "md" | "lg";
   /**
    * From theme provider
    *
@@ -94,7 +97,7 @@ const SWrapperDiv = styled.div`
   position: relative;
 `;
 
-const STextarea = styled.textarea`
+const STextarea = styled.textarea<Props>`
   width: 100%;
   box-sizing: border-box;
   background: ${(props: Props) => props.theme.textarea.background};
@@ -124,32 +127,35 @@ const STextarea = styled.textarea`
           : props.theme.colors.primary};
   }
   &:disabled {
-    border-color: ${props => props.theme.textarea.disabled.borderColor};
-    background: ${props => props.theme.textarea.disabled.background};
+    border-color: ${(props) => props.theme.textarea.disabled.borderColor};
+    background: ${(props) => props.theme.textarea.disabled.background};
     cursor: not-allowed;
   }
   ::placeholder {
-    color: ${props => props.theme.textarea.placeholderColor};
+    color: ${(props) => props.theme.textarea.placeholderColor};
   }
   &:hover {
     border-color: ${(props: Props) => props.theme.textarea.hoverBorderColor};
     &:disabled {
-      border-color: ${props => props.theme.textarea.disabled.borderColor};
+      border-color: ${(props) => props.theme.textarea.disabled.borderColor};
     }
   }
   transition: all 0.3s;
   vertical-align: top;
-  resize: ${(props: Props) => (props.isReSizable ? 'auto' : 'none')};
+  resize: ${(props: Props) => (props.isReSizable ? "auto" : "none")};
 `;
 
-export const Textarea: React.FunctionComponent<Props> = ({
-  theme,
-  children,
-  value,
-  onChange,
-  ...textareaProps
-}) => {
-  const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';
+const defaultProps = {
+  textareaSize: "md",
+  theme: Themes.canopyTheme,
+  isReSizable: false,
+} satisfies Partial<Props>;
+
+export const Textarea: React.FunctionComponent<Props> = (props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { theme, value, onChange, children, ...textareaProps } =
+    propsWithDefaults;
+  const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : "";
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SWrapperDiv>
@@ -157,7 +163,7 @@ export const Textarea: React.FunctionComponent<Props> = ({
           value={value}
           onChange={onChange}
           {...textareaProps}
-          data-invalid={textareaProps.invalid ? '' : undefined}
+          data-invalid={textareaProps.invalid ? "" : undefined}
           aria-invalid={textareaProps.invalid ? true : undefined}
           aria-describedby={errorId}
         >
@@ -166,16 +172,10 @@ export const Textarea: React.FunctionComponent<Props> = ({
         {textareaProps.invalid && (
           <ErrorMessage
             id={errorId}
-            message={textareaProps.invalidText || ''}
-            textColor={textareaProps.invalidTextColor || ''}
+            message={textareaProps.invalidText || ""}
           />
         )}
       </SWrapperDiv>
     </ThemeProvider>
   );
-};
-Textarea.defaultProps = {
-  textareaSize: 'md',
-  theme: Themes.canopyTheme,
-  isReSizable: false,
 };

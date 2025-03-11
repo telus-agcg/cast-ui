@@ -1,8 +1,7 @@
-import * as React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { Badge } from './Badge.component';
 
-import { Badge } from '../';
-
-export default {
+const meta: Meta<typeof Badge> = {
   title: 'Components/Data Display/Badge',
   component: Badge,
   argTypes: {
@@ -25,10 +24,15 @@ export default {
   },
 };
 
-export const _Badge = args => <Badge {...args}>123</Badge>;
+export default meta;
 
-_Badge.args = {
-  badgeSize: 'md',
-  badgeStyle: 'primary',
-  lightMode: false,
+type Story = StoryObj<typeof Badge>;
+
+export const Default: Story = {
+  args: {
+    badgeSize: 'md',
+    badgeStyle: 'primary',
+    lightMode: false,
+    children: 123,
+  },
 };

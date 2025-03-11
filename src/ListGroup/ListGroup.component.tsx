@@ -1,10 +1,8 @@
-import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
-import { Collapse } from '../Collapse';
-import { ic_keyboard_arrow_down as IKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
-import { ic_keyboard_arrow_right as IKAR } from 'react-icons-kit/md/ic_keyboard_arrow_right';
-import Icon from 'react-icons-kit';
+import * as React from "react";
+import styled from "styled-components";
+import { getPropsWithDefaults } from "@utils";
+import { KeyboardArrowDown, KeyboardArrowRight } from "@icons";
+import { Collapse } from "../Collapse/Collapse.component";
 
 export type Props = {
   /**
@@ -40,7 +38,7 @@ export type Props = {
    *
    * @default 'light'
    **/
-  listGroupTheme?: 'light' | 'dark';
+  listGroupTheme?: "light" | "dark";
   /**
    * From theme provider
    *
@@ -55,7 +53,7 @@ export type Props = {
   border?: boolean;
 };
 
-const SListGroup = styled.ul`
+const SListGroup = styled.ul<Props>`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.typography.fontSize};
   border-radius: ${(props: Props) => props.theme.borders.radius};
@@ -67,7 +65,7 @@ const SListGroup = styled.ul`
   li {
     padding: 15px 30px;
     border-bottom: ${(props: any) =>
-      props.border ? `1px solid ${props.theme.colors.secondary}` : ''};
+      props.border ? `1px solid ${props.theme.colors.secondary}` : ""};
   }
   ul li {
     padding-left: 60px;
@@ -102,7 +100,7 @@ const SListHeader = styled.li<Partial<Props>>`
   cursor: pointer;
   height: auto;
   border-bottom: ${(props: any) =>
-    props.border ? `1px solid ${props.theme.colors.secondary}` : ''};
+    props.border ? `1px solid ${props.theme.colors.secondary}` : ""};
   background-color: ${(props: Props) =>
     props.isCollapsed
       ? props.theme.listGroup.theme[props.listGroupTheme!].backgroundColor
@@ -113,7 +111,7 @@ const SListHeader = styled.li<Partial<Props>>`
   position: relative;
 `;
 
-export const HoverIcon = styled(Icon)`
+export const HoverIcon = styled.span`
   border-radius: 50%;
   transition: all 0.3s;
   &:hover {
@@ -133,94 +131,61 @@ const ChevronImage: Function = (isCollapsed: boolean | undefined) => {
     return null;
   }
   return isCollapsed ? (
-    <HoverIcon icon={IKAR} size={24} />
+    <HoverIcon>
+      <KeyboardArrowRight height={24} width={24} />
+    </HoverIcon>
   ) : (
-    <HoverIcon icon={IKAD} size={24} />
+    <HoverIcon>
+      <KeyboardArrowDown height={24} width={24} />
+    </HoverIcon>
   );
 };
 
-const initialState = {
-  isCollapsed: true,
+const defaultProps = {
+  listGroupTheme: "light",
   collapsible: false,
-  listGroupTheme: 'light',
   border: true,
-};
-type State = Readonly<typeof initialState>;
+} satisfies Partial<Props>;
 
-export class ListGroup extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isCollapsed: true,
-      collapsible: false,
-      listGroupTheme: 'light',
-      border: true,
-    };
-  }
+export const ListGroup = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const [collapsed, setCollapsed] = React.useState(false);
+  const { onToggle, collapsible, isCollapsed, name, children } =
+    propsWithDefaults;
 
-  toggle() {
-    if (this.props.onToggle instanceof Function) {
-      this.props.onToggle();
+  const dependOnProps = "isCollapsed" in propsWithDefaults;
+
+  const toggle = () => {
+    if (onToggle instanceof Function) {
+      onToggle();
       return;
     }
-    if (!('isCollapsed' in this.props)) {
-      this.setState({ isCollapsed: !this.state.isCollapsed });
+    if (!("isCollapsed" in propsWithDefaults)) {
+      setCollapsed((prevState) => !prevState);
     }
-  }
-
-  static defaultProps = {
-    listGroupTheme: 'light',
-    collapsible: false,
-    theme: Themes.canopyTheme,
-    border: true,
   };
 
-  // readonly state: State = initialState;
-
-  render() {
-    const {
-      collapsible,
-      isCollapsed,
-      name,
-      theme,
-      children,
-      ...props
-    } = this.props;
-    const dependOnProps = 'isCollapsed' in this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SListGroup {...props}>
-          {collapsible ? (
-            <React.Fragment>
-              <SListHeader
-                isCollapsed={
-                  dependOnProps ? isCollapsed : this.state.isCollapsed
-                }
-                onClick={collapsible ? this.toggle : undefined}
-                {...props}
-              >
-                <SHeaderContent>{name}</SHeaderContent>
-                {ChevronImage(
-                  dependOnProps ? isCollapsed : this.state.isCollapsed,
-                  {
-                    ...props,
-                  },
-                )}
-              </SListHeader>
-              <Collapse
-                isOpen={dependOnProps ? !isCollapsed : !this.state.isCollapsed}
-              >
-                {children}
-              </Collapse>
-            </React.Fragment>
-          ) : (
-            [children]
-          )}
-        </SListGroup>
-      </ThemeProvider>
-    );
-  }
-}
-
-export default ListGroup;
+  return (
+    <SListGroup {...propsWithDefaults}>
+      {collapsible ? (
+        <React.Fragment>
+          <SListHeader
+            isCollapsed={dependOnProps ? isCollapsed : collapsed}
+            onClick={collapsible ? toggle : undefined}
+            {...props}
+          >
+            <SHeaderContent>{name}</SHeaderContent>
+            {ChevronImage(dependOnProps ? isCollapsed : collapsed, {
+              ...propsWithDefaults,
+            })}
+          </SListHeader>
+          <Collapse isOpen={dependOnProps ? !isCollapsed : !collapsed}>
+            {children}
+          </Collapse>
+        </React.Fragment>
+      ) : (
+        [children]
+      )}
+    </SListGroup>
+  );
+};

@@ -1,8 +1,6 @@
-import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../../themes/index';
-import Icon from 'react-icons-kit';
-import { ic_error as icError } from 'react-icons-kit/md/ic_error';
+import { Themes } from "@themes";
+import * as React from "react";
+import styled, { ThemeProvider } from "styled-components";
 
 export interface Props {
   /**
@@ -32,8 +30,25 @@ export interface Props {
   theme?: any;
 }
 
-const SErrorDiv = styled.div`
-  color: ${(props: Props) => props.textColor || props.theme.validation.color};
+export function ErrorIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m1 15h-2v-2h2zm0-4h-2V7h2z"
+      ></path>
+    </svg>
+  );
+}
+
+const SErrorDiv = styled.div<Props>`
+  color: ${(props: Props) => props.theme.validation.color};
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
   font-size: ${(props: Props) => props.theme.validation.fontSize};
   font-style: ${(props: Props) => props.theme.validation.fontStyle};
@@ -42,7 +57,7 @@ const SErrorDiv = styled.div`
   margin-top: ${(props: Props) => props.theme.validation.marginTop};
 `;
 
-const SErrorIcon = styled(Icon)`
+const SErrorIcon = styled(ErrorIcon)`
   color: ${(props: any) => props.theme.colors.danger};
   padding-right: 4px;
 `;
@@ -52,25 +67,25 @@ const ErrorMessageWrapper = styled.div`
   align-items: center;
 `;
 
-export const ErrorMessage: React.FunctionComponent<Props> = ({
-  theme,
-  children,
-  ...inputProps
-}) => {
+const defaultProps = {
+  theme: Themes.canopyTheme,
+} satisfies Partial<Props>;
+
+export const ErrorMessage: React.FunctionComponent<
+  React.PropsWithChildren<Props>
+> = (props) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
+  const { theme, message } = propsWithDefaults;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <>
-        <SErrorDiv {...inputProps}>
+        <SErrorDiv {...propsWithDefaults}>
           <ErrorMessageWrapper>
-            <SErrorIcon size={14} icon={icError} />
-            {inputProps.message}
+            <SErrorIcon height={24} width={24} {...propsWithDefaults} />
+            {message}
           </ErrorMessageWrapper>
         </SErrorDiv>
       </>
     </ThemeProvider>
   );
-};
-
-ErrorMessage.defaultProps = {
-  theme: Themes.canopyTheme,
 };

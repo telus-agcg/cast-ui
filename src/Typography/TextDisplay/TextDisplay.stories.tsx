@@ -1,17 +1,19 @@
-import * as React from 'react';
-import { TextDisplay } from './TextDisplay.component';
+import { TextDisplay } from "./TextDisplay.component";
+import { Meta, StoryObj } from "@storybook/react";
 
-export default {
-  title: 'Components/Typography/TextDisplay',
+const meta: Meta<typeof TextDisplay> = {
+  title: "Components/Typography/TextDisplay",
   component: TextDisplay,
-  argTypes: {
-    fontSize: {
-      control: 'text',
-    },
-    fontWeight: {
-      control: 'text',
-    },
-  },
 };
 
-export const _TextDisplay = args => <TextDisplay {...args}>Text</TextDisplay>;
+export default meta;
+
+type Story = StoryObj<typeof TextDisplay>;
+
+export const _TextDisplay: Story = {
+  args: {
+    fontSize: "16px",
+    fontWeight: "bold",
+    children: "Text",
+  },
+};
