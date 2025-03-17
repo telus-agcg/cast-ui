@@ -10,7 +10,7 @@ interface Props extends React.PropsWithChildren {
    * @default null
    **/
   id?: string;
-  label: string;
+  label?: string;
   value: CHECKBOX_STATE;
   onChange: (checked: boolean, event: ChangeEvent<HTMLInputElement>) => void;
   /**
@@ -327,7 +327,9 @@ export const Checkbox = (props: Props) => {
           type="checkbox"
           onChange={handleChange}
           // hasChildren={Boolean(children)}
-        />
+        >
+          {children}
+        </Input>
         <Indicator {...propsWithDefaults}></Indicator>
       </Label>
     </>

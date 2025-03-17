@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import _ from "lodash";
-import styled from "styled-components";
-import { components, ValueContainerProps } from "react-select";
-import { SelectMenuList } from "./SelectMenuList";
-import { Checkbox } from "../Checkbox/Checkbox.component";
+import React, { useEffect, useRef, useState } from 'react';
+import _ from 'lodash';
+import styled from 'styled-components';
+import { components, ValueContainerProps } from 'react-select';
+import { SelectMenuList } from './SelectMenuList';
+import { Checkbox, CHECKBOX_STATE } from '../Checkbox/Checkbox.component';
 
 interface Props {
   options: any[];
@@ -36,7 +36,7 @@ const TruncatedValues = ({
   selectedOptions,
   maxWidth,
 }: TruncatedValuesProps) => {
-  const [displayedValue, setDisplayedValue] = useState("");
+  const [displayedValue, setDisplayedValue] = useState('');
 
   useEffect(() => {
     if (selectedOptions) {
@@ -50,9 +50,9 @@ const TruncatedValues = ({
 
           // Create a temporary element to measure the width of the ellipsis text
           const createTempElement = (text) => {
-            const tempSpan = document.createElement("span");
-            tempSpan.style.visibility = "hidden";
-            tempSpan.style.position = "absolute";
+            const tempSpan = document.createElement('span');
+            tempSpan.style.visibility = 'hidden';
+            tempSpan.style.position = 'absolute';
             tempSpan.innerText = text;
             document.body.appendChild(tempSpan);
             return tempSpan;
@@ -60,7 +60,7 @@ const TruncatedValues = ({
 
           // Measure the width of the ellipsis with remaining items count
           const ellipsisText = `...${
-            selectedOptions.length > 1 ? ` (+${selectedOptions.length})` : ""
+            selectedOptions.length > 1 ? ` (+${selectedOptions.length})` : ''
           }`;
           const ellipsisElement = createTempElement(ellipsisText);
 
@@ -69,7 +69,7 @@ const TruncatedValues = ({
 
           for (let i = 0; i < selectedOptions.length; i += 1) {
             const label = selectedOptions[i].label;
-            const currentText = [...itemsToShow, label].join(", ");
+            const currentText = [...itemsToShow, label].join(', ');
 
             const tempTextElement = createTempElement(currentText);
             currentTextWidth = tempTextElement.scrollWidth;
@@ -92,7 +92,7 @@ const TruncatedValues = ({
                 tempTruncateElement.innerText = [
                   ...itemsToShow,
                   truncatedLabel,
-                ].join(", ");
+                ].join(', ');
                 document.body.appendChild(tempTruncateElement);
 
                 const truncateWidth = tempTruncateElement.scrollWidth;
@@ -115,8 +115,8 @@ const TruncatedValues = ({
               break;
             }
           }
-          const displayedOptions = itemsToShow.join(", ");
-          const remainingText = restCount > 0 ? `... (+${restCount}) ` : "";
+          const displayedOptions = itemsToShow.join(', ');
+          const remainingText = restCount > 0 ? `... (+${restCount}) ` : '';
 
           const newDisplayedText = `${displayedOptions}${remainingText}`;
           if (newDisplayedText !== displayedValue) {
@@ -218,17 +218,15 @@ export const SelectCheckboxProps = ({
       return (
         <div
           data-testid={`select-option-${_.snakeCase(props.data.label)}`}
-          className={"react-select__option"}
+          className={'react-select__option'}
           ref={props.innerRef}
           {...props.innerProps}
           id={`${id}-Select-${_.snakeCase(props.data.label)}`}
         >
           <SCheckbox
             id={props.value}
-            defaultChecked={props.isSelected}
-            checked={props.isSelected}
             disabled={props.isDisabled}
-            value={props.value}
+            value={props.value ? CHECKBOX_STATE.CHECKED : CHECKBOX_STATE.EMPTY}
             onChange={() => handleCheck(props.value)}
           >
             <span>{props.data.label}</span>
