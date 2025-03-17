@@ -1,82 +1,83 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from '../Typography/Link';
+import React, { useState, useEffect, SVGProps } from 'react';
+import _ from 'lodash';
 import styled from 'styled-components';
 import { SideNavItemIcon } from './SideNavItemIcon.component';
-import Icon from 'react-icons-kit';
-import _ from 'lodash';
+import { Link } from '../Typography/Link/Link.component';
 
 const SSubMenuItem = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
 `;
-const SSubNavWrapper = styled.div`
+
+const SSubNavWrapper = styled.div<{ show: boolean }>`
   display: flex;
-  height: ${props => (props.show ? 'auto' : 0)};
-  opacity: ${props => (props.show ? 1 : 0)};
+  height: ${(props) => (props.show ? 'auto' : 0)};
+  opacity: ${(props) => (props.show ? 1 : 0)};
   flex-direction: column;
   &.fade-enter {
     transition: height 0.15s 0s ease-in;
   }
 `;
-const SidebarLink = styled(Link)`
+
+const SidebarLink = styled(Link)<{
+  level: number | undefined;
+  isOpen: boolean;
+  activeItem: boolean;
+  isActiveSubMenuItem: boolean;
+  activeSideNavItem: boolean;
+}>`
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding: ${props =>
+  padding: ${(props) =>
     props.level === 1 ? '8px 0px 8px 46px' : props.isOpen ? '8px 0px' : '8px'};
   gap: 12px;
-  color: ${props =>
+  color: ${(props) =>
     props.theme.sidenav[
       `${props.activeItem || props.isActiveSubMenuItem ? 'active' : ''}navItem`
     ].color};
-  font-weight: ${props =>
+  font-weight: ${(props) =>
     props.theme.sidenav[
       `${props.activeItem || props.isActiveSubMenuItem ? 'active' : ''}navItem`
     ].fontWeight};
-  cursor: ${props =>
+  cursor: ${(props) =>
     props.disabled
       ? 'not-allowed'
       : props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
           .cursor};
-  opacity: ${props =>
+  opacity: ${(props) =>
     props.disabled
       ? '.6'
       : props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`]
           .opacity};
   :hover {
-    background: ${props =>
+    background: '${(props) =>
       props.level === 1 || (!props.isOpen && !props.disabled)
         ? props.theme.sidenav.activenavItem.background
-        : ''};
-    outline: ${props =>
+        : ''}';
+    outline: ${(props) =>
       !props.isOpen && !props.disabled
         ? props.theme.sidenav.activenavItem.hoverBorder
         : ''};
     border-radius: 7px;
     transition: color 0.3s;
   }
-  :hover,
-  :visited,
-  :active,
-  :link {
+  &:hover,
+  &:visited,
+  &:active,
+  &:link {
     text-decoration: none;
   }
   .custom-icon-svg {
-    path {
-      fill: ${props =>
-        props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`]
-          .color};
-    }
+    color: ${(props) =>
+      props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`].color}
     :hover {
-      path {
-        fill: ${props => props.theme.sidenav[`activenavItem`].color};
-      }
+      color: ${(props) => props.theme.sidenav[`activenavItem`].color};
     }
   }
 `;
 
-const SidebarLabel = styled.span`
-  display: ${props => (props.isOpen ? 'block' : 'none')};
+const SidebarLabel = styled.span<{ isOpen: boolean }>`
+  display: ${(props) => (props.isOpen ? 'block' : 'none')};
 `;
 
 const SubMenu = ({
@@ -120,8 +121,9 @@ const SubMenu = ({
   };
 
   const showSubnav = () => setSubnav(!subnav);
-  const IconObj = item && item.customIcon;
-  const handleItemClick = e => {
+  const IconObj: (props: SVGProps<SVGSVGElement>) => React.JSX.Element =
+    item && item.customIcon;
+  const handleItemClick = (e) => {
     if (item.subNav && isOpen && !item.disabled) {
       showSubnav();
     } else {
@@ -173,16 +175,14 @@ const SubMenu = ({
         onClick={handleItemClick}
         onMouseEnter={handleHoverDelay}
         data-testid={_.kebabCase(item.label)}
+        activeSideNavItem={false}
+        isActiveSubMenuItem={false}
+        level={undefined}
         {...newProps}
       >
         <SideNavItemIcon isOpen={isOpen} item={item}>
-          {item.customIcon ? (
-            <IconObj
-              className={`custom-icon-svg`}
-              style={{ width: '24px', height: '24px' }}
-            />
-          ) : (
-            <Icon icon={item.icon} size={24} />
+          {item.customIcon && (
+            <IconObj className={`custom-icon-svg`} width={24} height={24} />
           )}
         </SideNavItemIcon>
         <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
@@ -197,15 +197,15 @@ const SubMenu = ({
               <SidebarLink
                 key={index}
                 level={1}
-                onClick={e => handleSubMenuClick(e, subMenuItem, 1)}
+                onClick={(e) => handleSubMenuClick(e, subMenuItem, 1)}
                 isActiveSubMenuItem={
                   subMenuItem.label === currentSelectedSubnavItem
                 }
+                activeSideNavItem={false}
                 data-testid={_.kebabCase(subMenuItem.label)}
+                {...newProps}
               >
-                <SidebarLabel level={1} {...newProps}>
-                  {subMenuItem.label}
-                </SidebarLabel>
+                <SidebarLabel {...newProps}>{subMenuItem.label}</SidebarLabel>
               </SidebarLink>
             );
           })}

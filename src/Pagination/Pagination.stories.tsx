@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Pagination } from '../index';
+import { Meta, StoryObj } from "@storybook/react";
+import { Pagination } from "./Pagination.component";
 
-export default {
-  title: 'Components/Navigation/Pagination',
+const meta: Meta<typeof Pagination> = {
+  title: "Components/Navigation/Pagination",
   component: Pagination,
   argTypes: {
     theme: {
@@ -12,38 +12,38 @@ export default {
     },
     onPageChange: {
       action: {
-        type: 'onPageChange',
+        type: "onPageChange",
       },
     },
     onPageSizeChange: {
       action: {
-        type: 'onPageSizeChange',
+        type: "onPageSizeChange",
       },
     },
     pages: {
       control: {
-        type: 'number',
+        type: "number",
       },
     },
     page: {
       control: {
-        type: 'number',
+        type: "number",
       },
     },
     pageSize: {
       options: [10, 20, 50, 100],
       control: {
-        type: 'select',
+        type: "select",
       },
     },
     showPageSizeOptions: {
       control: {
-        type: 'boolean',
+        type: "boolean",
       },
     },
     rowsText: {
       control: {
-        type: 'text',
+        type: "text",
       },
     },
     PageButtonComponent: {
@@ -69,19 +69,21 @@ export default {
     docs: {
       description: {
         component:
-          'This is a custom pagination control intended for use with various components (such as Table).',
+          "This is a custom pagination control intended for use with various components (such as Table).",
       },
     },
   },
 };
 
-export const _Pagination = args => {
-  return <Pagination {...args} />;
-};
+export default meta;
 
-_Pagination.args = {
-  pages: 10,
-  page: 3,
-  pageSize: 20,
-  showPageSizeOptions: true,
+type Story = StoryObj<typeof Pagination>;
+
+export const _Pagination: Story = {
+  args: {
+    pages: 10,
+    page: 3,
+    pageSize: 20,
+    showPageSizeOptions: true,
+  },
 };

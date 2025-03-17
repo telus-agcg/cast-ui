@@ -1,9 +1,7 @@
-import * as React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 // tslint:disable-next-line:max-line-length
 import { TabPanel as ReactTabPanel, TabPanelProps } from 'react-tabs';
-import { Themes } from '../themes';
-import { Omit } from '../utils/castTypes';
+import { getPropsWithDefaults, Omit } from '@utils';
 
 export interface Props extends Omit<TabPanelProps, 'ref'> {
   /**
@@ -14,22 +12,14 @@ export interface Props extends Omit<TabPanelProps, 'ref'> {
   theme?: any;
 }
 
-export class TabPanel extends React.Component<Props> {
-  public static readonly tabsRole: string = 'TabPanel';
+const defaultProps = {} satisfies Partial<Props>;
 
-  constructor(props: Props) {
-    super(props);
-  }
-  static defaultProps = {
-    theme: Themes.canopyTheme,
-  };
-
-  render() {
-    const { theme, children, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <ReactTabPanel {...props}>{children}</ReactTabPanel>
-      </ThemeProvider>
-    );
-  }
-}
+export const TabPanel = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults<Props>(defaultProps, props);
+  const { children, ...rest } = propsWithDefaults;
+  return (
+    <ReactTabPanel {...rest} id={uuidv4()}>
+      {children}
+    </ReactTabPanel>
+  );
+};

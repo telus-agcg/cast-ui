@@ -1,8 +1,8 @@
+import { Themes } from '@themes';
 import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../../themes';
+import styled from 'styled-components';
 
-export type Props = {
+export type Props = React.PropsWithChildren<{
   /**
    * Set Caption Size
    *
@@ -15,7 +15,7 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 
 const SCaption = styled.p`
   font-family: ${(props: Props) =>
@@ -29,13 +29,12 @@ const SCaption = styled.p`
     props.theme.typography.caption[props.size!].lineHeight};
 `;
 
-export const Caption: React.FunctionComponent<Props> = ({
-  theme,
-  children,
-  ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SCaption {...props}>{children}</SCaption>
-  </ThemeProvider>
-);
-Caption.defaultProps = { theme: Themes.canopyTheme, size: 10 };
+const defaultProps = {
+  size: 10,
+} satisfies Partial<Props>;
+
+export const Caption: React.FunctionComponent<Props> = (props) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
+  const { children } = propsWithDefaults;
+  return <SCaption {...propsWithDefaults}>{children}</SCaption>;
+};

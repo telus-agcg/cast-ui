@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import styled from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
 
 export type Props = {
   /**
@@ -60,17 +60,13 @@ const SSpinner = styled.div`
   }
 `;
 
-export const Spinner: React.FunctionComponent<Props> = ({
-  theme,
-  ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SSpinner {...props} />
-  </ThemeProvider>
-);
-Spinner.defaultProps = {
+const defaultProps = {
   size: 50,
   animationSpeed: 1,
   transitionType: 'linear',
-  theme: Themes.canopyTheme,
+} satisfies Partial<Props>;
+
+export const Spinner: React.FunctionComponent<Props> = (props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  return <SSpinner {...propsWithDefaults} />;
 };

@@ -92,10 +92,11 @@ squashed, the title of the PR is used as the header.
 
 #### Branches
 
-We currently use two main branches for releases:
+We currently use three main branches for releases:
 
 - `beta` is a pre-release branch
 - `master` is the production branch
+- `next` is an "experimental" branch for testing out large new features / updates
 
 Commits on these branches will trigger new releases.
 
@@ -103,7 +104,7 @@ When starting a new feature or bugfix, create a branch from `beta`. This will ad
 work to the collection of work going out in the next release and allow for a beta release
 to be tested by QA and other teams before going out in production.
 
-Example branch names:
+Example commit messages:
 
 - `fix(select): update select border`
 - `feat(button): add new prop`

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import * as React from "react";
+import styled from "styled-components";
+import { getPropsWithDefaults } from "@utils";
 
 export interface Props {
   /**
@@ -53,21 +53,18 @@ const SProgressBar = styled.div`
   }
 `;
 
-export const ProgressBar: React.FunctionComponent<Props> = ({
-  theme,
-  ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SProgressBar {...props}>
+const defaultProps = {
+  height: "",
+  background: "",
+  progressBackground: "",
+  percentage: 0,
+} satisfies Partial<Props>;
+
+export const ProgressBar: React.FunctionComponent<Props> = (props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  return (
+    <SProgressBar {...propsWithDefaults} theme={props.theme}>
       <div className="progress" />
     </SProgressBar>
-  </ThemeProvider>
-);
-
-ProgressBar.defaultProps = {
-  height: '',
-  background: '',
-  progressBackground: '',
-  percentage: 0,
-  theme: Themes.canopyTheme,
+  );
 };

@@ -1,73 +1,64 @@
-import {
-  iosPeopleOutline,
-  iosPricetagsOutline,
-  iosBoxOutline,
-  iosDownloadOutline,
-  iosSpeedometerOutline,
-} from 'react-icons-kit/ionicons';
+import { sideNavIcons } from "@icons";
+import { SideNavItem } from "./SideNavbar.component";
 
-const SideNavData = [
+const SideNavData: SideNavItem[] = [
   {
-    label: 'Dashboard',
-    icon: iosSpeedometerOutline,
+    label: "Dashboard",
+    customIcon: sideNavIcons.Speedometer,
     disabled: false,
   },
   {
-    label: 'Customers',
-
-    icon: iosPeopleOutline,
+    label: "Customers",
+    customIcon: sideNavIcons.PeopleAlt,
     subNav: [
       {
-        label: 'Distributors',
+        label: "Distributors",
       },
       {
-        label: 'Retailers',
+        label: "Retailers",
       },
       {
-        label: 'Farmers',
+        label: "Farmers",
       },
     ],
     disabled: false,
   },
   {
-    label: 'Offers',
-
-    icon: iosPricetagsOutline,
+    label: "Offers",
+    customIcon: sideNavIcons.Pricetags,
     subNav: [
       {
-        label: 'Retailer',
+        label: "Retailer",
       },
       {
-        label: 'Distributor',
+        label: "Distributor",
       },
       {
-        label: 'Farmer',
+        label: "Farmer",
       },
     ],
     disabled: false,
   },
   {
-    label: 'Products',
-    icon: iosBoxOutline,
+    label: "Products",
+    customIcon: sideNavIcons.Box3Line,
     disabled: false,
     subNav: [
       {
-        label: 'All Products',
+        label: "All Products",
       },
       {
-        label: 'Letter Generation',
+        label: "Letter Generation",
       },
       {
-        label: 'Seed Pricing',
+        label: "Seed Pricing",
       },
     ],
   },
   {
-    label: 'Report Download',
-    icon: iosDownloadOutline,
-    disabled: {
-      value: true,
-    },
+    label: "Report Download",
+    customIcon: sideNavIcons.Download,
+    disabled: true,
   },
 ];
 

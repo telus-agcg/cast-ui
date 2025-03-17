@@ -1,8 +1,7 @@
 import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../../themes';
+import styled from 'styled-components';
 
-export type Props = {
+export type Props = React.PropsWithChildren<{
   /**
    * Set Display Size
    *
@@ -15,7 +14,7 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 
 const SDisplay = styled.h1`
   font-family: ${(props: Props) =>
@@ -30,16 +29,12 @@ const SDisplay = styled.h1`
     props.theme.typography.display[props.size!].margin};
 `;
 
-export const Display: React.FunctionComponent<Props> = ({
-  theme,
-  children,
-  ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SDisplay {...props}>{children}</SDisplay>
-  </ThemeProvider>
-);
-Display.defaultProps = {
-  theme: Themes.canopyTheme,
+const defaultProps = {
   size: 10,
+} satisfies Partial<Props>;
+
+export const Display: React.FunctionComponent<Props> = (props) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
+  const { children, ...rest } = propsWithDefaults;
+  return <SDisplay {...rest}>{children}</SDisplay>;
 };

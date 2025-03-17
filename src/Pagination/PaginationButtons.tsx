@@ -1,10 +1,6 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import { ic_first_page as FirstPageIcon } from 'react-icons-kit/md/ic_first_page';
-import { ic_last_page as LastPageIcon } from 'react-icons-kit/md/ic_last_page';
-import { ic_navigate_before as PrevPageIcon } from 'react-icons-kit/md/ic_navigate_before';
-import { ic_navigate_next as NextPageIcon } from 'react-icons-kit/md/ic_navigate_next';
-import Icon from 'react-icons-kit';
+import { FirstPage, LastPage, NavigateBefore, NavigateNext } from "@icons";
+import * as React from "react";
+import styled, { css } from "styled-components";
 
 // first, last, prev, next buttons
 export type PaginationButtonsProps = {
@@ -28,8 +24,31 @@ export type PaginationButtonsProps = {
   theme?: any;
 };
 
-const SIcon = styled(Icon)<Partial<PaginationButtonsProps>>`
-  color: ${props =>
+const IconStyler = styled.span<Partial<PaginationButtonsProps>>`
+  color: ${(props) => props.color};
+  & svg {
+    color: ${(props) =>
+      props.disabled
+        ? props.theme.pagination.button.disabledText
+        : props.theme.pagination.text};
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s;
+    &:hover {
+      background-color: ${(props) =>
+        props.disabled
+          ? "none"
+          : props.theme.pagination.button.hoverBackground};
+      color: ${(props) =>
+        props.disabled
+          ? props.theme.pagination.button.disabledText
+          : props.theme.pagination.hoverTextColor};
+    }
+  }
+`;
+
+const SIcon = styled.span<Partial<PaginationButtonsProps>>`
+  color: ${(props) =>
     props.disabled
       ? props.theme.pagination.button.disabledText
       : props.theme.pagination.text};
@@ -37,37 +56,51 @@ const SIcon = styled(Icon)<Partial<PaginationButtonsProps>>`
   border-radius: 50%;
   transition: all 0.3s;
   &:hover {
-    background-color: ${props =>
-      props.disabled ? 'none' : props.theme.pagination.button.hoverBackground};
-    color: ${props =>
+    background-color: ${(props) =>
+      props.disabled ? "none" : props.theme.pagination.button.hoverBackground};
+    color: ${(props) =>
       props.disabled
         ? props.theme.pagination.button.disabledText
         : props.theme.pagination.hoverTextColor};
   }
 `;
 
+const iconDimensions = { height: 20, width: 20 };
+
 export const PaginationButtonNextPrev = (props: PaginationButtonsProps) => {
+  const { isForwardDirection, disabled, onClick } = props;
+  const icon = isForwardDirection ? (
+    <NavigateNext {...iconDimensions} />
+  ) : (
+    <NavigateBefore {...iconDimensions} />
+  );
   return (
     <div>
-      <SIcon
+      <IconStyler
         disabled={props.disabled}
-        icon={props.isForwardDirection ? NextPageIcon : PrevPageIcon}
-        size={20}
         onClick={props.disabled ? () => {} : props.onClick}
-      />
+      >
+        {icon}
+      </IconStyler>
     </div>
   );
 };
 
 export const PaginationButtonFirstLast = (props: PaginationButtonsProps) => {
+  const { disabled, onClick, isForwardDirection } = props;
+  const icon = isForwardDirection ? (
+    <LastPage {...iconDimensions} />
+  ) : (
+    <FirstPage {...iconDimensions} />
+  );
   return (
     <div>
-      <SIcon
+      <IconStyler
         disabled={props.disabled}
-        icon={props.isForwardDirection ? LastPageIcon : FirstPageIcon}
-        size={20}
         onClick={props.disabled ? () => {} : props.onClick}
-      />
+      >
+        {icon}
+      </IconStyler>
     </div>
   );
 };
@@ -109,7 +142,7 @@ export type PaginationPageButtonProps = {
   theme?: any;
 };
 
-export const PaginationPageButton = styled.button`
+export const PaginationPageButton = styled.button<PaginationPageButtonProps>`
   background: ${(props: PaginationPageButtonProps) =>
     props.selected
       ? props.theme.pagination.selectedBackground

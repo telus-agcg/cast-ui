@@ -1,8 +1,6 @@
-import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { Tabs as ReactTabs, TabsProps } from 'react-tabs';
-import { Themes } from '../themes';
-import { Omit } from '../utils/castTypes';
+import { getPropsWithDefaults, Omit } from '@utils';
 
 export interface Props extends Omit<TabsProps, 'as'> {
   /**
@@ -30,25 +28,19 @@ const STabWrapperDiv = styled.div`
   font-family: ${(props: Props) => props.theme.typography.fontFamily};
 `;
 
-export class Tabs extends React.Component<Props> {
-  public static readonly tabsRole: string = 'Tabs';
+const defaultProps = {
+  onSelect: (index) => {
+    console.log(index);
+  },
+  selectedIndex: 2,
+} satisfies Partial<Props>;
 
-  constructor(props: Props) {
-    super(props);
-  }
-  static defaultProps = {
-    onSelect: () => {},
-    theme: Themes.canopyTheme,
-  };
-
-  render() {
-    const { children, theme, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <STabWrapperDiv>
-          <ReactTabs {...props}>{children}</ReactTabs>
-        </STabWrapperDiv>
-      </ThemeProvider>
-    );
-  }
-}
+export const Tabs = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { children, ...rest } = propsWithDefaults;
+  return (
+    <STabWrapperDiv>
+      <ReactTabs {...rest}>{children}</ReactTabs>
+    </STabWrapperDiv>
+  );
+};

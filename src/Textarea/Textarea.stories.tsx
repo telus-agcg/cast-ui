@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { Textarea } from './Textarea.component';
 
-import { Textarea } from '../';
-
-export default {
+const meta: Meta<typeof Textarea> = {
   title: 'Components/Interactions/Textarea',
   component: Textarea,
   argTypes: {
@@ -76,20 +76,25 @@ export default {
   },
 };
 
-export const _Textarea = args => (
-  <Textarea id="myTextarea" data-testid="textarea" {...args} />
-);
+export default meta;
 
-_Textarea.args = {
-  cols: 60,
-  disabled: false,
-  invalid: false,
-  invalidText: 'A valid value is required',
-  invalidTextColor: 'red',
-  maxLength: 1000,
-  placeholder: 'Placeholder Text',
-  required: false,
-  rows: 8,
-  textareaSize: 'md',
-  isReSizable: false,
+type Story = StoryObj<typeof Textarea>;
+
+export const _TextArea: Story = {
+  args: {
+    cols: 60,
+    disabled: false,
+    invalid: false,
+    invalidText: 'A valid value is required',
+    invalidTextColor: 'red',
+    maxLength: 1000,
+    placeholder: 'Placeholder Text',
+    required: false,
+    rows: 8,
+    textareaSize: 'md',
+    isReSizable: false,
+  },
+  render: (args) => {
+    return <Textarea data-testid="textarea" {...args} id="myTextarea" />;
+  },
 };

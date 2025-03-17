@@ -1,9 +1,7 @@
 import * as React from 'react';
-import uuid from 'uuid';
-import styled, { ThemeProvider } from 'styled-components';
-import { Omit } from '../utils/castTypes';
-import { Themes } from '../themes';
-import { getDataProps } from '../utils/common';
+import { v4 as uuidv4 } from 'uuid';
+import styled from 'styled-components';
+import { Omit, getDataProps, getPropsWithDefaults } from '@utils';
 
 type displayStyle = 'inline' | 'stacked';
 type rbSize = 'sm' | 'md' | 'lg';
@@ -183,77 +181,73 @@ const SInput = styled.input<Partial<Props>>`
     border-color: ${(props: Partial<Props>) =>
       props.theme.radioButton.disabledRadio};
   }
-
 `;
 
-export class RadioButton extends React.Component<Props> {
-  static defaultProps = {
-    rbSize: 'md',
-    displayStyle: 'stacked',
-    name: '',
-    theme: Themes.canopyTheme,
-    id: uuid.v4(),
-    disabled: false,
-    defaultChecked: false,
-  };
+const defaultProps = {
+  rbSize: 'md',
+  displayStyle: 'stacked',
+  name: '',
+  id: uuidv4(),
+  disabled: false,
+  defaultChecked: false,
+} satisfies Partial<Props>;
 
-  state = {
-    checked: this.props.checked || this.props.defaultChecked,
-  };
+export const RadioButton = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const [localChecked, setLocalChecked] = React.useState<boolean>(false);
 
-  onChange = (event: any) => {
-    if (!this.props.disabled) {
-      if (this.props.onChange instanceof Function) {
-        this.props.onChange(this.props.value, this.props.name!, event);
-        this.setState({
-          checked: !this.state.checked,
-        });
-      }
+  const {
+    checked,
+    defaultChecked,
+    disabled,
+    onChange,
+    value,
+    name,
+    className,
+    rbSize,
+    displayStyle,
+    id,
+    theme,
+    children,
+    onClick,
+    ...rest
+  } = propsWithDefaults;
+
+  const dataProps: any = getDataProps(propsWithDefaults);
+
+  React.useEffect(() => {
+    setLocalChecked(Boolean(checked || defaultChecked));
+  }, []);
+
+  const handleChange = (event: any) => {
+    if (disabled) return;
+    if (onChange instanceof Function) {
+      onChange(value, name!, event);
+      setLocalChecked((prevState) => !prevState);
     }
   };
 
-  render() {
-    const {
-      className,
-      name,
-      rbSize,
-      disabled,
-      displayStyle,
-      id,
-      value,
-      checked,
-      defaultChecked,
-      theme,
-      children,
-      onChange,
-      onClick,
-      ...props
-    } = this.props;
-    const dataProps: any = getDataProps(props);
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv
-          {...dataProps}
-          className={className}
-          displayStyle={displayStyle}
-          onClick={onClick}
-          theme={theme}
-        >
-          <SInput
-            type="radio"
-            name={name}
-            rbSize={rbSize}
-            disabled={disabled}
-            id={id}
-            value={value}
-            checked={checked}
-            onChange={this.onChange}
-          />
-          <SLabel htmlFor={id} rbSize={this.props.rbSize}>
-            {children}
-          </SLabel>
-        </SDiv>
-      </ThemeProvider>
-    );
-  }
-}
+  return (
+    <SDiv
+      {...dataProps}
+      className={className}
+      displayStyle={displayStyle}
+      onClick={onClick}
+      theme={theme}
+    >
+      <SInput
+        type="radio"
+        name={name}
+        rbSize={rbSize}
+        disabled={disabled}
+        id={id}
+        value={value}
+        checked={checked}
+        onChange={handleChange}
+      />
+      <SLabel htmlFor={id} rbSize={rbSize}>
+        {children}
+      </SLabel>
+    </SDiv>
+  );
+};

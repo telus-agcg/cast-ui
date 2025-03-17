@@ -1,8 +1,8 @@
-import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import * as React from "react";
+import styled from "styled-components";
+import { getPropsWithDefaults } from "@utils";
 
-export type Props = {
+export type Props = React.PropsWithChildren<{
   /**
    * Float the Nav container to the left of the Navbar
    *
@@ -27,30 +27,25 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 const SNav = styled.nav`
   height: auto;
   margin-left: ${(props: Props) =>
-    props.right || props.center ? 'auto' : '0'};
+    props.right || props.center ? "auto" : "0"};
   margin-right: ${(props: Props) =>
-    props.left || props.center ? 'auto' : '0'};
+    props.left || props.center ? "auto" : "0"};
   display: flex;
   align-items: center;
 `;
 
-export const Nav: React.FunctionComponent<Props> = ({
-  theme,
-  children,
-  ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SNav {...props}>{children}</SNav>
-  </ThemeProvider>
-);
-
-Nav.defaultProps = {
+const defaultProps = {
   left: false,
   center: false,
   right: false,
-  theme: Themes.canopyTheme,
+} satisfies Partial<Props>;
+
+export const Nav: React.FunctionComponent<Props> = (props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { children } = propsWithDefaults;
+  return <SNav {...propsWithDefaults}>{children}</SNav>;
 };

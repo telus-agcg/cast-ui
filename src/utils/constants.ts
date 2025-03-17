@@ -1,1 +1,1 @@
-export const nameSpace = 'cui';
+export const nameSpace = "cui";

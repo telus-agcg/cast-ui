@@ -1,6 +1,4 @@
-import * as React from 'react';
-import styled, { withTheme, ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import styled from "styled-components";
 
 export type Props = {
   /**
@@ -15,7 +13,7 @@ export type Props = {
    *
    * @default 'light'
    **/
-  listGroupTheme?: 'light' | 'dark';
+  listGroupTheme?: "light" | "dark";
   /**
    * From theme provider
    *
@@ -29,25 +27,13 @@ const SListGroupItem = styled.li<Partial<Props>>`
   height: auto;
 `;
 
-const initialState = {};
-type State = Readonly<typeof initialState>;
+const defaultProps = {
+  listGroupTheme: undefined,
+} satisfies Partial<Props>;
 
-export class ListGroupItem extends React.Component<Props> {
-  static defaultProps = {
-    listGroupTheme: '',
-    theme: Themes.canopyTheme,
-  };
+export const ListGroupItem = (props: Props) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
+  const { children, ...rest } = propsWithDefaults;
 
-  readonly state: State = initialState;
-
-  render() {
-    const { children, theme, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SListGroupItem {...props}>{children}</SListGroupItem>
-      </ThemeProvider>
-    );
-  }
-}
-
-export default withTheme(ListGroupItem);
+  return <SListGroupItem {...propsWithDefaults}>{children}</SListGroupItem>;
+};

@@ -1,7 +1,8 @@
-import * as React from 'react';
 import styled from 'styled-components';
-import { ic_casino as icCasino } from 'react-icons-kit/md/ic_casino';
-import { Button, Link, Menu } from '..';
+import { Meta, StoryObj } from '@storybook/react';
+import { Menu } from './Menu.component';
+import { Button } from '../Button/Button.component';
+import { Link } from '../Typography/Link/Link.component';
 
 const description = `
 A Menu is a specialized Popover wrapper that displays items to select when triggered via click, typically with a Link or Button (with displayType="menu").
@@ -17,25 +18,17 @@ const CustomItem = styled.div`
   }
 `;
 
-export default {
+const meta: Meta<typeof Menu> = {
   title: 'Components/Interactions/Menu',
   component: Menu,
-  argTypes: {
-    onItemClick: { action: 'onItemClick' },
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-  },
   parameters: {
-    docs: {
-      description: {
-        component: description,
-      },
-    },
+    description,
   },
 };
+
+export default meta;
+
+type Story = StoryObj<typeof Menu>;
 
 const menuData = [
   {
@@ -43,7 +36,11 @@ const menuData = [
     id: 'vanilla',
     disabled: true,
   },
-  { label: 'Chocolate', id: 'chocolate', icon: icCasino },
+  {
+    label: 'Chocolate',
+    id: 'chocolate',
+    // icon: icCasino // TODO
+  },
 ];
 
 const menuDataWithCustomComponent = [
@@ -59,38 +56,47 @@ const menuDataWithCustomComponent = [
   },
 ];
 
-export const _MenuFromLink = args => (
-  <Menu
-    triggerComponent={<Link>Show options</Link>}
-    data-testid="submit"
-    {...args}
-  />
-);
-
-_MenuFromLink.args = {
-  items: menuData,
+export const _MenuFromLink: Story = {
+  args: {
+    items: menuData,
+  },
+  render: (args) => {
+    return (
+      <Menu
+        {...args}
+        triggerComponent={<Link>Show options</Link>}
+        data-testid="submit"
+      />
+    );
+  },
 };
 
-export const _MenuFromButton = args => (
-  <Menu
-    triggerComponent={<Button displayType="menu">Submit Menu</Button>}
-    data-testid="submit"
-    {...args}
-  />
-);
-
-_MenuFromButton.args = {
-  items: menuData,
+export const _MenuFromButton: Story = {
+  args: {
+    items: menuData,
+  },
+  render: (args) => {
+    return (
+      <Menu
+        {...args}
+        triggerComponent={<Button displayType="menu">Submit Menu</Button>}
+        data-testid="submit"
+      />
+    );
+  },
 };
 
-export const _MenuWithCustomComponent = args => (
-  <Menu
-    triggerComponent={<Link>Show options</Link>}
-    data-testid="submit"
-    {...args}
-  />
-);
-
-_MenuWithCustomComponent.args = {
-  items: menuDataWithCustomComponent,
+export const _MenuWithCustomComponent: Story = {
+  args: {
+    items: menuDataWithCustomComponent,
+  },
+  render: (args) => {
+    return (
+      <Menu
+        {...args}
+        triggerComponent={<Link>Show options</Link>}
+        data-testid="submit"
+      />
+    );
+  },
 };

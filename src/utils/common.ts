@@ -1,4 +1,11 @@
-import _ from 'lodash';
+import _ from "lodash";
 
-export const getDataProps = props =>
-  _.pickBy(props, (value, key) => key.startsWith('data-'));
+export const getPropsWithDefaults = <T>(
+  defaultProps: Partial<T>,
+  props: T
+): T => {
+  return { ...defaultProps, ...props };
+};
+
+export const getDataProps = (props: any) =>
+  _.pickBy(props, (_value, key) => key.startsWith("data-"));

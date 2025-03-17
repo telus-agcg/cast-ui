@@ -1,8 +1,7 @@
 import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../../themes';
+import styled from 'styled-components';
 
-export type Props = {
+export type Props = React.PropsWithChildren<{
   /**
    * Set Title Size
    *
@@ -15,7 +14,7 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 
 const STitle = styled.h1`
   font-family: ${(props: Props) =>
@@ -30,16 +29,12 @@ const STitle = styled.h1`
   margin: ${(props: Props) => props.theme.typography.title[props.size!].margin};
 `;
 
-export const Title: React.FunctionComponent<Props> = ({
-  theme,
-  children,
-  ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <STitle {...props}>{children}</STitle>
-  </ThemeProvider>
-);
-Title.defaultProps = {
-  theme: Themes.canopyTheme,
+const defaultProps = {
   size: 10,
+} satisfies Partial<Props>;
+
+export const Title: React.FunctionComponent<Props> = (props) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
+  const { children, ...rest } = propsWithDefaults;
+  return <STitle {...rest}>{children}</STitle>;
 };

@@ -1,12 +1,10 @@
-import * as React from 'react';
-import Icon from 'react-icons-kit';
-import { ic_info as InfoIcon } from 'react-icons-kit/md';
+import { ToolTip } from './Tooltip.component';
+import { Meta, StoryObj } from '@storybook/react';
+import { Info } from '@icons';
 
-import { Tooltip } from '../';
-
-export default {
+const meta: Meta<typeof ToolTip> = {
   title: 'Components/Data Display/Tooltip',
-  component: Tooltip,
+  component: ToolTip,
   argTypes: {
     theme: {
       table: {
@@ -28,49 +26,40 @@ export default {
         ],
       },
     },
-    size: {
-      control: {
-        type: 'select',
-        options: ['small', 'regular', 'large'],
-      },
-    },
     arrow: {
       control: {
         type: 'boolean',
       },
     },
   },
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'This Tooltip is based on [tippy.js](https://atomiks.github.io/tippyjs/).',
-      },
-    },
+};
+export default meta;
+
+type Story = StoryObj<typeof ToolTip>;
+
+export const _ToolTip: Story = {
+  args: {
+    arrow: true,
+    placement: 'bottom',
+  },
+  render: (args) => {
+    return (
+      <div>
+        {'Click the icon to see the tooltip'}
+        <ToolTip content={'this is a string'} {...args} trigger="click">
+          <span>
+            <Info
+              height={20}
+              width={20}
+              style={{ marginLeft: '5px', cursor: 'pointer' }}
+            />
+          </span>
+        </ToolTip>
+      </div>
+    );
   },
 };
 
-export const _Tooltip = args => (
-  <>
-    {'Click the icon to see the tooltip'}
-    <Tooltip content={<MyComponent />} {...args} trigger="click">
-      <span>
-        <Icon
-          size="20"
-          icon={InfoIcon}
-          style={{ marginLeft: '5px', cursor: 'pointer' }}
-        />
-      </span>
-    </Tooltip>
-  </>
-);
-
-_Tooltip.args = {
-  arrow: true,
-  size: 'regular',
-  placement: 'bottom',
-};
-
-const MyComponent = (props: any) => (
-  <div>This is a component to be rendered in the tooltip</div>
+const MyComponent = (_props: any) => (
+  <p>This is a component to be rendered in the tooltip</p>
 );

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import uuid from 'uuid';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import { v4 as uuidv4 } from 'uuid';
+import styled from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -58,9 +58,9 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   theme?: any;
 }
 
-const getCSSCalc: (str: string) => string = str => `calc(100% - ${str})`;
+const getCSSCalc: (str: string) => string = (str) => `calc(100% - ${str})`;
 
-const SDiv = styled.div`
+const SDiv = styled.div<Props>`
   input[type='checkbox'] {
     height: 0;
     width: 0;
@@ -152,48 +152,29 @@ const SDiv = styled.div`
   }
 `;
 
-export class Toggle extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+const defaultProps = {
+  toggleSize: 'md',
+  id: uuidv4(),
+} satisfies Partial<Props>;
 
-  static defaultProps = {
-    toggleSize: 'md',
-    theme: Themes.canopyTheme,
-    id: uuid.v4(),
-  };
+export const Toggle = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { onChange, children, checked, disabled, label, id, ...rest } =
+    propsWithDefaults;
 
-  onChange = event =>
-    this.props.onChange
-      ? this.props.onChange(event)
-      : alert(`Toggle with id ${this.props.id} was clicked!`);
+  const handleChange = (event) =>
+    onChange ? onChange(event) : alert(`Toggle with id ${id} was clicked!`);
 
-  render() {
-    const {
-      theme,
-      children,
-      checked,
-      disabled,
-      label,
-      id,
-
-      ...props
-    } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv disabled={!!disabled} {...props}>
-          <input
-            checked={checked}
-            disabled={!!disabled}
-            onChange={this.onChange}
-            type="checkbox"
-            id={id}
-          />
-          <label htmlFor={id}>{label}</label>
-        </SDiv>
-      </ThemeProvider>
-    );
-  }
-}
-
-export default Toggle;
+  return (
+    <SDiv disabled={!!disabled} {...rest}>
+      <input
+        checked={checked}
+        disabled={!!disabled}
+        onChange={handleChange}
+        type="checkbox"
+        id={id}
+      />
+      <label htmlFor={id}>{label}</label>
+    </SDiv>
+  );
+};

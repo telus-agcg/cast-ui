@@ -1,5 +1,4 @@
 import { defaultColors } from './default';
-export { ThemeProvider } from 'styled-components';
 
 export const canopyColors = {
   white: '#ffffff',
@@ -264,7 +263,7 @@ export const canopyTheme = {
     code: {
       background: canopyColors.lt400,
       fontFamily:
-        '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
+        '"Roboto Variable", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
       fontSize: '95%',
       lineHeight: '140%',
     },
@@ -323,7 +322,7 @@ export const canopyTheme = {
     },
     pre: {
       background: canopyColors.lt400,
-      fontFamily: '"Roboto Mono", Courier, monospace',
+      fontFamily: '"Roboto Variable", Courier, monospace',
       fontSize: '100%',
       lineHeight: '100%',
     },
@@ -427,7 +426,7 @@ export const canopyTheme = {
   checkbox: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: canopyColors.drk400,
+    borderColor: canopyColors.primary,
     disabledCheck: canopyColors.drk400,
     disabledText: canopyColors.drk400,
     unselectedColor: canopyColors.white,

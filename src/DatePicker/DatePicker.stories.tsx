@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { DatePicker } from '..';
+import { Meta, StoryObj } from '@storybook/react';
+import { DatePicker } from './DatePicker.component';
 
-const descriptionComponent = `
+const description = `
 This is a DatePicker is based on [react-datepicker](https://reactdatepicker.com/).
 `;
 
-export default {
+const meta: Meta<typeof DatePicker> = {
   title: 'Components/Interactions/Date Picker',
   component: DatePicker,
   argTypes: {
@@ -73,35 +73,34 @@ export default {
     wrapperId: {
       control: false,
     },
-    onDateChange: {
-      action: {
-        type: 'onDateChange',
-      },
-    },
+    // onDateChange: {
+    //   action: {
+    //     type: 'onDateChange',
+    //   },
+    // },
     onFocusChange: {
       control: false,
     },
   },
   parameters: {
-    docs: {
-      description: {
-        component: descriptionComponent,
-      },
-    },
+    description,
   },
 };
 
-export const _DatePicker = args => <DatePicker key="0" {...args} />;
+export default meta;
 
-_DatePicker.args = {
-  datePickerSize: 'md',
-  selectsRange: false,
-  datePickerStyle: 'primary',
-  iconPosition: 'right',
-  invalid: false,
-  invalidText: 'A valid value is required',
-  monthsShown: 1,
-  placeholderText: 'Date',
-  showIcon: true,
-  withPortal: false,
+type Story = StoryObj<typeof DatePicker>;
+
+export const _DatePicker: Story = {
+  args: {
+    datePickerSize: 'md',
+    datePickerStyle: 'primary',
+    iconPosition: 'right',
+    invalid: false,
+    invalidText: 'A valid value is required',
+    monthsShown: 1,
+    placeholderText: 'Date',
+    showIcon: true,
+    withPortal: false,
+  },
 };

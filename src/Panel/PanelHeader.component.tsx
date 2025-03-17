@@ -1,15 +1,9 @@
 import * as React from 'react';
-import styled, { withTheme, ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
-import Title from '../Typography/Title';
+import styled from 'styled-components';
+import { Title } from '@typography';
+import { getPropsWithDefaults } from '@utils';
 
-export type Props = {
-  /**
-   * The content of the panel header
-   *
-   * @default null
-   * */
-  children?: any;
+export type Props = React.PropsWithChildren<{
   /**
    * The name of the panel
    *
@@ -54,7 +48,7 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 
 const SPanelHeader = styled.div`
   display: flex;
@@ -76,7 +70,7 @@ const SPanelTitle = styled(Title)`
 `;
 
 /* tslint:disable:max-line-length */
-const SExpandIcon = styled.div`
+const SExpandIcon = styled.div<{ iconPosition: 'right' | 'left' | undefined }>`
   float: ${(props: Props) => props.iconPosition};
   padding: 0;
   margin-right: 8px;
@@ -95,7 +89,9 @@ const SExpandIcon = styled.div`
   background-position: center;
 `;
 
-const SCollapseIcon = styled.div`
+const SCollapseIcon = styled.div<{
+  iconPosition: 'right' | 'left' | undefined;
+}>`
   float: ${(props: Props) => props.iconPosition};
   padding: 0;
   margin-right: 8px;
@@ -125,57 +121,43 @@ const ChevronImage: Function = (
     ? collapsedIcon || <SCollapseIcon iconPosition={iconPosition} />
     : expandedIcon || <SExpandIcon iconPosition={iconPosition} />;
 
-const initialState = {
+const defaultProps = {
+  panelStyle: 'primary',
+  toggleItem: () => {},
   isCollapsed: undefined,
+} satisfies Partial<Props>;
+
+export const PanelHeader = (props: Props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const {
+    toggleItem,
+    name,
+    title,
+    theme,
+    collapsedIcon,
+    expandedIcon,
+    iconPosition,
+    isCollapsed,
+    ...rest
+  } = propsWithDefaults;
+
+  return (
+    <SPanelHeader
+      onClick={(e: any) => toggleItem!(e, theme)}
+      {...propsWithDefaults}
+    >
+      <SPanelTitle size={20}>
+        {name && (
+          <b>
+            {name}
+            {title ? ':' : ''}
+          </b>
+        )}{' '}
+        {title}{' '}
+      </SPanelTitle>
+      {typeof isCollapsed !== 'undefined'
+        ? ChevronImage(isCollapsed, iconPosition, collapsedIcon, expandedIcon)
+        : ''}
+    </SPanelHeader>
+  );
 };
-type State = Readonly<typeof initialState>;
-
-export class PanelHeader extends React.Component<Props> {
-  static defaultProps = {
-    panelStyle: 'primary',
-    toggleItem: () => {},
-    theme: Themes.canopyTheme,
-  };
-
-  readonly state: State = initialState;
-  isCollapsed: boolean = false;
-
-  render() {
-    const {
-      toggleItem,
-      name,
-      title,
-      theme,
-      collapsedIcon,
-      expandedIcon,
-      iconPosition,
-      isCollapsed,
-      ...props
-    } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SPanelHeader onClick={(e: any) => toggleItem!(e, theme)} {...props}>
-          <SPanelTitle size={20}>
-            {name && (
-              <b>
-                {name}
-                {title ? ':' : ''}
-              </b>
-            )}{' '}
-            {title}{' '}
-          </SPanelTitle>
-          {typeof isCollapsed !== 'undefined'
-            ? ChevronImage(
-                isCollapsed,
-                iconPosition,
-                collapsedIcon,
-                expandedIcon,
-              )
-            : ''}
-        </SPanelHeader>
-      </ThemeProvider>
-    );
-  }
-}
-
-export default withTheme(PanelHeader);

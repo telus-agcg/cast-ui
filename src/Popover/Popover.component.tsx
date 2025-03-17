@@ -1,7 +1,6 @@
 import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import Tippy, { TippyProps } from '@tippy.js/react';
-import { Themes } from '../themes';
+import styled from 'styled-components';
+import Tippy, { TippyProps } from '@tippyjs/react';
 
 export interface Props extends TippyProps {
   /** anchor for the popover  */
@@ -13,16 +12,18 @@ export interface Props extends TippyProps {
   theme?: any;
 }
 
-const TippyPopover: React.FunctionComponent<Props> = (props: Props) => (
-  <Tippy {...props} />
-);
-TippyPopover.defaultProps = {
+const tippyDefaultProps = {
   animateFill: false,
   animation: 'scale',
   interactive: true,
   interactiveBorder: 10,
   theme: 'light-border',
   trigger: 'click',
+} satisfies Partial<TippyProps>;
+
+const TippyPopover: React.FunctionComponent<Props> = (props: Props) => {
+  const propsWithDefaults = { ...tippyDefaultProps, ...props };
+  return <Tippy {...propsWithDefaults} />;
 };
 
 const SPopover = styled(TippyPopover)`
@@ -69,28 +70,22 @@ const SPopover = styled(TippyPopover)`
   }
 `;
 
-export class Popover extends React.Component<Props> {
-  static defaultProps = {
-    arrow: false,
-    placement: 'bottom-start',
-    theme: Themes.canopyTheme,
-  };
-  public render() {
-    const { theme, children, ...props } = this.props;
-    const distance =
-      props.distance || props.arrow
-        ? theme.popover.withArrowDistance
-        : theme.popover.withoutArrowDistance;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <React.Fragment>
-          <SPopover distance={distance} {...props}>
-            {children}
-          </SPopover>
-        </React.Fragment>
-      </ThemeProvider>
-    );
-  }
-}
+const defaultProps = {
+  arrow: false,
+  placement: 'bottom-start',
+} satisfies Partial<Props>;
 
-export default Popover;
+export const Popover = (props: Props) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
+  const { theme, arrow, children } = propsWithDefaults;
+
+  const distance = arrow
+    ? theme.popover.withArrowDistance
+    : theme.popover.withoutArrowDistance;
+
+  return (
+    <React.Fragment>
+      <SPopover {...propsWithDefaults}>{children}</SPopover>
+    </React.Fragment>
+  );
+};

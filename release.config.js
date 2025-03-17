@@ -1,8 +1,11 @@
 const branch = process.env.BRANCH_NAME;
-console.log(branch);
 
 const config = {
-  branches: ['master', { name: 'beta', prerelease: true }],
+  branches: [
+    'master',
+    { name: 'next', prerelease: true },
+    { name: 'beta', prerelease: true },
+  ],
   plugins: [
     'commit-analyzer-fail-on-no-release',
     '@semantic-release/release-notes-generator',
@@ -12,7 +15,7 @@ const config = {
 };
 if (
   config.branches.some(
-    it => it === branch || (it.name === branch && !it.prerelease),
+    (it) => it === branch || (it.name === branch && !it.prerelease),
   )
 ) {
   config.plugins.push(
