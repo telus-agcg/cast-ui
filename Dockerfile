@@ -1,5 +1,5 @@
 # base layer
-FROM node:23-alpine AS base
+FROM node:21-alpine AS base
 
 RUN mkdir -p /usr/src/app
 
