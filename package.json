@@ -17,7 +17,8 @@
     "prebuild": "rm -rf dist",
     "prepublish": "npm run build",
     "start": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "semantic-release": "semantic-release"
   },
   "files": [
     "dist"
