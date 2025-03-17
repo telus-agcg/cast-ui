@@ -32,7 +32,7 @@ jobs:
         run: npm run lint
 
       - name: Semantic Release
-        run: npm run semantic-release
+        run: npx semantic-release
         env:
           BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
