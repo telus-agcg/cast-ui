@@ -1,8 +1,8 @@
-import * as React from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { Display } from "./Display/Display.component";
-import { Title } from "./Title/Title.component";
-import { Header } from "./Header/Header.component";
+import * as React from 'react';
+import styled from 'styled-components';
+import { Display } from './Display/Display.component';
+import { Header } from './Header/Header.component';
+import { Title } from './Title/Title.component';
 
 export type Props = React.PropsWithChildren<{
   /**
@@ -29,10 +29,9 @@ const MediumFont = styled.p`
     props.theme.typography.fontMedium.fontFamily};
 `;
 
-export const Typography: React.FunctionComponent<Props> = (props: Props) => {
-  const { theme } = props;
+export const Typography: React.FunctionComponent<Props> = (_props: Props) => {
   return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <>
       <STypography>
         <Display size={20}>Display Size 20</Display>
         <Display size={10}>Display Size 10</Display>
@@ -50,7 +49,7 @@ export const Typography: React.FunctionComponent<Props> = (props: Props) => {
       </Link> */}
         <br />
         <p>
-          Lorem ipsum dolor sit amet, consectetur{" "}
+          Lorem ipsum dolor sit amet, consectetur{' '}
           {/* <Link href="https://www.telus.com/agcg" target="_blank">
           link in text
         </Link> */}
@@ -59,6 +58,6 @@ export const Typography: React.FunctionComponent<Props> = (props: Props) => {
       </STypography>
       <MediumFont>This is the medium font</MediumFont>
       <BoldFont>This is the bold font</BoldFont>
-    </ThemeProvider>
+    </>
   );
 };

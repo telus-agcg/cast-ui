@@ -1,6 +1,5 @@
-import { Themes } from "@themes";
-import * as React from "react";
-import styled, { ThemeProvider } from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 
 export type Props = React.PropsWithChildren<{
   /**
@@ -31,16 +30,11 @@ const SDisplay = styled.h1`
 `;
 
 const defaultProps = {
-  theme: Themes.canopyTheme,
   size: 10,
 } satisfies Partial<Props>;
 
 export const Display: React.FunctionComponent<Props> = (props) => {
   const propsWithDefaults = { ...defaultProps, ...props };
-  const { theme, children } = propsWithDefaults;
-  return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SDisplay {...propsWithDefaults}>{children}</SDisplay>
-    </ThemeProvider>
-  );
+  const { children, ...rest } = propsWithDefaults;
+  return <SDisplay {...rest}>{children}</SDisplay>;
 };

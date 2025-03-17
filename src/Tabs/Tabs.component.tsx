@@ -1,10 +1,8 @@
-import * as React from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { Tabs as ReactTabs, TabsProps } from "react-tabs";
-import { getPropsWithDefaults, Omit } from "@utils";
-import { Themes } from "@themes";
+import styled from 'styled-components';
+import { Tabs as ReactTabs, TabsProps } from 'react-tabs';
+import { getPropsWithDefaults, Omit } from '@utils';
 
-export interface Props extends Omit<TabsProps, "as"> {
+export interface Props extends Omit<TabsProps, 'as'> {
   /**
    * Specify the tab that should be open on initial render.
    * This is a zero-based index, so first tab is 0, second tab is 1, ...
@@ -31,7 +29,6 @@ const STabWrapperDiv = styled.div`
 `;
 
 const defaultProps = {
-  theme: Themes.canopyTheme,
   onSelect: (index) => {
     console.log(index);
   },
@@ -40,12 +37,10 @@ const defaultProps = {
 
 export const Tabs = (props: Props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { children, theme, ...rest } = propsWithDefaults;
+  const { children, ...rest } = propsWithDefaults;
   return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <STabWrapperDiv>
-        <ReactTabs {...rest}>{children}</ReactTabs>
-      </STabWrapperDiv>
-    </ThemeProvider>
+    <STabWrapperDiv>
+      <ReactTabs {...rest}>{children}</ReactTabs>
+    </STabWrapperDiv>
   );
 };

@@ -1,7 +1,6 @@
-import { Themes } from "@themes";
-import { getPropsWithDefaults } from "@utils";
-import * as React from "react";
-import styled, { ThemeProvider } from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
 
 export type Props = {
   /**
@@ -36,7 +35,7 @@ const SSpinner = styled.div`
   position: relative;
   margin: auto;
   &:before {
-    content: "";
+    content: '';
     box-sizing: border-box;
     position: absolute;
     top: 50%;
@@ -64,16 +63,10 @@ const SSpinner = styled.div`
 const defaultProps = {
   size: 50,
   animationSpeed: 1,
-  transitionType: "linear",
-  theme: Themes.canopyTheme,
+  transitionType: 'linear',
 } satisfies Partial<Props>;
 
 export const Spinner: React.FunctionComponent<Props> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { theme } = propsWithDefaults;
-  return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SSpinner {...propsWithDefaults} />
-    </ThemeProvider>
-  );
+  return <SSpinner {...propsWithDefaults} />;
 };

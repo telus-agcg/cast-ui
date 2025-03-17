@@ -1,7 +1,7 @@
-import { Themes } from "@themes";
-import { getPropsWithDefaults } from "@utils";
-import * as React from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { Themes } from '@themes';
+import { getPropsWithDefaults } from '@utils';
+import * as React from 'react';
+import styled from 'styled-components';
 
 export type Props = React.PropsWithChildren<{
   /**
@@ -21,7 +21,7 @@ export type Props = React.PropsWithChildren<{
    *
    *  @default 'primary'
    */
-  panelStyle: "primary" | "secondary" | "success" | "warning" | "danger";
+  panelStyle: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   /**
    * From theme provider
    *
@@ -37,21 +37,13 @@ const PanelWrapper = styled.div<Props>`
   box-shadow: ${(props: Props) => props.theme.panel.boxShadow};
 `;
 
-const initialState = {};
-
-type State = Readonly<typeof initialState>;
-
 const defaultProps = {
-  panelStyle: "primary",
+  panelStyle: 'primary',
   theme: Themes.canopyTheme,
 } satisfies Partial<Props>;
 
 export const Panel = (props: Props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { theme, children, ...rest } = propsWithDefaults;
-  return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <PanelWrapper {...props}>{children}</PanelWrapper>
-    </ThemeProvider>
-  );
+  const { children } = propsWithDefaults;
+  return <PanelWrapper {...propsWithDefaults}>{children}</PanelWrapper>;
 };

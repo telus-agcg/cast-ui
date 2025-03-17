@@ -1,13 +1,12 @@
-import * as React from "react";
-import styled, { ThemeProvider } from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 import {
   PaginationPageButton,
   PaginationButtonNextPrev,
   PaginationButtonFirstLast,
-} from "./PaginationButtons";
-import { v4 as uuidv4 } from "uuid";
-import { Themes } from "@themes";
-import { CustomSelect } from "../Select/Select.component";
+} from './PaginationButtons';
+import { v4 as uuidv4 } from 'uuid';
+import { CustomSelect } from '../Select/Select.component';
 
 export const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
 
@@ -41,7 +40,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default 'md'
    **/
-  btnSize?: "sm" | "md" | "lg";
+  btnSize?: 'sm' | 'md' | 'lg';
   /**
    * Specify any child objects (if applicable)
    **/
@@ -60,14 +59,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   rowsSelectorText?: string;
   rowsText?: string;
 }
-const initialState = {
-  activePage: 1,
-  visiblePages: [],
-};
-type State = {
-  activePage: number;
-  visiblePages: number[];
-};
+
 const SDivPaginationWrapper = styled.div`
   font-family: ${(props) => props.theme.typography.fontFamily};
   font-size: ${(props) => props.theme.body.fontSize};
@@ -94,10 +86,10 @@ const SPagninationControls = styled.div`
 `;
 
 const defaultProps = {
-  btnSize: "md",
+  btnSize: 'md',
   showPageSizeOptions: false,
-  rowsSelectorText: "",
-  rowsText: "",
+  rowsSelectorText: '',
+  rowsText: '',
   page: 0,
   pageSizeOptions: PAGE_SIZE_OPTIONS,
   pageSize: 10,
@@ -171,7 +163,7 @@ export const Pagination = (props: Props) => {
       value: i,
     }));
     const selectedOption = options.find(
-      (option) => option.pageSize === pageSize
+      (option) => option.pageSize === pageSize,
     );
     return (
       <SSpanPageSizeOptionsSelectWrapper className="select-wrap -pageSizeOptions">
@@ -187,7 +179,7 @@ export const Pagination = (props: Props) => {
           controlSpecificProps={{
             defaultValue: selectedOption,
             isSearchable: false,
-            "aria-label": rowsSelectorText,
+            'aria-label': rowsSelectorText,
           }}
         />
         <div className="showText">Rows per page</div>
@@ -232,7 +224,7 @@ export const Pagination = (props: Props) => {
                 <PageButtonComponent
                   type="button"
                   btnSize="md"
-                  data-selected={activePage === page ? "" : undefined}
+                  data-selected={activePage === page ? '' : undefined}
                   onClick={() => changePage(page)}
                 >
                   {page}

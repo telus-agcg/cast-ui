@@ -1,16 +1,16 @@
-import React, { useState, useEffect, SVGProps } from "react";
-import _ from "lodash";
-import styled from "styled-components";
-import { SideNavItemIcon } from "./SideNavItemIcon.component";
-import { Link } from "../Typography/Link/Link.component";
+import React, { useState, useEffect, SVGProps } from 'react';
+import _ from 'lodash';
+import styled from 'styled-components';
+import { SideNavItemIcon } from './SideNavItemIcon.component';
+import { Link } from '../Typography/Link/Link.component';
 
 const SSubMenuItem = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
 `;
+
 const SSubNavWrapper = styled.div<{ show: boolean }>`
   display: flex;
-  height: ${(props) => (props.show ? "auto" : 0)};
+  height: ${(props) => (props.show ? 'auto' : 0)};
   opacity: ${(props) => (props.show ? 1 : 0)};
   flex-direction: column;
   &.fade-enter {
@@ -29,60 +29,55 @@ const SidebarLink = styled(Link)<{
   display: inline-flex;
   align-items: center;
   padding: ${(props) =>
-    props.level === 1 ? "8px 0px 8px 46px" : props.isOpen ? "8px 0px" : "8px"};
+    props.level === 1 ? '8px 0px 8px 46px' : props.isOpen ? '8px 0px' : '8px'};
   gap: 12px;
   color: ${(props) =>
     props.theme.sidenav[
-      `${props.activeItem || props.isActiveSubMenuItem ? "active" : ""}navItem`
+      `${props.activeItem || props.isActiveSubMenuItem ? 'active' : ''}navItem`
     ].color};
   font-weight: ${(props) =>
     props.theme.sidenav[
-      `${props.activeItem || props.isActiveSubMenuItem ? "active" : ""}navItem`
+      `${props.activeItem || props.isActiveSubMenuItem ? 'active' : ''}navItem`
     ].fontWeight};
   cursor: ${(props) =>
     props.disabled
-      ? "not-allowed"
-      : props.theme.sidenav[`${props.activeSideNavItem ? "active" : ""}navItem`]
+      ? 'not-allowed'
+      : props.theme.sidenav[`${props.activeSideNavItem ? 'active' : ''}navItem`]
           .cursor};
   opacity: ${(props) =>
     props.disabled
-      ? ".6"
-      : props.theme.sidenav[`${props.activeItem ? "active" : ""}navItem`]
+      ? '.6'
+      : props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`]
           .opacity};
   :hover {
-    background: ${(props) =>
+    background: '${(props) =>
       props.level === 1 || (!props.isOpen && !props.disabled)
         ? props.theme.sidenav.activenavItem.background
-        : ""};
+        : ''}';
     outline: ${(props) =>
       !props.isOpen && !props.disabled
         ? props.theme.sidenav.activenavItem.hoverBorder
-        : ""};
+        : ''};
     border-radius: 7px;
     transition: color 0.3s;
   }
-  :hover,
-  :visited,
-  :active,
-  :link {
+  &:hover,
+  &:visited,
+  &:active,
+  &:link {
     text-decoration: none;
   }
   .custom-icon-svg {
-    path {
-      fill: ${(props) =>
-        props.theme.sidenav[`${props.activeItem ? "active" : ""}navItem`]
-          .color};
-    }
+    color: ${(props) =>
+      props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`].color}
     :hover {
-      path {
-        fill: ${(props) => props.theme.sidenav[`activenavItem`].color};
-      }
+      color: ${(props) => props.theme.sidenav[`activenavItem`].color};
     }
   }
 `;
 
 const SidebarLabel = styled.span<{ isOpen: boolean }>`
-  display: ${(props) => (props.isOpen ? "block" : "none")};
+  display: ${(props) => (props.isOpen ? 'block' : 'none')};
 `;
 
 const SubMenu = ({
@@ -194,7 +189,7 @@ const SubMenu = ({
       </SidebarLink>
       <SSubNavWrapper
         show={isOpen && subnav}
-        className={isOpen && subnav ? "fade-enter" : ""}
+        className={isOpen && subnav ? 'fade-enter' : ''}
       >
         {item.subNav &&
           item.subNav.map((subMenuItem, index) => {

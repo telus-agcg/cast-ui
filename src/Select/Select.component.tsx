@@ -1,15 +1,14 @@
-import * as React from "react";
-import _ from "lodash";
-import Select from "react-select";
-import CreatableSelect from "react-select/creatable";
-import styled, { ThemeProvider } from "styled-components";
-import { v4 as uuidv4 } from "uuid";
-import { SelectCheckboxProps } from "./SelectCheckbox.component";
-import { components as SelectComponents } from "react-select";
-import { SelectMenuList } from "./SelectMenuList";
-import { Themes } from "@themes";
-import { getDataProps } from "@utils";
-import { ErrorMessage } from "@typography";
+import * as React from 'react';
+import _ from 'lodash';
+import { v4 as uuidv4 } from 'uuid';
+import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
+import styled from 'styled-components';
+import { components as SelectComponents } from 'react-select';
+import { getDataProps } from '@utils';
+import { SelectCheckboxProps } from './SelectCheckbox.component';
+import { SelectMenuList } from './SelectMenuList';
+import { ErrorMessage } from '@typography';
 
 export type OptionType = {
   value: string;
@@ -28,7 +27,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default 'md'
    **/
-  selectSize?: "sm" | "md" | "lg";
+  selectSize?: 'sm' | 'md' | 'lg';
   /**
    * The ID of the control
    *
@@ -156,7 +155,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
    *
    * @default 'default'
    **/
-  optionType?: "default" | "checkbox";
+  optionType?: 'default' | 'checkbox';
 }
 
 const SDiv = styled.div<Props>`
@@ -166,7 +165,7 @@ const SDiv = styled.div<Props>`
     props.theme.common[props.selectSize!].fontSize};
   color: ${(props: Props) => props.theme.reverseText};
   width: ${(props: Props) => props.theme.select.width};
-  cursor: ${(props: Props) => (props.isDisabled ? "not-allowed" : "auto")};
+  cursor: ${(props: Props) => (props.isDisabled ? 'not-allowed' : 'auto')};
   div[aria-invalid] & {
     border: 1px solid red;
   }
@@ -199,7 +198,7 @@ const SDiv = styled.div<Props>`
         props.theme.common.borderColor ||
         (props.invalid
           ? props.theme.validation.borderColor
-          : props.theme.select.borderColor || "inherit")};
+          : props.theme.select.borderColor || 'inherit')};
       &:hover {
         border-color: ${(props: Props) => props.theme.colors.drk800};
       }
@@ -338,18 +337,17 @@ const SSelectOption = styled.div`
 `;
 
 const defaultProps = {
-  theme: Themes.canopyTheme,
-  id: "select",
-  optionType: "default",
+  id: 'select',
+  optionType: 'default',
   isFilterable: true,
-  selectSize: "md",
+  selectSize: 'md',
 } satisfies Partial<Props>;
 
 export const CustomSelect: React.FC<Props> = (props) => {
   const propsWithDefaults = { ...defaultProps, ...props };
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = React.useState(false);
-  const [filterValue, setFilterValue] = React.useState("");
+  const [filterValue, setFilterValue] = React.useState('');
 
   const {
     theme,
@@ -366,7 +364,7 @@ export const CustomSelect: React.FC<Props> = (props) => {
     formatGroupLabel,
     clearText,
     selectedOption,
-    invalidText = "",
+    invalidText = '',
     optionType,
     onChange,
     ...restProps
@@ -376,21 +374,21 @@ export const CustomSelect: React.FC<Props> = (props) => {
     const onDomClick = (event) => {
       const container = containerRef.current;
       if (container) {
-        const menuElement = container.querySelector(".react-select__menu");
+        const menuElement = container.querySelector('.react-select__menu');
         if (
           !container.contains(event.target) ||
           !menuElement ||
           !menuElement.contains(event.target as Node)
         ) {
           setIsFocused(false);
-          setFilterValue("");
+          setFilterValue('');
         }
       }
     };
-    document.addEventListener("mousedown", onDomClick);
+    document.addEventListener('mousedown', onDomClick);
 
     return () => {
-      document.removeEventListener("mousedown", onDomClick);
+      document.removeEventListener('mousedown', onDomClick);
     };
   }, []);
 
@@ -404,7 +402,7 @@ export const CustomSelect: React.FC<Props> = (props) => {
   };
 
   const handleSelectChange = (event) => {
-    console.log("in here");
+    console.log('in here');
     if (onChange instanceof Function) onChange(event);
     if (isFilterable && !isMulti) {
       setIsFocused(false);
@@ -412,15 +410,15 @@ export const CustomSelect: React.FC<Props> = (props) => {
   };
 
   const BaseSelectComponent = creatable ? CreatableSelect : Select;
-  const errorId = invalid ? `${id}-error-msg` : "";
+  const errorId = invalid ? `${id}-error-msg` : '';
   const closeMenuOnSelect =
-    typeof props.closeMenuOnSelect !== "undefined"
+    typeof props.closeMenuOnSelect !== 'undefined'
       ? props.closeMenuOnSelect
       : !isMulti;
   const uniqueId = uuidv4();
 
   const selectCheckboxProps =
-    optionType === "checkbox"
+    optionType === 'checkbox'
       ? SelectCheckboxProps({
           options,
           isMulti,
@@ -464,7 +462,7 @@ export const CustomSelect: React.FC<Props> = (props) => {
   };
 
   const components = {
-    ...(optionType === "default" && {
+    ...(optionType === 'default' && {
       MultiValueRemove,
       Option: DefaultSelectOption,
     }),
@@ -476,51 +474,49 @@ export const CustomSelect: React.FC<Props> = (props) => {
   const dataProps = getDataProps(props);
 
   return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SDiv
-        {...dataProps}
-        ref={containerRef}
-        className="select-wrapper"
-        selectSize={selectSize}
+    <SDiv
+      {...dataProps}
+      ref={containerRef}
+      className="select-wrapper"
+      selectSize={selectSize}
+      aria-invalid={invalid ? true : undefined}
+      aria-describedby={errorId}
+      invalid={invalid}
+      id={uniqueId}
+      isDisabled={isDisabled}
+    >
+      <BaseSelectComponent
+        className={`react-select-component ${restProps.className}`}
+        closeMenuOnSelect={closeMenuOnSelect}
+        classNamePrefix="react-select"
+        isDisabled={isDisabled}
+        isClearable={isClearable}
+        isSearchable={false}
+        clearText={clearText}
+        isMulti={isMulti}
+        value={selectedOption}
+        options={options}
+        id={id}
+        invalid={invalid}
         aria-invalid={invalid ? true : undefined}
         aria-describedby={errorId}
-        invalid={invalid}
-        id={uniqueId}
-        isDisabled={isDisabled}
-      >
-        <BaseSelectComponent
-          className={`react-select-component ${restProps.className}`}
-          closeMenuOnSelect={closeMenuOnSelect}
-          classNamePrefix="react-select"
-          isDisabled={isDisabled}
-          isClearable={isClearable}
-          isSearchable={false}
-          clearText={clearText}
-          isMulti={isMulti}
-          value={selectedOption}
-          options={options}
-          id={id}
-          invalid={invalid}
-          aria-invalid={invalid ? true : undefined}
-          aria-describedby={errorId}
-          selectSize={selectSize}
-          dropdownColor={theme.primary}
-          menuPortalTarget={document.getElementById(uniqueId)}
-          formatGroupLabel={formatGroupLabel}
-          components={components}
-          inputValue={filterValue}
-          menuIsOpen={isFocused || undefined}
-          isFocused={isFocused || undefined}
-          onInputChange={(value) => setFilterValue(value)}
-          onMenuInputFocus={() => setIsFocused(true)}
-          onBlur={handleBlur}
-          onChange={handleSelectChange}
-          {...restProps}
-          {...controlSpecificProps}
-          {...selectCheckboxProps}
-        />
-        {invalid && <ErrorMessage id={errorId} message={invalidText} />}
-      </SDiv>
-    </ThemeProvider>
+        selectSize={selectSize}
+        dropdownColor={theme.primary}
+        menuPortalTarget={document.getElementById(uniqueId)}
+        formatGroupLabel={formatGroupLabel}
+        components={components}
+        inputValue={filterValue}
+        menuIsOpen={isFocused || undefined}
+        isFocused={isFocused || undefined}
+        onInputChange={(value) => setFilterValue(value)}
+        onMenuInputFocus={() => setIsFocused(true)}
+        onBlur={handleBlur}
+        onChange={handleSelectChange}
+        {...restProps}
+        {...controlSpecificProps}
+        {...selectCheckboxProps}
+      />
+      {invalid && <ErrorMessage id={errorId} message={invalidText} />}
+    </SDiv>
   );
 };

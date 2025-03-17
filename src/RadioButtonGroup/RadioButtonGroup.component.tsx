@@ -1,11 +1,9 @@
-import * as React from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { getPropsWithDefaults, Omit } from "@utils";
-import { Themes } from "@themes";
-import { RadioButton } from "../RadioButton/RadioButton.component";
+import * as React from 'react';
+import { getPropsWithDefaults, Omit } from '@utils';
+import { RadioButton } from '../RadioButton/RadioButton.component';
 
 export interface Props
-  extends Omit<React.InputHTMLAttributes<HTMLDivElement>, "onChange"> {
+  extends Omit<React.InputHTMLAttributes<HTMLDivElement>, 'onChange'> {
   /**
    * Specify the value of the radio button to select by default
    *
@@ -33,7 +31,7 @@ export interface Props
   onChange?(
     value: string,
     name: string,
-    event: React.MouseEvent<HTMLElement>
+    event: React.MouseEvent<HTMLElement>,
   ): void;
   /**
    * From ThemeProvider
@@ -43,19 +41,13 @@ export interface Props
   theme: any;
 }
 
-const initialState = {
-  selected: null,
-};
-type State = Readonly<typeof initialState>;
-
 const defaultProps = {
-  theme: Themes.canopyTheme,
   onChange: () => {},
 } satisfies Partial<Props>;
 
 export const RadioButtonGroup = (props: Props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const [selected, setSelected] = React.useState("");
+  const [selected, setSelected] = React.useState('');
 
   const { theme, name, defaultChecked, valueChecked, onChange, children } =
     propsWithDefaults;
@@ -89,9 +81,5 @@ export const RadioButtonGroup = (props: Props) => {
     return newChildren;
   };
 
-  return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <div>{getRadioButtons()}</div>
-    </ThemeProvider>
-  );
+  return <div>{getRadioButtons()}</div>;
 };

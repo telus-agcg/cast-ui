@@ -1,10 +1,8 @@
-import * as React from "react";
-import _ from "lodash";
-import clsx from "clsx";
-import styled, { ThemeProvider } from "styled-components";
-
-import { getDataProps } from "@utils";
-import { Themes } from "@themes";
+import * as React from 'react';
+import _ from 'lodash';
+import clsx from 'clsx';
+import styled from 'styled-components';
+import { getDataProps } from '@utils';
 
 export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
   /**
@@ -76,8 +74,7 @@ const SLink = styled.a`
 `;
 
 const defaultProps = {
-  theme: Themes.canopyTheme,
-  href: "javascript:void(0)",
+  href: 'javascript:void(0)',
   disabled: false,
 } satisfies Partial<Props>;
 
@@ -86,7 +83,6 @@ export const Link: React.FunctionComponent<Props> = (props: Props) => {
   const dataProps: any = getDataProps(propsWithDefaults);
   const {
     id,
-    theme,
     disabled,
     className,
     children,
@@ -96,12 +92,12 @@ export const Link: React.FunctionComponent<Props> = (props: Props) => {
     target,
   } = propsWithDefaults;
   return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+    <>
       {disabled ? (
         <SLink
           {...dataProps}
           id={id}
-          className={clsx([className, "disabled"])}
+          className={clsx([className, 'disabled'])}
           onClick={(e) => e.preventDefault()}
         >
           {children}
@@ -119,6 +115,6 @@ export const Link: React.FunctionComponent<Props> = (props: Props) => {
           {children}
         </SLink>
       )}
-    </ThemeProvider>
+    </>
   );
 };

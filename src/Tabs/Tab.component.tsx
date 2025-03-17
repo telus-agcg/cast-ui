@@ -1,14 +1,12 @@
-import * as React from "react";
 import {
   Tab as ReactTab,
   ReactTabsFunctionComponent,
   TabProps,
-} from "react-tabs";
-import styled, { ThemeProvider } from "styled-components";
-import { getPropsWithDefaults, Omit } from "@utils";
-import { Themes } from "@themes";
+} from 'react-tabs';
+import styled from 'styled-components';
+import { getPropsWithDefaults, Omit } from '@utils';
 
-export interface Props extends Omit<TabProps, "as"> {
+export interface Props extends Omit<TabProps, 'as'> {
   /**
    * Specify the title text of the tab
    *
@@ -35,20 +33,7 @@ const ReactTabProxy = ({ children, className, ...props }: any) => (
   </ReactTab>
 );
 
-// const CustomTab: ReactTabsFunctionComponent<Props> = ({
-//   children,
-//   className,
-//   ...otherProps
-// }) => {
-//   console.log(otherProps);
-//   return (
-//     <ReactTab {...otherProps} className={`${className} react-tabs__tab`}>
-//       {children}
-//     </ReactTab>
-//   );
-// };
-
-ReactTabProxy.tabsRole = "Tab"; // Required field to use your custom Tab
+ReactTabProxy.tabsRole = 'Tab'; // Required field to use your custom Tab
 
 const SReactTab = styled(ReactTabProxy)`
   color: ${(props) => props.theme.tabs.tab.color};
@@ -75,36 +60,30 @@ const SReactTab = styled(ReactTabProxy)`
     background-color: ${(props) => props.theme.colors.primaryBackground};
   }
 
-  &[class$="--selected"] {
+  &[class$='--selected'] {
     background-color: ${(props) => props.theme.tabs.activetab.backgroundColor};
     box-shadow: 0 -${(props) => props.theme.tabs.bottomBorderWidth} ${(props) =>
         props.theme.tabs.activetab.borderColor} inset;
     color: ${(props) => props.theme.tabs.activetab.color};
   }
 
-  &[class$="--disabled"] {
+  &[class$='--disabled'] {
     background-color: ${(props) =>
       props.theme.tabs.disabledtab.backgroundColor};
     color: ${(props) => props.theme.colors.drk400};
     cursor: not-allowed;
   }
 
-  &[class$="--disabled"]:focus,
-  &[class$="--disabled"]:hover {
+  &[class$='--disabled']:focus,
+  &[class$='--disabled']:hover {
     background-color: ${(props) => props.theme.tabs.tab.backgroundColor};
   }
 `;
 
-const defaultProps = {
-  theme: Themes.canopyTheme,
-} satisfies Partial<Props>;
+const defaultProps = {} satisfies Partial<Props>;
 
 export const Tab = (props: Props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { title, theme, ...rest } = propsWithDefaults;
-  return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SReactTab {...propsWithDefaults}>{title}</SReactTab>
-    </ThemeProvider>
-  );
+  const { title, ...rest } = propsWithDefaults;
+  return <SReactTab {...propsWithDefaults}>{title}</SReactTab>;
 };

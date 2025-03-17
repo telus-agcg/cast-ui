@@ -1,7 +1,7 @@
-import * as React from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { getPropsWithDefaults, nameSpace } from "@utils";
-import { Themes } from "@themes";
+import * as React from 'react';
+import styled from 'styled-components';
+import { getPropsWithDefaults, nameSpace } from '@utils';
+import { Themes } from '@themes';
 
 export type Props = React.PropsWithChildren<{
   /**
@@ -19,9 +19,9 @@ const SSideNavItemIcon = styled.div<{ isOpen: boolean; item: any }>`
   :hover {
     background: ${(props) =>
       props.isOpen || props.item.disabled
-        ? ""
-        : props.theme.sidenav["activenavItem"].background};
-    border-radius: ${(props) => (props.isOpen ? "" : "4px")};
+        ? ''
+        : props.theme.sidenav['activenavItem'].background};
+    border-radius: ${(props) => (props.isOpen ? '' : '4px')};
     transition: color 0.3s;
   }
 `;
@@ -32,18 +32,17 @@ const defaultProps = {
 
 export const SideNavItemIcon: React.FunctionComponent<Props> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { theme, isOpen, item, children } = propsWithDefaults;
+  const { isOpen, item, children } = propsWithDefaults;
   return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SSideNavItemIcon
-        className={`${nameSpace}-sidenav-item-icon`}
-        role="side-nav-icon"
-        isOpen={isOpen}
-        item={item}
-        {...props}
-      >
-        {children}
-        {/* {isOpen ? (
+    <SSideNavItemIcon
+      className={`${nameSpace}-sidenav-item-icon`}
+      role="side-nav-icon"
+      isOpen={isOpen}
+      item={item}
+      {...props}
+    >
+      {children}
+      {/* {isOpen ? (
           children
         ) : (
           <Tooltip
@@ -57,7 +56,6 @@ export const SideNavItemIcon: React.FunctionComponent<Props> = (props) => {
             <span>{children}</span>
           </Tooltip>
         )} */}
-      </SSideNavItemIcon>
-    </ThemeProvider>
+    </SSideNavItemIcon>
   );
 };

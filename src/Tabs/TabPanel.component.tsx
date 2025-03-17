@@ -1,12 +1,9 @@
-import * as React from "react";
-import { ThemeProvider } from "styled-components";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 // tslint:disable-next-line:max-line-length
-import { TabPanel as ReactTabPanel, TabPanelProps } from "react-tabs";
-import { getPropsWithDefaults, Omit } from "@utils";
-import { Themes } from "@themes";
+import { TabPanel as ReactTabPanel, TabPanelProps } from 'react-tabs';
+import { getPropsWithDefaults, Omit } from '@utils';
 
-export interface Props extends Omit<TabPanelProps, "ref"> {
+export interface Props extends Omit<TabPanelProps, 'ref'> {
   /**
    * From theme provider
    *
@@ -15,18 +12,14 @@ export interface Props extends Omit<TabPanelProps, "ref"> {
   theme?: any;
 }
 
-const defaultProps = {
-  theme: Themes.canopyTheme,
-} satisfies Partial<Props>;
+const defaultProps = {} satisfies Partial<Props>;
 
 export const TabPanel = (props: Props) => {
   const propsWithDefaults = getPropsWithDefaults<Props>(defaultProps, props);
-  const { children, theme, ...rest } = propsWithDefaults;
+  const { children, ...rest } = propsWithDefaults;
   return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <ReactTabPanel {...rest} id={uuidv4()}>
-        {children}
-      </ReactTabPanel>
-    </ThemeProvider>
+    <ReactTabPanel {...rest} id={uuidv4()}>
+      {children}
+    </ReactTabPanel>
   );
 };

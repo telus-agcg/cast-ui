@@ -1,6 +1,5 @@
-import { Themes } from "@themes";
-import * as React from "react";
-import styled, { ThemeProvider } from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 
 export interface Props {
   /**
@@ -67,25 +66,21 @@ const ErrorMessageWrapper = styled.div`
   align-items: center;
 `;
 
-const defaultProps = {
-  theme: Themes.canopyTheme,
-} satisfies Partial<Props>;
+const defaultProps = {} satisfies Partial<Props>;
 
 export const ErrorMessage: React.FunctionComponent<
   React.PropsWithChildren<Props>
 > = (props) => {
   const propsWithDefaults = { ...defaultProps, ...props };
-  const { theme, message } = propsWithDefaults;
+  const { message } = propsWithDefaults;
   return (
-    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <>
-        <SErrorDiv {...propsWithDefaults}>
-          <ErrorMessageWrapper>
-            <SErrorIcon height={24} width={24} {...propsWithDefaults} />
-            {message}
-          </ErrorMessageWrapper>
-        </SErrorDiv>
-      </>
-    </ThemeProvider>
+    <>
+      <SErrorDiv {...propsWithDefaults}>
+        <ErrorMessageWrapper>
+          <SErrorIcon height={24} width={24} {...propsWithDefaults} />
+          {message}
+        </ErrorMessageWrapper>
+      </SErrorDiv>
+    </>
   );
 };
