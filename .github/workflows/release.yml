@@ -48,6 +48,7 @@ jobs:
 
   deploy:
     name: Release Pages Artifact
+    if: github.ref_name == 'beta'
     needs: [build]
     environment:
       name: github-pages
