@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
 import styled from 'styled-components';
-import { components, ValueContainerProps } from 'react-select';
+import {
+  components as reactSelectComponents,
+  ValueContainerProps,
+} from 'react-select';
 import { SelectMenuList } from './SelectMenuList';
 import { Checkbox, CHECKBOX_STATE } from '../Checkbox/Checkbox.component';
 
@@ -160,7 +163,7 @@ const ValueContainer = ({
   }, [containerRef]);
 
   return (
-    <components.ValueContainer {...props}>
+    <reactSelectComponents.ValueContainer {...props}>
       <SFlex ref={containerRef}>
         {!hasSelectedOptions ? (
           <span className="react-select__placeholder">
@@ -175,7 +178,7 @@ const ValueContainer = ({
 
         {input}
       </SFlex>
-    </components.ValueContainer>
+    </reactSelectComponents.ValueContainer>
   );
 };
 
@@ -215,6 +218,7 @@ export const SelectCheckboxProps = ({
   const components = {
     ValueContainer,
     Option: (props: any) => {
+      // console.log(props.value);
       return (
         <div
           data-testid={`select-option-${_.snakeCase(props.data.label)}`}
@@ -223,14 +227,14 @@ export const SelectCheckboxProps = ({
           {...props.innerProps}
           id={`${id}-Select-${_.snakeCase(props.data.label)}`}
         >
-          <SCheckbox
+          <Checkbox
             id={props.value}
-            disabled={props.isDisabled}
-            value={props.value ? CHECKBOX_STATE.CHECKED : CHECKBOX_STATE.EMPTY}
+            value={
+              props.isSelected ? CHECKBOX_STATE.CHECKED : CHECKBOX_STATE.EMPTY
+            }
             onChange={() => handleCheck(props.value)}
-          >
-            <span>{props.data.label}</span>
-          </SCheckbox>
+            label={props.label}
+          />
         </div>
       );
     },

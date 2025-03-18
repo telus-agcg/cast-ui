@@ -235,7 +235,7 @@ const MultiSelectCheckbox = (args) => {
 
   const formatGroupLabel = (data) => (
     <div>
-      <span>{data.label}</span>
+      <span>{data.label}&nbsp;&nbsp;</span>
       <span>{data.options.length}</span>
     </div>
   );

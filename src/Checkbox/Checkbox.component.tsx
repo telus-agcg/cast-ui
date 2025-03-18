@@ -10,8 +10,23 @@ interface Props extends React.PropsWithChildren {
    * @default null
    **/
   id?: string;
+  /**
+   * Specify the label that should be disabled
+   *
+   * @default 'One'
+   **/
   label?: string;
+  /**
+   * Specify the state of the checkbox (empty, checked, indeterminate)
+   *
+   * @default CHECKBOX_STATE.EMPTY
+   **/
   value: CHECKBOX_STATE;
+  /**
+   * Supply a function to run when the state is changed
+   *
+   * @default void
+   **/
   onChange: (checked: boolean, event: ChangeEvent<HTMLInputElement>) => void;
   /**
    * Specify the size of the checkbox (sm | md | lg)
@@ -202,7 +217,7 @@ const Label = styled.label<Partial<Props>>`
   font-family: ${(props) => props.theme.typography.fontFamily};
 `;
 
-const Indicator = styled.div<Partial<Props>>`
+const Indicator = styled.div<Partial<Props> & { hasChildren: boolean }>`
   width: 1.2rem;
   height: 1.2rem;
   background: ${(props: any) => props.theme.checkbox.unselectedColor};
@@ -213,6 +228,7 @@ const Indicator = styled.div<Partial<Props>>`
   border-style: ${(props: any) => props.theme.checkbox.borderStyle};
   border-radius: 1px;
   border-width: 1px !important;
+  margin-right: ${(props: any) => (props.hasChildren ? '4px' : '0px')};
 
   ${Input}:checked + & {
     background-color: ${(props: any) => props.theme.checkbox.selectedColor};
@@ -274,11 +290,7 @@ export const Checkbox = (props: Props) => {
   const dataProps = getDataProps(propsWithDefaults);
 
   React.useEffect(() => {
-    if (value) {
-      setChecked(CHECKBOX_STATE.CHECKED);
-    } else {
-      setChecked(value || CHECKBOX_STATE.EMPTY);
-    }
+    setChecked(value || CHECKBOX_STATE.EMPTY);
   }, []);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -309,7 +321,6 @@ export const Checkbox = (props: Props) => {
         checkboxRef.current.checked = false;
         checkboxRef.current.indeterminate = false;
       } else if (checked === CHECKBOX_STATE.INDETERMINATE) {
-        console.log('in effect - indeterminate');
         checkboxRef.current.checked = false;
         checkboxRef.current.indeterminate = true;
       }
@@ -326,11 +337,8 @@ export const Checkbox = (props: Props) => {
           ref={checkboxRef}
           type="checkbox"
           onChange={handleChange}
-          // hasChildren={Boolean(children)}
-        >
-          {children}
-        </Input>
-        <Indicator {...propsWithDefaults}></Indicator>
+        />
+        <Indicator {...propsWithDefaults} hasChildren={Boolean(children)} />
       </Label>
     </>
   );
