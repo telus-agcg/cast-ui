@@ -182,7 +182,7 @@ const SDiv = styled.div<Props>`
       color: ${(props: Props) => props.theme.colors.drk800};
     }
     .react-select__option {
-      padding: 8px 12px;
+      padding: 0px 12px;
     }
   }
   .react-select-component {
@@ -402,7 +402,6 @@ export const CustomSelect: React.FC<Props> = (props) => {
   };
 
   const handleSelectChange = (event) => {
-    console.log('in here');
     if (onChange instanceof Function) onChange(event);
     if (isFilterable && !isMulti) {
       setIsFocused(false);
@@ -501,7 +500,6 @@ export const CustomSelect: React.FC<Props> = (props) => {
         aria-invalid={invalid ? true : undefined}
         aria-describedby={errorId}
         selectSize={selectSize}
-        dropdownColor={theme.primary}
         menuPortalTarget={document.getElementById(uniqueId)}
         formatGroupLabel={formatGroupLabel}
         components={components}
