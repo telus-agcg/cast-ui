@@ -15,7 +15,39 @@ Alternatively, group radio buttons on the same horizontal row by settings the **
 const meta: Meta<typeof RadioButton> = {
   title: 'Components/Interactions/Radio Button',
   component: RadioButton,
-
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    rbSize: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+    },
+    checked: {
+      control: 'boolean',
+    },
+    displayStyle: {
+      control: 'inline-radio',
+      options: ['inline', 'stacked'],
+    },
+    id: {
+      control: false,
+    },
+    name: {
+      control: false,
+    },
+    defaultChecked: {
+      control: false,
+    },
+    value: {
+      control: false,
+    },
+  },
   parameters: {
     docs: {
       description,

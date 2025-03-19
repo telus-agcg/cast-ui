@@ -20,6 +20,40 @@ const meta: Meta<typeof Modal> = {
   parameters: {
     description,
   },
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    isOpen: {
+      control: 'boolean',
+    },
+    modalSize: {
+      options: ['sm', 'md', 'lg', 'full'],
+      control: 'select',
+    },
+    modalTitle: {
+      control: 'text',
+    },
+    onTitleClose: {
+      action: {
+        type: 'onTitleClose',
+      },
+    },
+    children: {
+      control: false,
+    },
+    id: {
+      control: false,
+    },
+    footerContent: {
+      control: false,
+    },
+    disableCloseIcon: {
+      control: 'boolean',
+    },
+  },
 };
 
 export default meta;
@@ -87,21 +121,3 @@ export const _Modal: Story = {
     );
   },
 };
-
-// export const Scrollable: Story = {
-//   args: {
-//     isOpen: false,
-//     modalSize: 'md',
-//     modalTitle: 'Scrollable Modal',
-//     children: Array(20)
-//       .fill('')
-//       .map((_, index) => (
-//         <div key={index}>
-//           Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-//           Exercitationem, fugit velit. Aliquam autem blanditiis, consequatur
-//           dolore eius, harum ipsum maxime nam nihil officiis optio, pariatur
-//           repellat soluta suscipit tempora ut?
-//         </div>
-//       )),
-//   },
-// };

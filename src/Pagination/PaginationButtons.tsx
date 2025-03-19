@@ -1,6 +1,6 @@
-import { FirstPage, LastPage, NavigateBefore, NavigateNext } from "@icons";
-import * as React from "react";
-import styled, { css } from "styled-components";
+import { FirstPage, LastPage, NavigateBefore, NavigateNext } from '@icons';
+import * as React from 'react';
+import styled, { css } from 'styled-components';
 
 // first, last, prev, next buttons
 export type PaginationButtonsProps = {
@@ -37,7 +37,7 @@ const IconStyler = styled.span<Partial<PaginationButtonsProps>>`
     &:hover {
       background-color: ${(props) =>
         props.disabled
-          ? "none"
+          ? 'none'
           : props.theme.pagination.button.hoverBackground};
       color: ${(props) =>
         props.disabled
@@ -57,7 +57,7 @@ const SIcon = styled.span<Partial<PaginationButtonsProps>>`
   transition: all 0.3s;
   &:hover {
     background-color: ${(props) =>
-      props.disabled ? "none" : props.theme.pagination.button.hoverBackground};
+      props.disabled ? 'none' : props.theme.pagination.button.hoverBackground};
     color: ${(props) =>
       props.disabled
         ? props.theme.pagination.button.disabledText

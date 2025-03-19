@@ -1,15 +1,15 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import {
   PaginationPageButton,
   PaginationButtonNextPrev,
   PaginationButtonFirstLast,
 } from './PaginationButtons';
+import { Themes } from '../themes/index';
+import { CustomSelect as Select } from '../Select/Select.component';
 import { v4 as uuidv4 } from 'uuid';
-import { CustomSelect } from '../Select/Select.component';
-
+import { getPropsWithDefaults } from '@utils';
 export const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
-
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the function to fire when a page is changed
@@ -80,6 +80,7 @@ const SSpanPageSizeOptionsSelectWrapper = styled.div`
     white-space: nowrap;
   }
 `;
+
 const SPagninationControls = styled.div`
   display: flex;
   align-items: center;
@@ -99,7 +100,7 @@ const defaultProps = {
 } satisfies Partial<Props>;
 
 export const Pagination = (props: Props) => {
-  const propsWithDefaults = { ...defaultProps, ...props };
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const {
     page,
     pages,
@@ -120,7 +121,7 @@ export const Pagination = (props: Props) => {
   React.useEffect(() => {
     setActivePage(page + 1);
     setVisiblePages(getVisiblePages(page ? page : 0, pages));
-  }, []);
+  }, [page, pages]);
 
   const filterPages = (visiblePages: number[], totalPages: number) => {
     return visiblePages.filter((page: number) => page <= totalPages);
@@ -167,7 +168,7 @@ export const Pagination = (props: Props) => {
     );
     return (
       <SSpanPageSizeOptionsSelectWrapper className="select-wrap -pageSizeOptions">
-        <CustomSelect
+        <Select
           id={uuidv4()}
           isMulti={false}
           isDisabled={pages <= 0}
@@ -207,7 +208,7 @@ export const Pagination = (props: Props) => {
         />
         <div>
           {visiblePages.map((page: number, index: number, array: number[]) => {
-            const showPrevNextGap = array[index - 1] + 1;
+            const showPrevNextGap = array[index - 1] + 1 < page;
             const prevNextGapPageIndex =
               index === array.length - 1 ? array[index - 1] + 1 : page - 1;
             return (

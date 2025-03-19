@@ -24,6 +24,62 @@ Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to ex
 const meta: Meta<typeof CustomSelect> = {
   title: 'Components/Interactions/Select',
   component: CustomSelect,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    creatable: {
+      control: 'boolean',
+    },
+    isMulti: {
+      control: 'boolean',
+    },
+    isDisabled: {
+      control: 'boolean',
+    },
+    isClearable: {
+      control: 'boolean',
+    },
+    isFilterable: {
+      control: 'boolean',
+    },
+    invalid: {
+      control: 'boolean',
+    },
+    selectSize: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+    },
+    optionType: {
+      control: 'select',
+      options: ['checkbox', 'default'],
+    },
+    invalidText: {
+      control: 'text',
+    },
+    onChange: {
+      action: {
+        type: 'onChange',
+      },
+    },
+    options: {
+      control: false,
+    },
+    id: {
+      control: false,
+    },
+    components: { control: false },
+    formatGroupLabel: { control: false },
+    value: { control: false },
+    closeMenuOnSelect: { control: false },
+    placeholder: { control: false },
+    hideSelectedOptions: { control: false },
+    selectedOption: { control: false },
+    controlSpecificProps: { control: false },
+    menuPortalTarget: { control: false },
+  },
   parameters: {
     docs: {
       description,
@@ -34,98 +90,6 @@ const meta: Meta<typeof CustomSelect> = {
 export default meta;
 
 type Story = StoryObj<typeof CustomSelect>;
-
-// export default {
-//   title: 'Components/Interactions/Select',
-//   component: Select,
-//   argTypes: {
-//     theme: {
-//       table: {
-//         disable: true,
-//       },
-//     },
-//     creatable: {
-//       control: {
-//         type: 'boolean',
-//       },
-//     },
-//     isMulti: {
-//       control: {
-//         type: 'boolean',
-//       },
-//     },
-//     isDisabled: {
-//       control: {
-//         type: 'boolean',
-//       },
-//     },
-//     isClearable: {
-//       control: {
-//         type: 'boolean',
-//       },
-//     },
-//     isFilterable: {
-//       control: {
-//         type: 'boolean',
-//       },
-//     },
-//     invalid: {
-//       control: {
-//         type: 'boolean',
-//       },
-//     },
-//     selectSize: {
-//       control: {
-//         type: 'select',
-//         options: ['sm', 'md', 'lg'],
-//       },
-//     },
-//     optionType: {
-//       control: {
-//         type: 'select',
-//         options: ['checkbox', 'default'],
-//       },
-//     },
-//     invalidText: {
-//       control: {
-//         type: 'text',
-//       },
-//     },
-//     onChange: {
-//       action: {
-//         type: 'onChange',
-//       },
-//     },
-//     options: {
-//       control: false,
-//     },
-//     id: {
-//       control: false,
-//     },
-//     components: { control: false },
-//     formatGroupLabel: { control: false },
-//     value: { control: false },
-//     closeMenuOnSelect: { control: false },
-//     placeholder: { control: false },
-//     hideSelectedOptions: { control: false },
-//     selectedOption: { control: false },
-//     controlSpecificProps: { control: false },
-//     menuPortalTarget: { control: false },
-//   },
-//   parameters: {
-//     docs: {
-//       description: {
-//         component: description,
-//       },
-//     },
-//   },
-// };
-
-// const _Select = args => (
-//   <>
-//     <Select id={'SampleSelect'} data-testid={args.dataTestId} {...args} />
-//   </>
-// );
 
 export const _Select: Story = {
   args: {
