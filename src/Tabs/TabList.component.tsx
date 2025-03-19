@@ -1,10 +1,10 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { TabList as ReactTabList, TabListProps } from 'react-tabs';
-import { getPropsWithDefaults, Omit } from '@utils';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../themes';
+import { Omit } from '@utils';
 
-export interface Props
-  extends React.PropsWithChildren<Omit<TabListProps, 'as'>> {
+export interface Props extends Omit<TabListProps, 'as'> {
   /**
    * From theme provider
    *
@@ -28,10 +28,22 @@ const SReactTabList = styled(ReactTabListProxy)`
   width: fit-content;
 `;
 
-const defaultProps = {} satisfies Partial<Props>;
+export class TabList extends React.Component<React.PropsWithChildren<Props>> {
+  public static readonly tabsRole: string = 'TabList';
 
-export const TabList = (props: Props) => {
-  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { children, ...rest } = propsWithDefaults;
-  return <SReactTabList {...rest}>{children}</SReactTabList>;
-};
+  constructor(props: Props) {
+    super(props);
+  }
+  static defaultProps = {
+    theme: Themes.canopyTheme,
+  };
+
+  render() {
+    const { theme, children, ...props } = this.props;
+    return (
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SReactTabList {...props}>{children}</SReactTabList>
+      </ThemeProvider>
+    );
+  }
+}

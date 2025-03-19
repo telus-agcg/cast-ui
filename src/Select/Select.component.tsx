@@ -1,14 +1,14 @@
 import * as React from 'react';
 import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
+import styled from 'styled-components';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import styled from 'styled-components';
 import { components as SelectComponents } from 'react-select';
-import { getDataProps } from '@utils';
 import { SelectCheckboxProps } from './SelectCheckbox.component';
 import { SelectMenuList } from './SelectMenuList';
 import { ErrorMessage } from '@typography';
+import { getDataProps } from '@utils';
 
 export type OptionType = {
   value: string;
