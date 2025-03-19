@@ -24,6 +24,14 @@ const meta: Meta<typeof Menu> = {
   parameters: {
     description,
   },
+  argTypes: {
+    onItemClick: { action: 'onItemClick' },
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 };
 
 export default meta;

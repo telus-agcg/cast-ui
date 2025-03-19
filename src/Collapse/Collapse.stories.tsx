@@ -6,9 +6,7 @@ const meta: Meta<typeof Collapse> = {
   component: Collapse,
   argTypes: {
     isOpen: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
   },
 };

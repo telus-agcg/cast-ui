@@ -11,16 +11,12 @@ const meta: Meta<typeof Spinner> = {
       },
     },
     size: {
-      control: {
-        type: 'select',
-        options: [20, 30, 40, 50, 60, 70],
-      },
+      control: 'select',
+      options: [20, 30, 40, 50, 60, 70],
     },
     animationSpeed: {
-      control: {
-        type: 'select',
-        options: [1, 2, 3, 4, 5],
-      },
+      control: 'select',
+      options: [1, 2, 3, 4, 5],
     },
     transitionType: {
       control: false,

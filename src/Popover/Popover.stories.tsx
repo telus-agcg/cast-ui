@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Popover } from './Popover.component';
 import { Meta } from '@storybook/react';
 import { Button } from '../Button/Button.component';
@@ -6,6 +5,32 @@ import { Button } from '../Button/Button.component';
 const meta: Meta<typeof Popover> = {
   title: 'Components/Data Display/Popover',
   component: Popover,
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    arrow: {
+      control: 'boolean',
+    },
+    placement: {
+      control: 'select',
+      options: [
+        'top',
+        'top-start',
+        'top-end',
+        'bottom',
+        'bottom-end',
+        'bottom-start',
+        'left',
+        'right',
+      ],
+    },
+    children: {
+      control: false,
+    },
+  },
 };
 
 export default meta;

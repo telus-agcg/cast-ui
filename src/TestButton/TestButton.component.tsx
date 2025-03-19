@@ -1,8 +1,8 @@
-import type { ReactNode } from "react";
-import styled from "styled-components";
+import type { ReactNode } from 'react';
+import styled from 'styled-components';
 
 interface ButtonProps {
-  children: ReactNode;
+  num: number;
 }
 
 const GoodButton = styled.button`
@@ -10,6 +10,6 @@ const GoodButton = styled.button`
   background: red;
 `;
 
-export const TestButton = ({ children }: ButtonProps): ReactNode => {
-  return <GoodButton>{children}</GoodButton>;
+export const TestButton = ({ num }: ButtonProps): ReactNode => {
+  return <GoodButton>{num}</GoodButton>;
 };

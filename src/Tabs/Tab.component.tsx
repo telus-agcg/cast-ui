@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Tab as ReactTab, TabProps } from 'react-tabs';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import styled from 'styled-components';
 import { Omit } from '@utils';
 
 export interface Props extends Omit<TabProps, 'as'> {
@@ -84,16 +83,9 @@ export class Tab extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
-  static defaultProps = {
-    theme: Themes.canopyTheme,
-  };
 
   render() {
     const { theme, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SReactTab {...props}>{this.props.title}</SReactTab>
-      </ThemeProvider>
-    );
+    return <SReactTab {...props}>{this.props.title}</SReactTab>;
   }
 }

@@ -77,15 +77,11 @@ const defaultProps = {
 
 export const Popover = (props: Props) => {
   const propsWithDefaults = { ...defaultProps, ...props };
-  const { theme, arrow, children } = propsWithDefaults;
-
-  const distance = arrow
-    ? theme.popover.withArrowDistance
-    : theme.popover.withoutArrowDistance;
+  const { children, ...rest } = propsWithDefaults;
 
   return (
     <React.Fragment>
-      <SPopover {...propsWithDefaults}>{children}</SPopover>
+      <SPopover {...rest}>{children}</SPopover>
     </React.Fragment>
   );
 };

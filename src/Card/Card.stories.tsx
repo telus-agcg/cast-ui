@@ -19,7 +19,7 @@ const meta: Meta<typeof Card> = {
   argTypes: {
     cardStyle: {
       options: ['success', 'primary', 'secondary', 'danger', 'warning'],
-      control: { type: 'select' },
+      control: 'select',
     },
     theme: {
       table: {

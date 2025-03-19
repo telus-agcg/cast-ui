@@ -1,8 +1,8 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { Pagination } from "./Pagination.component";
+import { Meta, StoryObj } from '@storybook/react';
+import { Pagination } from './Pagination.component';
 
 const meta: Meta<typeof Pagination> = {
-  title: "Components/Navigation/Pagination",
+  title: 'Components/Navigation/Pagination',
   component: Pagination,
   argTypes: {
     theme: {
@@ -12,39 +12,29 @@ const meta: Meta<typeof Pagination> = {
     },
     onPageChange: {
       action: {
-        type: "onPageChange",
+        type: 'onPageChange',
       },
     },
     onPageSizeChange: {
       action: {
-        type: "onPageSizeChange",
+        type: 'onPageSizeChange',
       },
     },
     pages: {
-      control: {
-        type: "number",
-      },
+      control: 'number',
     },
     page: {
-      control: {
-        type: "number",
-      },
+      control: 'number',
     },
     pageSize: {
+      control: 'select',
       options: [10, 20, 50, 100],
-      control: {
-        type: "select",
-      },
     },
     showPageSizeOptions: {
-      control: {
-        type: "boolean",
-      },
+      control: 'boolean',
     },
     rowsText: {
-      control: {
-        type: "text",
-      },
+      control: 'text',
     },
     PageButtonComponent: {
       control: false,
@@ -69,7 +59,7 @@ const meta: Meta<typeof Pagination> = {
     docs: {
       description: {
         component:
-          "This is a custom pagination control intended for use with various components (such as Table).",
+          'This is a custom pagination control intended for use with various components (such as Table).',
       },
     },
   },

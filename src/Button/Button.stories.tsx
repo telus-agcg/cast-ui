@@ -37,24 +37,18 @@ const meta: Meta<typeof Button> = {
   component: Button,
   argTypes: {
     outline: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     selected: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     btnStyle: {
       options: ['success', 'primary', 'secondary', 'danger', 'warning'],
-      control: { type: 'select' },
+      control: 'select',
     },
     btnSize: {
       options: ['sm', 'md', 'lg'],
-      control: {
-        type: 'radio',
-      },
+      control: 'radio',
     },
     disabled: {
       control: {
@@ -63,7 +57,7 @@ const meta: Meta<typeof Button> = {
     },
     displayType: {
       options: ['button', 'menu'],
-      control: { type: 'radio' },
+      control: 'radio',
     },
     onClick: { action: 'onClick' },
     theme: {

@@ -1,27 +1,27 @@
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import styled from "styled-components";
-import ReactDatePicker, { DatePickerProps } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import styled from 'styled-components';
+import ReactDatePicker, { DatePickerProps } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import {
   OutlineCalendarMonth,
   SharpKeyboardArrowLeft,
   SharpKeyboardArrowRight,
   SharpKeyboardDoubleArrowLeft,
   SharpKeyboardDoubleArrowRight,
-} from "@icons";
-import { getPropsWithDefaults } from "@utils";
-import { Input, Props as InputProps } from "../Input/Input.component";
+} from '@icons';
+import { getPropsWithDefaults } from '@utils';
+import { Input, Props as InputProps } from '../Input/Input.component';
 
-type pickerSize = "sm" | "md" | "lg";
+type pickerSize = 'sm' | 'md' | 'lg';
 
 type pickerStyle =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'danger';
 
 type focusInput = boolean | null;
 type Focused = { focused: boolean | null };
@@ -83,12 +83,6 @@ export type Props = InputProps &
     onFocusChange?: (input: Focused) => void;
   };
 
-type State = {
-  focused: focusInput;
-  date: Date | null;
-  range: dateChangeEvent;
-};
-
 const SWrapperComponent = styled.div<Props & { showIcon: boolean }>`
   position: relative;
   font-family: ${(props) => props.theme.typography.fontFamily};
@@ -104,9 +98,9 @@ const SWrapperComponent = styled.div<Props & { showIcon: boolean }>`
   }
 
   .react-datepicker__icon {
-    visibility: ${(props) => (props.showIcon ? "visible" : "hidden")};
+    visibility: ${(props) => (props.showIcon ? 'visible' : 'hidden')};
     color: ${(props) =>
-      props.invalid ? props.theme.validation.borderColor : ""};
+      props.invalid ? props.theme.validation.borderColor : ''};
     cursor: pointer;
   }
 
@@ -193,7 +187,7 @@ const SButton = styled.button<Props & { isVisible: boolean }>`
   background: #fff;
   cursor: pointer;
   color: #757575;
-  visibility: ${(props) => (props.isVisible ? "" : "hidden")}
+  visibility: ${(props) => (props.isVisible ? '' : 'hidden')}
   &:hover {
     background-color: ${(props) => props.theme.colors.primaryBackground};
   }
@@ -236,8 +230,8 @@ const CustomDatePickerHeader = ({
       </SButton>
 
       <SDatePickerLabel>
-        {`${monthDate.toLocaleString("default", {
-          month: "long",
+        {`${monthDate.toLocaleString('default', {
+          month: 'long',
         })}  ${date.getFullYear()}`}
       </SDatePickerLabel>
 
@@ -261,21 +255,20 @@ const CustomDatePickerHeader = ({
 };
 
 const defaultProps = {
-  className: "",
+  className: '',
   id: uuidv4(),
   wrapperId: uuidv4(),
-  datePickerSize: "md",
-  datePickerStyle: "primary",
-  iconPosition: "right",
+  datePickerSize: 'md',
+  datePickerStyle: 'primary',
+  iconPosition: 'right',
   date: undefined,
   onChange: () => {},
-  // onFocusChange: null,
   monthsShown: 1,
   startDate: null,
   endDate: null,
   invalid: false,
-  invalidText: "",
-  invalidTextColor: "",
+  invalidText: '',
+  invalidTextColor: '',
   showIcon: true,
 } satisfies Partial<Props>;
 
@@ -306,6 +299,8 @@ export const DatePicker = (props: Props) => {
     ...rest
   } = propsWithDefaults;
 
+  console.log(monthsShown);
+
   const handleDateChange = (selectsRange: boolean, event) => {
     if (selectsRange) {
       const [start, end] = event;
@@ -328,7 +323,7 @@ export const DatePicker = (props: Props) => {
     document.body.classList.add(`cui-${theme.name.toLowerCase()}-theme`);
   };
 
-  const errorId = invalid ? `${id}-error-msg` : "";
+  const errorId = invalid ? `${id}-error-msg` : '';
 
   return (
     <SWrapperComponent
@@ -337,7 +332,7 @@ export const DatePicker = (props: Props) => {
       className={className}
       datePickerSize={datePickerSize}
       datePickerStyle={datePickerStyle}
-      data-invalid={invalid ? "" : undefined}
+      data-invalid={invalid ? '' : undefined}
       aria-invalid={invalid ? true : undefined}
       aria-describedby={errorId}
       showIcon={Boolean(showIcon)}

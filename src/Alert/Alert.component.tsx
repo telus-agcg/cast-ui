@@ -1,6 +1,6 @@
-import * as React from "react";
-import styled from "styled-components";
-import { getPropsWithDefaults } from "@utils";
+import * as React from 'react';
+import styled from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
 
 export type Props = React.PropsWithChildren<{
   /**
@@ -8,7 +8,7 @@ export type Props = React.PropsWithChildren<{
    *
    * @default 'primary'
    **/
-  alertStyle?: "primary" | "secondary" | "success" | "warning" | "danger";
+  alertStyle?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   /**
    * Toggle Alert Light Mode
    *
@@ -26,12 +26,12 @@ export type Props = React.PropsWithChildren<{
 const SAlert = styled.div`
   background: ${(props: Props) =>
     props.lightMode
-      ? props.theme.styles[props.alertStyle!]["light"].alertBackground
+      ? props.theme.styles[props.alertStyle!]['light'].alertBackground
       : props.theme.styles[props.alertStyle!].alertBackground};
   border-radius: ${(props: Props) => props.theme.alert.borderRadius};
   color: ${(props: Props) =>
     props.lightMode
-      ? props.theme.styles[props.alertStyle!]["light"].alertColor
+      ? props.theme.styles[props.alertStyle!]['light'].alertColor
       : props.theme.styles[props.alertStyle!].alertColor};
   border: 1px solid
     ${(props: Props) =>
@@ -50,7 +50,7 @@ const SAlert = styled.div`
 `;
 
 const defaultProps = {
-  alertStyle: "primary",
+  alertStyle: 'primary',
   lightMode: false,
 } satisfies Partial<Props>;
 
