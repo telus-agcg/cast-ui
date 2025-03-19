@@ -1,10 +1,8 @@
-import {
-  Tab as ReactTab,
-  ReactTabsFunctionComponent,
-  TabProps,
-} from 'react-tabs';
-import styled from 'styled-components';
-import { getPropsWithDefaults, Omit } from '@utils';
+import * as React from 'react';
+import { Tab as ReactTab, TabProps } from 'react-tabs';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../themes';
+import { Omit } from '@utils';
 
 export interface Props extends Omit<TabProps, 'as'> {
   /**
@@ -51,7 +49,7 @@ const SReactTab = styled(ReactTabProxy)`
   font-weight: bold;
   transition: all 0.3s;
 
-  :first-child {
+  &:first-child {
     border-left: 1px solid ${(props) => props.theme.tabs.borderColor};
   }
 
@@ -80,10 +78,22 @@ const SReactTab = styled(ReactTabProxy)`
   }
 `;
 
-const defaultProps = {} satisfies Partial<Props>;
+export class Tab extends React.Component<Props> {
+  public static readonly tabsRole: string = 'Tab';
 
-export const Tab = (props: Props) => {
-  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { title, ...rest } = propsWithDefaults;
-  return <SReactTab {...propsWithDefaults}>{title}</SReactTab>;
-};
+  constructor(props: Props) {
+    super(props);
+  }
+  static defaultProps = {
+    theme: Themes.canopyTheme,
+  };
+
+  render() {
+    const { theme, ...props } = this.props;
+    return (
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SReactTab {...props}>{this.props.title}</SReactTab>
+      </ThemeProvider>
+    );
+  }
+}
