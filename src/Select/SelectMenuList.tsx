@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import { components as SelectComponents } from "react-select";
-import { SharpSearch } from "@icons";
-import { Input } from "../Input/Input.component";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import { components as SelectComponents } from 'react-select';
+import { SearchIcon } from '@icons';
+import { Input } from '../Input/Input.component';
 
 const SInput = styled(Input)`
   box-shadow: none;
@@ -27,12 +27,12 @@ export const SelectMenuList = (props) => {
   return (
     <div>
       <SInput
-        icon={<SharpSearch />}
-        iconPosition={"left"}
+        icon={<SearchIcon />}
+        iconPosition={'left'}
         value={inputValue}
         onChange={(e) => {
           onInputChange(e.currentTarget.value, {
-            action: "input-change",
+            action: 'input-change',
           });
         }}
         onMouseDown={(e: any) => {

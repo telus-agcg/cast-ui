@@ -1,4 +1,4 @@
-import { SharpSearch } from '@icons';
+import { SearchIcon } from '@icons';
 import { Input } from './Input.component';
 import { Meta, StoryObj } from '@storybook/react';
 
@@ -148,7 +148,7 @@ export const WithIcon: Story = {
     placeholder: 'Please enter some text',
     required: false,
     iconPosition: 'right',
-    icon: <SharpSearch />,
+    icon: <SearchIcon />,
   },
 };
 
@@ -184,7 +184,7 @@ export const InputWithAllOptions: Story = {
     addonText: '$',
     addonTextPosition: 'right',
     iconPosition: 'right',
-    icon: <SharpSearch />,
+    icon: <SearchIcon />,
     isClearable: true,
   },
 };
