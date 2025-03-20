@@ -182,7 +182,7 @@ const SDiv = styled.div<Props>`
       color: ${(props: Props) => props.theme.colors.drk800};
     }
     .react-select__option {
-      padding: 0px 12px;
+      padding: 8px 12px;
     }
   }
   .react-select-component {
