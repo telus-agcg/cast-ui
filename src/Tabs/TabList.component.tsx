@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { TabList as ReactTabList, TabListProps } from 'react-tabs';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import styled from 'styled-components';
 import { Omit } from '@utils';
 
 export interface Props extends Omit<TabListProps, 'as'> {
@@ -34,16 +33,9 @@ export class TabList extends React.Component<React.PropsWithChildren<Props>> {
   constructor(props: Props) {
     super(props);
   }
-  static defaultProps = {
-    theme: Themes.canopyTheme,
-  };
 
   render() {
     const { theme, children, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SReactTabList {...props}>{children}</SReactTabList>
-      </ThemeProvider>
-    );
+    return <SReactTabList {...props}>{children}</SReactTabList>;
   }
 }

@@ -15,69 +15,44 @@ const meta: Meta<typeof DatePicker> = {
       },
     },
     selectsRange: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     showIcon: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     iconPosition: {
-      control: {
-        options: ['right', 'left'],
-        type: 'select',
-      },
+      control: 'boolean',
+      options: ['right', 'left'],
     },
     datePickerStyle: {
-      control: {
-        options: ['primary', 'secondary', 'success', 'warning', 'danger'],
-        type: 'select',
-      },
+      control: 'select',
+      options: ['primary', 'secondary', 'success', 'warning', 'danger'],
     },
     datePickerSize: {
-      control: {
-        options: ['sm', 'md', 'lg'],
-        type: 'inline-radio',
-      },
+      control: 'inline-radio',
+      options: ['sm', 'md', 'lg'],
     },
     invalid: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     invalidText: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     invalidTextColor: {
-      control: {
-        type: 'color',
-      },
+      control: 'color',
     },
     monthsShown: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
     className: {
       control: false,
     },
     withPortal: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     wrapperId: {
       control: false,
     },
-    // onDateChange: {
-    //   action: {
-    //     type: 'onDateChange',
-    //   },
-    // },
     onFocusChange: {
       control: false,
     },

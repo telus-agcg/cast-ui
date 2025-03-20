@@ -1,39 +1,23 @@
+import { Meta } from '@storybook/react';
 import { TabPanel } from 'react-tabs';
 import { Tab } from './Tab.component';
 import { TabList } from './TabList.component';
 import { Tabs } from './Tabs.component';
 
-export default {
+const meta: Meta<typeof Tabs> = {
   title: 'Components/Navigation/Tabs',
   component: Tabs,
   subcomponents: {
-    Tab,
-    TabList,
-    TabPanel,
+    Tab: Tab as React.ComponentType<unknown>,
+    TabList: TabList as React.ComponentType<unknown>,
+    TabPanel: TabPanel as React.ComponentType<unknown>,
   },
   argTypes: {
     onSelect: {
       action: 'onSelect',
     },
-    tabTitle1: {
-      control: {
-        type: 'text',
-      },
-    },
-    tabTitle2: {
-      control: {
-        type: 'text',
-      },
-    },
-    tabTitle3: {
-      control: {
-        type: 'text',
-      },
-    },
     disabled: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     defaultIndex: {
       control: false,
@@ -46,18 +30,14 @@ export default {
   },
 };
 
-export const _Tabs = ({
-  onSelect,
-  tabTitle1,
-  tabTitle2,
-  tabTitle3,
-  disabled,
-}) => (
+export default meta;
+
+export const _Tabs = ({ onSelect, disabled }) => (
   <Tabs onSelect={onSelect} defaultIndex={2}>
     <TabList>
-      <Tab title={tabTitle1} />
-      <Tab title={tabTitle2} disabled={disabled} />
-      <Tab title={tabTitle3} />
+      <Tab title={'Tab Item 01'} />
+      <Tab title={'Tab Item 02'} disabled={disabled} />
+      <Tab title={'Tab Item 03'} />
     </TabList>
     <TabPanel>
       <h2>Any content 1</h2>

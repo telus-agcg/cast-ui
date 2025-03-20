@@ -30,14 +30,10 @@ const meta: Meta<FileUploadCustomArgs> = {
       },
     },
     disabled: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     info: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     onFilesAdded: {
       action: {
@@ -45,19 +41,13 @@ const meta: Meta<FileUploadCustomArgs> = {
       },
     },
     fileDetails: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     canDelete: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     uploaded: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     onSelect: {
       action: {
@@ -78,9 +68,7 @@ const meta: Meta<FileUploadCustomArgs> = {
       control: false,
     },
     percentage: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
   },
   parameters: {

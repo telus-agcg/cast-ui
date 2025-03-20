@@ -83,12 +83,6 @@ export type Props = InputProps &
     onFocusChange?: (input: Focused) => void;
   };
 
-type State = {
-  focused: focusInput;
-  date: Date | null;
-  range: dateChangeEvent;
-};
-
 const SWrapperComponent = styled.div<Props & { showIcon: boolean }>`
   position: relative;
   font-family: ${(props) => props.theme.typography.fontFamily};
@@ -269,7 +263,6 @@ const defaultProps = {
   iconPosition: 'right',
   date: undefined,
   onChange: () => {},
-  // onFocusChange: null,
   monthsShown: 1,
   startDate: null,
   endDate: null,
@@ -305,6 +298,8 @@ export const DatePicker = (props: Props) => {
     endDate,
     ...rest
   } = propsWithDefaults;
+
+  console.log(monthsShown);
 
   const handleDateChange = (selectsRange: boolean, event) => {
     if (selectsRange) {

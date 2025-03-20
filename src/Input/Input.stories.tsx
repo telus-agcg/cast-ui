@@ -16,61 +16,47 @@ const meta: Meta<typeof Input> = {
   title: 'Components/Interactions/Input',
   component: Input,
   argTypes: {
+    id: {
+      control: 'text',
+    },
+    isClearable: {
+      control: 'boolean',
+    },
     type: {
       options: ['text', 'number', 'email', 'password'],
-      control: {
-        type: 'select',
-      },
+      control: 'select',
     },
     autoComplete: {
       options: ['on', 'off'],
-      control: {
-        type: 'inline-radio',
-      },
+      control: 'inline-radio',
     },
     disabled: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     inputSize: {
       options: ['sm', 'md', 'lg'],
-      control: { type: 'inline-radio' },
+      control: 'inline-radio',
     },
     invalid: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     invalidText: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     invalidTextColor: {
-      control: {
-        type: 'color',
-      },
+      control: 'color',
     },
     maxLength: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
     placeholder: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     required: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     value: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     onChange: {
       action: {
@@ -79,36 +65,14 @@ const meta: Meta<typeof Input> = {
     },
     iconPosition: {
       options: ['right', 'left'],
-      control: {
-        type: 'select',
-      },
+      control: 'select',
     },
     addonTextPosition: {
       options: ['right', 'left'],
-      control: {
-        type: 'select',
-      },
+      control: 'select',
     },
     addonText: {
-      control: {
-        type: 'text',
-      },
-    },
-    isClearable: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    id: {
-      control: false,
-    },
-    icon: {
-      control: false,
-    },
-    theme: {
-      table: {
-        disable: true,
-      },
+      control: 'text',
     },
   },
   parameters: {

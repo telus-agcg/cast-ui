@@ -7,10 +7,10 @@ const meta: Meta<typeof Alert> = {
   argTypes: {
     alertStyle: {
       options: ['success', 'primary', 'secondary', 'danger', 'warning'],
-      control: { type: 'select' },
+      control: 'select',
     },
     lightMode: {
-      control: { type: 'boolean' },
+      control: 'boolean',
     },
     theme: {
       table: {

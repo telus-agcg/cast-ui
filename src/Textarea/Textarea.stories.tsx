@@ -7,58 +7,38 @@ const meta: Meta<typeof Textarea> = {
   component: Textarea,
   argTypes: {
     cols: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
     disabled: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     id: {
       control: false,
     },
     invalid: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     invalidText: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     invalidTextColor: {
-      control: {
-        type: 'color',
-      },
+      control: 'color',
     },
     maxLength: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
     placeholder: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     required: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     rows: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
     textareaSize: {
-      control: {
-        type: 'select',
-        options: ['sm', 'md', 'lg'],
-      },
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
     theme: {
       table: {
@@ -69,9 +49,7 @@ const meta: Meta<typeof Textarea> = {
       control: false,
     },
     isReSizable: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
   },
 };

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { Tabs as ReactTabs, TabsProps } from 'react-tabs';
-import { Themes } from '../themes';
 import { Omit } from '@utils';
 
 export interface Props extends Omit<TabsProps, 'as'> {
@@ -38,17 +37,14 @@ export class Tabs extends React.Component<React.PropsWithChildren<Props>> {
   }
   static defaultProps = {
     onSelect: () => {},
-    theme: Themes.canopyTheme,
   };
 
   render() {
     const { children, theme, ...props } = this.props;
     return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <STabWrapperDiv>
-          <ReactTabs {...props}>{children}</ReactTabs>
-        </STabWrapperDiv>
-      </ThemeProvider>
+      <STabWrapperDiv>
+        <ReactTabs {...props}>{children}</ReactTabs>
+      </STabWrapperDiv>
     );
   }
 }

@@ -7,20 +7,14 @@ const meta: Meta<typeof Toggle> = {
   component: Toggle,
   argTypes: {
     toggleSize: {
-      control: {
-        type: 'select',
-        options: ['sm', 'md', 'lg'],
-      },
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
     checked: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     disabled: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     onChange: {
       action: 'onChange',

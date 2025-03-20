@@ -19,6 +19,38 @@ const meta: Meta<PanelCustomProps> = {
     PanelBody: PanelBody as React.ComponentType<unknown>,
     Collapse: Collapse as React.ComponentType<unknown>,
   },
+  argTypes: {
+    theme: {
+      table: {
+        disable: true,
+      },
+    },
+    panelStyle: {
+      options: ['success', 'primary', 'secondary', 'danger', 'warning'],
+      control: 'select',
+    },
+    noPadding: {
+      control: 'boolean',
+    },
+    name: {
+      control: 'text',
+    },
+    isOpen: {
+      control: 'boolean',
+    },
+    toggleItem: {
+      action: {
+        type: 'clicked',
+      },
+    },
+    children: {
+      control: false,
+    },
+    iconPosition: {
+      options: ['right', 'left'],
+      control: 'inline-radio',
+    },
+  },
 };
 
 export default meta;
