@@ -315,7 +315,6 @@ const SDiv = styled.div<Props>`
 `;
 
 const SSelectOption = styled.div`
-  padding: 1rem;
   background-color: ${(props: any) =>
     props.isFocused
       ? props.theme.select.highlightOptionBackgroundColor
@@ -441,7 +440,7 @@ export const CustomSelect: React.FC<Props> = (props) => {
         {...innerProps}
         id={`${id}-Select-${_.snakeCase(props.data.label)}`}
       >
-        {props.data.label} ====
+        {props.data.label}
       </SSelectOption>
     );
   };
