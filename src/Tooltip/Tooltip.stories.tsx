@@ -1,6 +1,6 @@
 import { ToolTip } from './Tooltip.component';
 import { Meta, StoryObj } from '@storybook/react';
-import { Info } from '@icons';
+import { InfoIcon } from '@icons';
 
 const meta: Meta<typeof ToolTip> = {
   title: 'Components/Data Display/Tooltip',
@@ -48,7 +48,7 @@ export const _ToolTip: Story = {
         {'Click the icon to see the tooltip'}
         <ToolTip content={'this is a string'} {...args} trigger="click">
           <span>
-            <Info
+            <InfoIcon
               height={20}
               width={20}
               style={{ marginLeft: '5px', cursor: 'pointer' }}

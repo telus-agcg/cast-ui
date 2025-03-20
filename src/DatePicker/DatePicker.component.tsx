@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import ReactDatePicker, { DatePickerProps } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import {
-  OutlineCalendarMonth,
-  SharpKeyboardArrowLeft,
-  SharpKeyboardArrowRight,
-  SharpKeyboardDoubleArrowLeft,
-  SharpKeyboardDoubleArrowRight,
+  CalendarMonthIcon,
+  KeyboardArrowLeftIcon,
+  KeyboardArrowRightIcon,
+  KeyboardDoubleArrowLeftIcon,
+  KeyboardDoubleArrowRightIcon,
 } from '@icons';
 import { getPropsWithDefaults } from '@utils';
 import { Input, Props as InputProps } from '../Input/Input.component';
@@ -194,7 +194,7 @@ const SButton = styled.button<Props & { isVisible: boolean }>`
 `;
 
 const CustomInput = (props: InputProps) => {
-  return <Input {...props} icon={<OutlineCalendarMonth />} />;
+  return <Input {...props} icon={<CalendarMonthIcon />} />;
 };
 
 const CustomDatePickerHeader = ({
@@ -218,7 +218,7 @@ const CustomDatePickerHeader = ({
         onClick={decreaseYear}
         isVisible={customHeaderCount != 1}
       >
-        <SharpKeyboardDoubleArrowLeft />
+        <KeyboardDoubleArrowLeftIcon />
       </SButton>
 
       <SButton
@@ -226,7 +226,7 @@ const CustomDatePickerHeader = ({
         onClick={decreaseMonth}
         isVisible={customHeaderCount != 1}
       >
-        <SharpKeyboardArrowLeft />
+        <KeyboardArrowLeftIcon />
       </SButton>
 
       <SDatePickerLabel>
@@ -240,7 +240,7 @@ const CustomDatePickerHeader = ({
         onClick={increaseMonth}
         isVisible={monthsShown < 1 && customHeaderCount != 0}
       >
-        <SharpKeyboardArrowRight />
+        <KeyboardArrowRightIcon />
       </SButton>
 
       <SButton
@@ -248,7 +248,7 @@ const CustomDatePickerHeader = ({
         onClick={increaseYear}
         isVisible={!(monthsShown < 1 && customHeaderCount != 0)}
       >
-        <SharpKeyboardDoubleArrowRight />
+        <KeyboardDoubleArrowRightIcon />
       </SButton>
     </SDatePickerHeader>
   );

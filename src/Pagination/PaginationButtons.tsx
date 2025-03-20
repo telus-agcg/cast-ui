@@ -1,4 +1,9 @@
-import { FirstPage, LastPage, NavigateBefore, NavigateNext } from '@icons';
+import {
+  FirstPageIcon,
+  LastPageIcon,
+  NavigateBeforeIcon,
+  NavigateNextIcon,
+} from '@icons';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -70,9 +75,9 @@ const iconDimensions = { height: 20, width: 20 };
 export const PaginationButtonNextPrev = (props: PaginationButtonsProps) => {
   const { isForwardDirection, disabled, onClick } = props;
   const icon = isForwardDirection ? (
-    <NavigateNext {...iconDimensions} />
+    <NavigateNextIcon {...iconDimensions} />
   ) : (
-    <NavigateBefore {...iconDimensions} />
+    <NavigateBeforeIcon {...iconDimensions} />
   );
   return (
     <div>
@@ -89,9 +94,9 @@ export const PaginationButtonNextPrev = (props: PaginationButtonsProps) => {
 export const PaginationButtonFirstLast = (props: PaginationButtonsProps) => {
   const { disabled, onClick, isForwardDirection } = props;
   const icon = isForwardDirection ? (
-    <LastPage {...iconDimensions} />
+    <LastPageIcon {...iconDimensions} />
   ) : (
-    <FirstPage {...iconDimensions} />
+    <FirstPageIcon {...iconDimensions} />
   );
   return (
     <div>

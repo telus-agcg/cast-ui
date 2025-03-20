@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getPropsWithDefaults, nameSpace } from '@utils';
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@icons';
+import { KeyboardArrowLeftIcon, KeyboardArrowRightIcon } from '@icons';
 import SubMenu from './SubMenu.component';
 import CollapsedSubMenu from './CollapsedSubMenu.component';
 import { Link, Props as LinkProps } from '../Typography/Link/Link.component';
@@ -241,13 +241,13 @@ export const SideNavbar = (props: Props) => {
     const iconDimesions = { height: 24, width: 24 };
     const iconDataTestId = sidebarOpen ? 'close-sidebar' : 'open-sidebar';
     const icon = sidebarOpen ? (
-      <KeyboardArrowLeft
+      <KeyboardArrowLeftIcon
         {...iconDimesions}
         onClick={showSidebar}
         data-testid={iconDataTestId}
       />
     ) : (
-      <KeyboardArrowRight
+      <KeyboardArrowRightIcon
         {...iconDimesions}
         onClick={showSidebar}
         data-testid={iconDataTestId}

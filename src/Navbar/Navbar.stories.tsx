@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { SupervisedUserCircle } from '@icons';
+import { SupervisedUserCircleIcon } from '@icons';
 import { Navbar } from './Navbar.component';
 import { Nav } from './Nav.component';
 
@@ -43,7 +43,7 @@ export const _Navbar: Story = {
       <Nav right>
         <h3 style={{ padding: '0 0 0 16px' }}>Right Item</h3>
         <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
-          <SupervisedUserCircle height={32} width={32} />
+          <SupervisedUserCircleIcon height={32} width={32} />
         </h3>
       </Nav>
     </Navbar>

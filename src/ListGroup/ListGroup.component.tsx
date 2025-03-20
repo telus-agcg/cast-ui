@@ -1,8 +1,8 @@
-import * as React from "react";
-import styled from "styled-components";
-import { getPropsWithDefaults } from "@utils";
-import { KeyboardArrowDown, KeyboardArrowRight } from "@icons";
-import { Collapse } from "../Collapse/Collapse.component";
+import * as React from 'react';
+import styled from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
+import { KeyboardArrowDownIcon, KeyboardArrowRightIcon } from '@icons';
+import { Collapse } from '../Collapse/Collapse.component';
 
 export type Props = {
   /**
@@ -38,7 +38,7 @@ export type Props = {
    *
    * @default 'light'
    **/
-  listGroupTheme?: "light" | "dark";
+  listGroupTheme?: 'light' | 'dark';
   /**
    * From theme provider
    *
@@ -65,7 +65,7 @@ const SListGroup = styled.ul<Props>`
   li {
     padding: 15px 30px;
     border-bottom: ${(props: any) =>
-      props.border ? `1px solid ${props.theme.colors.secondary}` : ""};
+      props.border ? `1px solid ${props.theme.colors.secondary}` : ''};
   }
   ul li {
     padding-left: 60px;
@@ -100,7 +100,7 @@ const SListHeader = styled.li<Partial<Props>>`
   cursor: pointer;
   height: auto;
   border-bottom: ${(props: any) =>
-    props.border ? `1px solid ${props.theme.colors.secondary}` : ""};
+    props.border ? `1px solid ${props.theme.colors.secondary}` : ''};
   background-color: ${(props: Props) =>
     props.isCollapsed
       ? props.theme.listGroup.theme[props.listGroupTheme!].backgroundColor
@@ -132,17 +132,17 @@ const ChevronImage: Function = (isCollapsed: boolean | undefined) => {
   }
   return isCollapsed ? (
     <HoverIcon>
-      <KeyboardArrowRight height={24} width={24} />
+      <KeyboardArrowRightIcon height={24} width={24} />
     </HoverIcon>
   ) : (
     <HoverIcon>
-      <KeyboardArrowDown height={24} width={24} />
+      <KeyboardArrowDownIcon height={24} width={24} />
     </HoverIcon>
   );
 };
 
 const defaultProps = {
-  listGroupTheme: "light",
+  listGroupTheme: 'light',
   collapsible: false,
   border: true,
 } satisfies Partial<Props>;
@@ -153,14 +153,14 @@ export const ListGroup = (props: Props) => {
   const { onToggle, collapsible, isCollapsed, name, children } =
     propsWithDefaults;
 
-  const dependOnProps = "isCollapsed" in propsWithDefaults;
+  const dependOnProps = 'isCollapsed' in propsWithDefaults;
 
   const toggle = () => {
     if (onToggle instanceof Function) {
       onToggle();
       return;
     }
-    if (!("isCollapsed" in propsWithDefaults)) {
+    if (!('isCollapsed' in propsWithDefaults)) {
       setCollapsed((prevState) => !prevState);
     }
   };

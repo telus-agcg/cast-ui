@@ -1,6 +1,6 @@
-import { SVGProps } from "react";
+import { SVGProps } from 'react';
 
-export function OutlineCalendarMonth(props: SVGProps<SVGSVGElement>) {
+export function CalendarMonthIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,13 +11,13 @@ export function OutlineCalendarMonth(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 16H5V10h14zm0-12H5V6h14zM9 14H7v-2h2zm4 0h-2v-2h2zm4 0h-2v-2h2zm-8 4H7v-2h2zm4 0h-2v-2h2zm4 0h-2v-2h2z"
+        d="M17 2c-.55 0-1 .45-1 1v1H8V3c0-.55-.45-1-1-1s-1 .45-1 1v1H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-1V3c0-.55-.45-1-1-1m2 18H5V10h14zm-8-7c0-.55.45-1 1-1s1 .45 1 1s-.45 1-1 1s-1-.45-1-1m-4 0c0-.55.45-1 1-1s1 .45 1 1s-.45 1-1 1s-1-.45-1-1m8 0c0-.55.45-1 1-1s1 .45 1 1s-.45 1-1 1s-1-.45-1-1m-4 4c0-.55.45-1 1-1s1 .45 1 1s-.45 1-1 1s-1-.45-1-1m-4 0c0-.55.45-1 1-1s1 .45 1 1s-.45 1-1 1s-1-.45-1-1m8 0c0-.55.45-1 1-1s1 .45 1 1s-.45 1-1 1s-1-.45-1-1"
       ></path>
     </svg>
   );
 }
 
-export function SharpKeyboardArrowRight(props: SVGProps<SVGSVGElement>) {
+export function KeyboardArrowDownIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -28,13 +28,13 @@ export function SharpKeyboardArrowRight(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6l-6 6z"
+        d="M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0"
       ></path>
     </svg>
   );
 }
 
-export function SharpKeyboardArrowLeft(props: SVGProps<SVGSVGElement>) {
+export function KeyboardArrowRightIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -45,13 +45,13 @@ export function SharpKeyboardArrowLeft(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6z"
+        d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42"
       ></path>
     </svg>
   );
 }
 
-export function SharpKeyboardDoubleArrowRight(props: SVGProps<SVGSVGElement>) {
+export function KeyboardArrowLeftIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -62,17 +62,13 @@ export function SharpKeyboardDoubleArrowRight(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M6.41 6L5 7.41L9.58 12L5 16.59L6.41 18l6-6z"
-      ></path>
-      <path
-        fill="currentColor"
-        d="m13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"
+        d="M14.71 15.88L10.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L8.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0c.38-.39.39-1.03 0-1.42"
       ></path>
     </svg>
   );
 }
 
-export function SharpKeyboardDoubleArrowLeft(props: SVGProps<SVGSVGElement>) {
+export function KeyboardDoubleArrowRightIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -83,17 +79,17 @@ export function SharpKeyboardDoubleArrowLeft(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M17.59 18L19 16.59L14.42 12L19 7.41L17.59 6l-6 6z"
+        d="M5.7 6.71a.996.996 0 0 0 0 1.41L9.58 12L5.7 15.88a.996.996 0 1 0 1.41 1.41l4.59-4.59a.996.996 0 0 0 0-1.41L7.12 6.71c-.39-.39-1.03-.39-1.42 0"
       ></path>
       <path
         fill="currentColor"
-        d="m11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z"
+        d="M12.29 6.71a.996.996 0 0 0 0 1.41L16.17 12l-3.88 3.88a.996.996 0 1 0 1.41 1.41l4.59-4.59a.996.996 0 0 0 0-1.41L13.7 6.7c-.38-.38-1.02-.38-1.41.01"
       ></path>
     </svg>
   );
 }
 
-export function SharpSearch(props: SVGProps<SVGSVGElement>) {
+export function KeyboardDoubleArrowLeftIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +100,28 @@ export function SharpSearch(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14"
+        d="M18.29 17.29a.996.996 0 0 0 0-1.41L14.42 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L12.3 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.38.38 1.01.38 1.4-.01"
+      ></path>
+      <path
+        fill="currentColor"
+        d="M11.7 17.29a.996.996 0 0 0 0-1.41L7.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L5.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.38.38 1.01.38 1.4-.01"
+      ></path>
+    </svg>
+  );
+}
+
+export function SearchIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0s.41-1.08 0-1.49zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14"
       ></path>
     </svg>
   );
@@ -121,64 +138,13 @@ export function CloseIcon(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"
+        d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59L7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12L5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4"
       ></path>
     </svg>
   );
 }
 
-export function KeyboardArrowLeft(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="1em"
-      height="1em"
-      {...props}
-    >
-      <path
-        fill="currentColor"
-        d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6z"
-      ></path>
-    </svg>
-  );
-}
-
-export function KeyboardArrowRight(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="1em"
-      height="1em"
-      {...props}
-    >
-      <path
-        fill="currentColor"
-        d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6l-6 6z"
-      ></path>
-    </svg>
-  );
-}
-
-export function KeyboardArrowDown(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="1em"
-      height="1em"
-      {...props}
-    >
-      <path
-        fill="currentColor"
-        d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6l-6-6z"
-      ></path>
-    </svg>
-  );
-}
-
-export function SupervisedUserCircle(props: SVGProps<SVGSVGElement>) {
+export function SupervisedUserCircleIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -195,7 +161,7 @@ export function SupervisedUserCircle(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function FirstPage(props: SVGProps<SVGSVGElement>) {
+export function FirstPageIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -206,13 +172,13 @@ export function FirstPage(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6l6 6zM6 6h2v12H6z"
+        d="M17.7 15.89L13.82 12l3.89-3.89A.996.996 0 1 0 16.3 6.7l-4.59 4.59a.996.996 0 0 0 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0a.993.993 0 0 0-.01-1.4M7 6c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1"
       ></path>
     </svg>
   );
 }
 
-export function LastPage(props: SVGProps<SVGSVGElement>) {
+export function LastPageIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -223,13 +189,13 @@ export function LastPage(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6l-6-6zM16 6h2v12h-2z"
+        d="M6.29 8.11L10.18 12l-3.89 3.89A.996.996 0 1 0 7.7 17.3l4.59-4.59a.996.996 0 0 0 0-1.41L7.7 6.7a.996.996 0 0 0-1.41 0c-.38.39-.38 1.03 0 1.41M17 6c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1"
       ></path>
     </svg>
   );
 }
 
-export function NavigateBefore(props: SVGProps<SVGSVGElement>) {
+export function NavigateBeforeIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -240,13 +206,13 @@ export function NavigateBefore(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M15.61 7.41L14.2 6l-6 6l6 6l1.41-1.41L11.03 12z"
+        d="M14.91 6.71a.996.996 0 0 0-1.41 0L8.91 11.3a.996.996 0 0 0 0 1.41l4.59 4.59a.996.996 0 1 0 1.41-1.41L11.03 12l3.88-3.88c.38-.39.38-1.03 0-1.41"
       ></path>
     </svg>
   );
 }
 
-export function NavigateNext(props: SVGProps<SVGSVGElement>) {
+export function NavigateNextIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -257,13 +223,13 @@ export function NavigateNext(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M10.02 6L8.61 7.41L13.19 12l-4.58 4.59L10.02 18l6-6z"
+        d="M9.31 6.71a.996.996 0 0 0 0 1.41L13.19 12l-3.88 3.88a.996.996 0 1 0 1.41 1.41l4.59-4.59a.996.996 0 0 0 0-1.41L10.72 6.7c-.38-.38-1.02-.38-1.41.01"
       ></path>
     </svg>
   );
 }
 
-export function Speedometer(props: SVGProps<SVGSVGElement>) {
+export function SpeedIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -274,17 +240,17 @@ export function Speedometer(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="m20.39 8.56l-1.24 1.86a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.86-1.24A10 10 0 0 0 4 20h16a10 10 0 0 0 .38-11.44z"
+        d="M19.46 10a1 1 0 0 0-.07 1a7.6 7.6 0 0 1 .52 1.81a8 8 0 0 1-.69 4.73a1 1 0 0 1-.89.53H5.68a1 1 0 0 1-.89-.54A8 8 0 0 1 13 6.06a7.7 7.7 0 0 1 2.11.56a1 1 0 0 0 1-.07a1 1 0 0 0-.17-1.76A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1a10 10 0 0 0 .55-8.89a1 1 0 0 0-1.75-.11"
       ></path>
       <path
         fill="currentColor"
-        d="M10.59 15.41a2 2 0 0 0 2.83 0l5.66-8.49l-8.49 5.66a2 2 0 0 0 0 2.83"
+        d="M10.59 12.59a2 2 0 0 0 2.83 2.83l5.66-8.49z"
       ></path>
     </svg>
   );
 }
 
-export function PeopleAlt(props: SVGProps<SVGSVGElement>) {
+export function PeopleAltIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -296,7 +262,7 @@ export function PeopleAlt(props: SVGProps<SVGSVGElement>) {
       <path
         fill="currentColor"
         fillRule="evenodd"
-        d="M16.67 13.13C18.04 14.06 19 15.32 19 17v3h4v-3c0-2.18-3.57-3.47-6.33-3.87"
+        d="M16.67 13.13C18.04 14.06 19 15.32 19 17v3h3c.55 0 1-.45 1-1v-2c0-2.18-3.57-3.47-6.33-3.87"
       ></path>
       <circle
         cx="9"
@@ -308,13 +274,13 @@ export function PeopleAlt(props: SVGProps<SVGSVGElement>) {
       <path
         fill="currentColor"
         fillRule="evenodd"
-        d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4c-.47 0-.91.1-1.33.24a5.98 5.98 0 0 1 0 7.52c.42.14.86.24 1.33.24m-6 1c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4"
+        d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4c-.47 0-.91.1-1.33.24a5.98 5.98 0 0 1 0 7.52c.42.14.86.24 1.33.24m-6 1c-2.67 0-8 1.34-8 4v2c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-2c0-2.66-5.33-4-8-4"
       ></path>
     </svg>
   );
 }
 
-export function Pricetags(props: SVGProps<SVGSVGElement>) {
+export function PricetagsIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -335,7 +301,7 @@ export function Pricetags(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function Box3Line(props: SVGProps<SVGSVGElement>) {
+export function Box3LineIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -352,39 +318,7 @@ export function Box3Line(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function Download(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 48 48"
-      width="1em"
-      height="1em"
-      {...props}
-    >
-      <g
-        fill="none"
-        stroke="#000"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="4"
-      >
-        <path d="M6 24.0083V42H42V24"></path>
-        <path d="M33 23L24 32L15 23"></path>
-        <path d="M23.9917 6V32"></path>
-      </g>
-    </svg>
-  );
-}
-
-export const sideNavIcons = {
-  Speedometer,
-  PeopleAlt,
-  Pricetags,
-  Box3Line,
-  Download,
-};
-
-export function Info(props: SVGProps<SVGSVGElement>) {
+export function DownloadIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -395,7 +329,32 @@ export function Info(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m1 15h-2v-6h2zm0-8h-2V7h2z"
+        d="M16.59 9H15V4c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v5H7.41c-.89 0-1.34 1.08-.71 1.71l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.63-.63.19-1.71-.7-1.71M5 19c0 .55.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1H6c-.55 0-1 .45-1 1"
+      ></path>
+    </svg>
+  );
+}
+
+export const sideNavIcons = {
+  SpeedIcon,
+  PeopleAltIcon,
+  PricetagsIcon,
+  Box3LineIcon,
+  DownloadIcon,
+};
+
+export function InfoIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 15c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1m1-8h-2V7h2z"
       ></path>
     </svg>
   );
