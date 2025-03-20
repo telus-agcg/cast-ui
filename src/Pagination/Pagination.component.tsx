@@ -181,6 +181,7 @@ export const Pagination = (props: Props) => {
             isSearchable: false,
             'aria-label': rowsSelectorText,
           }}
+          isFilterable={false}
         />
         <div className="showText">Rows per page</div>
       </SSpanPageSizeOptionsSelectWrapper>

@@ -105,103 +105,6 @@ export enum CHECKBOX_DISPLAY_STYLE {
   STACKED = 'stacked',
 }
 
-const SDiv = styled.div<Props>`
-  ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)};
-  display: inline-flex;
-  position: relative;
-`;
-
-const SInput = styled.input<Props & { hasChildren: boolean }>`
-  position: relative;
-  display: none;
-  &+label{
-		&:before, &:after{
-      display: inline-flex;
-		}
-	}
-  + label:before {
-    content: "";
-    width: ${(props: any) => props.theme.checkbox[props.cbSize!].squareSize};
-    height: ${(props: any) => props.theme.checkbox[props.cbSize!].squareSize};
-    background-clip: padding-box;
-    background-color: ${(props: any) => props.theme.checkbox.unselectedColor};
-    border-color: ${(props: any) =>
-      props.invalid
-        ? props.theme.validation.borderColor
-        : props.theme.checkbox.borderColor};
-    border-style: ${(props: any) => props.theme.checkbox.borderStyle};
-    border-radius: 1px;
-    border-width ${(props: any) => props.theme.checkbox.borderWidth};
-    margin-right: ${(props: any) => (props.hasChildren ? '4px' : '0px')};
-    padding: 3px;
-    transition: all 0.3s;
-  }
-  &:disabled + label {
-    color: ${(props: any) => props.theme.checkbox.disabledText};
-    cursor: not-allowed;
-  }
-
-  &:checked + label:before,  
-  &:indeterminate + label:before {
-    background-color: ${(props: any) => props.theme.checkbox.selectedColor};
-  }
-
-  &:checked + label:hover:before,
-  &:indeterminate + label:hover:before {  
-    background-color: ${(props: any) => props.theme.colors.primaryHover};
-    border-color: ${(props: any) => props.theme.colors.primaryHover};
-  }
-
-  &:not(:checked) + label:hover:before{
-    border-color: ${(props: any) => props.theme.colors.primaryHover};
-  }
-
-  label:before  {
-    background-color: ${(props: any) => props.theme.checkbox.disabledCheck};
-    border-color: ${(props: any) => props.theme.checkbox.disabledCheck};
-  } 
-
-  &:checked + label:after {
-      content: "";
-      padding: 2px;
-      position: absolute;
-      height:  ${(props: any) => (props.cbSize === 'lg' ? '8px' : '6px')};
-      border-style: solid;
-      border-color: ${(props: any) => props.theme.colors.white};
-      border-width: ${(props: any) =>
-        props.cbSize === 'lg' ? '0 4px 4px 0' : '0 3px 3px 0'};
-      transform: rotate(45deg) translateX(-1px) translateY(-1px);
-      -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
-      -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
-      margin-left: ${(props: any) =>
-        props.theme.checkbox[props.cbSize!].marginLeft};
-      top: 2px;
-      left: 0;
-    }
-
-  &:indeterminate + label:after {
-      content: "";
-      padding: 6px 2px;
-      text-align: center;
-      position: absolute;
-      height: 0px;
-      border-style: solid;
-      border-color: ${(props: any) => props.theme.colors.white};
-      border-width: ${(props: any) =>
-        props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
-      ${(props: any) => indeterminateCheckboxRules(props.cbSize)};
-      margin-left: 6px;
-      top: 3px;
-      left: 0;
-    }
-  &:disabled + label:before,
-    &:disabled:checked + label:before,
-    &:disabled:not(:checked) + label:before
-     {
-      background-color: ${(props: any) => props.theme.checkbox.disabledCheck};
-      border-color: ${(props: any) => props.theme.checkbox.disabledCheck};
-    } 
-`;
 const Input = styled.input`
   height: 0;
   width: 0;
@@ -213,7 +116,7 @@ const Label = styled.label<Partial<Props>>`
   position: relative;
   display: inline-block;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
-  margin: 0.6em 1em;
+  margin: 0em 1em;
   font-family: ${(props) => props.theme.typography.fontFamily};
 `;
 
