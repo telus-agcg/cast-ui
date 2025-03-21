@@ -74,6 +74,8 @@ export type { SideNavProps } from './Sidenav/SideNavbar.component.tsx';
 // Spinner
 export { Spinner } from './Spinner/Spinner.component.tsx';
 export type { SpinnerProps } from './Spinner/Spinner.component.tsx';
+// Table
+export { Table } from './Table/Table.component.tsx';
 // Tabs
 export { Tab } from './Tabs/Tab.component.tsx';
 export type { TabProps } from './Tabs/Tab.component.tsx';
