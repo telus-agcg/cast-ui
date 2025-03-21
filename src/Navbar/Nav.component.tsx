@@ -1,8 +1,8 @@
-import * as React from "react";
-import styled from "styled-components";
-import { getPropsWithDefaults } from "@utils";
+import * as React from 'react';
+import styled from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
 
-export type Props = React.PropsWithChildren<{
+export type NavProps = React.PropsWithChildren<{
   /**
    * Float the Nav container to the left of the Navbar
    *
@@ -28,12 +28,10 @@ export type Props = React.PropsWithChildren<{
    **/
   theme?: any;
 }>;
-const SNav = styled.nav`
+const SNav = styled.nav<NavProps>`
   height: auto;
-  margin-left: ${(props: Props) =>
-    props.right || props.center ? "auto" : "0"};
-  margin-right: ${(props: Props) =>
-    props.left || props.center ? "auto" : "0"};
+  margin-left: ${(props) => (props.right || props.center ? 'auto' : '0')};
+  margin-right: ${(props) => (props.left || props.center ? 'auto' : '0')};
   display: flex;
   align-items: center;
 `;
@@ -42,9 +40,9 @@ const defaultProps = {
   left: false,
   center: false,
   right: false,
-} satisfies Partial<Props>;
+} satisfies Partial<NavProps>;
 
-export const Nav: React.FunctionComponent<Props> = (props) => {
+export const Nav: React.FunctionComponent<NavProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { children } = propsWithDefaults;
   return <SNav {...propsWithDefaults}>{children}</SNav>;

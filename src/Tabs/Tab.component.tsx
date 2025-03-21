@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Tab as ReactTab, TabProps } from 'react-tabs';
+import { Tab as ReactTab, TabProps as ReactTabProps } from 'react-tabs';
 import styled from 'styled-components';
 import { Omit } from '@utils';
 
-export interface Props extends Omit<TabProps, 'as'> {
+export interface TabProps extends Omit<ReactTabProps, 'as'> {
   /**
    * Specify the title text of the tab
    *
@@ -77,10 +77,10 @@ const SReactTab = styled(ReactTabProxy)`
   }
 `;
 
-export class Tab extends React.Component<Props> {
+export class Tab extends React.Component<TabProps> {
   public static readonly tabsRole: string = 'Tab';
 
-  constructor(props: Props) {
+  constructor(props: TabProps) {
     super(props);
   }
 

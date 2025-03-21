@@ -1,11 +1,12 @@
-import * as React from "react";
-import clsx from "clsx";
-import styled from "styled-components";
-import { components } from "react-select";
-import { ErrorMessage } from "@typography";
-import { getPropsWithDefaults } from "@utils";
+import * as React from 'react';
+import clsx from 'clsx';
+import styled from 'styled-components';
+import { components } from 'react-select';
+import { ErrorMessage } from '@typography';
+import { getPropsWithDefaults } from '@utils';
 
-export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
    * The ID of the control
    *
@@ -35,7 +36,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    *
    * @default 'md'
    **/
-  inputSize?: "sm" | "md" | "lg";
+  inputSize?: 'sm' | 'md' | 'lg';
   /**
    * Specify if the input is clearable
    *
@@ -74,7 +75,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    *
    * @default 'right'
    */
-  iconPosition?: "left" | "right";
+  iconPosition?: 'left' | 'right';
   /**
    * Specify whether the control shows an icon
    *
@@ -86,7 +87,7 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
    *
    * @default 'right'
    */
-  addonTextPosition?: "left" | "right";
+  addonTextPosition?: 'left' | 'right';
   /**
    * What is the maximum length of the text in the field?
    *
@@ -121,18 +122,17 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SInput = styled.input<Props>`
+const SInput = styled.input<InputProps>`
   flex-grow: 1;
   min-width: 0;
-  height: ${(props: Props) => props.theme.input[props.inputSize!].height};
+  height: ${(props) => props.theme.input[props.inputSize!].height};
   box-sizing: border-box;
   border: none;
-  border-radius: ${(props: Props) =>
-    props.theme.input[props.inputSize!].borderRadius};
-  padding: ${(props: Props) => props.theme.input[props.inputSize!].padding};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.input.fontSize};
-  color: ${(props: Props) => props.theme.input.color};
+  border-radius: ${(props) => props.theme.input[props.inputSize!].borderRadius};
+  padding: ${(props) => props.theme.input[props.inputSize!].padding};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.input.fontSize};
+  color: ${(props) => props.theme.input.color};
   text-align: left;
   margin-right: 0;
   background-color: transparent !important;
@@ -146,7 +146,7 @@ const SInput = styled.input<Props>`
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
     // override autofill user-agent styles
-    -webkit-text-fill-color: ${(props: Props) => props.theme.input.color};
+    -webkit-text-fill-color: ${(props) => props.theme.input.color};
   }
 
   &:focus {
@@ -155,12 +155,10 @@ const SInput = styled.input<Props>`
   }
 `;
 
-const SIconWrapper = styled.div<Props>`
+const SIconWrapper = styled.div<InputProps>`
   color: ${(props) => props.theme.input.iconColor};
-  margin-left: ${(props: Props) =>
-    props.iconPosition === "left" ? "8px" : "0px"};
-  margin-right: ${(props: Props) =>
-    props.iconPosition === "right" ? "8px" : "0px"};
+  margin-left: ${(props) => (props.iconPosition === 'left' ? '8px' : '0px')};
+  margin-right: ${(props) => (props.iconPosition === 'right' ? '8px' : '0px')};
   border-radius: 0px;
   button {
     border-radius: 0px;
@@ -174,19 +172,19 @@ const SAddonTextWrapper = styled.div`
   margin: 0 8px;
 `;
 
-const SInputWrapper = styled.div<Props>`
+const SInputWrapper = styled.div<InputProps>`
   width: 100%;
   position: relative;
   box-sizing: border-box;
   display: inline-flex;
   flex-wrap: nowrap;
   align-items: center;
-  background: ${(props: Props) => props.theme.input.background};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.inputSize!].fontSize};
-  color: ${(props: Props) => props.theme.reverseText};
+  background: ${(props) => props.theme.input.background};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.common[props.inputSize!].fontSize};
+  color: ${(props) => props.theme.reverseText};
   transition: all 0.3s;
-  border: ${(props: Props) =>
+  border: ${(props) =>
     `${props.theme.input.borderWidth} 
      ${props.theme.input.borderStyle} 
      ${
@@ -194,19 +192,18 @@ const SInputWrapper = styled.div<Props>`
          ? props.theme.validation.borderColor
          : props.theme.input.borderColor
      }`};
-  border-radius: ${(props: Props) =>
-    props.theme.input[props.inputSize!].borderRadius};
+  border-radius: ${(props) => props.theme.input[props.inputSize!].borderRadius};
 
   outline: none !important;
 
   &.focused {
     outline: none !important;
-    border-color: ${(props: Props) =>
+    border-color: ${(props) =>
       props.invalid
         ? props.theme.validation.borderColor
         : props.theme.colors.primary};
     box-shadow: 0 0 3px
-      ${(props: Props) =>
+      ${(props) =>
         props.invalid
           ? props.theme.validation.borderColor
           : props.theme.colors.primary};
@@ -214,30 +211,30 @@ const SInputWrapper = styled.div<Props>`
 
   &.disabled,
   &.disabled > input {
-    border: ${(props: Props) => props.theme.input.disabled.border};
-    background: ${(props: Props) => props.theme.input.disabled.background};
+    border: ${(props) => props.theme.input.disabled.border};
+    background: ${(props) => props.theme.input.disabled.background};
     cursor: not-allowed;
     &:hover {
-      border: ${(props: Props) => props.theme.input.disabled.border};
+      border: ${(props) => props.theme.input.disabled.border};
     }
     & > div {
-      color: ${(props: Props) => props.theme.input.disabled.addonTextColor};
+      color: ${(props) => props.theme.input.disabled.addonTextColor};
     }
   }
 
   &:hover {
-    border-color: ${(props: Props) => props.theme.colors.drk800};
+    border-color: ${(props) => props.theme.colors.drk800};
   }
 `;
 
 const defaultProps = {
-  inputSize: "md",
-  type: "text",
-  autoComplete: "off",
-} satisfies Partial<Props>;
+  inputSize: 'md',
+  type: 'text',
+  autoComplete: 'off',
+} satisfies Partial<InputProps>;
 
-export const Input = (props: Props) => {
-  const propsWithDefaults: Props = getPropsWithDefaults(defaultProps, props);
+export const Input = (props: InputProps) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const {
     id,
     disabled,
@@ -257,7 +254,7 @@ export const Input = (props: Props) => {
     onChange,
   } = propsWithDefaults;
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const errorId = invalid ? `${id}-error-msg` : "";
+  const errorId = invalid ? `${id}-error-msg` : '';
 
   const [focused, setFocused] = React.useState(false);
 
@@ -288,14 +285,14 @@ export const Input = (props: Props) => {
           disabled,
           focused,
         })}
-        data-testid={`wrapper-${propsWithDefaults["data-testid"]}`}
+        data-testid={`wrapper-${propsWithDefaults['data-testid']}`}
       >
-        {"left" === iconPosition && icon && (
+        {'left' === iconPosition && icon && (
           <SIconWrapper iconPosition={iconPosition}>
             {icon as React.ReactNode}
           </SIconWrapper>
         )}
-        {"left" === addonTextPosition && addonText && (
+        {'left' === addonTextPosition && addonText && (
           <SAddonTextWrapper>{addonText}</SAddonTextWrapper>
         )}
         <SInput
@@ -303,7 +300,7 @@ export const Input = (props: Props) => {
           {...propsWithDefaults}
           onChange={handleChange}
           value={value}
-          data-invalid={invalid ? "" : undefined}
+          data-invalid={invalid ? '' : undefined}
           aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
           onFocus={(e) => handleFocus(e)}
@@ -313,37 +310,37 @@ export const Input = (props: Props) => {
         />
         {isClearable && !disabled && value && (
           <SIconWrapper
-            data-testid={`clear-${propsWithDefaults["data-testid"]}`}
+            data-testid={`clear-${propsWithDefaults['data-testid']}`}
             onClick={() => {
               // manually trigger onChange event to provide value to parent component
               // @ts-ignore
               const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
                 // @ts-ignore
                 window.HTMLInputElement.prototype,
-                "value"
+                'value',
               ).set;
               // @ts-ignore
-              nativeInputValueSetter.call(inputRef.current, "");
-              const e = new Event("input", { bubbles: true });
+              nativeInputValueSetter.call(inputRef.current, '');
+              const e = new Event('input', { bubbles: true });
               inputRef && inputRef.current && inputRef.current.dispatchEvent(e);
             }}
           >
             <components.CrossIcon />
           </SIconWrapper>
         )}
-        {"right" === iconPosition && icon && (
+        {'right' === iconPosition && icon && (
           <SIconWrapper iconPosition={iconPosition}>
             {icon as React.ReactNode}
           </SIconWrapper>
         )}
-        {"right" === addonTextPosition && addonText && (
-          <SAddonTextWrapper className={"addon-text"}>
+        {'right' === addonTextPosition && addonText && (
+          <SAddonTextWrapper className={'addon-text'}>
             {addonText}
           </SAddonTextWrapper>
         )}
       </SInputWrapper>
       {invalid && invalidText && (
-        <ErrorMessage id={errorId} message={invalidText || ""} />
+        <ErrorMessage id={errorId} message={invalidText || ''} />
       )}
     </>
   );

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface ToggleProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the ID of the individual toggle
    *
@@ -60,7 +60,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 const getCSSCalc: (str: string) => string = (str) => `calc(100% - ${str})`;
 
-const SDiv = styled.div<Props>`
+const SDiv = styled.div<ToggleProps>`
   input[type='checkbox'] {
     height: 0;
     width: 0;
@@ -69,17 +69,16 @@ const SDiv = styled.div<Props>`
   }
 
   label {
-    cursor: ${(props: Props) => (props.disabled ? 'not-allowed' : 'pointer')};
+    cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
     text-indent: -9999px;
-    width: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].backgroundWidth};
-    height: ${(props: Props) =>
+    width: ${(props) => props.theme.toggle[props.toggleSize!].backgroundWidth};
+    height: ${(props) =>
       props.theme.toggle[props.toggleSize!].backgroundHeight};
-    background: ${(props: Props) =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.background.disabled
         : props.theme.toggle.background.inactiveColor};
-    border-color: ${(props: Props) =>
+    border-color: ${(props) =>
       props.disabled
         ? props.theme.toggle.background.disabled
         : props.theme.toggle.background.disabledBorderColor};
@@ -91,19 +90,15 @@ const SDiv = styled.div<Props>`
   label:after {
     content: '';
     position: absolute;
-    top: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].toggleOffsetTop};
-    left: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].toggleOffsetLeft};
-    width: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].toggleSize};
-    height: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].toggleSize};
-    background: ${(props: Props) =>
+    top: ${(props) => props.theme.toggle[props.toggleSize!].toggleOffsetTop};
+    left: ${(props) => props.theme.toggle[props.toggleSize!].toggleOffsetLeft};
+    width: ${(props) => props.theme.toggle[props.toggleSize!].toggleSize};
+    height: ${(props) => props.theme.toggle[props.toggleSize!].toggleSize};
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.inactiveDisabledColor
         : props.theme.toggle.inactiveColor};
-    border-color: ${(props: Props) =>
+    border-color: ${(props) =>
       props.disabled
         ? props.theme.toggle.inactiveDisabledBorderColor
         : props.theme.toggle.inactiveBorderColor};
@@ -112,52 +107,51 @@ const SDiv = styled.div<Props>`
   }
 
   input:checked + label {
-    background: ${(props: Props) =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.background.disabled
         : props.theme.toggle.background.activeColor};
   }
 
   input:checked + label:after {
-    left: ${(props: Props) =>
+    left: ${(props) =>
       getCSSCalc(props.theme.toggle[props.toggleSize!].activeOffset)};
     transform: translateX(-100%);
-    background: ${(props: Props) =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.activeDisabledColor
         : props.theme.toggle.activeColor};
-    border-color: ${(props: Props) =>
+    border-color: ${(props) =>
       props.disabled
         ? props.theme.toggle.activeDisabledBorderColor
         : props.theme.toggle.activeBorderColor};
   }
 
   input:checked + label:hover:after {
-    background: ${(props: Props) =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.activeDisabledColor
         : props.theme.colors.primaryHover};
   }
 
   input:not(:checked) + label:hover:after {
-    background: ${(props: Props) =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.activeDisabledColor
         : props.theme.colors.drk800};
   }
 
   label:active:after {
-    width: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].toggleSize};
+    width: ${(props) => props.theme.toggle[props.toggleSize!].toggleSize};
   }
 `;
 
 const defaultProps = {
   toggleSize: 'md',
   id: uuidv4(),
-} satisfies Partial<Props>;
+} satisfies Partial<ToggleProps>;
 
-export const Toggle = (props: Props) => {
+export const Toggle = (props: ToggleProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { onChange, children, checked, disabled, label, id, ...rest } =
     propsWithDefaults;

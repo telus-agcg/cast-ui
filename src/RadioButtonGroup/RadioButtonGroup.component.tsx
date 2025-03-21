@@ -2,7 +2,7 @@ import * as React from 'react';
 import { getPropsWithDefaults, Omit } from '@utils';
 import { RadioButton } from '../RadioButton/RadioButton.component';
 
-export interface Props
+export interface RadioButtonGroupProps
   extends Omit<React.InputHTMLAttributes<HTMLDivElement>, 'onChange'> {
   /**
    * Specify the value of the radio button to select by default
@@ -43,9 +43,9 @@ export interface Props
 
 const defaultProps = {
   onChange: () => {},
-} satisfies Partial<Props>;
+} satisfies Partial<RadioButtonGroupProps>;
 
-export const RadioButtonGroup = (props: Props) => {
+export const RadioButtonGroup = (props: RadioButtonGroupProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const [selected, setSelected] = React.useState('');
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { ErrorMessage } from '@typography';
 
-export interface Props
+export interface TextAreaProps
   extends React.PropsWithChildren<
     React.TextareaHTMLAttributes<HTMLTextAreaElement>
   > {
@@ -96,31 +96,30 @@ const SWrapperDiv = styled.div`
   position: relative;
 `;
 
-const STextarea = styled.textarea<Props>`
+const STextarea = styled.textarea<TextAreaProps>`
   width: 100%;
   box-sizing: border-box;
-  background: ${(props: Props) => props.theme.textarea.background};
+  background: ${(props) => props.theme.textarea.background};
   border: 1px solid
-    ${(props: Props) =>
+    ${(props) =>
       props.invalid
         ? props.theme.validation.borderColor
         : props.theme.textarea.borderColor};
-  border-radius: ${(props: Props) =>
+  border-radius: ${(props) =>
     props.theme.textarea[props.textareaSize!].borderRadius};
-  padding: ${(props: Props) => props.theme.common[props.textareaSize!].padding};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) =>
-    props.theme.common[props.textareaSize!].fontSize};
-  color: ${(props: Props) => props.theme.reverseText};
+  padding: ${(props) => props.theme.common[props.textareaSize!].padding};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.common[props.textareaSize!].fontSize};
+  color: ${(props) => props.theme.reverseText};
   outline: none !important;
   &:focus {
     outline: none !important;
-    border-color: ${(props: Props) =>
+    border-color: ${(props) =>
       props.invalid
         ? props.theme.validation.borderColor
         : props.theme.colors.primary};
     box-shadow: 0 0 3px
-      ${(props: Props) =>
+      ${(props) =>
         props.invalid
           ? props.theme.validation.borderColor
           : props.theme.colors.primary};
@@ -134,22 +133,22 @@ const STextarea = styled.textarea<Props>`
     color: ${(props) => props.theme.textarea.placeholderColor};
   }
   &:hover {
-    border-color: ${(props: Props) => props.theme.textarea.hoverBorderColor};
+    border-color: ${(props) => props.theme.textarea.hoverBorderColor};
     &:disabled {
       border-color: ${(props) => props.theme.textarea.disabled.borderColor};
     }
   }
   transition: all 0.3s;
   vertical-align: top;
-  resize: ${(props: Props) => (props.isReSizable ? 'auto' : 'none')};
+  resize: ${(props) => (props.isReSizable ? 'auto' : 'none')};
 `;
 
 const defaultProps = {
   textareaSize: 'md',
   isReSizable: false,
-} satisfies Partial<Props>;
+} satisfies Partial<TextAreaProps>;
 
-export const Textarea: React.FunctionComponent<Props> = (props) => {
+export const Textarea: React.FunctionComponent<TextAreaProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { value, onChange, children, ...textareaProps } = propsWithDefaults;
   const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';

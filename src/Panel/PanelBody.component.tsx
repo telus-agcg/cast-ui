@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
-export type Props = React.PropsWithChildren<{
+export type PanelBodyProps = React.PropsWithChildren<{
   /**
    * Set PanelBody Style
    *
@@ -22,19 +22,21 @@ export type Props = React.PropsWithChildren<{
   theme?: any;
 }>;
 
-const SPanelBody = styled.div`
-  border: ${(props: Props) =>
+const SPanelBody = styled.div<PanelBodyProps>`
+  border: ${(props) =>
     `${props.theme.panel.body.borderWidth} solid 
     ${props.theme.panel.bodyBorderColor}`};
-  border-radius: ${(props: Props) => props.theme.panel.body.borderRadius};
-  padding: ${(props: Props) =>
+  border-radius: ${(props) => props.theme.panel.body.borderRadius};
+  padding: ${(props) =>
     props.noPadding ? '10px' : props.theme.panel.body.padding};
   height: auto;
 `;
 
-const defaultProps = { panelStyle: 'primary' } satisfies Partial<Props>;
+const defaultProps = {
+  panelStyle: 'primary',
+} satisfies Partial<PanelBodyProps>;
 
-export const PanelBody = (props: Props) => {
+export const PanelBody = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { children } = propsWithDefaults;
   return <SPanelBody {...propsWithDefaults}>{children}</SPanelBody>;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-export type Props = React.PropsWithChildren<{
+export type DisplayProps = React.PropsWithChildren<{
   /**
    * Set Display Size
    *
@@ -16,24 +16,22 @@ export type Props = React.PropsWithChildren<{
   theme?: any;
 }>;
 
-const SDisplay = styled.h1`
-  font-family: ${(props: Props) =>
+const SDisplay = styled.h1<DisplayProps>`
+  font-family: ${(props) =>
     props.theme.typography.display[props.size!].fontFamily};
-  font-weight: ${(props: Props) =>
+  font-weight: ${(props) =>
     props.theme.typography.display[props.size!].fontWeight};
-  font-size: ${(props: Props) =>
-    props.theme.typography.display[props.size!].fontSize};
-  line-height: ${(props: Props) =>
+  font-size: ${(props) => props.theme.typography.display[props.size!].fontSize};
+  line-height: ${(props) =>
     props.theme.typography.display[props.size!].lineHeight};
-  margin: ${(props: Props) =>
-    props.theme.typography.display[props.size!].margin};
+  margin: ${(props) => props.theme.typography.display[props.size!].margin};
 `;
 
 const defaultProps = {
   size: 10,
-} satisfies Partial<Props>;
+} satisfies Partial<DisplayProps>;
 
-export const Display: React.FunctionComponent<Props> = (props) => {
+export const Display: React.FunctionComponent<DisplayProps> = (props) => {
   const propsWithDefaults = { ...defaultProps, ...props };
   const { children, ...rest } = propsWithDefaults;
   return <SDisplay {...rest}>{children}</SDisplay>;

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import _ from 'lodash';
-import clsx from 'clsx';
 import styled from 'styled-components';
+import clsx from 'clsx';
 import { getDataProps } from '@utils';
 
-export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
+export type LinkProps = React.LinkHTMLAttributes<HTMLLinkElement> & {
   /**
    * The ID of the control
    *
@@ -45,7 +45,7 @@ export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
   theme?: any;
 };
 
-const SLink = styled.a`
+const SLink = styled.a<LinkProps>`
   font-weight: ${(props: any) => props.theme.typography.link.fontWeight};
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.typography.link.fontSize};
@@ -76,9 +76,9 @@ const SLink = styled.a`
 const defaultProps = {
   href: 'javascript:void(0)',
   disabled: false,
-} satisfies Partial<Props>;
+} satisfies Partial<LinkProps>;
 
-export const Link: React.FunctionComponent<Props> = (props: Props) => {
+export const Link: React.FunctionComponent<LinkProps> = (props: LinkProps) => {
   const propsWithDefaults = { ...defaultProps, ...props };
   const dataProps: any = getDataProps(propsWithDefaults);
   const {

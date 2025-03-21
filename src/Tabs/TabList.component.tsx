@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { TabList as ReactTabList, TabListProps } from 'react-tabs';
+import {
+  TabList as ReactTabList,
+  TabListProps as ReactTabListProps,
+} from 'react-tabs';
 import styled from 'styled-components';
 import { Omit } from '@utils';
 
-export interface Props extends Omit<TabListProps, 'as'> {
+export interface TablistProps extends Omit<ReactTabListProps, 'as'> {
   /**
    * From theme provider
    *
@@ -27,10 +30,12 @@ const SReactTabList = styled(ReactTabListProxy)`
   width: fit-content;
 `;
 
-export class TabList extends React.Component<React.PropsWithChildren<Props>> {
+export class TabList extends React.Component<
+  React.PropsWithChildren<TablistProps>
+> {
   public static readonly tabsRole: string = 'TabList';
 
-  constructor(props: Props) {
+  constructor(props: TablistProps) {
     super(props);
   }
 

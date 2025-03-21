@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useCollapse } from "react-collapsed";
-import { getPropsWithDefaults } from "@utils";
+import React, { useEffect, useState } from 'react';
+import { useCollapse } from 'react-collapsed';
+import { getPropsWithDefaults } from '@utils';
 
-export type Props = React.PropsWithChildren<{
+export type CollapseProps = React.PropsWithChildren<{
   isOpen?: boolean;
   /**
    * From theme provider
@@ -12,9 +12,9 @@ export type Props = React.PropsWithChildren<{
   theme?: any;
 }>;
 
-const defaultProps = {} satisfies Partial<Props>;
+const defaultProps = {} satisfies Partial<CollapseProps>;
 
-export const Collapse = (props: Props) => {
+export const Collapse = (props: CollapseProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { isOpen, children } = propsWithDefaults;
   const [isExpanded, setExpanded] = useState(isOpen);

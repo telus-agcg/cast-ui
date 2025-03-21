@@ -8,7 +8,7 @@ import {
 import { SelectMenuList } from './SelectMenuList';
 import { Checkbox, CHECKBOX_STATE } from '../Checkbox/Checkbox.component';
 
-interface Props {
+export interface SelectCheckboxProps {
   options: any[];
   isMulti?: boolean;
   isFilterable?: boolean;
@@ -18,7 +18,7 @@ interface Props {
   clearText?: any;
 }
 
-interface TruncatedValuesProps {
+export interface TruncatedValuesProps {
   selectedOptions: any;
   maxWidth: number;
 }
@@ -190,7 +190,7 @@ export const SelectCheckboxProps = ({
   isFilterable,
   id,
   clearText,
-}: Props) => {
+}: SelectCheckboxProps) => {
   const selectMulti = (val, updateSelectedOptions) => {
     const isSelectedOption = selectedOptions.find((o) => o.value === val);
     let res: any[] = [];
@@ -227,7 +227,7 @@ export const SelectCheckboxProps = ({
           {...props.innerProps}
           id={`${id}-Select-${_.snakeCase(props.data.label)}`}
         >
-          <Checkbox
+          <SCheckbox
             id={props.value}
             value={
               props.isSelected ? CHECKBOX_STATE.CHECKED : CHECKBOX_STATE.EMPTY

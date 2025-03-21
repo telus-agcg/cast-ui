@@ -1,8 +1,8 @@
-import * as React from "react";
-import styled from "styled-components";
-import { getPropsWithDefaults } from "@utils";
-import { CloseIcon } from "@icons";
-import { ProgressBar } from "./ProgressBar.component";
+import * as React from 'react';
+import styled from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
+import { CloseIcon } from '@icons';
+import { ProgressBar } from './ProgressBar.component';
 
 export interface File {
   name: string;
@@ -13,7 +13,7 @@ export interface File {
   info?: any;
 }
 
-export interface Props {
+export interface FileProps {
   /**
    * Provide file
    *
@@ -75,24 +75,24 @@ export interface Props {
   theme?: any;
 }
 
-const SFile = styled.div<Props>`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.fileUpload.fontSize};
-  color: ${(props: Props) => props.theme.fileUpload.file.defaultColor};
-  background: ${(props: Props) => props.theme.fileUpload.file.background};
-  border-radius: ${(props: Props) => props.theme.fileUpload.file.borderRadius};
-  text-align: ${(props: Props) => props.theme.fileUpload.file.textAlign};
-  padding: ${(props: Props) => props.theme.fileUpload.file.padding};
-  margin: ${(props: Props) => props.theme.fileUpload.file.margin};
+const SFile = styled.div<FileProps>`
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.fileUpload.fontSize};
+  color: ${(props) => props.theme.fileUpload.file.defaultColor};
+  background: ${(props) => props.theme.fileUpload.file.background};
+  border-radius: ${(props) => props.theme.fileUpload.file.borderRadius};
+  text-align: ${(props) => props.theme.fileUpload.file.textAlign};
+  padding: ${(props) => props.theme.fileUpload.file.padding};
+  margin: ${(props) => props.theme.fileUpload.file.margin};
   display: flex;
   align-items: center;
   .file-name {
     width: 40%;
     font-size: 14px;
     text-align: left;
-    color: ${(props: Props) =>
-      props.uploaded ? props.theme.fileUpload.file.primaryColor : "inherit"};
-    cursor: ${(props: Props) => (props.uploaded ? "pointer" : "default")};
+    color: ${(props) =>
+      props.uploaded ? props.theme.fileUpload.file.primaryColor : 'inherit'};
+    cursor: ${(props) => (props.uploaded ? 'pointer' : 'default')};
     overflow: hidden;
   }
   .file-size {
@@ -111,7 +111,7 @@ const SFile = styled.div<Props>`
     font-size: 13px;
     text-align: right;
     padding: 0 4px;
-    color: ${(props: Props) =>
+    color: ${(props) =>
       props.uploaded
         ? props.theme.fileUpload.file.dangerColor
         : props.theme.fileUpload.file.primaryColor};
@@ -123,24 +123,24 @@ const SFile = styled.div<Props>`
 
 const defaultProps = {
   file: {} as File,
-  fileDetails: "",
+  fileDetails: '',
   canDelete: true,
   uploaded: false,
   progressBarProps: {},
   onSelect: () => {},
   onCancel: () => {},
   onDelete: () => {},
-} satisfies Partial<Props>;
+} satisfies Partial<FileProps>;
 
-export const File = (props: Props) => {
+export const File = (props: FileProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
 
   const humanFileSize = (bytes: number, decimals: number = 2) => {
-    if (bytes === 0) return "0 Bytes";
+    if (bytes === 0) return '0 Bytes';
 
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
 
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
@@ -172,7 +172,7 @@ export const File = (props: Props) => {
       <div className="file-size">{humanFileSize(file.size, 1)}</div>
       <div className="file-details">
         {!uploaded && (
-          <ProgressBar height={"4px"} percentage={0} {...progressBarProps} />
+          <ProgressBar height={'4px'} percentage={0} {...progressBarProps} />
         )}
         {uploaded && fileDetails && (
           <div> {fileDetails as React.ReactNode} </div>
