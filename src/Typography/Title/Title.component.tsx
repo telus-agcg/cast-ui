@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-export type Props = React.PropsWithChildren<{
+export type TitleProps = React.PropsWithChildren<{
   /**
    * Set Title Size
    *
@@ -16,24 +16,23 @@ export type Props = React.PropsWithChildren<{
   theme?: any;
 }>;
 
-const STitle = styled.h1`
-  font-family: ${(props: Props) =>
+const STitle = styled.h1<TitleProps>`
+  font-family: ${(props) =>
     props.theme.typography.title[props.size!].fontFamily};
-  color: ${(props: Props) => props.theme.typography.color};
-  font-weight: ${(props: Props) =>
+  color: ${(props) => props.theme.typography.color};
+  font-weight: ${(props) =>
     props.theme.typography.title[props.size!].fontWeight};
-  font-size: ${(props: Props) =>
-    props.theme.typography.title[props.size!].fontSize};
-  line-height: ${(props: Props) =>
+  font-size: ${(props) => props.theme.typography.title[props.size!].fontSize};
+  line-height: ${(props) =>
     props.theme.typography.title[props.size!].lineHeight};
-  margin: ${(props: Props) => props.theme.typography.title[props.size!].margin};
+  margin: ${(props) => props.theme.typography.title[props.size!].margin};
 `;
 
 const defaultProps = {
   size: 10,
-} satisfies Partial<Props>;
+} satisfies Partial<TitleProps>;
 
-export const Title: React.FunctionComponent<Props> = (props) => {
+export const Title: React.FunctionComponent<TitleProps> = (props) => {
   const propsWithDefaults = { ...defaultProps, ...props };
   const { children, ...rest } = propsWithDefaults;
   return <STitle {...rest}>{children}</STitle>;

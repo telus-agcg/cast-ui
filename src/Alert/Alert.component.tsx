@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
-export type Props = React.PropsWithChildren<{
+export type AlertProps = React.PropsWithChildren<{
   /**
    * Select Alert Style
    *
@@ -23,38 +23,38 @@ export type Props = React.PropsWithChildren<{
   theme?: any;
 }>;
 
-const SAlert = styled.div`
-  background: ${(props: Props) =>
+const SAlert = styled.div<AlertProps>`
+  background: ${(props) =>
     props.lightMode
       ? props.theme.styles[props.alertStyle!]['light'].alertBackground
       : props.theme.styles[props.alertStyle!].alertBackground};
-  border-radius: ${(props: Props) => props.theme.alert.borderRadius};
-  color: ${(props: Props) =>
+  border-radius: ${(props) => props.theme.alert.borderRadius};
+  color: ${(props) =>
     props.lightMode
       ? props.theme.styles[props.alertStyle!]['light'].alertColor
       : props.theme.styles[props.alertStyle!].alertColor};
   border: 1px solid
-    ${(props: Props) =>
+    ${(props) =>
       props.lightMode
         ? props.theme.styles[props.alertStyle!].alertBackground
         : props.theme.styles[props.alertStyle!].alertBackground};
-  display: ${(props: Props) => props.theme.alert.display};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.alert.fontSize};
-  padding: ${(props: Props) => props.theme.alert.padding};
-  font-weight: ${(props: Props) =>
+  display: ${(props) => props.theme.alert.display};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.alert.fontSize};
+  padding: ${(props) => props.theme.alert.padding};
+  font-weight: ${(props) =>
     props.lightMode
       ? props.theme.alert.lightFontWeight
       : props.theme.alert.fontWeight};
-  line-height: ${(props: Props) => props.theme.alert.lineHeight};
+  line-height: ${(props) => props.theme.alert.lineHeight};
 `;
 
 const defaultProps = {
   alertStyle: 'primary',
   lightMode: false,
-} satisfies Partial<Props>;
+} satisfies Partial<AlertProps>;
 
-export const Alert: React.FunctionComponent<Props> = ({
+export const Alert: React.FunctionComponent<AlertProps> = ({
   children,
   theme,
   ...props
