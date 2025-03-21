@@ -6,7 +6,7 @@ import {
 import styled from 'styled-components';
 import { Omit } from '@utils';
 
-export interface TablistProps extends Omit<ReactTabListProps, 'as'> {
+export interface TabListProps extends Omit<ReactTabListProps, 'as'> {
   /**
    * From theme provider
    *
@@ -31,11 +31,11 @@ const SReactTabList = styled(ReactTabListProxy)`
 `;
 
 export class TabList extends React.Component<
-  React.PropsWithChildren<TablistProps>
+  React.PropsWithChildren<TabListProps>
 > {
   public static readonly tabsRole: string = 'TabList';
 
-  constructor(props: TablistProps) {
+  constructor(props: TabListProps) {
     super(props);
   }
 

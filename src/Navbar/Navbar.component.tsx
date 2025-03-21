@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
-export type NavBarProps = React.PropsWithChildren<{
+export type NavbarProps = React.PropsWithChildren<{
   /**
    * From theme provider
    *
@@ -11,7 +11,7 @@ export type NavBarProps = React.PropsWithChildren<{
   theme?: any;
 }>;
 
-const SNavbar = styled.div<NavBarProps>`
+const SNavbar = styled.div<NavbarProps>`
   font-family: ${(props) => props.theme.typography.fontFamily};
   font-size: ${(props) => props.theme.typography.fontSize};
   color: ${(props) => props.theme.navbar.color};
@@ -24,9 +24,9 @@ const SNavbar = styled.div<NavBarProps>`
   align-items: center;
 `;
 
-const defaultProps = {} satisfies Partial<NavBarProps>;
+const defaultProps = {} satisfies Partial<NavbarProps>;
 
-export const Navbar: React.FunctionComponent<NavBarProps> = (props) => {
+export const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { children } = propsWithDefaults;
   return <SNavbar {...propsWithDefaults}>{children}</SNavbar>;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { ErrorMessage } from '@typography';
 
-export interface TextAreaProps
+export interface TextareaProps
   extends React.PropsWithChildren<
     React.TextareaHTMLAttributes<HTMLTextAreaElement>
   > {
@@ -96,7 +96,7 @@ const SWrapperDiv = styled.div`
   position: relative;
 `;
 
-const STextarea = styled.textarea<TextAreaProps>`
+const STextarea = styled.textarea<TextareaProps>`
   width: 100%;
   box-sizing: border-box;
   background: ${(props) => props.theme.textarea.background};
@@ -146,9 +146,9 @@ const STextarea = styled.textarea<TextAreaProps>`
 const defaultProps = {
   textareaSize: 'md',
   isReSizable: false,
-} satisfies Partial<TextAreaProps>;
+} satisfies Partial<TextareaProps>;
 
-export const Textarea: React.FunctionComponent<TextAreaProps> = (props) => {
+export const Textarea: React.FunctionComponent<TextareaProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { value, onChange, children, ...textareaProps } = propsWithDefaults;
   const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';
