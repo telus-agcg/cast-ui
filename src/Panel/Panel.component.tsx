@@ -42,6 +42,6 @@ const defaultProps = {
 
 export const Panel = (props: PanelProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { children } = propsWithDefaults;
-  return <PanelWrapper {...propsWithDefaults}>{children}</PanelWrapper>;
+  const { children, ...rest } = propsWithDefaults;
+  return <PanelWrapper {...rest}>{children}</PanelWrapper>;
 };

@@ -22,6 +22,8 @@ export type { DatePickerProps } from './DatePicker/DatePicker.component.tsx';
 // File Upload
 export { FileUpload } from './FileUpload/FileUpload.component.tsx';
 export type { FileUploadProps } from './FileUpload/FileUpload.component.tsx';
+export { File } from './FileUpload/File.component.tsx';
+export type { FileProps } from './FileUpload/File.component.tsx';
 // Input
 export { Input } from './Input/Input.component';
 export type { InputProps } from './Input/Input.component';
@@ -31,6 +33,8 @@ export type { InputGroupProps } from './InputGroup/InputGroup.component.tsx';
 // List Group
 export { ListGroup } from './ListGroup/ListGroup.component.tsx';
 export type { ListGroupProps } from './ListGroup/ListGroup.component.tsx';
+export { ListGroupItem } from './ListGroup/ListGroupItem.component.tsx';
+export type { ListGroupItemProps } from './ListGroup/ListGroupItem.component.tsx';
 // Menu
 export { Menu } from './Menu/Menu.component.tsx';
 export type { MenuProps } from './Menu/Menu.component.tsx';
@@ -40,6 +44,8 @@ export type { ModalProps } from './Modal/Modal.component.tsx';
 // Navbar
 export { Navbar } from './Navbar/Navbar.component.tsx';
 export type { NavbarProps } from './Navbar/Navbar.component.tsx';
+export { Nav } from './Navbar/Nav.component.tsx';
+export type { NavProps } from './Navbar/Nav.component.tsx';
 // Pagination
 export { Pagination } from './Pagination/Pagination.component.tsx';
 export type { PaginationProps } from './Pagination/Pagination.component.tsx';
