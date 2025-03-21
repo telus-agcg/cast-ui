@@ -7,7 +7,7 @@ import ReactModal, {
 import { getPropsWithDefaults } from '@utils';
 import { Themes } from '@themes';
 
-export interface Props extends ReactModalProps {
+export interface ModalProps extends ReactModalProps {
   /**
    * The ID of the control
    *
@@ -103,7 +103,7 @@ const SReactModal = styled(ReactModal)`
 `;
 
 const ModalHeaderDiv = styled.div<
-  Partial<Props> & { disableCloseIcon: boolean }
+  Partial<ModalProps> & { disableCloseIcon: boolean }
 >`
   min-height: ${(props: any) => props.theme.modal.header.minHeight};
   background-color: ${(props: any) => props.theme.modal.header.backgroundColor};
@@ -155,7 +155,7 @@ const ModalHeaderWrapper = styled.div`
   align-items: center;
 `;
 
-const ModalBodyDiv = styled.div<Partial<Props>>`
+const ModalBodyDiv = styled.div<Partial<ModalProps>>`
   margin: ${(props) => props.theme.modal.body.padding};
   padding-bottom: ${(props) => props.theme.modal.body.padding};
   font-family: ${(props) => props.theme.typography.fontFamily};
@@ -181,7 +181,7 @@ const ModalBlurDiv = styled.div`
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
 `;
 
-const ModalFooterDiv = styled.div<Partial<Props>>`
+const ModalFooterDiv = styled.div<Partial<ModalProps>>`
   flex-shrink: 0;
   padding: 0 ${(props: any) => props.theme.modal.footer.padding}
     ${(props: any) => props.theme.modal.footer.padding};
@@ -199,9 +199,9 @@ const defaultProps = {
   modalSize: 'md',
   disableCloseIcon: false,
   blurEffect: true,
-} satisfies Partial<Props>;
+} satisfies Partial<ModalProps>;
 
-export const Modal = (props: React.PropsWithChildren<Props>) => {
+export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const {
     zIndex,

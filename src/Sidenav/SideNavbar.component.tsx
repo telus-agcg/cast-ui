@@ -4,7 +4,7 @@ import { getPropsWithDefaults, nameSpace } from '@utils';
 import { KeyboardArrowLeftIcon, KeyboardArrowRightIcon } from '@icons';
 import SubMenu from './SubMenu.component';
 import CollapsedSubMenu from './CollapsedSubMenu.component';
-import { Link, Props as LinkProps } from '../Typography/Link/Link.component';
+import { Link, LinkProps } from '../Typography/Link/Link.component';
 
 export type SideNavItem = {
   disabled: boolean;
@@ -16,7 +16,7 @@ export type SideNavItem = {
   }[];
 };
 
-export type Props = {
+export type SideNavProps = {
   /**
    * Controls whether the Sidenav allows hovering over submenu items
    *
@@ -83,7 +83,7 @@ export type Props = {
   theme: any;
 };
 
-const NavIcon = styled(Link)<Props & LinkProps>`
+const NavIcon = styled(Link)<SideNavProps & LinkProps>`
   display: flex;
   z-index: ${(props: any) => props.theme.sidenav.zIndex + 1};
   justify-content: ${(props) => (props.isOpen ? 'end' : 'center')};
@@ -104,7 +104,7 @@ const NavIcon = styled(Link)<Props & LinkProps>`
 const SideNavbarWrapper = styled.div`
   display: flex;
 `;
-const SSideNavbar = styled.div<Props>`
+const SSideNavbar = styled.div<SideNavProps>`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.sidenav.fontSize};
   color: ${(props: any) => props.theme.sidenav.color};
@@ -122,7 +122,7 @@ const SSideNavbar = styled.div<Props>`
   display: flex;
   flex-direction: column;
 `;
-const SSideNav = styled.div<Props>`
+const SSideNav = styled.div<SideNavProps>`
   height: auto;
   padding: ${(props) => props.theme.sidenav.nav.padding};
   margin-bottom: 1px;
@@ -131,7 +131,7 @@ const SSideNav = styled.div<Props>`
   flex-direction: column;
 `;
 const SSecondarySideNavbar = styled.div<
-  Props & { isSecondaryNavbarOpen: boolean }
+  SideNavProps & { isSecondaryNavbarOpen: boolean }
 >`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.sidenav.fontSize};
@@ -186,9 +186,9 @@ const SSecondarySideNavbarLabel = styled.h3`
 const defaultProps = {
   allowHover: false,
   data: [],
-} satisfies Partial<Props>;
+} satisfies Partial<SideNavProps>;
 
-export const SideNavbar = (props: Props) => {
+export const SideNavbar = (props: SideNavProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const {
     theme,

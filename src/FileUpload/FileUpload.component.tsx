@@ -1,9 +1,9 @@
-import * as React from "react";
-import { useRef, useState } from "react";
-import styled from "styled-components";
-import { getPropsWithDefaults } from "@utils";
+import * as React from 'react';
+import { useRef, useState } from 'react';
+import styled from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
 
-export interface Props {
+export interface FileUploadProps {
   /**
    * Add info
    *
@@ -23,7 +23,7 @@ export interface Props {
    * */
   onFilesAdded?(
     files: File[],
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ): void;
   /**
    * From theme provider
@@ -34,7 +34,7 @@ export interface Props {
 }
 
 const SDropZone = styled.div<
-  Props & {
+  FileUploadProps & {
     dragging: boolean;
     onDragEnter: any;
     onDragOver: any;
@@ -42,28 +42,27 @@ const SDropZone = styled.div<
     onDrop: any;
   }
 >`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.fileUpload.fontSize};
-  color: ${(props: Props) => props.theme.fileUpload.dropZone.color};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.fileUpload.fontSize};
+  color: ${(props) => props.theme.fileUpload.dropZone.color};
   border: ${(props: any) =>
     props.dragging
       ? props.theme.fileUpload.dropZone.draggingBorder
       : props.theme.fileUpload.dropZone.border};
-  border-radius: ${(props: Props) =>
-    props.theme.fileUpload.dropZone.borderRadius};
-  text-align: ${(props: Props) => props.theme.fileUpload.dropZone.textAlign};
-  padding: ${(props: Props) => props.theme.fileUpload.dropZone.padding};
-  margin: ${(props: Props) => props.theme.fileUpload.dropZone.margin};
+  border-radius: ${(props) => props.theme.fileUpload.dropZone.borderRadius};
+  text-align: ${(props) => props.theme.fileUpload.dropZone.textAlign};
+  padding: ${(props) => props.theme.fileUpload.dropZone.padding};
+  margin: ${(props) => props.theme.fileUpload.dropZone.margin};
   background: ${(props: any) =>
     props.dragging
       ? props.theme.fileUpload.dropZone.draggingBackground
       : props.theme.fileUpload.dropZone.background};
-  cursor: ${(props: Props) => (props.disabled ? "not-allowed" : "default")};
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'default')};
   transition: all 0.2s ease-in-out;
   .fileUploadCTA {
-    color: ${(props: Props) => props.theme.fileUpload.dropZone.ctaColor};
-    cursor: ${(props: Props) => (props.disabled ? "not-allowed" : "pointer")};
-    opacity: ${(props: Props) => (props.disabled ? ".6" : "1")};
+    color: ${(props) => props.theme.fileUpload.dropZone.ctaColor};
+    cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+    opacity: ${(props) => (props.disabled ? '.6' : '1')};
   }
   input {
     display: none;
@@ -76,12 +75,12 @@ const SDropZone = styled.div<
 `;
 
 const defaultProps = {
-  info: "",
+  info: '',
   disabled: false,
   onFilesAdded: () => {},
-} satisfies Partial<Props>;
+} satisfies Partial<FileUploadProps>;
 
-export const FileUpload = (props: Props) => {
+export const FileUpload = (props: FileUploadProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const [dragging, setDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -140,7 +139,7 @@ export const FileUpload = (props: Props) => {
     const files = event.target.files;
     filesAdded(files, event);
     // clear input to allow adding file again
-    event.target.value = "";
+    event.target.value = '';
   };
 
   const onDrop = (event: any) => {
@@ -158,7 +157,7 @@ export const FileUpload = (props: Props) => {
       {...dropZoneProps}
     >
       <div>
-        Drop files or{" "}
+        Drop files or{' '}
         <span className="fileUploadCTA" onClick={openFileDialog}>
           Browse
         </span>

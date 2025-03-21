@@ -1,20 +1,20 @@
-import React from "react";
-import styled from "styled-components";
-import _ from "lodash";
-import { Link, Props as LinkProps } from "../Typography/Link/Link.component";
+import React from 'react';
+import styled from 'styled-components';
+import _ from 'lodash';
+import { Link, LinkProps } from '../Typography/Link/Link.component';
 
 const SidebarLink = styled(Link)<LinkProps & { isActiveSubMenuItem: boolean }>`
   text-decoration: none;
   display: inline-flex;
   padding-right: 18px;
   color: ${(props) =>
-    props.theme.sidenav[`${props.isActiveSubMenuItem ? "active" : ""}navItem`]
+    props.theme.sidenav[`${props.isActiveSubMenuItem ? 'active' : ''}navItem`]
       .color};
   font-weight: ${(props) =>
-    props.theme.sidenav[`${props.isActiveSubMenuItem ? "active" : ""}navItem`]
+    props.theme.sidenav[`${props.isActiveSubMenuItem ? 'active' : ''}navItem`]
       .fontWeight};
   :hover {
-    background: ${(props) => props.theme.sidenav["activenavItem"].background};
+    background: ${(props) => props.theme.sidenav['activenavItem'].background};
     border-radius: 7px;
     transition: background-color 0.3s;
   }
@@ -29,7 +29,7 @@ const SidebarLink = styled(Link)<LinkProps & { isActiveSubMenuItem: boolean }>`
 const SidebarLabel = styled.span`
   padding: ${(props) => props.theme.sidenav.navLabel.padding};
   margin-left: 16px;
-  display: "block";
+  display: 'block';
 `;
 
 const CollapsedSubMenu = ({

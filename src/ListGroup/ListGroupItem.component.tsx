@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export type Props = {
+export type ListGroupItemProps = {
   /**
    * The content of the panel header
    *
@@ -13,7 +13,7 @@ export type Props = {
    *
    * @default 'light'
    **/
-  listGroupTheme?: "light" | "dark";
+  listGroupTheme?: 'light' | 'dark';
   /**
    * From theme provider
    *
@@ -22,16 +22,16 @@ export type Props = {
   theme?: any;
 };
 
-const SListGroupItem = styled.li<Partial<Props>>`
+const SListGroupItem = styled.li<Partial<ListGroupItemProps>>`
   overflow: hidden;
   height: auto;
 `;
 
 const defaultProps = {
   listGroupTheme: undefined,
-} satisfies Partial<Props>;
+} satisfies Partial<ListGroupItemProps>;
 
-export const ListGroupItem = (props: Props) => {
+export const ListGroupItem = (props: ListGroupItemProps) => {
   const propsWithDefaults = { ...defaultProps, ...props };
   const { children, ...rest } = propsWithDefaults;
 

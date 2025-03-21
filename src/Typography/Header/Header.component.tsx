@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-export type Props = React.PropsWithChildren<{
+export type HeaderProps = React.PropsWithChildren<{
   /**
    * Set Header Size
    *
@@ -16,25 +16,25 @@ export type Props = React.PropsWithChildren<{
   theme?: any;
 }>;
 
-const SHeader = styled.h2`
-  font-family: ${(props: Props) =>
+const SHeader = styled.h2<HeaderProps>`
+  font-family: ${(props) =>
     props.theme.typography.header[props.size!].fontFamily};
-  color: ${(props: Props) => props.theme.typography.color};
-  font-weight: ${(props: Props) =>
+  color: ${(props) => props.theme.typography.color};
+  font-weight: ${(props) =>
     props.theme.typography.header[props.size!].fontWeight};
-  font-size: ${(props: Props) =>
-    props.theme.typography.header[props.size!].fontSize};
-  line-height: ${(props: Props) =>
+  font-size: ${(props) => props.theme.typography.header[props.size!].fontSize};
+  line-height: ${(props) =>
     props.theme.typography.header[props.size!].lineHeight};
-  margin: ${(props: Props) =>
-    props.theme.typography.header[props.size!].margin};
+  margin: ${(props) => props.theme.typography.header[props.size!].margin};
 `;
 
 const defaultProps = {
   size: 10,
-} satisfies Partial<Props>;
+} satisfies Partial<HeaderProps>;
 
-export const Header: React.FunctionComponent<Props> = (props: Props) => {
+export const Header: React.FunctionComponent<HeaderProps> = (
+  props: HeaderProps,
+) => {
   const propsWithDefaults = { ...defaultProps, ...props };
   const { children, ...rest } = propsWithDefaults;
   return <SHeader {...rest}>{children}</SHeader>;

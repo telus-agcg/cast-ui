@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
-export type Props = {
+export type SpinnerProps = {
   /**
    * Adjust spinner size in pixels
    *
@@ -29,9 +29,9 @@ export type Props = {
   theme?: any;
 };
 
-const SSpinner = styled.div`
-  width: ${(props: Props) => `${props.size}px`};
-  height: ${(props: Props) => `${props.size}px`};
+const SSpinner = styled.div<SpinnerProps>`
+  width: ${(props) => `${props.size}px`};
+  height: ${(props) => `${props.size}px`};
   position: relative;
   margin: auto;
   &:before {
@@ -40,16 +40,16 @@ const SSpinner = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    width: ${(props: Props) => `${props.size}px`};
-    height: ${(props: Props) => `${props.size}px`};
-    margin-top: ${(props: Props) => `-${props.size! / 2}px`};
-    margin-left: ${(props: Props) => `-${props.size! / 2}px`};
+    width: ${(props) => `${props.size}px`};
+    height: ${(props) => `${props.size}px`};
+    margin-top: ${(props) => `-${props.size! / 2}px`};
+    margin-left: ${(props) => `-${props.size! / 2}px`};
     border-radius: 50%;
-    border: ${(props: Props) =>
+    border: ${(props) =>
       `3px solid
       ${props.theme.spinner.backgroundColor}`};
-    border-top-color: ${(props: Props) => props.theme.spinner.borderColor};
-    animation: ${(props: Props) =>
+    border-top-color: ${(props) => props.theme.spinner.borderColor};
+    animation: ${(props) =>
       `spinner ${props.animationSpeed}s ${props.transitionType} infinite`};
   }
 
@@ -64,9 +64,9 @@ const defaultProps = {
   size: 50,
   animationSpeed: 1,
   transitionType: 'linear',
-} satisfies Partial<Props>;
+} satisfies Partial<SpinnerProps>;
 
-export const Spinner: React.FunctionComponent<Props> = (props) => {
+export const Spinner: React.FunctionComponent<SpinnerProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   return <SSpinner {...propsWithDefaults} />;
 };

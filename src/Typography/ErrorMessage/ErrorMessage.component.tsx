@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-export interface Props {
+export interface ErrorMessageProps {
   /**
    * The ID of error message
    *
@@ -46,14 +46,14 @@ export function ErrorIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-const SErrorDiv = styled.div<Props>`
-  color: ${(props: Props) => props.theme.validation.color};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.validation.fontSize};
-  font-style: ${(props: Props) => props.theme.validation.fontStyle};
-  line-height: ${(props: Props) => props.theme.validation.lineHeight};
-  padding: ${(props: Props) => props.theme.validation.padding};
-  margin-top: ${(props: Props) => props.theme.validation.marginTop};
+const SErrorDiv = styled.div<ErrorMessageProps>`
+  color: ${(props) => props.theme.validation.color};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.validation.fontSize};
+  font-style: ${(props) => props.theme.validation.fontStyle};
+  line-height: ${(props) => props.theme.validation.lineHeight};
+  padding: ${(props) => props.theme.validation.padding};
+  margin-top: ${(props) => props.theme.validation.marginTop};
 `;
 
 const SErrorIcon = styled(ErrorIcon)`
@@ -66,10 +66,10 @@ const ErrorMessageWrapper = styled.div`
   align-items: center;
 `;
 
-const defaultProps = {} satisfies Partial<Props>;
+const defaultProps = {} satisfies Partial<ErrorMessageProps>;
 
 export const ErrorMessage: React.FunctionComponent<
-  React.PropsWithChildren<Props>
+  React.PropsWithChildren<ErrorMessageProps>
 > = (props) => {
   const propsWithDefaults = { ...defaultProps, ...props };
   const { message } = propsWithDefaults;

@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
-export type Props = React.PropsWithChildren<{
+export type TextDisplayProps = React.PropsWithChildren<{
   fontSize?: string;
   fontWeight?: string | number;
 }>;
 
 const defaultProps = {
-  fontSize: "16px",
-  fontWeight: "bold",
-} satisfies Partial<Props>;
+  fontSize: '16px',
+  fontWeight: 'bold',
+} satisfies Partial<TextDisplayProps>;
 
-export const TextDisplay = (props: Props) => {
+export const TextDisplay = (props: TextDisplayProps) => {
   const propsWithDefaults = { ...defaultProps, ...props };
   const { fontSize, fontWeight, children } = propsWithDefaults;
   return (

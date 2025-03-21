@@ -1,8 +1,8 @@
-import * as React from "react";
-import styled from "styled-components";
-import { getPropsWithDefaults } from "@utils";
+import * as React from 'react';
+import styled from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
 
-export interface Props {
+export interface ProgressBarProps {
   /**
    * Set height of ProgressBar
    *
@@ -54,13 +54,15 @@ const SProgressBar = styled.div`
 `;
 
 const defaultProps = {
-  height: "",
-  background: "",
-  progressBackground: "",
+  height: '',
+  background: '',
+  progressBackground: '',
   percentage: 0,
-} satisfies Partial<Props>;
+} satisfies Partial<ProgressBarProps>;
 
-export const ProgressBar: React.FunctionComponent<Props> = (props) => {
+export const ProgressBar: React.FunctionComponent<ProgressBarProps> = (
+  props,
+) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   return (
     <SProgressBar {...propsWithDefaults} theme={props.theme}>

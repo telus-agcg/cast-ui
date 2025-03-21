@@ -4,7 +4,7 @@ import { getPropsWithDefaults } from '@utils';
 import { KeyboardArrowDownIcon, KeyboardArrowRightIcon } from '@icons';
 import { Collapse } from '../Collapse/Collapse.component';
 
-export type Props = {
+export type ListGroupProps = {
   /**
    * The content of the list group
    *
@@ -53,11 +53,11 @@ export type Props = {
   border?: boolean;
 };
 
-const SListGroup = styled.ul<Props>`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.typography.fontSize};
-  border-radius: ${(props: Props) => props.theme.borders.radius};
-  background-color: ${(props: Props) =>
+const SListGroup = styled.ul<ListGroupProps>`
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.typography.fontSize};
+  border-radius: ${(props) => props.theme.borders.radius};
+  background-color: ${(props) =>
     props.theme.listGroup.theme[props.listGroupTheme!].backgroundColor};
   padding: 0px;
   margin-top: 0px;
@@ -95,13 +95,13 @@ const SListGroup = styled.ul<Props>`
   }
 `;
 
-const SListHeader = styled.li<Partial<Props>>`
+const SListHeader = styled.li<Partial<ListGroupProps>>`
   overflow: hidden;
   cursor: pointer;
   height: auto;
   border-bottom: ${(props: any) =>
     props.border ? `1px solid ${props.theme.colors.secondary}` : ''};
-  background-color: ${(props: Props) =>
+  background-color: ${(props) =>
     props.isCollapsed
       ? props.theme.listGroup.theme[props.listGroupTheme!].backgroundColor
       : props.theme.colors.primaryBackground};
@@ -145,9 +145,9 @@ const defaultProps = {
   listGroupTheme: 'light',
   collapsible: false,
   border: true,
-} satisfies Partial<Props>;
+} satisfies Partial<ListGroupProps>;
 
-export const ListGroup = (props: Props) => {
+export const ListGroup = (props: ListGroupProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const [collapsed, setCollapsed] = React.useState(false);
   const { onToggle, collapsible, isCollapsed, name, children } =

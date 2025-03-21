@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
-import ReactDatePicker, { DatePickerProps } from 'react-datepicker';
+import ReactDatePicker, {
+  DatePickerProps as ReactDatePickerProps,
+} from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import {
   CalendarMonthIcon,
@@ -11,7 +13,7 @@ import {
   KeyboardDoubleArrowRightIcon,
 } from '@icons';
 import { getPropsWithDefaults } from '@utils';
-import { Input, Props as InputProps } from '../Input/Input.component';
+import { Input, InputProps } from '../Input/Input.component';
 
 type pickerSize = 'sm' | 'md' | 'lg';
 
@@ -29,8 +31,8 @@ type dateChangeEvent = {
   startDateRange: Date | null;
   endDateRange: Date | null;
 };
-export type Props = InputProps &
-  DatePickerProps & {
+export type DatePickerProps = InputProps &
+  ReactDatePickerProps & {
     /**
      * Set className
      *
@@ -83,7 +85,7 @@ export type Props = InputProps &
     onFocusChange?: (input: Focused) => void;
   };
 
-const SWrapperComponent = styled.div<Props & { showIcon: boolean }>`
+const SWrapperComponent = styled.div<DatePickerProps & { showIcon: boolean }>`
   position: relative;
   font-family: ${(props) => props.theme.typography.fontFamily};
   font-size: ${(props) => props.theme.common[props.datePickerSize!].fontSize};
@@ -179,7 +181,7 @@ const SDatePickerLabel = styled.div`
   flex-grow: 1;
 `;
 
-const SButton = styled.button<Props & { isVisible: boolean }>`
+const SButton = styled.button<DatePickerProps & { isVisible: boolean }>`
   display: flex;
   border: none;
   padding: 6px 9px;
@@ -270,9 +272,9 @@ const defaultProps = {
   invalidText: '',
   invalidTextColor: '',
   showIcon: true,
-} satisfies Partial<Props>;
+} satisfies Partial<DatePickerProps>;
 
-export const DatePicker = (props: Props) => {
+export const DatePicker = (props: DatePickerProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const [focused, setFocused] = useState(false);
   const [date, setDate] = useState(null);

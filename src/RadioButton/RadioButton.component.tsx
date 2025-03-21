@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 import { Omit, getDataProps, getPropsWithDefaults } from '@utils';
 
 type displayStyle = 'inline' | 'stacked';
 type rbSize = 'sm' | 'md' | 'lg';
 type displayType = 'inline-block' | 'block';
 
-export interface Props
+export interface RadioButtonProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   /**
    * Set the className option
@@ -105,44 +105,37 @@ const displayStyleRules = (
   };
 };
 
-const SDiv = styled.div<Partial<Props> & any>`
+const SDiv = styled.div<Partial<RadioButtonProps> & any>`
   ${(props: any) => displayStyleRules(props.displayStyle, props.theme)}
 `;
 
-const SLabel = styled.label<Partial<Props>>`
+const SLabel = styled.label<Partial<RadioButtonProps>>`
   align-items: center;
   display: inline-flex;
-  font-family: ${(props: Partial<Props>) => props.theme.typography.fontFamily};
-  font-size: ${(props: Partial<Props>) =>
-    props.theme.common[props.rbSize!].fontSize};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.common[props.rbSize!].fontSize};
 `;
 
-const SInput = styled.input<Partial<Props>>`
+const SInput = styled.input<Partial<RadioButtonProps>>`
   display: none;
   + label:before {
     content: "";
     display: inline-block;
-    width: ${(props: Partial<Props>) =>
-      props.theme.radioButton[props.rbSize!].size};
-    height: ${(props: Partial<Props>) =>
-      props.theme.radioButton[props.rbSize!].size};
+    width: ${(props) => props.theme.radioButton[props.rbSize!].size};
+    height: ${(props) => props.theme.radioButton[props.rbSize!].size};
     background-clip: content-box;
-    background-color: ${(props: Partial<Props>) =>
-      props.theme.radioButton.unselectedColor};
-    border-color: ${(props: Partial<Props>) =>
-      props.theme.radioButton.borderColor};
-    border-style: ${(props: Partial<Props>) =>
-      props.theme.radioButton.borderStyle};
+    background-color: ${(props) => props.theme.radioButton.unselectedColor};
+    border-color: ${(props) => props.theme.radioButton.borderColor};
+    border-style: ${(props) => props.theme.radioButton.borderStyle};
     border-radius: 50%;
-    border-width ${(props: Partial<Props>) =>
-      props.theme.radioButton.borderWidth};
+    border-width ${(props) => props.theme.radioButton.borderWidth};
     cursor: pointer;
     margin-right: 5px;
     padding: 3px;
     transition: all 0.3s;
   }
   &:disabled + label {
-    color: ${(props: Partial<Props>) => props.theme.radioButton.disabledText};
+    color: ${(props) => props.theme.radioButton.disabledText};
     cursor: not-allowed;
   }
   
@@ -150,36 +143,29 @@ const SInput = styled.input<Partial<Props>>`
     cursor: pointer;
   }
   &:disabled + label:before {
-    border-color: ${(props: Partial<Props>) =>
-      props.theme.radioButton.disabledRadio};
+    border-color: ${(props) => props.theme.radioButton.disabledRadio};
     cursor: not-allowed;
   }
   &:checked + label:before {
-    border-color: ${(props: Partial<Props>) =>
-      props.theme.radioButton.borderColor};
-    background-color: ${(props: Partial<Props>) =>
-      props.theme.radioButton.borderColor};
+    border-color: ${(props) => props.theme.radioButton.borderColor};
+    background-color: ${(props) => props.theme.radioButton.borderColor};
   }
   &:checked + label:hover:before {
-    border-color: ${(props: Partial<Props>) => props.theme.colors.primaryHover};
-    background-color: ${(props: Partial<Props>) =>
-      props.theme.colors.primaryHover};
+    border-color: ${(props) => props.theme.colors.primaryHover};
+    background-color: ${(props) => props.theme.colors.primaryHover};
   }
 
   &:not(:checked) + label:hover:before {
-    border-color: ${(props: Partial<Props>) => props.theme.colors.primaryHover};
+    border-color: ${(props) => props.theme.colors.primaryHover};
   }
 
   &:disabled:checked + label:before {
-    border-color: ${(props: Partial<Props>) =>
-      props.theme.radioButton.disabledRadio};
-    background-color:  ${(props: Partial<Props>) =>
-      props.theme.radioButton.disabledRadio};
+    border-color: ${(props) => props.theme.radioButton.disabledRadio};
+    background-color:  ${(props) => props.theme.radioButton.disabledRadio};
   }
 
   &:disabled:not(:checked)+ label:before{
-    border-color: ${(props: Partial<Props>) =>
-      props.theme.radioButton.disabledRadio};
+    border-color: ${(props) => props.theme.radioButton.disabledRadio};
   }
 `;
 
@@ -190,9 +176,9 @@ const defaultProps = {
   id: uuidv4(),
   disabled: false,
   defaultChecked: false,
-} satisfies Partial<Props>;
+} satisfies Partial<RadioButtonProps>;
 
-export const RadioButton = (props: Props) => {
+export const RadioButton = (props: RadioButtonProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const [localChecked, setLocalChecked] = React.useState<boolean>(false);
 

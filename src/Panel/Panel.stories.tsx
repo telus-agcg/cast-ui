@@ -82,7 +82,7 @@ export const WithHeader: Story = {
     title: 'B- type',
     panelStyle: 'primary',
   },
-  render: (args) => {
+  render: (args: PanelCustomProps) => {
     return (
       <Panel {...args}>
         <PanelHeader {...args} />
@@ -98,7 +98,7 @@ export const WithCollapse: Story = {
     title: 'O+ type',
     panelStyle: 'primary',
   },
-  render: (args) => {
+  render: (args: PanelCustomProps) => {
     const [openPanel, setOpenPanel] = React.useState(false);
     const handleTogglePanel = () => setOpenPanel(!openPanel);
     return (

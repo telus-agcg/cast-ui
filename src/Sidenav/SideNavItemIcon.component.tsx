@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { getPropsWithDefaults, nameSpace } from '@utils';
 import { Themes } from '@themes';
 
-export type Props = React.PropsWithChildren<{
+export type SideNavItemIconProps = React.PropsWithChildren<{
   /**
    * From theme provider
    *
@@ -28,9 +28,11 @@ const SSideNavItemIcon = styled.div<{ isOpen: boolean; item: any }>`
 
 const defaultProps = {
   theme: Themes.canopyTheme,
-} satisfies Partial<Props>;
+} satisfies Partial<SideNavItemIconProps>;
 
-export const SideNavItemIcon: React.FunctionComponent<Props> = (props) => {
+export const SideNavItemIcon: React.FunctionComponent<SideNavItemIconProps> = (
+  props,
+) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { isOpen, item, children } = propsWithDefaults;
   return (

@@ -1,9 +1,8 @@
-import { Themes } from '@themes';
-import { getPropsWithDefaults } from '@utils';
 import * as React from 'react';
 import styled from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
 
-export type Props = React.PropsWithChildren<{
+export type PanelProps = React.PropsWithChildren<{
   /**
    * The name of the panel
    *
@@ -30,19 +29,18 @@ export type Props = React.PropsWithChildren<{
   theme?: any;
 }>;
 
-const PanelWrapper = styled.div<Props>`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.typography.fontSize};
-  border-radius: ${(props: Props) => props.theme.panel.body.borderRadius};
-  box-shadow: ${(props: Props) => props.theme.panel.boxShadow};
+const PanelWrapper = styled.div<PanelProps>`
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.typography.fontSize};
+  border-radius: ${(props) => props.theme.panel.body.borderRadius};
+  box-shadow: ${(props) => props.theme.panel.boxShadow};
 `;
 
 const defaultProps = {
   panelStyle: 'primary',
-  theme: Themes.canopyTheme,
-} satisfies Partial<Props>;
+} satisfies Partial<PanelProps>;
 
-export const Panel = (props: Props) => {
+export const Panel = (props: PanelProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { children } = propsWithDefaults;
   return <PanelWrapper {...propsWithDefaults}>{children}</PanelWrapper>;

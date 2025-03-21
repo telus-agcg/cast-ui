@@ -1,16 +1,17 @@
 import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+import styled from 'styled-components';
 import {
   PaginationPageButton,
   PaginationButtonNextPrev,
   PaginationButtonFirstLast,
 } from './PaginationButtons';
-import { Themes } from '../themes/index';
 import { CustomSelect as Select } from '../Select/Select.component';
-import { v4 as uuidv4 } from 'uuid';
 import { getPropsWithDefaults } from '@utils';
+
 export const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+
+export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the function to fire when a page is changed
    **/
@@ -97,9 +98,9 @@ const defaultProps = {
   PageButtonComponent: PaginationPageButton,
   PageButtonNextPrevComponent: PaginationButtonNextPrev,
   PageButtonFirstLastComponent: PaginationButtonFirstLast,
-} satisfies Partial<Props>;
+} satisfies Partial<PaginationProps>;
 
-export const Pagination = (props: Props) => {
+export const Pagination = (props: PaginationProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const {
     page,

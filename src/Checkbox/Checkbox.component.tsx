@@ -3,7 +3,7 @@ import React, { ChangeEvent } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { getDataProps, getPropsWithDefaults } from '@utils';
 
-interface Props extends React.PropsWithChildren {
+export interface CheckboxProps extends React.PropsWithChildren {
   /**
    * Specify the ID of the individual checkbox
    *
@@ -112,7 +112,7 @@ const Input = styled.input`
   z-index: -1;
 `;
 
-const Label = styled.label<Partial<Props>>`
+const Label = styled.label<Partial<CheckboxProps>>`
   position: relative;
   display: inline-block;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
@@ -120,7 +120,7 @@ const Label = styled.label<Partial<Props>>`
   font-family: ${(props) => props.theme.typography.fontFamily};
 `;
 
-const Indicator = styled.div<Partial<Props> & { hasChildren: boolean }>`
+const Indicator = styled.div<Partial<CheckboxProps> & { hasChildren: boolean }>`
   width: 1.2rem;
   height: 1.2rem;
   background: ${(props: any) => props.theme.checkbox.unselectedColor};
@@ -183,9 +183,9 @@ const defaultProps = {
   id: uuidv4(),
   cbSize: CHECKBOX_SIZE.MEDIUM,
   displayStyle: CHECKBOX_DISPLAY_STYLE.STACKED,
-} satisfies Partial<Props>;
+} satisfies Partial<CheckboxProps>;
 
-export const Checkbox = (props: Props) => {
+export const Checkbox = (props: CheckboxProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { id, value, onChange, label, disabled, children } = propsWithDefaults;
   const [checked, setChecked] = React.useState(CHECKBOX_STATE.EMPTY);

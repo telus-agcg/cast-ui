@@ -1,8 +1,8 @@
-import * as React from "react";
-import _ from "lodash";
-import styled from "styled-components";
-import { getPropsWithDefaults } from "@utils";
-import { Popover } from "../Popover/Popover.component";
+import * as React from 'react';
+import _ from 'lodash';
+import styled from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
+import { Popover } from '../Popover/Popover.component';
 
 export interface MenuItem {
   disabled?: boolean;
@@ -12,7 +12,7 @@ export interface MenuItem {
   // icon?: any; TODO
 }
 
-export interface Props {
+export interface MenuProps {
   /**
    * An array of `MenuItem`.
    * Each `MenuItem` can contain the following properties:
@@ -56,9 +56,9 @@ const SPopover = styled(Popover)`
 `;
 
 const SMenuItem = styled.div`
-  opacity: ${(props: any) => (props.disabled ? ".6" : "1")};
+  opacity: ${(props: any) => (props.disabled ? '.6' : '1')};
   text-align: left;
-  cursor: ${(props: any) => (props.disabled ? "not-allowed" : "pointer")};
+  cursor: ${(props: any) => (props.disabled ? 'not-allowed' : 'pointer')};
   text-decoration: none;
   padding: 8px 16px;
   color: ${(props: any) => props.theme.select.color};
@@ -75,7 +75,7 @@ const MenuItemLabel = styled.span<{
 }>`
   padding-left: 4px;
   margin-left: ${(props) =>
-    props.itemsHasNonEmptyIcon ? (props.hasIcon ? "0px" : "24px") : "0px"};
+    props.itemsHasNonEmptyIcon ? (props.hasIcon ? '0px' : '24px') : '0px'};
 `;
 
 const noop = () => {}; // tslint:disable-line
@@ -83,9 +83,9 @@ const noop = () => {}; // tslint:disable-line
 const defaultProps = {
   onItemClick: noop,
   items: [],
-} satisfies Partial<Props>;
+} satisfies Partial<MenuProps>;
 
-export const Menu: React.FC<Props> = (props: Props) => {
+export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const [popoverInstance, setPopoverInstance] = React.useState(null);
   const closePopoverMenu = () => {
@@ -94,7 +94,7 @@ export const Menu: React.FC<Props> = (props: Props) => {
   };
   const { theme, items, onItemClick, triggerComponent } = propsWithDefaults;
   const hasNonEmptyIcon = items?.some((item) => {
-    return item.hasOwnProperty("icon") && item["icon"] !== "";
+    return item.hasOwnProperty('icon') && item['icon'] !== '';
   });
   const handleItemClick = (item, e) => {
     if (item.disabled) {
