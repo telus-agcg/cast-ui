@@ -1,6 +1,6 @@
 import * as React from 'react';
 import _ from 'lodash';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { Popover } from '../Popover/Popover.component';
 
@@ -92,7 +92,8 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
     // @ts-ignore
     popoverInstance && popoverInstance.hide();
   };
-  const { theme, items, onItemClick, triggerComponent } = propsWithDefaults;
+  const { theme, items, onItemClick, triggerComponent, ...rest } =
+    propsWithDefaults;
   const hasNonEmptyIcon = items?.some((item) => {
     return item.hasOwnProperty('icon') && item['icon'] !== '';
   });
@@ -105,39 +106,41 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
   };
 
   return (
-    <SPopover
-      content={
-        <SMenu {...propsWithDefaults}>
-          {Array.isArray(items) &&
-            items.map((item: MenuItem, j: number) => {
-              if (item.component) return item.component;
-              return (
-                <SMenuItem
-                  {...item}
-                  theme={theme}
-                  key={j}
-                  onClick={(e: any) => handleItemClick(item, e)}
-                  data-testid={_.kebabCase(item.label)}
-                >
-                  {/* {item.icon ? <Icon icon={item.icon} size={24} /> : ''} */}
-                  <MenuItemLabel
-                    itemsHasNonEmptyIcon={Boolean(hasNonEmptyIcon)}
-                    hasIcon={false}
-                    // hasIcon={item.icon ? true : false}
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SPopover
+        content={
+          <SMenu {...rest}>
+            {Array.isArray(items) &&
+              items.map((item: MenuItem, j: number) => {
+                if (item.component) return item.component;
+                return (
+                  <SMenuItem
+                    {...item}
+                    theme={theme}
+                    key={j}
+                    onClick={(e: any) => handleItemClick(item, e)}
+                    data-testid={_.kebabCase(item.label)}
                   >
-                    {item.label}
-                  </MenuItemLabel>
-                </SMenuItem>
-              );
-            })}
-        </SMenu>
-      }
-      arrow={false}
-      placement="bottom-start"
-      hideOnClick={true}
-      onMount={(instance: any) => setPopoverInstance(instance)}
-    >
-      <span>{triggerComponent}</span>
-    </SPopover>
+                    {/* {item.icon ? <Icon icon={item.icon} size={24} /> : ''} */}
+                    <MenuItemLabel
+                      itemsHasNonEmptyIcon={Boolean(hasNonEmptyIcon)}
+                      hasIcon={false}
+                      // hasIcon={item.icon ? true : false}
+                    >
+                      {item.label}
+                    </MenuItemLabel>
+                  </SMenuItem>
+                );
+              })}
+          </SMenu>
+        }
+        arrow={false}
+        placement="bottom-start"
+        hideOnClick={true}
+        onMount={(instance: any) => setPopoverInstance(instance)}
+      >
+        <span>{triggerComponent}</span>
+      </SPopover>
+    </ThemeProvider>
   );
 };

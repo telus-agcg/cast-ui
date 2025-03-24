@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Tab as ReactTab, TabProps as ReactTabProps } from 'react-tabs';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Omit } from '@utils';
 
 export interface TabProps extends Omit<ReactTabProps, 'as'> {
@@ -86,6 +86,10 @@ export class Tab extends React.Component<TabProps> {
 
   render() {
     const { theme, ...props } = this.props;
-    return <SReactTab {...props}>{this.props.title}</SReactTab>;
+    return (
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SReactTab {...props}>{this.props.title}</SReactTab>
+      </ThemeProvider>
+    );
   }
 }

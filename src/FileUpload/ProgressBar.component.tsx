@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
 export interface ProgressBarProps {
@@ -64,9 +64,12 @@ export const ProgressBar: React.FunctionComponent<ProgressBarProps> = (
   props,
 ) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { theme, ...rest } = propsWithDefaults;
   return (
-    <SProgressBar {...propsWithDefaults} theme={props.theme}>
-      <div className="progress" />
-    </SProgressBar>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SProgressBar {...rest}>
+        <div className="progress" />
+      </SProgressBar>
+    </ThemeProvider>
   );
 };

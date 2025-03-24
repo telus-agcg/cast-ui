@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Title } from '@typography';
 import { KeyboardArrowDownIcon, KeyboardArrowRightIcon } from '@icons';
 import { getPropsWithDefaults } from '@utils';
@@ -107,10 +107,10 @@ const defaultProps = {
 export const PanelHeader = (props: PanelHeaderProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const {
+    theme,
     toggleItem,
     name,
     title,
-    theme,
     collapsedIcon,
     expandedIcon,
     iconPosition,
@@ -119,22 +119,21 @@ export const PanelHeader = (props: PanelHeaderProps) => {
   } = propsWithDefaults;
 
   return (
-    <SPanelHeader
-      onClick={(e: any) => toggleItem!(e, theme)}
-      {...propsWithDefaults}
-    >
-      <SPanelTitle size={20}>
-        {name && (
-          <b>
-            {name}
-            {title ? ':' : ''}
-          </b>
-        )}{' '}
-        {title}{' '}
-      </SPanelTitle>
-      {typeof isCollapsed !== 'undefined'
-        ? ChevronImage(isCollapsed, iconPosition, collapsedIcon, expandedIcon)
-        : ''}
-    </SPanelHeader>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SPanelHeader onClick={(e: any) => toggleItem!(e, theme)} {...rest}>
+        <SPanelTitle size={20}>
+          {name && (
+            <b>
+              {name}
+              {title ? ':' : ''}
+            </b>
+          )}{' '}
+          {title}{' '}
+        </SPanelTitle>
+        {typeof isCollapsed !== 'undefined'
+          ? ChevronImage(isCollapsed, iconPosition, collapsedIcon, expandedIcon)
+          : ''}
+      </SPanelHeader>
+    </ThemeProvider>
   );
 };

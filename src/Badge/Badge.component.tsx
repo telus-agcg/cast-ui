@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
 export type BadgeProps = React.PropsWithChildren<{
@@ -60,6 +60,10 @@ export const Badge: React.FunctionComponent<BadgeProps> = (
   props: BadgeProps,
 ) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { children } = propsWithDefaults;
-  return <SBadge {...propsWithDefaults}>{children}</SBadge>;
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SBadge {...rest}>{children}</SBadge>;
+    </ThemeProvider>
+  );
 };

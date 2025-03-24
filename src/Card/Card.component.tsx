@@ -1,6 +1,6 @@
 import { getPropsWithDefaults } from '@utils';
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 export type CardProps = React.PropsWithChildren<{
   /**
@@ -42,6 +42,10 @@ const defaultProps = {
 
 export const Card: React.FunctionComponent<CardProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { children } = propsWithDefaults;
-  return <SCard {...propsWithDefaults}>{children}</SCard>;
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SCard {...rest}>{children}</SCard>;
+    </ThemeProvider>
+  );
 };

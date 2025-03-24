@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 export type ListGroupItemProps = {
   /**
@@ -33,7 +33,11 @@ const defaultProps = {
 
 export const ListGroupItem = (props: ListGroupItemProps) => {
   const propsWithDefaults = { ...defaultProps, ...props };
-  const { children, ...rest } = propsWithDefaults;
+  const { theme, children, ...rest } = propsWithDefaults;
 
-  return <SListGroupItem {...propsWithDefaults}>{children}</SListGroupItem>;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SListGroupItem {...rest}>{children}</SListGroupItem>
+    </ThemeProvider>
+  );
 };

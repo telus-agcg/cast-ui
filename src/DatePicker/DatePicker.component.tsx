@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import ReactDatePicker, {
   DatePickerProps as ReactDatePickerProps,
 } from 'react-datepicker';
@@ -328,32 +328,34 @@ export const DatePicker = (props: DatePickerProps) => {
   const errorId = invalid ? `${id}-error-msg` : '';
 
   return (
-    <SWrapperComponent
-      id={wrapperId!}
-      invalid={invalid}
-      className={className}
-      datePickerSize={datePickerSize}
-      datePickerStyle={datePickerStyle}
-      data-invalid={invalid ? '' : undefined}
-      aria-invalid={invalid ? true : undefined}
-      aria-describedby={errorId}
-      showIcon={Boolean(showIcon)}
-      {...propsWithDefaults}
-    >
-      <ReactDatePicker
-        fixedHeight
-        customInput={<CustomInput {...propsWithDefaults} />}
-        onChange={(event) => handleDateChange(Boolean(selectsRange), event)}
-        selected={date || startDate}
-        startDate={startDate || startDateRange}
-        endDate={endDate || endDateRange}
-        monthsShown={monthsShown}
-        focusSelectedMonth={true}
-        renderCustomHeader={(props) => (
-          <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
-        )}
-        // {...rest}
-      />
-    </SWrapperComponent>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SWrapperComponent
+        id={wrapperId!}
+        invalid={invalid}
+        className={className}
+        datePickerSize={datePickerSize}
+        datePickerStyle={datePickerStyle}
+        data-invalid={invalid ? '' : undefined}
+        aria-invalid={invalid ? true : undefined}
+        aria-describedby={errorId}
+        showIcon={Boolean(showIcon)}
+        {...rest}
+      >
+        <ReactDatePicker
+          fixedHeight
+          customInput={<CustomInput {...rest} />}
+          onChange={(event) => handleDateChange(Boolean(selectsRange), event)}
+          selected={date || startDate}
+          startDate={startDate || startDateRange}
+          endDate={endDate || endDateRange}
+          monthsShown={monthsShown}
+          focusSelectedMonth={true}
+          renderCustomHeader={(props) => (
+            <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
+          )}
+          // {...rest}
+        />
+      </SWrapperComponent>
+    </ThemeProvider>
   );
 };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Tabs as ReactTabs, TabsProps as ReactTabsProps } from 'react-tabs';
 import { Omit } from '@utils';
 
@@ -42,9 +42,11 @@ export class Tabs extends React.Component<React.PropsWithChildren<TabsProps>> {
   render() {
     const { children, theme, ...props } = this.props;
     return (
-      <STabWrapperDiv>
-        <ReactTabs {...props}>{children}</ReactTabs>
-      </STabWrapperDiv>
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <STabWrapperDiv>
+          <ReactTabs {...props}>{children}</ReactTabs>
+        </STabWrapperDiv>
+      </ThemeProvider>
     );
   }
 }

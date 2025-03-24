@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { ErrorMessage } from '@typography';
 
@@ -150,23 +150,29 @@ const defaultProps = {
 
 export const Textarea: React.FunctionComponent<TextareaProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { value, onChange, children, ...textareaProps } = propsWithDefaults;
+  const { theme, value, onChange, children, ...textareaProps } =
+    propsWithDefaults;
   const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';
   return (
-    <SWrapperDiv>
-      <STextarea
-        value={value}
-        onChange={onChange}
-        {...textareaProps}
-        data-invalid={textareaProps.invalid ? '' : undefined}
-        aria-invalid={textareaProps.invalid ? true : undefined}
-        aria-describedby={errorId}
-      >
-        {children}
-      </STextarea>
-      {textareaProps.invalid && (
-        <ErrorMessage id={errorId} message={textareaProps.invalidText || ''} />
-      )}
-    </SWrapperDiv>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SWrapperDiv>
+        <STextarea
+          value={value}
+          onChange={onChange}
+          {...textareaProps}
+          data-invalid={textareaProps.invalid ? '' : undefined}
+          aria-invalid={textareaProps.invalid ? true : undefined}
+          aria-describedby={errorId}
+        >
+          {children}
+        </STextarea>
+        {textareaProps.invalid && (
+          <ErrorMessage
+            id={errorId}
+            message={textareaProps.invalidText || ''}
+          />
+        )}
+      </SWrapperDiv>
+    </ThemeProvider>
   );
 };

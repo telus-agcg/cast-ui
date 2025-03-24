@@ -1,9 +1,10 @@
-import { SVGProps } from 'react';
-import styled from 'styled-components';
+import * as React from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../themes';
+import { KeyboardArrowDownIcon } from '@icons';
 import { getPropsWithDefaults } from '@utils';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Specify if the button is outline
    *
@@ -59,23 +60,6 @@ export interface ButtonProps
    **/
   theme?: any;
 }
-
-const ExpandMore = (props: SVGProps<SVGSVGElement>) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="1em"
-      height="1em"
-      {...props}
-    >
-      <path
-        fill="currentColor"
-        d="M16.59 8.59L12 13.17L7.41 8.59L6 10l6 6l6-6z"
-      ></path>
-    </svg>
-  );
-};
 
 const computeColor: Function = (
   btnState: string,
@@ -151,12 +135,13 @@ const computeColor: Function = (
   }
 };
 
-const SButton = styled.button<ButtonProps>`
+const SButton = styled.button`
   min-width: 96px;
   box-sizing: border-box;
   transition: all 0.3s;
-  border-radius: ${(props) => props.theme.button[props.btnSize!].borderRadius};
-  background: ${(props) =>
+  border-radius: ${(props: Props) =>
+    props.theme.button[props.btnSize!].borderRadius};
+  background: ${(props: Props) =>
     computeColor(
       'normal',
       props.selected,
@@ -165,7 +150,7 @@ const SButton = styled.button<ButtonProps>`
       props.theme,
     ).background};
   border: 1px solid
-    ${(props) =>
+    ${(props: Props) =>
       computeColor(
         'normal',
         props.selected,
@@ -173,12 +158,13 @@ const SButton = styled.button<ButtonProps>`
         props.btnStyle,
         props.theme,
       ).borderColor};
-  padding: ${(props) => props.theme.button[props.btnSize!].padding};
-  font-family: ${(props) => props.theme.typography.fontFamily};
-  font-size: ${(props) => props.theme.button[props.btnSize!].fontSize};
+  padding: ${(props: Props) => props.theme.button[props.btnSize!].padding};
+  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-size: ${(props: Props) => props.theme.button[props.btnSize!].fontSize};
   font-weight: 600;
-  line-height: ${(props) => props.theme.button[props.btnSize!].lineHeight};
-  color: ${(props) =>
+  line-height: ${(props: Props) =>
+    props.theme.button[props.btnSize!].lineHeight};
+  color: ${(props: Props) =>
     computeColor(
       'normal',
       props.selected,
@@ -190,13 +176,14 @@ const SButton = styled.button<ButtonProps>`
   outline: none !important;
   &:focus {
     outline: none !important;
-    border-color: ${(props) => props.theme.colors[props.btnStyle || 'primary']};
+    border-color: ${(props: Props) =>
+      props.theme.colors[props.btnStyle || 'primary']};
     box-shadow: 0 0 3px
-      ${(props) => props.theme.colors[props.btnStyle || 'primary']};
+      ${(props: Props) => props.theme.colors[props.btnStyle || 'primary']};
   }
   &:hover,
   &:active {
-    background: ${(props) =>
+    background: ${(props: Props) =>
       computeColor(
         'hover',
         props.selected,
@@ -204,7 +191,7 @@ const SButton = styled.button<ButtonProps>`
         props.btnStyle,
         props.theme,
       ).background};
-    color: ${(props) =>
+    color: ${(props: Props) =>
       computeColor(
         'hover',
         props.selected,
@@ -213,7 +200,7 @@ const SButton = styled.button<ButtonProps>`
         props.theme,
       ).color};
     border: 1px solid
-      ${(props) =>
+      ${(props: Props) =>
         computeColor(
           'hover',
           props.selected,
@@ -224,7 +211,7 @@ const SButton = styled.button<ButtonProps>`
     cursor: pointer;
   }
   &:disabled {
-    background: ${(props) =>
+    background: ${(props: Props) =>
       computeColor(
         'disabled',
         props.selected,
@@ -232,7 +219,7 @@ const SButton = styled.button<ButtonProps>`
         props.btnStyle,
         props.theme,
       ).background};
-    color: ${(props) =>
+    color: ${(props: Props) =>
       computeColor(
         'disabled',
         props.selected,
@@ -241,7 +228,7 @@ const SButton = styled.button<ButtonProps>`
         props.theme,
       ).color};
     border: 1px solid
-      ${(props) =>
+      ${(props: Props) =>
         computeColor(
           'disabled',
           props.selected,
@@ -261,7 +248,7 @@ const SMenuButton = styled(SButton)`
   padding-bottom: 0px;
 `;
 
-const SIcon = styled(ExpandMore)`
+const SIcon = styled(KeyboardArrowDownIcon)`
   border-left: 1px solid ${(props: any) => props.theme.colors.lt800};
   margin: ${(props: any) => props.theme.button[props.btnSize!].padding};
   margin-top: 0px;
@@ -276,24 +263,33 @@ const defaultProps = {
   btnStyle: 'primary',
   btnSize: 'md',
   displayType: 'button',
-} satisfies Partial<ButtonProps>;
+} satisfies Partial<Props>;
 
-export const Button = (props: ButtonProps) => {
+export const Button = (props: Props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { displayType, disabled, onClick, children } = propsWithDefaults;
-  const ButtonType = displayType === 'menu' ? SMenuButton : SButton;
+  const {
+    theme,
+    onClick = noop,
+    disabled,
+    displayType,
+    children,
+    ...rest
+  } = propsWithDefaults;
 
-  const iconProps = props as SVGProps<SVGSVGElement>;
+  const ButtonType = displayType === 'menu' ? SMenuButton : SButton;
+  const iconProps = rest as React.SVGProps<SVGSVGElement>;
   return (
-    <ButtonType
-      disabled={disabled}
-      onClick={!disabled ? onClick : noop}
-      {...propsWithDefaults}
-    >
-      {children}
-      {displayType === 'menu' ? (
-        <SIcon height={24} width={24} {...iconProps} />
-      ) : null}
-    </ButtonType>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <ButtonType
+        disabled={disabled}
+        onClick={!disabled ? onClick : noop}
+        {...rest}
+      >
+        {children}
+        {displayType === 'menu' ? (
+          <SIcon {...iconProps} width={24} height={24} />
+        ) : null}
+      </ButtonType>
+    </ThemeProvider>
   );
 };

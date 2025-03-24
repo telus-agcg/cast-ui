@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { components } from 'react-select';
 import { ErrorMessage } from '@typography';
 import { getPropsWithDefaults } from '@utils';
@@ -236,6 +236,7 @@ const defaultProps = {
 export const Input = (props: InputProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const {
+    theme,
     id,
     disabled,
     className,
@@ -252,6 +253,7 @@ export const Input = (props: InputProps) => {
     onBlur,
     onFocus,
     onChange,
+    ...rest
   } = propsWithDefaults;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const errorId = invalid ? `${id}-error-msg` : '';
@@ -277,7 +279,7 @@ export const Input = (props: InputProps) => {
   };
 
   return (
-    <>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SInputWrapper
         inputSize={inputSize}
         invalid={invalid}
@@ -342,6 +344,6 @@ export const Input = (props: InputProps) => {
       {invalid && invalidText && (
         <ErrorMessage id={errorId} message={invalidText || ''} />
       )}
-    </>
+    </ThemeProvider>
   );
 };

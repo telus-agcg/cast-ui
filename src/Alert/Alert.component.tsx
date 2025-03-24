@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
 export type AlertProps = React.PropsWithChildren<{
@@ -54,11 +54,12 @@ const defaultProps = {
   lightMode: false,
 } satisfies Partial<AlertProps>;
 
-export const Alert: React.FunctionComponent<AlertProps> = ({
-  children,
-  theme,
-  ...props
-}) => {
+export const Alert: React.FunctionComponent<AlertProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  return <SAlert {...propsWithDefaults}>{children}</SAlert>;
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SAlert {...rest}>{children}</SAlert>
+    </ThemeProvider>
+  );
 };

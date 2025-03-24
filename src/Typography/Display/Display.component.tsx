@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 export type DisplayProps = React.PropsWithChildren<{
   /**
@@ -33,6 +33,10 @@ const defaultProps = {
 
 export const Display: React.FunctionComponent<DisplayProps> = (props) => {
   const propsWithDefaults = { ...defaultProps, ...props };
-  const { children, ...rest } = propsWithDefaults;
-  return <SDisplay {...rest}>{children}</SDisplay>;
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SDisplay {...rest}>{children}</SDisplay>
+    </ThemeProvider>
+  );
 };
