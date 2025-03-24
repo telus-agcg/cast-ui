@@ -4,7 +4,8 @@ import { Themes } from '../themes';
 import { KeyboardArrowDownIcon } from '@icons';
 import { getPropsWithDefaults } from '@utils';
 
-export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Specify if the button is outline
    *
@@ -135,13 +136,12 @@ const computeColor: Function = (
   }
 };
 
-const SButton = styled.button`
+const SButton = styled.button<ButtonProps>`
   min-width: 96px;
   box-sizing: border-box;
   transition: all 0.3s;
-  border-radius: ${(props: Props) =>
-    props.theme.button[props.btnSize!].borderRadius};
-  background: ${(props: Props) =>
+  border-radius: ${(props) => props.theme.button[props.btnSize!].borderRadius};
+  background: ${(props) =>
     computeColor(
       'normal',
       props.selected,
@@ -150,7 +150,7 @@ const SButton = styled.button`
       props.theme,
     ).background};
   border: 1px solid
-    ${(props: Props) =>
+    ${(props) =>
       computeColor(
         'normal',
         props.selected,
@@ -158,13 +158,12 @@ const SButton = styled.button`
         props.btnStyle,
         props.theme,
       ).borderColor};
-  padding: ${(props: Props) => props.theme.button[props.btnSize!].padding};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.button[props.btnSize!].fontSize};
+  padding: ${(props) => props.theme.button[props.btnSize!].padding};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.button[props.btnSize!].fontSize};
   font-weight: 600;
-  line-height: ${(props: Props) =>
-    props.theme.button[props.btnSize!].lineHeight};
-  color: ${(props: Props) =>
+  line-height: ${(props) => props.theme.button[props.btnSize!].lineHeight};
+  color: ${(props) =>
     computeColor(
       'normal',
       props.selected,
@@ -176,14 +175,13 @@ const SButton = styled.button`
   outline: none !important;
   &:focus {
     outline: none !important;
-    border-color: ${(props: Props) =>
-      props.theme.colors[props.btnStyle || 'primary']};
+    border-color: ${(props) => props.theme.colors[props.btnStyle || 'primary']};
     box-shadow: 0 0 3px
-      ${(props: Props) => props.theme.colors[props.btnStyle || 'primary']};
+      ${(props) => props.theme.colors[props.btnStyle || 'primary']};
   }
   &:hover,
   &:active {
-    background: ${(props: Props) =>
+    background: ${(props) =>
       computeColor(
         'hover',
         props.selected,
@@ -191,7 +189,7 @@ const SButton = styled.button`
         props.btnStyle,
         props.theme,
       ).background};
-    color: ${(props: Props) =>
+    color: ${(props) =>
       computeColor(
         'hover',
         props.selected,
@@ -200,7 +198,7 @@ const SButton = styled.button`
         props.theme,
       ).color};
     border: 1px solid
-      ${(props: Props) =>
+      ${(props) =>
         computeColor(
           'hover',
           props.selected,
@@ -211,7 +209,7 @@ const SButton = styled.button`
     cursor: pointer;
   }
   &:disabled {
-    background: ${(props: Props) =>
+    background: ${(props) =>
       computeColor(
         'disabled',
         props.selected,
@@ -219,7 +217,7 @@ const SButton = styled.button`
         props.btnStyle,
         props.theme,
       ).background};
-    color: ${(props: Props) =>
+    color: ${(props) =>
       computeColor(
         'disabled',
         props.selected,
@@ -228,7 +226,7 @@ const SButton = styled.button`
         props.theme,
       ).color};
     border: 1px solid
-      ${(props: Props) =>
+      ${(props) =>
         computeColor(
           'disabled',
           props.selected,
@@ -263,9 +261,9 @@ const defaultProps = {
   btnStyle: 'primary',
   btnSize: 'md',
   displayType: 'button',
-} satisfies Partial<Props>;
+} satisfies Partial<ButtonProps>;
 
-export const Button = (props: Props) => {
+export const Button = (props: ButtonProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const {
     theme,
