@@ -1,5 +1,7 @@
-import { SVGProps } from 'react';
-import styled from 'styled-components';
+import * as React from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../themes';
+import { KeyboardArrowDownIcon } from '@icons';
 import { getPropsWithDefaults } from '@utils';
 
 export interface ButtonProps
@@ -59,23 +61,6 @@ export interface ButtonProps
    **/
   theme?: any;
 }
-
-const ExpandMore = (props: SVGProps<SVGSVGElement>) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="1em"
-      height="1em"
-      {...props}
-    >
-      <path
-        fill="currentColor"
-        d="M16.59 8.59L12 13.17L7.41 8.59L6 10l6 6l6-6z"
-      ></path>
-    </svg>
-  );
-};
 
 const computeColor: Function = (
   btnState: string,
@@ -261,7 +246,7 @@ const SMenuButton = styled(SButton)`
   padding-bottom: 0px;
 `;
 
-const SIcon = styled(ExpandMore)`
+const SIcon = styled(KeyboardArrowDownIcon)`
   border-left: 1px solid ${(props: any) => props.theme.colors.lt800};
   margin: ${(props: any) => props.theme.button[props.btnSize!].padding};
   margin-top: 0px;
@@ -280,20 +265,29 @@ const defaultProps = {
 
 export const Button = (props: ButtonProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { displayType, disabled, onClick, children } = propsWithDefaults;
-  const ButtonType = displayType === 'menu' ? SMenuButton : SButton;
+  const {
+    theme,
+    onClick = noop,
+    disabled,
+    displayType,
+    children,
+    ...rest
+  } = propsWithDefaults;
 
-  const iconProps = props as SVGProps<SVGSVGElement>;
+  const ButtonType = displayType === 'menu' ? SMenuButton : SButton;
+  const iconProps = rest as React.SVGProps<SVGSVGElement>;
   return (
-    <ButtonType
-      disabled={disabled}
-      onClick={!disabled ? onClick : noop}
-      {...propsWithDefaults}
-    >
-      {children}
-      {displayType === 'menu' ? (
-        <SIcon height={24} width={24} {...iconProps} />
-      ) : null}
-    </ButtonType>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <ButtonType
+        disabled={disabled}
+        onClick={!disabled ? onClick : noop}
+        {...rest}
+      >
+        {children}
+        {displayType === 'menu' ? (
+          <SIcon {...iconProps} width={24} height={24} />
+        ) : null}
+      </ButtonType>
+    </ThemeProvider>
   );
 };

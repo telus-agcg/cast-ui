@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
 export interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,7 +27,7 @@ export interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: any;
 }
 
-const InputGroupWrapper = styled.div<InputGroupProps>`
+const InputGroupWrapper = styled.div<Partial<InputGroupProps>>`
   border-radius: ${(props) => props.theme.borders.radius};
   font-family: ${(props) => props.theme.typography.fontFamily};
   color: ${(props) => props.theme.inputGroup.root.color};
@@ -70,13 +70,16 @@ const defaultProps = {
 
 export const InputGroup: React.FunctionComponent<InputGroupProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { horizontal, label, inputSize, children } = propsWithDefaults;
+  const { theme, horizontal, label, inputSize, children, ...rest } =
+    propsWithDefaults;
   return (
-    <InputGroupWrapper {...propsWithDefaults}>
-      <SLabel label={label} inputSize={inputSize} horizontal={horizontal}>
-        {label}
-      </SLabel>
-      {children}
-    </InputGroupWrapper>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <InputGroupWrapper horizontal={horizontal} {...rest}>
+        <SLabel label={label} inputSize={inputSize} horizontal={horizontal}>
+          {label}
+        </SLabel>
+        {children}
+      </InputGroupWrapper>
+    </ThemeProvider>
   );
 };

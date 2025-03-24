@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
 export interface FileUploadProps {
@@ -85,7 +85,7 @@ export const FileUpload = (props: FileUploadProps) => {
   const [dragging, setDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const { disabled, onFilesAdded, info } = propsWithDefaults;
+  const { theme, disabled, onFilesAdded, info } = propsWithDefaults;
 
   const dropZoneProps = {
     dragging,
@@ -149,26 +149,28 @@ export const FileUpload = (props: FileUploadProps) => {
   };
 
   return (
-    <SDropZone
-      onDragEnter={onDragEnter}
-      onDragOver={onDragOver}
-      onDragLeave={onDragLeave}
-      onDrop={onDrop}
-      {...dropZoneProps}
-    >
-      <div>
-        Drop files or{' '}
-        <span className="fileUploadCTA" onClick={openFileDialog}>
-          Browse
-        </span>
-      </div>
-      {info && <div className="info">{info as React.ReactNode}</div>}
-      <input
-        ref={fileInputRef}
-        type="file"
-        multiple
-        onChange={onFilesSelected}
-      />
-    </SDropZone>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SDropZone
+        onDragEnter={onDragEnter}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
+        {...dropZoneProps}
+      >
+        <div>
+          Drop files or{' '}
+          <span className="fileUploadCTA" onClick={openFileDialog}>
+            Browse
+          </span>
+        </div>
+        {info && <div className="info">{info as React.ReactNode}</div>}
+        <input
+          ref={fileInputRef}
+          type="file"
+          multiple
+          onChange={onFilesSelected}
+        />
+      </SDropZone>
+    </ThemeProvider>
   );
 };

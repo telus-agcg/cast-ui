@@ -1,6 +1,6 @@
 import { Themes } from '@themes';
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 export type CaptionProps = React.PropsWithChildren<{
   /**
@@ -34,6 +34,10 @@ const defaultProps = {
 
 export const Caption: React.FunctionComponent<CaptionProps> = (props) => {
   const propsWithDefaults = { ...defaultProps, ...props };
-  const { children } = propsWithDefaults;
-  return <SCaption {...propsWithDefaults}>{children}</SCaption>;
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SCaption {...rest}>{children}</SCaption>
+    </ThemeProvider>
+  );
 };

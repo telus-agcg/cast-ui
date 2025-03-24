@@ -85,6 +85,9 @@ export { TabPanel } from './Tabs/TabPanel.component.tsx';
 export type { TabPanelProps } from './Tabs/TabPanel.component.tsx';
 export { Tabs } from './Tabs/Tabs.component.tsx';
 export type { TabsProps } from './Tabs/Tabs.component.tsx';
+// Tabnav
+export { Tabnav } from './Tabnav/Tabnav.component.tsx';
+export type { TabnavProps } from './Tabnav/Tabnav.component.tsx';
 // Text Area
 export { Textarea } from './Textarea/Textarea.component.tsx';
 export type { TextareaProps } from './Textarea/Textarea.component.tsx';
@@ -92,7 +95,7 @@ export type { TextareaProps } from './Textarea/Textarea.component.tsx';
 export { Toggle } from './Toggle/Toggle.component.tsx';
 export type { ToggleProps } from './Toggle/Toggle.component.tsx';
 // Tooltip
-export { ToolTip } from './Tooltip/Tooltip.component.tsx';
+export { Tooltip } from './Tooltip/Tooltip.component.tsx';
 export type { TooltipProps } from './Tooltip/Tooltip.component.tsx';
 export { ThemeProvider } from 'styled-components';
 export * from './themes';

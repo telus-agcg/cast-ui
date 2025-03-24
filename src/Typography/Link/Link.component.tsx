@@ -1,6 +1,6 @@
 import * as React from 'react';
 import _ from 'lodash';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import clsx from 'clsx';
 import { getDataProps } from '@utils';
 
@@ -82,6 +82,7 @@ export const Link: React.FunctionComponent<LinkProps> = (props: LinkProps) => {
   const propsWithDefaults = { ...defaultProps, ...props };
   const dataProps: any = getDataProps(propsWithDefaults);
   const {
+    theme,
     id,
     disabled,
     className,
@@ -90,9 +91,10 @@ export const Link: React.FunctionComponent<LinkProps> = (props: LinkProps) => {
     onMouseEnter,
     href,
     target,
+    ...rest
   } = propsWithDefaults;
   return (
-    <>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       {disabled ? (
         <SLink
           {...dataProps}
@@ -115,6 +117,6 @@ export const Link: React.FunctionComponent<LinkProps> = (props: LinkProps) => {
           {children}
         </SLink>
       )}
-    </>
+    </ThemeProvider>
   );
 };

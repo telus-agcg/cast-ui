@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import _ from 'lodash';
 import { Link, LinkProps } from '../Typography/Link/Link.component';
 
@@ -55,17 +55,19 @@ const CollapsedSubMenu = ({
     }
   };
   return (
-    <>
-      <SidebarLink
-        href={item.path}
-        isActiveSubMenuItem={item.label === currentSelectedSubnavItem}
-        {...newProps}
-        onClick={(e) => collapsedItemClick(e, item)}
-        data-testid={_.kebabCase(item.label)}
-      >
-        <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
-      </SidebarLink>
-    </>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <>
+        <SidebarLink
+          href={item.path}
+          isActiveSubMenuItem={item.label === currentSelectedSubnavItem}
+          {...newProps}
+          onClick={(e) => collapsedItemClick(e, item)}
+          data-testid={_.kebabCase(item.label)}
+        >
+          <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
+        </SidebarLink>
+      </>
+    </ThemeProvider>
   );
 };
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { components as SelectComponents } from 'react-select';
@@ -466,48 +466,50 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
   const dataProps = getDataProps(props);
 
   return (
-    <SDiv
-      {...dataProps}
-      ref={containerRef}
-      className="select-wrapper"
-      selectSize={selectSize}
-      aria-invalid={invalid ? true : undefined}
-      aria-describedby={errorId}
-      invalid={invalid}
-      id={uniqueId}
-      isDisabled={isDisabled}
-    >
-      <BaseSelectComponent
-        className={`react-select-component ${restProps.className}`}
-        closeMenuOnSelect={closeMenuOnSelect}
-        classNamePrefix="react-select"
-        isDisabled={isDisabled}
-        isClearable={isClearable}
-        isSearchable={false}
-        clearText={clearText}
-        isMulti={isMulti}
-        value={selectedOption}
-        options={options}
-        id={id}
-        invalid={invalid}
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SDiv
+        {...dataProps}
+        ref={containerRef}
+        className="select-wrapper"
+        selectSize={selectSize}
         aria-invalid={invalid ? true : undefined}
         aria-describedby={errorId}
-        selectSize={selectSize}
-        menuPortalTarget={document.getElementById(uniqueId)}
-        formatGroupLabel={formatGroupLabel}
-        components={components}
-        inputValue={filterValue}
-        menuIsOpen={isFocused || undefined}
-        isFocused={isFocused || undefined}
-        onInputChange={(value) => setFilterValue(value)}
-        onMenuInputFocus={() => setIsFocused(true)}
-        onBlur={handleBlur}
-        onChange={handleSelectChange}
-        {...restProps}
-        {...controlSpecificProps}
-        {...selectCheckboxProps}
-      />
-      {invalid && <ErrorMessage id={errorId} message={invalidText} />}
-    </SDiv>
+        invalid={invalid}
+        id={uniqueId}
+        isDisabled={isDisabled}
+      >
+        <BaseSelectComponent
+          className={`react-select-component ${restProps.className}`}
+          closeMenuOnSelect={closeMenuOnSelect}
+          classNamePrefix="react-select"
+          isDisabled={isDisabled}
+          isClearable={isClearable}
+          isSearchable={false}
+          clearText={clearText}
+          isMulti={isMulti}
+          value={selectedOption}
+          options={options}
+          id={id}
+          invalid={invalid}
+          aria-invalid={invalid ? true : undefined}
+          aria-describedby={errorId}
+          selectSize={selectSize}
+          menuPortalTarget={document.getElementById(uniqueId)}
+          formatGroupLabel={formatGroupLabel}
+          components={components}
+          inputValue={filterValue}
+          menuIsOpen={isFocused || undefined}
+          isFocused={isFocused || undefined}
+          onInputChange={(value) => setFilterValue(value)}
+          onMenuInputFocus={() => setIsFocused(true)}
+          onBlur={handleBlur}
+          onChange={handleSelectChange}
+          {...restProps}
+          {...controlSpecificProps}
+          {...selectCheckboxProps}
+        />
+        {invalid && <ErrorMessage id={errorId} message={invalidText} />}
+      </SDiv>
+    </ThemeProvider>
   );
 };

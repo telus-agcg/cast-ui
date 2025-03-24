@@ -1,8 +1,10 @@
 import React, { useState, useEffect, SVGProps } from 'react';
 import _ from 'lodash';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { SideNavItemIcon } from './SideNavItemIcon.component';
 import { Link } from '../Typography/Link/Link.component';
+
+export interface SubMenuProps {}
 
 const SSubMenuItem = styled.div`
   display: inline-block;
@@ -98,7 +100,7 @@ const SubMenu = ({
   toggleSecondarySideNav,
   setCurrentActiveSubnavItem,
   isSecondaryNavOpen,
-  theme,
+  theme = undefined,
 }) => {
   useEffect(() => {
     if (item.label !== currentActiveItem.label) setSubnav(false);
@@ -170,47 +172,49 @@ const SubMenu = ({
     }
   };
   return (
-    <SSubMenuItem>
-      <SidebarLink
-        onClick={handleItemClick}
-        onMouseEnter={handleHoverDelay}
-        data-testid={_.kebabCase(item.label)}
-        activeSideNavItem={false}
-        isActiveSubMenuItem={false}
-        level={undefined}
-        {...newProps}
-      >
-        <SideNavItemIcon isOpen={isOpen} item={item}>
-          {item.customIcon && (
-            <IconObj className={`custom-icon-svg`} width={24} height={24} />
-          )}
-        </SideNavItemIcon>
-        <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
-      </SidebarLink>
-      <SSubNavWrapper
-        show={isOpen && subnav}
-        className={isOpen && subnav ? 'fade-enter' : ''}
-      >
-        {item.subNav &&
-          item.subNav.map((subMenuItem, index) => {
-            return (
-              <SidebarLink
-                key={index}
-                level={1}
-                onClick={(e) => handleSubMenuClick(e, subMenuItem, 1)}
-                isActiveSubMenuItem={
-                  subMenuItem.label === currentSelectedSubnavItem
-                }
-                activeSideNavItem={false}
-                data-testid={_.kebabCase(subMenuItem.label)}
-                {...newProps}
-              >
-                <SidebarLabel {...newProps}>{subMenuItem.label}</SidebarLabel>
-              </SidebarLink>
-            );
-          })}
-      </SSubNavWrapper>
-    </SSubMenuItem>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SSubMenuItem>
+        <SidebarLink
+          onClick={handleItemClick}
+          onMouseEnter={handleHoverDelay}
+          data-testid={_.kebabCase(item.label)}
+          activeSideNavItem={false}
+          isActiveSubMenuItem={false}
+          level={undefined}
+          {...newProps}
+        >
+          <SideNavItemIcon isOpen={isOpen} item={item}>
+            {item.customIcon && (
+              <IconObj className={`custom-icon-svg`} width={24} height={24} />
+            )}
+          </SideNavItemIcon>
+          <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
+        </SidebarLink>
+        <SSubNavWrapper
+          show={isOpen && subnav}
+          className={isOpen && subnav ? 'fade-enter' : ''}
+        >
+          {item.subNav &&
+            item.subNav.map((subMenuItem, index) => {
+              return (
+                <SidebarLink
+                  key={index}
+                  level={1}
+                  onClick={(e) => handleSubMenuClick(e, subMenuItem, 1)}
+                  isActiveSubMenuItem={
+                    subMenuItem.label === currentSelectedSubnavItem
+                  }
+                  activeSideNavItem={false}
+                  data-testid={_.kebabCase(subMenuItem.label)}
+                  {...newProps}
+                >
+                  <SidebarLabel {...newProps}>{subMenuItem.label}</SidebarLabel>
+                </SidebarLink>
+              );
+            })}
+        </SSubNavWrapper>
+      </SSubMenuItem>
+    </ThemeProvider>
   );
 };
 export default SubMenu;

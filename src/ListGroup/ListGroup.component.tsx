@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { KeyboardArrowDownIcon, KeyboardArrowRightIcon } from '@icons';
 import { Collapse } from '../Collapse/Collapse.component';
@@ -150,7 +150,7 @@ const defaultProps = {
 export const ListGroup = (props: ListGroupProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const [collapsed, setCollapsed] = React.useState(false);
-  const { onToggle, collapsible, isCollapsed, name, children } =
+  const { theme, onToggle, collapsible, isCollapsed, name, children, ...rest } =
     propsWithDefaults;
 
   const dependOnProps = 'isCollapsed' in propsWithDefaults;
@@ -166,26 +166,26 @@ export const ListGroup = (props: ListGroupProps) => {
   };
 
   return (
-    <SListGroup {...propsWithDefaults}>
-      {collapsible ? (
-        <React.Fragment>
-          <SListHeader
-            isCollapsed={dependOnProps ? isCollapsed : collapsed}
-            onClick={collapsible ? toggle : undefined}
-            {...props}
-          >
-            <SHeaderContent>{name}</SHeaderContent>
-            {ChevronImage(dependOnProps ? isCollapsed : collapsed, {
-              ...propsWithDefaults,
-            })}
-          </SListHeader>
-          <Collapse isOpen={dependOnProps ? !isCollapsed : !collapsed}>
-            {children}
-          </Collapse>
-        </React.Fragment>
-      ) : (
-        [children]
-      )}
-    </SListGroup>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SListGroup {...rest}>
+        {collapsible ? (
+          <React.Fragment>
+            <SListHeader
+              isCollapsed={dependOnProps ? isCollapsed : collapsed}
+              onClick={collapsible ? toggle : undefined}
+              {...props}
+            >
+              <SHeaderContent>{name}</SHeaderContent>
+              {ChevronImage(dependOnProps ? isCollapsed : collapsed)}
+            </SListHeader>
+            <Collapse isOpen={dependOnProps ? !isCollapsed : !collapsed}>
+              {children}
+            </Collapse>
+          </React.Fragment>
+        ) : (
+          [children]
+        )}
+      </SListGroup>
+    </ThemeProvider>
   );
 };

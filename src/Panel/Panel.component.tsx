@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
 export type PanelProps = React.PropsWithChildren<{
@@ -42,6 +42,10 @@ const defaultProps = {
 
 export const Panel = (props: PanelProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { children, ...rest } = propsWithDefaults;
-  return <PanelWrapper {...rest}>{children}</PanelWrapper>;
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <PanelWrapper {...rest}>{children}</PanelWrapper>
+    </ThemeProvider>
+  );
 };

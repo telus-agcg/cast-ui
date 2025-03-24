@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 export type HeaderProps = React.PropsWithChildren<{
   /**
@@ -36,6 +36,10 @@ export const Header: React.FunctionComponent<HeaderProps> = (
   props: HeaderProps,
 ) => {
   const propsWithDefaults = { ...defaultProps, ...props };
-  const { children, ...rest } = propsWithDefaults;
-  return <SHeader {...rest}>{children}</SHeader>;
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SHeader {...rest}>{children}</SHeader>
+    </ThemeProvider>
+  );
 };

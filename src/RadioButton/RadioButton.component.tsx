@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { Omit, getDataProps, getPropsWithDefaults } from '@utils';
 
@@ -183,6 +183,7 @@ export const RadioButton = (props: RadioButtonProps) => {
   const [localChecked, setLocalChecked] = React.useState<boolean>(false);
 
   const {
+    theme,
     checked,
     defaultChecked,
     disabled,
@@ -193,7 +194,6 @@ export const RadioButton = (props: RadioButtonProps) => {
     rbSize,
     displayStyle,
     id,
-    theme,
     children,
     onClick,
     ...rest
@@ -214,26 +214,28 @@ export const RadioButton = (props: RadioButtonProps) => {
   };
 
   return (
-    <SDiv
-      {...dataProps}
-      className={className}
-      displayStyle={displayStyle}
-      onClick={onClick}
-      theme={theme}
-    >
-      <SInput
-        type="radio"
-        name={name}
-        rbSize={rbSize}
-        disabled={disabled}
-        id={id}
-        value={value}
-        checked={checked}
-        onChange={handleChange}
-      />
-      <SLabel htmlFor={id} rbSize={rbSize}>
-        {children}
-      </SLabel>
-    </SDiv>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SDiv
+        {...dataProps}
+        className={className}
+        displayStyle={displayStyle}
+        onClick={onClick}
+        theme={theme}
+      >
+        <SInput
+          type="radio"
+          name={name}
+          rbSize={rbSize}
+          disabled={disabled}
+          id={id}
+          value={value}
+          checked={checked}
+          onChange={handleChange}
+        />
+        <SLabel htmlFor={id} rbSize={rbSize}>
+          {children}
+        </SLabel>
+      </SDiv>
+    </ThemeProvider>
   );
 };

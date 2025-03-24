@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import {
   PaginationPageButton,
   PaginationButtonNextPrev,
@@ -103,6 +103,7 @@ const defaultProps = {
 export const Pagination = (props: PaginationProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const {
+    theme,
     page,
     pages,
     onPageChange,
@@ -115,6 +116,7 @@ export const Pagination = (props: PaginationProps) => {
     PageButtonNextPrevComponent,
     PageButtonFirstLastComponent,
     PageButtonComponent,
+    ...rest
   } = propsWithDefaults;
   const [activePage, setActivePage] = React.useState<number>(1);
   const [visiblePages, setVisiblePages] = React.useState<number[]>([]);
@@ -191,66 +193,70 @@ export const Pagination = (props: PaginationProps) => {
   };
 
   return (
-    <SDivPaginationWrapper>
-      {showPageSizeOptions && renderPageSizeOptions()}
-      <SPagninationControls>
-        <PageButtonFirstLastComponent
-          disabled={activePage === 1}
-          isForwardDirection={false}
-          onClick={() => {
-            changePage(1);
-          }}
-        />
-        <PageButtonNextPrevComponent
-          disabled={activePage === 1}
-          isForwardDirection={false}
-          onClick={() => {
-            changePage(activePage - 1);
-          }}
-        />
-        <div>
-          {visiblePages.map((page: number, index: number, array: number[]) => {
-            const showPrevNextGap = array[index - 1] + 1 < page;
-            const prevNextGapPageIndex =
-              index === array.length - 1 ? array[index - 1] + 1 : page - 1;
-            return (
-              <span key={page}>
-                {showPrevNextGap && (
-                  <PageButtonComponent
-                    type="button"
-                    btnSize="md"
-                    onClick={() => changePage(prevNextGapPageIndex)}
-                  >
-                    ...
-                  </PageButtonComponent>
-                )}
-                <PageButtonComponent
-                  type="button"
-                  btnSize="md"
-                  data-selected={activePage === page ? '' : undefined}
-                  onClick={() => changePage(page)}
-                >
-                  {page}
-                </PageButtonComponent>
-              </span>
-            );
-          })}
-        </div>
-        <PageButtonNextPrevComponent
-          disabled={activePage === pages || pages <= 0}
-          isForwardDirection={true}
-          onClick={() => {
-            changePage(activePage + 1);
-          }}
-        />
-        <PageButtonFirstLastComponent
-          disabled={activePage === pages || pages <= 0}
-          isForwardDirection={true}
-          onClick={() => {
-            changePage(pages);
-          }}
-        />
-      </SPagninationControls>
-    </SDivPaginationWrapper>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SDivPaginationWrapper>
+        {showPageSizeOptions && renderPageSizeOptions()}
+        <SPagninationControls>
+          <PageButtonFirstLastComponent
+            disabled={activePage === 1}
+            isForwardDirection={false}
+            onClick={() => {
+              changePage(1);
+            }}
+          />
+          <PageButtonNextPrevComponent
+            disabled={activePage === 1}
+            isForwardDirection={false}
+            onClick={() => {
+              changePage(activePage - 1);
+            }}
+          />
+          <div>
+            {visiblePages.map(
+              (page: number, index: number, array: number[]) => {
+                const showPrevNextGap = array[index - 1] + 1 < page;
+                const prevNextGapPageIndex =
+                  index === array.length - 1 ? array[index - 1] + 1 : page - 1;
+                return (
+                  <span key={page}>
+                    {showPrevNextGap && (
+                      <PageButtonComponent
+                        type="button"
+                        btnSize="md"
+                        onClick={() => changePage(prevNextGapPageIndex)}
+                      >
+                        ...
+                      </PageButtonComponent>
+                    )}
+                    <PageButtonComponent
+                      type="button"
+                      btnSize="md"
+                      data-selected={activePage === page ? '' : undefined}
+                      onClick={() => changePage(page)}
+                    >
+                      {page}
+                    </PageButtonComponent>
+                  </span>
+                );
+              },
+            )}
+          </div>
+          <PageButtonNextPrevComponent
+            disabled={activePage === pages || pages <= 0}
+            isForwardDirection={true}
+            onClick={() => {
+              changePage(activePage + 1);
+            }}
+          />
+          <PageButtonFirstLastComponent
+            disabled={activePage === pages || pages <= 0}
+            isForwardDirection={true}
+            onClick={() => {
+              changePage(pages);
+            }}
+          />
+        </SPagninationControls>
+      </SDivPaginationWrapper>
+    </ThemeProvider>
   );
 };

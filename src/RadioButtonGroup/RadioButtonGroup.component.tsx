@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { getPropsWithDefaults, Omit } from '@utils';
 import { RadioButton } from '../RadioButton/RadioButton.component';
+import { ThemeProvider } from 'styled-components';
 
 export interface RadioButtonGroupProps
   extends Omit<React.InputHTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -81,5 +82,9 @@ export const RadioButtonGroup = (props: RadioButtonGroupProps) => {
     return newChildren;
   };
 
-  return <div>{getRadioButtons()}</div>;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <div>{getRadioButtons()}</div>
+    </ThemeProvider>
+  );
 };
