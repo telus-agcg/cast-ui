@@ -49,7 +49,7 @@ const SidebarLink = styled(Link)<{
       ? '.6'
       : props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`]
           .opacity};
-  :hover {
+  &:hover {
     background: '${(props) =>
       props.level === 1 || (!props.isOpen && !props.disabled)
         ? props.theme.sidenav.activenavItem.background
