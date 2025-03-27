@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { CloseIcon } from '@icons';
 import { ProgressBar } from './ProgressBar.component';
@@ -149,46 +149,48 @@ export const File = (props: FileProps) => {
   const noop = () => {};
 
   const {
+    theme,
     fileDetails,
     canDelete,
     progressBarProps,
     onSelect = noop,
     onCancel = noop,
     onDelete = noop,
-    theme,
     file,
     uploaded,
     ...rest
   } = propsWithDefaults;
 
   return (
-    <SFile {...propsWithDefaults}>
-      <div
-        className="file-name"
-        onClick={uploaded ? (e: any) => onSelect(props.file, e) : noop}
-      >
-        {file.name}
-      </div>
-      <div className="file-size">{humanFileSize(file.size, 1)}</div>
-      <div className="file-details">
-        {!uploaded && (
-          <ProgressBar height={'4px'} percentage={0} {...progressBarProps} />
-        )}
-        {uploaded && fileDetails && (
-          <div> {fileDetails as React.ReactNode} </div>
-        )}
-      </div>
-
-      {canDelete && (
-        <div className="file-actions">
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SFile file={file} {...rest}>
+        <div
+          className="file-name"
+          onClick={uploaded ? (e: any) => onSelect(props.file, e) : noop}
+        >
+          {file.name}
+        </div>
+        <div className="file-size">{humanFileSize(file.size, 1)}</div>
+        <div className="file-details">
           {!uploaded && (
-            <CloseIcon onClick={(e: any) => onCancel(props.file, e)} />
+            <ProgressBar height={'4px'} percentage={0} {...progressBarProps} />
           )}
-          {uploaded && (
-            <div onClick={(e: any) => onDelete(props.file, e)}>Delete</div>
+          {uploaded && fileDetails && (
+            <div> {fileDetails as React.ReactNode} </div>
           )}
         </div>
-      )}
-    </SFile>
+
+        {canDelete && (
+          <div className="file-actions">
+            {!uploaded && (
+              <CloseIcon onClick={(e: any) => onCancel(props.file, e)} />
+            )}
+            {uploaded && (
+              <div onClick={(e: any) => onDelete(props.file, e)}>Delete</div>
+            )}
+          </div>
+        )}
+      </SFile>
+    </ThemeProvider>
   );
 };

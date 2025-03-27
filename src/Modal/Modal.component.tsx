@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import ReactModal, {
   Props as ReactModalProps,
   Styles as ReactModalStyles,
@@ -93,7 +93,7 @@ const modalSizeRules: Function = (modalSize: string, theme: any) => {
   }
 };
 
-const SReactModal = styled(ReactModal)`
+const SReactModal = styled(ReactModal)<Partial<ModalProps>>`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   color: ${(props: any) => props.theme.modal.body.color};
   outline: none;
@@ -204,8 +204,8 @@ const defaultProps = {
 export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const {
-    zIndex,
     theme,
+    zIndex,
     children,
     modalTitle,
     footerContent,
@@ -273,48 +273,50 @@ export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
   };
 
   return (
-    <SReactModal
-      role="dialog"
-      style={getModalStyles() as ReactModalStyles}
-      modalSize={modalSize || 'md'}
-      ariaHideApp={false}
-      onAfterOpen={() => handleAfterOpen(onAfterOpen)}
-      onAfterClose={() => handleAfterClose(onAfterClose)}
-      {...propsWithDefaults}
-    >
-      {modalTitle && (
-        <ModalHeaderDiv
-          modalSize={modalSize}
-          disableCloseIcon={disableCloseIcon}
-        >
-          <ModalHeaderWrapper>
-            <h5>{modalTitle}</h5>
-            {onTitleClose && (
-              <button
-                type="button"
-                aria-label="Close"
-                onClick={onTitleClose}
-                disabled={disableCloseIcon}
-              >
-                <span>&times;</span>
-              </button>
-            )}
-          </ModalHeaderWrapper>
-        </ModalHeaderDiv>
-      )}
-      <ModalBodyDiv>{children}</ModalBodyDiv>
-      {blurEffect ? (
-        <ModalBlurWrapper>
-          <ModalBlurDiv />
-        </ModalBlurWrapper>
-      ) : (
-        ''
-      )}
-      {footerContent && (
-        <ModalFooterDiv modalTitle={modalTitle}>
-          {footerContent as React.ReactNode}
-        </ModalFooterDiv>
-      )}
-    </SReactModal>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SReactModal
+        role="dialog"
+        style={getModalStyles() as ReactModalStyles}
+        modalSize={modalSize || 'md'}
+        ariaHideApp={false}
+        onAfterOpen={() => handleAfterOpen(onAfterOpen)}
+        onAfterClose={() => handleAfterClose(onAfterClose)}
+        {...rest}
+      >
+        {modalTitle && (
+          <ModalHeaderDiv
+            modalSize={modalSize}
+            disableCloseIcon={disableCloseIcon}
+          >
+            <ModalHeaderWrapper>
+              <h5>{modalTitle}</h5>
+              {onTitleClose && (
+                <button
+                  type="button"
+                  aria-label="Close"
+                  onClick={onTitleClose}
+                  disabled={disableCloseIcon}
+                >
+                  <span>&times;</span>
+                </button>
+              )}
+            </ModalHeaderWrapper>
+          </ModalHeaderDiv>
+        )}
+        <ModalBodyDiv>{children}</ModalBodyDiv>
+        {blurEffect ? (
+          <ModalBlurWrapper>
+            <ModalBlurDiv />
+          </ModalBlurWrapper>
+        ) : (
+          ''
+        )}
+        {footerContent && (
+          <ModalFooterDiv modalTitle={modalTitle}>
+            {footerContent as React.ReactNode}
+          </ModalFooterDiv>
+        )}
+      </SReactModal>
+    </ThemeProvider>
   );
 };

@@ -3,7 +3,7 @@ import {
   TabList as ReactTabList,
   TabListProps as ReactTabListProps,
 } from 'react-tabs';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Omit } from '@utils';
 
 export interface TabListProps extends Omit<ReactTabListProps, 'as'> {
@@ -41,6 +41,10 @@ export class TabList extends React.Component<
 
   render() {
     const { theme, children, ...props } = this.props;
-    return <SReactTabList {...props}>{children}</SReactTabList>;
+    return (
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <SReactTabList {...props}>{children}</SReactTabList>
+      </ThemeProvider>
+    );
   }
 }

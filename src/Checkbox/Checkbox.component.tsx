@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import React, { ChangeEvent } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { getDataProps, getPropsWithDefaults } from '@utils';
@@ -187,7 +187,8 @@ const defaultProps = {
 
 export const Checkbox = (props: CheckboxProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { id, value, onChange, label, disabled, children } = propsWithDefaults;
+  const { theme, id, value, onChange, label, disabled, children, ...rest } =
+    propsWithDefaults;
   const [checked, setChecked] = React.useState(CHECKBOX_STATE.EMPTY);
   const checkboxRef = React.useRef<HTMLInputElement>(null);
   const dataProps = getDataProps(propsWithDefaults);
@@ -231,18 +232,18 @@ export const Checkbox = (props: CheckboxProps) => {
   }, [checked]);
 
   return (
-    <>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <Label htmlFor={id} disabled={disabled}>
         {label}
         <Input
           {...dataProps}
-          {...propsWithDefaults}
+          {...rest}
           ref={checkboxRef}
           type="checkbox"
           onChange={handleChange}
         />
-        <Indicator {...propsWithDefaults} hasChildren={Boolean(children)} />
+        <Indicator {...rest} hasChildren={Boolean(children)} />
       </Label>
-    </>
+    </ThemeProvider>
   );
 };

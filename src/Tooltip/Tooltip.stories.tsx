@@ -1,10 +1,10 @@
-import { ToolTip } from './Tooltip.component';
+import { Tooltip } from './Tooltip.component';
 import { Meta, StoryObj } from '@storybook/react';
 import { InfoIcon } from '@icons';
 
-const meta: Meta<typeof ToolTip> = {
+const meta: Meta<typeof Tooltip> = {
   title: 'Components/Data Display/Tooltip',
-  component: ToolTip,
+  component: Tooltip,
   argTypes: {
     theme: {
       table: {
@@ -35,7 +35,7 @@ const meta: Meta<typeof ToolTip> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof ToolTip>;
+type Story = StoryObj<typeof Tooltip>;
 
 export const _ToolTip: Story = {
   args: {
@@ -46,7 +46,7 @@ export const _ToolTip: Story = {
     return (
       <div>
         {'Click the icon to see the tooltip'}
-        <ToolTip content={'this is a string'} {...args} trigger="click">
+        <Tooltip content={'this is a string'} {...args} trigger="click">
           <span>
             <InfoIcon
               height={20}
@@ -54,7 +54,7 @@ export const _ToolTip: Story = {
               style={{ marginLeft: '5px', cursor: 'pointer' }}
             />
           </span>
-        </ToolTip>
+        </Tooltip>
       </div>
     );
   },

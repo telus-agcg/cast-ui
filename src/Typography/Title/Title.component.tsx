@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 export type TitleProps = React.PropsWithChildren<{
   /**
@@ -34,6 +34,10 @@ const defaultProps = {
 
 export const Title: React.FunctionComponent<TitleProps> = (props) => {
   const propsWithDefaults = { ...defaultProps, ...props };
-  const { children, ...rest } = propsWithDefaults;
-  return <STitle {...rest}>{children}</STitle>;
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <STitle {...rest}>{children}</STitle>
+    </ThemeProvider>
+  );
 };

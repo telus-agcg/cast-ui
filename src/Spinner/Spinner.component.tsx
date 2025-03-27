@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
 export type SpinnerProps = {
@@ -68,5 +68,10 @@ const defaultProps = {
 
 export const Spinner: React.FunctionComponent<SpinnerProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  return <SSpinner {...propsWithDefaults} />;
+  const { theme, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SSpinner {...rest} />
+    </ThemeProvider>
+  );
 };

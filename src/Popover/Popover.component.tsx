@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Tippy, { TippyProps } from '@tippyjs/react';
 
 export interface PopoverProps extends TippyProps {
@@ -79,11 +79,13 @@ const defaultProps = {
 
 export const Popover = (props: PopoverProps) => {
   const propsWithDefaults = { ...defaultProps, ...props };
-  const { children, ...rest } = propsWithDefaults;
+  const { theme, children, ...rest } = propsWithDefaults;
 
   return (
-    <React.Fragment>
-      <SPopover {...rest}>{children}</SPopover>
-    </React.Fragment>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <>
+        <SPopover {...rest}>{children}</SPopover>
+      </>
+    </ThemeProvider>
   );
 };

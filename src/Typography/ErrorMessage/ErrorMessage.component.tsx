@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 export interface ErrorMessageProps {
   /**
@@ -72,15 +72,15 @@ export const ErrorMessage: React.FunctionComponent<
   React.PropsWithChildren<ErrorMessageProps>
 > = (props) => {
   const propsWithDefaults = { ...defaultProps, ...props };
-  const { message } = propsWithDefaults;
+  const { theme, message, ...rest } = propsWithDefaults;
   return (
-    <>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SErrorDiv {...propsWithDefaults}>
         <ErrorMessageWrapper>
-          <SErrorIcon height={24} width={24} {...propsWithDefaults} />
+          <SErrorIcon height={24} width={24} {...rest} />
           {message}
         </ErrorMessageWrapper>
       </SErrorDiv>
-    </>
+    </ThemeProvider>
   );
 };

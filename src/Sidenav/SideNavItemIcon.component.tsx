@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults, nameSpace } from '@utils';
 import { Themes } from '@themes';
 
@@ -34,17 +34,18 @@ export const SideNavItemIcon: React.FunctionComponent<SideNavItemIconProps> = (
   props,
 ) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { isOpen, item, children } = propsWithDefaults;
+  const { theme, isOpen, item, children, ...rest } = propsWithDefaults;
   return (
-    <SSideNavItemIcon
-      className={`${nameSpace}-sidenav-item-icon`}
-      role="side-nav-icon"
-      isOpen={isOpen}
-      item={item}
-      {...props}
-    >
-      {children}
-      {/* {isOpen ? (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SSideNavItemIcon
+        className={`${nameSpace}-sidenav-item-icon`}
+        role="side-nav-icon"
+        isOpen={isOpen}
+        item={item}
+        {...rest}
+      >
+        {children}
+        {/* {isOpen ? (
           children
         ) : (
           <Tooltip
@@ -58,6 +59,7 @@ export const SideNavItemIcon: React.FunctionComponent<SideNavItemIconProps> = (
             <span>{children}</span>
           </Tooltip>
         )} */}
-    </SSideNavItemIcon>
+      </SSideNavItemIcon>
+    </ThemeProvider>
   );
 };

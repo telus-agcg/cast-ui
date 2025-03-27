@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Tippy, { TippyProps } from '@tippyjs/react';
 import { getPropsWithDefaults } from '@utils';
 
@@ -27,9 +27,13 @@ const defaultProps = {
   arrow: true,
 } satisfies Partial<TooltipProps>;
 
-export const ToolTip = (props: TooltipProps) => {
+export const Tooltip = (props: TooltipProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { children, ...rest } = propsWithDefaults;
+  const { theme, children, ...rest } = propsWithDefaults;
 
-  return <STippy {...rest}>{children}</STippy>;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <STippy {...rest}>{children}</STippy>
+    </ThemeProvider>
+  );
 };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
 export interface ToggleProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -153,22 +153,24 @@ const defaultProps = {
 
 export const Toggle = (props: ToggleProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { onChange, children, checked, disabled, label, id, ...rest } =
+  const { theme, onChange, children, checked, disabled, label, id, ...rest } =
     propsWithDefaults;
 
   const handleChange = (event) =>
     onChange ? onChange(event) : alert(`Toggle with id ${id} was clicked!`);
 
   return (
-    <SDiv disabled={!!disabled} {...rest}>
-      <input
-        checked={checked}
-        disabled={!!disabled}
-        onChange={handleChange}
-        type="checkbox"
-        id={id}
-      />
-      <label htmlFor={id}>{label}</label>
-    </SDiv>
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SDiv disabled={!!disabled} {...rest}>
+        <input
+          checked={checked}
+          disabled={!!disabled}
+          onChange={handleChange}
+          type="checkbox"
+          id={id}
+        />
+        <label htmlFor={id}>{label}</label>
+      </SDiv>
+    </ThemeProvider>
   );
 };

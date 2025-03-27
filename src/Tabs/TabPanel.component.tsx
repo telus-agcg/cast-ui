@@ -5,6 +5,7 @@ import {
   TabPanelProps as ReactTabPanelProps,
 } from 'react-tabs';
 import { Omit } from '@utils';
+import { ThemeProvider } from 'styled-components';
 
 export interface TabPanelProps extends Omit<ReactTabPanelProps, 'ref'> {
   /**
@@ -26,6 +27,10 @@ export class TabPanel extends React.Component<
 
   render() {
     const { theme, children, ...props } = this.props;
-    return <ReactTabPanel {...props}>{children}</ReactTabPanel>;
+    return (
+      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+        <ReactTabPanel {...props}>{children}</ReactTabPanel>
+      </ThemeProvider>
+    );
   }
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
 export type NavProps = React.PropsWithChildren<{
@@ -44,6 +44,10 @@ const defaultProps = {
 
 export const Nav: React.FunctionComponent<NavProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { children } = propsWithDefaults;
-  return <SNav {...propsWithDefaults}>{children}</SNav>;
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SNav {...rest}>{children}</SNav>
+    </ThemeProvider>
+  );
 };

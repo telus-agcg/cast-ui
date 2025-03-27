@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 
 export type NavbarProps = React.PropsWithChildren<{
@@ -28,6 +28,10 @@ const defaultProps = {} satisfies Partial<NavbarProps>;
 
 export const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { children } = propsWithDefaults;
-  return <SNavbar {...propsWithDefaults}>{children}</SNavbar>;
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SNavbar {...rest}>{children}</SNavbar>
+    </ThemeProvider>
+  );
 };
