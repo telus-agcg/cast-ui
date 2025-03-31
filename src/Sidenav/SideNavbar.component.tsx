@@ -104,15 +104,14 @@ const NavIcon = styled(Link)<SideNavProps & LinkProps>`
 const SideNavbarWrapper = styled.div`
   display: flex;
 `;
+
 const SSideNavbar = styled.div<SideNavProps>`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.sidenav.fontSize};
   color: ${(props: any) => props.theme.sidenav.color};
   padding: ${(props: any) => (props.isOpen ? props.theme.sidenav.padding : 0)};
-
   height: ${(props: any) =>
     props.sideNavHeight ? props.sideNavHeight : '92vh'};
-
   z-index: ${(props: any) => props.theme.sidenav.zIndex};
   background: ${(props: any) => props.theme.sidenav.background};
   border-left: ${(props: any) => props.theme.sidenav.borderLeft};
@@ -122,6 +121,7 @@ const SSideNavbar = styled.div<SideNavProps>`
   display: flex;
   flex-direction: column;
 `;
+
 const SSideNav = styled.div<SideNavProps>`
   height: auto;
   padding: ${(props) => props.theme.sidenav.nav.padding};
@@ -130,6 +130,7 @@ const SSideNav = styled.div<SideNavProps>`
   display: flex;
   flex-direction: column;
 `;
+
 const SSecondarySideNavbar = styled.div<
   SideNavProps & { isSecondaryNavbarOpen: boolean }
 >`
@@ -149,11 +150,13 @@ const SSecondarySideNavbar = styled.div<
   display: flex;
   flex-direction: column;
 `;
+
 const CloseIconWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 `;
+
 const CloseIcon = styled.button`
   padding: 4px 10px;
   margin: 1px 2px;
@@ -170,11 +173,13 @@ const CloseIcon = styled.button`
     color: ${(props) => props.theme.pagination.hoverTextColor};
   }
 `;
+
 const SSecondarySideNavbarWrapper = styled.div`
   padding: 0px 8px;
   display: flex;
   flex-direction: column;
 `;
+
 const SSecondarySideNavbarLabel = styled.h3`
   padding-left: 1.25rem;
   color: ${(props) => props.theme.sidenav.secondaryNavbarLabel.color};
@@ -259,7 +264,7 @@ export const SideNavbar = (props: SideNavProps) => {
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SideNavbarWrapper>
+      <SideNavbarWrapper {...rest}>
         <SSideNavbar isOpen={sidebarOpen} sideNavHeight={sideNavHeight}>
           <SSideNav>
             {data?.map((item, index) => {
