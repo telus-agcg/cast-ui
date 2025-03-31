@@ -4,8 +4,6 @@ import dts from 'vite-plugin-dts';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-import { peerDependencies } from './package.json';
-
 export default defineConfig({
   plugins: [
     react(),
@@ -25,11 +23,18 @@ export default defineConfig({
       formats: ['es', 'cjs', 'umd'],
     },
     rollupOptions: {
-      external: [...Object.keys(peerDependencies)],
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'styled-components',
+        /^react\//,
+      ],
       output: {
         globals: {
           react: 'React',
-          'react-dom': 'ReactDom',
+          'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'react/jsx-runtime',
           'styled-components': 'styled',
         },
         interop: 'compat',
