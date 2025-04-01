@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button.component';
+import { Menu } from '../Menu/Menu.component';
 
 const description = `
 Cast UI custom buttons come with support for multiple sizes, states and semantic styles ideal for use for action in forms, dialogs and more.
@@ -98,5 +99,17 @@ export const MenuButton: Story = {
     disabled: false,
     displayType: 'menu',
     children: 'Click Here!',
+  },
+  render(args) {
+    return (
+      <Menu
+        items={[{ label: 'Car' }, { label: 'Truck', disabled: true }]}
+        triggerComponent={
+          <Button data-testid="create-new" {...args}>
+            Create New
+          </Button>
+        }
+      />
+    );
   },
 };
