@@ -3,10 +3,13 @@ import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
+// https://github.com/vitejs/vite/issues/12255 -> This issue was helpful is creating this config
 export default defineConfig({
   plugins: [
     react(),
+    libInjectCss(),
     dts({
       rollupTypes: true,
       tsconfigPath: './tsconfig.lib.json',

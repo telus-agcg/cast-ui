@@ -45,7 +45,7 @@ export const Card: React.FunctionComponent<CardProps> = (props) => {
   const { theme, children, ...rest } = propsWithDefaults;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SCard {...rest}>{children}</SCard>;
+      <SCard {...rest}>{children}</SCard>
     </ThemeProvider>
   );
 };

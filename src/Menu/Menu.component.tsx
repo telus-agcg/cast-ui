@@ -63,7 +63,7 @@ const SMenuItem = styled.div`
   padding: 8px 16px;
   color: ${(props: any) => props.theme.select.color};
   background: ${(props: any) => props.theme.select.optionBackgroundColor};
-  :hover {
+  &:hover {
     color: ${(props: any) => props.theme.select.highlightOptionColor};
     background: ${(props: any) =>
       props.theme.select.highlightOptionBackgroundColor};
