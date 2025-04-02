@@ -20,7 +20,7 @@ const IconDisplay = styled.div`
 const defaultIconSize = { height: 36, width: 36 };
 
 const listIcons = () => {
-  let iconList: any[] = [];
+  const iconList: any[] = [];
   for (const icon in icons) {
     if (typeof icons[icon] === 'function') {
       const Component = icons[icon];
