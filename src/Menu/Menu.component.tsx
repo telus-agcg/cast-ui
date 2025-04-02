@@ -1,15 +1,15 @@
 import * as React from 'react';
 import _ from 'lodash';
 import styled, { ThemeProvider } from 'styled-components';
-import { getPropsWithDefaults } from '@utils';
 import { Popover } from '../Popover/Popover.component';
+import { getPropsWithDefaults } from '@utils';
 
 export interface MenuItem {
   disabled?: boolean;
   id?: any;
   label?: string;
   component?: any;
-  // icon?: any; TODO
+  icon?: any;
 }
 
 export interface MenuProps {
@@ -63,6 +63,8 @@ const SMenuItem = styled.div`
   padding: 8px 16px;
   color: ${(props: any) => props.theme.select.color};
   background: ${(props: any) => props.theme.select.optionBackgroundColor};
+  display: flex;
+  align-items: center;
   &:hover {
     color: ${(props: any) => props.theme.select.highlightOptionColor};
     background: ${(props: any) =>
@@ -121,11 +123,10 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
                     onClick={(e: any) => handleItemClick(item, e)}
                     data-testid={_.kebabCase(item.label)}
                   >
-                    {/* {item.icon ? <Icon icon={item.icon} size={24} /> : ''} */}
+                    {item.icon && item.icon}
                     <MenuItemLabel
                       itemsHasNonEmptyIcon={Boolean(hasNonEmptyIcon)}
-                      hasIcon={false}
-                      // hasIcon={item.icon ? true : false}
+                      hasIcon={item.icon ? true : false}
                     >
                       {item.label}
                     </MenuItemLabel>

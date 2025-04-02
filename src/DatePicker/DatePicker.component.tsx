@@ -301,8 +301,6 @@ export const DatePicker = (props: DatePickerProps) => {
     ...rest
   } = propsWithDefaults;
 
-  console.log(monthsShown);
-
   const handleDateChange = (selectsRange: boolean, event) => {
     if (selectsRange) {
       const [start, end] = event;

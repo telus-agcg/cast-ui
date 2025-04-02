@@ -34,6 +34,23 @@ export function KeyboardArrowDownIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function KeyboardArrowUp(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M8.12 14.71L12 10.83l3.88 3.88a.996.996 0 1 0 1.41-1.41L12.7 8.71a.996.996 0 0 0-1.41 0L6.7 13.3a.996.996 0 0 0 0 1.41c.39.38 1.03.39 1.42 0"
+      ></path>
+    </svg>
+  );
+}
+
 export function KeyboardArrowRightIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -355,6 +372,268 @@ export function InfoIcon(props: SVGProps<SVGSVGElement>) {
       <path
         fill="currentColor"
         d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 15c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1m1-8h-2V7h2z"
+      ></path>
+    </svg>
+  );
+}
+
+export function ErrorIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M12 7c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1s-1-.45-1-1V8c0-.55.45-1 1-1m-.01-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2M12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8m1-3h-2v-2h2z"
+      ></path>
+    </svg>
+  );
+}
+
+export function CompareArrowsIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M9.01 14H3c-.55 0-1 .45-1 1s.45 1 1 1h6.01v1.79c0 .45.54.67.85.35l2.78-2.79c.19-.2.19-.51 0-.71l-2.78-2.79c-.31-.32-.85-.09-.85.35zm5.98-2.21V10H21c.55 0 1-.45 1-1s-.45-1-1-1h-6.01V6.21c0-.45-.54-.67-.85-.35l-2.78 2.79c-.19.2-.19.51 0 .71l2.78 2.79a.5.5 0 0 0 .85-.36"
+      ></path>
+    </svg>
+  );
+}
+
+export function LogoutIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M5 5h6c.55 0 1-.45 1-1s-.45-1-1-1H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h6c.55 0 1-.45 1-1s-.45-1-1-1H5z"
+      ></path>
+      <path
+        fill="currentColor"
+        d="m20.65 11.65l-2.79-2.79a.501.501 0 0 0-.86.35V11h-7c-.55 0-1 .45-1 1s.45 1 1 1h7v1.79c0 .45.54.67.85.35l2.79-2.79c.2-.19.2-.51.01-.7"
+      ></path>
+    </svg>
+  );
+}
+
+export function CheckIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M9 16.17L5.53 12.7a.996.996 0 1 0-1.41 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71a.996.996 0 1 0-1.41-1.41z"
+      ></path>
+    </svg>
+  );
+}
+
+export function SentimentDissatisfiedIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <circle cx="15.5" cy="9.5" r="1.5" fill="currentColor"></circle>
+      <circle cx="8.5" cy="9.5" r="1.5" fill="currentColor"></circle>
+      <path
+        fill="currentColor"
+        d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2M12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8m0-6c-1.9 0-3.63.97-4.65 2.58a.747.747 0 1 0 1.27.79c.74-1.18 2-1.88 3.38-1.88s2.64.7 3.38 1.88c.14.23.39.35.64.35c.14 0 .27-.04.4-.11c.35-.22.46-.68.24-1.03C15.63 14.96 13.9 14 12 14"
+      ></path>
+    </svg>
+  );
+}
+
+export function MinimizeIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M7 19h10c.55 0 1 .45 1 1s-.45 1-1 1H7c-.55 0-1-.45-1-1s.45-1 1-1"
+      ></path>
+    </svg>
+  );
+}
+
+export function BackspaceIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M22 3H7c-.69 0-1.23.35-1.59.88L.37 11.45c-.22.34-.22.77 0 1.11l5.04 7.56c.36.52.9.88 1.59.88h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-3.7 13.3a.996.996 0 0 1-1.41 0L14 13.41l-2.89 2.89a.996.996 0 1 1-1.41-1.41L12.59 12L9.7 9.11a.996.996 0 1 1 1.41-1.41L14 10.59l2.89-2.89a.996.996 0 1 1 1.41 1.41L15.41 12l2.89 2.89c.38.38.38 1.02 0 1.41"
+      ></path>
+    </svg>
+  );
+}
+
+export function ClearIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59L7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12L5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4"
+      ></path>
+    </svg>
+  );
+}
+
+export function WarningAmberIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M12 5.99L19.53 19H4.47zM2.74 18c-.77 1.33.19 3 1.73 3h15.06c1.54 0 2.5-1.67 1.73-3L13.73 4.99c-.77-1.33-2.69-1.33-3.46 0zM11 11v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1m0 5h2v2h-2z"
+      ></path>
+    </svg>
+  );
+}
+
+export function DoneIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="m9 16.2l-3.5-3.5a.984.984 0 0 0-1.4 0a.984.984 0 0 0 0 1.4l4.19 4.19c.39.39 1.02.39 1.41 0L20.3 7.7a.984.984 0 0 0 0-1.4a.984.984 0 0 0-1.4 0z"
+      ></path>
+    </svg>
+  );
+}
+
+export function PriorityHighIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <circle cx="12" cy="19" r="2" fill="currentColor"></circle>
+      <path
+        fill="currentColor"
+        d="M12 3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2s2-.9 2-2V5c0-1.1-.9-2-2-2"
+      ></path>
+    </svg>
+  );
+}
+
+export function AttachMoneyIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15c0-1.09 1.01-1.85 2.7-1.85c1.42 0 2.13.54 2.39 1.4c.12.4.45.7.87.7h.3c.66 0 1.13-.65.9-1.27c-.42-1.18-1.4-2.16-2.96-2.54V4.5c0-.83-.67-1.5-1.5-1.5S10 3.67 10 4.5v.66c-1.94.42-3.5 1.68-3.5 3.61c0 2.31 1.91 3.46 4.7 4.13c2.5.6 3 1.48 3 2.41c0 .69-.49 1.79-2.7 1.79c-1.65 0-2.5-.59-2.83-1.43c-.15-.39-.49-.67-.9-.67h-.28c-.67 0-1.14.68-.89 1.3c.57 1.39 1.9 2.21 3.4 2.53v.67c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-.65c1.95-.37 3.5-1.5 3.5-3.55c0-2.84-2.43-3.81-4.7-4.4"
+      ></path>
+    </svg>
+  );
+}
+
+export function AddIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1"
+      ></path>
+    </svg>
+  );
+}
+
+export function DeleteIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2zM18 4h-2.5l-.71-.71c-.18-.18-.44-.29-.7-.29H9.91c-.26 0-.52.11-.7.29L8.5 4H6c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1"
+      ></path>
+    </svg>
+  );
+}
+
+export function HelpOutlineIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m-1-4h2v2h-2zm1.61-9.96c-2.06-.3-3.88.97-4.43 2.79c-.18.58.26 1.17.87 1.17h.2c.41 0 .74-.29.88-.67c.32-.89 1.27-1.5 2.3-1.28c.95.2 1.65 1.13 1.57 2.1c-.1 1.34-1.62 1.63-2.45 2.88c0 .01-.01.01-.01.02c-.01.02-.02.03-.03.05c-.09.15-.18.32-.25.5c-.01.03-.03.05-.04.08c-.01.02-.01.04-.02.07c-.12.34-.2.75-.2 1.25h2c0-.42.11-.77.28-1.07c.02-.03.03-.06.05-.09c.08-.14.18-.27.28-.39c.01-.01.02-.03.03-.04c.1-.12.21-.23.33-.34c.96-.91 2.26-1.65 1.99-3.56c-.24-1.74-1.61-3.21-3.35-3.47"
       ></path>
     </svg>
   );
