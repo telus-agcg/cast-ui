@@ -209,11 +209,11 @@ export const Checkbox = (props: CheckboxProps) => {
     }
 
     setChecked(updatedChecked);
-    onChange(updatedChecked, event);
+    onChange && onChange(updatedChecked, event);
   };
 
   React.useEffect(() => {
-    setChecked(value);
+    setChecked(value ?? CHECKBOX_STATE.EMPTY);
   }, [value]);
 
   React.useEffect(() => {
@@ -235,14 +235,13 @@ export const Checkbox = (props: CheckboxProps) => {
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <Label htmlFor={id} disabled={disabled}>
         {label}
-        <Input
-          {...dataProps}
+        <Input {...dataProps} {...rest} ref={checkboxRef} type="checkbox" />
+        <Indicator
           {...rest}
-          ref={checkboxRef}
-          type="checkbox"
-          onChange={handleChange}
+          // @ts-ignore
+          onClick={handleChange}
+          hasChildren={Boolean(children)}
         />
-        <Indicator {...rest} hasChildren={Boolean(children)} />
       </Label>
     </ThemeProvider>
   );

@@ -135,6 +135,21 @@ move it somewhere you can clean up later, and copy the path to your clipboard.
 
 When the developer is confident in the work, a PR should be opened against `beta` for approval.
 
+#### Adding icons
+
+All icons used in Cast should be React SVG components.
+You can find a repository of these [here](https://reactsvgicons.com/ic)
+
+When adding a new icon, it is preferred if it comes from "Google Material Icons" and the "Round" variant should be used
+
+Icon componets should be named in the `<icon_name>Icon` format like this:
+
+```
+ErrorIcon
+InfoIcon
+KeyboardArrowDownIcon
+```
+
 #### Releases
 
 When merging to `beta`:

@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { Menu } from './Menu.component';
 import { Button } from '../Button/Button.component';
 import { Link } from '../Typography/Link/Link.component';
+import { InfoIcon } from '@icons';
 
 const description = `
 A Menu is a specialized Popover wrapper that displays items to select when triggered via click, typically with a Link or Button (with displayType="menu").
@@ -47,7 +48,7 @@ const menuData = [
   {
     label: 'Chocolate',
     id: 'chocolate',
-    // icon: icCasino // TODO
+    icon: <InfoIcon width={24} height={24} />,
   },
 ];
 
