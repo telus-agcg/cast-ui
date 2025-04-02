@@ -88,7 +88,7 @@ const defaultProps = {
 } satisfies Partial<MenuProps>;
 
 export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
-  const propsWitDefaults = getPropsWithDefaults(defaultProps, props);
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const [popoverInstance, setPopoverInstance] = React.useState(null);
   const closePopoverMenu = () => {
     // @ts-ignore
@@ -100,7 +100,7 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
     onItemClick = noop,
     triggerComponent,
     ...rest
-  } = propsWitDefaults;
+  } = propsWithDefaults;
   const hasNonEmptyIcon = items?.some((item) => {
     return item.hasOwnProperty('icon') && item['icon'] !== '';
   });
