@@ -94,13 +94,8 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
     // @ts-ignore
     popoverInstance && popoverInstance.hide();
   };
-  const {
-    theme,
-    items = [],
-    onItemClick = noop,
-    triggerComponent,
-    ...rest
-  } = propsWithDefaults;
+  const { theme, items, onItemClick, triggerComponent, ...rest } =
+    propsWithDefaults;
   const hasNonEmptyIcon = items?.some((item) => {
     return item.hasOwnProperty('icon') && item['icon'] !== '';
   });
