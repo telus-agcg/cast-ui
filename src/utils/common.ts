@@ -3,8 +3,11 @@ import _ from 'lodash';
 export const getPropsWithDefaults = <T>(
   defaultProps: Partial<T>,
   props: T,
-): Partial<T> => {
-  return { ...defaultProps, ...removeUndefinedProperties(props as Partial<T>) };
+): T => {
+  return {
+    ...defaultProps,
+    ...removeUndefinedProperties(props as Partial<T>),
+  } as T;
 };
 
 export const getDataProps = (props: any) =>
