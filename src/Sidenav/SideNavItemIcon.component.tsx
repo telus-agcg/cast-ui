@@ -16,7 +16,7 @@ export type SideNavItemIconProps = React.PropsWithChildren<{
 
 const SSideNavItemIcon = styled.div<{ isOpen: boolean; item: any }>`
   height: 24px;
-  :hover {
+  &:hover {
     background: ${(props) =>
       props.isOpen || props.item.disabled
         ? ''

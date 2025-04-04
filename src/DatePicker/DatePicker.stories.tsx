@@ -77,5 +77,6 @@ export const _DatePicker: Story = {
     placeholderText: 'Date',
     showIcon: true,
     withPortal: false,
+    excludeDates: [new Date()],
   },
 };

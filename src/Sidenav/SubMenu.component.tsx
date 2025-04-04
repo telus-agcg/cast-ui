@@ -71,8 +71,8 @@ const SidebarLink = styled(Link)<{
   }
   .custom-icon-svg {
     color: ${(props) =>
-      props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`].color}
-    :hover {
+      props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`].color};
+    &:hover {
       color: ${(props) => props.theme.sidenav[`activenavItem`].color};
     }
   }
