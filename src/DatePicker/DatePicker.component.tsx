@@ -324,6 +324,7 @@ export const DatePicker = (props: DatePickerProps) => {
   };
 
   const errorId = invalid ? `${id}-error-msg` : '';
+  const datePickerProps = props as ReactDatePickerProps;
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -337,11 +338,11 @@ export const DatePicker = (props: DatePickerProps) => {
         aria-invalid={invalid ? true : undefined}
         aria-describedby={errorId}
         showIcon={Boolean(showIcon)}
-        {...rest}
       >
+        {/* @ts-ignore */}
         <ReactDatePicker
           fixedHeight
-          customInput={<CustomInput {...rest} />}
+          customInput={<CustomInput {...props} />}
           onChange={(event) => handleDateChange(Boolean(selectsRange), event)}
           selected={date || startDate}
           startDate={startDate || startDateRange}
@@ -351,7 +352,7 @@ export const DatePicker = (props: DatePickerProps) => {
           renderCustomHeader={(props) => (
             <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
           )}
-          // {...rest}
+          {...props}
         />
       </SWrapperComponent>
     </ThemeProvider>
