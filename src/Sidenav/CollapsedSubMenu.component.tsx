@@ -13,15 +13,15 @@ const SidebarLink = styled(Link)<LinkProps & { isActiveSubMenuItem: boolean }>`
   font-weight: ${(props) =>
     props.theme.sidenav[`${props.isActiveSubMenuItem ? 'active' : ''}navItem`]
       .fontWeight};
-  :hover {
+  &:hover {
     background: ${(props) => props.theme.sidenav['activenavItem'].background};
     border-radius: 7px;
     transition: background-color 0.3s;
   }
-  :hover,
-  :visited,
-  :active,
-  :link {
+  &:hover,
+  &:visited,
+  &:active,
+  &:link {
     text-decoration: none;
   }
 `;

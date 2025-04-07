@@ -12,7 +12,7 @@ A Menu is a specialized Popover wrapper that displays items to select when trigg
 const CustomItem = styled.div`
   padding: 8px 16px;
   border-top: ${(props: any) => `1px solid ${props.theme.colors.drk800}`};
-  :hover {
+  &:hover {
     color: ${(props: any) => props.theme.select.highlightOptionColor};
     background: ${(props: any) =>
       props.theme.select.highlightOptionBackgroundColor};
