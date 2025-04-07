@@ -102,7 +102,6 @@ const SubMenu = ({
   isSecondaryNavOpen,
   theme = undefined,
 }) => {
-  console.log(item);
   useEffect(() => {
     if (item.label !== currentActiveItem.label) setSubnav(false);
   }, [currentActiveItem]);
