@@ -12,19 +12,17 @@ const meta: Meta<typeof Tooltip> = {
       },
     },
     placement: {
-      control: {
-        type: 'select',
-        options: [
-          'top',
-          'top-start',
-          'top-end',
-          'bottom',
-          'bottom-end',
-          'bottom-start',
-          'left',
-          'right',
-        ],
-      },
+      control: 'select',
+      options: [
+        'top',
+        'top-start',
+        'top-end',
+        'bottom',
+        'bottom-end',
+        'bottom-start',
+        'left',
+        'right',
+      ],
     },
     arrow: {
       control: {

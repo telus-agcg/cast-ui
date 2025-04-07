@@ -1,6 +1,7 @@
 import styled, { ThemeProvider } from 'styled-components';
 import Tippy, { TippyProps } from '@tippyjs/react';
 import { getPropsWithDefaults } from '@utils';
+import 'tippy.js/dist/tippy.css';
 
 export interface TooltipProps extends TippyProps {
   theme?: any;
@@ -33,7 +34,7 @@ export const Tooltip = (props: TooltipProps) => {
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <STippy {...rest}>{children}</STippy>
+      <STippy {...propsWithDefaults}>{children}</STippy>
     </ThemeProvider>
   );
 };

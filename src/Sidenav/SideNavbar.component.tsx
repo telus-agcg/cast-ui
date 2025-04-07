@@ -94,7 +94,7 @@ const NavIcon = styled(Link)<SideNavProps & LinkProps>`
     margin: 2px;
     border-radius: 50%;
   }
-  > *:hover {
+  > *&:hover {
     background: ${(props) => props.theme.sidenav['activenavItem'].background};
     color: ${(props) => props.theme.pagination.hoverTextColor};
     transition: all 0.3s;

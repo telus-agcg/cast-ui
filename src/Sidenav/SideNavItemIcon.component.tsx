@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults, nameSpace } from '@utils';
 import { Themes } from '@themes';
+import { Tooltip } from '../Tooltip/Tooltip.component';
 
 export type SideNavItemIconProps = React.PropsWithChildren<{
   /**
@@ -17,10 +18,6 @@ export type SideNavItemIconProps = React.PropsWithChildren<{
 const SSideNavItemIcon = styled.div<{ isOpen: boolean; item: any }>`
   height: 24px;
   &:hover {
-    background: ${(props) =>
-      props.isOpen || props.item.disabled
-        ? ''
-        : props.theme.sidenav['activenavItem'].background};
     border-radius: ${(props) => (props.isOpen ? '' : '4px')};
     transition: color 0.3s;
   }
@@ -44,8 +41,7 @@ export const SideNavItemIcon: React.FunctionComponent<SideNavItemIconProps> = (
         item={item}
         {...rest}
       >
-        {children}
-        {/* {isOpen ? (
+        {isOpen ? (
           children
         ) : (
           <Tooltip
@@ -58,7 +54,7 @@ export const SideNavItemIcon: React.FunctionComponent<SideNavItemIconProps> = (
           >
             <span>{children}</span>
           </Tooltip>
-        )} */}
+        )}
       </SSideNavItemIcon>
     </ThemeProvider>
   );
