@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults, nameSpace } from '@utils';
 import { Themes } from '@themes';
+import { Tooltip } from '../Tooltip/Tooltip.component';
 
 export type SideNavItemIconProps = React.PropsWithChildren<{
   /**
@@ -40,8 +41,7 @@ export const SideNavItemIcon: React.FunctionComponent<SideNavItemIconProps> = (
         item={item}
         {...rest}
       >
-        {children}
-        {/* {isOpen ? (
+        {isOpen ? (
           children
         ) : (
           <Tooltip
@@ -54,7 +54,7 @@ export const SideNavItemIcon: React.FunctionComponent<SideNavItemIconProps> = (
           >
             <span>{children}</span>
           </Tooltip>
-        )} */}
+        )}
       </SSideNavItemIcon>
     </ThemeProvider>
   );
