@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export type AlertProps = React.PropsWithChildren<{
   /**
@@ -52,6 +53,7 @@ const SAlert = styled.div<AlertProps>`
 const defaultProps = {
   alertStyle: 'primary',
   lightMode: false,
+  theme: Themes.canopyTheme,
 } satisfies Partial<AlertProps>;
 
 export const Alert: React.FunctionComponent<AlertProps> = (props) => {

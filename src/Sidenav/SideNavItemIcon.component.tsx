@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults, nameSpace } from '@utils';
-import { Themes } from '@themes';
 import { Tooltip } from '../Tooltip/Tooltip.component';
+import { Themes } from '@themes';
 
 export type SideNavItemIconProps = React.PropsWithChildren<{
   /**

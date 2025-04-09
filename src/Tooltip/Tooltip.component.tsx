@@ -1,6 +1,7 @@
 import styled, { ThemeProvider } from 'styled-components';
 import Tippy, { TippyProps } from '@tippyjs/react';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 import 'tippy.js/dist/tippy.css';
 
 export interface TooltipProps extends TippyProps {
@@ -13,7 +14,6 @@ const STippy = styled(Tippy)<TooltipProps>`
   font-family: ${(props) => props.theme.typography.fontFamily};
   font-size: ${(props) => props.theme.body.fontSize};
   color: ${(props) => props.theme.colors.white};
-  padding: 0.25rem;
   &[x-placement^='bottom'] .tippy-arrow,
   &[x-placement^='top'] .tippy-arrow {
     border-color: ${(props) => props.theme.tooltip.background} transparent;
@@ -26,6 +26,7 @@ const STippy = styled(Tippy)<TooltipProps>`
 
 const defaultProps = {
   arrow: true,
+  theme: Themes.canopyTheme,
 } satisfies Partial<TooltipProps>;
 
 export const Tooltip = (props: TooltipProps) => {

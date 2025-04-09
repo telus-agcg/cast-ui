@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { Themes } from '@themes';
 
 export type TextDisplayProps = React.PropsWithChildren<{
   /**
@@ -25,6 +26,7 @@ export type TextDisplayProps = React.PropsWithChildren<{
 const defaultProps = {
   fontSize: '16px',
   fontWeight: 'bold',
+  theme: Themes.canopyTheme,
 } satisfies Partial<TextDisplayProps>;
 
 export const TextDisplay = (props: TextDisplayProps) => {

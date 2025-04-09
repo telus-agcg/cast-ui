@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { components } from 'react-select';
 import { ErrorMessage } from '@typography';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -231,6 +232,7 @@ const defaultProps = {
   inputSize: 'md',
   type: 'text',
   autoComplete: 'off',
+  theme: Themes.canopyTheme,
 } satisfies Partial<InputProps>;
 
 export const Input = (props: InputProps) => {

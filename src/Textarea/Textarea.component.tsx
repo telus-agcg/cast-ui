@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { ErrorMessage } from '@typography';
+import { Themes } from '@themes';
 
 export interface TextareaProps
   extends React.PropsWithChildren<
@@ -146,6 +147,7 @@ const STextarea = styled.textarea<TextareaProps>`
 const defaultProps = {
   textareaSize: 'md',
   isReSizable: false,
+  theme: Themes.canopyTheme,
 } satisfies Partial<TextareaProps>;
 
 export const Textarea: React.FunctionComponent<TextareaProps> = (props) => {

@@ -8,6 +8,7 @@ import {
 } from './PaginationButtons';
 import { CustomSelect as Select } from '../Select/Select.component';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
 
@@ -98,6 +99,7 @@ const defaultProps = {
   PageButtonComponent: PaginationPageButton,
   PageButtonNextPrevComponent: PaginationButtonNextPrev,
   PageButtonFirstLastComponent: PaginationButtonFirstLast,
+  theme: Themes.canopyTheme,
 } satisfies Partial<PaginationProps>;
 
 export const Pagination = (props: PaginationProps) => {

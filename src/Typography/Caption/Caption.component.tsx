@@ -1,6 +1,6 @@
-import { Themes } from '@themes';
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '@themes';
 
 export type CaptionProps = React.PropsWithChildren<{
   /**
@@ -30,6 +30,7 @@ const SCaption = styled.p<CaptionProps>`
 
 const defaultProps = {
   size: 10,
+  theme: Themes.canopyTheme,
 } satisfies Partial<CaptionProps>;
 
 export const Caption: React.FunctionComponent<CaptionProps> = (props) => {

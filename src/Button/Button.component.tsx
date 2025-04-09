@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { KeyboardArrowDownIcon } from '@icons';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -260,6 +261,7 @@ const defaultProps = {
   btnStyle: 'primary',
   btnSize: 'md',
   displayType: 'button',
+  theme: Themes.canopyTheme,
 } satisfies Partial<ButtonProps>;
 
 export const Button = (props: ButtonProps) => {

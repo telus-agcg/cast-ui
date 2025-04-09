@@ -2,6 +2,7 @@ import * as React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export interface ToggleProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -149,6 +150,7 @@ const SDiv = styled.div<ToggleProps>`
 const defaultProps = {
   toggleSize: 'md',
   id: uuidv4(),
+  theme: Themes.canopyTheme,
 } satisfies Partial<ToggleProps>;
 
 export const Toggle = (props: ToggleProps) => {

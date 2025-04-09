@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Tippy, { TippyProps } from '@tippyjs/react';
+import { Themes } from '@themes';
+import 'tippy.js/dist/tippy.css';
 
 export interface PopoverProps extends TippyProps {
   /** anchor for the popover  */
@@ -34,14 +36,11 @@ const SPopover = styled(TippyPopover)<PopoverProps>`
   background: ${(props) => props.theme.popover.background};
   border: 1px solid ${(props) => props.theme.popover.borderColor};
   box-shadow: ${(props) => props.theme.popover.boxShadow};
-  padding: 0;
-  .tippy-arrow:before {
-    content: '';
-    width: 9px;
-    height: 9px;
-    border-right: 1px solid ${(props) => props.theme.popover.borderColor};
-    border-top: 1px solid ${(props) => props.theme.popover.borderColor};
-    position: absolute;
+  .tippy-content {
+    padding: 0;
+  }
+  .tippy-arrow {
+    color: ${(props) => props.theme.popover.background};
   }
   &[x-placement^='bottom'] .tippy-arrow {
     border-bottom: 8px solid ${(props) => props.theme.colors.white};
@@ -75,6 +74,7 @@ const SPopover = styled(TippyPopover)<PopoverProps>`
 const defaultProps = {
   arrow: false,
   placement: 'bottom-start',
+  theme: Themes.canopyTheme,
 } satisfies Partial<PopoverProps>;
 
 export const Popover = (props: PopoverProps) => {

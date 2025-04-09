@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '@themes';
 
 export type HeaderProps = React.PropsWithChildren<{
   /**
@@ -30,6 +31,7 @@ const SHeader = styled.h2<HeaderProps>`
 
 const defaultProps = {
   size: 10,
+  theme: Themes.canopyTheme,
 } satisfies Partial<HeaderProps>;
 
 export const Header: React.FunctionComponent<HeaderProps> = (

@@ -3,6 +3,7 @@ import _ from 'lodash';
 import styled, { ThemeProvider } from 'styled-components';
 import { Popover } from '../Popover/Popover.component';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export interface MenuItem {
   disabled?: boolean;
@@ -71,10 +72,13 @@ const SMenuItem = styled.div`
       props.theme.select.highlightOptionBackgroundColor};
   }
 `;
-const MenuItemLabel = styled.span<{
+
+interface MenuItemLabelProps {
   itemsHasNonEmptyIcon: boolean;
   hasIcon: boolean;
-}>`
+}
+
+const MenuItemLabel = styled.span<MenuItemLabelProps>`
   padding-left: 4px;
   margin-left: ${(props) =>
     props.itemsHasNonEmptyIcon ? (props.hasIcon ? '0px' : '24px') : '0px'};
@@ -85,6 +89,7 @@ const noop = () => {}; // tslint:disable-line
 const defaultProps = {
   onItemClick: noop,
   items: [],
+  theme: Themes.canopyTheme,
 } satisfies Partial<MenuProps>;
 
 export const Menu: React.FC<MenuProps> = (props: MenuProps) => {

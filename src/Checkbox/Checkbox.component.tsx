@@ -2,6 +2,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import React, { ChangeEvent } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { getDataProps, getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export interface CheckboxProps extends React.PropsWithChildren {
   /**
@@ -183,6 +184,7 @@ const defaultProps = {
   id: uuidv4(),
   cbSize: CHECKBOX_SIZE.MEDIUM,
   displayStyle: CHECKBOX_DISPLAY_STYLE.STACKED,
+  theme: Themes.canopyTheme,
 } satisfies Partial<CheckboxProps>;
 
 export const Checkbox = (props: CheckboxProps) => {

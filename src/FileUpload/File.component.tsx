@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { CloseIcon } from '@icons';
 import { ProgressBar } from './ProgressBar.component';
+import { Themes } from '@themes';
 
 export interface File {
   name: string;
@@ -130,6 +131,7 @@ const defaultProps = {
   onSelect: () => {},
   onCancel: () => {},
   onDelete: () => {},
+  theme: Themes.canopyTheme,
 } satisfies Partial<FileProps>;
 
 export const File = (props: FileProps) => {

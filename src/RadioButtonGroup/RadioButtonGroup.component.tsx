@@ -2,6 +2,7 @@ import * as React from 'react';
 import { getPropsWithDefaults, Omit } from '@utils';
 import { RadioButton } from '../RadioButton/RadioButton.component';
 import { ThemeProvider } from 'styled-components';
+import { Themes } from '@themes';
 
 export interface RadioButtonGroupProps
   extends Omit<React.InputHTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -44,6 +45,7 @@ export interface RadioButtonGroupProps
 
 const defaultProps = {
   onChange: () => {},
+  theme: Themes.canopyTheme,
 } satisfies Partial<RadioButtonGroupProps>;
 
 export const RadioButtonGroup = (props: RadioButtonGroupProps) => {
