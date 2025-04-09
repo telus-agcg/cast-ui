@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { KeyboardArrowDownIcon, KeyboardArrowRightIcon } from '@icons';
 import { Collapse } from '../Collapse/Collapse.component';
+import { Themes } from '@themes';
 
 export type ListGroupProps = {
   /**
@@ -145,6 +146,7 @@ const defaultProps = {
   listGroupTheme: 'light',
   collapsible: false,
   border: true,
+  theme: Themes.canopyTheme,
 } satisfies Partial<ListGroupProps>;
 
 export const ListGroup = (props: ListGroupProps) => {

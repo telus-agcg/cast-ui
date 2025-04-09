@@ -14,6 +14,7 @@ import {
 } from '@icons';
 import { getPropsWithDefaults } from '@utils';
 import { Input, InputProps } from '../Input/Input.component';
+import { Themes } from '@themes';
 
 type pickerSize = 'sm' | 'md' | 'lg';
 
@@ -196,7 +197,9 @@ const SButton = styled.button<DatePickerProps & { isVisible: boolean }>`
 `;
 
 const CustomInput = (props: InputProps) => {
-  return <Input {...props} icon={<CalendarMonthIcon />} />;
+  return (
+    <Input {...props} icon={<CalendarMonthIcon height={18} width={18} />} />
+  );
 };
 
 const CustomDatePickerHeader = ({
@@ -220,7 +223,7 @@ const CustomDatePickerHeader = ({
         onClick={decreaseYear}
         isVisible={customHeaderCount != 1}
       >
-        <KeyboardDoubleArrowLeftIcon />
+        <KeyboardDoubleArrowLeftIcon height={24} width={24} />
       </SButton>
 
       <SButton
@@ -228,7 +231,7 @@ const CustomDatePickerHeader = ({
         onClick={decreaseMonth}
         isVisible={customHeaderCount != 1}
       >
-        <KeyboardArrowLeftIcon />
+        <KeyboardArrowLeftIcon height={24} width={24} />
       </SButton>
 
       <SDatePickerLabel>
@@ -242,7 +245,7 @@ const CustomDatePickerHeader = ({
         onClick={increaseMonth}
         isVisible={monthsShown < 1 && customHeaderCount != 0}
       >
-        <KeyboardArrowRightIcon />
+        <KeyboardArrowRightIcon height={24} width={24} />
       </SButton>
 
       <SButton
@@ -250,7 +253,7 @@ const CustomDatePickerHeader = ({
         onClick={increaseYear}
         isVisible={!(monthsShown < 1 && customHeaderCount != 0)}
       >
-        <KeyboardDoubleArrowRightIcon />
+        <KeyboardDoubleArrowRightIcon height={24} width={24} />
       </SButton>
     </SDatePickerHeader>
   );
@@ -272,6 +275,7 @@ const defaultProps = {
   invalidText: '',
   invalidTextColor: '',
   showIcon: true,
+  theme: Themes.canopyTheme,
 } satisfies Partial<DatePickerProps>;
 
 export const DatePicker = (props: DatePickerProps) => {

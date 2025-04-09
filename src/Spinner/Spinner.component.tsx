@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export type SpinnerProps = {
   /**
@@ -64,6 +65,7 @@ const defaultProps = {
   size: 50,
   animationSpeed: 1,
   transitionType: 'linear',
+  theme: Themes.canopyTheme,
 } satisfies Partial<SpinnerProps>;
 
 export const Spinner: React.FunctionComponent<SpinnerProps> = (props) => {

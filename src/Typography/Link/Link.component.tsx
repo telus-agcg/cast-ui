@@ -3,6 +3,7 @@ import _ from 'lodash';
 import styled, { ThemeProvider } from 'styled-components';
 import clsx from 'clsx';
 import { getDataProps } from '@utils';
+import { Themes } from '@themes';
 
 export type LinkProps = React.LinkHTMLAttributes<HTMLLinkElement> & {
   /**
@@ -76,6 +77,7 @@ const SLink = styled.a<LinkProps>`
 const defaultProps = {
   href: 'javascript:void(0)',
   disabled: false,
+  theme: Themes.canopyTheme,
 } satisfies Partial<LinkProps>;
 
 export const Link: React.FunctionComponent<LinkProps> = (props: LinkProps) => {

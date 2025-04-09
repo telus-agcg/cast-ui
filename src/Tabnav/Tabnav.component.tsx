@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { KeyboardArrowDownIcon } from '@icons';
 import { getPropsWithDefaults } from '@utils';
 import { Menu } from '../Menu/Menu.component';
+import { Themes } from '@themes';
 
 export type Tab = {
   label: string;
@@ -143,6 +144,7 @@ const Tab = ({ tab, onTabClick }: { tab: Tab; onTabClick: any }) => (
 
 const defaultProps = {
   tabs: [],
+  theme: Themes.canopyTheme,
 } satisfies Partial<TabnavProps>;
 
 export const Tabnav: React.FunctionComponent<TabnavProps> = (props) => {

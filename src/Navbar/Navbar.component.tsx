@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export type NavbarProps = React.PropsWithChildren<{
   /**
@@ -24,7 +25,9 @@ const SNavbar = styled.div<NavbarProps>`
   align-items: center;
 `;
 
-const defaultProps = {} satisfies Partial<NavbarProps>;
+const defaultProps = {
+  theme: Themes.canopyTheme,
+} satisfies Partial<NavbarProps>;
 
 export const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '@themes';
 
 export type TitleProps = React.PropsWithChildren<{
   /**
@@ -30,6 +31,7 @@ const STitle = styled.h1<TitleProps>`
 
 const defaultProps = {
   size: 10,
+  theme: Themes.canopyTheme,
 } satisfies Partial<TitleProps>;
 
 export const Title: React.FunctionComponent<TitleProps> = (props) => {

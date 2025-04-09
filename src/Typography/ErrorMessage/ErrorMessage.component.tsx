@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '@themes';
 
 export interface ErrorMessageProps {
   /**
@@ -66,7 +67,9 @@ const ErrorMessageWrapper = styled.div`
   align-items: center;
 `;
 
-const defaultProps = {} satisfies Partial<ErrorMessageProps>;
+const defaultProps = {
+  theme: Themes.canopyTheme,
+} satisfies Partial<ErrorMessageProps>;
 
 export const ErrorMessage: React.FunctionComponent<
   React.PropsWithChildren<ErrorMessageProps>

@@ -9,6 +9,7 @@ import { SelectCheckboxProps } from './SelectCheckbox.component';
 import { SelectMenuList } from './SelectMenuList';
 import { ErrorMessage } from '@typography';
 import { getDataProps } from '@utils';
+import { Themes } from '@themes';
 
 export type OptionType = {
   value: string;
@@ -334,6 +335,7 @@ const defaultProps = {
   optionType: 'default',
   isFilterable: true,
   selectSize: 'md',
+  theme: Themes.canopyTheme,
 } satisfies Partial<SelectProps>;
 
 export const CustomSelect: React.FC<SelectProps> = (props) => {

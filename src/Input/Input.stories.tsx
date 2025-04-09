@@ -112,7 +112,7 @@ export const WithIcon: Story = {
     placeholder: 'Please enter some text',
     required: false,
     iconPosition: 'right',
-    icon: <SearchIcon />,
+    icon: <SearchIcon height={24} width={24} />,
   },
 };
 
@@ -148,7 +148,7 @@ export const InputWithAllOptions: Story = {
     addonText: '$',
     addonTextPosition: 'right',
     iconPosition: 'right',
-    icon: <SearchIcon />,
+    icon: <SearchIcon height={24} width={24} />,
     isClearable: true,
   },
 };

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   /** the content of the input group  */
@@ -66,6 +67,7 @@ const SLabel = styled.label<InputGroupProps>`
 const defaultProps = {
   inputSize: 'md',
   horizontal: false,
+  theme: Themes.canopyTheme,
 } satisfies Partial<InputGroupProps>;
 
 export const InputGroup: React.FunctionComponent<InputGroupProps> = (props) => {

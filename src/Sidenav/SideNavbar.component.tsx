@@ -5,6 +5,7 @@ import { KeyboardArrowLeftIcon, KeyboardArrowRightIcon } from '@icons';
 import SubMenu from './SubMenu.component';
 import CollapsedSubMenu from './CollapsedSubMenu.component';
 import { Link, LinkProps } from '../Typography/Link/Link.component';
+import { Themes } from '@themes';
 
 export type SideNavItem = {
   disabled: boolean;
@@ -191,6 +192,7 @@ const SSecondarySideNavbarLabel = styled.h3`
 const defaultProps = {
   allowHover: false,
   data: [],
+  theme: Themes.canopyTheme,
 } satisfies Partial<SideNavProps>;
 
 export const SideNavbar = (props: SideNavProps) => {

@@ -1,6 +1,7 @@
 import { getPropsWithDefaults } from '@utils';
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '@themes';
 
 export type CardProps = React.PropsWithChildren<{
   /**
@@ -38,6 +39,7 @@ const SCard = styled.div<CardProps>`
 
 const defaultProps = {
   cardStyle: 'primary',
+  theme: Themes.canopyTheme,
 } satisfies Partial<CardProps>;
 
 export const Card: React.FunctionComponent<CardProps> = (props) => {

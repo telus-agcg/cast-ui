@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useRef, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export interface FileUploadProps {
   /**
@@ -78,6 +79,7 @@ const defaultProps = {
   info: '',
   disabled: false,
   onFilesAdded: () => {},
+  theme: Themes.canopyTheme,
 } satisfies Partial<FileUploadProps>;
 
 export const FileUpload = (props: FileUploadProps) => {

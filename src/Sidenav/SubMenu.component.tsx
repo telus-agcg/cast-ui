@@ -3,6 +3,7 @@ import _ from 'lodash';
 import styled, { ThemeProvider } from 'styled-components';
 import { SideNavItemIcon } from './SideNavItemIcon.component';
 import { Link } from '../Typography/Link/Link.component';
+import { Themes } from '@themes';
 
 export interface SubMenuProps {}
 
@@ -100,7 +101,7 @@ const SubMenu = ({
   toggleSecondarySideNav,
   setCurrentActiveSubnavItem,
   isSecondaryNavOpen,
-  theme = undefined,
+  theme = Themes.canopyTheme,
 }) => {
   useEffect(() => {
     if (item.label !== currentActiveItem.label) setSubnav(false);

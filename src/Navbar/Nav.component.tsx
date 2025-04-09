@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export type NavProps = React.PropsWithChildren<{
   /**
@@ -40,6 +41,7 @@ const defaultProps = {
   left: false,
   center: false,
   right: false,
+  theme: Themes.canopyTheme,
 } satisfies Partial<NavProps>;
 
 export const Nav: React.FunctionComponent<NavProps> = (props) => {

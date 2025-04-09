@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '@themes';
 
 export type DisplayProps = React.PropsWithChildren<{
   /**
@@ -29,6 +30,7 @@ const SDisplay = styled.h1<DisplayProps>`
 
 const defaultProps = {
   size: 10,
+  theme: Themes.canopyTheme,
 } satisfies Partial<DisplayProps>;
 
 export const Display: React.FunctionComponent<DisplayProps> = (props) => {

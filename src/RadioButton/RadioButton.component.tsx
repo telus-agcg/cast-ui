@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { Omit, getDataProps, getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 type displayStyle = 'inline' | 'stacked';
 type rbSize = 'sm' | 'md' | 'lg';
@@ -176,6 +177,7 @@ const defaultProps = {
   id: uuidv4(),
   disabled: false,
   defaultChecked: false,
+  theme: Themes.canopyTheme,
 } satisfies Partial<RadioButtonProps>;
 
 export const RadioButton = (props: RadioButtonProps) => {

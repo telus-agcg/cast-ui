@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export type BadgeProps = React.PropsWithChildren<{
   /**
@@ -54,6 +55,7 @@ const defaultProps = {
   badgeSize: 'md',
   badgeStyle: 'primary',
   lightMode: false,
+  theme: Themes.canopyTheme,
 } satisfies Partial<BadgeProps>;
 
 export const Badge: React.FunctionComponent<BadgeProps> = (

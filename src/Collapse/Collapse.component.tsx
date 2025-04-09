@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useCollapse } from 'react-collapsed';
 import { getPropsWithDefaults } from '@utils';
 import { ThemeProvider } from 'styled-components';
+import { Themes } from '@themes';
 
 export type CollapseProps = React.PropsWithChildren<{
   isOpen?: boolean;
@@ -13,7 +14,9 @@ export type CollapseProps = React.PropsWithChildren<{
   theme?: any;
 }>;
 
-const defaultProps = {} satisfies Partial<CollapseProps>;
+const defaultProps = {
+  theme: Themes.canopyTheme,
+} satisfies Partial<CollapseProps>;
 
 export const Collapse = (props: CollapseProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);

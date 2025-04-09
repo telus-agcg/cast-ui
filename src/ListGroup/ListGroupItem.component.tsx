@@ -1,3 +1,4 @@
+import { Themes } from '@themes';
 import styled, { ThemeProvider } from 'styled-components';
 
 export type ListGroupItemProps = {
@@ -29,6 +30,7 @@ const SListGroupItem = styled.li<Partial<ListGroupItemProps>>`
 
 const defaultProps = {
   listGroupTheme: undefined,
+  theme: Themes.canopyTheme,
 } satisfies Partial<ListGroupItemProps>;
 
 export const ListGroupItem = (props: ListGroupItemProps) => {

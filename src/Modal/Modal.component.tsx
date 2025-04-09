@@ -195,10 +195,10 @@ const ModalFooterDiv = styled.div<Partial<ModalProps>>`
 `;
 
 const defaultProps = {
-  theme: Themes.canopyTheme,
   modalSize: 'md',
   disableCloseIcon: false,
   blurEffect: true,
+  theme: Themes.canopyTheme,
 } satisfies Partial<ModalProps>;
 
 export const Modal = (props: React.PropsWithChildren<ModalProps>) => {

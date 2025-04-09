@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export interface ProgressBarProps {
   /**
@@ -58,6 +59,7 @@ const defaultProps = {
   background: '',
   progressBackground: '',
   percentage: 0,
+  theme: Themes.canopyTheme,
 } satisfies Partial<ProgressBarProps>;
 
 export const ProgressBar: React.FunctionComponent<ProgressBarProps> = (
