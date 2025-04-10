@@ -21,13 +21,15 @@ const SSubNavWrapper = styled.div<{ show: boolean }>`
   }
 `;
 
-const SidebarLink = styled(Link)<{
+interface SidebarLinkProps {
   level: number | undefined;
   isOpen: boolean;
   activeItem: boolean;
   isActiveSubMenuItem: boolean;
   activeSideNavItem: boolean;
-}>`
+}
+
+const SidebarLink = styled(Link)<SidebarLinkProps>`
   position: relative;
   display: inline-flex;
   align-items: center;

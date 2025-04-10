@@ -35,6 +35,7 @@ const SPopover = styled(TippyPopover)<PopoverProps>`
   box-shadow: ${(props) => props.theme.popover.boxShadow};
   background: ${(props) => props.theme.popover.background};
   color: ${(props) => props.theme.popover.color};
+  z-index: 9999;
   .tippy-content {
     padding: 0;
   }
