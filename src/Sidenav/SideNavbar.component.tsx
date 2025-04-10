@@ -272,6 +272,7 @@ export const SideNavbar = (props: SideNavProps) => {
             {data?.map((item, index) => {
               return (
                 <SubMenu
+                  {...propsWithDefaults}
                   item={item}
                   key={index}
                   allowHover={allowHover}

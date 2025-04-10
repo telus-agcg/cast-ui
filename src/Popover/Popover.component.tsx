@@ -33,12 +33,8 @@ const TippyPopover: React.FunctionComponent<PopoverProps> = (
 const SPopover = styled(TippyPopover)<PopoverProps>`
   border: 1px solid ${(props) => props.theme.popover.borderColor};
   box-shadow: ${(props) => props.theme.popover.boxShadow};
-  background: ${(props) => props.theme.popover.background};
-  color: ${(props) => props.theme.popover.color};
-  z-index: 9999;
-  .tippy-content {
-    padding: 0;
-  }
+  background: ${(props) => props.theme.popover.background} !important;
+  color: ${(props) => props.theme.popover.color} !important;
   .tippy-arrow {
     color: ${(props) => props.theme.popover.background};
   }
@@ -82,9 +78,7 @@ export const Popover = (props: PopoverProps) => {
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <>
-        <SPopover {...rest}>{children}</SPopover>
-      </>
+      <SPopover {...propsWithDefaults}>{children}</SPopover>
     </ThemeProvider>
   );
 };
