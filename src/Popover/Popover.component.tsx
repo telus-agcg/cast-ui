@@ -31,14 +31,10 @@ const TippyPopover: React.FunctionComponent<PopoverProps> = (
 };
 
 const SPopover = styled(TippyPopover)<PopoverProps>`
-  color: ${(props) => props.theme.popover.color};
-  border-radius: ${(props) => props.theme.popover.borderRadius};
-  background: ${(props) => props.theme.popover.background};
   border: 1px solid ${(props) => props.theme.popover.borderColor};
   box-shadow: ${(props) => props.theme.popover.boxShadow};
-  .tippy-content {
-    padding: 0;
-  }
+  background: ${(props) => props.theme.popover.background};
+  color: ${(props) => props.theme.popover.color};
   .tippy-arrow {
     color: ${(props) => props.theme.popover.background};
   }
@@ -55,7 +51,6 @@ const SPopover = styled(TippyPopover)<PopoverProps>`
       transform: rotate(225deg) translate(3px, 4px);
     }
   }
-
   &[x-placement^='left'] .tippy-arrow {
     border-left: 8px solid ${(props) => props.theme.colors.white};
     &:before {
