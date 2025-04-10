@@ -35,6 +35,9 @@ const SPopover = styled(TippyPopover)<PopoverProps>`
   box-shadow: ${(props) => props.theme.popover.boxShadow};
   background: ${(props) => props.theme.popover.background};
   color: ${(props) => props.theme.popover.color};
+  .tippy-content {
+    padding: 0;
+  }
   .tippy-arrow {
     color: ${(props) => props.theme.popover.background};
   }
