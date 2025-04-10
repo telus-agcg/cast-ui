@@ -6,7 +6,7 @@ import {
   ValueContainerProps,
 } from 'react-select';
 import { SelectMenuList } from './SelectMenuList';
-import { Checkbox, CHECKBOX_STATE } from '../Checkbox/Checkbox.component';
+import { Checkbox } from '../Checkbox/Checkbox.component';
 
 export interface SelectCheckboxProps {
   options: any[];
@@ -218,7 +218,6 @@ export const SelectCheckboxProps = ({
   const components = {
     ValueContainer,
     Option: (props: any) => {
-      // console.log(props.value);
       return (
         <div
           data-testid={`select-option-${_.snakeCase(props.data.label)}`}
@@ -229,12 +228,14 @@ export const SelectCheckboxProps = ({
         >
           <SCheckbox
             id={props.value}
-            value={
-              props.isSelected ? CHECKBOX_STATE.CHECKED : CHECKBOX_STATE.EMPTY
-            }
+            defaultChecked={props.isSelected}
+            checked={props.isSelected}
+            disabled={props.isDisabled}
+            value={props.value}
             onChange={() => handleCheck(props.value)}
-            label={props.label}
-          />
+          >
+            <span>{props.data.label}</span>
+          </SCheckbox>
         </div>
       );
     },

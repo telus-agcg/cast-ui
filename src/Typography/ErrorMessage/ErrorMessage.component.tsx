@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '@themes';
+import { FilledErrorIcon } from '@icons';
 
 export interface ErrorMessageProps {
   /**
@@ -30,23 +31,6 @@ export interface ErrorMessageProps {
   theme?: any;
 }
 
-export function ErrorIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="1em"
-      height="1em"
-      {...props}
-    >
-      <path
-        fill="currentColor"
-        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m1 15h-2v-2h2zm0-4h-2V7h2z"
-      ></path>
-    </svg>
-  );
-}
-
 const SErrorDiv = styled.div<ErrorMessageProps>`
   color: ${(props) => props.theme.validation.color};
   font-family: ${(props) => props.theme.typography.fontFamily};
@@ -57,7 +41,7 @@ const SErrorDiv = styled.div<ErrorMessageProps>`
   margin-top: ${(props) => props.theme.validation.marginTop};
 `;
 
-const SErrorIcon = styled(ErrorIcon)`
+const SErrorIcon = styled(FilledErrorIcon)`
   color: ${(props: any) => props.theme.colors.danger};
   padding-right: 4px;
 `;
@@ -80,7 +64,7 @@ export const ErrorMessage: React.FunctionComponent<
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SErrorDiv {...propsWithDefaults}>
         <ErrorMessageWrapper>
-          <SErrorIcon height={24} width={24} {...rest} />
+          <SErrorIcon height={18} width={18} {...rest} />
           {message}
         </ErrorMessageWrapper>
       </SErrorDiv>
