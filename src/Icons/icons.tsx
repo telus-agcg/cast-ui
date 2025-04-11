@@ -34,7 +34,7 @@ export function KeyboardArrowDownIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function KeyboardArrowUp(props: SVGProps<SVGSVGElement>) {
+export function KeyboardArrowUpIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

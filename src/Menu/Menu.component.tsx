@@ -1,7 +1,8 @@
 import * as React from 'react';
 import _ from 'lodash';
 import styled, { ThemeProvider } from 'styled-components';
-import { Popover } from '../Popover/Popover.component';
+// import { Popover } from '../Popover/Popover.component';
+import { HeadlessPopover as Popover } from '../HeadlessPopover/HeadlessPopover.component';
 import { getPropsWithDefaults } from '@utils';
 import { Themes } from '@themes';
 
@@ -144,6 +145,7 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
         placement="bottom-start"
         hideOnClick={true}
         onMount={(instance: any) => setPopoverInstance(instance)}
+        displayType="menu"
       >
         <span>{triggerComponent}</span>
       </SPopover>
