@@ -86,13 +86,11 @@ export const _MenuFromButton: Story = {
   },
   render: (args) => {
     return (
-      <>
-        <Menu
-          {...args}
-          triggerComponent={<Button displayType="menu">Submit Menu</Button>}
-          data-testid="submit"
-        />
-      </>
+      <Menu
+        {...args}
+        triggerComponent={<Button displayType="menu">Submit Menu</Button>}
+        data-testid="submit"
+      />
     );
   },
 };
