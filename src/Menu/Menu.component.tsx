@@ -68,9 +68,14 @@ const SMenuItem = styled.div`
   display: flex;
   align-items: center;
   &:hover {
-    color: ${(props: any) => props.theme.select.highlightOptionColor};
+    color: ${(props: any) =>
+      props.disabled
+        ? props.theme.select.color
+        : props.theme.select.highlightOptionColor};
     background: ${(props: any) =>
-      props.theme.select.highlightOptionBackgroundColor};
+      props.disabled
+        ? props.theme.select.optionBackgroundColor
+        : props.theme.select.highlightOptionBackgroundColor};
   }
 `;
 
