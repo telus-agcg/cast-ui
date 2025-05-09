@@ -101,3 +101,5 @@ export { ThemeProvider } from 'styled-components';
 export * from './themes';
 export * from './Typography';
 export * from './Icons';
+// Collapsible Panel
+export {CollapsiblePanel} from './CollapsiblePanel/CollapsiblePanel.component.tsx'

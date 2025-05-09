@@ -49,7 +49,7 @@ const ArrowRightIcon = styled(KeyboardArrowRightIcon)`
   color: ${(props) => props.theme.colors.primary};
 `
 
-const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
+export const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
   title,
   endContent,
   children,
