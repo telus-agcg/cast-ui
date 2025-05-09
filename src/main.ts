@@ -16,6 +16,9 @@ export type { CheckboxProps } from './Checkbox/Checkbox.component.tsx';
 // Collapse
 export { Collapse } from './Collapse/Collapse.component';
 export type { CollapseProps } from './Collapse/Collapse.component';
+// Collapsible Panel
+export {CollapsiblePanel} from './CollapsiblePanel/CollapsiblePanel.component.tsx';
+export type { CollapsiblePanelProps } from './CollapsiblePanel/CollapsiblePanel.component.tsx';
 // Date Picker
 export { DatePicker } from './DatePicker/DatePicker.component.tsx';
 export type { DatePickerProps } from './DatePicker/DatePicker.component.tsx';
@@ -101,5 +104,4 @@ export { ThemeProvider } from 'styled-components';
 export * from './themes';
 export * from './Typography';
 export * from './Icons';
-// Collapsible Panel
-export {CollapsiblePanel} from './CollapsiblePanel/CollapsiblePanel.component.tsx'
+

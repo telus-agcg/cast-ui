@@ -2,7 +2,7 @@ import React, { useState, ReactNode, useEffect } from "react";
 import styled from "styled-components";
 import { KeyboardArrowDownIcon, KeyboardArrowRightIcon } from '@icons';
 
-interface CollapsiblePanelProps {
+export type CollapsiblePanelProps = {
   title: string;
   endContent?: ReactNode;
   children: ReactNode;
@@ -12,7 +12,6 @@ interface CollapsiblePanelProps {
 const PanelContainer = styled.div`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   padding: 4px;
-  background-color: ${(props: any) => props.theme.CollapsiblePanel.background} ;
 `;
 
 const Header = styled.div`
