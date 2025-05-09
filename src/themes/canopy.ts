@@ -997,4 +997,8 @@ export const canopyTheme = {
       bottom: '20px',
     },
   },
+  CollapsiblePanel: {
+    background: canopyColors.lt200
+    
+  }
 };
