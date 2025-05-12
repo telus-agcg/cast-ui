@@ -22,6 +22,12 @@ export type AlertProps = React.PropsWithChildren<{
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Toggle border visibility
+   *
+   * @default true
+   **/
+  displayWithBorder?: boolean;
 }>;
 
 const SAlert = styled.div<AlertProps>`
@@ -34,12 +40,14 @@ const SAlert = styled.div<AlertProps>`
     props.lightMode
       ? props.theme.styles[props.alertStyle!]['light'].alertColor
       : props.theme.styles[props.alertStyle!].alertColor};
-  border: 1px solid
-    ${(props) =>
-      props.lightMode
-        ? props.theme.styles[props.alertStyle!].alertBackground
-        : props.theme.styles[props.alertStyle!].alertBackground};
-  display: ${(props) => props.theme.alert.display};
+  border: ${(props) =>
+    props.displayWithBorder !== false
+      ? `1px solid ${
+          props.lightMode
+            ? props.theme.styles[props.alertStyle!].alertBackground
+            : props.theme.styles[props.alertStyle!].alertBackground
+        }`
+      : 'none'};
   font-family: ${(props) => props.theme.typography.fontFamily};
   font-size: ${(props) => props.theme.alert.fontSize};
   padding: ${(props) => props.theme.alert.padding};
