@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { Themes } from '@themes';
+import { FilledErrorIcon } from '@icons';
 
 export type AlertProps = React.PropsWithChildren<{
   /**
@@ -22,6 +23,18 @@ export type AlertProps = React.PropsWithChildren<{
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Toggle Icon visibility
+   *
+   * @default true
+   **/
+  showIcon?: boolean;
+  /**
+   * Toggle border visibility
+   *
+   * @default true
+   **/
+  displayWithBorder?: boolean;
 }>;
 
 const SAlert = styled.div<AlertProps>`
@@ -34,12 +47,14 @@ const SAlert = styled.div<AlertProps>`
     props.lightMode
       ? props.theme.styles[props.alertStyle!]['light'].alertColor
       : props.theme.styles[props.alertStyle!].alertColor};
-  border: 1px solid
-    ${(props) =>
-      props.lightMode
-        ? props.theme.styles[props.alertStyle!].alertBackground
-        : props.theme.styles[props.alertStyle!].alertBackground};
-  display: ${(props) => props.theme.alert.display};
+  border: ${(props) =>
+    props.displayWithBorder !== false
+      ? `1px solid ${
+          props.lightMode
+            ? props.theme.styles[props.alertStyle!].alertBackground
+            : props.theme.styles[props.alertStyle!].alertBackground
+        }`
+      : 'none'};
   font-family: ${(props) => props.theme.typography.fontFamily};
   font-size: ${(props) => props.theme.alert.fontSize};
   padding: ${(props) => props.theme.alert.padding};
@@ -50,6 +65,16 @@ const SAlert = styled.div<AlertProps>`
   line-height: ${(props) => props.theme.alert.lineHeight};
 `;
 
+const SIcon = styled(FilledErrorIcon)`
+  color: ${(props) => props.theme.colors.primary};
+  padding-right: 4px;
+`;
+
+const AlertWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 const defaultProps = {
   alertStyle: 'primary',
   lightMode: false,
@@ -58,10 +83,12 @@ const defaultProps = {
 
 export const Alert: React.FunctionComponent<AlertProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { theme, children, ...rest } = propsWithDefaults;
+  const { theme, children, showIcon, ...rest } = propsWithDefaults;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SAlert {...rest}>{children}</SAlert>
+      <SAlert {...rest}>
+      <AlertWrapper>{showIcon &&  <SIcon height={20} width={20} />}
+        {children} </AlertWrapper></SAlert>
     </ThemeProvider>
   );
 };

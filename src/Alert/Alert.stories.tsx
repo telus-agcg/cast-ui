@@ -17,6 +17,13 @@ const meta: Meta<typeof Alert> = {
         disable: true,
       },
     },
+    showIcon: {
+      control: 'boolean',
+    },
+    displayWithBorder: {
+      control: 'boolean',
+    }
+
   },
 };
 
@@ -29,5 +36,7 @@ export const Default: Story = {
     alertStyle: 'primary',
     lightMode: false,
     children: 'Reminder: Sales meeting at Rm 223 in 10 minutes',
+    showIcon: false,
+    displayWithBorder: true
   },
 };
