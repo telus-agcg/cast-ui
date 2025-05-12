@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { Themes } from '@themes';
-import { FilledErrorIcon } from '@icons';
 
 export type AlertProps = React.PropsWithChildren<{
   /**
@@ -23,12 +22,6 @@ export type AlertProps = React.PropsWithChildren<{
    * @default defaultTheme
    **/
   theme?: any;
-  /**
-   * Toggle Icon visibility
-   *
-   * @default true
-   **/
-  showIcon?: boolean;
   /**
    * Toggle border visibility
    *
@@ -65,16 +58,6 @@ const SAlert = styled.div<AlertProps>`
   line-height: ${(props) => props.theme.alert.lineHeight};
 `;
 
-const SIcon = styled(FilledErrorIcon)`
-  color: ${(props) => props.theme.colors.primary};
-  padding-right: 4px;
-`;
-
-const AlertWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
-
 const defaultProps = {
   alertStyle: 'primary',
   lightMode: false,
@@ -83,12 +66,10 @@ const defaultProps = {
 
 export const Alert: React.FunctionComponent<AlertProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { theme, children, showIcon, ...rest } = propsWithDefaults;
+  const { theme, children, ...rest } = propsWithDefaults;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SAlert {...rest}>
-      <AlertWrapper>{showIcon &&  <SIcon height={20} width={20} />}
-        {children} </AlertWrapper></SAlert>
+      <SAlert {...rest}>{children}</SAlert>
     </ThemeProvider>
   );
 };
