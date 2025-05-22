@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '@themes';
 
 export type TextDisplayProps = React.PropsWithChildren<{
@@ -10,33 +10,41 @@ export type TextDisplayProps = React.PropsWithChildren<{
    **/
   fontSize?: string;
   /**
-   * Weight of font
-   *
-   * @default 'bold'
-   **/
-  fontWeight?: string | number;
-  /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * font family of Text 
+   *
+   * @default defaultTheme
+   **/
+  fontFamily?: string
 }>;
 
 const defaultProps = {
   fontSize: '16px',
-  fontWeight: 'bold',
+  fontFamily: Themes.canopyTheme.typography.fontFamily,
   theme: Themes.canopyTheme,
 } satisfies Partial<TextDisplayProps>;
 
+const StyledSpan = styled.span<{
+  fontSize: string;
+  fontFamily: string;
+}>`
+  font-family: ${({ fontFamily }) => fontFamily};
+  font-size: ${({ fontSize }) => fontSize};
+`;
+
 export const TextDisplay = (props: TextDisplayProps) => {
   const propsWithDefaults = { ...defaultProps, ...props };
-  const { theme, fontSize, fontWeight, children, ...rest } = propsWithDefaults;
+  const { theme, fontSize, fontFamily, children, ...rest } = propsWithDefaults;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <span style={{ fontSize, fontWeight }} {...rest}>
+      <StyledSpan fontSize={fontSize} fontFamily={fontFamily} {...rest}>
         {children}
-      </span>
+      </StyledSpan>
     </ThemeProvider>
   );
 };
