@@ -13,7 +13,7 @@ type Story = StoryObj<typeof TextDisplay>;
 export const _TextDisplay: Story = {
   args: {
     fontSize: "16px",
-    fontWeight: "bold",
     children: "Text",
+    fontFamily: "HN for Telus"
   },
 };
