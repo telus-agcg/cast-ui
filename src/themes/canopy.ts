@@ -8,6 +8,7 @@ export const canopyColors = {
   lt800: '#DADCE0', // updated
   lt400: '#EEF0F2', // updated
   lt200: '#FAFAFA', // updated
+  grey500: '#81878C',
   primary: '#65299E', // updated
   primaryHover: '#4B286D', // updated
   primaryFaded: '#D6C4E6', // updated
@@ -342,6 +343,9 @@ export const canopyTheme = {
       fontSize: '18px',
       lineHeight: '135%',
     },
+    detail: {
+      color: ''
+    }
     title: {
       10: {
         fontFamily: 'HN for Telus, arial, sans-serif',
