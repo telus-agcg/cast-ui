@@ -343,9 +343,6 @@ export const canopyTheme = {
       fontSize: '18px',
       lineHeight: '135%',
     },
-    detail: {
-      color: ''
-    }
     title: {
       10: {
         fontFamily: 'HN for Telus, arial, sans-serif',
