@@ -7,6 +7,7 @@ export type CollapsiblePanelProps = {
   endContent?: ReactNode;
   children: ReactNode;
   defaultOpen?: boolean;
+  hideEndContentWhenCollapsed?: boolean;
 }
 
 const PanelContainer = styled.div`
@@ -52,7 +53,8 @@ export const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
   title,
   endContent,
   children,
-  defaultOpen
+  defaultOpen,
+  hideEndContentWhenCollapsed
 }) => {
 
   const [isOpen, setIsOpen] = useState(defaultOpen);
@@ -65,6 +67,8 @@ export const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
     setIsOpen((prev) => !prev);
   };
 
+  const shouldShowEndContent = endContent && (!hideEndContentWhenCollapsed || isOpen);
+
   return (
     <PanelContainer>
       <Header onClick={togglePanel}>
@@ -72,7 +76,7 @@ export const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
           {isOpen ? <ArrowDownIcon width={24} height={24} /> : <ArrowRightIcon width={24} height={24}/>}
           <span>{title}</span>
         </TitleGroup>
-        {endContent && (
+        {shouldShowEndContent && (
           <EndContentWrapper onClick={(e) => e.stopPropagation()}>
             {endContent}
           </EndContentWrapper>
