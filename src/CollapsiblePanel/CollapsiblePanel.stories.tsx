@@ -34,7 +34,8 @@ export const WithEndContent: Story = {
     title: "Approvals for Payments",
     endContent: <Button>Edit Button</Button>,
     children: <p>This is basic panel content.</p>,
-    defaultOpen: true
+    defaultOpen: true,
+    hideEndContentWhenCollapsed: false
  },
 };
 
