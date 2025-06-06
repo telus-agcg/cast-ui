@@ -2,7 +2,7 @@ const branch = process.env.BRANCH_NAME;
 console.log(branch);
 
 const config = {
-  branches: ['master', { name: 'beta', prerelease: true }],
+  branches: ['master', { name: 'beta', prerelease: true }, { name: 'legacy', prerelease: true}],
   plugins: [
     'commit-analyzer-fail-on-no-release',
     '@semantic-release/release-notes-generator',

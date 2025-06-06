@@ -2,7 +2,7 @@ name: "CodeQL Workflow"
 
 on:
   pull_request:
-    branches: ["master", "beta"]
+    branches: ["master", "beta", "legacy"]
   schedule:
     - cron: "0 16 * * *"
 

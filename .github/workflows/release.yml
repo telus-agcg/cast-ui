@@ -2,7 +2,7 @@ name: Release Workflow
 
 on:
   push:
-    branches: [master, beta]
+    branches: [master, beta, legacy]
 
 permissions:
   contents: write

@@ -2,9 +2,9 @@ name: Integration Workflow
 
 on:
   push:
-    branches: [beta]
+    branches: [beta, legacy]
   pull_request:
-    branches: [beta]
+    branches: [beta, legacy]
 
 jobs:
   build:
