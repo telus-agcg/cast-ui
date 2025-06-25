@@ -120,7 +120,7 @@ const SLabel = styled.label<Partial<RadioButtonProps>>`
 const SInput = styled.input<Partial<RadioButtonProps>>`
   display: none;
   + label:before {
-    content: "";
+    content: '';
     display: inline-block;
     width: ${(props) => props.theme.radioButton[props.rbSize!].size};
     height: ${(props) => props.theme.radioButton[props.rbSize!].size};
@@ -129,7 +129,7 @@ const SInput = styled.input<Partial<RadioButtonProps>>`
     border-color: ${(props) => props.theme.radioButton.borderColor};
     border-style: ${(props) => props.theme.radioButton.borderStyle};
     border-radius: 50%;
-    border-width ${(props) => props.theme.radioButton.borderWidth};
+    border-width: ${(props) => props.theme.radioButton.borderWidth};
     cursor: pointer;
     margin-right: 5px;
     padding: 3px;
@@ -139,7 +139,7 @@ const SInput = styled.input<Partial<RadioButtonProps>>`
     color: ${(props) => props.theme.radioButton.disabledText};
     cursor: not-allowed;
   }
-  
+
   &:not(:disabled) + label {
     cursor: pointer;
   }
@@ -148,8 +148,12 @@ const SInput = styled.input<Partial<RadioButtonProps>>`
     cursor: not-allowed;
   }
   &:checked + label:before {
-    border-color: ${(props) => props.theme.radioButton.borderColor};
-    background-color: ${(props) => props.theme.radioButton.borderColor};
+    border-color: ${(props) =>
+      props.theme.radioButton.selectedColor ??
+      props.theme.radioButton.borderColor};
+    background-color: ${(props) =>
+      props.theme.radioButton.selectedColor ??
+      props.theme.radioButton.borderColo};
   }
   &:checked + label:hover:before {
     border-color: ${(props) => props.theme.colors.primaryHover};
@@ -162,11 +166,20 @@ const SInput = styled.input<Partial<RadioButtonProps>>`
 
   &:disabled:checked + label:before {
     border-color: ${(props) => props.theme.radioButton.disabledRadio};
-    background-color:  ${(props) => props.theme.radioButton.disabledRadio};
+    background-color: ${(props) =>
+      props.theme.radioButton.disabledCheckedRadio ??
+      props.theme.radioButton.disabledRadio};
   }
 
-  &:disabled:not(:checked)+ label:before{
-    border-color: ${(props) => props.theme.radioButton.disabledRadio};
+  &:disabled:not(:checked) + label:before {
+    background-color: ${(props) =>
+      props.theme.radioButton.disabledNotCheckedBGColor};
+    width: ${(props) =>
+      props.theme.radioButton[props.rbSize!].notCheckedSize ?? ''};
+    height: ${(props) =>
+      props.theme.radioButton[props.rbSize!].notCheckedSize ?? ''};
+    padding: ${(props) =>
+      props.theme.radioButton.disabledNotCheckedPadding ?? ''};
   }
 `;
 
