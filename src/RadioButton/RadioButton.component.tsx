@@ -153,7 +153,7 @@ const SInput = styled.input<Partial<RadioButtonProps>>`
       props.theme.radioButton.borderColor};
     background-color: ${(props) =>
       props.theme.radioButton.selectedColor ??
-      props.theme.radioButton.borderColo};
+      props.theme.radioButton.borderColor};
   }
   &:checked + label:hover:before {
     border-color: ${(props) => props.theme.colors.primaryHover};
