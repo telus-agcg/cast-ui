@@ -439,7 +439,7 @@ export const canopyTheme = {
     borderColor: canopyColors.drk400,
     borderRadius: '4px',
     disabledCheck: canopyColors.grey500,
-    disabledNotCheck: canopyColors.drk400,
+    disabledNotChecked: canopyColors.drk400,
     disabledText: canopyColors.drk400,
     unselectedColor: canopyColors.white,
     selectedColor: canopyColors.primary,

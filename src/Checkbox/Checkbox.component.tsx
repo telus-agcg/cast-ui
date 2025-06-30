@@ -227,10 +227,10 @@ const SInput = styled.input<CheckboxProps>`
   &:disabled + label:before,
   &:disabled:not(:checked) + label:before {
     background-color: ${(props) =>
-      props.theme.checkbox.disabledNotCheck ??
+      props.theme.checkbox.disabledNotChecked ??
       props.theme.checkbox.disabledCheck};
     border-color: ${(props) =>
-      props.theme.checkbox.disabledNotCheck ??
+      props.theme.checkbox.disabledNotChecked ??
       props.theme.checkbox.disabledCheck};
   }
 `;
