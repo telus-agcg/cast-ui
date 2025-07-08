@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { FileUpload } from './FileUpload.component';
 import { File } from './File.component';
-import { ProgressBar } from './ProgressBar.component';
+import { ProgressBar } from '../ProgressBar/ProgressBar.component';
 
 type FileUploadCustomArgs = React.ComponentProps<typeof FileUpload> &
   React.ComponentProps<typeof File> &

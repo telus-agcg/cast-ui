@@ -69,7 +69,7 @@ export const ProgressBar: React.FunctionComponent<ProgressBarProps> = (
   const { theme, ...rest } = propsWithDefaults;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SProgressBar {...rest}>
+      <SProgressBar role="progressbar" {...rest}>
         <div className="progress" />
       </SProgressBar>
     </ThemeProvider>
