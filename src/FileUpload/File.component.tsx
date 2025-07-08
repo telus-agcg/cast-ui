@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { CloseIcon } from '@icons';
-import { ProgressBar } from './ProgressBar.component';
+import { ProgressBar } from '../ProgressBar/ProgressBar.component';
 import { Themes } from '@themes';
 
 export interface File {
