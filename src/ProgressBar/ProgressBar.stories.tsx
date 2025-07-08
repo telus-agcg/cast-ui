@@ -4,7 +4,7 @@ import { ProgressBar, ProgressBarProps } from './ProgressBar.component';
 import { Themes } from '@themes';
 
 const meta: Meta<typeof ProgressBar> = {
-title: "Components/Data Display/ProgressBar",
+title: "Components/Data Display/Progress Bar",
   component: ProgressBar,
   argTypes: {
     height: {
