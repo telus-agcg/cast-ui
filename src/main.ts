@@ -100,6 +100,9 @@ export type { ToggleProps } from './Toggle/Toggle.component.tsx';
 // Tooltip
 export { Tooltip } from './Tooltip/Tooltip.component.tsx';
 export type { TooltipProps } from './Tooltip/Tooltip.component.tsx';
+// ProgressBar
+export { ProgressBar } from './ProgressBar/ProgressBar.component.tsx';
+export type { ProgressBarProps } from './ProgressBar/ProgressBar.component.tsx';
 export { ThemeProvider } from 'styled-components';
 export * from './themes';
 export * from './Typography';
