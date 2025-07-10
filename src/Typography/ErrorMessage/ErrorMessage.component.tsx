@@ -44,6 +44,7 @@ const SErrorDiv = styled.div<ErrorMessageProps>`
 const SErrorIcon = styled(FilledErrorIcon)`
   color: ${(props: any) => props.theme.colors.danger};
   padding-right: 4px;
+  flex-shrink: 0;
 `;
 
 const ErrorMessageWrapper = styled.div`
