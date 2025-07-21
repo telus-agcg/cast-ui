@@ -3,6 +3,7 @@ import _ from 'lodash';
 import styled, { ThemeProvider } from 'styled-components';
 // import { Popover } from '../Popover/Popover.component';
 import { HeadlessPopover as Popover } from '../HeadlessPopover/HeadlessPopover.component';
+import { TippyProps } from '@tippyjs/react/headless';
 import { getPropsWithDefaults } from '@utils';
 import { Themes } from '@themes';
 
@@ -44,6 +45,12 @@ export interface MenuProps {
    * @default undefined
    **/
   triggerComponent: React.ReactElement;
+  /**
+   * Specifies the parent element for rendering the popover
+   *
+   * @default undefined
+   **/
+  appendTo?: TippyProps['appendTo'];
 }
 
 const SMenu = styled.div`
@@ -96,6 +103,7 @@ const defaultProps = {
   onItemClick: noop,
   items: [],
   theme: Themes.canopyTheme,
+  appendTo: document.body,
 } satisfies Partial<MenuProps>;
 
 export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
@@ -105,7 +113,7 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
     // @ts-ignore
     popoverInstance && popoverInstance.hide();
   };
-  const { theme, items, onItemClick, triggerComponent, ...rest } =
+  const { theme, items, onItemClick, triggerComponent, appendTo, ...rest } =
     propsWithDefaults;
   const hasNonEmptyIcon = items?.some((item) => {
     return item.hasOwnProperty('icon') && item['icon'] !== '';
@@ -117,10 +125,10 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
     closePopoverMenu();
     onItemClick && onItemClick(item, e);
   };
-
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SPopover
+      appendTo={appendTo}
         content={
           <SMenu {...rest}>
             {Array.isArray(items) &&
