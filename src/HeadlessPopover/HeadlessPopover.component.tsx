@@ -1,11 +1,13 @@
 import Tippy, { TippyProps } from '@tippyjs/react/headless';
 import { getPropsWithDefaults } from '@utils';
+import { unset } from 'lodash';
 import styled from 'styled-components';
 
 type Props = React.PropsWithChildren &
   TippyProps & {
     content: any;
     displayType?: 'default' | 'menu';
+    appendTo?: TippyProps['appendTo']; // Make appendTo configurable
   };
 
 const TippyBox = styled.div<Props>`
@@ -21,22 +23,25 @@ const TippyBox = styled.div<Props>`
 
 const defaultProps = {
   displayType: 'default',
+  appendTo: () => document.body,
 } satisfies Partial<Props>;
 
 export const HeadlessPopover = (props: Props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { children, content } = propsWithDefaults;
+  const { children, content, appendTo } = propsWithDefaults;
+
   return (
     <Tippy
       interactive
       trigger="click"
+      zIndex={appendTo=='parent'? 9999 :unset as unknown as undefined}
       render={(attrs) => (
         <TippyBox tabIndex={-1} {...attrs} {...propsWithDefaults}>
           <div>{content}</div>
         </TippyBox>
       )}
-      popperOptions={{ strategy: 'fixed' }}
-      appendTo={document.body}
+      popperOptions={ appendTo=='parent'? {}: { strategy: 'fixed' }}
+      appendTo={appendTo}
       {...propsWithDefaults}
     >
       {children}
