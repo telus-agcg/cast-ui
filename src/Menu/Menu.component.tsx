@@ -46,7 +46,7 @@ export interface MenuProps {
    **/
   triggerComponent: React.ReactElement;
   /**
-   * Specifies the parent element for rendering the popover
+   * Specifies the parent element for rendering the Popover
    *
    * @default undefined
    **/
