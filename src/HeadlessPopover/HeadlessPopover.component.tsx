@@ -23,8 +23,6 @@ const TippyBox = styled.div<Props>`
 
 const defaultProps = {
   displayType: 'default',
-  appendTo: (ref) =>
-    typeof document !== 'undefined' && document.body ? document.body : ref,
 } satisfies Partial<Props>;
 
 export const HeadlessPopover = (props: Props) => {
@@ -32,7 +30,10 @@ export const HeadlessPopover = (props: Props) => {
   const { children, content, appendTo } = propsWithDefaults;
   const { className, ...restProps } = propsWithDefaults; // fix ClassName exception while rendering tippy component
   
-  return (
+  // by Using document.body as a default prop causes build failure, as document cannot be accessed during root-level import.
+  // by setting  appendTo on dynamic is reseting the z-index which is causing context collapse.
+  return (appendTo=='parent') ? (
+
     <Tippy
       interactive
       trigger="click"
@@ -42,11 +43,26 @@ export const HeadlessPopover = (props: Props) => {
           <div>{content}</div>
         </TippyBox>
       )}
-      popperOptions={ appendTo=='parent'? {}: { strategy: 'fixed' }}
-      appendTo={appendTo}
+      popperOptions={{}}
+      appendTo={'parent'}
       {...restProps}
     >
       {children}
     </Tippy>
-  );
+  ): (
+    <Tippy
+    interactive
+    trigger="click"
+    zIndex={unset as unknown as undefined}
+    render={(attrs) => (
+      <TippyBox tabIndex={-1}  className={className}  {...attrs} {...restProps}>
+        <div>{content}</div>
+      </TippyBox>
+    )}
+    popperOptions={{ strategy: 'fixed' }}
+    appendTo={document.body}
+    {...restProps}
+  >
+    {children}
+  </Tippy>);
 };
