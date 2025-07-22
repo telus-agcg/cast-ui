@@ -23,7 +23,8 @@ const TippyBox = styled.div<Props>`
 
 const defaultProps = {
   displayType: 'default',
-  appendTo: () => document?.body,
+  appendTo: (ref) =>
+    typeof document !== 'undefined' && document.body ? document.body : ref,
 } satisfies Partial<Props>;
 
 export const HeadlessPopover = (props: Props) => {
