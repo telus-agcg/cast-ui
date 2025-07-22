@@ -23,13 +23,14 @@ const TippyBox = styled.div<Props>`
 
 const defaultProps = {
   displayType: 'default',
-  appendTo: () => document.body,
+  appendTo: () => document?.body,
 } satisfies Partial<Props>;
 
 export const HeadlessPopover = (props: Props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { children, content, appendTo } = propsWithDefaults;
   const { className, ...restProps } = propsWithDefaults; // fix ClassName exception while rendering tippy component
+  
   return (
     <Tippy
       interactive
