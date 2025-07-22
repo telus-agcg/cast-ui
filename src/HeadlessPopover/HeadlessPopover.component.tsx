@@ -29,20 +29,20 @@ const defaultProps = {
 export const HeadlessPopover = (props: Props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { children, content, appendTo } = propsWithDefaults;
-
+  const { className, ...restProps } = propsWithDefaults; // fix ClassName exception while rendering tippy component
   return (
     <Tippy
       interactive
       trigger="click"
-      zIndex={appendTo=='parent'? 9999 :unset as unknown as undefined}
+      zIndex={unset as unknown as undefined}
       render={(attrs) => (
-        <TippyBox tabIndex={-1} {...attrs} {...propsWithDefaults}>
+        <TippyBox tabIndex={-1}  className={className}  {...attrs} {...restProps}>
           <div>{content}</div>
         </TippyBox>
       )}
       popperOptions={ appendTo=='parent'? {}: { strategy: 'fixed' }}
       appendTo={appendTo}
-      {...propsWithDefaults}
+      {...restProps}
     >
       {children}
     </Tippy>
