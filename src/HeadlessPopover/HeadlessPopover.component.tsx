@@ -1,7 +1,6 @@
 import Tippy, { TippyProps } from '@tippyjs/react/headless';
 import { getPropsWithDefaults } from '@utils';
 import { unset } from 'lodash';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 
 type Props = React.PropsWithChildren &
