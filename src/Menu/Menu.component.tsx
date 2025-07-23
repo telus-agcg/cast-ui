@@ -103,7 +103,6 @@ const defaultProps = {
   onItemClick: noop,
   items: [],
   theme: Themes.canopyTheme,
-  appendTo: document.body,
 } satisfies Partial<MenuProps>;
 
 export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
