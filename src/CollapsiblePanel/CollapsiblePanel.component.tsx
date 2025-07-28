@@ -1,14 +1,14 @@
-import React, { useState, ReactNode, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, ReactNode, useEffect } from 'react';
+import styled from 'styled-components';
 import { KeyboardArrowDownIcon, KeyboardArrowRightIcon } from '@icons';
 
 export type CollapsiblePanelProps = {
-  title: string;
+  title: string | ReactNode;
   endContent?: ReactNode;
   children: ReactNode;
   defaultOpen?: boolean;
   hideEndContentWhenCollapsed?: boolean;
-}
+};
 
 const PanelContainer = styled.div`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
@@ -23,9 +23,9 @@ const Header = styled.div`
   cursor: pointer;
 `;
 
-const TitleGroup = styled.div`
+const TitleGroup = styled.div<{ alignType: 'flex-start' | 'center' }>`
   display: flex;
-  align-items: center;
+  align-items: ${(props) => props.alignType};
   gap: 8px;
   font-weight: 600;
   font-size: 18px;
@@ -44,19 +44,18 @@ const Content = styled.div`
 
 const ArrowDownIcon = styled(KeyboardArrowDownIcon)`
   color: ${(props) => props.theme.colors.primary};
-`
+`;
 const ArrowRightIcon = styled(KeyboardArrowRightIcon)`
   color: ${(props) => props.theme.colors.primary};
-`
+`;
 
 export const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
   title,
   endContent,
   children,
   defaultOpen,
-  hideEndContentWhenCollapsed
+  hideEndContentWhenCollapsed,
 }) => {
-
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   useEffect(() => {
@@ -67,13 +66,21 @@ export const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
     setIsOpen((prev) => !prev);
   };
 
-  const shouldShowEndContent = endContent && (!hideEndContentWhenCollapsed || isOpen);
+  const shouldShowEndContent =
+    endContent && (!hideEndContentWhenCollapsed || isOpen);
+
+  const titleGroupAlignType =
+    typeof title === 'object' ? 'flex-start' : 'center';
 
   return (
     <PanelContainer>
       <Header onClick={togglePanel}>
-        <TitleGroup>
-          {isOpen ? <ArrowDownIcon width={24} height={24} /> : <ArrowRightIcon width={24} height={24}/>}
+        <TitleGroup alignType={titleGroupAlignType}>
+          {isOpen ? (
+            <ArrowDownIcon width={24} height={24} />
+          ) : (
+            <ArrowRightIcon width={24} height={24} />
+          )}
           <span>{title}</span>
         </TitleGroup>
         {shouldShowEndContent && (
