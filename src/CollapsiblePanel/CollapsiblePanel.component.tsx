@@ -1,6 +1,7 @@
 import React, { useState, ReactNode, useEffect } from 'react';
 import styled from 'styled-components';
 import { KeyboardArrowDownIcon, KeyboardArrowRightIcon } from '@icons';
+import { getPropsWithDefaults } from '@utils';
 
 export type CollapsiblePanelProps = {
   title: string | ReactNode;
@@ -49,13 +50,20 @@ const ArrowRightIcon = styled(KeyboardArrowRightIcon)`
   color: ${(props) => props.theme.colors.primary};
 `;
 
-export const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
-  title,
-  endContent,
-  children,
-  defaultOpen,
-  hideEndContentWhenCollapsed,
-}) => {
+const defaultProps = {} satisfies Partial<CollapsiblePanelProps>;
+
+export const CollapsiblePanel: React.FC<CollapsiblePanelProps> = (
+  props: CollapsiblePanelProps,
+) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const {
+    defaultOpen,
+    endContent,
+    hideEndContentWhenCollapsed,
+    title,
+    children,
+    ...rest
+  } = propsWithDefaults;
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   useEffect(() => {
@@ -73,7 +81,7 @@ export const CollapsiblePanel: React.FC<CollapsiblePanelProps> = ({
     typeof title === 'object' ? 'flex-start' : 'center';
 
   return (
-    <PanelContainer>
+    <PanelContainer {...rest}>
       <Header onClick={togglePanel}>
         <TitleGroup alignType={titleGroupAlignType}>
           {isOpen ? (
