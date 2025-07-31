@@ -2,7 +2,7 @@ name: Release Workflow
 
 on:
   push:
-    branches: [master, beta]
+    branches: [master, beta, next]
 
 permissions:
   contents: write
@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 21
 
       - name: Install Dependencies
         run: npm install
@@ -32,7 +32,7 @@ jobs:
         run: npm run lint
 
       - name: Semantic Release
-        run: npm run semantic-release
+        run: npx semantic-release
         env:
           BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -48,6 +48,7 @@ jobs:
 
   deploy:
     name: Release Pages Artifact
+    if: github.ref_name == 'beta'
     needs: [build]
     environment:
       name: github-pages

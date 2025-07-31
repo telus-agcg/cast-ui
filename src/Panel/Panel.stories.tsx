@@ -1,15 +1,23 @@
 import * as React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { Panel } from './Panel.component';
+import { PanelHeader } from './PanelHeader.component';
+import { PanelBody } from './PanelBody.component';
+import { Collapse } from '../Collapse/Collapse.component';
 
-import { Panel, PanelHeader, PanelBody, Collapse } from '../';
+type PanelCustomProps = React.ComponentProps<typeof Panel> &
+  React.ComponentProps<typeof PanelHeader> &
+  React.ComponentProps<typeof PanelBody> &
+  React.ComponentProps<typeof Collapse>;
 
-export default {
+const meta: Meta<PanelCustomProps> = {
   title: 'Components/Data Display/Panel',
   component: Panel,
   subcomponents: {
-    Panel,
-    PanelHeader,
-    PanelBody,
-    Collapse,
+    Panel: Panel as React.ComponentType<unknown>,
+    PanelHeader: PanelHeader as React.ComponentType<unknown>,
+    PanelBody: PanelBody as React.ComponentType<unknown>,
+    Collapse: Collapse as React.ComponentType<unknown>,
   },
   argTypes: {
     theme: {
@@ -19,38 +27,20 @@ export default {
     },
     panelStyle: {
       options: ['success', 'primary', 'secondary', 'danger', 'warning'],
-      control: {
-        type: 'select',
-      },
+      control: 'select',
     },
     noPadding: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     name: {
-      control: {
-        type: 'text',
-      },
-    },
-    withHeader: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'text',
     },
     isOpen: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     toggleItem: {
       action: {
         type: 'clicked',
-      },
-    },
-    withCollapse: {
-      control: {
-        type: 'boolean',
       },
     },
     children: {
@@ -58,100 +48,71 @@ export default {
     },
     iconPosition: {
       options: ['right', 'left'],
-      control: {
-        type: 'inline-radio',
-      },
+      control: 'inline-radio',
     },
   },
 };
 
-const _Panel = ({
-  name,
-  title,
-  panelStyle,
-  withHeader,
-  iconPosition,
-  toggleItem,
-  isCollapsed,
-  withCollapse,
-  isOpen,
-  ...args
-}) => {
-  const [openPanel, setOpenPanel] = React.useState(false);
+export default meta;
 
-  React.useEffect(() => {
-    setOpenPanel(isOpen);
-  }, [isOpen]);
+type Story = StoryObj<PanelCustomProps>;
 
-  const handleTogglePanel = () => withCollapse && setOpenPanel(!openPanel);
+const DefaultPanelBody = (args) => (
+  <PanelBody {...args}>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas beatae
+    nostrum quo fuga iste reprehenderit ab fugit, soluta ea! Culpa, dignissimos
+    dolores! Delectus fugiat numquam doloremque consequuntur tempora ipsam
+    excepturi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,
+    reiciendis culpa incidunt corporis dolorem eum ullam totam cum iusto
+    voluptate, maxime modi porro aperiam eveniet tempore ea? Quidem, at harum!
+  </PanelBody>
+);
 
-  return (
-    <Panel name={name} panelStyle={panelStyle}>
-      {withHeader && (
+export const Regular: Story = {
+  args: {
+    name: 'Blood Group',
+    title: 'A- type',
+    panelStyle: 'primary',
+  },
+  render: (args) => <DefaultPanelBody {...args} />,
+};
+
+export const WithHeader: Story = {
+  args: {
+    title: 'B- type',
+    panelStyle: 'primary',
+  },
+  render: (args: PanelCustomProps) => {
+    return (
+      <Panel {...args}>
+        <PanelHeader {...args} />
+        <DefaultPanelBody {...args}></DefaultPanelBody>
+      </Panel>
+    );
+  },
+};
+
+export const WithCollapse: Story = {
+  args: {
+    name: 'Blood Group',
+    title: 'O+ type',
+    panelStyle: 'primary',
+  },
+  render: (args: PanelCustomProps) => {
+    const [openPanel, setOpenPanel] = React.useState(false);
+    const handleTogglePanel = () => setOpenPanel(!openPanel);
+    return (
+      <Panel {...args}>
         <PanelHeader
-          name={name}
-          title={title}
-          panelStyle={panelStyle}
-          iconPosition={iconPosition}
+          {...args}
           isCollapsed={openPanel}
           toggleItem={handleTogglePanel}
+          iconPosition="right"
         />
-      )}
-      {withCollapse ? (
         <Collapse isOpen={openPanel}>
-          <PanelBody {...args} panelStyle={panelStyle}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-            beatae nostrum quo fuga iste reprehenderit ab fugit, soluta ea!
-            Culpa, dignissimos dolores! Delectus fugiat numquam doloremque
-            consequuntur tempora ipsam excepturi. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Saepe, reiciendis culpa incidunt
-            corporis dolorem eum ullam totam cum iusto voluptate, maxime modi
-            porro aperiam eveniet tempore ea? Quidem, at harum!
-          </PanelBody>
+          <DefaultPanelBody {...args}></DefaultPanelBody>
         </Collapse>
-      ) : (
-        <PanelBody {...args} panelStyle={panelStyle}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-          beatae nostrum quo fuga iste reprehenderit ab fugit, soluta ea! Culpa,
-          dignissimos dolores! Delectus fugiat numquam doloremque consequuntur
-          tempora ipsam excepturi. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Saepe, reiciendis culpa incidunt corporis dolorem
-          eum ullam totam cum iusto voluptate, maxime modi porro aperiam eveniet
-          tempore ea? Quidem, at harum!
-        </PanelBody>
-      )}
-    </Panel>
-  );
-};
-
-export const _Regular = _Panel.bind({});
-_Regular.args = {
-  name: 'Blood Group',
-  title: 'A- type',
-  panelStyle: 'primary',
-  withHeader: false,
-  withCollapse: false,
-  noPadding: false,
-};
-
-export const _WithHeader = _Panel.bind({});
-_WithHeader.args = {
-  name: 'Blood Group',
-  title: 'B- type',
-  panelStyle: 'primary',
-  withHeader: true,
-  withCollapse: false,
-  noPadding: false,
-};
-
-export const _Collapsible = _Panel.bind({});
-_Collapsible.args = {
-  name: 'Blood Group',
-  title: 'O+ type',
-  panelStyle: 'primary',
-  withHeader: true,
-  withCollapse: true,
-  isOpen: true,
-  noPadding: false,
-  iconPosition: 'right',
+      </Panel>
+    );
+  },
 };

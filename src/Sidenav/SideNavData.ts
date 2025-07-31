@@ -1,21 +1,15 @@
-import {
-  iosPeopleOutline,
-  iosPricetagsOutline,
-  iosBoxOutline,
-  iosDownloadOutline,
-  iosSpeedometerOutline,
-} from 'react-icons-kit/ionicons';
+import { sideNavIcons } from '@icons';
+import { SideNavItem } from './SideNavbar.component';
 
-const SideNavData = [
+const SideNavData: SideNavItem[] = [
   {
     label: 'Dashboard',
-    icon: iosSpeedometerOutline,
+    customIcon: sideNavIcons.SpeedIcon,
     disabled: false,
   },
   {
     label: 'Customers',
-
-    icon: iosPeopleOutline,
+    customIcon: sideNavIcons.PeopleAltIcon,
     subNav: [
       {
         label: 'Distributors',
@@ -31,8 +25,7 @@ const SideNavData = [
   },
   {
     label: 'Offers',
-
-    icon: iosPricetagsOutline,
+    customIcon: sideNavIcons.PricetagsIcon,
     subNav: [
       {
         label: 'Retailer',
@@ -48,7 +41,7 @@ const SideNavData = [
   },
   {
     label: 'Products',
-    icon: iosBoxOutline,
+    customIcon: sideNavIcons.Box3LineIcon,
     disabled: false,
     subNav: [
       {
@@ -64,10 +57,8 @@ const SideNavData = [
   },
   {
     label: 'Report Download',
-    icon: iosDownloadOutline,
-    disabled: {
-      value: true,
-    },
+    customIcon: sideNavIcons.DownloadIcon,
+    disabled: true,
   },
 ];
 

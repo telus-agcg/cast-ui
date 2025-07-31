@@ -1,10 +1,8 @@
-import * as React from 'react';
-import Icon from 'react-icons-kit';
-import { ic_info as InfoIcon } from 'react-icons-kit/md';
+import { Tooltip } from './Tooltip.component';
+import { Meta, StoryObj } from '@storybook/react';
+import { InfoIcon } from '@icons';
 
-import { Tooltip } from '../';
-
-export default {
+const meta: Meta<typeof Tooltip> = {
   title: 'Components/Data Display/Tooltip',
   component: Tooltip,
   argTypes: {
@@ -14,25 +12,17 @@ export default {
       },
     },
     placement: {
-      control: {
-        type: 'select',
-        options: [
-          'top',
-          'top-start',
-          'top-end',
-          'bottom',
-          'bottom-end',
-          'bottom-start',
-          'left',
-          'right',
-        ],
-      },
-    },
-    size: {
-      control: {
-        type: 'select',
-        options: ['small', 'regular', 'large'],
-      },
+      control: 'select',
+      options: [
+        'top',
+        'top-start',
+        'top-end',
+        'bottom',
+        'bottom-end',
+        'bottom-start',
+        'left',
+        'right',
+      ],
     },
     arrow: {
       control: {
@@ -40,37 +30,34 @@ export default {
       },
     },
   },
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'This Tooltip is based on [tippy.js](https://atomiks.github.io/tippyjs/).',
-      },
-    },
+};
+export default meta;
+
+type Story = StoryObj<typeof Tooltip>;
+
+export const _ToolTip: Story = {
+  args: {
+    arrow: true,
+    placement: 'bottom',
+  },
+  render: (args) => {
+    return (
+      <div>
+        {'Click the icon to see the tooltip'}
+        <Tooltip content={'this is a string'} {...args} trigger="click">
+          <span>
+            <InfoIcon
+              height={20}
+              width={20}
+              style={{ marginLeft: '5px', cursor: 'pointer' }}
+            />
+          </span>
+        </Tooltip>
+      </div>
+    );
   },
 };
 
-export const _Tooltip = args => (
-  <>
-    {'Click the icon to see the tooltip'}
-    <Tooltip content={<MyComponent />} {...args} trigger="click">
-      <span>
-        <Icon
-          size="20"
-          icon={InfoIcon}
-          style={{ marginLeft: '5px', cursor: 'pointer' }}
-        />
-      </span>
-    </Tooltip>
-  </>
-);
-
-_Tooltip.args = {
-  arrow: true,
-  size: 'regular',
-  placement: 'bottom',
-};
-
-const MyComponent = (props: any) => (
-  <div>This is a component to be rendered in the tooltip</div>
+const MyComponent = (_props: any) => (
+  <p>This is a component to be rendered in the tooltip</p>
 );

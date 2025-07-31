@@ -1,14 +1,14 @@
+import { Themes } from '@themes';
+import { ErrorMessage } from '@typography';
+import { getDataProps } from '@utils';
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { getDataProps } from '../utils/common';
-import { Themes } from '../themes';
-import ErrorMessage from '../Typography/ErrorMessage/index';
 
 export interface State {
   checked: boolean | undefined;
 }
 
-export type Props = {
+export type CheckboxProps = React.PropsWithChildren<{
   /**
    * Specify the ID of the individual checkbox
    *
@@ -91,7 +91,7 @@ export type Props = {
    * @default ''
    **/
   value: string;
-};
+}>;
 
 const displayStyleRules: Function = (
   displayStyle: 'inline' | 'stacked',
@@ -119,123 +119,131 @@ const indeterminateCheckboxRules: Function = (cbSize: string) => {
   };
 };
 
-const SDiv = styled.div`
-  ${(props: Props) => displayStyleRules(props.displayStyle, props.theme)};
+const SDiv = styled.div<CheckboxProps>`
+  ${(props) => displayStyleRules(props.displayStyle, props.theme)};
   display: inline-flex;
   position: relative;
 `;
 
-const SLabel = styled.label`
+const SLabel = styled.label<{ cbSize: 'sm' | 'md' | 'lg' }>`
   cursor: pointer;
   padding-left: 20px;
   text-indent: -20px;
   font-family: ${(props: any) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.common[props.cbSize!].fontSize};
+  font-size: ${(props) => props.theme.common[props.cbSize!].fontSize};
 `;
 
-const SInput = styled.input`
-
+const SInput = styled.input<CheckboxProps>`
   position: relative;
-	display: none;
-	& + label{
-		&:before, &:after{
+  display: none;
+  & + label {
+    &:before,
+    &:after {
       display: inline-flex;
-		}
-	}
+      border-radius: ${(props) => props.theme.checkbox.borderRadius ?? ''};
+    }
+  }
   + label:before {
-    content: "";
-    width: ${(props: Props) => props.theme.checkbox[props.cbSize!].squareSize};
-    height: ${(props: Props) => props.theme.checkbox[props.cbSize!].squareSize};
+    content: '';
+    width: ${(props) => props.theme.checkbox[props.cbSize!].squareSize};
+    height: ${(props) => props.theme.checkbox[props.cbSize!].squareSize};
     background-clip: padding-box;
-    background-color: ${(props: Props) => props.theme.checkbox.unselectedColor};
-    border-color: ${(props: Props) =>
+    background-color: ${(props) => props.theme.checkbox.unselectedColor};
+    border-color: ${(props) =>
       props.invalid
         ? props.theme.validation.borderColor
         : props.theme.checkbox.borderColor};
-    border-style: ${(props: Props) => props.theme.checkbox.borderStyle};
-    border-radius: 1px;
-    border-width ${(props: Props) => props.theme.checkbox.borderWidth};
+    border-style: ${(props) => props.theme.checkbox.borderStyle};
+    border-width: ${(props) => props.theme.checkbox.borderWidth};
     margin-right: ${(props: any) => (props.hasChildren ? '4px' : '0px')};
     padding: 3px;
     transition: all 0.3s;
   }
   &:disabled + label {
-    color: ${(props: Props) => props.theme.checkbox.disabledText};
+    color: ${(props) => props.theme.checkbox.disabledText};
     cursor: not-allowed;
   }
 
-  &:checked + label:before,  
+  &:checked + label:before,
   &:indeterminate + label:before {
-    background-color: ${(props: Props) => props.theme.checkbox.selectedColor};
+    background-color: ${(props) => props.theme.checkbox.selectedColor};
+    border-color: ${(props) => props.theme.checkbox.selectedColor};
   }
-
   &:checked + label:hover:before,
-  &:indeterminate + label:hover:before {  
-    background-color: ${(props: Props) => props.theme.colors.primaryHover};
-    border-color: ${(props: Props) => props.theme.colors.primaryHover};
+  &:indeterminate + label:hover:before {
+    background-color: ${(props) => props.theme.colors.primaryHover};
+    border-color: ${(props) => props.theme.colors.primaryHover};
   }
 
-  &:not(:checked) + label:hover:before{
-    border-color: ${(props: Props) => props.theme.colors.primaryHover};
+  &:not(:checked) + label:hover:before {
+    border-color: ${(props) => props.theme.colors.primaryHover};
   }
 
-  label:before  {
-    background-color: ${(props: Props) => props.theme.checkbox.disabledCheck};
-    border-color: ${(props: Props) => props.theme.checkbox.disabledCheck};
-  } 
-
+  label:before {
+    background-color: ${(props) => props.theme.checkbox.disabledCheck};
+    border-color: ${(props) => props.theme.checkbox.disabledCheck};
+  }
   &:checked + label:after {
-      content: "";
-      padding: 2px;
-      position: absolute;
-      height:  ${(props: Props) => (props.cbSize === 'lg' ? '8px' : '6px')};
-      border-style: solid;
-      border-color: ${(props: Props) => props.theme.colors.white};
-      border-width: ${(props: Props) =>
-        props.cbSize === 'lg' ? '0 4px 4px 0' : '0 3px 3px 0'};
-      transform: rotate(45deg) translateX(-1px) translateY(-1px);
-      -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
-      -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
-      margin-left: ${(props: Props) =>
-        props.theme.checkbox[props.cbSize!].marginLeft};
-      top: 2px;
-      left: 0;
-    }
+    content: '';
+    padding: 2px;
+    position: absolute;
+    border-radius: 0px;
+    height: ${(props) => (props.cbSize === 'lg' ? '8px' : '6px')};
+    border-style: solid;
+    border-color: ${(props) => props.theme.colors.white};
+    border-width: ${(props) =>
+      props.cbSize === 'lg'
+        ? props.theme.checkbox.lg.borderWidth ?? '0 4px 4px 0'
+        : props.theme.checkbox.md.borderWidth ?? '0 3px 3px 0'};
+    transform: rotate(45deg) translateX(-1px) translateY(-1px);
+    -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
+    -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
+    margin-left: ${(props) => props.theme.checkbox[props.cbSize!].marginLeft};
+    top: ${(props) => props.theme.checkbox.top ?? '2px'};
+    left: ${(props) => props.theme.checkbox.left ?? '0px'};
+  }
 
-    &:indeterminate + label:after {
-      content: "";
-      padding: 6px 2px;
-      text-align: center;
-      position: absolute;
-      height: 0px;
-      border-style: solid;
-      border-color: ${(props: Props) => props.theme.colors.white};
-      border-width: ${(props: Props) =>
-        props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
-      ${(props: Props) => indeterminateCheckboxRules(props.cbSize)};
-      margin-left: 6px;
-      top: 3px;
-      left: 0;
-    }
-    &:disabled + label:before,
-    &:disabled:checked + label:before,
-    &:disabled:not(:checked) + label:before
-     {
-      background-color: ${(props: Props) => props.theme.checkbox.disabledCheck};
-      border-color: ${(props: Props) => props.theme.checkbox.disabledCheck};
-    } 
-     
+  &:indeterminate + label:after {
+    content: '';
+    padding: 6px 2px;
+    text-align: center;
+    position: absolute;
+    border-radius: 0px;
+    height: 0px;
+    border-style: solid;
+    border-color: ${(props) => props.theme.colors.white};
+    border-width: ${(props) =>
+      props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
+    ${(props) => indeterminateCheckboxRules(props.cbSize)};
+    margin-left: 6px;
+    top: ${(props) => props.theme.checkbox.top ?? '3px'};
+    left: 0;
+  }
+
+  &:disabled:checked + label:before {
+    background-color: ${(props) => props.theme.checkbox.disabledCheck};
+    border-color: ${(props) => props.theme.checkbox.disabledCheck};
+  }
+  &:disabled + label:before,
+  &:disabled:not(:checked) + label:before {
+    background-color: ${(props) =>
+      props.theme.checkbox.disabledNotChecked ??
+      props.theme.checkbox.disabledCheck};
+    border-color: ${(props) =>
+      props.theme.checkbox.disabledNotChecked ??
+      props.theme.checkbox.disabledCheck};
+  }
 `;
 
-export class Checkbox extends React.Component<Props, State> {
-  constructor(props: Props) {
+export class Checkbox extends React.Component<CheckboxProps, State> {
+  constructor(props: CheckboxProps) {
     super(props);
   }
 
   componentDidMount() {
     this.input.indeterminate = this.props.indeterminate;
   }
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: CheckboxProps) {
     if (prevProps.indeterminate !== this.props.indeterminate) {
       this.input.indeterminate = this.props.indeterminate;
     }
@@ -264,7 +272,7 @@ export class Checkbox extends React.Component<Props, State> {
   onChange = (event: any) => {
     if (!this.props.disabled) {
       this.setState(
-        prevState => ({
+        (prevState) => ({
           checked: !prevState.checked,
         }),
         () => {
@@ -312,7 +320,8 @@ export class Checkbox extends React.Component<Props, State> {
               hasChildren={Boolean(children)}
               type="checkbox"
               role="checkbox"
-              ref={el => (this.input = el)}
+              //   @ts-ignore
+              ref={(el) => (this.input = el)}
               id={id}
               cbSize={cbSize}
               disabled={disabled}
@@ -322,15 +331,11 @@ export class Checkbox extends React.Component<Props, State> {
               invalidText={invalidText}
               invalidTextColor={invalidTextColor}
             />
-            <SLabel htmlFor={id} cbSize={cbSize}>
+            <SLabel htmlFor={id} cbSize={cbSize || 'md'}>
               {children}
             </SLabel>
             {invalid && invalidText && (
-              <ErrorMessage
-                id={errorId}
-                message={invalidText || ''}
-                textColor={invalidTextColor || ''}
-              />
+              <ErrorMessage id={errorId} message={invalidText || ''} />
             )}
           </SDiv>
         </>

@@ -1,26 +1,18 @@
-import * as React from 'react';
-import { Caption } from './Caption.component';
+import { Meta, StoryObj } from "@storybook/react";
+import { Caption } from "./Caption.component";
 
-export default {
-  title: 'Components/Typography/Caption',
+const meta: Meta<typeof Caption> = {
+  title: "Components/Typography/Caption",
   component: Caption,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    size: {
-      control: {
-        type: 'inline-radio',
-        options: [10, 20],
-      },
-    },
-  },
 };
 
-export const _Caption = args => <Caption {...args}>Example Caption</Caption>;
+export default meta;
 
-_Caption.args = {
-  size: 10,
+type Story = StoryObj<typeof Caption>;
+
+export const Default: Story = {
+  args: {
+    size: 10,
+    children: "Hello world",
+  },
 };

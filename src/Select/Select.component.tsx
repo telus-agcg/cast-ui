@@ -1,22 +1,22 @@
 import * as React from 'react';
-import ErrorMessage from '../Typography/ErrorMessage/index';
+import _ from 'lodash';
+import { v4 as uuidv4 } from 'uuid';
+import styled, { ThemeProvider } from 'styled-components';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
-import uuid from 'uuid';
+import { components as SelectComponents } from 'react-select';
 import { SelectCheckboxProps } from './SelectCheckbox.component';
-import _ from 'lodash';
-import { SelectComponents } from './index';
-import { getDataProps } from '../utils/common';
 import { SelectMenuList } from './SelectMenuList';
+import { ErrorMessage } from '@typography';
+import { getDataProps } from '@utils';
+import { Themes } from '@themes';
 
 export type OptionType = {
   value: string;
   label: string;
 };
 
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface SelectProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * From theme provider
    *
@@ -159,28 +159,27 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   optionType?: 'default' | 'checkbox';
 }
 
-const SDiv = styled.div<Props>`
+const SDiv = styled.div<SelectProps>`
   position: relative;
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) =>
-    props.theme.common[props.selectSize!].fontSize};
-  color: ${(props: Props) => props.theme.reverseText};
-  width: ${(props: Props) => props.theme.select.width};
-  cursor: ${(props: Props) => (props.isDisabled ? 'not-allowed' : 'auto')};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.common[props.selectSize!].fontSize};
+  color: ${(props) => props.theme.reverseText};
+  width: ${(props) => props.theme.select.width};
+  cursor: ${(props) => (props.isDisabled ? 'not-allowed' : 'auto')};
   div[aria-invalid] & {
     border: 1px solid red;
   }
   .react-select__menu {
-    font-family: ${(props: Props) => props.theme.typography.fontFamily};
+    font-family: ${(props) => props.theme.typography.fontFamily};
     z-index: 9999;
-    color: ${(props: Props) => props.theme.colors.drk800};
+    color: ${(props) => props.theme.colors.drk800};
     .menuListHeader {
       padding: 8px 12px;
-      border-bottom: 1px solid ${(props: Props) => props.theme.colors.lt800};
+      border-bottom: 1px solid ${(props) => props.theme.colors.lt800};
     }
     .react-select__menu-list {
-      font-family: ${(props: Props) => props.theme.typography.fontFamily};
-      color: ${(props: Props) => props.theme.colors.drk800};
+      font-family: ${(props) => props.theme.typography.fontFamily};
+      color: ${(props) => props.theme.colors.drk800};
     }
     .react-select__option {
       padding: 8px 12px;
@@ -188,49 +187,46 @@ const SDiv = styled.div<Props>`
   }
   .react-select-component {
     .react-select__control {
-      color: ${(props: Props) => props.theme.select.selectedOptionColor};
+      color: ${(props) => props.theme.select.selectedOptionColor};
       transition: all 0.3s;
-      min-height: ${(props: Props) =>
-        props.theme.select[props.selectSize!].height};
-      border-radius: ${(props: Props) =>
+      min-height: ${(props) => props.theme.select[props.selectSize!].height};
+      border-radius: ${(props) =>
         props.theme.select.borderRadius ||
         props.theme.select[props.selectSize!].borderRadius};
-      border-color: ${(props: Props) =>
+      border-color: ${(props) =>
         props.theme.common.borderColor ||
         (props.invalid
           ? props.theme.validation.borderColor
           : props.theme.select.borderColor || 'inherit')};
       &:hover {
-        border-color: ${(props: Props) => props.theme.colors.drk800};
+        border-color: ${(props) => props.theme.colors.drk800};
       }
       .react-select__value-container {
-        padding: ${(props: Props) =>
-          props.theme.select[props.selectSize!].padding};
-        font-family: ${(props: Props) => props.theme.typography.fontFamily};
-        font-size: ${(props: Props) =>
-          props.theme.common[props.selectSize!].fontSize};
+        padding: ${(props) => props.theme.select[props.selectSize!].padding};
+        font-family: ${(props) => props.theme.typography.fontFamily};
+        font-size: ${(props) => props.theme.common[props.selectSize!].fontSize};
         .react-select__input {
-          font-family: ${(props: Props) => props.theme.typography.fontFamily};
-          font-size: ${(props: Props) =>
+          font-family: ${(props) => props.theme.typography.fontFamily};
+          font-size: ${(props) =>
             props.theme.common[props.selectSize!].fontSize};
         }
 
         .react-select__single-value {
-          color: ${(props: Props) => props.theme.select.selectedOptionColor};
+          color: ${(props) => props.theme.select.selectedOptionColor};
         }
 
         .react-select__placeholder {
-          color: ${(props: Props) => props.theme.select.placeholderColor};
+          color: ${(props) => props.theme.select.placeholderColor};
         }
       }
 
       .react-select__multi-value {
-        background-color: ${(props: Props) =>
+        background-color: ${(props) =>
           props.theme.select.multiSelect.badge.backgroundColor};
-        border-radius: ${(props: Props) =>
+        border-radius: ${(props) =>
           props.theme.select.multiSelect.badge.borderRadius};
         .react-select__multi-value__remove {
-          color: ${(props: Props) => props.theme.colors.primary};
+          color: ${(props) => props.theme.colors.primary};
           display: flex;
           align-items: center;
           div:first-child {
@@ -238,47 +234,44 @@ const SDiv = styled.div<Props>`
           }
         }
         .react-select__multi-value__remove:hover {
-          background-color: ${(props: Props) =>
+          background-color: ${(props) =>
             props.theme.select.multiSelect.badge.backgroundColor};
-          border-radius: ${(props: Props) =>
+          border-radius: ${(props) =>
             props.theme.select.multiSelect.badge.borderRadius};
           cursor: pointer;
         }
       }
 
       &.react-select__control--is-disabled {
-        color: ${(props: Props) => props.theme.select.disabled.color};
-        border-color: ${(props: Props) =>
-          props.theme.select.disabled.borderColor};
-        background-color: ${(props: Props) =>
+        color: ${(props) => props.theme.select.disabled.color};
+        border-color: ${(props) => props.theme.select.disabled.borderColor};
+        background-color: ${(props) =>
           props.theme.select.disabled.backgroundColor};
         .react-select__placeholder {
-          color: ${(props: Props) =>
-            props.theme.select.disabled.placeholderColor};
+          color: ${(props) => props.theme.select.disabled.placeholderColor};
         }
         .react-select__single-value {
-          color: ${(props: Props) => props.theme.select.disabled.color};
+          color: ${(props) => props.theme.select.disabled.color};
         }
         .react-select__indicator {
-          color: ${(props: Props) =>
-            props.theme.select.disabled.placeholderColor};
+          color: ${(props) => props.theme.select.disabled.placeholderColor};
         }
         .react-select__multi-value {
-          background-color: ${(props: Props) =>
+          background-color: ${(props) =>
             props.theme.select.multiSelect.badge.disabled.backgroundColor};
         }
         .react-select__multi-value__remove {
-          color: ${(props: Props) => props.theme.select.disabled.color};
+          color: ${(props) => props.theme.select.disabled.color};
         }
       }
 
       &.react-select__control--is-focused {
-        border-color: ${(props: Props) =>
+        border-color: ${(props) =>
           props.invalid
             ? props.theme.validation.borderColor
             : props.theme.colors.primary};
         box-shadow: 0 0 3px
-          ${(props: Props) =>
+          ${(props) =>
             props.invalid
               ? props.theme.validation.borderColor
               : props.theme.colors.primary};
@@ -286,22 +279,22 @@ const SDiv = styled.div<Props>`
     }
     .react-select__indicators {
       align-self: center;
-      color: ${(props: Props) => props.theme.select.selectedOptionColor};
+      color: ${(props) => props.theme.select.selectedOptionColor};
       .react-select__indicator-separator {
         display: none;
       }
       .react-select__clear-indicator {
-        color: ${(props: Props) => props.theme.colors.primary};
+        color: ${(props) => props.theme.colors.primary};
         padding: 0;
         &:hover {
-          color: ${(props: Props) => props.theme.colors.primary};
+          color: ${(props) => props.theme.colors.primary};
         }
       }
       .react-select__dropdown-indicator {
-        color: ${(props: Props) => props.theme.select.dropdownColor};
+        color: ${(props) => props.theme.select.dropdownColor};
         padding: 0 8px;
         &:hover {
-          color: ${(props: Props) => props.theme.select.dropdownColor};
+          color: ${(props) => props.theme.select.dropdownColor};
         }
       }
       .react-select__clear-indicator,
@@ -315,7 +308,7 @@ const SDiv = styled.div<Props>`
   }
 `;
 
-const SSelectOption = styled.div`
+const SSelectOption = styled.div<SelectProps>`
   background-color: ${(props: any) =>
     props.isFocused
       ? props.theme.select.highlightOptionBackgroundColor
@@ -324,29 +317,35 @@ const SSelectOption = styled.div`
     props.isFocused
       ? props.theme.select.highlightOptionColor
       : props.theme.select.color};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+  font-family: ${(props) => props.theme.typography.fontFamily};
   &.react-select__option--is-selected {
-    color: ${(props: Props) => props.theme.select.selectedOptionColor};
-    background-color: ${(props: Props) =>
+    color: ${(props) => props.theme.select.selectedOptionColor};
+    background-color: ${(props) =>
       props.theme.select.selectedOptionBackgroundColor};
   }
   &:hover {
-    background-color: ${(props: Props) =>
+    background-color: ${(props) =>
       props.theme.select.highlightOptionBackgroundColor};
-    color: ${(props: Props) => props.theme.select.highlightOptionColor};
+    color: ${(props) => props.theme.select.highlightOptionColor};
   }
 `;
 
-export const CustomSelect: React.FC<Props> = ({
-  theme,
-  components: propsComponents,
-  ...props
-}) => {
+const defaultProps = {
+  id: 'select',
+  optionType: 'default',
+  isFilterable: true,
+  selectSize: 'md',
+  theme: Themes.canopyTheme,
+} satisfies Partial<SelectProps>;
+
+export const CustomSelect: React.FC<SelectProps> = (props) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = React.useState(false);
   const [filterValue, setFilterValue] = React.useState('');
 
   const {
+    theme,
     creatable,
     options,
     controlSpecificProps,
@@ -364,10 +363,10 @@ export const CustomSelect: React.FC<Props> = ({
     optionType,
     onChange,
     ...restProps
-  } = props;
+  } = propsWithDefaults;
 
   React.useEffect(() => {
-    const onDomClick = event => {
+    const onDomClick = (event) => {
       const container = containerRef.current;
       if (container) {
         const menuElement = container.querySelector('.react-select__menu');
@@ -397,8 +396,8 @@ export const CustomSelect: React.FC<Props> = ({
     }
   };
 
-  const handleSelectChange = event => {
-    onChange(event);
+  const handleSelectChange = (event) => {
+    if (onChange instanceof Function) onChange(event);
     if (isFilterable && !isMulti) {
       setIsFocused(false);
     }
@@ -410,7 +409,7 @@ export const CustomSelect: React.FC<Props> = ({
     typeof props.closeMenuOnSelect !== 'undefined'
       ? props.closeMenuOnSelect
       : !isMulti;
-  const uniqueId = uuid.v4();
+  const uniqueId = uuidv4();
 
   const selectCheckboxProps =
     optionType === 'checkbox'
@@ -497,14 +496,13 @@ export const CustomSelect: React.FC<Props> = ({
           aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
           selectSize={selectSize}
-          dropdownColor={theme.primary}
           menuPortalTarget={document.getElementById(uniqueId)}
           formatGroupLabel={formatGroupLabel}
           components={components}
           inputValue={filterValue}
           menuIsOpen={isFocused || undefined}
           isFocused={isFocused || undefined}
-          onInputChange={value => setFilterValue(value)}
+          onInputChange={(value) => setFilterValue(value)}
           onMenuInputFocus={() => setIsFocused(true)}
           onBlur={handleBlur}
           onChange={handleSelectChange}
@@ -512,22 +510,8 @@ export const CustomSelect: React.FC<Props> = ({
           {...controlSpecificProps}
           {...selectCheckboxProps}
         />
-        {invalid && (
-          <ErrorMessage
-            id={errorId}
-            message={invalidText}
-            textColor={theme.danger}
-          />
-        )}
+        {invalid && <ErrorMessage id={errorId} message={invalidText} />}
       </SDiv>
     </ThemeProvider>
   );
-};
-
-CustomSelect.defaultProps = {
-  theme: Themes.canopyTheme,
-  id: 'select',
-  optionType: 'default',
-  isFilterable: true,
-  selectSize: 'md',
 };

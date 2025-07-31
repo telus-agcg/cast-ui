@@ -1,9 +1,10 @@
 import * as React from 'react';
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface ToggleProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the ID of the individual toggle
    *
@@ -58,9 +59,9 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   theme?: any;
 }
 
-const getCSSCalc: (str: string) => string = str => `calc(100% - ${str})`;
+const getCSSCalc: (str: string) => string = (str) => `calc(100% - ${str})`;
 
-const SDiv = styled.div`
+const SDiv = styled.div<ToggleProps>`
   input[type='checkbox'] {
     height: 0;
     width: 0;
@@ -69,17 +70,16 @@ const SDiv = styled.div`
   }
 
   label {
-    cursor: ${(props: Props) => (props.disabled ? 'not-allowed' : 'pointer')};
+    cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
     text-indent: -9999px;
-    width: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].backgroundWidth};
-    height: ${(props: Props) =>
+    width: ${(props) => props.theme.toggle[props.toggleSize!].backgroundWidth};
+    height: ${(props) =>
       props.theme.toggle[props.toggleSize!].backgroundHeight};
-    background: ${(props: Props) =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.background.disabled
         : props.theme.toggle.background.inactiveColor};
-    border-color: ${(props: Props) =>
+    border-color: ${(props) =>
       props.disabled
         ? props.theme.toggle.background.disabled
         : props.theme.toggle.background.disabledBorderColor};
@@ -91,19 +91,15 @@ const SDiv = styled.div`
   label:after {
     content: '';
     position: absolute;
-    top: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].toggleOffsetTop};
-    left: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].toggleOffsetLeft};
-    width: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].toggleSize};
-    height: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].toggleSize};
-    background: ${(props: Props) =>
+    top: ${(props) => props.theme.toggle[props.toggleSize!].toggleOffsetTop};
+    left: ${(props) => props.theme.toggle[props.toggleSize!].toggleOffsetLeft};
+    width: ${(props) => props.theme.toggle[props.toggleSize!].toggleSize};
+    height: ${(props) => props.theme.toggle[props.toggleSize!].toggleSize};
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.inactiveDisabledColor
         : props.theme.toggle.inactiveColor};
-    border-color: ${(props: Props) =>
+    border-color: ${(props) =>
       props.disabled
         ? props.theme.toggle.inactiveDisabledBorderColor
         : props.theme.toggle.inactiveBorderColor};
@@ -112,88 +108,71 @@ const SDiv = styled.div`
   }
 
   input:checked + label {
-    background: ${(props: Props) =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.background.disabled
         : props.theme.toggle.background.activeColor};
   }
 
   input:checked + label:after {
-    left: ${(props: Props) =>
+    left: ${(props) =>
       getCSSCalc(props.theme.toggle[props.toggleSize!].activeOffset)};
     transform: translateX(-100%);
-    background: ${(props: Props) =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.activeDisabledColor
         : props.theme.toggle.activeColor};
-    border-color: ${(props: Props) =>
+    border-color: ${(props) =>
       props.disabled
         ? props.theme.toggle.activeDisabledBorderColor
         : props.theme.toggle.activeBorderColor};
   }
 
   input:checked + label:hover:after {
-    background: ${(props: Props) =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.activeDisabledColor
         : props.theme.colors.primaryHover};
   }
 
   input:not(:checked) + label:hover:after {
-    background: ${(props: Props) =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.toggle.activeDisabledColor
         : props.theme.colors.drk800};
   }
 
   label:active:after {
-    width: ${(props: Props) =>
-      props.theme.toggle[props.toggleSize!].toggleSize};
+    width: ${(props) => props.theme.toggle[props.toggleSize!].toggleSize};
   }
 `;
 
-export class Toggle extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+const defaultProps = {
+  toggleSize: 'md',
+  id: uuidv4(),
+  theme: Themes.canopyTheme,
+} satisfies Partial<ToggleProps>;
 
-  static defaultProps = {
-    toggleSize: 'md',
-    theme: Themes.canopyTheme,
-    id: uuid.v4(),
-  };
+export const Toggle = (props: ToggleProps) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { theme, onChange, children, checked, disabled, label, id, ...rest } =
+    propsWithDefaults;
 
-  onChange = event =>
-    this.props.onChange
-      ? this.props.onChange(event)
-      : alert(`Toggle with id ${this.props.id} was clicked!`);
+  const handleChange = (event) =>
+    onChange ? onChange(event) : alert(`Toggle with id ${id} was clicked!`);
 
-  render() {
-    const {
-      theme,
-      children,
-      checked,
-      disabled,
-      label,
-      id,
-
-      ...props
-    } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SDiv disabled={!!disabled} {...props}>
-          <input
-            checked={checked}
-            disabled={!!disabled}
-            onChange={this.onChange}
-            type="checkbox"
-            id={id}
-          />
-          <label htmlFor={id}>{label}</label>
-        </SDiv>
-      </ThemeProvider>
-    );
-  }
-}
-
-export default Toggle;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SDiv disabled={!!disabled} {...rest}>
+        <input
+          checked={checked}
+          disabled={!!disabled}
+          onChange={handleChange}
+          type="checkbox"
+          id={id}
+        />
+        <label htmlFor={id}>{label}</label>
+      </SDiv>
+    </ThemeProvider>
+  );
+};

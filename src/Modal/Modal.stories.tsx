@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Button } from '../Button';
-
-import { Modal } from '../';
+import { Meta, StoryObj } from '@storybook/react';
+import { Modal } from './Modal.component';
+import { Button } from '../Button/Button.component';
 
 const description = `
 This Modal is based on the [react-modal](https://www.npmjs.com/package/react-modal) component.
@@ -14,26 +14,12 @@ In addition of the string options under *footerContent*,
 you can pass a component instead of any of those.
 `;
 
-const DemoButtons = props => {
-  return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <Button
-        btnStyle="primary"
-        outline={true}
-        onClick={props.handleCloseModal}
-      >
-        Cancel
-      </Button>
-      <Button btnStyle="success" onClick={props.handleCloseModal}>
-        Submit
-      </Button>
-    </div>
-  );
-};
-
-export default {
+const meta: Meta<typeof Modal> = {
   title: 'Components/Data Display/Modal',
   component: Modal,
+  parameters: {
+    description,
+  },
   argTypes: {
     theme: {
       table: {
@@ -41,20 +27,14 @@ export default {
       },
     },
     isOpen: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     modalSize: {
       options: ['sm', 'md', 'lg', 'full'],
-      control: {
-        type: 'select',
-      },
+      control: 'select',
     },
     modalTitle: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     onTitleClose: {
       action: {
@@ -71,75 +51,73 @@ export default {
       control: false,
     },
     disableCloseIcon: {
-      control: {
-        type: 'boolean',
-      },
-    },
-  },
-  parameters: {
-    docs: {
-      description: {
-        component: description,
-      },
+      control: 'boolean',
     },
   },
 };
 
-const _Modal = ({
-  children,
-  isOpen,
-  modalTitle,
-  disableCloseIcon,
-  ...args
-}) => {
-  const [openModal, setOpenModal] = React.useState(false);
+export default meta;
 
-  React.useEffect(() => {
-    setOpenModal(isOpen);
-  }, [isOpen]);
-
-  const handleToggleModal = () => setOpenModal(!openModal);
-
+const DemoButtons = (props) => {
   return (
-    <>
-      <Button onClick={handleToggleModal}>Open Modal</Button>
-      <Modal
-        id="myModal"
-        footerContent={<DemoButtons handleCloseModal={handleToggleModal} />}
-        isOpen={openModal}
-        modalTitle={modalTitle}
-        {...args}
-        onTitleClose={handleToggleModal}
-        disableCloseIcon={disableCloseIcon}
+    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Button
+        btnStyle="primary"
+        outline={true}
+        onClick={props.handleCloseModal}
+        theme={props.theme}
       >
-        {children}
-      </Modal>
-    </>
+        Cancel
+      </Button>
+      <Button
+        btnStyle="success"
+        onClick={props.handleCloseModal}
+        theme={props.theme}
+      >
+        Submit
+      </Button>
+    </div>
   );
 };
 
-export const _Regular = _Modal.bind({});
-_Regular.args = {
-  isOpen: false,
-  modalSize: 'md',
-  modalTitle: 'Modal Title',
-  children: <p>Lorem Ipsum</p>,
-  disableCloseIcon: false,
-};
+type Story = StoryObj<typeof Modal>;
 
-export const _Scrollable = _Modal.bind({});
-_Scrollable.args = {
-  isOpen: false,
-  modalSize: 'md',
-  modalTitle: 'Scrollable Modal',
-  children: Array(20)
-    .fill('')
-    .map((_, index) => (
-      <div key={index}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Exercitationem, fugit velit. Aliquam autem blanditiis, consequatur
-        dolore eius, harum ipsum maxime nam nihil officiis optio, pariatur
-        repellat soluta suscipit tempora ut?
-      </div>
-    )),
+export const _Modal: Story = {
+  args: {
+    isOpen: true,
+    modalSize: 'md',
+    modalTitle: 'Modal Title',
+    children: <p>lorem ipsum</p>,
+    disableCloseIcon: false,
+  },
+  render({ children, isOpen, modalTitle, disableCloseIcon, theme, ...args }) {
+    const [openModal, setOpenModal] = React.useState(false);
+
+    React.useEffect(() => {
+      setOpenModal(isOpen);
+    }, [isOpen]);
+
+    const handleToggleModal = () => setOpenModal(!openModal);
+
+    return (
+      <>
+        <Button onClick={handleToggleModal} theme={theme}>
+          Open Modal
+        </Button>
+        <Modal
+          isOpen={openModal}
+          modalTitle={modalTitle}
+          {...args}
+          footerContent={
+            <DemoButtons handleCloseModal={handleToggleModal} theme={theme} />
+          }
+          id="myModal"
+          onTitleClose={handleToggleModal}
+          disableCloseIcon={disableCloseIcon}
+        >
+          {children}
+        </Modal>
+      </>
+    );
+  },
 };

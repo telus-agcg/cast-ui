@@ -1,16 +1,17 @@
 import * as React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
+import { Display } from './Display/Display.component';
+import { Header } from './Header/Header.component';
+import { Title } from './Title/Title.component';
 
-import { Header, Display, Title, Caption, Link } from '../';
-
-export type Props = {
+export type Props = React.PropsWithChildren<{
   /**
    * From theme provider
    *
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 
 const STypography = styled.div`
   font-weight: ${(props: Props) => props.theme.typography.fontWeight};
@@ -28,36 +29,35 @@ const MediumFont = styled.p`
     props.theme.typography.fontMedium.fontFamily};
 `;
 
-export const Typography: React.FunctionComponent<Props> = ({
-  children,
-  theme,
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <STypography>
-      <Display size={20}>Display Size 20</Display>
-      <Display size={10}>Display Size 10</Display>
-      <Title size={20}>Title Size 20</Title>
-      <Title size={10}>Title Size 10</Title>
-      <Header size={20}>Header Size 20</Header>
-      <Header size={10}>Header Size 10</Header>
-      <p>
-        Etiam ullamcorper, metus sed luctus auctor, tortor lorem auctor quam, ut
-        condimentum massa tellus at turpis.
-      </p>
-      <Caption>Use for hero images and website headers</Caption>
+export const Typography: React.FunctionComponent<Props> = (_props: Props) => {
+  return (
+    <>
+      <STypography>
+        <Display size={20}>Display Size 20</Display>
+        <Display size={10}>Display Size 10</Display>
+        <Title size={20}>Title Size 20</Title>
+        <Title size={10}>Title Size 10</Title>
+        <Header size={20}>Header Size 20</Header>
+        <Header size={10}>Header Size 10</Header>
+        <p>
+          Etiam ullamcorper, metus sed luctus auctor, tortor lorem auctor quam,
+          ut condimentum massa tellus at turpis.
+        </p>
+        {/* <Caption>Use for hero images and website headers</Caption>
       <Link href="https://www.telus.com/agcg" target="_blank">
         Read More
-      </Link>
-      <br />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur{' '}
-        <Link href="https://www.telus.com/agcg" target="_blank">
+      </Link> */}
+        <br />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur{' '}
+          {/* <Link href="https://www.telus.com/agcg" target="_blank">
           link in text
-        </Link>
-        .
-      </p>
-    </STypography>
-    <MediumFont>This is the medium font</MediumFont>
-    <BoldFont>This is the bold font</BoldFont>
-  </ThemeProvider>
-);
+        </Link> */}
+          .
+        </p>
+      </STypography>
+      <MediumFont>This is the medium font</MediumFont>
+      <BoldFont>This is the bold font</BoldFont>
+    </>
+  );
+};

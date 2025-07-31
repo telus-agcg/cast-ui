@@ -1,116 +1,72 @@
 import * as React from 'react';
-import { ListGroup, ListGroupItem } from '../';
+import { Meta, StoryObj } from '@storybook/react';
+import { ListGroup } from './ListGroup.component';
+import { ListGroupItem } from './ListGroupItem.component';
 
-export default {
+type ListGroupCustomProps = React.ComponentProps<typeof ListGroup> &
+  React.ComponentProps<typeof ListGroupItem>;
+
+const meta: Meta<ListGroupCustomProps> = {
   title: 'Components/Data Display/List Group',
   component: ListGroup,
   subcomponents: {
-    ListGroupItem,
-  },
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    listGroupTheme: {
-      options: ['light', 'dark'],
-      control: {
-        type: 'inline-radio',
-      },
-    },
-    collapsible: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    border: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    isCollapsed: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    children: {
-      control: false,
-    },
-    name: {
-      control: false,
-    },
-    onToggle: {
-      action: {
-        type: 'onToggle',
-      },
-    },
-    listGroupTheme2: {
-      options: ['light', 'dark'],
-      control: {
-        type: 'inline-radio',
-      },
-    },
+    ListGroupItem: ListGroupItem as React.ComponentType<unknown>,
   },
 };
 
-export const _ListGroup = ({
-  collapsible,
-  listGroupTheme,
-  border,
-  collapsible2,
-  listGroupTheme2,
-  isCollapsed,
-}) => (
-  <div>
-    <ListGroup listGroupTheme={listGroupTheme}>
-      <ListGroupItem data-testid="list-item-1">List Item</ListGroupItem>
-      <ListGroupItem data-testid="list-item-2">List Item</ListGroupItem>
-      <ListGroupItem data-testid="list-item-3">List Item</ListGroupItem>
-    </ListGroup>
-    <ListGroup
-      collapsible={collapsible}
-      name="Collapsible List Group"
-      listGroupTheme={listGroupTheme}
-      border={border}
-    >
-      <ListGroupItem data-testid="collapsible-list-item-1">
-        List Item
-      </ListGroupItem>
-      <ListGroupItem data-testid="collapsible-list-item-2">
-        List Item
-      </ListGroupItem>
-      <ListGroupItem data-testid="collapsible-list-item-3">
-        List Item
-      </ListGroupItem>
-      <ListGroupItem data-testid="collapsible-list-item-4">
-        List Item
-      </ListGroupItem>
-      <ListGroup
-        collapsible={collapsible2}
-        isCollapsed={isCollapsed}
-        name="Nested Collapsible List Group"
-        listGroupTheme={listGroupTheme2}
-      >
-        <ListGroupItem data-testid="collapsible-nested-list-item-1">
-          List Item
-        </ListGroupItem>
-        <ListGroupItem data-testid="collapsible-nested-list-item-2">
-          List Item
-        </ListGroupItem>
-        <ListGroupItem data-testid="collapsible-nested-list-item-3">
-          List Item
-        </ListGroupItem>
-      </ListGroup>
-    </ListGroup>
-  </div>
-);
+export default meta;
 
-_ListGroup.args = {
-  collapsible: true,
-  listGroupTheme: 'light',
-  border: true,
-  collapsible2: true,
-  listGroupTheme2: 'light',
-  isCollapsed: false,
+type Story = StoryObj<ListGroupCustomProps>;
+
+export const _ListGroup: Story = {
+  args: {
+    collapsible: true,
+    listGroupTheme: 'light',
+    border: true,
+    isCollapsed: false,
+  },
+  render: ({ listGroupTheme, collapsible, border }) => (
+    <div>
+      <ListGroup listGroupTheme={listGroupTheme}>
+        <ListGroupItem data-testid="list-item-1">List Item</ListGroupItem>
+        <ListGroupItem data-testid="list-item-2">List Item</ListGroupItem>
+        <ListGroupItem data-testid="list-item-3">List Item</ListGroupItem>
+      </ListGroup>
+      <ListGroup
+        collapsible={collapsible}
+        name="Collapsible List Group"
+        listGroupTheme={listGroupTheme}
+        border={border}
+      >
+        <ListGroupItem data-testid="collapsible-list-item-1">
+          List Item
+        </ListGroupItem>
+        <ListGroupItem data-testid="collapsible-list-item-2">
+          List Item
+        </ListGroupItem>
+        <ListGroupItem data-testid="collapsible-list-item-3">
+          List Item
+        </ListGroupItem>
+        <ListGroupItem data-testid="collapsible-list-item-4">
+          List Item
+        </ListGroupItem>
+        <ListGroup
+          collapsible={false}
+          isCollapsed={true}
+          name="Nested Collapsible List Group"
+          listGroupTheme={'light'}
+        >
+          <ListGroupItem data-testid="collapsible-nested-list-item-1">
+            List Item
+          </ListGroupItem>
+          <ListGroupItem data-testid="collapsible-nested-list-item-2">
+            List Item
+          </ListGroupItem>
+          <ListGroupItem data-testid="collapsible-nested-list-item-3">
+            List Item
+          </ListGroupItem>
+        </ListGroup>
+      </ListGroup>
+    </div>
+  ),
 };

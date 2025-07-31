@@ -1,15 +1,16 @@
 import * as React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { SupervisedUserCircleIcon } from '@icons';
+import { Navbar } from './Navbar.component';
+import { Nav } from './Nav.component';
 
-import Icon from 'react-icons-kit';
-import { userSecret } from 'react-icons-kit/fa/userSecret';
-import { Navbar, Nav } from '../';
+type NavBarCustomProps = React.ComponentProps<typeof Navbar> &
+  React.ComponentProps<typeof Nav>;
 
-export default {
+const meta: Meta<NavBarCustomProps> = {
   title: 'Components/Navigation/Navbar',
   component: Navbar,
-  subcomponents: {
-    Nav,
-  },
+  subcomponents: { Nav: Nav as React.ComponentType<unknown> },
   argTypes: {
     theme: {
       table: {
@@ -19,27 +20,32 @@ export default {
   },
 };
 
-export const _Navbar = ({ height, ...args }) => (
-  <Navbar {...args}>
-    <Nav left>
-      <img
-        src="https://www.tkxs.com/hubfs/TKXS-brand/TKXS%20Official%20Logo%20(black).svg"
-        alt="TKXS"
-        style={{ width: '100px' }}
-      />
-      <h2 style={{ padding: '0 16px' }}>Cast UI</h2>
-    </Nav>
-    <Nav center>
-      <h3 style={{ padding: '0 12px' }}>Center Item</h3>
-      <h3 style={{ padding: '0 12px' }}>Center Item</h3>
-    </Nav>
-    <Nav right>
-      <h3 style={{ padding: '0 0 0 16px' }}>Right Item</h3>
-      <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
-        <Icon icon={userSecret} size={32} />
-      </h3>
-    </Nav>
-  </Navbar>
-);
+export default meta;
 
-_Navbar.args = {};
+type Story = StoryObj<NavBarCustomProps>;
+
+export const _Navbar: Story = {
+  args: {},
+  render: (args) => (
+    <Navbar {...args}>
+      <Nav left>
+        <img
+          src="https://www.tkxs.com/hubfs/TKXS-brand/TKXS%20Official%20Logo%20(black).svg"
+          alt="TKXS"
+          style={{ width: '100px' }}
+        />
+        <h2 style={{ padding: '0 16px' }}>Cast UI</h2>
+      </Nav>
+      <Nav center>
+        <h3 style={{ padding: '0 12px' }}>Center Item</h3>
+        <h3 style={{ padding: '0 12px' }}>Center Item</h3>
+      </Nav>
+      <Nav right>
+        <h3 style={{ padding: '0 0 0 16px' }}>Right Item</h3>
+        <h3 style={{ padding: '0 0 0 16px', cursor: 'pointer' }}>
+          <SupervisedUserCircleIcon height={32} width={32} />
+        </h3>
+      </Nav>
+    </Navbar>
+  ),
+};

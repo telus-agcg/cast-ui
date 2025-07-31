@@ -1,10 +1,11 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
-import Icon from 'react-icons-kit';
-import { ic_expand_more as ICEM } from 'react-icons-kit/md/ic_expand_more';
+import { KeyboardArrowDownIcon } from '@icons';
+import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
-export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Specify if the button is outline
    *
@@ -135,13 +136,12 @@ const computeColor: Function = (
   }
 };
 
-const SButton = styled.button`
+const SButton = styled.button<ButtonProps>`
   min-width: 96px;
   box-sizing: border-box;
   transition: all 0.3s;
-  border-radius: ${(props: Props) =>
-    props.theme.button[props.btnSize!].borderRadius};
-  background: ${(props: Props) =>
+  border-radius: ${(props) => props.theme.button[props.btnSize!].borderRadius};
+  background: ${(props) =>
     computeColor(
       'normal',
       props.selected,
@@ -150,7 +150,7 @@ const SButton = styled.button`
       props.theme,
     ).background};
   border: 1px solid
-    ${(props: Props) =>
+    ${(props) =>
       computeColor(
         'normal',
         props.selected,
@@ -158,13 +158,12 @@ const SButton = styled.button`
         props.btnStyle,
         props.theme,
       ).borderColor};
-  padding: ${(props: Props) => props.theme.button[props.btnSize!].padding};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.button[props.btnSize!].fontSize};
+  padding: ${(props) => props.theme.button[props.btnSize!].padding};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.button[props.btnSize!].fontSize};
   font-weight: 600;
-  line-height: ${(props: Props) =>
-    props.theme.button[props.btnSize!].lineHeight};
-  color: ${(props: Props) =>
+  line-height: ${(props) => props.theme.button[props.btnSize!].lineHeight};
+  color: ${(props) =>
     computeColor(
       'normal',
       props.selected,
@@ -176,14 +175,13 @@ const SButton = styled.button`
   outline: none !important;
   &:focus {
     outline: none !important;
-    border-color: ${(props: Props) =>
-      props.theme.colors[props.btnStyle || 'primary']};
+    border-color: ${(props) => props.theme.colors[props.btnStyle || 'primary']};
     box-shadow: 0 0 3px
-      ${(props: Props) => props.theme.colors[props.btnStyle || 'primary']};
+      ${(props) => props.theme.colors[props.btnStyle || 'primary']};
   }
   &:hover,
   &:active {
-    background: ${(props: Props) =>
+    background: ${(props) =>
       computeColor(
         'hover',
         props.selected,
@@ -191,7 +189,7 @@ const SButton = styled.button`
         props.btnStyle,
         props.theme,
       ).background};
-    color: ${(props: Props) =>
+    color: ${(props) =>
       computeColor(
         'hover',
         props.selected,
@@ -200,7 +198,7 @@ const SButton = styled.button`
         props.theme,
       ).color};
     border: 1px solid
-      ${(props: Props) =>
+      ${(props) =>
         computeColor(
           'hover',
           props.selected,
@@ -211,7 +209,7 @@ const SButton = styled.button`
     cursor: pointer;
   }
   &:disabled {
-    background: ${(props: Props) =>
+    background: ${(props) =>
       computeColor(
         'disabled',
         props.selected,
@@ -219,7 +217,7 @@ const SButton = styled.button`
         props.btnStyle,
         props.theme,
       ).background};
-    color: ${(props: Props) =>
+    color: ${(props) =>
       computeColor(
         'disabled',
         props.selected,
@@ -228,7 +226,7 @@ const SButton = styled.button`
         props.theme,
       ).color};
     border: 1px solid
-      ${(props: Props) =>
+      ${(props) =>
         computeColor(
           'disabled',
           props.selected,
@@ -248,7 +246,7 @@ const SMenuButton = styled(SButton)`
   padding-bottom: 0px;
 `;
 
-const SIcon = styled(Icon)`
+const SIcon = styled(KeyboardArrowDownIcon)`
   border-left: 1px solid ${(props: any) => props.theme.colors.lt800};
   margin: ${(props: any) => props.theme.button[props.btnSize!].padding};
   margin-top: 0px;
@@ -259,37 +257,38 @@ const SIcon = styled(Icon)`
 
 const noop = () => {}; // tslint:disable-line
 
-export class Button extends React.Component<Props, any> {
-  static defaultProps = {
-    theme: Themes.canopyTheme,
-    btnStyle: 'primary',
-    btnSize: 'md',
-    displayType: 'button',
-  };
-  render() {
-    const {
-      theme,
-      onClick = noop,
-      disabled,
-      displayType,
-      children,
-      ...props
-    } = this.props;
+const defaultProps = {
+  btnStyle: 'primary',
+  btnSize: 'md',
+  displayType: 'button',
+  theme: Themes.canopyTheme,
+} satisfies Partial<ButtonProps>;
 
-    const ButtonType = displayType === 'menu' ? SMenuButton : SButton;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <ButtonType
-          disabled={disabled}
-          onClick={!disabled ? onClick : noop}
-          {...props}
-        >
-          {children}
-          {displayType === 'menu' ? (
-            <SIcon {...props} icon={ICEM} size={24} />
-          ) : null}
-        </ButtonType>
-      </ThemeProvider>
-    );
-  }
-}
+export const Button = (props: ButtonProps) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const {
+    theme,
+    onClick = noop,
+    disabled,
+    displayType,
+    children,
+    ...rest
+  } = propsWithDefaults;
+
+  const ButtonType = displayType === 'menu' ? SMenuButton : SButton;
+  const iconProps = rest as React.SVGProps<SVGSVGElement>;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <ButtonType
+        disabled={disabled}
+        onClick={!disabled ? onClick : noop}
+        {...rest}
+      >
+        {children}
+        {displayType === 'menu' ? (
+          <SIcon {...iconProps} width={24} height={24} />
+        ) : null}
+      </ButtonType>
+    </ThemeProvider>
+  );
+};

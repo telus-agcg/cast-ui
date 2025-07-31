@@ -1,26 +1,18 @@
-import * as React from 'react';
-import { Title } from './Title.component';
+import { Meta, StoryObj } from "@storybook/react";
+import { Title } from "./Title.component";
 
-export default {
-  title: 'Components/Typography/Title',
+const meta: Meta<typeof Title> = {
+  title: "Components/Typography/Title",
   component: Title,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    size: {
-      control: {
-        type: 'inline-radio',
-        options: [10, 20],
-      },
-    },
-  },
 };
 
-export const _Title = args => <Title {...args}>20px Medium</Title>;
+export default meta;
 
-_Title.args = {
-  size: 10,
+type Story = StoryObj<typeof Title>;
+
+export const _Title: Story = {
+  args: {
+    size: 10,
+    children: "This is a title",
+  },
 };

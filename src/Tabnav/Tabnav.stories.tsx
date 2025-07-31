@@ -1,13 +1,12 @@
-import * as React from 'react';
+import { Meta } from '@storybook/react';
+import { Tabnav } from './Tabnav.component';
+import { Title } from '@typography';
+import { Badge } from '../Badge/Badge.component';
 
-import { Tabnav, Title, Badge } from '../';
-
-export default {
+const meta: Meta<typeof Tabnav> = {
   title: 'Components/Navigation/Tabnav',
   component: Tabnav,
-  subcomponents: {
-    Title,
-  },
+  subcomponents: { Title: Title as React.ComponentType<unknown> },
   argTypes: {
     theme: {
       table: {
@@ -30,6 +29,8 @@ export default {
     },
   },
 };
+
+export default meta;
 
 export const _Tabnav = ({ onTabClick }) => (
   <Tabnav

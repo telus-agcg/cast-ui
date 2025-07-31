@@ -1,8 +1,7 @@
-import * as React from 'react';
-import styled, { withTheme, ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import { Themes } from '@themes';
+import styled, { ThemeProvider } from 'styled-components';
 
-export type Props = {
+export type ListGroupItemProps = {
   /**
    * The content of the panel header
    *
@@ -24,30 +23,23 @@ export type Props = {
   theme?: any;
 };
 
-const SListGroupItem = styled.li<Partial<Props>>`
+const SListGroupItem = styled.li<Partial<ListGroupItemProps>>`
   overflow: hidden;
   height: auto;
 `;
 
-const initialState = {};
-type State = Readonly<typeof initialState>;
+const defaultProps = {
+  listGroupTheme: undefined,
+  theme: Themes.canopyTheme,
+} satisfies Partial<ListGroupItemProps>;
 
-export class ListGroupItem extends React.Component<Props> {
-  static defaultProps = {
-    listGroupTheme: '',
-    theme: Themes.canopyTheme,
-  };
+export const ListGroupItem = (props: ListGroupItemProps) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
+  const { theme, children, ...rest } = propsWithDefaults;
 
-  readonly state: State = initialState;
-
-  render() {
-    const { children, theme, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SListGroupItem {...props}>{children}</SListGroupItem>
-      </ThemeProvider>
-    );
-  }
-}
-
-export default withTheme(ListGroupItem);
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SListGroupItem {...rest}>{children}</SListGroupItem>
+    </ThemeProvider>
+  );
+};

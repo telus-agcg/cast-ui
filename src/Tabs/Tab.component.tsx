@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Tab as ReactTab, TabProps } from 'react-tabs';
+import { Tab as ReactTab, TabProps as ReactTabProps } from 'react-tabs';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
-import { Omit } from '../utils/castTypes';
+import { Omit } from '@utils';
 
-export interface Props extends Omit<TabProps, 'as'> {
+export interface TabProps extends Omit<ReactTabProps, 'as'> {
   /**
    * Specify the title text of the tab
    *
@@ -34,58 +33,56 @@ const ReactTabProxy = ({ children, className, ...props }: any) => (
 ReactTabProxy.tabsRole = 'Tab'; // Required field to use your custom Tab
 
 const SReactTab = styled(ReactTabProxy)`
-  color: ${props => props.theme.tabs.tab.color};
+  color: ${(props) => props.theme.tabs.tab.color};
   display: inline-block;
-  background-color: ${props => props.theme.tabs.tab.backgroundColor};
-  border: 0.5px solid ${props => props.theme.tabs.borderColor};
+  background-color: ${(props) => props.theme.tabs.tab.backgroundColor};
+  border: 0.5px solid ${(props) => props.theme.tabs.borderColor};
   border-left: none;
   border-bottom: none;
   bottom: -1px;
   position: relative;
   list-style: none;
-  padding: ${props => props.theme.tabs.padding};
+  padding: ${(props) => props.theme.tabs.padding};
   cursor: pointer;
-  font-size: ${props => props.theme.tabs.fontSize};
+  font-size: ${(props) => props.theme.tabs.fontSize};
   font-weight: bold;
   transition: all 0.3s;
 
-  :first-child {
-    border-left: 1px solid ${props => props.theme.tabs.borderColor};
+  &:first-child {
+    border-left: 1px solid ${(props) => props.theme.tabs.borderColor};
   }
 
   &:focus,
   &:hover {
-    background-color: ${props => props.theme.colors.primaryBackground};
+    background-color: ${(props) => props.theme.colors.primaryBackground};
   }
 
   &[class$='--selected'] {
-    background-color: ${props => props.theme.tabs.activetab.backgroundColor};
-    box-shadow: 0 -${props => props.theme.tabs.bottomBorderWidth} ${props =>
+    background-color: ${(props) => props.theme.tabs.activetab.backgroundColor};
+    box-shadow: 0 -${(props) => props.theme.tabs.bottomBorderWidth} ${(props) =>
         props.theme.tabs.activetab.borderColor} inset;
-    color: ${props => props.theme.tabs.activetab.color};
+    color: ${(props) => props.theme.tabs.activetab.color};
   }
 
   &[class$='--disabled'] {
-    background-color: ${props => props.theme.tabs.disabledtab.backgroundColor};
-    color: ${props => props.theme.colors.drk400};
+    background-color: ${(props) =>
+      props.theme.tabs.disabledtab.backgroundColor};
+    color: ${(props) => props.theme.colors.drk400};
     cursor: not-allowed;
   }
 
   &[class$='--disabled']:focus,
   &[class$='--disabled']:hover {
-    background-color: ${props => props.theme.tabs.tab.backgroundColor};
+    background-color: ${(props) => props.theme.tabs.tab.backgroundColor};
   }
 `;
 
-export class Tab extends React.Component<Props> {
+export class Tab extends React.Component<TabProps> {
   public static readonly tabsRole: string = 'Tab';
 
-  constructor(props: Props) {
+  constructor(props: TabProps) {
     super(props);
   }
-  static defaultProps = {
-    theme: Themes.canopyTheme,
-  };
 
   render() {
     const { theme, ...props } = this.props;

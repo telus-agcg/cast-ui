@@ -1,7 +1,8 @@
-import * as React from 'react';
-import { RadioButtonGroup, RadioButton } from '../';
+import { Meta, StoryObj } from '@storybook/react';
+import { RadioButtonGroup } from './RadioButtonGroup.component';
+import { RadioButton } from '../RadioButton/RadioButton.component';
 
-export default {
+const meta: Meta<typeof RadioButtonGroup> = {
   title: 'Components/Interactions/Radio Button',
   component: RadioButtonGroup,
   argTypes: {
@@ -25,28 +26,35 @@ export default {
   },
 };
 
-export const _RadioButtonGroup = args => (
-  <RadioButtonGroup {...args}>
-    <RadioButton
-      id="myInput1"
-      data-testid="input1-radio-button"
-      disabled={false}
-      value="1"
-    >
-      One
-    </RadioButton>
-    <RadioButton
-      id="myInput2"
-      data-testid="input2-radio-button"
-      disabled={false}
-      value="2"
-    >
-      Two
-    </RadioButton>
-  </RadioButtonGroup>
-);
+export default meta;
 
-_RadioButtonGroup.args = {
-  name: 'myRadioButtonGroup',
-  defaultChecked: '1',
+type Story = StoryObj<typeof RadioButtonGroup>;
+
+export const _RadioButtonGroup: Story = {
+  args: {
+    name: 'myRadioButtonGroup',
+    defaultChecked: '1',
+  },
+  render: (args) => {
+    return (
+      <RadioButtonGroup {...args}>
+        <RadioButton
+          id="myInput1"
+          data-testid="input1-radio-button"
+          disabled={false}
+          value="1"
+        >
+          One
+        </RadioButton>
+        <RadioButton
+          id="myInput2"
+          data-testid="input2-radio-button"
+          disabled={false}
+          value="2"
+        >
+          Two
+        </RadioButton>
+      </RadioButtonGroup>
+    );
+  },
 };

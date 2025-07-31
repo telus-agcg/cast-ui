@@ -1,26 +1,15 @@
-import * as React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
 import { Display } from './Display.component';
 
-export default {
+const meta: Meta<typeof Display> = {
   title: 'Components/Typography/Display',
   component: Display,
-  argTypes: {
-    theme: {
-      table: {
-        disable: true,
-      },
-    },
-    size: {
-      control: {
-        type: 'inline-radio',
-        options: [10, 20],
-      },
-    },
-  },
 };
 
-export const _Display = args => <Display {...args}>Example Display</Display>;
+export default meta;
 
-_Display.args = {
-  size: 10,
+type Story = StoryObj<typeof Display>;
+
+export const _Display: Story = {
+  args: { size: 10, children: 'This is a Display' },
 };

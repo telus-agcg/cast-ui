@@ -1,13 +1,8 @@
 import * as React from 'react';
-import styled, { withTheme, ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { getPropsWithDefaults } from '@utils';
 
-export type Props = {
-  /**
-   * The content of the panel header
-   *
-   * @default null
-   * */
-  children?: any;
+export type PanelBodyProps = React.PropsWithChildren<{
   /**
    * Set PanelBody Style
    *
@@ -25,36 +20,28 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 
-const SPanelBody = styled.div`
-  border: ${(props: Props) =>
+const SPanelBody = styled.div<PanelBodyProps>`
+  border: ${(props) =>
     `${props.theme.panel.body.borderWidth} solid 
     ${props.theme.panel.bodyBorderColor}`};
-  border-radius: ${(props: Props) => props.theme.panel.body.borderRadius};
-  padding: ${(props: Props) =>
+  border-radius: ${(props) => props.theme.panel.body.borderRadius};
+  padding: ${(props) =>
     props.noPadding ? '10px' : props.theme.panel.body.padding};
   height: auto;
 `;
 
-const initialState = {};
-type State = Readonly<typeof initialState>;
+const defaultProps = {
+  panelStyle: 'primary',
+} satisfies Partial<PanelBodyProps>;
 
-export class PanelBody extends React.Component<Props> {
-  static defaultProps = {
-    panelStyle: 'primary',
-  };
-
-  readonly state: State = initialState;
-
-  render() {
-    const { children, theme, ...props } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SPanelBody {...props}>{children}</SPanelBody>
-      </ThemeProvider>
-    );
-  }
-}
-
-export default withTheme(PanelBody);
+export const PanelBody = (props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SPanelBody {...rest}>{children}</SPanelBody>
+    </ThemeProvider>
+  );
+};

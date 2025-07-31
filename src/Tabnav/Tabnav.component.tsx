@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
-import Icon from 'react-icons-kit';
-import { ic_keyboard_arrow_down as ICKAD } from 'react-icons-kit/md/ic_keyboard_arrow_down';
 import _ from 'lodash';
-import { Menu } from '../Menu';
+import { KeyboardArrowDownIcon } from '@icons';
+import { getPropsWithDefaults } from '@utils';
+import { Menu } from '../Menu/Menu.component';
+import { Themes } from '@themes';
 
 export type Tab = {
   label: string;
@@ -22,7 +22,7 @@ export type Tab = {
   }[];
 };
 
-export type Props = {
+export type TabnavProps = React.PropsWithChildren<{
   /**
    * An array of objects.
    * Each object defines properties of each tab.
@@ -57,16 +57,16 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 
-const STabNav = styled.div`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.typography.fontSize};
-  color: ${(props: Props) => props.theme.tabnav.color};
-  padding: ${(props: Props) => props.theme.tabnav.padding};
-  background: ${(props: Props) => props.theme.tabnav.background};
-  border-top: ${(props: Props) => props.theme.tabnav.borderTop};
-  border-bottom: ${(props: Props) => props.theme.tabnav.borderBottom};
+const STabNav = styled.div<TabnavProps>`
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.typography.fontSize};
+  color: ${(props) => props.theme.tabnav.color};
+  padding: ${(props) => props.theme.tabnav.padding};
+  background: ${(props) => props.theme.tabnav.background};
+  border-top: ${(props) => props.theme.tabnav.borderTop};
+  border-bottom: ${(props) => props.theme.tabnav.borderBottom};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -131,48 +131,46 @@ const handleTabClick = (tab: Tab, e, onTabClick) => {
 const Tab = ({ tab, onTabClick }: { tab: Tab; onTabClick: any }) => (
   <STab
     role="tab"
-    tabIndex="0"
     onClick={(e: any) => handleTabClick(tab, e, onTabClick)}
     data-testid={_.kebabCase(tab.label)}
     {...tab}
   >
     {tab.label}
-    {tab.children && <Icon size={24} icon={ICKAD} className="icon" />}
+    {tab.children && (
+      <KeyboardArrowDownIcon height={24} width={24} className="icon" />
+    )}
   </STab>
 );
 
-export const Tabnav: React.FunctionComponent<Props> = ({
-  theme,
-  children,
-  tabs,
-  onTabClick = () => {},
-  popoverProps,
-  tabsBarProps,
-  ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <STabNav {...props}>
-      <SChildren>{children}</SChildren>
-      {tabs && Boolean(tabs.length) && (
-        <STabsBar {...tabsBarProps}>
-          {tabs.map((tab: Tab, i: any) =>
-            tab.children ? (
-              <Menu
-                items={tab.children}
-                onItemClick={onTabClick}
-                triggerComponent={<Tab tab={tab} onTabClick={onTabClick} />}
-              />
-            ) : (
-              <Tab tab={tab} onTabClick={onTabClick} />
-            ),
-          )}
-        </STabsBar>
-      )}
-    </STabNav>
-  </ThemeProvider>
-);
-
-Tabnav.defaultProps = {
+const defaultProps = {
   tabs: [],
   theme: Themes.canopyTheme,
+} satisfies Partial<TabnavProps>;
+
+export const Tabnav: React.FunctionComponent<TabnavProps> = (props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { theme, children, tabs, tabsBarProps, onTabClick, ...rest } =
+    propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <STabNav {...rest}>
+        <SChildren>{children}</SChildren>
+        {tabs && Boolean(tabs.length) && (
+          <STabsBar {...tabsBarProps}>
+            {tabs.map((tab: Tab, _i: any) =>
+              tab.children ? (
+                <Menu
+                  items={tab.children}
+                  onItemClick={onTabClick}
+                  triggerComponent={<Tab tab={tab} onTabClick={onTabClick} />}
+                />
+              ) : (
+                <Tab tab={tab} onTabClick={onTabClick} />
+              ),
+            )}
+          </STabsBar>
+        )}
+      </STabNav>
+    </ThemeProvider>
+  );
 };

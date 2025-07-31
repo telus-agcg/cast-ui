@@ -1,12 +1,11 @@
 import * as React from 'react';
 import _ from 'lodash';
-import cn from 'classnames';
 import styled, { ThemeProvider } from 'styled-components';
+import clsx from 'clsx';
+import { getDataProps } from '@utils';
+import { Themes } from '@themes';
 
-import { Themes } from '../../themes';
-import { getDataProps } from '../../utils/common';
-
-export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
+export type LinkProps = React.LinkHTMLAttributes<HTMLLinkElement> & {
   /**
    * The ID of the control
    *
@@ -47,50 +46,63 @@ export type Props = React.LinkHTMLAttributes<HTMLLinkElement> & {
   theme?: any;
 };
 
-const SLink = styled.a`
-  font-weight: ${(props: Props) => props.theme.typography.link.fontWeight};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.typography.link.fontSize};
-  color: ${(props: Props) => props.theme.typography.link.color};
+const SLink = styled.a<LinkProps>`
+  font-weight: ${(props: any) => props.theme.typography.link.fontWeight};
+  font-family: ${(props: any) => props.theme.typography.fontFamily};
+  font-size: ${(props: any) => props.theme.typography.link.fontSize};
+  color: ${(props: any) => props.theme.typography.link.color};
   cursor: pointer;
-  text-decoration: ${(props: Props) =>
+  text-decoration: ${(props: any) =>
     props.theme.typography.link.textDecoration};
   display: inline-block;
   outline: none;
   &:hover,
   &:focus {
-    color: ${(props: Props) => props.theme.typography.link.hover.color};
-    text-decoration: ${(props: Props) =>
+    color: ${(props: any) => props.theme.typography.link.hover.color};
+    text-decoration: ${(props: any) =>
       props.theme.typography.link.hover.textDecoration};
   }
   &:visited {
-    color: ${(props: Props) => props.theme.typography.link.visited.color};
-    text-decoration: ${(props: Props) =>
+    color: ${(props: any) => props.theme.typography.link.visited.color};
+    text-decoration: ${(props: any) =>
       props.theme.typography.link.visited.textDecoration};
   }
   &.disabled {
-    color: ${(props: Props) =>
+    color: ${(props: any) =>
       props.theme.typography.link.disabled.color} !important;
     cursor: not-allowed !important;
   }
 `;
 
-export const Link: React.FunctionComponent<Props> = ({
-  className,
-  children,
-  theme,
-  ...linkProps
-}) => {
-  const { id } = linkProps;
-  const dataProps: any = getDataProps(linkProps);
+const defaultProps = {
+  href: 'javascript:void(0)',
+  disabled: false,
+  theme: Themes.canopyTheme,
+} satisfies Partial<LinkProps>;
+
+export const Link: React.FunctionComponent<LinkProps> = (props: LinkProps) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
+  const dataProps: any = getDataProps(propsWithDefaults);
+  const {
+    theme,
+    id,
+    disabled,
+    className,
+    children,
+    onClick,
+    onMouseEnter,
+    href,
+    target,
+    ...rest
+  } = propsWithDefaults;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      {linkProps.disabled ? (
+      {disabled ? (
         <SLink
           {...dataProps}
           id={id}
-          className={cn([className, 'disabled'])}
-          onClick={e => e.preventDefault()}
+          className={clsx([className, 'disabled'])}
+          onClick={(e) => e.preventDefault()}
         >
           {children}
         </SLink>
@@ -99,19 +111,14 @@ export const Link: React.FunctionComponent<Props> = ({
           {...dataProps}
           id={id}
           className={className}
-          onClick={linkProps.onClick}
-          onMouseEnter={linkProps.onMouseEnter}
-          href={linkProps.href}
-          target={linkProps.target}
+          onClick={onClick}
+          onMouseEnter={onMouseEnter}
+          href={href}
+          target={target}
         >
           {children}
         </SLink>
       )}
     </ThemeProvider>
   );
-};
-Link.defaultProps = {
-  href: 'javascript:void(0)',
-  theme: Themes.canopyTheme,
-  disabled: false,
 };

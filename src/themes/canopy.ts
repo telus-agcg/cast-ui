@@ -1,5 +1,4 @@
 import { defaultColors } from './default';
-export { ThemeProvider } from 'styled-components';
 
 export const canopyColors = {
   white: '#ffffff',
@@ -9,6 +8,7 @@ export const canopyColors = {
   lt800: '#DADCE0', // updated
   lt400: '#EEF0F2', // updated
   lt200: '#FAFAFA', // updated
+  grey500: '#81878C',
   primary: '#65299E', // updated
   primaryHover: '#4B286D', // updated
   primaryFaded: '#D6C4E6', // updated
@@ -264,7 +264,7 @@ export const canopyTheme = {
     code: {
       background: canopyColors.lt400,
       fontFamily:
-        '"Roboto Mono", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
+        '"Roboto Variable", Consolas, "Andale Mono", "DejaVu Sans Mono", monospace',
       fontSize: '95%',
       lineHeight: '140%',
     },
@@ -323,7 +323,7 @@ export const canopyTheme = {
     },
     pre: {
       background: canopyColors.lt400,
-      fontFamily: '"Roboto Mono", Courier, monospace',
+      fontFamily: '"Roboto Variable", Courier, monospace',
       fontSize: '100%',
       lineHeight: '100%',
     },
@@ -408,27 +408,38 @@ export const canopyTheme = {
   radioButton: {
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: canopyColors.primary,
+    borderColor: canopyColors.drk400,
+    selectedColor: canopyColors.primary,
     disabledRadio: canopyColors.drk400,
     disabledText: canopyColors.drk400,
+    disabledCheckedRadio: canopyColors.grey500,
+    disabledNotCheckedBGColor: canopyColors.drk400,
+    disabledNotCheckedPadding: '0px',
     unselectedColor: canopyColors.white,
     stackedSpacing: '10px',
     inlineSpacing: '20px',
     sm: {
       size: '6px',
+      notCheckedSize: '12px',
     },
     md: {
       size: '10px',
+      notCheckedSize: '16px',
     },
     lg: {
       size: '14px',
+      notCheckedSize: '20px',
     },
   },
   checkbox: {
+    top: '4px',
+    left: '1px',
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: canopyColors.drk400,
-    disabledCheck: canopyColors.drk400,
+    borderRadius: '4px',
+    disabledCheck: canopyColors.grey500,
+    disabledNotChecked: canopyColors.drk400,
     disabledText: canopyColors.drk400,
     unselectedColor: canopyColors.white,
     selectedColor: canopyColors.primary,
@@ -440,10 +451,12 @@ export const canopyTheme = {
     md: {
       squareSize: '10px',
       marginLeft: '6px',
+      borderWidth: '0 1px 1px 0',
     },
     lg: {
       squareSize: '14px',
       marginLeft: '6.5px',
+      borderWidth: '0 2px 2px 0',
     },
   },
   toggle: {

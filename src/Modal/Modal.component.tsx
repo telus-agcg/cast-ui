@@ -1,9 +1,13 @@
 import * as React from 'react';
-import ReactModal, { Props as ReactModalProps } from 'react-modal';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import ReactModal, {
+  Props as ReactModalProps,
+  Styles as ReactModalStyles,
+} from 'react-modal';
+import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
-export interface Props extends ReactModalProps {
+export interface ModalProps extends ReactModalProps {
   /**
    * The ID of the control
    *
@@ -22,7 +26,7 @@ export interface Props extends ReactModalProps {
    * @default null
    **/
   footerContent:
-    | JSX.Element
+    | React.JSX.Element
     | React.Component
     | React.FunctionComponent
     | string;
@@ -89,7 +93,7 @@ const modalSizeRules: Function = (modalSize: string, theme: any) => {
   }
 };
 
-const SReactModal = styled(ReactModal)`
+const SReactModal = styled(ReactModal)<Partial<ModalProps>>`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   color: ${(props: any) => props.theme.modal.body.color};
   outline: none;
@@ -98,7 +102,9 @@ const SReactModal = styled(ReactModal)`
   flex-direction: column;
 `;
 
-const ModalHeaderDiv = styled.div`
+const ModalHeaderDiv = styled.div<
+  Partial<ModalProps> & { disableCloseIcon: boolean }
+>`
   min-height: ${(props: any) => props.theme.modal.header.minHeight};
   background-color: ${(props: any) => props.theme.modal.header.backgroundColor};
   flex-shrink: 0;
@@ -128,16 +134,15 @@ const ModalHeaderDiv = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    cursor: ${(props: Props) =>
-      props.disableCloseIcon ? 'not-allowed' : 'pointer'};
+    cursor: ${(props) => (props.disableCloseIcon ? 'not-allowed' : 'pointer')};
     border-radius: 50%;
     transition: all 0.3s;
     &:hover {
-      background-color: ${(props: Props) =>
+      background-color: ${(props) =>
         props.disableCloseIcon
           ? 'none'
           : props.theme.modal.closeButton.hoverBackground};
-      color: ${(props: Props) =>
+      color: ${(props) =>
         props.disableCloseIcon
           ? props.theme.pagination.button.disabledText
           : props.theme.pagination.hoverTextColor};
@@ -150,15 +155,14 @@ const ModalHeaderWrapper = styled.div`
   align-items: center;
 `;
 
-const ModalBodyDiv = styled.div`
-  margin: ${(props: any) => props.theme.modal.body.padding};
-  padding-bottom: ${(props: any) => props.theme.modal.body.padding};
-  font-family: ${(props: any) => props.theme.typography.fontFamily};
+const ModalBodyDiv = styled.div<Partial<ModalProps>>`
+  margin: ${(props) => props.theme.modal.body.padding};
+  padding-bottom: ${(props) => props.theme.modal.body.padding};
+  font-family: ${(props) => props.theme.typography.fontFamily};
   position: relative;
   height: 100%;
-  overflow-y: ${(props: any) =>
-    props.modalSize === 'full' ? 'scroll' : 'auto'};
-  color: ${(props: any) => props.theme.modal.body.color};
+  overflow-y: ${(props) => (props.modalSize === 'full' ? 'scroll' : 'auto')};
+  color: ${(props) => props.theme.modal.body.color};
 `;
 
 const ModalBlurWrapper = styled.div`
@@ -177,7 +181,7 @@ const ModalBlurDiv = styled.div`
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
 `;
 
-const ModalFooterDiv = styled.div`
+const ModalFooterDiv = styled.div<Partial<ModalProps>>`
   flex-shrink: 0;
   padding: 0 ${(props: any) => props.theme.modal.footer.padding}
     ${(props: any) => props.theme.modal.footer.padding};
@@ -190,18 +194,32 @@ const ModalFooterDiv = styled.div`
   border-bottom-right-radius: ${(props: any) => props.theme.modal.borderRadius};
 `;
 
-export class Modal extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+const defaultProps = {
+  modalSize: 'md',
+  disableCloseIcon: false,
+  blurEffect: true,
+  theme: Themes.canopyTheme,
+} satisfies Partial<ModalProps>;
 
-  static defaultProps = {
-    modalSize: 'md',
-    disableCloseIcon: false,
-    theme: Themes.canopyTheme,
-  };
+export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const {
+    theme,
+    zIndex,
+    children,
+    modalTitle,
+    footerContent,
+    blurEffect,
+    modalSize,
+    disableCloseIcon,
+    onTitleClose,
+    appElement,
+    onAfterClose,
+    onAfterOpen,
+    ...rest
+  } = propsWithDefaults;
 
-  getModalStyles = () => {
+  const getModalStyles = () => {
     const isIE11 =
       !!window['MSInputMethodContext'] && !!document['documentMode'];
 
@@ -214,9 +232,7 @@ export class Modal extends React.Component<Props> {
         bottom: 0,
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         textAlign: 'center',
-        zIndex: this.props.zIndex
-          ? this.props.zIndex
-          : this.props.theme.modal.overlay.zIndex,
+        zIndex: zIndex ? zIndex : theme.modal.overlay.zIndex,
       },
       content: {
         top: '40%',
@@ -225,7 +241,7 @@ export class Modal extends React.Component<Props> {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -40%)',
-        backgroundColor: this.props.theme.modal.body.backgroundColor,
+        backgroundColor: theme.modal.body.backgroundColor,
         border: '',
         height: isIE11 ? '50%' : 'auto',
         lineHeight: '20px',
@@ -236,87 +252,71 @@ export class Modal extends React.Component<Props> {
         padding: '0',
         textAlign: 'left',
         fontSize: '14px',
-        borderRadius: this.props.theme.modal.borderRadius,
-        zIndex: this.props.zIndex
-          ? this.props.zIndex
-          : this.props.theme.modal.overlay.zIndex,
+        borderRadius: theme.modal.borderRadius,
+        zIndex: zIndex ? zIndex : theme.modal.overlay.zIndex,
       },
     };
   };
 
-  OnAfterOpen = fn => {
+  const handleAfterOpen = (fn) => {
     document.body.style.overflow = 'hidden';
     if (fn) {
       fn();
     }
   };
 
-  OnAfterClose = fn => {
+  const handleAfterClose = (fn) => {
     document.body.removeAttribute('style');
     if (fn) {
       fn();
     }
   };
 
-  render() {
-    const {
-      theme,
-      onAfterOpen,
-      onAfterClose,
-      children,
-      modalTitle,
-      footerContent,
-      blurEffect = true,
-      ...props
-    } = this.props;
-    return (
-      <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-        <SReactModal
-          role="dialog"
-          style={this.getModalStyles()}
-          modalSize={this.props.modalSize || 'md'}
-          appElement={props.appElement || document.getElementById('root')!}
-          onAfterOpen={() => this.OnAfterOpen(onAfterOpen)}
-          onAfterClose={() => this.OnAfterClose(onAfterClose)}
-          {...props}
-        >
-          {this.props.modalTitle && (
-            <ModalHeaderDiv
-              modalSize={this.props.modalSize}
-              disableCloseIcon={this.props.disableCloseIcon}
-            >
-              <ModalHeaderWrapper>
-                <h5>{this.props.modalTitle}</h5>
-                {props.onTitleClose && (
-                  <button
-                    type="button"
-                    aria-label="Close"
-                    onClick={props.onTitleClose}
-                    disabled={props.disableCloseIcon}
-                  >
-                    <span>&times;</span>
-                  </button>
-                )}
-              </ModalHeaderWrapper>
-            </ModalHeaderDiv>
-          )}
-          <ModalBodyDiv>{children}</ModalBodyDiv>
-          {blurEffect ? (
-            <ModalBlurWrapper>
-              <ModalBlurDiv />
-            </ModalBlurWrapper>
-          ) : (
-            ''
-          )}
-          {footerContent && (
-            <ModalFooterDiv modalTitle={modalTitle}>
-              {footerContent}
-            </ModalFooterDiv>
-          )}
-        </SReactModal>
-      </ThemeProvider>
-    );
-  }
-}
-
-export default Modal;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SReactModal
+        role="dialog"
+        style={getModalStyles() as ReactModalStyles}
+        modalSize={modalSize || 'md'}
+        ariaHideApp={false}
+        onAfterOpen={() => handleAfterOpen(onAfterOpen)}
+        onAfterClose={() => handleAfterClose(onAfterClose)}
+        {...rest}
+      >
+        {modalTitle && (
+          <ModalHeaderDiv
+            modalSize={modalSize}
+            disableCloseIcon={disableCloseIcon}
+          >
+            <ModalHeaderWrapper>
+              <h5>{modalTitle}</h5>
+              {onTitleClose && (
+                <button
+                  type="button"
+                  aria-label="Close"
+                  onClick={onTitleClose}
+                  disabled={disableCloseIcon}
+                >
+                  <span>&times;</span>
+                </button>
+              )}
+            </ModalHeaderWrapper>
+          </ModalHeaderDiv>
+        )}
+        <ModalBodyDiv>{children}</ModalBodyDiv>
+        {blurEffect ? (
+          <ModalBlurWrapper>
+            <ModalBlurDiv />
+          </ModalBlurWrapper>
+        ) : (
+          ''
+        )}
+        {footerContent && (
+          <ModalFooterDiv modalTitle={modalTitle}>
+            {footerContent as React.ReactNode}
+          </ModalFooterDiv>
+        )}
+      </SReactModal>
+    </ThemeProvider>
+  );
+};

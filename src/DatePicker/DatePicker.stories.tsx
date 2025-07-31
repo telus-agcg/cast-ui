@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { DatePicker } from '..';
+import { Meta, StoryObj } from '@storybook/react';
+import { DatePicker } from './DatePicker.component';
 
-const descriptionComponent = `
+const description = `
 This is a DatePicker is based on [react-datepicker](https://reactdatepicker.com/).
 `;
 
-export default {
+const meta: Meta<typeof DatePicker> = {
   title: 'Components/Interactions/Date Picker',
   component: DatePicker,
   argTypes: {
@@ -15,93 +15,68 @@ export default {
       },
     },
     selectsRange: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     showIcon: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     iconPosition: {
-      control: {
-        options: ['right', 'left'],
-        type: 'select',
-      },
+      control: 'boolean',
+      options: ['right', 'left'],
     },
     datePickerStyle: {
-      control: {
-        options: ['primary', 'secondary', 'success', 'warning', 'danger'],
-        type: 'select',
-      },
+      control: 'select',
+      options: ['primary', 'secondary', 'success', 'warning', 'danger'],
     },
     datePickerSize: {
-      control: {
-        options: ['sm', 'md', 'lg'],
-        type: 'inline-radio',
-      },
+      control: 'inline-radio',
+      options: ['sm', 'md', 'lg'],
     },
     invalid: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     invalidText: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     invalidTextColor: {
-      control: {
-        type: 'color',
-      },
+      control: 'color',
     },
     monthsShown: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
     className: {
       control: false,
     },
     withPortal: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     wrapperId: {
       control: false,
-    },
-    onDateChange: {
-      action: {
-        type: 'onDateChange',
-      },
     },
     onFocusChange: {
       control: false,
     },
   },
   parameters: {
-    docs: {
-      description: {
-        component: descriptionComponent,
-      },
-    },
+    description,
   },
 };
 
-export const _DatePicker = args => <DatePicker key="0" {...args} />;
+export default meta;
 
-_DatePicker.args = {
-  datePickerSize: 'md',
-  selectsRange: false,
-  datePickerStyle: 'primary',
-  iconPosition: 'right',
-  invalid: false,
-  invalidText: 'A valid value is required',
-  monthsShown: 1,
-  placeholderText: 'Date',
-  showIcon: true,
-  withPortal: false,
+type Story = StoryObj<typeof DatePicker>;
+
+export const _DatePicker: Story = {
+  args: {
+    datePickerSize: 'md',
+    datePickerStyle: 'primary',
+    iconPosition: 'right',
+    invalid: false,
+    invalidText: 'A valid value is required',
+    monthsShown: 1,
+    placeholderText: 'Date',
+    showIcon: true,
+    withPortal: false,
+    excludeDates: [new Date()],
+  },
 };

@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import Checkbox from '../Checkbox';
 import _ from 'lodash';
-import { components, ValueContainerProps } from 'react-select';
+import styled from 'styled-components';
+import {
+  components as reactSelectComponents,
+  ValueContainerProps,
+} from 'react-select';
 import { SelectMenuList } from './SelectMenuList';
+import { Checkbox } from '../Checkbox/Checkbox.component';
 
-interface Props {
+export interface SelectCheckboxProps {
   options: any[];
   isMulti?: boolean;
   isFilterable?: boolean;
@@ -15,7 +18,7 @@ interface Props {
   clearText?: any;
 }
 
-interface TruncatedValuesProps {
+export interface TruncatedValuesProps {
   selectedOptions: any;
   maxWidth: number;
 }
@@ -49,7 +52,7 @@ const TruncatedValues = ({
           let currentTextWidth = 0;
 
           // Create a temporary element to measure the width of the ellipsis text
-          const createTempElement = text => {
+          const createTempElement = (text) => {
             const tempSpan = document.createElement('span');
             tempSpan.style.visibility = 'hidden';
             tempSpan.style.position = 'absolute';
@@ -136,7 +139,7 @@ const ValueContainer = ({
   children,
   ...props
 }: ValueContainerProps<any, true>) => {
-  const [values, input] = children as [any[], JSX.Element];
+  const [values, input] = children as [any[], React.JSX.Element];
   const [maxWidth, setMaxWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const hasSelectedOptions = props.hasValue && values.length > 0;
@@ -160,7 +163,7 @@ const ValueContainer = ({
   }, [containerRef]);
 
   return (
-    <components.ValueContainer {...props}>
+    <reactSelectComponents.ValueContainer {...props}>
       <SFlex ref={containerRef}>
         {!hasSelectedOptions ? (
           <span className="react-select__placeholder">
@@ -175,7 +178,7 @@ const ValueContainer = ({
 
         {input}
       </SFlex>
-    </components.ValueContainer>
+    </reactSelectComponents.ValueContainer>
   );
 };
 
@@ -187,24 +190,24 @@ export const SelectCheckboxProps = ({
   isFilterable,
   id,
   clearText,
-}: Props) => {
+}: SelectCheckboxProps) => {
   const selectMulti = (val, updateSelectedOptions) => {
-    const isSelectedOption = selectedOptions.find(o => o.value === val);
+    const isSelectedOption = selectedOptions.find((o) => o.value === val);
     let res: any[] = [];
     if (isSelectedOption) {
-      res = selectedOptions.filter(option => option.value !== val);
+      res = selectedOptions.filter((option) => option.value !== val);
     } else {
-      res = [...selectedOptions, options.find(o => o.value === val)];
+      res = [...selectedOptions, options.find((o) => o.value === val)];
     }
     updateSelectedOptions(res);
   };
 
   const selectSingle = (val, updateSelectedOptions) => {
-    const res: any[] = selectedOptions.filter(option => option.value !== val);
+    const res: any[] = selectedOptions.filter((option) => option.value !== val);
     updateSelectedOptions(res[0]);
   };
 
-  const handleCheck = val => {
+  const handleCheck = (val) => {
     if (isMulti) {
       selectMulti(val, updateSelectedOptions);
     } else {
@@ -236,7 +239,7 @@ export const SelectCheckboxProps = ({
         </div>
       );
     },
-    ClearIndicator: props => {
+    ClearIndicator: (props) => {
       const {
         innerProps: { ref, ...restInnerProps },
       } = props;

@@ -1,10 +1,9 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Tabs as ReactTabs, TabsProps } from 'react-tabs';
-import { Themes } from '../themes';
-import { Omit } from '../utils/castTypes';
+import { Tabs as ReactTabs, TabsProps as ReactTabsProps } from 'react-tabs';
+import { Omit } from '@utils';
 
-export interface Props extends Omit<TabsProps, 'as'> {
+export interface TabsProps extends Omit<ReactTabsProps, 'as'> {
   /**
    * Specify the tab that should be open on initial render.
    * This is a zero-based index, so first tab is 0, second tab is 1, ...
@@ -26,19 +25,18 @@ export interface Props extends Omit<TabsProps, 'as'> {
   theme?: any;
 }
 
-const STabWrapperDiv = styled.div`
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
+const STabWrapperDiv = styled.div<TabsProps>`
+  font-family: ${(props) => props.theme.typography.fontFamily};
 `;
 
-export class Tabs extends React.Component<Props> {
+export class Tabs extends React.Component<React.PropsWithChildren<TabsProps>> {
   public static readonly tabsRole: string = 'Tabs';
 
-  constructor(props: Props) {
+  constructor(props: TabsProps) {
     super(props);
   }
   static defaultProps = {
     onSelect: () => {},
-    theme: Themes.canopyTheme,
   };
 
   render() {

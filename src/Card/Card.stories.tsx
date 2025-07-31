@@ -1,7 +1,6 @@
-import * as React from 'react';
-
-import { Card } from '../';
-import Title from '../Typography/Title';
+import { Meta, StoryObj } from '@storybook/react';
+import { Card } from './Card.component';
+import { Title } from '@typography';
 
 const description = `
 ###### Style
@@ -14,13 +13,13 @@ Options include
 - danger
 `;
 
-export default {
+const meta: Meta<typeof Card> = {
   title: 'Components/Data Display/Card',
   component: Card,
   argTypes: {
     cardStyle: {
       options: ['success', 'primary', 'secondary', 'danger', 'warning'],
-      control: { type: 'select' },
+      control: 'select',
     },
     theme: {
       table: {
@@ -29,27 +28,28 @@ export default {
     },
   },
   parameters: {
-    docs: {
-      description: {
-        component: description,
-      },
-    },
+    description,
   },
 };
 
-export const _Card = args => (
-  <Card {...args}>
-    <Title>Card Header</Title>
-    <p>Aliquam porttitor aliquet fringilla.</p>
-    <p>
-      Duis pellentesque, risus id faucibus porttitor,
-      <br />
-      dolor arcu tristique ligula, id tincidunt odio nisl id tellus. dolor arcu
-      tristique ligula, id tincidunt odio nisl id tellus.
-    </p>
-  </Card>
-);
+export default meta;
 
-_Card.args = {
-  cardStyle: 'primary',
+type Story = StoryObj<typeof Card>;
+
+export const _Card: Story = {
+  args: {
+    cardStyle: 'primary',
+    children: (
+      <>
+        <Title>Card Header</Title>
+        <p>Aliquam porttitor aliquet fringilla.</p>
+        <p>
+          Duis pellentesque, risus id faucibus porttitor,
+          <br />
+          dolor arcu tristique ligula, id tincidunt odio nisl id tellus. dolor
+          arcu tristique ligula, id tincidunt odio nisl id tellus.
+        </p>
+      </>
+    ),
+  },
 };

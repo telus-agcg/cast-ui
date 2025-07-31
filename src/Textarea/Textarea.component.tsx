@@ -1,10 +1,13 @@
 import * as React from 'react';
-import ErrorMessage from '../Typography/ErrorMessage/index';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import { getPropsWithDefaults } from '@utils';
+import { ErrorMessage } from '@typography';
+import { Themes } from '@themes';
 
-export interface Props
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaProps
+  extends React.PropsWithChildren<
+    React.TextareaHTMLAttributes<HTMLTextAreaElement>
+  > {
   /**
    * What is the maximum length of the text in the field?
    *
@@ -94,61 +97,63 @@ const SWrapperDiv = styled.div`
   position: relative;
 `;
 
-const STextarea = styled.textarea`
+const STextarea = styled.textarea<TextareaProps>`
   width: 100%;
   box-sizing: border-box;
-  background: ${(props: Props) => props.theme.textarea.background};
+  background: ${(props) => props.theme.textarea.background};
   border: 1px solid
-    ${(props: Props) =>
+    ${(props) =>
       props.invalid
         ? props.theme.validation.borderColor
         : props.theme.textarea.borderColor};
-  border-radius: ${(props: Props) =>
+  border-radius: ${(props) =>
     props.theme.textarea[props.textareaSize!].borderRadius};
-  padding: ${(props: Props) => props.theme.common[props.textareaSize!].padding};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) =>
-    props.theme.common[props.textareaSize!].fontSize};
-  color: ${(props: Props) => props.theme.reverseText};
+  padding: ${(props) => props.theme.common[props.textareaSize!].padding};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.common[props.textareaSize!].fontSize};
+  color: ${(props) => props.theme.reverseText};
   outline: none !important;
   &:focus {
     outline: none !important;
-    border-color: ${(props: Props) =>
+    border-color: ${(props) =>
       props.invalid
         ? props.theme.validation.borderColor
         : props.theme.colors.primary};
     box-shadow: 0 0 3px
-      ${(props: Props) =>
+      ${(props) =>
         props.invalid
           ? props.theme.validation.borderColor
           : props.theme.colors.primary};
   }
   &:disabled {
-    border-color: ${props => props.theme.textarea.disabled.borderColor};
-    background: ${props => props.theme.textarea.disabled.background};
+    border-color: ${(props) => props.theme.textarea.disabled.borderColor};
+    background: ${(props) => props.theme.textarea.disabled.background};
     cursor: not-allowed;
   }
   ::placeholder {
-    color: ${props => props.theme.textarea.placeholderColor};
+    color: ${(props) => props.theme.textarea.placeholderColor};
   }
   &:hover {
-    border-color: ${(props: Props) => props.theme.textarea.hoverBorderColor};
+    border-color: ${(props) => props.theme.textarea.hoverBorderColor};
     &:disabled {
-      border-color: ${props => props.theme.textarea.disabled.borderColor};
+      border-color: ${(props) => props.theme.textarea.disabled.borderColor};
     }
   }
   transition: all 0.3s;
   vertical-align: top;
-  resize: ${(props: Props) => (props.isReSizable ? 'auto' : 'none')};
+  resize: ${(props) => (props.isReSizable ? 'auto' : 'none')};
 `;
 
-export const Textarea: React.FunctionComponent<Props> = ({
-  theme,
-  children,
-  value,
-  onChange,
-  ...textareaProps
-}) => {
+const defaultProps = {
+  textareaSize: 'md',
+  isReSizable: false,
+  theme: Themes.canopyTheme,
+} satisfies Partial<TextareaProps>;
+
+export const Textarea: React.FunctionComponent<TextareaProps> = (props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { theme, value, onChange, children, ...textareaProps } =
+    propsWithDefaults;
   const errorId = textareaProps.invalid ? `${textareaProps.id}-error-msg` : '';
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
@@ -167,15 +172,9 @@ export const Textarea: React.FunctionComponent<Props> = ({
           <ErrorMessage
             id={errorId}
             message={textareaProps.invalidText || ''}
-            textColor={textareaProps.invalidTextColor || ''}
           />
         )}
       </SWrapperDiv>
     </ThemeProvider>
   );
-};
-Textarea.defaultProps = {
-  textareaSize: 'md',
-  theme: Themes.canopyTheme,
-  isReSizable: false,
 };

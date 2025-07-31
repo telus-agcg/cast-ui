@@ -92,10 +92,11 @@ squashed, the title of the PR is used as the header.
 
 #### Branches
 
-We currently use two main branches for releases:
+We currently use three main branches for releases:
 
 - `beta` is a pre-release branch
 - `master` is the production branch
+- `next` is an "experimental" branch for testing out large new features / updates
 
 Commits on these branches will trigger new releases.
 
@@ -103,7 +104,7 @@ When starting a new feature or bugfix, create a branch from `beta`. This will ad
 work to the collection of work going out in the next release and allow for a beta release
 to be tested by QA and other teams before going out in production.
 
-Example branch names:
+Example commit messages:
 
 - `fix(select): update select border`
 - `feat(button): add new prop`
@@ -133,6 +134,21 @@ Suggestion: Since the `.tgz` files create clutter over time, create a script to 
 move it somewhere you can clean up later, and copy the path to your clipboard.
 
 When the developer is confident in the work, a PR should be opened against `beta` for approval.
+
+#### Adding icons
+
+All icons used in Cast should be React SVG components.
+You can find a repository of these [here](https://reactsvgicons.com/ic)
+
+When adding a new icon, it is preferred if it comes from "Google Material Icons" and the "Round" variant should be used
+
+Icon componets should be named in the `<icon_name>Icon` format like this:
+
+```
+ErrorIcon
+InfoIcon
+KeyboardArrowDownIcon
+```
 
 #### Releases
 

@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Pagination } from '../index';
+import { Meta, StoryObj } from '@storybook/react';
+import { Pagination } from './Pagination.component';
 
-export default {
+const meta: Meta<typeof Pagination> = {
   title: 'Components/Navigation/Pagination',
   component: Pagination,
   argTypes: {
@@ -21,30 +21,20 @@ export default {
       },
     },
     pages: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
     page: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
     pageSize: {
+      control: 'select',
       options: [10, 20, 50, 100],
-      control: {
-        type: 'select',
-      },
     },
     showPageSizeOptions: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     rowsText: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     PageButtonComponent: {
       control: false,
@@ -75,13 +65,15 @@ export default {
   },
 };
 
-export const _Pagination = args => {
-  return <Pagination {...args} />;
-};
+export default meta;
 
-_Pagination.args = {
-  pages: 10,
-  page: 3,
-  pageSize: 20,
-  showPageSizeOptions: true,
+type Story = StoryObj<typeof Pagination>;
+
+export const _Pagination: Story = {
+  args: {
+    pages: 10,
+    page: 3,
+    pageSize: 20,
+    showPageSizeOptions: true,
+  },
 };

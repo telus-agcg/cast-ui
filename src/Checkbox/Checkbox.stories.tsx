@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Checkbox } from '../';
+import Checkbox from './Checkbox.component';
 
 const description = `
 The Checkbox component improves the styling, layout and behavior of default checkbox input HTML element.
@@ -69,7 +68,7 @@ export default {
   },
 };
 
-const _Checkbox = args => (
+const _Checkbox = (args) => (
   <div>
     <Checkbox id="myInput1" value="1" data-testid="checkbox-1" {...args}>
       One
@@ -78,6 +77,7 @@ const _Checkbox = args => (
 );
 
 export const _Regular = _Checkbox.bind({});
+// @ts-ignore
 _Regular.args = {
   cbSize: 'md',
   checked: true,
@@ -90,6 +90,7 @@ _Regular.args = {
 };
 
 export const _Indeterminate = _Checkbox.bind({});
+// @ts-ignore
 _Indeterminate.args = {
   cbSize: 'md',
   checked: true,
@@ -101,7 +102,7 @@ _Indeterminate.args = {
   defaultChecked: true,
 };
 
-export const _listOfCheckboxes = args => (
+export const _listOfCheckboxes = (args) => (
   <div>
     <div>
       <Checkbox id="myInput1" value="1" data-testid="checkbox-1" {...args}>

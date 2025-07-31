@@ -1,26 +1,20 @@
 import * as React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { Toggle } from './Toggle.component';
 
-import { Toggle } from '../';
-
-export default {
+const meta: Meta<typeof Toggle> = {
   title: 'Components/Interactions/Toggle',
   component: Toggle,
   argTypes: {
     toggleSize: {
-      control: {
-        type: 'select',
-        options: ['sm', 'md', 'lg'],
-      },
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
     checked: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     disabled: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     onChange: {
       action: 'onChange',
@@ -45,33 +39,38 @@ export default {
   },
 };
 
-export const _Toggle = ({ checked, ...args }) => {
-  const [toggle, setToggle] = React.useState(false);
+export default meta;
 
-  React.useEffect(() => {
-    setToggle(checked);
-  }, [checked]);
+type Story = StoryObj<typeof Toggle>;
 
-  const handleToggle = () => setToggle(!toggle);
+export const _Toggle: Story = {
+  args: {
+    toggleSize: 'md',
+    checked: true,
+    disabled: false,
+  },
+  render: ({ checked, ...args }) => {
+    const [toggle, setToggle] = React.useState(false);
 
-  return (
-    <div>
-      <Toggle
-        id="toggleId"
-        {...args}
-        data-testid="toggle"
-        checked={toggle}
-        onChange={handleToggle}
-        value="1"
-      >
-        One
-      </Toggle>
-    </div>
-  );
-};
+    React.useEffect(() => {
+      setToggle(Boolean(checked));
+    }, [checked]);
 
-_Toggle.args = {
-  toggleSize: 'md',
-  checked: true,
-  disabled: false,
+    const handleToggle = () => setToggle(!toggle);
+
+    return (
+      <div>
+        <Toggle
+          id="toggleId"
+          {...args}
+          data-testid="toggle"
+          checked={toggle}
+          onChange={handleToggle}
+          value="1"
+        >
+          One
+        </Toggle>
+      </div>
+    );
+  },
 };

@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Link, Select } from '../';
 import styled from 'styled-components';
+import { Link } from '../Typography/Link/Link.component';
+import { Meta, StoryObj } from '@storybook/react';
+import { CustomSelect } from './Select.component';
 
 const FlexDiv = styled.div`
   display: flex;
@@ -19,9 +21,9 @@ The recommended implementation can be found [here](https://react-select.com/upgr
 Review the [upgrade guide](https://react-select.com/upgrade-guide) on what to expect if coming from version 1.
     `;
 
-export default {
+const meta: Meta<typeof CustomSelect> = {
   title: 'Components/Interactions/Select',
-  component: Select,
+  component: CustomSelect,
   argTypes: {
     theme: {
       table: {
@@ -29,51 +31,33 @@ export default {
       },
     },
     creatable: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     isMulti: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     isDisabled: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     isClearable: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     isFilterable: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     invalid: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     selectSize: {
-      control: {
-        type: 'select',
-        options: ['sm', 'md', 'lg'],
-      },
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
     optionType: {
-      control: {
-        type: 'select',
-        options: ['checkbox', 'default'],
-      },
+      control: 'select',
+      options: ['checkbox', 'default'],
     },
     invalidText: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     onChange: {
       action: {
@@ -98,58 +82,56 @@ export default {
   },
   parameters: {
     docs: {
-      description: {
-        component: description,
-      },
+      description,
     },
   },
 };
 
-const _Select = args => (
-  <>
-    <Select id={'SampleSelect'} data-testid={args.dataTestId} {...args} />
-  </>
-);
+export default meta;
 
-export const Regular = _Select.bind({});
-Regular.args = {
-  creatable: true,
-  dataTestId: 'single-select',
-  isMulti: false,
-  isDisabled: false,
-  isClearable: false,
-  isFilterable: false,
-  selectSize: 'md',
-  invalid: false,
-  invalidText: 'A valid value is required',
-  options: [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ],
-  optionType: 'default',
+type Story = StoryObj<typeof CustomSelect>;
+
+export const _Select: Story = {
+  args: {
+    creatable: true,
+    // dataTestId: 'single-select',
+    isMulti: false,
+    isDisabled: false,
+    isClearable: false,
+    isFilterable: false,
+    selectSize: 'md',
+    invalid: false,
+    invalidText: 'A valid value is required',
+    options: [
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' },
+    ],
+    optionType: 'default',
+  },
 };
 
-export const MultiSelect = _Select.bind({});
-MultiSelect.args = {
-  creatable: true,
-  dataTestId: 'multi-select',
-  isMulti: true,
-  isDisabled: false,
-  isFilterable: false,
-  selectSize: 'md',
-  invalid: false,
-  invalidText: 'A valid value is required',
-  isClearable: false,
-  options: [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ],
-  optionType: 'default',
+export const MultiSelect: Story = {
+  args: {
+    creatable: true,
+    // dataTestId: 'multi-select',
+    isMulti: true,
+    isDisabled: false,
+    isFilterable: false,
+    selectSize: 'md',
+    invalid: false,
+    invalidText: 'A valid value is required',
+    isClearable: false,
+    options: [
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' },
+    ],
+    optionType: 'default',
+  },
 };
 
-export const MultiSelectWithCheckbox = args => (
+export const MultiSelectWithCheckbox = (args) => (
   <MultiSelectCheckbox id="SampleCheckSelect" {...args} />
 );
 MultiSelectWithCheckbox.args = {
@@ -193,16 +175,16 @@ const groupedOptions = [
   },
 ];
 
-const MultiSelectCheckbox = args => {
+const MultiSelectCheckbox = (args) => {
   const [selectedOptions, setSelectedOptions] = React.useState<any[]>([]);
 
   const handleOceanClick = () => {
-    const redOption = colorOptions.find(o => o.value === 'red');
+    const redOption = colorOptions.find((o) => o.value === 'red');
     redOption.isDisabled = !redOption.isDisabled;
   };
 
-  const handleSelect = e => {
-    const newOceanOption = e.find(o => o.value === 'ocean');
+  const handleSelect = (e) => {
+    const newOceanOption = e.find((o) => o.value === 'ocean');
     const oldOceanOption = selectedOptions.find(
       (o: any) => o.value === 'ocean',
     );
@@ -212,23 +194,23 @@ const MultiSelectCheckbox = args => {
     ) {
       handleOceanClick();
     }
-    setSelectedOptions(state => e);
+    setSelectedOptions((_state) => e);
   };
 
-  const formatGroupLabel = data => (
+  const formatGroupLabel = (data) => (
     <div>
-      <span>{data.label}</span>
+      <span>{data.label}&nbsp;&nbsp;</span>
       <span>{data.options.length}</span>
     </div>
   );
 
   return (
     <FlexDiv>
-      <Select
+      <CustomSelect
         {...args}
         id="SampleCheckSelect"
         data-testid={'multi-select-checkbox'}
-        onChange={e => handleSelect(e)}
+        onChange={(e) => handleSelect(e)}
         selectedOption={selectedOptions}
         closeMenuOnSelect={false}
         formatGroupLabel={formatGroupLabel}

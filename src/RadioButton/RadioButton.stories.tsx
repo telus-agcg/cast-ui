@@ -1,6 +1,5 @@
-import * as React from 'react';
-
-import { RadioButton } from '../';
+import { Meta, StoryObj } from '@storybook/react';
+import { RadioButton } from './RadioButton.component';
 
 const description = `
 The Radio Button component improves the styling, layout and behavior of default radio input HTML element.
@@ -13,7 +12,7 @@ By default, any number of radio buttons that are immediate sibling will be *vert
 Alternatively, group radio buttons on the same horizontal row by settings the **displayStyle** prop to **inline**
 `;
 
-export default {
+const meta: Meta<typeof RadioButton> = {
   title: 'Components/Interactions/Radio Button',
   component: RadioButton,
   argTypes: {
@@ -23,26 +22,18 @@ export default {
       },
     },
     disabled: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     rbSize: {
-      control: {
-        type: 'select',
-        options: ['sm', 'md', 'lg'],
-      },
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
     checked: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     displayStyle: {
-      control: {
-        type: 'inline-radio',
-        options: ['inline', 'stacked'],
-      },
+      control: 'inline-radio',
+      options: ['inline', 'stacked'],
     },
     id: {
       control: false,
@@ -59,41 +50,44 @@ export default {
   },
   parameters: {
     docs: {
-      description: {
-        component: description,
-      },
+      description,
     },
   },
 };
 
-export const _RadioButton = args => {
-  return (
-    <div>
-      <RadioButton
-        id="myInput1"
-        data-testid="input1-radio-button"
-        name="radio-buttons"
-        value={1}
-        {...args}
-      >
-        One
-      </RadioButton>
-      <RadioButton
-        id="myInput2"
-        data-testid="input2-radio-button"
-        name="radio-buttons"
-        value={2}
-        {...args}
-      >
-        Two
-      </RadioButton>
-    </div>
-  );
-};
+export default meta;
 
-_RadioButton.args = {
-  disabled: false,
-  rbSize: 'md',
-  checked: true,
-  displayStyle: 'inline',
+type Story = StoryObj<typeof RadioButton>;
+
+export const _RadioButton: Story = {
+  args: {
+    disabled: false,
+    rbSize: 'md',
+    checked: true,
+    displayStyle: 'inline',
+  },
+  render: (args) => {
+    return (
+      <div>
+        <RadioButton
+          id="myInput1"
+          data-testid="input1-radio-button"
+          name="radio-buttons"
+          {...args}
+          value={'one'}
+        >
+          One
+        </RadioButton>
+        <RadioButton
+          id="myInput2"
+          data-testid="input2-radio-button"
+          name="radio-buttons"
+          {...args}
+          value={'two'}
+        >
+          Two
+        </RadioButton>
+      </div>
+    );
+  },
 };

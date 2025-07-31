@@ -1,9 +1,11 @@
 import * as React from 'react';
 import _ from 'lodash';
-import { Themes } from '../themes';
 import styled, { ThemeProvider } from 'styled-components';
-import { Popover } from '../Popover';
-import Icon from 'react-icons-kit';
+// import { Popover } from '../Popover/Popover.component';
+import { HeadlessPopover as Popover } from '../HeadlessPopover/HeadlessPopover.component';
+import { TippyProps } from '@tippyjs/react/headless';
+import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
 export interface MenuItem {
   disabled?: boolean;
@@ -13,7 +15,7 @@ export interface MenuItem {
   icon?: any;
 }
 
-export interface Props {
+export interface MenuProps {
   /**
    * An array of `MenuItem`.
    * Each `MenuItem` can contain the following properties:
@@ -43,6 +45,12 @@ export interface Props {
    * @default undefined
    **/
   triggerComponent: React.ReactElement;
+  /**
+   * Specifies the parent element for rendering the Popover
+   *
+   * @default undefined
+   **/
+  appendTo?: TippyProps['appendTo'];
 }
 
 const SMenu = styled.div`
@@ -64,33 +72,49 @@ const SMenuItem = styled.div`
   padding: 8px 16px;
   color: ${(props: any) => props.theme.select.color};
   background: ${(props: any) => props.theme.select.optionBackgroundColor};
-  :hover {
-    color: ${(props: any) => props.theme.select.highlightOptionColor};
+  display: flex;
+  align-items: center;
+  &:hover {
+    color: ${(props: any) =>
+      props.disabled
+        ? props.theme.select.color
+        : props.theme.select.highlightOptionColor};
     background: ${(props: any) =>
-      props.theme.select.highlightOptionBackgroundColor};
+      props.disabled
+        ? props.theme.select.optionBackgroundColor
+        : props.theme.select.highlightOptionBackgroundColor};
   }
 `;
-const MenuItemLabel = styled.span`
+
+interface MenuItemLabelProps {
+  itemsHasNonEmptyIcon: boolean;
+  hasIcon: boolean;
+}
+
+const MenuItemLabel = styled.span<MenuItemLabelProps>`
   padding-left: 4px;
-  margin-left: ${props =>
+  margin-left: ${(props) =>
     props.itemsHasNonEmptyIcon ? (props.hasIcon ? '0px' : '24px') : '0px'};
 `;
 
 const noop = () => {}; // tslint:disable-line
 
-export const Menu: React.FC<Props> = ({
-  triggerComponent,
-  theme,
-  items = [],
-  onItemClick = noop,
-  ...props
-}) => {
+const defaultProps = {
+  onItemClick: noop,
+  items: [],
+  theme: Themes.canopyTheme,
+} satisfies Partial<MenuProps>;
+
+export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const [popoverInstance, setPopoverInstance] = React.useState(null);
   const closePopoverMenu = () => {
     // @ts-ignore
     popoverInstance && popoverInstance.hide();
   };
-  const hasNonEmptyIcon = items.some(item => {
+  const { theme, items, onItemClick, triggerComponent, appendTo, ...rest } =
+    propsWithDefaults;
+  const hasNonEmptyIcon = items?.some((item) => {
     return item.hasOwnProperty('icon') && item['icon'] !== '';
   });
   const handleItemClick = (item, e) => {
@@ -98,14 +122,14 @@ export const Menu: React.FC<Props> = ({
       return;
     }
     closePopoverMenu();
-    onItemClick(item, e);
+    onItemClick && onItemClick(item, e);
   };
-
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SPopover
+      appendTo={appendTo}
         content={
-          <SMenu {...props}>
+          <SMenu {...rest}>
             {Array.isArray(items) &&
               items.map((item: MenuItem, j: number) => {
                 if (item.component) return item.component;
@@ -117,9 +141,9 @@ export const Menu: React.FC<Props> = ({
                     onClick={(e: any) => handleItemClick(item, e)}
                     data-testid={_.kebabCase(item.label)}
                   >
-                    {item.icon ? <Icon icon={item.icon} size={24} /> : ''}
+                    {item.icon && item.icon}
                     <MenuItemLabel
-                      itemsHasNonEmptyIcon={hasNonEmptyIcon}
+                      itemsHasNonEmptyIcon={Boolean(hasNonEmptyIcon)}
                       hasIcon={item.icon ? true : false}
                     >
                       {item.label}
@@ -131,16 +155,12 @@ export const Menu: React.FC<Props> = ({
         }
         arrow={false}
         placement="bottom-start"
-        distance={2}
         hideOnClick={true}
         onMount={(instance: any) => setPopoverInstance(instance)}
+        displayType="menu"
       >
         <span>{triggerComponent}</span>
       </SPopover>
     </ThemeProvider>
   );
-};
-
-Menu.defaultProps = {
-  theme: Themes.canopyTheme,
 };

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
-export type Props = {
+export type AlertProps = React.PropsWithChildren<{
   /**
    * Select Alert Style
    *
@@ -21,46 +22,54 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+  /**
+   * Toggle border visibility
+   *
+   * @default true
+   **/
+  displayWithBorder?: boolean;
+}>;
 
-const SAlert = styled.div`
-  background: ${(props: Props) =>
+const SAlert = styled.div<AlertProps>`
+  background: ${(props) =>
     props.lightMode
       ? props.theme.styles[props.alertStyle!]['light'].alertBackground
       : props.theme.styles[props.alertStyle!].alertBackground};
-  border-radius: ${(props: Props) => props.theme.alert.borderRadius};
-  color: ${(props: Props) =>
+  border-radius: ${(props) => props.theme.alert.borderRadius};
+  color: ${(props) =>
     props.lightMode
       ? props.theme.styles[props.alertStyle!]['light'].alertColor
       : props.theme.styles[props.alertStyle!].alertColor};
-  border: 1px solid
-    ${(props: Props) =>
-      props.lightMode
-        ? props.theme.styles[props.alertStyle!].alertBackground
-        : props.theme.styles[props.alertStyle!].alertBackground};
-  display: ${(props: Props) => props.theme.alert.display};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.alert.fontSize};
-  padding: ${(props: Props) => props.theme.alert.padding};
-  font-weight: ${(props: Props) =>
+  border: ${(props) =>
+    props.displayWithBorder !== false
+      ? `1px solid ${
+          props.lightMode
+            ? props.theme.styles[props.alertStyle!].alertBackground
+            : props.theme.styles[props.alertStyle!].alertBackground
+        }`
+      : 'none'};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.alert.fontSize};
+  padding: ${(props) => props.theme.alert.padding};
+  font-weight: ${(props) =>
     props.lightMode
       ? props.theme.alert.lightFontWeight
       : props.theme.alert.fontWeight};
-  line-height: ${(props: Props) => props.theme.alert.lineHeight};
+  line-height: ${(props) => props.theme.alert.lineHeight};
 `;
 
-export const Alert: React.FunctionComponent<Props> = ({
-  children,
-  theme,
-  ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SAlert {...props}>{children}</SAlert>
-  </ThemeProvider>
-);
-
-Alert.defaultProps = {
-  theme: Themes.canopyTheme,
+const defaultProps = {
   alertStyle: 'primary',
   lightMode: false,
+  theme: Themes.canopyTheme,
+} satisfies Partial<AlertProps>;
+
+export const Alert: React.FunctionComponent<AlertProps> = (props) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SAlert {...rest}>{children}</SAlert>
+    </ThemeProvider>
+  );
 };

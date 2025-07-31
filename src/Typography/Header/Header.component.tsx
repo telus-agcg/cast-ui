@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../../themes/index';
+import { Themes } from '@themes';
 
-export type Props = {
+export type HeaderProps = React.PropsWithChildren<{
   /**
    * Set Header Size
    *
@@ -15,29 +15,33 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 
-const SHeader = styled.h2`
-  font-family: ${(props: Props) =>
+const SHeader = styled.h2<HeaderProps>`
+  font-family: ${(props) =>
     props.theme.typography.header[props.size!].fontFamily};
-  color: ${(props: Props) => props.theme.typography.color};
-  font-weight: ${(props: Props) =>
+  color: ${(props) => props.theme.typography.color};
+  font-weight: ${(props) =>
     props.theme.typography.header[props.size!].fontWeight};
-  font-size: ${(props: Props) =>
-    props.theme.typography.header[props.size!].fontSize};
-  line-height: ${(props: Props) =>
+  font-size: ${(props) => props.theme.typography.header[props.size!].fontSize};
+  line-height: ${(props) =>
     props.theme.typography.header[props.size!].lineHeight};
-  margin: ${(props: Props) =>
-    props.theme.typography.header[props.size!].margin};
+  margin: ${(props) => props.theme.typography.header[props.size!].margin};
 `;
 
-export const Header: React.FunctionComponent<Props> = ({
-  theme,
-  children,
-  ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SHeader {...props}>{children}</SHeader>
-  </ThemeProvider>
-);
-Header.defaultProps = { theme: Themes.canopyTheme, size: 10 };
+const defaultProps = {
+  size: 10,
+  theme: Themes.canopyTheme,
+} satisfies Partial<HeaderProps>;
+
+export const Header: React.FunctionComponent<HeaderProps> = (
+  props: HeaderProps,
+) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SHeader {...rest}>{children}</SHeader>
+    </ThemeProvider>
+  );
+};

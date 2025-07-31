@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../themes';
+import { getPropsWithDefaults } from '@utils';
+import { Themes } from '@themes';
 
-export type Props = {
+export type BadgeProps = React.PropsWithChildren<{
   /**
    * Set Badge Size
    *
@@ -27,43 +28,44 @@ export type Props = {
    * @default defaultTheme
    **/
   theme?: any;
-};
+}>;
 
-const SBadge = styled.div`
-  background: ${(props: Props) =>
+const SBadge = styled.div<BadgeProps>`
+  background: ${(props) =>
     props.lightMode
       ? props.theme.styles[props.badgeStyle!]['light'].badgeBackground
       : props.theme.styles[props.badgeStyle!].badgeBackground};
-  border: ${(props: Props) =>
+  border: ${(props) =>
     props.lightMode
       ? props.theme.styles[props.badgeStyle!]['light'].badgeBorder
       : props.theme.styles[props.badgeStyle!].badgeBorder};
-  border-radius: ${(props: Props) =>
-    props.theme.badge[props.badgeSize!].borderRadius};
-  color: ${(props: Props) =>
+  border-radius: ${(props) => props.theme.badge[props.badgeSize!].borderRadius};
+  color: ${(props) =>
     props.lightMode
       ? props.theme.styles[props.badgeStyle!]['light'].badgeColor
       : props.theme.styles[props.badgeStyle!].badgeColor};
   display: inline-block;
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.badge[props.badgeSize!].fontSize};
-  font-weight: ${(props: Props) => props.theme.badge.fontWeight};
-  padding: ${(props: Props) => props.theme.badge[props.badgeSize!].padding};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.badge[props.badgeSize!].fontSize};
+  font-weight: ${(props) => props.theme.badge.fontWeight};
+  padding: ${(props) => props.theme.badge[props.badgeSize!].padding};
 `;
 
-export const Badge: React.FunctionComponent<Props> = ({
-  children,
-  theme,
-  ...props
-}) => (
-  <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-    <SBadge {...props}>{children}</SBadge>
-  </ThemeProvider>
-);
-
-Badge.defaultProps = {
-  theme: Themes.canopyTheme,
+const defaultProps = {
   badgeSize: 'md',
   badgeStyle: 'primary',
   lightMode: false,
+  theme: Themes.canopyTheme,
+} satisfies Partial<BadgeProps>;
+
+export const Badge: React.FunctionComponent<BadgeProps> = (
+  props: BadgeProps,
+) => {
+  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+  const { theme, children, ...rest } = propsWithDefaults;
+  return (
+    <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SBadge {...rest}>{children}</SBadge>
+    </ThemeProvider>
+  );
 };

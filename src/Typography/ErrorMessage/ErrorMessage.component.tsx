@@ -1,10 +1,9 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Themes } from '../../themes/index';
-import Icon from 'react-icons-kit';
-import { ic_error as icError } from 'react-icons-kit/md/ic_error';
+import { Themes } from '@themes';
+import { FilledErrorIcon } from '@icons';
 
-export interface Props {
+export interface ErrorMessageProps {
   /**
    * The ID of error message
    *
@@ -32,19 +31,20 @@ export interface Props {
   theme?: any;
 }
 
-const SErrorDiv = styled.div`
-  color: ${(props: Props) => props.textColor || props.theme.validation.color};
-  font-family: ${(props: Props) => props.theme.typography.fontFamily};
-  font-size: ${(props: Props) => props.theme.validation.fontSize};
-  font-style: ${(props: Props) => props.theme.validation.fontStyle};
-  line-height: ${(props: Props) => props.theme.validation.lineHeight};
-  padding: ${(props: Props) => props.theme.validation.padding};
-  margin-top: ${(props: Props) => props.theme.validation.marginTop};
+const SErrorDiv = styled.div<ErrorMessageProps>`
+  color: ${(props) => props.theme.validation.color};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-size: ${(props) => props.theme.validation.fontSize};
+  font-style: ${(props) => props.theme.validation.fontStyle};
+  line-height: ${(props) => props.theme.validation.lineHeight};
+  padding: ${(props) => props.theme.validation.padding};
+  margin-top: ${(props) => props.theme.validation.marginTop};
 `;
 
-const SErrorIcon = styled(Icon)`
+const SErrorIcon = styled(FilledErrorIcon)`
   color: ${(props: any) => props.theme.colors.danger};
   padding-right: 4px;
+  flex-shrink: 0;
 `;
 
 const ErrorMessageWrapper = styled.div`
@@ -52,25 +52,23 @@ const ErrorMessageWrapper = styled.div`
   align-items: center;
 `;
 
-export const ErrorMessage: React.FunctionComponent<Props> = ({
-  theme,
-  children,
-  ...inputProps
-}) => {
+const defaultProps = {
+  theme: Themes.canopyTheme,
+} satisfies Partial<ErrorMessageProps>;
+
+export const ErrorMessage: React.FunctionComponent<
+  React.PropsWithChildren<ErrorMessageProps>
+> = (props) => {
+  const propsWithDefaults = { ...defaultProps, ...props };
+  const { theme, message, ...rest } = propsWithDefaults;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <>
-        <SErrorDiv {...inputProps}>
-          <ErrorMessageWrapper>
-            <SErrorIcon size={14} icon={icError} />
-            {inputProps.message}
-          </ErrorMessageWrapper>
-        </SErrorDiv>
-      </>
+      <SErrorDiv {...propsWithDefaults}>
+        <ErrorMessageWrapper>
+          <SErrorIcon height={18} width={18} {...rest} />
+          {message}
+        </ErrorMessageWrapper>
+      </SErrorDiv>
     </ThemeProvider>
   );
-};
-
-ErrorMessage.defaultProps = {
-  theme: Themes.canopyTheme,
 };

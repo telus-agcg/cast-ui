@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import Icon from 'react-icons-kit';
-import { ic_search as icSearch } from 'react-icons-kit/md';
-import { Input } from '../Input';
-import { SelectComponents } from './index';
+import { components as SelectComponents } from 'react-select';
+import { SearchIcon } from '@icons';
+import { Input } from '../Input/Input.component';
 
 const SInput = styled(Input)`
   box-shadow: none;
@@ -14,10 +13,10 @@ const SInput = styled(Input)`
 `;
 
 const SHr = styled.hr`
-  border-top: 1px solid ${props => props.theme.colors.lt400};
+  border-top: 1px solid ${(props) => props.theme.colors.lt400};
 `;
 
-export const SelectMenuList = props => {
+export const SelectMenuList = (props) => {
   const { selectProps } = props;
   const { onInputChange, inputValue, onMenuInputFocus } = selectProps;
 
@@ -28,19 +27,19 @@ export const SelectMenuList = props => {
   return (
     <div>
       <SInput
-        icon={<Icon size={20} icon={icSearch} />}
+        icon={<SearchIcon height={18} width={18} />}
         iconPosition={'left'}
         value={inputValue}
-        onChange={e => {
+        onChange={(e) => {
           onInputChange(e.currentTarget.value, {
             action: 'input-change',
           });
         }}
-        onMouseDown={e => {
+        onMouseDown={(e: any) => {
           e.stopPropagation();
           e.target.focus();
         }}
-        onTouchEnd={e => {
+        onTouchEnd={(e: any) => {
           e.stopPropagation();
           e.target.focus();
         }}

@@ -2,9 +2,9 @@ name: Integration Workflow
 
 on:
   push:
-    branches: [beta]
+    branches: [beta, next]
   pull_request:
-    branches: [beta]
+    branches: [beta, next]
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 21
           cache: 'npm'
       - run: npm i
       - run: npm run build
