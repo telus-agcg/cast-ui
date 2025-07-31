@@ -269,6 +269,7 @@ export const Button = (props: ButtonProps) => {
   const {
     theme,
     onClick = noop,
+    'data-testid': dataTestId,
     disabled,
     displayType,
     children,
@@ -282,6 +283,7 @@ export const Button = (props: ButtonProps) => {
       <ButtonType
         disabled={disabled}
         onClick={!disabled ? onClick : noop}
+        data-testid={dataTestId}
         {...rest}
       >
         {children}

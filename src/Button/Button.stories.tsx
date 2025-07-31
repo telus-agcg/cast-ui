@@ -112,4 +112,10 @@ export const MenuButton: Story = {
       />
     );
   },
+  play: async ({ canvas, userEvent }) => {
+    // 👇 Simulate interactions with the component
+    const pinButton = await canvas.getByTestId('create-new')
+    // Click the pin button
+    await userEvent.click(pinButton);
+  }
 };
