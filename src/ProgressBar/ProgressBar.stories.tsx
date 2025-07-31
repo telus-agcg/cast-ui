@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { ProgressBar, ProgressBarProps } from './ProgressBar.component';
 import { Themes } from '@themes';
 

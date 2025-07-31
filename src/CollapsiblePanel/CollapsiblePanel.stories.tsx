@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import CollapsiblePanel from './CollapsiblePanel.component';
 import { Button } from '../Button/Button.component';
 import { Caption, TextDisplay } from '@typography';

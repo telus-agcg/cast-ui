@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { TabPanel } from 'react-tabs';
 import { Tab } from './Tab.component';
 import { TabList } from './TabList.component';

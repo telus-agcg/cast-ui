@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Link } from '../Typography/Link/Link.component';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { CustomSelect } from './Select.component';
 
 const FlexDiv = styled.div`

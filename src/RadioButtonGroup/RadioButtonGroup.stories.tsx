@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { RadioButtonGroup } from './RadioButtonGroup.component';
 import { RadioButton } from '../RadioButton/RadioButton.component';
 

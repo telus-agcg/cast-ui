@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Textarea } from './Textarea.component';
 
 const meta: Meta<typeof Textarea> = {

@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { InputGroup } from './InputGroup.component';
 import { Input } from '../Input/Input.component';
 import { CustomSelect } from '../Select/Select.component';

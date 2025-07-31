@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-vite';
 
 import { ThemeProvider } from 'styled-components';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
@@ -16,6 +16,7 @@ const preview: Preview = {
       },
     },
   },
+
   decorators: [
     withThemeFromJSXProvider({
       themes: {
@@ -27,6 +28,8 @@ const preview: Preview = {
       Provider: ThemeProvider,
     }),
   ],
+
+  tags: ['autodocs']
 };
 
 export default preview;

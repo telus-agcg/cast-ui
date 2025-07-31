@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Collapse } from './Collapse.component';
 
 const meta: Meta<typeof Collapse> = {

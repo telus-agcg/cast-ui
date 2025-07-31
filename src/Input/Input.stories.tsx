@@ -1,6 +1,6 @@
 import { SearchIcon } from '@icons';
 import { Input } from './Input.component';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 const description = `
 ###### With Icon

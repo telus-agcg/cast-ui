@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SideNavbar } from './SideNavbar.component';
 import SideNavData from './SideNavData';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Themes } from '@themes';
 
 const SIDENAV_LABELS = SideNavData.map((sn) => sn.label);
