@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Panel } from './Panel.component';
 import { PanelHeader } from './PanelHeader.component';
 import { PanelBody } from './PanelBody.component';

@@ -5,11 +5,10 @@ const config: StorybookConfig = {
 
   addons: [
     '@storybook/addon-onboarding',
-    '@storybook/addon-essentials',
     '@chromatic-com/storybook',
-    '@storybook/addon-interactions',
     '@storybook/addon-themes',
     '@storybook/addon-a11y',
+    '@storybook/addon-docs'
   ],
 
   framework: {
@@ -18,10 +17,6 @@ const config: StorybookConfig = {
   },
 
   staticDirs: ['../src/static'],
-
-  docs: {
-    autodocs: true
-  },
 
   typescript: {
     reactDocgen: 'react-docgen-typescript'

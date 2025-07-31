@@ -1,5 +1,5 @@
 import { Link } from "./Link.component";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof Link> = {
   title: "Components/Navigation/Link",

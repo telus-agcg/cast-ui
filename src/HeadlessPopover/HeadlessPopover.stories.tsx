@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { HeadlessPopover } from './HeadlessPopover.component';
 import { Button } from '../Button/Button.component';
 import styled from 'styled-components';

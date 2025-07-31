@@ -1,5 +1,5 @@
 import { TextDisplay } from "./TextDisplay.component";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof TextDisplay> = {
   title: "Components/Typography/TextDisplay",

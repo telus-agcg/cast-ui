@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { Tabnav } from './Tabnav.component';
 import { Title } from '@typography';
 import { Badge } from '../Badge/Badge.component';

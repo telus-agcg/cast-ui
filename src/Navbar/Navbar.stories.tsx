@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { SupervisedUserCircleIcon } from '@icons';
 import { Navbar } from './Navbar.component';
 import { Nav } from './Nav.component';

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Menu } from './Menu.component';
 import { Button } from '../Button/Button.component';
 import { Link } from '../Typography/Link/Link.component';
