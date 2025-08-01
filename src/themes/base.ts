@@ -722,6 +722,7 @@ export const buildTheme = (colors: any) => ({
     tab: {
       padding: "2px 10px",
       margin: "0 40px 0 0",
+      lineHeight: '24px',
       color: "inherit",
       fontWeight: "inherit",
       cursor: "pointer",
