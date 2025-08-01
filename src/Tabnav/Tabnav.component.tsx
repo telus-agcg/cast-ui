@@ -90,6 +90,7 @@ const STab = styled.div`
   position: relative;
   padding: ${(props: any) => props.theme.tabnav.tab.padding};
   margin: ${(props: any) => props.theme.tabnav.tab.margin};
+  line-height: ${(props: any) => props.theme.tabnav.tab.lineHeight};
   transition: ${(props: any) => props.theme.tabnav.tab.transition};
   color: ${(props: any) =>
     props.theme.tabnav[`${props.active ? 'active' : ''}tab`].color};
