@@ -108,17 +108,6 @@ const displayStyleRules: Function = (
   };
 };
 
-const indeterminateCheckboxRules: Function = (cbSize: string) => {
-  const ySize = { lg: -1, md: 1, sm: 3 }[cbSize];
-  const xSize = { lg: -1, md: -2, sm: -1 }[cbSize];
-  const transform = `rotate(90deg) translateX(${xSize}px) translateY(${ySize}px);`;
-  return {
-    transform,
-    '-webkit-transform': transform,
-    '-ms-transform': transform,
-  };
-};
-
 const SDiv = styled.div<CheckboxProps>`
   ${(props) => displayStyleRules(props.displayStyle, props.theme)};
   display: inline-flex;
@@ -185,10 +174,10 @@ const SInput = styled.input<CheckboxProps>`
   }
   &:checked + label:after {
     content: '';
-    padding: 2px;
+    padding: ${(props) => props.theme.checkbox[props.cbSize!].checkmark.padding};
     position: absolute;
     border-radius: 0px;
-    height: ${(props) => (props.cbSize === 'lg' ? '8px' : '6px')};
+    height: ${(props) => props.theme.checkbox[props.cbSize!].checkmark.height};
     border-style: solid;
     border-color: ${(props) => props.theme.colors.white};
     border-width: ${(props) =>
@@ -199,13 +188,13 @@ const SInput = styled.input<CheckboxProps>`
     -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
     -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
     margin-left: ${(props) => props.theme.checkbox[props.cbSize!].marginLeft};
-    top: ${(props) => props.theme.checkbox.top ?? '2px'};
-    left: ${(props) => props.theme.checkbox.left ?? '0px'};
+    top: ${(props) => props.theme.checkbox[props.cbSize!].checkmark.top};
+    left: ${(props) => props.theme.checkbox[props.cbSize!].checkmark.left};
   }
 
   &:indeterminate + label:after {
     content: '';
-    padding: 6px 2px;
+    padding: ${(props) => props.theme.checkbox[props.cbSize!].indeterminate.padding};
     text-align: center;
     position: absolute;
     border-radius: 0px;
@@ -213,11 +202,10 @@ const SInput = styled.input<CheckboxProps>`
     border-style: solid;
     border-color: ${(props) => props.theme.colors.white};
     border-width: ${(props) =>
-      props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
-    ${(props) => indeterminateCheckboxRules(props.cbSize)};
+      props.cbSize === 'lg' ? '0 0 2px 0' : '0 0 1px 0'};
     margin-left: 6px;
-    top: ${(props) => props.theme.checkbox.top ?? '3px'};
-    left: 0;
+    top: ${(props) => props.theme.checkbox[props.cbSize!].indeterminate.top};
+    left: ${(props) => props.theme.checkbox[props.cbSize!].indeterminate.left};
   }
 
   &:disabled:checked + label:before {

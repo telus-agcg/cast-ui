@@ -397,14 +397,49 @@ export const buildTheme = (colors: any) => ({
     sm: {
       squareSize: "6px",
       marginLeft: "4px",
+      checkmark: {
+        height: "4px",
+        left: "2px",
+        padding: "1px",
+        top: "4px",
+      },
+      indeterminate: {
+        left: '-2px',
+        padding: '2px 3px',
+        top: '3px'
+      }
     },
     md: {
       squareSize: "10px",
       marginLeft: "6px",
+      borderWidth: "0 1px 1px 0",
+      checkmark: {
+        height: "5px",
+        left: "1px",
+        padding: "1.5px",
+        top: "5px",
+      },
+      indeterminate: {
+        left: '-1px',
+        padding: '2px 4px',
+        top: '5px'
+      }
     },
     lg: {
       squareSize: "14px",
       marginLeft: "6.5px",
+      borderWidth: "0 2px 2px 0",
+      checkmark: {
+        height: "7px",
+        left: "2px",
+        padding: "2px",
+        top: "4px",
+      },
+      indeterminate: {
+        left: '0px',
+        padding: '2px 5px',
+        top: '6px'
+      }
     },
   },
   toggle: {
