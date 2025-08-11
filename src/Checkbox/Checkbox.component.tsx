@@ -185,10 +185,10 @@ const SInput = styled.input<CheckboxProps>`
   }
   &:checked + label:after {
     content: '';
-    padding: 2px;
+    padding: ${(props) => props.theme.checkbox[props.cbSize!].checkmark.padding};
     position: absolute;
     border-radius: 0px;
-    height: ${(props) => (props.cbSize === 'lg' ? '8px' : '6px')};
+    height: ${(props) => props.theme.checkbox[props.cbSize!].checkmark.height};
     border-style: solid;
     border-color: ${(props) => props.theme.colors.white};
     border-width: ${(props) =>
@@ -199,8 +199,8 @@ const SInput = styled.input<CheckboxProps>`
     -webkit-transform: rotate(45deg) translateX(-1px) translateY(-1px);
     -ms-transform: rotate(45deg) translateX(-1px) translateY(-1px);
     margin-left: ${(props) => props.theme.checkbox[props.cbSize!].marginLeft};
-    top: ${(props) => props.theme.checkbox.top ?? '2px'};
-    left: ${(props) => props.theme.checkbox.left ?? '0px'};
+    top: ${(props) => props.theme.checkbox[props.cbSize!].checkmark.top};
+    left: ${(props) => props.theme.checkbox[props.cbSize!].checkmark.left};
   }
 
   &:indeterminate + label:after {

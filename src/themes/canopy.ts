@@ -432,8 +432,6 @@ export const canopyTheme = {
     },
   },
   checkbox: {
-    top: '4px',
-    left: '1px',
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: canopyColors.drk400,
@@ -447,16 +445,34 @@ export const canopyTheme = {
     sm: {
       squareSize: '6px',
       marginLeft: '4px',
+      checkmark: {
+        height: '4px',
+        left: '2px',
+        padding: '1px',
+        top: '6px',
+      }
     },
     md: {
       squareSize: '10px',
       marginLeft: '6px',
       borderWidth: '0 1px 1px 0',
+      checkmark: {
+        height: '5px',
+        left: '1px',
+        padding: '2px',
+        top: '5px',
+      }
     },
     lg: {
       squareSize: '14px',
       marginLeft: '6.5px',
       borderWidth: '0 2px 2px 0',
+      checkmark: {
+        height: '7px',
+        left: '2px',
+        padding: '2px',
+        top: '4px',
+      }
     },
   },
   toggle: {
