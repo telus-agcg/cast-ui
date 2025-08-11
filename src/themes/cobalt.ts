@@ -444,8 +444,8 @@ export const cobaltTheme = {
       checkmark: {
         height: "5px",
         left: "1px",
-        padding: "2px",
-        top: "4px",
+        padding: "1.5px",
+        top: "5px",
       }
     },
     lg: {

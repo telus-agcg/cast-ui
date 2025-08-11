@@ -459,8 +459,8 @@ export const canopyTheme = {
       checkmark: {
         height: '5px',
         left: '1px',
-        padding: '2px',
-        top: '5px',
+        padding: '1.5px',
+        top: '6px',
       }
     },
     lg: {
