@@ -108,17 +108,6 @@ const displayStyleRules: Function = (
   };
 };
 
-const indeterminateCheckboxRules: Function = (cbSize: string) => {
-  const ySize = { lg: -1, md: 1, sm: 3 }[cbSize];
-  const xSize = { lg: -1, md: -2, sm: -1 }[cbSize];
-  const transform = `rotate(90deg) translateX(${xSize}px) translateY(${ySize}px);`;
-  return {
-    transform,
-    '-webkit-transform': transform,
-    '-ms-transform': transform,
-  };
-};
-
 const SDiv = styled.div<CheckboxProps>`
   ${(props) => displayStyleRules(props.displayStyle, props.theme)};
   display: inline-flex;
@@ -213,8 +202,7 @@ const SInput = styled.input<CheckboxProps>`
     border-style: solid;
     border-color: ${(props) => props.theme.colors.white};
     border-width: ${(props) =>
-      props.cbSize === 'lg' ? '0 2px 0px 0' : '0 1px 0px 0'};
-    ${(props) => indeterminateCheckboxRules(props.cbSize)};
+      props.cbSize === 'lg' ? '0 0 2px 0' : '0 0 1px 0'};
     margin-left: 6px;
     top: ${(props) => props.theme.checkbox[props.cbSize!].indeterminate.top};
     left: ${(props) => props.theme.checkbox[props.cbSize!].indeterminate.left};

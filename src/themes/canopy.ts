@@ -452,8 +452,8 @@ export const canopyTheme = {
         top: '6px',
       },
       indeterminate: {
-        left: '1px',
-        padding: '3px 2px',
+        left: '-2px',
+        padding: '2px 3px',
         top: '5px'
       }
     },
@@ -468,8 +468,8 @@ export const canopyTheme = {
         top: '6px',
       },
       indeterminate: {
-        left: '1px',
-        padding: '4px 2px',
+        left: '-1px',
+        padding: '2px 4px',
         top: '6px'
       }
     },
@@ -484,8 +484,8 @@ export const canopyTheme = {
         top: '4px',
       },
       indeterminate: {
-        left: '1px',
-        padding: '5px 2px',
+        left: '0px',
+        padding: '2px 5px',
         top: '6px'
       }
     },
