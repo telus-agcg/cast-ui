@@ -435,6 +435,11 @@ export const cobaltTheme = {
         left: "2px",
         padding: "1px",
         top: "4px",
+      },
+      indeterminate: {
+        left: '1px',
+        padding: '3px 2px',
+        top: '3px'
       }
     },
     md: {
@@ -446,6 +451,11 @@ export const cobaltTheme = {
         left: "1px",
         padding: "1.5px",
         top: "5px",
+      },
+      indeterminate: {
+        left: '1px',
+        padding: '4px 2px',
+        top: '6px'
       }
     },
     lg: {
@@ -457,6 +467,11 @@ export const cobaltTheme = {
         left: "2px",
         padding: "2px",
         top: "4px",
+      },
+      indeterminate: {
+        left: '1px',
+        padding: '5px 2px',
+        top: '6px'
       }
     },
   },

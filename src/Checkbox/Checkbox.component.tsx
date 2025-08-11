@@ -205,7 +205,7 @@ const SInput = styled.input<CheckboxProps>`
 
   &:indeterminate + label:after {
     content: '';
-    padding: 6px 2px;
+    padding: ${(props) => props.theme.checkbox[props.cbSize!].indeterminate.padding};
     text-align: center;
     position: absolute;
     border-radius: 0px;
@@ -213,11 +213,11 @@ const SInput = styled.input<CheckboxProps>`
     border-style: solid;
     border-color: ${(props) => props.theme.colors.white};
     border-width: ${(props) =>
-      props.cbSize === 'lg' ? '0 4px 0px 0' : '0 3px 0px 0'};
+      props.cbSize === 'lg' ? '0 2px 0px 0' : '0 1px 0px 0'};
     ${(props) => indeterminateCheckboxRules(props.cbSize)};
     margin-left: 6px;
-    top: ${(props) => props.theme.checkbox.top ?? '3px'};
-    left: 0;
+    top: ${(props) => props.theme.checkbox[props.cbSize!].indeterminate.top};
+    left: ${(props) => props.theme.checkbox[props.cbSize!].indeterminate.left};
   }
 
   &:disabled:checked + label:before {
