@@ -3,14 +3,14 @@ import { getPropsWithDefaults } from '@utils';
 import { unset } from 'lodash';
 import styled from 'styled-components';
 
-type Props = React.PropsWithChildren &
+export type HeadlessPopoverProps = React.PropsWithChildren &
   TippyProps & {
     content: any;
     displayType?: 'default' | 'menu';
-    appendTo?: TippyProps['appendTo']; // Make appendTo configurable
+    appendTo?: TippyProps['appendTo'];
   };
 
-const TippyBox = styled.div<Props>`
+const TippyBox = styled.div<HeadlessPopoverProps>`
   border: 1px solid ${(props) => props.theme.popover.borderColor};
   border-radius: ${(props) => props.theme.popover.borderRadius};
   box-shadow: ${(props) => props.theme.popover.boxShadow};
@@ -23,9 +23,9 @@ const TippyBox = styled.div<Props>`
 
 const defaultProps = {
   displayType: 'default',
-} satisfies Partial<Props>;
+} satisfies Partial<HeadlessPopoverProps>;
 
-export const HeadlessPopover = (props: Props) => {
+export const HeadlessPopover = (props: HeadlessPopoverProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { children, content, appendTo } = propsWithDefaults;
   const { className, ...restProps } = propsWithDefaults; // fix ClassName exception while rendering tippy component
