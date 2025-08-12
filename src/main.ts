@@ -105,8 +105,8 @@ export { ProgressBar } from './ProgressBar/ProgressBar.component.tsx';
 export type { ProgressBarProps } from './ProgressBar/ProgressBar.component.tsx';
 //HeadlessPopover
 export { HeadlessPopover } from './HeadlessPopover/HeadlessPopover.component.tsx';
+export type { HeadlessPopoverProps } from './HeadlessPopover/HeadlessPopover.component.tsx';   
 export { ThemeProvider } from 'styled-components';
 export * from './themes';
 export * from './Typography';
 export * from './Icons';
-
