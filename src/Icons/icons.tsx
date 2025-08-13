@@ -466,6 +466,23 @@ export function CheckIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function CheckCircleIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M16.59 7.58L10 14.17l-3.59-3.58L5 12l5 5l8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8"
+      ></path>
+    </svg>
+  );
+}
+
 export function SentimentDissatisfiedIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -793,6 +810,23 @@ export function PlaylistAddIcon(props: SVGProps<SVGSVGElement>) {
       <path
         fill="currentColor"
         d="M14 10H3v2h11zm0-4H3v2h11zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2zM3 16h7v-2H3z"
+      ></path>
+    </svg>
+  );
+}
+
+export function PlaylistAddCheckIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M3 10h11v2H3zm0-4h11v2H3zm0 8h7v2H3zm17.59-2.07l-4.25 4.24l-2.12-2.12l-1.41 1.41L16.34 19L22 13.34z"
       ></path>
     </svg>
   );
