@@ -48,7 +48,6 @@ export type { MenuProps } from './Menu/Menu.component.tsx';
 export { Modal } from './Modal/Modal.component.tsx';
 export type { ModalProps } from './Modal/Modal.component.tsx';
 export { ModalSidePanel } from './Modal/ModalSidePanel.component.tsx';
-export type { ModalSidePanelProps } from './Modal/ModalSidePanel.component.tsx';
 // Navbar
 export { Navbar } from './Navbar/Navbar.component.tsx';
 export type { NavbarProps } from './Navbar/Navbar.component.tsx';
