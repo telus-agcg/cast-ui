@@ -109,19 +109,19 @@ const SidePanelContainer = styled.div<{ width: string; theme: any }>`
 `;
 
 const SidePanelHeader = styled.div<{ theme: any; disableCloseIcon?: boolean }>`
-  min-height: 60px;
+  min-height: 48px;
   background-color: ${(props) => props.theme.colors.primaryBackground};
   flex-shrink: 0;
   font-family: ${(props) =>
     props.theme.typography.fontBold?.fontFamily ||
     props.theme.typography.fontFamily};
-  padding: 20px;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   h5 {
-    font-size: 18px;
+    font-size: 16px;
     color: ${(props: any) => props.theme.modal.body.color};
     padding: 0;
     margin: 0;
@@ -130,7 +130,7 @@ const SidePanelHeader = styled.div<{ theme: any; disableCloseIcon?: boolean }>`
 
   button {
     padding: 8px;
-    line-height: 20px;
+    line-height: 24px;
     font-weight: 300;
     font-size: 24px;
     color: ${(props: any) => props.theme.modal.body.color};
@@ -142,24 +142,24 @@ const SidePanelHeader = styled.div<{ theme: any; disableCloseIcon?: boolean }>`
     opacity: ${(props) => (props.disableCloseIcon ? 0.5 : 1)};
 
     &:hover {
-      background-color: ${(props) =>
-        props.disableCloseIcon ? 'transparent' : 'rgba(255, 255, 255, 0.1)'};
+      color: ${(props) =>
+        props.disableCloseIcon
+          ? props.theme.modal.body.color
+          : props.theme.colors.primary};
     }
   }
 `;
 
 const SidePanelBody = styled.div`
   flex: 1;
-  padding: 20px;
+  padding: 0px 16px;
   overflow-y: auto;
   color: ${(props: any) => props.theme.modal.body.color};
 `;
 
 const SidePanelFooter = styled.div`
   flex-shrink: 0;
-  padding: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: rgba(255, 255, 255, 0.05);
+  padding: 16px;
 `;
 
 const defaultProps = {

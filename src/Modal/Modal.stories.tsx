@@ -187,6 +187,9 @@ export const WithSidepanel: Story = {
             onClose={() => setSidePanelOpen(false)}
             title="Side Panel Title"
             width="md"
+            footerContent={
+              <DemoButtons handleCloseModal={() => setSidePanelOpen(false)} />
+            }
           >
             <p>Side panel content goes here.</p>
           </ModalSidePanel>
