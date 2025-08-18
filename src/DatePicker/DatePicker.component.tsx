@@ -199,6 +199,16 @@ const SButton = styled.button`
     background-color: ${(props: Partial<Props>) =>
       props.theme.colors.primaryBackground};
   }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    color: ${(props: Partial<Props>) => props.theme.colors.lt800};
+    background: ${(props: Partial<Props>) => props.theme.colors.lt200};
+  }
+
+  &:disabled:hover {
+    background: ${(props: Partial<Props>) => props.theme.colors.lt200};
+  }
 `;
 
 const CustomInput = (props: Partial<Props>) => {
@@ -379,26 +389,28 @@ class ReactDatePicker extends Component<Props> {
           aria-describedby={errorId}
           showIcon={showIcon}
         >
-          <DatePicker
-            fixedHeight
-            customInput={<CustomInput {...this.props} />}
-            onChange={event => this.onDateChange(selectsRange, event)}
-            selected={
-              date ||
-              this.state.date ||
-              startDate ||
-              this.state.range.startDateRange
-            }
-            startDate={startDate || this.state.range.startDateRange}
-            endDate={endDate || this.state.range.endDateRange}
-            monthsShown={monthsShown}
-            selectsRange={selectsRange}
-            focusSelectedMonth={true}
-            renderCustomHeader={props => (
-              <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
-            )}
-            {...props}
-          />
+          <label>
+            <DatePicker
+              fixedHeight
+              customInput={<CustomInput {...this.props} />}
+              onChange={event => this.onDateChange(selectsRange, event)}
+              selected={
+                date ||
+                this.state.date ||
+                startDate ||
+                this.state.range.startDateRange
+              }
+              startDate={startDate || this.state.range.startDateRange}
+              endDate={endDate || this.state.range.endDateRange}
+              monthsShown={monthsShown}
+              selectsRange={selectsRange}
+              focusSelectedMonth={true}
+              renderCustomHeader={props => (
+                <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
+              )}
+              {...props}
+            />
+          </label>
         </SWrapperComponent>
       </ThemeProvider>
     );
