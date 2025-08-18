@@ -27,9 +27,6 @@ export { FileUpload } from './FileUpload/FileUpload.component.tsx';
 export type { FileUploadProps } from './FileUpload/FileUpload.component.tsx';
 export { File } from './FileUpload/File.component.tsx';
 export type { FileProps } from './FileUpload/File.component.tsx';
-// Flex
-export { Flex, Box } from './Layout/Flex.component.tsx';
-export type { FlexProps, BoxProps } from './Layout/Flex.component.tsx';
 // Input
 export { Input } from './Input/Input.component';
 export type { InputProps } from './Input/Input.component';
