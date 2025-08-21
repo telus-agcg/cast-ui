@@ -17,7 +17,7 @@ export type { CheckboxProps } from './Checkbox/Checkbox.component.tsx';
 export { Collapse } from './Collapse/Collapse.component';
 export type { CollapseProps } from './Collapse/Collapse.component';
 // Collapsible Panel
-export {CollapsiblePanel} from './CollapsiblePanel/CollapsiblePanel.component.tsx';
+export { CollapsiblePanel } from './CollapsiblePanel/CollapsiblePanel.component.tsx';
 export type { CollapsiblePanelProps } from './CollapsiblePanel/CollapsiblePanel.component.tsx';
 // Date Picker
 export { DatePicker } from './DatePicker/DatePicker.component.tsx';
@@ -105,7 +105,10 @@ export { ProgressBar } from './ProgressBar/ProgressBar.component.tsx';
 export type { ProgressBarProps } from './ProgressBar/ProgressBar.component.tsx';
 //HeadlessPopover
 export { HeadlessPopover } from './HeadlessPopover/HeadlessPopover.component.tsx';
-export type { HeadlessPopoverProps } from './HeadlessPopover/HeadlessPopover.component.tsx';   
+export type { HeadlessPopoverProps } from './HeadlessPopover/HeadlessPopover.component.tsx';
+// Layout Components (Styled System)
+export { Box, Flex, Grid } from './Layout';
+export type { BoxProps, FlexProps, GridProps } from './Layout';
 export { ThemeProvider } from 'styled-components';
 export * from './themes';
 export * from './Typography';

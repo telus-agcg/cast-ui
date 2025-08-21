@@ -36,6 +36,45 @@ export const canopyColors = {
 export const canopyTheme = {
   name: 'Canopy',
   colors: canopyColors,
+  // Styled-system configuration
+  breakpoints: ['768px', '1024px', '1366px'], // mobile-first breakpoints
+  space: [
+    '0px', // 0
+    '4px', // 1
+    '8px', // 2
+    '12px', // 3
+    '16px', // 4
+    '24px', // 5
+    '32px', // 6
+    '48px', // 7
+    '64px', // 8
+  ],
+  fontSizes: [
+    '10px', // 0
+    '12px', // 1
+    '14px', // 2
+    '16px', // 3
+    '18px', // 4
+    '20px', // 5
+    '24px', // 6
+    '32px', // 7
+    '48px', // 8
+  ],
+  radii: {
+    none: '0',
+    sm: '2px',
+    md: '4px',
+    lg: '8px',
+    xl: '12px',
+    full: '9999px',
+  },
+  shadows: {
+    none: 'none',
+    sm: '0 1px 3px rgba(0, 0, 0, 0.12)',
+    md: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    lg: '0 10px 15px rgba(0, 0, 0, 0.1)',
+    xl: '0 20px 25px rgba(0, 0, 0, 0.1)',
+  },
   borders: {
     radius: '1px',
     radiusSm: '3.2px',
@@ -454,8 +493,8 @@ export const canopyTheme = {
       indeterminate: {
         left: '-2px',
         padding: '2px 3px',
-        top: '5px'
-      }
+        top: '5px',
+      },
     },
     md: {
       squareSize: '10px',
@@ -470,8 +509,8 @@ export const canopyTheme = {
       indeterminate: {
         left: '-1px',
         padding: '2px 4px',
-        top: '6px'
-      }
+        top: '6px',
+      },
     },
     lg: {
       squareSize: '14px',
@@ -486,8 +525,8 @@ export const canopyTheme = {
       indeterminate: {
         left: '0px',
         padding: '2px 5px',
-        top: '6px'
-      }
+        top: '6px',
+      },
     },
   },
   toggle: {
