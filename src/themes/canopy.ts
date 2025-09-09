@@ -31,6 +31,18 @@ export const canopyColors = {
   dangerBackground: '#FADCD5',
   warningHoverLight: '#F6E2D5',
   warningBackgroundLight: '#FFF4ED',
+  chartingColor1: '#CCCCCC',
+  chartingColor2: '#9D79BF',
+  chartingColor3: '#786B89',
+  chartingColor4: '#CCBFDD',
+  chartingColor5: '#E8D9EC',
+  chartingColor6: '#DFC8CE',
+  chartingColor7: '#8EA2A3',
+  chartingColor8: '#655A75',
+  chartingColor9: '#B4A7C4',
+  chartingColor10: '#CCB3D2',
+  chartingColor11: '#C6B2B7',
+  chartingColor12: '#718384',
 };
 
 export const canopyTheme = {
