@@ -1,6 +1,5 @@
 import * as React from 'react';
 import _ from 'lodash';
-import { Themes } from '../themes';
 import styled, { ThemeProvider } from 'styled-components';
 import { Popover } from '../Popover';
 import Icon from 'react-icons-kit';
@@ -139,8 +138,4 @@ export const Menu: React.FC<Props> = ({
       </SPopover>
     </ThemeProvider>
   );
-};
-
-Menu.defaultProps = {
-  theme: Themes.canopyTheme,
 };

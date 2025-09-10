@@ -366,36 +366,28 @@ export const CustomSelect: React.FC<Props> = ({
     ...restProps
   } = props;
 
-  React.useEffect(() => {
-    const onDomClick = event => {
-      const container = containerRef.current;
-      if (container) {
-        const menuElement = container.querySelector('.react-select__menu');
-        if (
-          !container.contains(event.target) ||
-          !menuElement ||
-          !menuElement.contains(event.target as Node)
-        ) {
-          setIsFocused(false);
-          setFilterValue('');
-        }
+  const onDomClick = event => {
+    const container = containerRef.current;
+    if (container) {
+      const menuElement = container.querySelector('.react-select__menu');
+      if (
+        !container.contains(event.target) ||
+        !menuElement ||
+        !menuElement.contains(event.target as Node)
+      ) {
+        setIsFocused(false);
+        setFilterValue('');
       }
-    };
+    }
+  };
+
+  React.useEffect(() => {
     document.addEventListener('mousedown', onDomClick);
 
     return () => {
       document.removeEventListener('mousedown', onDomClick);
     };
   }, []);
-
-  const handleBlur = (event: React.FocusEvent) => {
-    if (
-      containerRef.current &&
-      !containerRef.current.contains(event.relatedTarget as Node)
-    ) {
-      requestAnimationFrame(() => setIsFocused(false));
-    }
-  };
 
   const handleSelectChange = event => {
     onChange(event);
@@ -442,13 +434,12 @@ export const CustomSelect: React.FC<Props> = ({
   };
 
   const MultiValueRemove = (props: any) => {
-    const { innerProps, innerRef } = props;
+    const { innerProps } = props;
     return (
       <div
         data-testid={`select-option-remove-${_.snakeCase(props.data.label)}`}
         id={`${id}-Select-multi-value_remove-${_.snakeCase(props.data.label)}`}
         className="react-select__multi-value__remove"
-        ref={innerRef}
         {...innerProps}
       >
         <SelectComponents.MultiValueRemove {...props} />
@@ -506,19 +497,18 @@ export const CustomSelect: React.FC<Props> = ({
           isFocused={isFocused || undefined}
           onInputChange={value => setFilterValue(value)}
           onMenuInputFocus={() => setIsFocused(true)}
-          onBlur={handleBlur}
           onChange={handleSelectChange}
           {...restProps}
           {...controlSpecificProps}
           {...selectCheckboxProps}
         />
-        {invalid && (
+        {invalid && invalidText ? (
           <ErrorMessage
             id={errorId}
             message={invalidText}
             textColor={theme.danger}
           />
-        )}
+        ) : null}
       </SDiv>
     </ThemeProvider>
   );
