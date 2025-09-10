@@ -43,7 +43,7 @@ export const SelectMenuList = props => {
         onFocus={onMenuInputFocus}
       />
       <SHr />
-      <SelectComponents.MenuList {...props} selectProps={selectProps} />
+      <SelectComponents.MenuList {...props} />
     </div>
   );
 };
