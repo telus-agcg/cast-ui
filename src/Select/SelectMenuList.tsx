@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Icon from 'react-icons-kit';
 import { ic_search as icSearch } from 'react-icons-kit/md';
@@ -21,10 +21,6 @@ export const SelectMenuList = props => {
   const { selectProps } = props;
   const { onInputChange, inputValue, onMenuInputFocus } = selectProps;
 
-  useEffect(() => {
-    onMenuInputFocus();
-  }, [onMenuInputFocus]);
-
   return (
     <div>
       <SInput
@@ -44,9 +40,10 @@ export const SelectMenuList = props => {
           e.stopPropagation();
           e.target.focus();
         }}
+        onFocus={onMenuInputFocus}
       />
       <SHr />
-      <SelectComponents.MenuList {...props} />
+      <SelectComponents.MenuList {...props} selectProps={selectProps} />
     </div>
   );
 };
