@@ -40,7 +40,6 @@
   },
   "dependencies": {
     "@storybook/addon-docs": "^6.5.10",
-    "@storybook/addon-postcss": "3.0.0-alpha.1",
     "@tippy.js/react": "^2.1.1",
     "@types/uuid": "^3.4.4",
     "classnames": "^2.2.6",

@@ -11,7 +11,6 @@ module.exports = {
     '@storybook/addon-essentials',
     'storybook-addon-styled-component-theme/dist/preset',
     '@storybook/addon-viewport',
-    '@storybook/addon-postcss',
     {
       name: '@storybook/addon-docs',
       options: {
