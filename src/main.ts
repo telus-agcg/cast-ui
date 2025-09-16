@@ -108,6 +108,9 @@ export type { ProgressBarProps } from './ProgressBar/ProgressBar.component.tsx';
 //HeadlessPopover
 export { HeadlessPopover } from './HeadlessPopover/HeadlessPopover.component.tsx';
 export type { HeadlessPopoverProps } from './HeadlessPopover/HeadlessPopover.component.tsx';
+// Skeleton
+export { Skeleton } from './Skeleton/Skeleton.component.tsx';
+export type { SkeletonProps } from './Skeleton/Skeleton.component.tsx';
 export { ThemeProvider } from 'styled-components';
 export * from './themes';
 export * from './Typography';
