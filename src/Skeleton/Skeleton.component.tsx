@@ -87,12 +87,13 @@ const getSkeletonDimensions = (
         width: width || '100%',
         height: height || '1em',
       };
-    case 'circular':
+    case 'circular': {
       const size = width || height || '40px';
       return {
         width: size,
         height: size,
       };
+    }
     case 'rectangular':
       return {
         width: width || '100%',
