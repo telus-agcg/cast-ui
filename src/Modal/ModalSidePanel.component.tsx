@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { Themes } from '@themes';
-import { CalendarMonthIcon, CloseIcon } from '@icons';
+import { CloseIcon } from '@icons';
 
 export interface ModalSidePanelProps {
   /**
