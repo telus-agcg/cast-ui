@@ -21,6 +21,12 @@ export interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement> {
    **/
   horizontal?: boolean;
   /**
+   * Is the field required?
+   *
+   * @default false
+   **/
+  required?: boolean;
+  /**
    * From theme provider
    *
    * @default defaultTheme
@@ -64,21 +70,27 @@ const SLabel = styled.label<InputGroupProps>`
     props.horizontal ? props.theme.inputGroup.label.horizontalWidth : '100%'};
 `;
 
+const RequiredLabel = styled.span`
+  color: ${(props) => props.theme.colors.danger};
+  padding-left: 2px;
+`;
+
 const defaultProps = {
   inputSize: 'md',
   horizontal: false,
+  required: false,
   theme: Themes.canopyTheme,
 } satisfies Partial<InputGroupProps>;
 
 export const InputGroup: React.FunctionComponent<InputGroupProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { theme, horizontal, label, inputSize, children, ...rest } =
+  const { theme, horizontal, label, inputSize, required, children, ...rest } =
     propsWithDefaults;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <InputGroupWrapper horizontal={horizontal} {...rest}>
         <SLabel label={label} inputSize={inputSize} horizontal={horizontal}>
-          {label}
+          {required && <RequiredLabel>*</RequiredLabel>} {label}
         </SLabel>
         {children}
       </InputGroupWrapper>

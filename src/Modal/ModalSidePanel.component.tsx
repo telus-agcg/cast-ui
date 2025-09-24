@@ -52,6 +52,11 @@ export interface ModalSidePanelProps {
    **/
   disableCloseIcon?: boolean;
   /**
+   * specify if close icon is disabled
+   * @default false
+   **/
+  customCloseIcon?: React.ReactNode;
+  /**
    * Specify the type of action buttons or Component in the side panel footer
    *
    * @default null
@@ -182,6 +187,7 @@ export const ModalSidePanel = (
     theme,
     zIndex,
     disableCloseIcon,
+    customCloseIcon,
     footerContent,
     children,
   } = propsWithDefaults;
@@ -241,7 +247,7 @@ export const ModalSidePanel = (
                   onClick={handleCloseClick}
                   disabled={disableCloseIcon}
                 >
-                  <CloseIcon />
+                  {customCloseIcon || <CloseIcon />}
                 </button>
               )}
             </SidePanelHeader>
