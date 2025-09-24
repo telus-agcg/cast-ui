@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { Themes } from '@themes';
-import { CloseIcon } from '@icons';
+import { CalendarMonthIcon, CloseIcon } from '@icons';
 
 export interface ModalSidePanelProps {
   /**
@@ -51,6 +51,11 @@ export interface ModalSidePanelProps {
    * @default false
    **/
   disableCloseIcon?: boolean;
+  /**
+   * specify if close icon is disabled
+   * @default false
+   **/
+  customCloseIcon?: React.ReactNode;
   /**
    * Specify the type of action buttons or Component in the side panel footer
    *
@@ -182,6 +187,7 @@ export const ModalSidePanel = (
     theme,
     zIndex,
     disableCloseIcon,
+    customCloseIcon,
     footerContent,
     children,
   } = propsWithDefaults;
@@ -241,7 +247,7 @@ export const ModalSidePanel = (
                   onClick={handleCloseClick}
                   disabled={disableCloseIcon}
                 >
-                  <CloseIcon />
+                  {customCloseIcon || <CloseIcon />}
                 </button>
               )}
             </SidePanelHeader>
