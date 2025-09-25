@@ -1223,3 +1223,21 @@ export function FileUploadUnderlineIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function DoubleDashIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M6 12a1 1 0 0 1 1-1h4a1 1 0 0 1 0 2H7a1 1 0 0 1-1-1zm7 0a1 1 0 0 1 1-1h4a1 1 0 0 1 0 2h-4a1 1 0 0 1-1-1z"
+      />
+    </svg>
+  );
+}
+
