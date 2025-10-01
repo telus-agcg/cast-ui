@@ -3,12 +3,12 @@ import styled, { ThemeProvider } from 'styled-components';
 import { getPropsWithDefaults } from '@utils';
 import { Themes } from '@themes';
 
-export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> {
+export interface TableCellProps extends React.TdHTMLAttributes<HTMLTableDataCellElement> {
   /**
-   * Add border around the table
-   * @default true
+   * Text alignment
+   * @default 'left'
    */
-  bordered?: boolean;
+  align?: 'left' | 'center' | 'right';
   /**
    * From theme provider
    * @default canopyTheme
@@ -16,36 +16,37 @@ export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> 
   theme?: any;
 }
 
-const StyledTable = styled.table<TableProps>`
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+const StyledTableCell = styled.td<TableCellProps>`
+  padding: ${(props) => props.theme.common.md.tableCellPadding};
+  text-align: ${(props) => props.align};
   font-family: ${(props) => props.theme.typography.fontFamily};
   font-size: ${(props) => props.theme.table.fontSize};
   color: ${(props) => props.theme.typography.color};
-  background-color: ${(props) => props.theme.body.backgroundColor};
-  border-radius: 8px;
-  overflow: hidden;
+  vertical-align: middle;
   
-  ${(props) => props.bordered && `
-    border: ${props.theme.table.border};
-  `}
+  &:first-child {
+    padding-left: 16px;
+  }
+  
+  &:last-child {
+    padding-right: 16px;
+  }
 `;
 
 const defaultProps = {
-  bordered: true,
+  align: 'left' as const,
   theme: Themes.canopyTheme,
-} satisfies Partial<TableProps>;
+} satisfies Partial<TableCellProps>;
 
-export const Table = (props: TableProps) => {
+export const TableCell = (props: TableCellProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
   const { theme, children, ...rest } = propsWithDefaults;
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <StyledTable {...rest}>
+      <StyledTableCell {...rest}>
         {children}
-      </StyledTable>
+      </StyledTableCell>
     </ThemeProvider>
   );
 };

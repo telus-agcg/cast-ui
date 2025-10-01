@@ -80,7 +80,20 @@ export type { SideNavProps } from './Sidenav/SideNavbar.component.tsx';
 export { Spinner } from './Spinner/Spinner.component.tsx';
 export type { SpinnerProps } from './Spinner/Spinner.component.tsx';
 // Table
-export { Table } from './Table/Table.component.tsx';
+export { Table } from './Table/Table.component';
+export type { TableProps } from './Table/Table.component';
+export { TableHeader } from './Table/TableHeader.component';
+export type { TableHeaderProps } from './Table/TableHeader.component';
+export { TableBody } from './Table/TableBody.component';
+export type { TableBodyProps } from './Table/TableBody.component';
+export { TableFooter } from './Table/TableFooter.component';
+export type { TableFooterProps } from './Table/TableFooter.component';
+export { TableRow } from './Table/TableRow.component';
+export type { TableRowProps } from './Table/TableRow.component';
+export { TableHeaderCell } from './Table/TableHeaderCell.component';
+export type { TableHeaderCellProps } from './Table/TableHeaderCell.component';
+export { TableCell } from './Table/TableCell.component';
+export type { TableCellProps } from './Table/TableCell.component';
 // Tabs
 export { Tab } from './Tabs/Tab.component.tsx';
 export type { TabProps } from './Tabs/Tab.component.tsx';
