@@ -1241,3 +1241,68 @@ export function DoubleDashIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+export function KeyboardCommandIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M6 2a4 4 0 0 1 4 4v2h4V6a4 4 0 0 1 4-4a4 4 0 0 1 4 4a4 4 0 0 1-4 4h-2v4h2a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4v-2h-4v2a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4h2v-4H6a4 4 0 0 1-4-4a4 4 0 0 1 4-4m10 16a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2h-2zm-2-8h-4v4h4zm-8 6a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2v-2zM8 6a2 2 0 0 0-2-2a2 2 0 0 0-2 2a2 2 0 0 0 2 2h2zm10 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2z"
+      ></path>
+    </svg>
+  );
+}
+
+export function OutlinePieChartIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 31 31"
+      width="1em"
+      height="1em"
+      fill="none"
+      {...props}
+    >
+      <path
+        d="M27.4232 20.7156C26.6279 22.5962 25.3841 24.2534 23.8005 25.5423C22.2169 26.8311 20.3416 27.7124 18.3387 28.1091C16.3358 28.5058 14.2662 28.4058 12.3108 27.8179C10.3555 27.2299 8.57394 26.172 7.12193 24.7364C5.66993 23.3009 4.59168 21.5316 3.98145 19.5831C3.37123 17.6346 3.24761 15.5662 3.62141 13.5589C3.9952 11.5516 4.85503 9.66641 6.12572 8.06816C7.39641 6.46991 9.03926 5.20727 10.9107 4.39062"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M28.4111 15.853C28.4111 14.2115 28.0878 12.5861 27.4596 11.0695C26.8314 9.55291 25.9107 8.17492 24.75 7.01419C23.5892 5.85346 22.2112 4.93272 20.6947 4.30453C19.1781 3.67635 17.5527 3.35303 15.9111 3.35303V15.853H28.4111Z"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+}
+
+export const PulseIcon = (props: SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 28 22"
+      width="1em"
+      height="1em"
+      fill="none"
+      {...props}
+    >
+      <path
+        d="M26.9111 11.3529H21.9111L18.1611 20.8529L10.6611 1.85291L6.91113 11.3529H1.91113"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
