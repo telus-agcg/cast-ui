@@ -149,6 +149,7 @@ export interface SelectProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default ''
    */
   menuPortalTarget?: HTMLElement;
+
   /**
    * If default the options will be selected through the list item.
    * If checkbox the options will be selected through a checkbox.
@@ -184,7 +185,6 @@ const SDiv = styled.div<SelectProps>`
       padding: 8px 12px;
     }
   }
-
   .react-select-component {
     .react-select__control {
       color: ${(props) => props.theme.select.selectedOptionColor};
@@ -318,8 +318,6 @@ const SSelectOption = styled.div<SelectProps>`
       ? props.theme.select.highlightOptionColor
       : props.theme.select.color};
   font-family: ${(props) => props.theme.typography.fontFamily};
-  font-size: ${(props) => props.theme.common[props.selectSize!]?.fontSize};
-  padding: 8px 12px;
   &.react-select__option--is-selected {
     color: ${(props) => props.theme.select.selectedOptionColor};
     background-color: ${(props) =>
@@ -345,6 +343,7 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = React.useState(false);
   const [filterValue, setFilterValue] = React.useState('');
+
   const {
     theme,
     creatable,
@@ -363,7 +362,6 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
     invalidText = '',
     optionType,
     onChange,
-    menuPortalTarget,
     ...restProps
   } = propsWithDefaults;
 
@@ -432,7 +430,6 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
       <SSelectOption
         data-testid={`select-option-${_.snakeCase(props.data.label)}`}
         className="react-select__option"
-        selectSize={selectSize}
         isFocused={isFocused}
         ref={innerRef}
         {...innerProps}
@@ -484,9 +481,6 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
         isDisabled={isDisabled}
       >
         <BaseSelectComponent
-          {...restProps}
-          {...controlSpecificProps}
-          {...selectCheckboxProps}
           className={`react-select-component ${restProps.className}`}
           closeMenuOnSelect={closeMenuOnSelect}
           classNamePrefix="react-select"
@@ -502,6 +496,7 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
           aria-invalid={invalid ? true : undefined}
           aria-describedby={errorId}
           selectSize={selectSize}
+          menuPortalTarget={document.getElementById(uniqueId)}
           formatGroupLabel={formatGroupLabel}
           components={components}
           inputValue={filterValue}
@@ -511,7 +506,9 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
           onMenuInputFocus={() => setIsFocused(true)}
           onBlur={handleBlur}
           onChange={handleSelectChange}
-          menuPortalTarget={menuPortalTarget || document.getElementById(uniqueId)}
+          {...restProps}
+          {...controlSpecificProps}
+          {...selectCheckboxProps}
         />
         {invalid && <ErrorMessage id={errorId} message={invalidText} />}
       </SDiv>
