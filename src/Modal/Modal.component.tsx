@@ -119,6 +119,7 @@ const ModalHeaderDiv = styled.div<
     color: ${(props: any) => props.theme.modal.header.color};
     padding: 0;
     margin: 0 50px 0 0;
+    line-height: 1.2;
   }
   button {
     position: absolute;
