@@ -407,7 +407,7 @@ export const SplitButton: React.FC<SplitButtonProps> = (props: SplitButtonProps)
     ...rest
   } = propsWithDefaults;
 
-  const iconSize = btnSize === 'sm' ? 20 : btnSize === 'lg' ? 28 : 24;
+  const iconSize = btnSize === 'sm' ? 14 : btnSize === 'lg' ? 24 : 16;
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
