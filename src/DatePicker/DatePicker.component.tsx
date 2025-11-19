@@ -222,6 +222,7 @@ const CustomDatePickerHeader = ({
         disabled={prevYearButtonDisabled}
         onClick={decreaseYear}
         isVisible={customHeaderCount != 1}
+        type="button"
       >
         <KeyboardDoubleArrowLeftIcon height={24} width={24} />
       </SButton>
@@ -230,6 +231,7 @@ const CustomDatePickerHeader = ({
         disabled={prevMonthButtonDisabled}
         onClick={decreaseMonth}
         isVisible={customHeaderCount != 1}
+        type="button"
       >
         <KeyboardArrowLeftIcon height={24} width={24} />
       </SButton>
@@ -244,6 +246,7 @@ const CustomDatePickerHeader = ({
         disabled={nextMonthButtonDisabled}
         onClick={increaseMonth}
         isVisible={monthsShown < 1 && customHeaderCount != 0}
+        type="button"
       >
         <KeyboardArrowRightIcon height={24} width={24} />
       </SButton>
@@ -252,6 +255,7 @@ const CustomDatePickerHeader = ({
         disabled={nextYearButtonDisabled}
         onClick={increaseYear}
         isVisible={!(monthsShown < 1 && customHeaderCount != 0)}
+        type="button"
       >
         <KeyboardDoubleArrowRightIcon height={24} width={24} />
       </SButton>
