@@ -111,6 +111,9 @@ export type { HeadlessPopoverProps } from './HeadlessPopover/HeadlessPopover.com
 // Skeleton
 export { Skeleton } from './Skeleton/Skeleton.component.tsx';
 export type { SkeletonProps } from './Skeleton/Skeleton.component.tsx';
+// SplitButton
+export { SplitButton } from './SplitButton/SplitButton.component.tsx';
+export type { SplitButtonProps } from './SplitButton/SplitButton.component.tsx';
 export { ThemeProvider } from 'styled-components';
 export * from './themes';
 export * from './Typography';
