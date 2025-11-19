@@ -14,6 +14,8 @@ import { Themes } from '@themes';
 export type OptionType = {
   value: string;
   label: string;
+  /** Optional subtitle text to display below the label in dropdown options */
+  subtitle?: string;
 };
 
 export interface SelectProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -330,6 +332,13 @@ const SSelectOption = styled.div<SelectProps>`
   }
 `;
 
+const SSelectOptionSubtitle = styled.div`
+  color: ${(props) => props.theme.select.subtitleColor};
+  font-size: ${(props) => props.theme.select.subtitleFontSize};
+  margin-top: 2px;
+  line-height: 1.2;
+`;
+
 const defaultProps = {
   id: 'select',
   optionType: 'default',
@@ -435,8 +444,30 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
         {...innerProps}
         id={`${id}-Select-${_.snakeCase(props.data.label)}`}
       >
-        {props.data.label}
+        <div>{props.data.label}</div>
+        {props.data.subtitle && (
+          <SSelectOptionSubtitle>{props.data.subtitle}</SSelectOptionSubtitle>
+        )}
       </SSelectOption>
+    );
+  };
+
+  const formatOptionLabel = (
+    option: OptionType,
+    { context }: { context: 'menu' | 'value' }
+  ) => {
+    // In 'value' context (selected value display), show only the label
+    if (context === 'value') {
+      return option.label;
+    }
+    // In 'menu' context (dropdown), show label and subtitle if present
+    return (
+      <div>
+        <div>{option.label}</div>
+        {option.subtitle && (
+          <SSelectOptionSubtitle>{option.subtitle}</SSelectOptionSubtitle>
+        )}
+      </div>
     );
   };
 
@@ -498,6 +529,7 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
           selectSize={selectSize}
           menuPortalTarget={document.getElementById(uniqueId)}
           formatGroupLabel={formatGroupLabel}
+          formatOptionLabel={optionType === 'default' ? formatOptionLabel : undefined}
           components={components}
           inputValue={filterValue}
           menuIsOpen={isFocused || undefined}

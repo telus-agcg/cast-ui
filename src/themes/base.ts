@@ -897,6 +897,8 @@ export const buildTheme = (colors: any) => ({
     selectedOptionBackgroundColor: colors.white,
     borderColor: colors.drk400,
     placeholderColor: colors.drk400,
+    subtitleColor: colors.drk400,
+    subtitleFontSize: "12px",
     width: "100%",
     disabled: {
       color: colors.drk800,
