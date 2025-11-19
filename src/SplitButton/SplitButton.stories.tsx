@@ -80,7 +80,7 @@ export const Default: Story = {
     onPrimaryClick: () => {
       alert('you pressed me');
     },
-    onMenuItemClick: (item) => {
+    onMenuItemClick: () => {
       alert('This is the secondary action');
     },
   },
