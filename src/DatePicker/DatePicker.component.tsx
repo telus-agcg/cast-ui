@@ -84,6 +84,50 @@ export type DatePickerProps = InputProps &
      * onFocusChange handler
      */
     onFocusChange?: (input: Focused) => void;
+    /**
+     * Render calendar in a portal to avoid overflow issues
+     *
+     * @default false
+     **/
+    usePortal?: boolean;
+    /**
+     * ID of element to render portal into (requires usePortal=true)
+     *
+     * @default undefined (renders to document.body)
+     **/
+    portalId?: string;
+    /**
+     * Popper positioning strategy ('absolute' or 'fixed')
+     * Use 'fixed' to escape overflow containers
+     *
+     * @default 'absolute'
+     **/
+    popperStrategy?: 'absolute' | 'fixed';
+    /**
+     * Placement of the calendar relative to input
+     *
+     * @default 'bottom-start'
+     **/
+    popperPlacement?:
+      | 'auto'
+      | 'top'
+      | 'bottom'
+      | 'left'
+      | 'right'
+      | 'top-start'
+      | 'top-end'
+      | 'bottom-start'
+      | 'bottom-end'
+      | 'left-start'
+      | 'left-end'
+      | 'right-start'
+      | 'right-end';
+    /**
+     * Custom Popper.js modifiers for advanced positioning
+     *
+     * @default undefined
+     **/
+    popperModifiers?: any[];
   };
 
 const SWrapperComponent = styled.div<DatePickerProps & { showIcon: boolean }>`
@@ -280,6 +324,11 @@ const defaultProps = {
   invalidTextColor: '',
   showIcon: true,
   theme: Themes.canopyTheme,
+  usePortal: false,
+  portalId: undefined,
+  popperStrategy: 'absolute',
+  popperPlacement: 'bottom-start',
+  popperModifiers: undefined,
 } satisfies Partial<DatePickerProps>;
 
 export const DatePicker = (props: DatePickerProps) => {
@@ -306,6 +355,11 @@ export const DatePicker = (props: DatePickerProps) => {
     showIcon,
     startDate,
     endDate,
+    usePortal,
+    portalId,
+    popperStrategy,
+    popperPlacement,
+    popperModifiers,
     ...rest
   } = propsWithDefaults;
 
@@ -334,6 +388,16 @@ export const DatePicker = (props: DatePickerProps) => {
   const errorId = invalid ? `${id}-error-msg` : '';
   const datePickerProps = props as ReactDatePickerProps;
 
+  // Build popper configuration if needed
+  const popperProps =
+    popperStrategy === 'fixed' || popperPlacement || popperModifiers
+      ? {
+          strategy: popperStrategy,
+          ...(popperPlacement && { placement: popperPlacement }),
+          ...(popperModifiers && { modifiers: popperModifiers }),
+        }
+      : undefined;
+
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SWrapperComponent
@@ -360,7 +424,10 @@ export const DatePicker = (props: DatePickerProps) => {
           renderCustomHeader={(props) => (
             <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
           )}
-          {...props}
+          withPortal={usePortal}
+          portalId={portalId}
+          popperProps={popperProps}
+          {...rest}
         />
       </SWrapperComponent>
     </ThemeProvider>
