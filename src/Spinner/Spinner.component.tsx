@@ -30,7 +30,12 @@ export type SpinnerProps = {
   theme?: any;
 };
 
-const SSpinner = styled.div<SpinnerProps>`
+const SSpinner = styled.div<{
+  size: number;
+  $animationSpeed: number;
+  $transitionType: string;
+}>`
+
   width: ${(props) => `${props.size}px`};
   height: ${(props) => `${props.size}px`};
   position: relative;
@@ -51,7 +56,7 @@ const SSpinner = styled.div<SpinnerProps>`
       ${props.theme.spinner.backgroundColor}`};
     border-top-color: ${(props) => props.theme.spinner.borderColor};
     animation: ${(props) =>
-      `spinner ${props.animationSpeed}s ${props.transitionType} infinite`};
+      `spinner ${props.$animationSpeed}s ${props.$transitionType} infinite`};
   }
 
   @keyframes spinner {
@@ -70,10 +75,10 @@ const defaultProps = {
 
 export const Spinner: React.FunctionComponent<SpinnerProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { theme, ...rest } = propsWithDefaults;
+  const { theme, size, animationSpeed, transitionType } = propsWithDefaults;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SSpinner {...rest} />
+      <SSpinner size={size!} $animationSpeed={animationSpeed!} $transitionType={transitionType!} />
     </ThemeProvider>
   );
 };

@@ -1278,9 +1278,9 @@ export function OutlinePieChartIcon(props: SVGProps<SVGSVGElement>) {
       <path
         d="M28.4111 15.853C28.4111 14.2115 28.0878 12.5861 27.4596 11.0695C26.8314 9.55291 25.9107 8.17492 24.75 7.01419C23.5892 5.85346 22.2112 4.93272 20.6947 4.30453C19.1781 3.67635 17.5527 3.35303 15.9111 3.35303V15.853H28.4111Z"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -1299,9 +1299,9 @@ export const PulseIcon = (props: SVGProps<SVGSVGElement>) => {
       <path
         d="M26.9111 11.3529H21.9111L18.1611 20.8529L10.6611 1.85291L6.91113 11.3529H1.91113"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
