@@ -9,7 +9,6 @@ import { SelectCheckboxProps } from './SelectCheckbox.component';
 import _ from 'lodash';
 import { SelectComponents } from './index';
 import { getDataProps } from '../utils/common';
-import { SelectMenuList } from './SelectMenuList';
 
 export type OptionType = {
   value: string;
@@ -452,9 +451,6 @@ export const CustomSelect: React.FC<Props> = ({
       MultiValueRemove,
       Option: DefaultSelectOption,
     }),
-    ...(isFilterable && {
-      MenuList: SelectMenuList,
-    }),
   };
 
   const dataProps = getDataProps(props);
@@ -478,7 +474,7 @@ export const CustomSelect: React.FC<Props> = ({
           classNamePrefix="react-select"
           isDisabled={isDisabled}
           isClearable={isClearable}
-          isSearchable={false}
+          isSearchable={!!isFilterable}
           clearText={clearText}
           isMulti={isMulti}
           value={selectedOption}
