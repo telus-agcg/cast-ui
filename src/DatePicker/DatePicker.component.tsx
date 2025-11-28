@@ -83,6 +83,7 @@ type State = {
   focused: focusInput;
   date: Date | null;
   range: dateChangeEvent;
+  isOpen: boolean;
 };
 
 const SWrapperComponent = styled.div<Partial<Props>>`
@@ -212,10 +213,33 @@ const SButton = styled.button`
 `;
 
 const CustomInput = (props: Partial<Props>) => {
+  const { onIconClick, onInputClick, ...restProps } = props;
+  const handleIconClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (onIconClick instanceof Function) {
+      onIconClick(e);
+    }
+  };
+
+  const handleInputClick = (e: React.MouseEvent) => {
+    // Check if click is on the icon wrapper
+    if (onInputClick instanceof Function) {
+      onInputClick(e);
+    }
+  };
+
   return (
     <Input
       {...props}
-      icon={<Icon className="react-datepicker__icon" icon={calendarO} />}
+      icon={
+        <Icon
+          className="react-datepicker__icon"
+          icon={calendarO}
+          onClick={handleIconClick}
+        />
+      }
+      onClick={handleInputClick}
     />
   );
 };
@@ -309,6 +333,7 @@ class ReactDatePicker extends Component<Props> {
     focused: null,
     date: null,
     range: { startDateRange: null, endDateRange: null },
+    isOpen: false,
   };
 
   onDateChange = (selectsRange: boolean, event) => {
@@ -342,6 +367,31 @@ class ReactDatePicker extends Component<Props> {
     document.body.classList.add(
       `cui-${this.props.theme.name.toLowerCase()}-theme`,
     );
+  };
+
+  toggleDatePicker = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    this.setState((prevState: State) => ({
+      isOpen: !prevState.isOpen,
+    }));
+  };
+
+  handleInputClick = () => {
+    this.setState({ isOpen: true });
+  };
+
+  handleClickOutside = (e: any) => {
+    // Check if the click is on the icon
+    const target = e.target as HTMLElement;
+    if (
+      target.closest('.react-datepicker__icon') ||
+      target.closest('.react-datepicker__icon-wrapper')
+    ) {
+      // Don't close if clicking on icon
+      return;
+    }
+    this.setState({ isOpen: false });
   };
 
   render() {
@@ -392,7 +442,13 @@ class ReactDatePicker extends Component<Props> {
           <label>
             <DatePicker
               fixedHeight
-              customInput={<CustomInput {...this.props} />}
+              customInput={
+                <CustomInput
+                  {...this.props}
+                  onIconClick={this.toggleDatePicker}
+                  onInputClick={this.handleInputClick}
+                />
+              }
               onChange={event => this.onDateChange(selectsRange, event)}
               selected={
                 date ||
@@ -409,6 +465,8 @@ class ReactDatePicker extends Component<Props> {
                 <CustomDatePickerHeader {...props} monthsShown={monthsShown} />
               )}
               {...props}
+              open={this.state.isOpen}
+              onClickOutside={this.handleClickOutside}
             />
           </label>
         </SWrapperComponent>
