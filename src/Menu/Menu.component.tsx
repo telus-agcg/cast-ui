@@ -91,10 +91,13 @@ interface MenuItemLabelProps {
   hasIcon: boolean;
 }
 
-const MenuItemLabel = styled.span<MenuItemLabelProps>`
+const MenuItemLabel = styled.span<{
+  $itemsHasNonEmptyIcon: boolean;
+  $hasIcon: boolean;
+}>`
   padding-left: 4px;
   margin-left: ${(props) =>
-    props.itemsHasNonEmptyIcon ? (props.hasIcon ? '0px' : '24px') : '0px'};
+    props.$itemsHasNonEmptyIcon ? (props.$hasIcon ? '0px' : '24px') : '0px'};
 `;
 
 const noop = () => {}; // tslint:disable-line
@@ -143,8 +146,8 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
                   >
                     {item.icon && item.icon}
                     <MenuItemLabel
-                      itemsHasNonEmptyIcon={Boolean(hasNonEmptyIcon)}
-                      hasIcon={item.icon ? true : false}
+                      $itemsHasNonEmptyIcon={Boolean(hasNonEmptyIcon)}
+                      $hasIcon={item.icon ? true : false}
                     >
                       {item.label}
                     </MenuItemLabel>

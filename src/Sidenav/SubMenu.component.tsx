@@ -23,8 +23,8 @@ const SSubNavWrapper = styled.div<{ show: boolean }>`
 
 interface SidebarLinkProps {
   level: number | undefined;
-  isOpen: boolean;
-  activeItem: boolean;
+  $isOpen: boolean;
+  $activeItem: boolean;
   isActiveSubMenuItem: boolean;
   activeSideNavItem: boolean;
 }
@@ -34,15 +34,15 @@ const SidebarLink = styled(Link)<SidebarLinkProps>`
   display: inline-flex;
   align-items: center;
   padding: ${(props) =>
-    props.level === 1 ? '8px 0px 8px 46px' : props.isOpen ? '8px 0px' : '8px'};
+    props.level === 1 ? '8px 0px 8px 46px' : props.$isOpen ? '8px 0px' : '8px'};
   gap: 12px;
   color: ${(props) =>
     props.theme.sidenav[
-      `${props.activeItem || props.isActiveSubMenuItem ? 'active' : ''}navItem`
+      `${props.$activeItem || props.isActiveSubMenuItem ? 'active' : ''}navItem`
     ].color};
   font-weight: ${(props) =>
     props.theme.sidenav[
-      `${props.activeItem || props.isActiveSubMenuItem ? 'active' : ''}navItem`
+      `${props.$activeItem || props.isActiveSubMenuItem ? 'active' : ''}navItem`
     ].fontWeight};
   cursor: ${(props) =>
     props.disabled
@@ -52,15 +52,15 @@ const SidebarLink = styled(Link)<SidebarLinkProps>`
   opacity: ${(props) =>
     props.disabled
       ? '.6'
-      : props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`]
+      : props.theme.sidenav[`${props.$activeItem ? 'active' : ''}navItem`]
           .opacity};
   &:hover {
     background: '${(props) =>
-      props.level === 1 || (!props.isOpen && !props.disabled)
+      props.level === 1 || (!props.$isOpen && !props.disabled)
         ? props.theme.sidenav.activenavItem.background
         : ''}';
     outline: ${(props) =>
-      !props.isOpen && !props.disabled
+      !props.$isOpen && !props.disabled
         ? props.theme.sidenav.activenavItem.hoverBorder
         : ''};
     border-radius: 7px;
@@ -74,15 +74,15 @@ const SidebarLink = styled(Link)<SidebarLinkProps>`
   }
   .custom-icon-svg {
     color: ${(props) =>
-      props.theme.sidenav[`${props.activeItem ? 'active' : ''}navItem`].color};
+      props.theme.sidenav[`${props.$activeItem ? 'active' : ''}navItem`].color};
     &:hover {
       color: ${(props) => props.theme.sidenav[`activenavItem`].color};
     }
   }
 `;
 
-const SidebarLabel = styled.span<{ isOpen: boolean }>`
-  display: ${(props) => (props.isOpen ? 'block' : 'none')};
+const SidebarLabel = styled.span<{ $isOpen: boolean }>`
+  display: ${(props) => (props.$isOpen ? 'block' : 'none')};
 `;
 
 const SubMenu = ({
@@ -119,9 +119,9 @@ const SubMenu = ({
   const [subnav, setSubnav] = useState(false);
 
   const newProps = {
-    isOpen,
+    $isOpen: isOpen,
     theme,
-    activeItem: currentActiveItem.label === item.label ? true : false,
+    $activeItem: currentActiveItem.label === item.label ? true : false,
     disabled: item.disabled,
   };
 

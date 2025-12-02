@@ -10,7 +10,13 @@ export type HeadlessPopoverProps = React.PropsWithChildren &
     appendTo?: TippyProps['appendTo'];
   };
 
-const TippyBox = styled.div<HeadlessPopoverProps>`
+interface TippyBoxProps {
+  displayType?: string;
+}
+
+const TippyBox = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'displayType',
+})<TippyBoxProps>`
   border: 1px solid ${(props) => props.theme.popover.borderColor};
   border-radius: ${(props) => props.theme.popover.borderRadius};
   box-shadow: ${(props) => props.theme.popover.boxShadow};
@@ -27,7 +33,7 @@ const defaultProps = {
 
 export const HeadlessPopover = (props: HeadlessPopoverProps) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { children, content, appendTo } = propsWithDefaults;
+  const { children, content, appendTo, displayType } = propsWithDefaults;
   const { className, ...restProps } = propsWithDefaults; // fix ClassName exception while rendering tippy component
   
   // by Using document.body as a default prop causes build failure, as document cannot be accessed during root-level import.
@@ -39,7 +45,7 @@ export const HeadlessPopover = (props: HeadlessPopoverProps) => {
       trigger="click"
       zIndex={unset as unknown as undefined}
       render={(attrs) => (
-        <TippyBox tabIndex={-1}  className={className}  {...attrs} {...restProps}>
+        <TippyBox tabIndex={-1}  className={className}  displayType={displayType}  {...attrs}>
           <div>{content}</div>
         </TippyBox>
       )}
@@ -55,7 +61,7 @@ export const HeadlessPopover = (props: HeadlessPopoverProps) => {
     trigger="click"
     zIndex={unset as unknown as undefined}
     render={(attrs) => (
-      <TippyBox tabIndex={-1}  className={className}  {...attrs} {...restProps}>
+      <TippyBox tabIndex={-1}  className={className}  displayType={displayType}  {...attrs}>
         <div>{content}</div>
       </TippyBox>
     )}
