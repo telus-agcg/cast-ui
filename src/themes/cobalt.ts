@@ -929,6 +929,8 @@ export const cobaltTheme = {
     selectedOptionBackgroundColor: cobaltColors.white,
     borderColor: cobaltColors.drk400,
     placeholderColor: cobaltColors.drk400,
+    subtitleColor: cobaltColors.drk400,
+    subtitleFontSize: "12px",
     width: "100%",
     disabled: {
       color: cobaltColors.drk800,

@@ -220,3 +220,45 @@ const MultiSelectCheckbox = (args) => {
     </FlexDiv>
   );
 };
+
+export const SelectWithSubtitles: Story = {
+  args: {
+    creatable: false,
+    isMulti: false,
+    isDisabled: false,
+    isClearable: true,
+    isFilterable: false,
+    selectSize: 'md',
+    invalid: false,
+    invalidText: 'A valid value is required',
+    placeholder: 'Select a fruit...',
+    options: [
+      { value: 'apple', label: 'Apple', subtitle: 'A sweet red fruit' },
+      { value: 'banana', label: 'Banana', subtitle: 'A yellow tropical fruit' },
+      { value: 'orange', label: 'Orange', subtitle: 'A citrus fruit rich in vitamin C' },
+      { value: 'grape', label: 'Grape', subtitle: 'Small round fruit, often purple or green' },
+    ],
+    optionType: 'default',
+  },
+};
+
+export const SelectMixedOptions: Story = {
+  args: {
+    creatable: false,
+    isMulti: false,
+    isDisabled: false,
+    isClearable: true,
+    isFilterable: false,
+    selectSize: 'md',
+    invalid: false,
+    invalidText: 'A valid value is required',
+    placeholder: 'Select an option...',
+    options: [
+      { value: 'with-subtitle-1', label: 'Option with subtitle', subtitle: 'This option has a subtitle' },
+      { value: 'without-subtitle-1', label: 'Option without subtitle' },
+      { value: 'with-subtitle-2', label: 'Another with subtitle', subtitle: 'Additional context here' },
+      { value: 'without-subtitle-2', label: 'Another without subtitle' },
+    ],
+    optionType: 'default',
+  },
+};
