@@ -159,10 +159,10 @@ export interface SelectProps extends React.HTMLAttributes<HTMLDivElement> {
   optionType?: 'default' | 'checkbox';
 }
 
-const SDiv = styled.div<SelectProps>`
+const SDiv = styled.div<{ $selectSize?: 'sm' | 'md' | 'lg' } & SelectProps>`
   position: relative;
   font-family: ${(props) => props.theme.typography.fontFamily};
-  font-size: ${(props) => props.theme.common[props.selectSize!].fontSize};
+  font-size: ${(props) => props.theme.common[props.$selectSize!].fontSize};
   color: ${(props) => props.theme.reverseText};
   width: ${(props) => props.theme.select.width};
   cursor: ${(props) => (props.isDisabled ? 'not-allowed' : 'auto')};
@@ -189,10 +189,10 @@ const SDiv = styled.div<SelectProps>`
     .react-select__control {
       color: ${(props) => props.theme.select.selectedOptionColor};
       transition: all 0.3s;
-      min-height: ${(props) => props.theme.select[props.selectSize!].height};
+      min-height: ${(props) => props.theme.select[props.$selectSize!].height};
       border-radius: ${(props) =>
         props.theme.select.borderRadius ||
-        props.theme.select[props.selectSize!].borderRadius};
+        props.theme.select[props.$selectSize!].borderRadius};
       border-color: ${(props) =>
         props.theme.common.borderColor ||
         (props.invalid
@@ -202,13 +202,13 @@ const SDiv = styled.div<SelectProps>`
         border-color: ${(props) => props.theme.colors.drk800};
       }
       .react-select__value-container {
-        padding: ${(props) => props.theme.select[props.selectSize!].padding};
+        padding: ${(props) => props.theme.select[props.$selectSize!].padding};
         font-family: ${(props) => props.theme.typography.fontFamily};
-        font-size: ${(props) => props.theme.common[props.selectSize!].fontSize};
+        font-size: ${(props) => props.theme.common[props.$selectSize!].fontSize};
         .react-select__input {
           font-family: ${(props) => props.theme.typography.fontFamily};
           font-size: ${(props) =>
-            props.theme.common[props.selectSize!].fontSize};
+            props.theme.common[props.$selectSize!].fontSize};
         }
 
         .react-select__single-value {
@@ -473,7 +473,7 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
         {...dataProps}
         ref={containerRef}
         className="select-wrapper"
-        selectSize={selectSize}
+        $selectSize={selectSize}
         aria-invalid={invalid ? true : undefined}
         aria-describedby={errorId}
         invalid={invalid}
