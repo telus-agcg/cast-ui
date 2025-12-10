@@ -958,6 +958,8 @@ export const canopyTheme = {
     selectedOptionBackgroundColor: canopyColors.white,
     borderColor: canopyColors.lt800,
     placeholderColor: canopyColors.drk400,
+    subtitleColor: canopyColors.drk400,
+    subtitleFontSize: '12px',
     width: '100%',
     disabled: {
       color: canopyColors.drk800,
