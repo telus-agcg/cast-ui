@@ -136,17 +136,22 @@ const computeColor: Function = (
   }
 };
 
-const SButton = styled.button<ButtonProps>`
+const SButton = styled.button<{
+  $btnStyle?: string;
+  $btnSize?: string;
+  outline?: boolean;
+  selected?: boolean;
+}>`
   min-width: 96px;
   box-sizing: border-box;
   transition: all 0.3s;
-  border-radius: ${(props) => props.theme.button[props.btnSize!].borderRadius};
+  border-radius: ${(props) => props.theme.button[props.$btnSize!].borderRadius};
   background: ${(props) =>
     computeColor(
       'normal',
       props.selected,
       props.outline,
-      props.btnStyle,
+      props.$btnStyle,
       props.theme,
     ).background};
   border: 1px solid
@@ -155,29 +160,29 @@ const SButton = styled.button<ButtonProps>`
         'normal',
         props.selected,
         props.outline,
-        props.btnStyle,
+        props.$btnStyle,
         props.theme,
       ).borderColor};
-  padding: ${(props) => props.theme.button[props.btnSize!].padding};
+  padding: ${(props) => props.theme.button[props.$btnSize!].padding};
   font-family: ${(props) => props.theme.typography.fontFamily};
-  font-size: ${(props) => props.theme.button[props.btnSize!].fontSize};
+  font-size: ${(props) => props.theme.button[props.$btnSize!].fontSize};
   font-weight: 600;
-  line-height: ${(props) => props.theme.button[props.btnSize!].lineHeight};
+  line-height: ${(props) => props.theme.button[props.$btnSize!].lineHeight};
   color: ${(props) =>
     computeColor(
       'normal',
       props.selected,
       props.outline,
-      props.btnStyle,
+      props.$btnStyle,
       props.theme,
     ).color};
 
   outline: none !important;
   &:focus {
     outline: none !important;
-    border-color: ${(props) => props.theme.colors[props.btnStyle || 'primary']};
+    border-color: ${(props) => props.theme.colors[props.$btnStyle || 'primary']};
     box-shadow: 0 0 3px
-      ${(props) => props.theme.colors[props.btnStyle || 'primary']};
+      ${(props) => props.theme.colors[props.$btnStyle || 'primary']};
   }
   &:hover,
   &:active {
@@ -186,7 +191,7 @@ const SButton = styled.button<ButtonProps>`
         'hover',
         props.selected,
         props.outline,
-        props.btnStyle,
+        props.$btnStyle,
         props.theme,
       ).background};
     color: ${(props) =>
@@ -194,7 +199,7 @@ const SButton = styled.button<ButtonProps>`
         'hover',
         props.selected,
         props.outline,
-        props.btnStyle,
+        props.$btnStyle,
         props.theme,
       ).color};
     border: 1px solid
@@ -203,7 +208,7 @@ const SButton = styled.button<ButtonProps>`
           'hover',
           props.selected,
           props.outline,
-          props.btnStyle,
+          props.$btnStyle,
           props.theme,
         ).borderColor};
     cursor: pointer;
@@ -214,7 +219,7 @@ const SButton = styled.button<ButtonProps>`
         'disabled',
         props.selected,
         props.outline,
-        props.btnStyle,
+        props.$btnStyle,
         props.theme,
       ).background};
     color: ${(props) =>
@@ -222,7 +227,7 @@ const SButton = styled.button<ButtonProps>`
         'disabled',
         props.selected,
         props.outline,
-        props.btnStyle,
+        props.$btnStyle,
         props.theme,
       ).color};
     border: 1px solid
@@ -231,7 +236,7 @@ const SButton = styled.button<ButtonProps>`
           'disabled',
           props.selected,
           props.outline,
-          props.btnStyle,
+          props.$btnStyle,
           props.theme,
         ).borderColor};
     cursor: not-allowed;
@@ -272,6 +277,8 @@ export const Button = (props: ButtonProps) => {
     disabled,
     displayType,
     children,
+    btnStyle,
+    btnSize,
     ...rest
   } = propsWithDefaults;
 
@@ -282,6 +289,8 @@ export const Button = (props: ButtonProps) => {
       <ButtonType
         disabled={disabled}
         onClick={!disabled ? onClick : noop}
+        $btnStyle={btnStyle}
+        $btnSize={btnSize}
         {...rest}
       >
         {children}

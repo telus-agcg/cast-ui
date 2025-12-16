@@ -130,7 +130,12 @@ export type DatePickerProps = InputProps &
     popperModifiers?: any[];
   };
 
-const SWrapperComponent = styled.div<DatePickerProps & { showIcon: boolean }>`
+const SWrapperComponent = styled.div<{
+  datePickerSize?: pickerSize;
+  datePickerStyle?: pickerStyle;
+  invalid?: boolean;
+  showIcon: boolean;
+}>`
   position: relative;
   font-family: ${(props) => props.theme.typography.fontFamily};
   font-size: ${(props) => props.theme.common[props.datePickerSize!].fontSize};
@@ -407,7 +412,7 @@ export const DatePicker = (props: DatePickerProps) => {
         datePickerSize={datePickerSize}
         datePickerStyle={datePickerStyle}
         data-invalid={invalid ? '' : undefined}
-        aria-invalid={invalid ? true : undefined}
+        aria-invalid={invalid ? 'true' : 'false'}
         aria-describedby={errorId}
         showIcon={Boolean(showIcon)}
       >
