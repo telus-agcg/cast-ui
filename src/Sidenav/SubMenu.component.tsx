@@ -11,10 +11,10 @@ const SSubMenuItem = styled.div`
   display: inline-block;
 `;
 
-const SSubNavWrapper = styled.div<{ show: boolean | undefined }>`
+const SSubNavWrapper = styled.div<{ $show: boolean }>`
   display: flex;
-  height: ${(props) => (props.show ? 'auto' : 0)};
-  opacity: ${(props) => (props.show ? 1 : 0)};
+  height: ${(props) => (props.$show ? 'auto' : 0)};
+  opacity: ${(props) => (props.$show ? 1 : 0)};
   flex-direction: column;
   &.fade-enter {
     transition: height 0.15s 0s ease-in;
@@ -194,7 +194,7 @@ const SubMenu = ({
           <SidebarLabel {...newProps}>{item.label}</SidebarLabel>
         </SidebarLink>
         <SSubNavWrapper
-          show={isOpen && subnav ? true : undefined}
+          $show={isOpen && subnav}
           className={isOpen && subnav ? 'fade-enter' : ''}
         >
           {item.subNav &&
