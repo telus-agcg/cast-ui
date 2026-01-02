@@ -434,6 +434,7 @@ export const SplitButton: React.FC<SplitButtonProps> = (props: SplitButtonProps)
               btnSize={btnSize}
               outline={outline}
               theme={theme}
+              data-testid={`dropdown-${propsWithDefaults['data-testid']}`}
               type="button"
             >
               <KeyboardArrowDownIcon width={iconSize} height={iconSize} />
