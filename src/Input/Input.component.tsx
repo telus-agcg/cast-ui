@@ -235,30 +235,35 @@ const defaultProps = {
   theme: Themes.canopyTheme,
 } satisfies Partial<InputProps>;
 
-export const Input = (props: InputProps) => {
-  const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const {
-    theme,
-    id,
-    disabled,
-    className,
-    iconPosition,
-    invalid,
-    invalidText,
-    value,
-    addonTextPosition,
-    addonText,
-    icon,
-    isClearable,
-    inputSize,
-    maxLength,
-    onBlur,
-    onFocus,
-    onChange,
-    ...rest
-  } = propsWithDefaults;
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const errorId = invalid ? `${id}-error-msg` : '';
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => {
+    const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
+    const {
+      theme,
+      id,
+      disabled,
+      className,
+      iconPosition,
+      invalid,
+      invalidText,
+      value,
+      addonTextPosition,
+      addonText,
+      icon,
+      isClearable,
+      inputSize,
+      maxLength,
+      onBlur,
+      onFocus,
+      onChange,
+      ...rest
+    } = propsWithDefaults;
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
+    // Merge forwarded ref with internal ref
+    React.useImperativeHandle(ref, () => inputRef.current!);
+
+    const errorId = invalid ? `${id}-error-msg` : '';
 
   const [focused, setFocused] = React.useState(false);
 
@@ -348,4 +353,4 @@ export const Input = (props: InputProps) => {
       )}
     </ThemeProvider>
   );
-};
+});
