@@ -52,6 +52,7 @@ export const _InputGroup: Story = {
             selectSize={selectSize}
             invalid={invalid}
             invalidText={invalidText}
+            menuPortalTarget={document.body}
             options={[
               { value: 'chocolate', label: 'Chocolate' },
               { value: 'strawberry', label: 'Strawberry' },

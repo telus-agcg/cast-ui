@@ -1,7 +1,7 @@
 import * as React from 'react';
 import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { components as SelectComponents } from 'react-select';
@@ -339,6 +339,52 @@ const SSelectOptionSubtitle = styled.div`
   line-height: 1.2;
 `;
 
+// Global styles for react-select menu when portaled to document.body
+const SelectPortalStyles = createGlobalStyle<{ theme: any; selectSize: string }>`
+  .react-select__menu-portal {
+    z-index: 9999;
+    
+    .react-select__menu {
+      font-family: ${(props) => props.theme.typography.fontFamily};
+      font-size: ${(props) => props.theme.common[props.selectSize]?.fontSize};
+      z-index: 9999;
+      color: ${(props) => props.theme.colors.drk800};
+      
+      .menuListHeader {
+        padding: 8px 12px;
+        border-bottom: 1px solid ${(props) => props.theme.colors.lt800};
+      }
+      
+      .react-select__menu-list {
+        font-family: ${(props) => props.theme.typography.fontFamily};
+        color: ${(props) => props.theme.colors.drk800};
+      }
+      
+      .react-select__option {
+        padding: 8px 12px;
+        font-family: ${(props) => props.theme.typography.fontFamily};
+        background-color: ${(props) => props.theme.select.optionBackgroundColor};
+        color: ${(props) => props.theme.select.color};
+        
+        &.react-select__option--is-focused {
+          background-color: ${(props) => props.theme.select.highlightOptionBackgroundColor};
+          color: ${(props) => props.theme.select.highlightOptionColor};
+        }
+        
+        &.react-select__option--is-selected {
+          color: ${(props) => props.theme.select.selectedOptionColor};
+          background-color: ${(props) => props.theme.select.selectedOptionBackgroundColor};
+        }
+        
+        &:hover {
+          background-color: ${(props) => props.theme.select.highlightOptionBackgroundColor};
+          color: ${(props) => props.theme.select.highlightOptionColor};
+        }
+      }
+    }
+  }
+`;
+
 const defaultProps = {
   id: 'select',
   optionType: 'default',
@@ -377,18 +423,31 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
   React.useEffect(() => {
     const onDomClick = (event) => {
       const container = containerRef.current;
-      if (container) {
-        const menuElement = container.querySelector('.react-select__menu');
-        if (
-          !container.contains(event.target) ||
-          !menuElement ||
-          !menuElement.contains(event.target as Node)
-        ) {
-          setIsFocused(false);
-          setFilterValue('');
-        }
+      if (!container) return;
+
+      const target = event.target as HTMLElement;
+      
+      // Check if click is inside the container (control area)
+      if (container.contains(target)) {
+        return;
       }
+      
+      // Check if the target is an input element (could be the search input)
+      if (target.tagName === 'INPUT') {
+        return;
+      }
+      
+      // Check if the click is within the react-select menu or menu portal
+      // If so, don't close - let react-select handle it
+      if (target.closest('.react-select__menu') || target.closest('.react-select__menu-portal')) {
+        return;
+      }
+      
+      // Click is outside both container and menu, so close
+      setIsFocused(false);
+      setFilterValue('');
     };
+    
     document.addEventListener('mousedown', onDomClick);
 
     return () => {
@@ -396,13 +455,27 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
     };
   }, []);
 
-  const handleBlur = (event: React.FocusEvent) => {
-    if (
-      containerRef.current &&
-      !containerRef.current.contains(event.relatedTarget as Node)
-    ) {
-      requestAnimationFrame(() => setIsFocused(false));
-    }
+  const handleBlur = () => {
+    // Use requestAnimationFrame to check where focus actually moved
+    requestAnimationFrame(() => {
+      const activeElement = document.activeElement as HTMLElement;
+      
+      // Check if focus is still within the container
+      if (containerRef.current && containerRef.current.contains(activeElement)) {
+        return;
+      }
+      
+      // Check if focus moved to the portaled menu (including search input)
+      if (activeElement && (
+        activeElement.closest('.react-select__menu') || 
+        activeElement.closest('.react-select__menu-portal')
+      )) {
+        return;
+      }
+      
+      // Focus is outside, close the menu
+      setIsFocused(false);
+    });
   };
 
   const handleSelectChange = (event) => {
@@ -500,6 +573,7 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
+      <SelectPortalStyles theme={theme} selectSize={selectSize!} />
       <SDiv
         {...dataProps}
         ref={containerRef}
