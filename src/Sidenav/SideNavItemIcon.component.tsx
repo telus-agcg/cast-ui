@@ -15,10 +15,10 @@ export type SideNavItemIconProps = React.PropsWithChildren<{
   item?: any;
 }>;
 
-const SSideNavItemIcon = styled.div<{ isOpen: boolean; item: any }>`
+const SSideNavItemIcon = styled.div<{ $isOpen: boolean; item: any }>`
   height: 24px;
   &:hover {
-    border-radius: ${(props) => (props.isOpen ? '' : '4px')};
+    border-radius: ${(props) => (props.$isOpen ? '' : '4px')};
     transition: color 0.3s;
   }
 `;
@@ -37,7 +37,7 @@ export const SideNavItemIcon: React.FunctionComponent<SideNavItemIconProps> = (
       <SSideNavItemIcon
         className={`${nameSpace}-sidenav-item-icon`}
         role="side-nav-icon"
-        isOpen={isOpen}
+        $isOpen={isOpen}
         item={item}
         {...rest}
       >

@@ -18,9 +18,11 @@ export type CardProps = React.PropsWithChildren<{
   theme?: any;
 }>;
 
-const SCard = styled.div<CardProps>`
+const SCard = styled.div<{
+  $cardStyle?: string;
+}>`
   border-radius: ${(props) => props.theme.card.borderRadius};
-  color: ${(props) => props.theme.styles[props.cardStyle!].cardColor};
+  color: ${(props) => props.theme.styles[props.$cardStyle!].cardColor};
   font-family: ${(props) => props.theme.typography.fontFamily};
   font-size: ${(props) => props.theme.card.fontSize};
   padding: ${(props) => props.theme.card.padding};
@@ -29,7 +31,7 @@ const SCard = styled.div<CardProps>`
   border-style: solid;
   border-color: ${(props) => props.theme.card.borderColor};
   border-top-color: ${(props) =>
-    props.theme.styles[props.cardStyle!].cardTopBorderColor};
+    props.theme.styles[props.$cardStyle!].cardTopBorderColor};
   border-width: ${(props) => props.theme.card.highlightAllBorderWidth};
   border-top-width: ${(props) => props.theme.card.highlightedBorderWidth};
   width: 100%;
@@ -44,10 +46,10 @@ const defaultProps = {
 
 export const Card: React.FunctionComponent<CardProps> = (props) => {
   const propsWithDefaults = getPropsWithDefaults(defaultProps, props);
-  const { theme, children, ...rest } = propsWithDefaults;
+  const { theme, children, cardStyle, ...rest } = propsWithDefaults;
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SCard {...rest}>{children}</SCard>
+      <SCard $cardStyle={cardStyle} {...rest}>{children}</SCard>
     </ThemeProvider>
   );
 };

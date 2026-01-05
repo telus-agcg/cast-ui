@@ -29,7 +29,9 @@ export type NavProps = React.PropsWithChildren<{
    **/
   theme?: any;
 }>;
-const SNav = styled.nav<NavProps>`
+const SNav = styled.nav.withConfig({
+  shouldForwardProp: (prop) => !['left', 'center', 'right'].includes(prop),
+})<NavProps>`
   height: auto;
   margin-left: ${(props) => (props.right || props.center ? 'auto' : '0')};
   margin-right: ${(props) => (props.left || props.center ? 'auto' : '0')};

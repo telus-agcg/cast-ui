@@ -106,19 +106,22 @@ const SideNavbarWrapper = styled.div`
   display: flex;
 `;
 
-const SSideNavbar = styled.div<SideNavProps>`
+const SSideNavbar = styled.div<{ 
+  $isOpen: boolean;
+  $sideNavHeight?: string 
+}>`
   font-family: ${(props: any) => props.theme.typography.fontFamily};
   font-size: ${(props: any) => props.theme.sidenav.fontSize};
   color: ${(props: any) => props.theme.sidenav.color};
-  padding: ${(props: any) => (props.isOpen ? props.theme.sidenav.padding : 0)};
+  padding: ${(props: any) => (props.$isOpen ? props.theme.sidenav.padding : 0)};
   height: ${(props: any) =>
-    props.sideNavHeight ? props.sideNavHeight : '92vh'};
+    props.$sideNavHeight ? props.$sideNavHeight : '92vh'};
   z-index: ${(props: any) => props.theme.sidenav.zIndex};
   background: ${(props: any) => props.theme.sidenav.background};
   border-left: ${(props: any) => props.theme.sidenav.borderLeft};
   border-right: ${(props: any) => props.theme.sidenav.borderRight};
   width: ${(props: any) =>
-    props.isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
+    props.$isOpen ? props.theme.sidenav.openWidth : props.theme.sidenav.width};
   display: flex;
   flex-direction: column;
 `;
@@ -267,7 +270,7 @@ export const SideNavbar = (props: SideNavProps) => {
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SideNavbarWrapper {...rest}>
-        <SSideNavbar isOpen={sidebarOpen} sideNavHeight={sideNavHeight}>
+        <SSideNavbar $isOpen={sidebarOpen} $sideNavHeight={sideNavHeight}>
           <SSideNav>
             {data?.map((item, index) => {
               return (
