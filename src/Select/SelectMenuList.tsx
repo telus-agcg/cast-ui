@@ -19,31 +19,38 @@ const SHr = styled.hr`
 export const SelectMenuList = (props) => {
   const { selectProps } = props;
   const { onInputChange, inputValue, onMenuInputFocus } = selectProps;
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     onMenuInputFocus();
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 0);
   }, [onMenuInputFocus]);
 
   return (
     <div>
-      <SInput
-        icon={<SearchIcon height={18} width={18} />}
-        iconPosition={'left'}
-        value={inputValue}
-        onChange={(e) => {
-          onInputChange(e.currentTarget.value, {
-            action: 'input-change',
-          });
-        }}
-        onMouseDown={(e: any) => {
+      <div>
+        <SInput
+          icon={<SearchIcon height={18} width={18} />}
+          iconPosition={'left'}
+          ref={inputRef}
+          value={inputValue}
+          onChange={(e) => {
+            onInputChange(e.target.value, {
+              action: 'input-change',
+            });
+          }}
+          onMouseDown={(e: any) => {
+            e.stopPropagation();
+          }}
+           onTouchEnd={(e: any) => {
           e.stopPropagation();
-          e.target.focus();
         }}
-        onTouchEnd={(e: any) => {
-          e.stopPropagation();
-          e.target.focus();
-        }}
-      />
+        />
+      </div>
       <SHr />
       <SelectComponents.MenuList {...props} />
     </div>
