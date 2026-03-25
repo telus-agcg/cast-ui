@@ -432,11 +432,6 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
         return;
       }
       
-      // Check if the target is an input element (could be the search input)
-      if (target.tagName === 'INPUT') {
-        return;
-      }
-      
       // Check if the click is within the react-select menu or menu portal
       // If so, don't close - let react-select handle it
       if (target.closest('.react-select__menu') || target.closest('.react-select__menu-portal')) {
