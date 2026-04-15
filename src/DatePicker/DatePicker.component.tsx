@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { forwardRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styled, { ThemeProvider } from 'styled-components';
@@ -266,7 +267,7 @@ type CustomInputProps = InputProps & {
 
 const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
   (props, ref) => {
-    const { disabled, onClick, showIcon = true } = props;
+    const { disabled, onClick, showIcon = true, ...restProps } = props;
     const handleIconClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       onClick?.(event as unknown as React.MouseEvent<HTMLInputElement>);
     };
@@ -274,7 +275,7 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
     return (
       <Input
         ref={ref}
-        {...props}
+        {...restProps}
         icon={
           showIcon ? (
             <SInputIconButton
@@ -482,6 +483,7 @@ export const DatePicker = (props: DatePickerProps) => {
               invalidText={propsWithDefaults.invalidText}
               invalidTextColor={propsWithDefaults.invalidTextColor}
               placeholder={propsWithDefaults.placeholder}
+              {...rest}
             />
           }
           onChange={(event) => handleDateChange(isRangeMode, event)}
