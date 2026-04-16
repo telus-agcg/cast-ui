@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import * as React from 'react';
+import { forwardRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styled, { ThemeProvider } from 'styled-components';
 import ReactDatePicker, {
@@ -245,14 +246,56 @@ const SButton = styled.button<DatePickerProps & { isVisible: boolean }>`
   }
 `;
 
-const CustomInput = (props: InputProps) => {
-  return (
-    <Input {...props} icon={<CalendarMonthIcon height={18} width={18} />} />
-  );
+const SInputIconButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+`;
+
+type CustomInputProps = InputProps & {
+  showIcon?: boolean;
 };
 
+const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
+  (props, ref) => {
+    const { disabled, onClick, showIcon = true, ...restProps } = props;
+    const handleIconClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      onClick?.(event as unknown as React.MouseEvent<HTMLInputElement>);
+    };
+
+    return (
+      <Input
+        ref={ref}
+        {...restProps}
+        icon={
+          showIcon ? (
+            <SInputIconButton
+              type="button"
+              onClick={handleIconClick}
+              disabled={disabled}
+              aria-label="Open date picker"
+            >
+              <CalendarMonthIcon height={18} width={18} />
+            </SInputIconButton>
+          ) : null
+        }
+      />
+    );
+  },
+);
+
+CustomInput.displayName = 'CustomInput';
+
 const CustomDatePickerHeader = ({
-  date,
   decreaseMonth,
   increaseMonth,
   increaseYear,
@@ -265,12 +308,16 @@ const CustomDatePickerHeader = ({
   prevYearButtonDisabled,
   nextYearButtonDisabled,
 }) => {
+  const visibleMonthCount = monthsShown ?? 1;
+  const isFirstHeader = customHeaderCount === 0;
+  const isLastHeader = customHeaderCount === visibleMonthCount - 1;
+
   return (
     <SDatePickerHeader>
       <SButton
         disabled={prevYearButtonDisabled}
         onClick={decreaseYear}
-        isVisible={customHeaderCount != 1}
+        isVisible={isFirstHeader}
         type="button"
       >
         <KeyboardDoubleArrowLeftIcon height={24} width={24} />
@@ -279,7 +326,7 @@ const CustomDatePickerHeader = ({
       <SButton
         disabled={prevMonthButtonDisabled}
         onClick={decreaseMonth}
-        isVisible={customHeaderCount != 1}
+        isVisible={isFirstHeader}
         type="button"
       >
         <KeyboardArrowLeftIcon height={24} width={24} />
@@ -288,13 +335,13 @@ const CustomDatePickerHeader = ({
       <SDatePickerLabel>
         {`${monthDate.toLocaleString('default', {
           month: 'long',
-        })}  ${date.getFullYear()}`}
+        })}  ${monthDate.getFullYear()}`}
       </SDatePickerLabel>
 
       <SButton
         disabled={nextMonthButtonDisabled}
         onClick={increaseMonth}
-        isVisible={monthsShown < 1 && customHeaderCount != 0}
+        isVisible={isLastHeader}
         type="button"
       >
         <KeyboardArrowRightIcon height={24} width={24} />
@@ -303,7 +350,7 @@ const CustomDatePickerHeader = ({
       <SButton
         disabled={nextYearButtonDisabled}
         onClick={increaseYear}
-        isVisible={!(monthsShown < 1 && customHeaderCount != 0)}
+        isVisible={isLastHeader}
         type="button"
       >
         <KeyboardDoubleArrowRightIcon height={24} width={24} />
@@ -368,6 +415,11 @@ export const DatePicker = (props: DatePickerProps) => {
     ...rest
   } = propsWithDefaults;
 
+  // Use explicit selectsRange if provided, otherwise auto-detect from monthsShown
+  const isRangeMode = selectsRange !== undefined 
+    ? selectsRange 
+    : Number(monthsShown ?? 1) > 1;
+
   const handleDateChange = (selectsRange: boolean, event) => {
     if (selectsRange) {
       const [start, end] = event;
@@ -419,11 +471,25 @@ export const DatePicker = (props: DatePickerProps) => {
         {/* @ts-ignore */}
         <ReactDatePicker
           fixedHeight
-          customInput={<CustomInput {...props} />}
-          onChange={(event) => handleDateChange(Boolean(selectsRange), event)}
-          selected={date || startDate}
-          startDate={startDate || startDateRange}
-          endDate={endDate || endDateRange}
+          selectsRange={isRangeMode ? true : undefined}
+          customInput={
+            <CustomInput
+              id={id}
+              disabled={propsWithDefaults.disabled}
+              inputSize={datePickerSize}
+              iconPosition={propsWithDefaults.iconPosition}
+              showIcon={showIcon}
+              invalid={invalid}
+              invalidText={propsWithDefaults.invalidText}
+              invalidTextColor={propsWithDefaults.invalidTextColor}
+              placeholder={propsWithDefaults.placeholder}
+              {...rest}
+            />
+          }
+          onChange={(event) => handleDateChange(isRangeMode, event)}
+          selected={isRangeMode ? undefined : date || startDate}
+          startDate={isRangeMode ? startDate || startDateRange : undefined}
+          endDate={isRangeMode ? endDate || endDateRange : undefined}
           monthsShown={monthsShown}
           focusSelectedMonth={true}
           renderCustomHeader={(props) => (
