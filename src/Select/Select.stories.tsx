@@ -262,3 +262,71 @@ export const SelectMixedOptions: Story = {
     optionType: 'default',
   },
 };
+
+/**
+ * Demonstrates automatic locale-aware "No options" message.
+ *
+ * The Select component reads the `lang` attribute on the `<html>` element and
+ * automatically shows the "No options" message in the matching language — no
+ * prop changes required in the consuming application.
+ *
+ * Use the buttons below to switch the document language and then type a search
+ * term that yields no results to see the message update in real time.
+ *
+ * Supported out-of-the-box: en, fr.
+ *
+ * If you need a custom message (e.g. from your own i18n library), pass it via
+ * `controlSpecificProps.noOptionsMessage` — it will take precedence over the
+ * built-in translation.
+ */
+export const LocaleAwareNoOptionsMessage = () => {
+  const languages = [
+    { code: 'en', label: 'English' },
+    { code: 'fr', label: 'Français' },
+  ];
+
+  const [currentLang, setCurrentLang] = React.useState('en');
+
+  const switchLanguage = (lang: string) => {
+    document.documentElement.lang = lang;
+    setCurrentLang(lang);
+  };
+
+  return (
+    <div style={{ fontFamily: 'sans-serif' }}>
+      <p style={{ marginBottom: 8, fontSize: 13, color: '#555' }}>
+        Switch the document language, then type a search term that matches no
+        options to see the built-in translated message.
+      </p>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
+        {languages.map(({ code, label }) => (
+          <button
+            key={code}
+            onClick={() => switchLanguage(code)}
+            style={{
+              padding: '4px 10px',
+              borderRadius: 4,
+              border: '1px solid #ccc',
+              background: currentLang === code ? '#4b286d' : '#fff',
+              color: currentLang === code ? '#fff' : '#333',
+              cursor: 'pointer',
+              fontSize: 13,
+            }}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      <CustomSelect
+        id="locale-aware-select"
+        isFilterable={true}
+        options={[
+          { value: 'chocolate', label: 'Chocolate' },
+          { value: 'strawberry', label: 'Strawberry' },
+          { value: 'vanilla', label: 'Vanilla' },
+        ]}
+        placeholder="Search…"
+      />
+    </div>
+  );
+};

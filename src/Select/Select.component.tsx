@@ -11,6 +11,69 @@ import { ErrorMessage } from '@typography';
 import { getDataProps } from '@utils';
 import { Themes } from '@themes';
 
+/**
+ * Built-in translations for the "No options" message shown in the Select
+ * dropdown when a search yields no results.
+ *
+ * Keys follow the BCP 47 language tag format (e.g. 'fr', 'fr-CA').
+ * Both the full tag and the primary language subtag are checked, so 'fr-CA'
+ * will fall back to 'fr' when an exact match is not found.
+ */
+const NO_OPTIONS_MESSAGES: Record<string, string> = {
+  en: 'No options',
+  fr: 'Aucune option',
+};
+
+/**
+ * Resolves the "No options" message for the given BCP 47 language tag.
+ * Falls back to the primary language subtag, then to English.
+ */
+const getNoOptionsMessage = (lang: string): string => {
+  if (!lang) return NO_OPTIONS_MESSAGES['en'];
+  const normalized = lang.toLowerCase();
+  if (NO_OPTIONS_MESSAGES[normalized]) return NO_OPTIONS_MESSAGES[normalized];
+  // Try primary subtag only (e.g. 'fr' from 'fr-CA')
+  const primary = normalized.split('-')[0];
+  return NO_OPTIONS_MESSAGES[primary] ?? NO_OPTIONS_MESSAGES['en'];
+};
+
+/**
+ * Returns the current document language (`<html lang="...">`) and re-renders
+ * whenever it changes. Falls back to `navigator.language` when the attribute
+ * is absent, and to `'en'` when neither is available.
+ */
+const useDocumentLanguage = (): string => {
+  const getLanguage = (): string => {
+    if (typeof document !== 'undefined') {
+      const lang = document.documentElement.lang;
+      if (lang) return lang;
+    }
+    if (typeof navigator !== 'undefined' && navigator.language) {
+      return navigator.language;
+    }
+    return 'en';
+  };
+
+  const [language, setLanguage] = React.useState<string>(getLanguage);
+
+  React.useEffect(() => {
+    if (typeof MutationObserver === 'undefined') return;
+
+    const observer = new MutationObserver(() => {
+      setLanguage(getLanguage());
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['lang'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return language;
+};
+
 export type OptionType = {
   value: string;
   label: string;
@@ -399,6 +462,10 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
   const [isFocused, setIsFocused] = React.useState(false);
   const [filterValue, setFilterValue] = React.useState('');
 
+  // Detect the current document language so the "No options" message is
+  // automatically shown in the correct language when the app locale changes.
+  const documentLanguage = useDocumentLanguage();
+
   const {
     theme,
     creatable,
@@ -566,6 +633,16 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
 
   const dataProps = getDataProps(props);
 
+  // Build a locale-aware default "No options" message based on the current
+  // document language. This is used as a fallback when the consumer has not
+  // provided their own noOptionsMessage via controlSpecificProps.
+  // If the consumer does supply noOptionsMessage in controlSpecificProps it
+  // will override this default because controlSpecificProps is spread after.
+  const defaultNoOptionsMessage = React.useCallback(
+    () => getNoOptionsMessage(documentLanguage),
+    [documentLanguage],
+  );
+
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SelectPortalStyles theme={theme} selectSize={selectSize!} />
@@ -607,6 +684,7 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
           onMenuInputFocus={() => setIsFocused(true)}
           onBlur={handleBlur}
           onChange={handleSelectChange}
+          noOptionsMessage={defaultNoOptionsMessage}
           {...restProps}
           {...controlSpecificProps}
           {...selectCheckboxProps}
