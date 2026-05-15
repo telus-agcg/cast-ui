@@ -38,37 +38,58 @@ const getNoOptionsMessage = (lang: string): string => {
 };
 
 /**
+ * Reads the active document language from <html lang> or navigator.language.
+ */
+const getDocumentLanguage = (): string => {
+  if (typeof document !== 'undefined') {
+    const lang = document.documentElement.lang;
+    if (lang) return lang;
+  }
+  if (typeof navigator !== 'undefined' && navigator.language) {
+    return navigator.language;
+  }
+  return 'en';
+};
+
+/**
+ * Module-level singleton: one MutationObserver shared across ALL mounted
+ * Select instances. Components subscribe by adding a setter to this Set;
+ * the observer notifies every subscriber when <html lang> changes.
+ *
+ * This avoids creating N observers for N Select dropdowns on the same page.
+ */
+const _langSubscribers = new Set<(lang: string) => void>();
+let _sharedObserver: MutationObserver | null = null;
+
+const _ensureObserver = (): void => {
+  if (_sharedObserver || typeof MutationObserver === 'undefined') return;
+  _sharedObserver = new MutationObserver(() => {
+    const lang = getDocumentLanguage();
+    _langSubscribers.forEach((fn) => fn(lang));
+  });
+  _sharedObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang'],
+  });
+};
+
+/**
  * Returns the current document language (`<html lang="...">`) and re-renders
  * whenever it changes. Falls back to `navigator.language` when the attribute
  * is absent, and to `'en'` when neither is available.
+ *
+ * Uses a single shared MutationObserver at module level so that any number of
+ * mounted Select instances incur only one observer, not one per instance.
  */
 const useDocumentLanguage = (): string => {
-  const getLanguage = (): string => {
-    if (typeof document !== 'undefined') {
-      const lang = document.documentElement.lang;
-      if (lang) return lang;
-    }
-    if (typeof navigator !== 'undefined' && navigator.language) {
-      return navigator.language;
-    }
-    return 'en';
-  };
-
-  const [language, setLanguage] = React.useState<string>(getLanguage);
+  const [language, setLanguage] = React.useState<string>(getDocumentLanguage);
 
   React.useEffect(() => {
-    if (typeof MutationObserver === 'undefined') return;
-
-    const observer = new MutationObserver(() => {
-      setLanguage(getLanguage());
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['lang'],
-    });
-
-    return () => observer.disconnect();
+    _ensureObserver();
+    _langSubscribers.add(setLanguage);
+    return () => {
+      _langSubscribers.delete(setLanguage);
+    };
   }, []);
 
   return language;
@@ -634,10 +655,9 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
   const dataProps = getDataProps(props);
 
   // Build a locale-aware default "No options" message based on the current
-  // document language. This is used as a fallback when the consumer has not
-  // provided their own noOptionsMessage via controlSpecificProps.
-  // If the consumer does supply noOptionsMessage in controlSpecificProps it
-  // will override this default because controlSpecificProps is spread after.
+  // document language. This acts as a fallback: any noOptionsMessage provided
+  // via restProps or controlSpecificProps will override it, because both are
+  // spread after this explicit prop (last write wins).
   const defaultNoOptionsMessage = React.useCallback(
     () => getNoOptionsMessage(documentLanguage),
     [documentLanguage],

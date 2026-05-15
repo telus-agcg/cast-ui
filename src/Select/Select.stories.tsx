@@ -285,7 +285,20 @@ export const LocaleAwareNoOptionsMessage = () => {
     { code: 'fr', label: 'Français' },
   ];
 
-  const [currentLang, setCurrentLang] = React.useState('en');
+  // Initialise from the actual document lang so the UI stays in sync if
+  // another story already changed it. Fall back to 'en' when unset.
+  const [currentLang, setCurrentLang] = React.useState<string>(
+    () => document.documentElement.lang || 'en',
+  );
+
+  // Capture the original lang on mount and restore it on unmount so this
+  // story does not leak its global side-effect into other Storybook stories.
+  React.useEffect(() => {
+    const originalLang = document.documentElement.lang;
+    return () => {
+      document.documentElement.lang = originalLang;
+    };
+  }, []);
 
   const switchLanguage = (lang: string) => {
     document.documentElement.lang = lang;
@@ -302,6 +315,7 @@ export const LocaleAwareNoOptionsMessage = () => {
         {languages.map(({ code, label }) => (
           <button
             key={code}
+            type="button"
             onClick={() => switchLanguage(code)}
             style={{
               padding: '4px 10px',
