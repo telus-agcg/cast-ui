@@ -51,49 +51,7 @@ const getDocumentLanguage = (): string => {
   return 'en';
 };
 
-/**
- * Module-level singleton: one MutationObserver shared across ALL mounted
- * Select instances. Components subscribe by adding a setter to this Set;
- * the observer notifies every subscriber when <html lang> changes.
- *
- * This avoids creating N observers for N Select dropdowns on the same page.
- */
-const _langSubscribers = new Set<(lang: string) => void>();
-let _sharedObserver: MutationObserver | null = null;
 
-const _ensureObserver = (): void => {
-  if (_sharedObserver || typeof MutationObserver === 'undefined') return;
-  _sharedObserver = new MutationObserver(() => {
-    const lang = getDocumentLanguage();
-    _langSubscribers.forEach((fn) => fn(lang));
-  });
-  _sharedObserver.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['lang'],
-  });
-};
-
-/**
- * Returns the current document language (`<html lang="...">`) and re-renders
- * whenever it changes. Falls back to `navigator.language` when the attribute
- * is absent, and to `'en'` when neither is available.
- *
- * Uses a single shared MutationObserver at module level so that any number of
- * mounted Select instances incur only one observer, not one per instance.
- */
-const useDocumentLanguage = (): string => {
-  const [language, setLanguage] = React.useState<string>(getDocumentLanguage);
-
-  React.useEffect(() => {
-    _ensureObserver();
-    _langSubscribers.add(setLanguage);
-    return () => {
-      _langSubscribers.delete(setLanguage);
-    };
-  }, []);
-
-  return language;
-};
 
 export type OptionType = {
   value: string;
@@ -483,9 +441,6 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
   const [isFocused, setIsFocused] = React.useState(false);
   const [filterValue, setFilterValue] = React.useState('');
 
-  // Detect the current document language so the "No options" message is
-  // automatically shown in the correct language when the app locale changes.
-  const documentLanguage = useDocumentLanguage();
 
   const {
     theme,
@@ -654,14 +609,9 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
 
   const dataProps = getDataProps(props);
 
-  // Build a locale-aware default "No options" message based on the current
-  // document language. This acts as a fallback: any noOptionsMessage provided
-  // via restProps or controlSpecificProps will override it, because both are
-  // spread after this explicit prop (last write wins).
-  const defaultNoOptionsMessage = React.useCallback(
-    () => getNoOptionsMessage(documentLanguage),
-    [documentLanguage],
-  );
+  // Default "No options" message based on the current document language.
+  // Can be overridden by passing noOptionsMessage via controlSpecificProps.
+  const defaultNoOptionsMessage = () => getNoOptionsMessage(getDocumentLanguage());
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
