@@ -15,26 +15,22 @@ import { Themes } from '@themes';
  * Built-in translations for the "No options" message shown in the Select
  * dropdown when a search yields no results.
  *
- * Keys follow the BCP 47 language tag format (e.g. 'fr', 'fr-CA').
- * Both the full tag and the primary language subtag are checked, so 'fr-CA'
- * will fall back to 'fr' when an exact match is not found.
+ * Keys follow the BCP 47 language tag format (lowercase). An exact match is
+ * tried against the document language; if not found, English is used as the fallback.
  */
 const NO_OPTIONS_MESSAGES: Record<string, string> = {
   en: 'No options',
-  fr: 'Aucune option',
+  'fr-ca': 'Aucune option',
 };
 
 /**
  * Resolves the "No options" message for the given BCP 47 language tag.
- * Falls back to the primary language subtag, then to English.
+ * Falls back to English if no exact match is found.
  */
 const getNoOptionsMessage = (lang: string): string => {
   if (!lang) return NO_OPTIONS_MESSAGES['en'];
   const normalized = lang.toLowerCase();
-  if (NO_OPTIONS_MESSAGES[normalized]) return NO_OPTIONS_MESSAGES[normalized];
-  // Try primary subtag only (e.g. 'fr' from 'fr-CA')
-  const primary = normalized.split('-')[0];
-  return NO_OPTIONS_MESSAGES[primary] ?? NO_OPTIONS_MESSAGES['en'];
+  return NO_OPTIONS_MESSAGES[normalized] ?? NO_OPTIONS_MESSAGES['en'];
 };
 
 /**

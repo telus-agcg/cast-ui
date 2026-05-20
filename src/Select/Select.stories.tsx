@@ -273,7 +273,7 @@ export const SelectMixedOptions: Story = {
  * Use the buttons below to switch the document language and then type a search
  * term that yields no results to see the message update in real time.
  *
- * Supported out-of-the-box: en, fr.
+ * Supported out-of-the-box: en, fr-CA.
  *
  * If you need a custom message (e.g. from your own i18n library), pass it via
  * `controlSpecificProps.noOptionsMessage` — it will take precedence over the
@@ -282,7 +282,7 @@ export const SelectMixedOptions: Story = {
 export const LocaleAwareNoOptionsMessage = () => {
   const languages = [
     { code: 'en', label: 'English' },
-    { code: 'fr', label: 'Français' },
+    { code: 'fr-CA', label: 'Français (CA)' },
   ];
 
   // Initialise from the actual document lang so the UI stays in sync if
