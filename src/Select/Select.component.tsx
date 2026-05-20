@@ -11,6 +11,44 @@ import { ErrorMessage } from '@typography';
 import { getDataProps } from '@utils';
 import { Themes } from '@themes';
 
+/**
+ * Built-in translations for the "No options" message shown in the Select
+ * dropdown when a search yields no results.
+ *
+ * Keys follow the BCP 47 language tag format (lowercase). An exact match is
+ * tried against the document language; if not found, English is used as the fallback.
+ */
+const NO_OPTIONS_MESSAGES: Record<string, string> = {
+  en: 'No options',
+  'fr-ca': 'Aucune option',
+};
+
+/**
+ * Resolves the "No options" message for the given BCP 47 language tag.
+ * Falls back to English if no exact match is found.
+ */
+const getNoOptionsMessage = (lang: string): string => {
+  if (!lang) return NO_OPTIONS_MESSAGES['en'];
+  const normalized = lang.toLowerCase();
+  return NO_OPTIONS_MESSAGES[normalized] ?? NO_OPTIONS_MESSAGES['en'];
+};
+
+/**
+ * Reads the active document language from <html lang> or navigator.language.
+ */
+const getDocumentLanguage = (): string => {
+  if (typeof document !== 'undefined') {
+    const lang = document.documentElement.lang;
+    if (lang) return lang;
+  }
+  if (typeof navigator !== 'undefined' && navigator.language) {
+    return navigator.language;
+  }
+  return 'en';
+};
+
+
+
 export type OptionType = {
   value: string;
   label: string;
@@ -399,6 +437,7 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
   const [isFocused, setIsFocused] = React.useState(false);
   const [filterValue, setFilterValue] = React.useState('');
 
+
   const {
     theme,
     creatable,
@@ -566,6 +605,10 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
 
   const dataProps = getDataProps(props);
 
+  // Default "No options" message based on the current document language.
+  // Can be overridden by passing noOptionsMessage via controlSpecificProps.
+  const defaultNoOptionsMessage = () => getNoOptionsMessage(getDocumentLanguage());
+
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
       <SelectPortalStyles theme={theme} selectSize={selectSize!} />
@@ -607,6 +650,7 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
           onMenuInputFocus={() => setIsFocused(true)}
           onBlur={handleBlur}
           onChange={handleSelectChange}
+          noOptionsMessage={defaultNoOptionsMessage}
           {...restProps}
           {...controlSpecificProps}
           {...selectCheckboxProps}
