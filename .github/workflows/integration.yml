@@ -1,22 +1,32 @@
 name: Integration Workflow
 
 on:
-  push:
-    branches: [beta, next]
   pull_request:
     branches: [beta, next]
+  push:
+    branches: [beta, next]
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
+
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
           node-version: 21
-          cache: 'npm'
-      - run: npm i
-      - run: npm run build
-      - run: npm run lint
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build App
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
