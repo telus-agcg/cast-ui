@@ -1,5 +1,5 @@
 # base layer
-FROM node:22-alpine AS base
+FROM node:24.15-alpine AS base
 
 RUN mkdir -p /usr/src/app
 
@@ -20,7 +20,7 @@ FROM base AS test
 
 RUN \
   apk add --no-cache git openssh && \
-    npm install
+  npm install
 
 COPY . /usr/src/app
 
