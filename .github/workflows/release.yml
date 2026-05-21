@@ -40,7 +40,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm (Trusted Publisher)
-        run: npm publish --provenance --access public
+        run: |
+          BRANCH="${{ github.ref_name }}"
+          if [ "$BRANCH" = "master" ]; then
+            TAG="latest"
+          else
+            TAG="$BRANCH"
+          fi
+          npm publish --provenance --access public --tag "$TAG"
 
       - name: Build Static Asset
         run: npm run build-static
