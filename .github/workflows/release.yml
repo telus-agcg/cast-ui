@@ -41,12 +41,12 @@ jobs:
 
       - name: Publish to npm (Trusted Publisher)
         run: |
-          BRANCH="${{ github.ref_name }}"
-          if [ "$BRANCH" = "master" ]; then
-            TAG="latest"
-          else
-            TAG="$BRANCH"
-          fi
+          case "${{ github.ref_name }}" in
+            master) TAG=latest ;;
+            beta)   TAG=beta ;;
+            next)   TAG=next ;;
+            *) echo "Unsupported branch ${{ github.ref_name }}"; exit 1 ;;
+          esac
           npm publish --provenance --access public --tag "$TAG"
 
       - name: Build Static Asset
