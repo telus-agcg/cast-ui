@@ -40,7 +40,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm (Trusted Publisher)
-        run: npm publish --provenance --access public
+        run: |
+          case "${{ github.ref_name }}" in
+            master) TAG=latest ;;
+            beta)   TAG=beta ;;
+            next)   TAG=next ;;
+            *) echo "Unsupported branch ${{ github.ref_name }}"; exit 1 ;;
+          esac
+          npm publish --provenance --access public --tag "$TAG"
 
       - name: Build Static Asset
         run: npm run build-static
