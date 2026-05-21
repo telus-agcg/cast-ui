@@ -32,6 +32,9 @@
       "require": "./dist/cast-ui.umd.js"
     }
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "sideEffects": [
     "**/*.css"
   ],

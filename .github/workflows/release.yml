@@ -39,6 +39,9 @@ jobs:
           BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Publish to npm (Trusted Publisher)
+        run: npm publish --provenance --access public
+
       - name: Build Static Asset
         run: npm run build-static
 
