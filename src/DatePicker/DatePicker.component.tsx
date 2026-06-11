@@ -138,7 +138,8 @@ const SWrapperComponent = styled.div<{
   showIcon: boolean;
 }>`
   position: relative;
-    font-family: ${(props) => props.theme.typography.fontFamily};
+  display: inline-block;
+  font-family: ${(props) => props.theme.typography.fontFamily};
   font-size: ${(props) => props.theme.common[props.datePickerSize!].fontSize};
   color: ${(props) => props.theme.styles[props.datePickerStyle!].text};
   input {
