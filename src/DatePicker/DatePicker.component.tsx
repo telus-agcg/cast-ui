@@ -138,6 +138,7 @@ const SWrapperComponent = styled.div<{
   showIcon: boolean;
 }>`
   position: relative;
+  display: inline-block;
   font-family: ${(props) => props.theme.typography.fontFamily};
   font-size: ${(props) => props.theme.common[props.datePickerSize!].fontSize};
   color: ${(props) => props.theme.styles[props.datePickerStyle!].text};
@@ -156,6 +157,15 @@ const SWrapperComponent = styled.div<{
       props.invalid ? props.theme.validation.borderColor : ''};
     cursor: pointer;
   }
+.react-datepicker-wrapper {
+  display: block;
+  width: 100%;
+}
+
+.react-datepicker__input-container {
+  display: block;
+  width: 100%;
+}
 
   .react-datepicker {
     display: flex;
