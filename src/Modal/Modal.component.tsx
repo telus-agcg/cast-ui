@@ -67,7 +67,7 @@ export interface ModalProps extends ReactModalProps {
   disableCloseIcon: boolean;
   /**
    * adds blur effect at the bottom
-   * @default true
+   * @default false
    **/
   blurEffect?: boolean;
 }
@@ -198,7 +198,7 @@ const ModalFooterDiv = styled.div<Partial<ModalProps>>`
 const defaultProps = {
   modalSize: 'md',
   disableCloseIcon: false,
-  blurEffect: true,
+  blurEffect: false,
   theme: Themes.canopyTheme,
 } satisfies Partial<ModalProps>;
 
