@@ -129,13 +129,8 @@ export const Pagination = (props: PaginationProps) => {
 
   const dataTestId = propsWithDefaults['data-testid'] as string | undefined;
 
-  const testId = (suffix: string): string | undefined => {
-    try {
-      return dataTestId ? `${dataTestId}-${suffix}` : undefined;
-    } catch {
-      return undefined;
-    }
-  };
+  const testId = (suffix: string): string | undefined =>
+    dataTestId ? `${dataTestId}-${suffix}` : undefined;
   const [activePage, setActivePage] = React.useState<number>(1);
   const [visiblePages, setVisiblePages] = React.useState<number[]>([]);
 

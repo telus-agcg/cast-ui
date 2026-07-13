@@ -88,7 +88,7 @@ export const PaginationButtonNextPrev = (props: PaginationButtonsProps) => {
       <IconStyler
         disabled={props.disabled}
         onClick={props.disabled ? () => {} : props.onClick}
-        data-testid={props?.['data-testid']}
+        data-testid={props['data-testid']}
       >
         {icon}
       </IconStyler>
@@ -108,7 +108,7 @@ export const PaginationButtonFirstLast = (props: PaginationButtonsProps) => {
       <IconStyler
         disabled={props.disabled}
         onClick={props.disabled ? () => {} : props.onClick}
-        data-testid={props?.['data-testid']}
+        data-testid={props['data-testid']}
       >
         {icon}
       </IconStyler>

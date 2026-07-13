@@ -546,14 +546,15 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
           clearText,
           selectedOptions: selectedOption,
           updateSelectedOptions: props.onChange,
+          testIdPrefix,
         })
       : {};
 
   const DefaultSelectOption = (props: any) => {
     const { innerProps, innerRef, isFocused } = props;
     const optionTestId = testIdPrefix
-      ? `${testIdPrefix}-option-${_.snakeCase(props.data?.label)}`
-      : `select-option-${_.snakeCase(props.data?.label)}`;
+      ? `${testIdPrefix}-option-${_.snakeCase(props.data.label)}`
+      : `select-option-${_.snakeCase(props.data.label)}`;
     return (
       <SSelectOption
         data-testid={optionTestId}
@@ -561,7 +562,7 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
         isFocused={isFocused}
         ref={innerRef}
         {...innerProps}
-        id={`${id}-Select-${_.snakeCase(props.data?.label)}`}
+        id={`${id}-Select-${_.snakeCase(props.data.label)}`}
       >
         <div>{props.data?.label}</div>
         {props.data?.subtitle && (
