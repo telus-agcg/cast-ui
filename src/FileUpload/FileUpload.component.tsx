@@ -32,6 +32,12 @@ export interface FileUploadProps {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Prefix for internal data-testid attributes.
+   * The Browse span receives `{data-testid}-browse`.
+   * When omitted, no data-testid attributes are added.
+   **/
+  'data-testid'?: string;
 }
 
 const SDropZone = styled.div<
@@ -88,6 +94,7 @@ export const FileUpload = (props: FileUploadProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const { theme, disabled, onFilesAdded, info } = propsWithDefaults;
+  const dataTestId = (propsWithDefaults['data-testid'] as string | undefined) ?? 'file-upload';
 
   const dropZoneProps = {
     dragging,
@@ -161,7 +168,11 @@ export const FileUpload = (props: FileUploadProps) => {
       >
         <div>
           Drop files or{' '}
-          <span className="fileUploadCTA" onClick={openFileDialog}>
+          <span
+            className="fileUploadCTA"
+            onClick={openFileDialog}
+            data-testid={`${dataTestId}-browse`}
+          >
             Browse
           </span>
         </div>

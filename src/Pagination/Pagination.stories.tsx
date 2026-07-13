@@ -10,6 +10,10 @@ const meta: Meta<typeof Pagination> = {
         disable: true,
       },
     },
+    'data-testid': {
+      control: 'text',
+      description: 'Prefix for all child data-testid attributes (e.g. "my-table-pagination")',
+    },
     onPageChange: {
       action: {
         type: 'onPageChange',
@@ -75,5 +79,6 @@ export const _Pagination: Story = {
     page: 3,
     pageSize: 20,
     showPageSizeOptions: true,
+    'data-testid': 'my-table-pagination',
   },
 };

@@ -60,6 +60,12 @@ export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement> {
   pageSizeOptions: number[];
   rowsSelectorText?: string;
   rowsText?: string;
+  /**
+   * Prefix applied to all internal data-testid attributes.
+   * Each child element gets `{data-testid}-{role}` (e.g. "my-pagination-first-page").
+   * When omitted, no data-testid attributes are added to child elements.
+   **/
+  'data-testid'?: string;
 }
 
 const SDivPaginationWrapper = styled.div`
@@ -120,6 +126,16 @@ export const Pagination = (props: PaginationProps) => {
     PageButtonComponent,
     ...rest
   } = propsWithDefaults;
+
+  const dataTestId = propsWithDefaults['data-testid'] as string | undefined;
+
+  const testId = (suffix: string): string | undefined => {
+    try {
+      return dataTestId ? `${dataTestId}-${suffix}` : undefined;
+    } catch {
+      return undefined;
+    }
+  };
   const [activePage, setActivePage] = React.useState<number>(1);
   const [visiblePages, setVisiblePages] = React.useState<number[]>([]);
 
@@ -182,6 +198,8 @@ export const Pagination = (props: PaginationProps) => {
             changePageSize(Number(pageSizeOptions[selectedOption.value]))
           }
           options={options}
+          data-testid={testId('rows-per-page')}
+          testIdPrefix={testId('rows-per-page')}
           controlSpecificProps={{
             defaultValue: selectedOption,
             isSearchable: false,
@@ -196,7 +214,7 @@ export const Pagination = (props: PaginationProps) => {
 
   return (
     <ThemeProvider theme={(outerTheme: any) => outerTheme || theme}>
-      <SDivPaginationWrapper>
+      <SDivPaginationWrapper {...rest}>
         {showPageSizeOptions && renderPageSizeOptions()}
         <SPagninationControls>
           <PageButtonFirstLastComponent
@@ -205,6 +223,7 @@ export const Pagination = (props: PaginationProps) => {
             onClick={() => {
               changePage(1);
             }}
+            data-testid={testId('first-page')}
           />
           <PageButtonNextPrevComponent
             disabled={activePage === 1}
@@ -212,6 +231,7 @@ export const Pagination = (props: PaginationProps) => {
             onClick={() => {
               changePage(activePage - 1);
             }}
+            data-testid={testId('prev-page')}
           />
           <div>
             {visiblePages.map(
@@ -226,6 +246,7 @@ export const Pagination = (props: PaginationProps) => {
                         type="button"
                         btnSize="md"
                         onClick={() => changePage(prevNextGapPageIndex)}
+                        data-testid={testId(`page-gap-${prevNextGapPageIndex}`)}
                       >
                         ...
                       </PageButtonComponent>
@@ -235,6 +256,7 @@ export const Pagination = (props: PaginationProps) => {
                       btnSize="md"
                       data-selected={activePage === page ? '' : undefined}
                       onClick={() => changePage(page)}
+                      data-testid={testId(`page-${page}`)}
                     >
                       {page}
                     </PageButtonComponent>
@@ -249,6 +271,7 @@ export const Pagination = (props: PaginationProps) => {
             onClick={() => {
               changePage(activePage + 1);
             }}
+            data-testid={testId('next-page')}
           />
           <PageButtonFirstLastComponent
             disabled={activePage === pages || pages <= 0}
@@ -256,6 +279,7 @@ export const Pagination = (props: PaginationProps) => {
             onClick={() => {
               changePage(pages);
             }}
+            data-testid={testId('last-page')}
           />
         </SPagninationControls>
       </SDivPaginationWrapper>

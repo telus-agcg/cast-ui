@@ -197,6 +197,14 @@ export interface SelectProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default 'default'
    **/
   optionType?: 'default' | 'checkbox';
+  /**
+   * Optional prefix used to compose unique data-testid values on each option.
+   * When provided, options receive `{testIdPrefix}-option-{label}` instead of
+   * the default `select-option-{label}`.
+   *
+   * @default undefined
+   **/
+  testIdPrefix?: string;
 }
 
 const SDiv = styled.div<{ $selectSize?: 'sm' | 'md' | 'lg' } & SelectProps>`
@@ -456,6 +464,7 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
     invalidText = '',
     optionType,
     onChange,
+    testIdPrefix,
     ...restProps
   } = propsWithDefaults;
 
@@ -542,18 +551,21 @@ export const CustomSelect: React.FC<SelectProps> = (props) => {
 
   const DefaultSelectOption = (props: any) => {
     const { innerProps, innerRef, isFocused } = props;
+    const optionTestId = testIdPrefix
+      ? `${testIdPrefix}-option-${_.snakeCase(props.data?.label)}`
+      : `select-option-${_.snakeCase(props.data?.label)}`;
     return (
       <SSelectOption
-        data-testid={`select-option-${_.snakeCase(props.data.label)}`}
+        data-testid={optionTestId}
         className="react-select__option"
         isFocused={isFocused}
         ref={innerRef}
         {...innerProps}
-        id={`${id}-Select-${_.snakeCase(props.data.label)}`}
+        id={`${id}-Select-${_.snakeCase(props.data?.label)}`}
       >
-        <div>{props.data.label}</div>
-        {props.data.subtitle && (
-          <SSelectOptionSubtitle>{props.data.subtitle}</SSelectOptionSubtitle>
+        <div>{props.data?.label}</div>
+        {props.data?.subtitle && (
+          <SSelectOptionSubtitle>{props.data?.subtitle}</SSelectOptionSubtitle>
         )}
       </SSelectOption>
     );
