@@ -16,6 +16,7 @@ export interface SelectCheckboxProps {
   updateSelectedOptions: (any) => void;
   id?: string;
   clearText?: any;
+  testIdPrefix?: string;
 }
 
 export interface TruncatedValuesProps {
@@ -190,6 +191,7 @@ export const SelectCheckboxProps = ({
   isFilterable,
   id,
   clearText,
+  testIdPrefix,
 }: SelectCheckboxProps) => {
   const selectMulti = (val, updateSelectedOptions) => {
     const isSelectedOption = selectedOptions.find((o) => o.value === val);
@@ -218,9 +220,12 @@ export const SelectCheckboxProps = ({
   const components = {
     ValueContainer,
     Option: (props: any) => {
+      const optionTestId = testIdPrefix
+        ? `${testIdPrefix}-option-${_.snakeCase(props.data.label)}`
+        : `select-option-${_.snakeCase(props.data.label)}`;
       return (
         <div
-          data-testid={`select-option-${_.snakeCase(props.data.label)}`}
+          data-testid={optionTestId}
           className={'react-select__option'}
           ref={props.innerRef}
           {...props.innerProps}

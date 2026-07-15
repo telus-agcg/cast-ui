@@ -29,6 +29,10 @@ const meta: Meta<FileUploadCustomArgs> = {
         disable: true,
       },
     },
+    'data-testid': {
+      control: 'text',
+      description: 'Prefix for internal data-testid attributes (Browse span gets `{data-testid}-browse`)',
+    },
     disabled: {
       control: 'boolean',
     },
@@ -88,8 +92,9 @@ export const _FileUpload: Story = {
     uploaded: false,
     percentage: 70,
     fileDetails: 'Added by Benedict Cumberbatch on 3/15/2019 08:30 AM',
+    'data-testid': 'my-file-upload',
   },
-  render: ({ disabled, info, percentage, ...fileProps }) => {
+  render: ({ disabled, info, percentage, 'data-testid': dataTestId, ...fileProps }) => {
     const [files, setFiles] = React.useState([sampleFile]);
     return (
       <div>
@@ -97,6 +102,7 @@ export const _FileUpload: Story = {
           disabled={disabled}
           info={info}
           onFilesAdded={(files: any) => setFiles(files)}
+          data-testid={dataTestId}
         />
         {files.map((file: any, i: any) => (
           <File

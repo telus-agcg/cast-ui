@@ -27,6 +27,10 @@ export type PaginationButtonsProps = {
    * @default defaultTheme
    **/
   theme?: any;
+  /**
+   * Test identifier for the button element
+   **/
+  'data-testid'?: string;
 };
 
 const IconStyler = styled.span<Partial<PaginationButtonsProps>>`
@@ -84,6 +88,7 @@ export const PaginationButtonNextPrev = (props: PaginationButtonsProps) => {
       <IconStyler
         disabled={props.disabled}
         onClick={props.disabled ? () => {} : props.onClick}
+        data-testid={props['data-testid']}
       >
         {icon}
       </IconStyler>
@@ -103,6 +108,7 @@ export const PaginationButtonFirstLast = (props: PaginationButtonsProps) => {
       <IconStyler
         disabled={props.disabled}
         onClick={props.disabled ? () => {} : props.onClick}
+        data-testid={props['data-testid']}
       >
         {icon}
       </IconStyler>
