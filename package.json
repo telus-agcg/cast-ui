@@ -56,16 +56,17 @@
     "react-modal": "^3.16.3",
     "react-select": "^5.10.0",
     "react-tabs": "^6.1.0",
-    "semantic-release": "^24.2.3",
+    "semantic-release": "^24.2.9",
     "styled-components": "^6.1.16"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.1",
     "@eslint/js": "^9.22.0",
     "@semantic-release/github": "^11.0.1",
-    "@semantic-release/npm": "^12.0.1",
+    "@semantic-release/npm": "^12.0.2",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "@storybook/addon-a11y": "^9.0.18",
+    "@storybook/addon-docs": "^9.0.18",
     "@storybook/addon-onboarding": "^9.0.18",
     "@storybook/addon-themes": "^9.0.18",
     "@storybook/react-vite": "^9.0.18",
@@ -90,8 +91,7 @@
     "vite": "^6.1.0",
     "vite-plugin-dts": "^4.5.0",
     "vite-plugin-lib-inject-css": "^2.2.1",
-    "vite-tsconfig-paths": "^5.1.4",
-    "@storybook/addon-docs": "^9.0.18"
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.9.5"
@@ -100,5 +100,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "resolutions": {
+    "tar": "^7.5.19"
   }
 }
