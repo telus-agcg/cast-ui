@@ -107,6 +107,7 @@ const displayStyleRules = (
 };
 
 const SDiv = styled.div<Partial<RadioButtonProps> & any>`
+  position: relative;
   ${(props: any) => displayStyleRules(props.displayStyle, props.theme)}
 `;
 
@@ -118,7 +119,14 @@ const SLabel = styled.label<Partial<RadioButtonProps>>`
 `;
 
 const SInput = styled.input<Partial<RadioButtonProps>>`
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  margin: 0;
+  pointer-events: none;
   + label:before {
     content: '';
     display: inline-block;
@@ -180,6 +188,10 @@ const SInput = styled.input<Partial<RadioButtonProps>>`
       props.theme.radioButton[props.rbSize!].notCheckedSize ?? ''};
     padding: ${(props) =>
       props.theme.radioButton.disabledNotCheckedPadding ?? ''};
+  }
+
+  &:focus-visible + label:before {
+    box-shadow: 0 0 0 2px ${(props) => props.theme.colors.primary};
   }
 `;
 
