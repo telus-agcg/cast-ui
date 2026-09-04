@@ -2,7 +2,7 @@ name: Integration Workflow
 
 on:
   pull_request:
-    branches: [beta, next]
+    branches: [master, beta, next]
 
 permissions:
   contents: read

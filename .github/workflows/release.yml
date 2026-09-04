@@ -9,6 +9,12 @@ permissions:
   pages: write
   id-token: write
 
+# Releases must never overlap or be cancelled mid-flight: a run that is killed
+# between tagging and publishing leaves a tag with no npm package behind it.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build:
     name: Build Pages Artifact
@@ -36,17 +42,26 @@ jobs:
       - name: Semantic Release
         run: npx semantic-release
         env:
-          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm (Trusted Publisher)
         run: |
+          # @semantic-release/npm runs with npmPublish:false, so the version it
+          # resolved exists only in the workspace. If semantic-release decided
+          # not to release, package.json still holds the committed version,
+          # which is already on the registry -- skip rather than fail.
+          VERSION=$(node -p "require('./package.json').version")
           case "${{ github.ref_name }}" in
             master) TAG=latest ;;
-            beta)   TAG=beta ;;
-            next)   TAG=next ;;
-            *) echo "Unsupported branch ${{ github.ref_name }}"; exit 1 ;;
+            # Prerelease branches publish under a dist-tag named for the branch,
+            # matching semantic-release's default channel convention.
+            *) TAG="${{ github.ref_name }}" ;;
           esac
+          if npm view "@tkxs/cast-ui@$VERSION" version >/dev/null 2>&1; then
+            echo "$VERSION is already published; nothing to do."
+            exit 0
+          fi
+          echo "Publishing $VERSION under dist-tag $TAG"
           npm publish --provenance --access public --tag "$TAG"
 
       - name: Build Static Asset
@@ -59,7 +74,7 @@ jobs:
 
   deploy:
     name: Release Pages Artifact
-    if: github.ref_name == 'beta'
+    if: github.ref_name == 'master'
     needs: [build]
     environment:
       name: github-pages
