@@ -29,11 +29,6 @@ export const _Navbar: Story = {
   render: (args) => (
     <Navbar {...args}>
       <Nav left>
-        <img
-          src="https://www.tkxs.com/hubfs/TKXS-brand/TKXS%20Official%20Logo%20(black).svg"
-          alt="TKXS"
-          style={{ width: '100px' }}
-        />
         <h2 style={{ padding: '0 16px' }}>Cast UI</h2>
       </Nav>
       <Nav center>
