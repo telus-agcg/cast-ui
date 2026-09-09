@@ -251,9 +251,9 @@ const SMenuButton = styled(SButton)`
   padding-bottom: 0px;
 `;
 
-const SIcon = styled(KeyboardArrowDownIcon)`
+const SIcon = styled(KeyboardArrowDownIcon)<{ $btnSize?: string }>`
   border-left: 1px solid ${(props: any) => props.theme.colors.lt800};
-  margin: ${(props: any) => props.theme.button[props.btnSize!].padding};
+  margin: ${(props: any) => props.theme.button[props.$btnSize!].padding};
   margin-top: 0px;
   margin-right: 0px;
   margin-bottom: 0px;
@@ -295,7 +295,7 @@ export const Button = (props: ButtonProps) => {
       >
         {children}
         {displayType === 'menu' ? (
-          <SIcon {...iconProps} width={24} height={24} />
+          <SIcon {...iconProps} $btnSize={btnSize} width={24} height={24} />
         ) : null}
       </ButtonType>
     </ThemeProvider>
